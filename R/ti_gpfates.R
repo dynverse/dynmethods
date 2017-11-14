@@ -1,0 +1,122 @@
+#' Description for GPfates
+#' @export
+description_gpfates <- function() create_description(
+  name = "GPfates",
+  short_name = "GPfates",
+  package_loaded = c(),
+  package_required = c("GPfates"),
+  par_set = makeParamSet(
+    makeNumericParam(id = "log_expression_cutoff", lower = 0.5, upper = 5, default = 2),
+    makeNumericParam(id = "min_cells_expression_cutoff", lower = 0, upper = 20, default = 2),
+    makeIntegerParam(id = "nfates", lower = 1L, upper = 20L, default = 1L),
+    makeIntegerParam(id = "ndims", lower = 1L, upper = 5L, default = 2L)
+  ),
+  properties = c(),
+  run_fun = run_gpfates,
+  plot_fun = plot_gpfates
+)
+
+## TODO: give simulationtime as prior
+#' @importFrom readr read_csv
+#' @importFrom utils write.table
+run_gpfates <- function(
+  counts,
+  nfates = 1,
+  ndims = 2,
+  log_expression_cutoff = 2,
+  min_cells_expression_cutoff = 2,
+  num_cores = 1,
+  verbose = FALSE
+) {
+  # documentation was not very detailed, so we had a hard time figuring out what the parameters were
+  requireNamespace("GPfates")
+
+  gp_out <- GPfates::GPfates(
+    counts = counts,
+    nfates = nfates,
+    ndims = ndims,
+    log_expression_cutoff = log_expression_cutoff,
+    min_cells_expression_cutoff = min_cells_expression_cutoff,
+    num_cores = num_cores,
+    verbose = verbose
+  )
+
+  pseudotime <- gp_out$pseudotime %>% mutate(time = dynutils::scale_minmax(time))
+  phi <- gp_out$phi
+  dr <- gp_out$dr
+
+  # get percentages of end milestones by multiplying the phi with the pseudotime
+  progressions <- phi %>%
+    gather(to, percentage, -cell_id) %>%
+    left_join(pseudotime, by = "cell_id") %>%
+    mutate(
+      percentage = percentage*time,
+      from = "M0"
+    ) %>%
+    select(cell_id, from, to, percentage)
+
+  #  create milestone network
+  milestone_network <- data_frame(
+    from = "M0",
+    to = paste0("M", seq_len(nfates)),
+    length = 1,
+    directed = TRUE
+  )
+  milestone_ids <- paste0("M", seq(0, nfates))
+
+  # return output
+  wrap_ti_prediction(
+    ti_type = "GPfates",
+    id = "GPfates",
+    cell_ids = rownames(counts),
+    milestone_ids = milestone_ids,
+    milestone_network = milestone_network,
+    progressions = progressions,
+    dimred_samples = dr,
+    pseudotime = pseudotime
+  )
+}
+
+plot_gpfates <- function(prediction, type = c("dimred", "assignment")) {
+  type <- match.arg(type)
+  sample_df <- prediction$dimred_samples %>%
+    left_join(prediction$pseudotime, by = "cell_id")
+
+  switch(
+    type,
+    dimred = {
+      max_trend <- prediction$milestone_percentages %>%
+        group_by(cell_id) %>%
+        arrange(desc(percentage)) %>%
+        slice(1) %>%
+        ungroup()
+
+      plot_df <- sample_df %>%
+        left_join(max_trend, by = "cell_id") %>%
+        mutate(trend = gsub("M", "Trend ", milestone_id))
+
+      g <- ggplot() +
+        geom_point(aes(Comp1, Comp2, colour = trend), plot_df) +
+        scale_color_brewer(palette = "Set2") +
+        labs(colour = "Fitted trend") +
+        theme(legend.position = c(.92, .12))
+
+      process_dynplot(g, prediction$id)
+
+      # TODO: Extract OGMP for plotting purposes. See dyneval #21
+    },
+    assignment = {
+      progression_df <- sample_df %>%
+        left_join(prediction$progressions, by = "cell_id") %>%
+        mutate(trend = gsub("M", "Trend ", to))
+
+      g <- ggplot() +
+        geom_point(aes(time, percentage, colour = trend), progression_df) +
+        facet_wrap(~trend, ncol = 1) +
+        labs(x = "Pseudotime", y = "Trend assignment probability") +
+        theme(legend.position = "none")
+
+      process_dynplot(g, prediction$id)
+    }
+  )
+}

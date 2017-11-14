@@ -1,0 +1,178 @@
+#' Description for Mpath
+#' @export
+description_mpath <- function() create_description(
+  name = "Mpath",
+  short_name = "Mpath",
+  package_loaded = c("Mpath"),
+  package_required = c(),
+  par_set = makeParamSet(
+    makeDiscreteParam(id = "distMethod", default = "euclidean", values = c("pearson", "kendall", "spearman", "euclidean")),
+    makeDiscreteParam(id = "method", default = "diversity_size", values = c("kmeans", "diversity", "size", "diversity_size")),
+    makeIntegerParam(id = "numcluster", lower = 3L, default = 11L, upper = 30L),
+    makeNumericParam(id = "diversity_cut", lower = .1, default = .6, upper = 1),
+    makeNumericParam(id = "size_cut", lower = .01, default = .05, upper = 1)
+  ),
+  properties = c(),
+  run_fun = run_mpath,
+  plot_fun = plot_mpath
+)
+
+#' @importFrom utils write.table
+#' @importFrom stats na.omit
+#' @importFrom reshape2 melt
+run_mpath <- function(counts,
+                      grouping_assignment,
+                      distMethod = "euclidean",
+                      method = "kmeans",
+                      numcluster = 11,
+                      diversity_cut = .6,
+                      size_cut = .05) {
+  requireNamespace("igraph")
+
+  sample_info <- grouping_assignment %>% rename(GroupID = group_id) %>% as.data.frame
+
+  landmark_cluster <- Mpath::landmark_designation(
+    rpkmFile = t(counts),
+    baseName = NULL,
+    sampleFile = sample_info,
+    distMethod = distMethod,
+    method = method,
+    numcluster = numcluster,
+    diversity_cut = diversity_cut,
+    size_cut = size_cut,
+    saveRes = FALSE
+  )
+
+  milestone_ids <- unique(landmark_cluster$landmark_cluster)
+
+  # catch situation where mpath only detects 1 landmark
+  if (length(milestone_ids) == 1) {
+    cell_ids <- rownames(counts)
+    milestone_network <- data_frame(
+      from = milestone_ids,
+      to = milestone_ids,
+      length = 1,
+      directed = FALSE
+    )
+    progressions <- data_frame(
+      cell_id = cell_ids,
+      from = milestone_ids,
+      to = milestone_ids,
+      percentage = 1
+    )
+  } else {
+    # build network
+    network <- Mpath::build_network(
+      exprs = t(counts),
+      baseName = NULL,
+      landmark_cluster = landmark_cluster,
+      distMethod = distMethod,
+      writeRes = FALSE
+    )
+
+    # trim network
+    trimmed_network <- Mpath::trim_net(
+      nb12 = network,
+      writeRes = FALSE
+    )
+
+    # create final milestone network
+    class(trimmed_network) <- NULL
+    milestone_network <- trimmed_network %>%
+      reshape2::melt(varnames = c("from", "to"), value.name = "length") %>%
+      mutate_if(is.factor, as.character) %>%
+      filter(length > 0, from < to) %>%
+      mutate(directed = FALSE)
+
+    # find an edge for each cell to sit on
+    connections <- bind_rows(
+      milestone_network %>% mutate(landmark_cluster = from, percentage = 0),
+      milestone_network %>% mutate(landmark_cluster = to, percentage = 1)
+    )
+    progressions <-
+      landmark_cluster %>%
+      left_join(connections, by = "landmark_cluster") %>%
+      select(cell_id = cell, from, to, percentage) %>%
+      stats::na.omit() %>%
+      group_by(cell_id) %>%
+      arrange(desc(percentage)) %>%
+      slice(1) %>%
+      ungroup()
+  }
+
+  # return output
+  wrap_ti_prediction(
+    ti_type = "tree",
+    id = "Mpath",
+    cell_ids = rownames(counts),
+    milestone_ids = milestone_ids,
+    milestone_network = milestone_network,
+    progressions = progressions,
+    landmark_cluster = landmark_cluster,
+    grouping_assignment = grouping_assignment
+  )
+}
+
+#' @importFrom ggforce geom_arc_bar
+plot_mpath <- function(prediction) {
+  requireNamespace("igraph")
+
+  # milestone net as igraph in order to perform dimred
+  edges <- prediction$milestone_network %>% filter(to != "FILTERED_CELLS")
+  gr <- igraph::graph_from_data_frame(
+    edges,
+    directed = FALSE,
+    vertices = prediction$milestone_ids
+  )
+  lay <- gr %>%
+    igraph::layout_with_kk() %>%
+    dynutils::scale_quantile(0)
+  dimnames(lay) <- list(
+    igraph::V(gr)$name,
+    c("X", "Y")
+  )
+  lay_df <- lay %>% as.data.frame %>% rownames_to_column("milestone_id")
+
+  # collect info on cells
+  cell_ids <- prediction$cell_ids
+  labels <- prediction$grouping_assignment %>%
+    slice(match(cell_ids, cell_id)) %>%
+    .$group_id
+  clustering <- prediction$progressions %>%
+    slice(match(cell_ids, cell_id)) %>%
+    {with(., ifelse(percentage == 0, from, to))}
+
+  # generate pie df with positioning
+  pie_df <- data_frame(cell_id = cell_ids, label = labels, milestone_id = clustering) %>%
+    group_by(milestone_id, label) %>%
+    summarise(n = n()) %>%
+    mutate(
+      value = n / sum(n) * 2 * pi,
+      end = cumsum(value),
+      start = end - value
+    ) %>%
+    ungroup() %>%
+    left_join(lay_df, by = "milestone_id")
+
+  # generate edge df with positioning
+  edges_df <- edges %>%
+    left_join(lay_df %>% select(from = milestone_id, from.x = X, from.y = Y), by = "from") %>%
+    left_join(lay_df %>% select(to = milestone_id, to.x = X, to.y = Y), by = "to")
+
+  # Determine a colour scheme
+  ann_groups <- unique(labels) %>% sort
+  ann_cols <- setNames(RColorBrewer::brewer.pal(length(ann_groups), "Set2"), ann_groups)
+
+  # Make a line plot
+  g <- ggplot() +
+    geom_segment(aes(x = from.x, xend = to.x, y = from.y, yend = to.y), edges_df) +
+    ggforce::geom_arc_bar(aes(x0 = X, y0 = Y, r0 = 0, r = .075,
+                              start = start, end = end, fill = label, group = milestone_id), data = pie_df) +
+    geom_text(aes(X, Y, label = milestone_id), lay_df) +
+    scale_fill_manual(values = ann_cols) +
+    theme(legend.position = c(.92, .12))
+
+  process_dynplot(g, prediction$id)
+}
+
+
