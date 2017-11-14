@@ -77,7 +77,6 @@ run_pseudogp <- function(counts,
   )
 }
 
-#' @importFrom cowplot plot_grid
 plot_pseudogp <- function(prediction) {
   # code is adapted from pseudogp::posteriorCurvePlot
   requireNamespace("pseudogp")

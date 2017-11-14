@@ -14,13 +14,9 @@ RoxygenNote: 6.0.1
 Depends:
   R (>= 3.4.0)
 Imports: 
-  coRanking,
-  cowplot,
   dplyr, 
   dynplot,
   dynutils,
-  GA,
-  GEDEVO,
   ggforce,
   ggplot2,
   grDevices,
@@ -29,27 +25,18 @@ Imports:
   jsonlite,
   magrittr, 
   methods,
-  mlr,
-  mlrMBO,
-  netdist,
-  parallelMap,
   ParamHelpers,
   pbapply,
   pdist,
-  pheatmap,
-  PRISM,
   purrr, 
-  randomForest,
   RColorBrewer,
   readr,
   reshape2,
-  smoof,
   stringr,
   testthat,
   tibble, 
   tidyr,
-  viridis,
-  vegan
+  viridis
 Suggests:
   Biobase,
   BiocGenerics,
@@ -64,6 +51,7 @@ Suggests:
   lle,
   MASS,
   Matrix,
+  MCMCglmm,
   Mpath,
   mfa,
   monocle,
@@ -84,10 +72,8 @@ Suggests:
   topslam,
   TSCAN,
   Waterfall,
-  Wishbone,
-  MCMCglmm
+  Wishbone
 Remotes:
-  alan-turing-institute/network-comparison,
   berndbischl/ParamHelpers@dd54fe2719492dc0a03c6fe277d6ccaf255f6200,
   bioc::Biobase,
   bioc::BiocGenerics,
@@ -95,7 +81,6 @@ Remotes:
   bioc::destiny,
   bioc::scater,
   bioc::TSCAN,
-  dynverse/GEDEVO,
   dynverse/GPfates,
   dynverse/monocle,
   dynverse/Mpath,
@@ -113,9 +98,7 @@ Remotes:
   kieranrcampbell/ouija,
   kieranrcampbell/phenopath,
   kstreet13/slingshot,
-  mlr-org/mlr,
   rcannood/dynutils,
-  rcannood/PRISM,
   rcannood/SCORPIUS,
   Zouter/dynplot,
   Zouter/dyntoy
