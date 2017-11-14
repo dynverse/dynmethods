@@ -1,4 +1,4 @@
-library(dyneval)
+library(dynmethods)
 library(dynutils)
 library(dplyr)
 library(tidyr)
@@ -114,7 +114,7 @@ model_mu = FALSE
 scale_y = TRUE
 
 # pseudogp
-dimreds = names(dyneval:::list_dimred_methods()) == "pca"
+dimreds = names(dynmethods:::list_dimred_methods()) == "pca"
 chains = 1
 iter = 1000
 smoothing_alpha = 10

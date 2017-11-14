@@ -1,5 +1,5 @@
 library(testthat)
-library(dyneval)
+library(dynmethods)
 library(dynutils)
 library(dplyr)
 library(ggplot2)
@@ -7,5 +7,5 @@ library(purrr)
 
 Sys.setenv("R_TESTS" = "")
 
-test_check("dyneval")
+test_check("dynmethods")
 

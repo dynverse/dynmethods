@@ -42,7 +42,7 @@ test_that("Checking for dependencies does not produce an error", {
 })
 
 test_that("Testing create_description with dummy method", {
-  dummy <- dyneval:::create_description(
+  dummy <- dynmethods:::create_description(
     name = "dummy 1",
     short_name = "dum1",
     package_loaded = c("dynverse"),
@@ -67,7 +67,7 @@ test_that("Testing create_description with dummy method", {
   expect_is( dummy$plot_fun, "function" )
   expect_equal( dummy$plot_fun(NULL), "cake" )
 
-  dummy <- dyneval:::create_description(
+  dummy <- dynmethods:::create_description(
     name = "dummy 1",
     short_name = "dum1",
     package_loaded = c("dynverse"),
@@ -89,7 +89,7 @@ test_that("Testing create_description with dummy method", {
 test_that("Testing execute_method with dummy method", {
   data("toy_tasks", package="dyntoy")
 
-  dummy <- dyneval:::create_description(
+  dummy <- dynmethods:::create_description(
     name = "dummy 2",
     short_name = "dum2",
     package_loaded = c("dplyr"),
@@ -139,9 +139,7 @@ test_that("Testing execute_method with dummy method", {
 })
 
 test_that("Testing timeout of execute_method", {
-
-
-  timeouter <- dyneval:::create_description(
+  timeouter <- dynmethods:::create_description(
     name = "timeouter",
     short_name = "timeout",
     package_loaded = c("dplyr"),

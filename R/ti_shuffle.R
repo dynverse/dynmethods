@@ -1,4 +1,7 @@
 #' Description for shuffled
+#'
+#' @importFrom dynplot plot_default
+#'
 #' @export
 description_shuffle <- function() create_description(
   name = "shuffle",
@@ -10,7 +13,7 @@ description_shuffle <- function() create_description(
   ),
   properties = c(),
   run_fun = run_shuffle,
-  plot_fun = plot_default
+  plot_fun = dynplot::plot_default
 )
 
 run_shuffle <- function(counts, task, dummy_param = .5) {

@@ -41,5 +41,5 @@ plot_waterfall <- function(prediction) {
     scale_colour_distiller(palette = "RdBu") +
     labs(colour = "Pseudotime") +
     theme(legend.position = c(.92, .12))
-  process_dyneval_plot(g, prediction$id)
+  process_dynplot(g, prediction$id)
 }

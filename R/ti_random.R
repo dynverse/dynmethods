@@ -1,4 +1,7 @@
 #' Description for random
+#'
+#' @importFrom dynplot plot_default
+#'
 #' @export
 description_random <- function() create_description(
   name = "random",
@@ -10,7 +13,7 @@ description_random <- function() create_description(
   ),
   properties = c(),
   run_fun = run_random,
-  plot_fun = plot_default
+  plot_fun = dynplot::plot_default
 )
 
 run_random <- function(counts, dummy_param = .5) {

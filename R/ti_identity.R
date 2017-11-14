@@ -1,4 +1,7 @@
 #' Description for identity
+#'
+#' @importFrom dynplot plot_default
+#'
 #' @export
 description_identity <- function() create_description(
   name = "identity",
@@ -10,7 +13,7 @@ description_identity <- function() create_description(
   ),
   properties = c(),
   run_fun = run_identity,
-  plot_fun = plot_default
+  plot_fun = dynplot::plot_default
 )
 
 run_identity <- function(counts, task, dummy_param = .5) {
