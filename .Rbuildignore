@@ -1,4 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^\.git$
+^\.httr-oauth$
+^\.travis\.yml$
 ^scripts$
+^.git$

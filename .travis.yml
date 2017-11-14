@@ -1,0 +1,19 @@
+language: r
+sudo: required
+dist: trusty
+bioc_required: true
+cache: packages
+warnings_are_errors: true
+addons:
+  apt:
+    packages:
+      - libgsl-dev
+      - libsdl1.2-dev
+      - libreadline-dev
+      - imagemagick
+      - libfftw3-dev
+      - libudunits2-dev
+install:
+ - R -e 'install.packages("devtools")'
+ - R -e 'devtools::install(dependencies = TRUE, upgrade_dependencies = TRUE)'
+ - R -e 'dynmethods::check_dependencies()'
