@@ -19,4 +19,4 @@ install:
  - R -e 'dynmethods::check_dependencies()'
  - "pip3 install --upgrade pip setuptools wheel"
  - "pip3 install --only-binary=numpy,scipy numpy scipy"
- - "pip3 install pandas"
+ - "pip3 install matplotlib pandas six jinja2 python-dateutil pytz pyparsing cycler tqdm python-igraph rpy2 Cython statsmodels sklearn seaborn"
