@@ -13,6 +13,7 @@ addons:
       - imagemagick
       - libfftw3-dev
       - libudunits2-dev
+      - python3-pip
 install:
  - R -e 'install.packages("devtools")'
  - R -e 'devtools::install(dependencies = TRUE, upgrade_dependencies = TRUE)'
