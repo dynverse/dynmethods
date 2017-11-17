@@ -14,10 +14,13 @@ addons:
       - libfftw3-dev
       - libudunits2-dev
       - python3-pip
+      - python3-setuptools
+      - python3-wheel
 install:
- - "pip3 install pip setuptools wheel"
+ - "pip3 install --upgrade pip setuptools"
  - "pip3 install --upgrade --only-binary=numpy,scipy numpy scipy"
  - "pip3 install --upgrade matplotlib pandas six jinja2 python-dateutil pytz pyparsing cycler tqdm python-igraph rpy2 Cython statsmodels sklearn seaborn"
  - R -e 'install.packages("devtools")'
  - R -e 'devtools::install(dependencies = TRUE, upgrade_dependencies = TRUE)'
  - R -e 'dynmethods::check_dependencies()'
+
