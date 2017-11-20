@@ -4,6 +4,8 @@ dist: trusty
 bioc_required: true
 cache: packages
 warnings_are_errors: true
+python:
+  - "3.6"
 addons:
   apt:
     packages:
@@ -13,14 +15,17 @@ addons:
       - imagemagick
       - libfftw3-dev
       - libudunits2-dev
-      - python3-pip
-      - python3-setuptools
-      - python3-wheel
+      - libblas-dev
+      - liblapack-dev
+before_install:
+  - sudo apt-get -y install python-dev python3-pip
+  - sudo pip3 install --upgrade pip setuptools wheel
+  - python3 -V
+  - pip3 -V
 install:
- - "pip3 install --upgrade pip setuptools"
- - "pip3 install --upgrade --only-binary=numpy,scipy numpy scipy"
- - "pip3 install --upgrade matplotlib pandas six jinja2 python-dateutil pytz pyparsing cycler tqdm python-igraph rpy2 Cython statsmodels sklearn seaborn"
- - R -e 'install.packages("devtools")'
- - R -e 'devtools::install(dependencies = TRUE, upgrade_dependencies = TRUE)'
- - R -e 'dynmethods::check_dependencies()'
+  - sudo pip3 install --upgrade --only-binary=numpy,scipy numpy scipy
+  - sudo pip3 install --upgrade matplotlib pandas six jinja2 python-dateutil pytz pyparsing cycler tqdm python-igraph rpy2 Cython statsmodels sklearn seaborn
+  - R -e 'install.packages("devtools")'
+  - R -e 'devtools::install(dependencies = TRUE, upgrade_dependencies = TRUE)'
+  - R -e 'dynmethods::check_dependencies()'
 
