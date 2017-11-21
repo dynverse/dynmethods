@@ -1,4 +1,4 @@
-[![Build Status](https://api.travis-ci.com/rcannood/dyneval.svg?token=pzNqJjk3yapU1Hk7sDg8&branch=master)](https://travis-ci.com/rcannood/dyneval)
+[![Build Status](https://travis-ci.com/rcannood/dynmethods.svg?token=XT9fndLm2JPN9bnhq3qM&branch=master)](https://travis-ci.com/rcannood/dynmethods)
 
 # dynmethods
 
