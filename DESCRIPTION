@@ -23,6 +23,7 @@ Imports:
   grid,
   igraph,
   jsonlite,
+  lhs,
   magrittr, 
   methods,
   ParamHelpers,
