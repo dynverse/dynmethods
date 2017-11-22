@@ -1,89 +1,4 @@
-context("Testing TI method wrappers")
-
-library(ggplot2)
-
-test_that("Descriptions can be retrieved", {
-  tib <- get_descriptions()
-  expect_that(tib, is_a("tbl"))
-
-  lis <- get_descriptions(as_tibble = FALSE)
-  expect_that(lis, is_a("list"))
-
-  for (descr in lis) {
-    test_that(paste0("Description ", descr$name), {
-      expect_lte(nchar(descr$short_name), 8)
-    })
-  }
-})
-
-methods <- get_descriptions()
-
-for (i in seq_len(nrow(methods))) {
-  method <- extract_row_to_list(methods, i)
-
-  test_that(paste0("Checking ", method$short_name), {
-    par_set <- method$par_set
-
-    # must be able to generate a 10 random parameters
-    design <- ParamHelpers::generateDesign(10, par_set)
-
-    # must be able to generate the default parameters
-    design <- ParamHelpers::generateDesignOfDefaults(par_set)
-
-    parset_params <- names(par_set$pars)
-    runfun_params <- setdiff(formalArgs(method$run_fun), c("counts", "start_cells", "start_cell", "end_cells", "grouping_assignment", "task"))
-
-    expect_equal( parset_params[parset_params %in% runfun_params], parset_params )
-  })
-}
-
-test_that("Checking for dependencies does not produce an error", {
-  expect_error(check_dependencies(), NA)
-})
-
-test_that("Testing create_description with dummy method", {
-  dummy <- dynmethods:::create_description(
-    name = "dummy 1",
-    short_name = "dum1",
-    package_loaded = c("dynverse"),
-    package_required = c("tidyverse"),
-    par_set = ParamHelpers::makeParamSet(
-      ParamHelpers::makeDiscreteParam(id = "param", default = "banana", values = c("apple", "banana", "cherry"))
-    ),
-    properties = c("space", "trajectory"),
-    run_fun = function(counts, param = "fjioiw") param,
-    plot_fun = function(out) "cake",
-    override_runfun_params = TRUE
-  )
-  expect_equal( dummy$name, "dummy 1" )
-  expect_equal( dummy$short_name, "dum1" )
-  expect_equal( dummy$package_loaded, "dynverse" )
-  expect_equal( dummy$package_required, "tidyverse" )
-  expect_is( dummy$par_set, "ParamSet" )
-  expect_equal( dummy$properties, c("space", "trajectory") )
-  expect_is( dummy$run_fun, "function" )
-  # take into account parameter overwriting by parmamset
-  expect_equal( dummy$run_fun(NULL), "banana" )
-  expect_is( dummy$plot_fun, "function" )
-  expect_equal( dummy$plot_fun(NULL), "cake" )
-
-  dummy <- dynmethods:::create_description(
-    name = "dummy 1",
-    short_name = "dum1",
-    package_loaded = c("dynverse"),
-    package_required = c("tidyverse"),
-    par_set = ParamHelpers::makeParamSet(
-      ParamHelpers::makeDiscreteParam(id = "param", default = "banana", values = c("apple", "banana", "cherry"))
-    ),
-    properties = c("space", "trajectory"),
-    run_fun = function(counts, param = "fjioiw") param,
-    plot_fun = function(out) "cake",
-    override_runfun_params = FALSE
-  )
-  # take into account parameter overwriting by parmamset
-  expect_equal( dummy$run_fun(NULL), "fjioiw" )
-})
-
+context("Testing execute_method")
 
 
 test_that("Testing execute_method with dummy method", {
@@ -138,7 +53,7 @@ test_that("Testing execute_method with dummy method", {
   }
 })
 
-test_that("Testing timeout of execute_method", {
+test_that("Testing timeout functionality of execute_method with dummy wrapper", {
   timeouter <- dynmethods:::create_description(
     name = "timeouter",
     short_name = "timeout",
@@ -206,3 +121,21 @@ test_that("Testing timeout of execute_method", {
     expect_true( is.null(method_out$summary$error[[1]]) )
   }
 })
+
+# methods <- get_descriptions(as_tibble = FALSE)
+# for (method in methods) {
+#   test_that(pritt("Testing whether {method$short_name} is able to run on simple data"), {
+#   # print(method$short_name)
+#     params <- ParamHelpers::generateDesignOfDefaults(method$par_set) %>% ParamHelpers::dfRowToList(method$par_set, 1)
+#     toy <- dyntoy::generate_toy_datasets(trajectory_types = "linear", num_replicates = 1, num_cells = 50, num_genes = 31)
+#     out <- execute_method(toy, method, parameters = params, timeout = 100)
+#     error <- out[[1]]$summary$error[[1]]
+#     error
+#     expect_null(error)
+#     # if erroring:
+#     # list2env(params, globalenv())
+#     # counts <- toy$counts[[1]]
+#   })
+# }
+
+# TODO: implement test for checking whether zerod columns work
