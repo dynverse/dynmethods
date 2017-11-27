@@ -17,7 +17,7 @@ description_phenopath <- function() create_description(
 )
 
 #' @importFrom stats prcomp
-run_phenopath <- function(counts,
+run_phenopath <- function(expression,
                           thin = 40,
                           z_init = 1,
                           model_mu = FALSE,
@@ -25,12 +25,10 @@ run_phenopath <- function(counts,
 ) {
   requireNamespace("phenopath")
 
-  expr <- log2(counts + 1)
-
   # run phenopath
   fit <- phenopath::phenopath(
-    exprs_obj = expr,
-    x = rep(1, nrow(counts)),
+    exprs_obj = expression,
+    x = rep(1, nrow(expression)),
     elbo_tol = 1e-6,
     thin = thin,
     z_init = z_init,
@@ -40,7 +38,7 @@ run_phenopath <- function(counts,
   pseudotimes <- phenopath::trajectory(fit)
 
   # run pca for visualisation purposes
-  space <- stats::prcomp(expr)$x[,1:2] %>%
+  space <- stats::prcomp(expression)$x[,1:2] %>%
     as.data.frame() %>%
     rownames_to_column() %>%
     as_data_frame() %>%
@@ -49,7 +47,7 @@ run_phenopath <- function(counts,
   # return output
   wrap_linear_ti_prediction(
     id = "phenopath",
-    cell_ids = rownames(counts),
+    cell_ids = rownames(expression),
     pseudotimes = pseudotimes,
     space = space
   )
