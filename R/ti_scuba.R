@@ -20,6 +20,7 @@ description_scuba <- function() create_description(
 
 
 run_scuba <- function(counts,
+                      timecourse = NULL,
                       rigorous_gap_stats = TRUE,
                       N_dim = 2,
                       low_gene_threshold = 1,
@@ -36,7 +37,8 @@ run_scuba <- function(counts,
     low_gene_threshold = low_gene_threshold,
     low_gene_fraction_max = low_gene_fraction_max,
     min_split = min_split,
-    min_percentage_split = min_percentage_split
+    min_percentage_split = min_percentage_split,
+    timecourse = timecourse
   )
 
   # get milestones
