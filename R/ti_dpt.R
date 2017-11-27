@@ -21,7 +21,7 @@ description_dpt <- function() create_description(
 )
 
 #' @importFrom reshape2 melt
-run_dpt <- function(counts,
+run_dpt <- function(expression,
                     start_cells = NULL,
                     sigma = "local",
                     distance = "euclidean",
@@ -42,12 +42,9 @@ run_dpt <- function(counts,
   # create n_local vector
   n_local <- seq(n_local_lower, n_local_upper, by = 1)
 
-  # transform counts
-  expr <- log2(counts+1)
-
   # run diffusion maps
   dm <- destiny::DiffusionMap(
-    expr,
+    expression,
     marker_feature_ids = NULL,
     sigma = sigma,
     distance = distance,
@@ -69,7 +66,7 @@ run_dpt <- function(counts,
   tip_names <- rownames(counts)[tips]
 
   # retrieve dimred
-  space <- dpt@dm@eigenvectors %>% magrittr::set_rownames(rownames(expr)) %>% as.matrix
+  space <- dpt@dm@eigenvectors %>% magrittr::set_rownames(rownames(expression)) %>% as.matrix
 
   # get cluster assignment
   branch_assignment <- dpt@branch[,1] %>% ifelse(is.na(.), 0, .) %>% paste0("Branch", .)
@@ -98,7 +95,7 @@ run_dpt <- function(counts,
   wrap_ti_prediction(
     ti_type = "trifurcation",
     id = "DPT",
-    cell_ids = rownames(expr),
+    cell_ids = rownames(expression),
     milestone_ids = out$milestone_ids,
     milestone_network = out$milestone_network,
     progressions = out$progressions,
