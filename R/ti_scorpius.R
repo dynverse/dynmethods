@@ -19,7 +19,7 @@ description_scorpius <- function() create_description(
   plot_fun = plot_scorpius
 )
 
-run_scorpius <- function(counts,
+run_scorpius <- function(expression,
                          ndim = 3,
                          k = 4,
                          distance_method = "spearman",
@@ -34,11 +34,8 @@ run_scorpius <- function(counts,
     k <- NULL
   }
 
-  # transform counts
-  expr <- log2(as.matrix(counts)+1)
-
   # calculate distances between cells
-  dist <- SCORPIUS::correlation_distance(expr, method = distance_method)
+  dist <- SCORPIUS::correlation_distance(expression, method = distance_method)
 
   # perform dimensionality reduction
   space <- SCORPIUS::reduce_dimensionality(dist, ndim = ndim)
