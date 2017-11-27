@@ -8,7 +8,6 @@ description_gpfates <- function() create_description(
   par_set = makeParamSet(
     makeNumericParam(id = "log_expression_cutoff", lower = 0.5, upper = 5, default = 2),
     makeNumericParam(id = "min_cells_expression_cutoff", lower = 0, upper = 20, default = 2),
-    makeIntegerParam(id = "nfates", lower = 1L, upper = 20L, default = 1L),
     makeIntegerParam(id = "ndims", lower = 1L, upper = 5L, default = 2L)
   ),
   properties = c(),
@@ -21,7 +20,7 @@ description_gpfates <- function() create_description(
 #' @importFrom utils write.table
 run_gpfates <- function(
   counts,
-  nfates = 1,
+  n_end_states,
   ndims = 2,
   log_expression_cutoff = 2,
   min_cells_expression_cutoff = 2,
@@ -33,7 +32,7 @@ run_gpfates <- function(
 
   gp_out <- GPfates::GPfates(
     counts = counts,
-    nfates = nfates,
+    nfates = n_end_states,
     ndims = ndims,
     log_expression_cutoff = log_expression_cutoff,
     min_cells_expression_cutoff = min_cells_expression_cutoff,
