@@ -34,7 +34,7 @@ description_stemid <- function() create_description(
 )
 
 run_stemid <- function(
-  counts,
+  expression,
   clustnr = 30,
   bootnr = 50,
   metric = "pearson",
@@ -58,8 +58,8 @@ run_stemid <- function(
 ) {
   requireNamespace("StemID")
 
-  # initialize SCseq object with transcript counts
-  sc <- StemID::SCseq(data.frame(t(log2(counts+1)), check.names = FALSE))
+  # initialize SCseq object with transcript expression
+  sc <- StemID::SCseq(data.frame(expression, check.names = FALSE))
 
   # filtering of expression data
   sc <- StemID::filterdata(sc, mintotal = 1, minexpr = 0, minnumber = 0, maxexpr = Inf, downsample = TRUE, dsn = 1)
@@ -130,7 +130,7 @@ run_stemid <- function(
   wrap_ti_prediction(
     ti_type = "multifurcating",
     id = "StemID",
-    cell_ids = rownames(counts),
+    cell_ids = rownames(expression),
     milestone_ids = out$milestone_ids,
     milestone_network = out$milestone_network,
     progressions = out$progressions,
