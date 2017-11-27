@@ -54,7 +54,7 @@ abstract_celltree_description <- function(method) {
 }
 
 #' @importFrom igraph degree distances get.vertex.attribute induced_subgraph
-run_celltree <- function(counts,
+run_celltree <- function(expression,
                          start_cells = NULL,
                          grouping_assignment = NULL,
                          method = "maptpx",
@@ -75,11 +75,9 @@ run_celltree <- function(counts,
       NULL
     }
 
-  expr <- log2(counts+1)
-
   # infer the LDA model
   lda_out <- cellTree::compute.lda(
-    t(expr) + min(expr) + 1,
+    t(expression) + min(expression) + 1,
     k.topics = num_topics,
     method = method,
     log.scale = FALSE,
@@ -98,7 +96,7 @@ run_celltree <- function(counts,
 
   # if these parameters are available, add them to the list
   if(!is.null(grouping_assignment)) {
-    backbone_params$grouping <- grouping_assignment %>% slice(match(cell_id, rownames(counts))) %>% pull(group_id)
+    backbone_params$grouping <- grouping_assignment %>% slice(match(cell_id, rownames(expression))) %>% pull(group_id)
     if(!is.null(start_cell)) {
       backbone_params$start.group.label <- grouping_assignment %>% filter(cell_id == start_cell) %>% pull(group_id)
     }
@@ -111,12 +109,12 @@ run_celltree <- function(counts,
   edges <- igraph::as_data_frame(mst_tree, "edges") %>%
     select(from, to, length = weight) %>%
     mutate(
-      from = rownames(counts)[from],
-      to = rownames(counts)[to],
+      from = rownames(expression)[from],
+      to = rownames(expression)[to],
       directed = FALSE
     )
   to_keep <- igraph::V(mst_tree)$is.backbone %>%
-    setNames(rownames(counts))
+    setNames(rownames(expression))
   out <- dynutils::simplify_sample_graph(edges, to_keep, is_directed = FALSE)
 
   # extract data for visualisations
@@ -128,7 +126,7 @@ run_celltree <- function(counts,
   wrap_ti_prediction(
     ti_type = "tree",
     id = paste0("cellTree with ", method),
-    cell_ids = rownames(counts),
+    cell_ids = rownames(expression),
     milestone_ids = out$milestone_ids,
     milestone_network = out$milestone_network,
     progressions = out$progressions,
