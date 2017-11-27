@@ -21,7 +21,7 @@ description_mfa <- function() create_description(
 
 #' @importFrom stats prcomp
 run_mfa <- function(
-  counts,
+  expression,
   b = 2,
   iter = 2000,
   thin = 1,
@@ -32,12 +32,9 @@ run_mfa <- function(
 ) {
   requireNamespace("mfa")
 
-  # log transform data
-  expr <- log2(counts + 1)
-
   # perform MFA
   m <- mfa::mfa(
-    y = expr,
+    y = expression,
     b = b,
     iter = iter,
     thin = thin,
@@ -61,20 +58,20 @@ run_mfa <- function(
 
   # create progressions
   progressions <- with(ms, data_frame(
-    cell_id = rownames(counts),
+    cell_id = rownames(expression),
     from = "M0",
     to = paste0("M", branch),
     percentage = dynutils::scale_minmax(pseudotime)
   ))
 
   # pca for visualisation only
-  pca_out <- stats::prcomp(expr)$x[,1:2]
+  pca_out <- stats::prcomp(expression)$x[,1:2]
 
   # return output
   wrap_ti_prediction(
     ti_type = "multifurcating",
     id = "mfa",
-    cell_ids = rownames(counts),
+    cell_ids = rownames(expression),
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     progressions = progressions,
