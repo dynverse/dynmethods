@@ -32,8 +32,7 @@ abstract_monocle_description <- function(reduction_method) {
     ICA = makeParamSet(
       makeDiscreteParam(id = "reduction_method", values = reduction_method, default = reduction_method),
       makeIntegerParam(id = "max_components", lower = 2L, default = 2L, upper = 20L),
-      makeDiscreteParam(id = "norm_method", default = "vstExprs", values = c("vstExprs", "log", "none")),
-      makeIntegerParam(id = "num_paths", lower = 1L, default = 1L, upper = 20L)
+      makeDiscreteParam(id = "norm_method", default = "vstExprs", values = c("vstExprs", "log", "none"))
     )
   )
 
@@ -58,18 +57,16 @@ abstract_monocle_description <- function(reduction_method) {
 }
 
 run_monocle <- function(counts,
+                        n_end_states = NULL,
                         reduction_method,
                         max_components = 2,
                         norm_method = "vstExprs",
-                        auto_param_selection = TRUE,
-                        n_end_states = NULL) {
+                        auto_param_selection = TRUE) {
   requireNamespace("monocle")
   requireNamespace("BiocGenerics")
   requireNamespace("igraph")
   requireNamespace("Biobase")
   requireNamespace("Matrix")
-
-  # TODO: implement num_paths prior for monocle 1
 
   # just in case
   if (is.factor(norm_method)) norm_method <- as.character(norm_method)
