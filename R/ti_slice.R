@@ -25,6 +25,7 @@ description_slice <- function() create_description(
 run_slice <- function(
   counts,
   grouping_assignment = NULL,
+  marker_feature_ids = NULL,
   lm.method = "clustering",
   model.type = "tree",
   ss.method = "all",
@@ -82,7 +83,8 @@ run_slice <- function(
     do.scale = FALSE,
     use.cor = TRUE,
     min.var = 0,
-    min.cells = 0
+    min.cells = 0,
+    genes.use = marker_feature_ids
   )
 
   # infer entropy-directed cell lineage model
