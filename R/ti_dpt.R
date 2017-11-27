@@ -48,11 +48,13 @@ run_dpt <- function(counts,
   # run diffusion maps
   dm <- destiny::DiffusionMap(
     expr,
+    marker_feature_ids = NULL,
     sigma = sigma,
     distance = distance,
     n_eigs = n_eigs,
     density_norm = density_norm,
-    n_local = n_local
+    n_local = n_local,
+    vars = marker_feature_ids
   )
 
   # run DPT
