@@ -17,7 +17,8 @@ description_ouija <- function() create_description(
 )
 
 run_ouija <- function(
-    counts,
+    expression,
+    marker_gene_ids,
     iter = 1000, # default is actually 10'000.
     response_type = "switch",
     inference_type = "hmc",
@@ -27,16 +28,15 @@ run_ouija <- function(
   requireNamespace("rstan")
   requireNamespace("coda")
 
-  # TODO: ouija assumes a small panel of marker genes chosen a priori!
-  # marker genes should also be a possible form of prior information
-  expr <- log2(counts + 1)
+  # ouija assumes that a small number of marker genes is used, otherwise the method is verrry slow
+  expression <- expression[, marker_gene_ids]
 
   # write compiled instance of the stanmodel to HDD
   rstan::rstan_options(auto_write = TRUE)
 
   # run ouija
   oui <- ouija::ouija(
-    x = expr,
+    x = expression,
     iter = iter,
     response_type = response_type,
     inference_type = inference_type,
@@ -47,7 +47,7 @@ run_ouija <- function(
   pseudotimes <- ouija::map_pseudotime(oui)
 
   # run pca for visualisation purposes
-  space <- stats::prcomp(expr)$x[,1:2] %>%
+  space <- stats::prcomp(expression)$x[,1:2] %>%
     as.data.frame() %>%
     rownames_to_column() %>%
     as_data_frame() %>%
@@ -68,7 +68,7 @@ run_ouija <- function(
   # return output
   wrap_linear_ti_prediction(
     id = "ouija",
-    cell_ids = rownames(counts),
+    cell_ids = rownames(expression),
     pseudotimes = pseudotimes,
     t0_df = t0_df,
     space = space
