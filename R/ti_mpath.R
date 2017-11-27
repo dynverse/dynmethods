@@ -20,7 +20,7 @@ description_mpath <- function() create_description(
 #' @importFrom utils write.table
 #' @importFrom stats na.omit
 #' @importFrom reshape2 melt
-run_mpath <- function(counts,
+run_mpath <- function(expression,
                       grouping_assignment,
                       distMethod = "euclidean",
                       method = "kmeans",
@@ -32,7 +32,7 @@ run_mpath <- function(counts,
   sample_info <- grouping_assignment %>% rename(GroupID = group_id) %>% as.data.frame
 
   landmark_cluster <- Mpath::landmark_designation(
-    rpkmFile = t(counts),
+    rpkmFile = t(expression),
     baseName = NULL,
     sampleFile = sample_info,
     distMethod = distMethod,
@@ -47,7 +47,7 @@ run_mpath <- function(counts,
 
   # catch situation where mpath only detects 1 landmark
   if (length(milestone_ids) == 1) {
-    cell_ids <- rownames(counts)
+    cell_ids <- rownames(expression)
     milestone_network <- data_frame(
       from = milestone_ids,
       to = milestone_ids,
@@ -63,7 +63,7 @@ run_mpath <- function(counts,
   } else {
     # build network
     network <- Mpath::build_network(
-      exprs = t(counts),
+      exprs = t(expression),
       baseName = NULL,
       landmark_cluster = landmark_cluster,
       distMethod = distMethod,
@@ -104,7 +104,7 @@ run_mpath <- function(counts,
   wrap_ti_prediction(
     ti_type = "tree",
     id = "Mpath",
-    cell_ids = rownames(counts),
+    cell_ids = rownames(expression),
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     progressions = progressions,
