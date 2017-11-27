@@ -17,8 +17,9 @@ description_slicer <- function() create_description(
   plot_fun = plot_slicer
 )
 
-run_slicer <- function(counts,
+run_slicer <- function(expression,
                        start_cells,
+                       marker_feature_ids = NULL,
                        end_cells = NULL,
                        kmin = 10,
                        m = 2,
@@ -32,12 +33,11 @@ run_slicer <- function(counts,
 
   start_cell <- sample(start_cells, 1)
 
-  # log transform expresison
-  expr <- log2(counts + 1)
-
-  # use 'neighbourhood variance' to identify genes that vary smoothly
-  genes <- SLICER::select_genes(expr)
-  expr_filt <- expr[, genes]
+  if (!is.null(marker_feature_ids)) {
+    # use 'neighbourhood variance' to identify genes that vary smoothly
+    marker_feature_ids <- SLICER::select_genes(expression)
+  }
+  expr_filt <- expression[, marker_feature_ids]
 
   # stop output if not verbose
   if (!verbose) {
