@@ -28,6 +28,7 @@ run_scoup <- function(
   grouping_assignment,
   start_cells,
   n_end_states,
+  ndim = 2,
   max_ite1 = 100,
   max_ite2 = 100,
   alpha_min = .1,
