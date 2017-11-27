@@ -24,7 +24,7 @@ description_scoup <- function() create_description(
 #' @importFrom utils read.table write.table
 #' @importFrom stats var
 run_scoup <- function(
-  counts,
+  expression,
   grouping_assignment,
   start_cells,
   n_end_states,
@@ -48,9 +48,6 @@ run_scoup <- function(
     select(group_id) %>%
     left_join(grouping_assignment, by = "group_id") %>%
     .$cell_id
-
-  # log transform counts
-  expr <- log2(counts + 1)
 
   # run SP and SCOUP
   model <- SCOUP::run_SCOUP(
@@ -99,7 +96,7 @@ run_scoup <- function(
   prediction <- wrap_ti_prediction(
     ti_type = "multifurcating",
     id = "SCOUP",
-    cell_ids = rownames(counts),
+    cell_ids = rownames(expression),
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     milestone_percentages = milestone_percentages,
