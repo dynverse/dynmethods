@@ -20,7 +20,7 @@ description_pseudogp <- function() create_description(
   plot_fun = plot_pseudogp
 )
 
-run_pseudogp <- function(counts,
+run_pseudogp <- function(expression,
                          dimreds = names(list_dimred_methods()) == "pca",
                          chains = 1,
                          iter = 1000,
@@ -34,12 +34,9 @@ run_pseudogp <- function(counts,
   requireNamespace("coda")
   requireNamespace("MCMCglmm")
 
-  # log transform counts
-  expr <- log2(counts + 1)
-
   # perform dimreds
   spaces <- list_dimred_methods()[dimreds] %>%
-    map(~.(expr, 2)) # only 2 dimensions per dimred are allowed
+    map(~.(expression, 2)) # only 2 dimensions per dimred are allowed
 
   # fit probabilistic pseudotime model
   fit <- pseudogp::fitPseudotime(
@@ -67,7 +64,7 @@ run_pseudogp <- function(counts,
   # return output
   wrap_linear_ti_prediction(
     id = "pseudogp",
-    cell_ids = rownames(counts),
+    cell_ids = rownames(expression),
     pseudotimes = pseudotimes,
     spaces = spaces,
     chains = chains,
