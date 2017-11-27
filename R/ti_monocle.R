@@ -62,7 +62,7 @@ run_monocle <- function(counts,
                         max_components = 2,
                         norm_method = "vstExprs",
                         auto_param_selection = TRUE,
-                        num_paths = NULL) {
+                        n_end_states = NULL) {
   requireNamespace("monocle")
   requireNamespace("BiocGenerics")
   requireNamespace("igraph")
@@ -93,7 +93,7 @@ run_monocle <- function(counts,
   )
 
   # order the cells
-  cds <- monocle::orderCells(cds, num_paths = num_paths)
+  cds <- monocle::orderCells(cds, num_paths = n_end_states)
 
   # extract the igraph and which cells are on the trajectory
   gr <-
