@@ -7,7 +7,6 @@ description_scoup <- function() create_description(
   package_loaded = c(),
   par_set = makeParamSet(
     makeIntegerParam(id = "ndim", lower = 2L, default = 2L, upper = 20L),
-    makeIntegerParam(id = "nbranch", lower = 1L, default = 3L, upper = 20L),
     makeNumericParam(id = "max_ite1", lower = log(2), default = log(100), upper = log(5000), trafo = function(x) round(exp(x))), # should be 1000
     makeNumericParam(id = "max_ite2", lower = log(2), default = log(100), upper = log(50000), trafo = function(x) round(exp(x))), # should be 10000
     makeNumericParam(id = "alpha_min", lower = log(.001), default = log(.1), upper = log(10), trafo = exp),
@@ -28,8 +27,7 @@ run_scoup <- function(
   counts,
   grouping_assignment,
   start_cells,
-  ndim = 3,
-  nbranch = 3,
+  n_end_states,
   max_ite1 = 100,
   max_ite2 = 100,
   alpha_min = .1,
@@ -59,7 +57,7 @@ run_scoup <- function(
     expr = expr,
     start_ix = start_ix,
     ndim = ndim,
-    nbranch = nbranch,
+    nbranch = n_end_states,
     max_ite1 = max_ite1,
     max_ite2 = max_ite2,
     alpha_min = alpha_min,
@@ -87,7 +85,7 @@ run_scoup <- function(
     filter(percentage > 0 | milestone_id == "M0")
 
   # create milestone ids
-  milestone_ids <- c("M0", paste0("M", seq_len(nbranch)))
+  milestone_ids <- c("M0", paste0("M", seq_len(n_end_states)))
 
   # create milestone network
   milestone_network <- data_frame(
