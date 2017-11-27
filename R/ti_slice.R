@@ -23,7 +23,7 @@ description_slice <- function() create_description(
 )
 
 run_slice <- function(
-  counts,
+  expression,
   grouping_assignment = NULL,
   marker_feature_ids = NULL,
   lm.method = "clustering",
@@ -46,16 +46,16 @@ run_slice <- function(
   # if grouping_assignment is not given, fill it with 1's
   if(!is.null(grouping_assignment)) {
     cellidentity <- grouping_assignment %>%
-      slice(match(rownames(counts), cell_id)) %>%
+      slice(match(rownames(expression), cell_id)) %>%
       pull(group_id) %>%
       factor()
   } else {
-    cellidentity <- factor(rep(1, nrow(counts)))
+    cellidentity <- factor(rep(1, nrow(expression)))
   }
 
   # wrap data
   sc <- SLICE::construct(
-    exprmatrix = as.data.frame(t(counts)),
+    exprmatrix = as.data.frame(t(expression)),
     cellidentity = cellidentity
   )
 
@@ -63,11 +63,11 @@ run_slice <- function(
   # According to the documentation, km should be:
   # A symmetric matrix encoding the functional similarity of genes;
   # the row names and column names must be official NCBI gene symbols.
-  num_genes <- ncol(counts)
+  num_genes <- ncol(expression)
   km <- matrix(
     runif(num_genes * num_genes),
     ncol = num_genes,
-    dimnames = list(colnames(counts), colnames(counts))
+    dimnames = list(colnames(expression), colnames(expression))
   )
 
   # calculate the entropy of individual cells
@@ -135,7 +135,7 @@ run_slice <- function(
   # from or to, and get the earliest timepoint
   progressions <- sc@model$cells.df %>%
     rownames_to_column("cell_id") %>%
-    slice(match(rownames(counts), cell_id)) %>%
+    slice(match(rownames(expression), cell_id)) %>%
     mutate(state = paste0("slice.ss.", slice.state)) %>%
     select(cell_id, state) %>%
     right_join(pseudotimes, by = "cell_id") %>%
@@ -164,7 +164,7 @@ run_slice <- function(
   wrap_ti_prediction(
     ti_type = "tree",
     id = "SLICE",
-    cell_ids = rownames(counts),
+    cell_ids = rownames(expression),
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     progressions = progressions,
