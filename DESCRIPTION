@@ -76,12 +76,6 @@ Suggests:
   Wishbone
 Remotes:
   berndbischl/ParamHelpers,
-  bioc::Biobase,
-  bioc::BiocGenerics,
-  bioc::cellTree,
-  bioc::destiny,
-  bioc::scater,
-  bioc::TSCAN,
   dynverse/embeddr,
   dynverse/GPfates,
   dynverse/monocle,

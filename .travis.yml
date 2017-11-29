@@ -25,7 +25,7 @@ before_install:
 install:
   - sudo pip3 install --upgrade --only-binary=numpy,scipy numpy scipy
   - sudo pip3 install --upgrade matplotlib pandas six jinja2 python-dateutil pytz pyparsing cycler tqdm python-igraph Cython statsmodels sklearn seaborn
-  - R -e 'install.packages("devtools")'
-  - R -e 'devtools::install_github("dynverse/devtools", ref = "1.13.0")'
-  - R -e 'devtools::install(dependencies = TRUE, upgrade_dependencies = TRUE, threads = 2)'
+  - R -e 'install.packages("remotes")'
+  - R -e 'remotes::install_deps(dependencies = T, upgrade = T)'
+  - R -e 'remotes::install_local(".")'
   - R -e 'dynmethods::check_dependencies()'
