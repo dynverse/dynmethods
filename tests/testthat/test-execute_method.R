@@ -53,6 +53,72 @@ test_that("Testing execute_method with dummy method", {
   }
 })
 
+
+test_that("Testing prior passing for execute_method", {
+  data("toy_tasks", package="dyntoy")
+
+  dummy <- dynmethods:::create_description(
+    name = "dummy 2",
+    short_name = "dum2",
+    package_loaded = c("dplyr"),
+    package_required = c(),
+    par_set = ParamHelpers::makeParamSet(
+      ParamHelpers::makeDiscreteParam(id = "aggr_fun", values = c("mean", "median"), default = "mean")
+    ),
+    properties = c(),
+    run_fun = function(
+      expression,
+      start_milestones,
+      start_cells,
+      end_milestones,
+      end_cells,
+      grouping_assignment,
+      grouping_network,
+      marker_feature_ids,
+      n_branches,
+      time,
+      timecourse,
+      aggr_fun = "mean"
+    ) {
+      pt <- apply(expression, 1, aggr_fun) %>% dynutils::scale_minmax()
+
+      milestone_ids <- c("start", "end")
+      milestone_network <- data_frame(from = milestone_ids[[1]], to = milestone_ids[[2]], length = 1, directed=TRUE)
+      progressions <- data_frame(cell_id = names(pt), from = milestone_ids[[1]], to = milestone_ids[[2]], percentage = pt)
+
+      wrap_ti_prediction(
+        ti_type = "linear",
+        id = "dum2",
+        cell_ids = rownames(expression),
+        milestone_ids = milestone_ids,
+        milestone_network = milestone_network,
+        progressions = progressions
+      )
+    },
+    plot_fun = function(out) {
+      ggplot(out$progressions, aes(percentage, percentage)) +
+        geom_point(size = 2.2) +
+        geom_point(aes(colour = percentage), size = 2) +
+        scale_colour_distiller(palette = "RdBu")
+    }
+  )
+
+  method_outs <- execute_method(toy_tasks, dummy, parameters = list(aggr_fun = "median"), timeout = 1e6)
+
+  for (i in seq_along(method_outs)) {
+    method_out <- method_outs[[i]]
+
+    expect_true( dynutils::is_ti_data_wrapper(method_out$model) )
+    expect_is( method_out$summary, "data.frame" )
+
+    pdf("/dev/null")
+    expect_error( print(dummy$plot_fun(method_out$model)), NA)
+    dev.off()
+
+    expect_equal( nrow(method_out$summary), 1 )
+  }
+})
+
 test_that("Testing timeout functionality of execute_method with dummy wrapper", {
   timeouter <- dynmethods:::create_description(
     name = "timeouter",
