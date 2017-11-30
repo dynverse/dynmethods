@@ -45,7 +45,7 @@ execute_method <- function(
       }
 
     # determine which prior information is strictly required by the method
-    required_priors <- required_params
+    required_priors <- required_params %>%
       discard(~.%in%c("counts", "expression"))
 
     # collect all prior information
