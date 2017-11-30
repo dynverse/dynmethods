@@ -57,13 +57,13 @@ run_dpt <- function(expression,
   # run DPT
   dpt_params <- lst(dm, w_width)
   if (!is.null(start_cell)) {
-    dpt_params$tips <- which(rownames(counts) %in% start_cell)
+    dpt_params$tips <- which(rownames(expression) %in% start_cell)
   }
   dpt <- do.call(destiny::DPT, dpt_params)
 
   # find DPT tips
   tips <- destiny::tips(dpt)
-  tip_names <- rownames(counts)[tips]
+  tip_names <- rownames(expression)[tips]
 
   # retrieve dimred
   space <- dpt@dm@eigenvectors %>% magrittr::set_rownames(rownames(expression)) %>% as.matrix

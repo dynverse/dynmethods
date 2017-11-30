@@ -64,7 +64,7 @@ run_slicer <- function(expression,
   if (is.null(end_cells)) {
     ends <- SLICER::find_extreme_cells(traj_graph, traj_lle, do_plot = FALSE)
   } else {
-    ends <- match(c(start_cell, end_cells), rownames(counts))
+    ends <- match(c(start_cell, end_cells), rownames(expression))
   }
 
   # order cells

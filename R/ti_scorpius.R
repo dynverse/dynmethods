@@ -53,7 +53,7 @@ run_scorpius <- function(expression,
   # return output
   wrap_linear_ti_prediction(
     id = "SCORPIUS",
-    cell_ids = rownames(counts),
+    cell_ids = rownames(expression),
     pseudotimes = traj$time,
     space = space,
     traj = traj
