@@ -6,6 +6,8 @@ cache: packages
 warnings_are_errors: true
 python:
   - "3.6"
+env:
+  - R_MAX_NUM_DLLS=250
 addons:
   apt:
     packages:
