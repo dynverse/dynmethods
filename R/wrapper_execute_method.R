@@ -29,16 +29,24 @@ execute_method <- function(
     # get the task
     task <- dynutils::extract_row_to_list(tasks, i)
 
-    # Add the counts to the list parameters
-    arglist <- c(list(counts = task$counts), parameters)
-
-    # determine which prior information is strictly required by the method
-    required_priors <- formals(method$run_fun) %>%
+    # required params
+    required_params <- formals(method$run_fun) %>%
       as.list %>%
       map_chr(class) %>%
       keep(~.=="name") %>%
-      names %>%
-      keep(~.!="counts")
+      names
+
+    # counts or expression arguments
+    task_params <-
+      if ("counts" %in% required_params) {
+        list(counts = task$counts)
+      } else if("expression" %in% required_params) {
+        list(expression = task$expression)
+      }
+
+    # determine which prior information is strictly required by the method
+    required_priors <- required_params
+      discard(~.%in%c("counts", "expression"))
 
     # collect all prior information
     prior_information <- task$prior_information
@@ -47,8 +55,14 @@ execute_method <- function(
     # determine which priors to give and give it
     prior_names <- union(give_priors, required_priors)
     prior_type <- ifelse(prior_names %in% required_priors, "required", "optional")
-    arglist[prior_names] <- prior_information[prior_names]
+    prior_list <- as.list(prior_information[prior_names])
     prior_df <- data_frame(prior_type, prior_names)
+
+    # create arglist. content:
+    # * counts or expression
+    # * parameters
+    # * any priors
+    arglist <- c(task_params, parameters, prior_list)
 
     # create a temporary directory to set as working directory,
     # to avoid polluting the working directory if a method starts
