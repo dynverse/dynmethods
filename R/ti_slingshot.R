@@ -144,7 +144,7 @@ run_slingshot <- function(
 
   # return output
   wrap_ti_prediction(
-    ti_type = "dag?",
+    trajectory_type = "dag?",
     id = "slingshot",
     cell_ids = rownames(counts),
     milestone_ids = out$milestone_ids,

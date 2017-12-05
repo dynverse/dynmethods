@@ -21,7 +21,7 @@ test_that("Testing execute_method with dummy method", {
       progressions <- data_frame(cell_id = names(pt), from = milestone_ids[[1]], to = milestone_ids[[2]], percentage = pt)
 
       wrap_ti_prediction(
-        ti_type = "linear",
+        trajectory_type = "linear",
         id = "dum2",
         cell_ids = rownames(counts),
         milestone_ids = milestone_ids,
@@ -87,7 +87,7 @@ test_that("Testing prior passing for execute_method", {
       progressions <- data_frame(cell_id = names(pt), from = milestone_ids[[1]], to = milestone_ids[[2]], percentage = pt)
 
       wrap_ti_prediction(
-        ti_type = "linear",
+        trajectory_type = "linear",
         id = "dum2",
         cell_ids = rownames(expression),
         milestone_ids = milestone_ids,
@@ -138,7 +138,7 @@ test_that("Testing timeout functionality of execute_method with dummy wrapper", 
       progressions <- data_frame(cell_id = names(pt), from = milestone_ids[[1]], to = milestone_ids[[2]], percentage = pt)
 
       wrap_ti_prediction(
-        ti_type = "linear",
+        trajectory_type = "linear",
         id = "dum3",
         cell_ids = rownames(counts),
         milestone_ids = milestone_ids,

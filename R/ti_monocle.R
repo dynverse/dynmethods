@@ -119,7 +119,7 @@ run_monocle <- function(counts,
 
   # wrap output
   wrap_ti_prediction(
-    ti_type = "tree",
+    trajectory_type = "tree",
     id = paste0("monocle with ", reduction_method),
     cell_ids = rownames(counts),
     milestone_ids = out$milestone_ids,

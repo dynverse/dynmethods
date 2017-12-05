@@ -128,7 +128,7 @@ run_stemid <- function(
 
   # return output
   wrap_ti_prediction(
-    ti_type = "multifurcating",
+    trajectory_type = "multifurcating",
     id = "StemID",
     cell_ids = rownames(expression),
     milestone_ids = out$milestone_ids,

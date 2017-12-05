@@ -124,7 +124,7 @@ run_celltree <- function(expression,
 
   # wrap output
   wrap_ti_prediction(
-    ti_type = "tree",
+    trajectory_type = "tree",
     id = paste0("cellTree with ", method),
     cell_ids = rownames(expression),
     milestone_ids = out$milestone_ids,

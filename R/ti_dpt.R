@@ -93,7 +93,7 @@ run_dpt <- function(expression,
 
   # return output
   wrap_ti_prediction(
-    ti_type = "trifurcation",
+    trajectory_type = "trifurcation",
     id = "DPT",
     cell_ids = rownames(expression),
     milestone_ids = out$milestone_ids,

@@ -69,7 +69,7 @@ run_mfa <- function(
 
   # return output
   wrap_ti_prediction(
-    ti_type = "multifurcating",
+    trajectory_type = "multifurcating",
     id = "mfa",
     cell_ids = rownames(expression),
     milestone_ids = milestone_ids,

@@ -65,7 +65,7 @@ run_gpfates <- function(
 
   # return output
   wrap_ti_prediction(
-    ti_type = "GPfates",
+    trajectory_type = "GPfates",
     id = "GPfates",
     cell_ids = rownames(counts),
     milestone_ids = milestone_ids,

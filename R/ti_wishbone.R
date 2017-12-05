@@ -84,7 +84,7 @@ run_wishbone <- function(
 
   # return output
   wrap_ti_prediction(
-    ti_type = ifelse(branch, "branching", "linear"),
+    trajectory_type = ifelse(branch, "branching", "linear"),
     id = "Wishbone",
     cell_ids = rownames(counts),
     milestone_ids = milestone_ids,

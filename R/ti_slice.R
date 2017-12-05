@@ -162,7 +162,7 @@ run_slice <- function(
 
   # return output
   wrap_ti_prediction(
-    ti_type = "tree",
+    trajectory_type = "tree",
     id = "SLICE",
     cell_ids = rownames(expression),
     milestone_ids = milestone_ids,

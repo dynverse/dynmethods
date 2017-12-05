@@ -97,7 +97,7 @@ run_slicer <- function(expression,
 
   # return output
   wrap_ti_prediction(
-    ti_type = "multifurcating",
+    trajectory_type = "multifurcating",
     id = "SLICER",
     cell_ids = rownames(expr_filt),
     milestone_ids = out$milestone_ids,

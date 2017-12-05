@@ -40,7 +40,7 @@ run_random <- function(counts, dummy_param = .5) {
 
   # return output
   wrap_ti_prediction(
-    ti_type = "multifurcating",
+    trajectory_type = "multifurcating",
     id = "random",
     cell_ids = cell_ids,
     milestone_ids = milestone_ids,
