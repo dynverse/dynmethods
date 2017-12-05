@@ -19,7 +19,7 @@ description_identity <- function() create_description(
 run_identity <- function(counts, task, dummy_param = .5) {
   # return output
   wrap_ti_prediction(
-    trajectory_type = task$ti_type,
+    trajectory_type = task$trajectory_type,
     id = "identity",
     cell_ids = task$cell_ids,
     milestone_ids = task$milestone_ids,
