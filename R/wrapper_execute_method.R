@@ -54,6 +54,11 @@ execute_method <- function(
     # determine which priors to give and give it
     prior_names <- union(give_priors, required_priors)
     prior_type <- ifelse(prior_names %in% required_priors, "required", "optional")
+
+    if (!all(prior_names %in% names(prior_information))) {
+      stop("Prior information ", paste(setdiff(prior_names, names(prior_information)), collapse = ";"), " is missing from ", task$id)
+    }
+
     prior_list <- as.list(prior_information[prior_names])
     prior_df <- data_frame(prior_type, prior_names)
 
