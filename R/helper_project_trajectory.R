@@ -20,8 +20,8 @@ project_cells_to_segments <- function(
 
   # collect information on edges
   edge_df <- cluster_network %>%
-    left_join(centers_df %>% rename(from = clus_id) %>% rename_if(is.numeric, function(x) paste0("from.", x)), by = "from") %>%
-    left_join(centers_df %>% rename(to = clus_id) %>% rename_if(is.numeric, function(x) paste0("to.", x)), by = "to")
+    left_join(centers_df %>% rename(from = clus_id) %>% rename_if(is.numeric, ~ paste0("from.", .)), by = "from") %>%
+    left_join(centers_df %>% rename(to = clus_id) %>% rename_if(is.numeric, ~ paste0("to.", .)), by = "to")
 
   # construct segments
   segment_df <- edge_df %>%
