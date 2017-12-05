@@ -4,7 +4,7 @@ description_embeddr <- function() create_description(
   name = "embeddr",
   short_name = "embeddr",
   package_loaded = c(),
-  package_required = c("scater", "embeddr"),
+  package_required = c("scaterlegacy", "embeddr"),
   par_set = makeParamSet(
     makeDiscreteParam(id = "kernel", default = "nn", values = c("nn", "dist", "heat")),
     makeDiscreteParam(id = "metric", default = "correlation", values = c("correlation", "euclidean", "cosine")),
@@ -37,14 +37,14 @@ run_embeddr <- function(counts,
                         maxit = 10,
                         stretch = 2,
                         smoother = "smooth.spline") {
-  requireNamespace("scater")
+  requireNamespace("scaterlegacy")
   requireNamespace("embeddr")
 
   # calculate nn param
   nn <- round(log(nrow(counts)) * nn_pct)
 
-  # load data in scater
-  sce <- scater::newSCESet(countData = t(counts))
+  # load data in scaterlegacy
+  sce <- scaterlegacy::newSCESet(countData = t(counts))
 
   # run embeddr
   sce <- embeddr::embeddr(
