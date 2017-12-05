@@ -52,7 +52,7 @@ run_scoup <- function(
 
   # run SP and SCOUP
   model <- SCOUP::run_SCOUP(
-    expr = expr,
+    expr = expression,
     start_ix = start_ix,
     ndim = ndim,
     nbranch = n_end_states,
