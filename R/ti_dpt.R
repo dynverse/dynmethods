@@ -23,6 +23,7 @@ description_dpt <- function() create_description(
 #' @importFrom reshape2 melt
 run_dpt <- function(expression,
                     start_cells = NULL,
+                    marker_feature_ids = NULL,
                     sigma = "local",
                     distance = "euclidean",
                     n_eigs = 20,
@@ -45,7 +46,6 @@ run_dpt <- function(expression,
   # run diffusion maps
   dm <- destiny::DiffusionMap(
     expression,
-    marker_feature_ids = NULL,
     sigma = sigma,
     distance = distance,
     n_eigs = n_eigs,
