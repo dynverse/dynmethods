@@ -18,17 +18,18 @@ description_topslam <- function() create_description(
 )
 
 #' @importFrom dplyr bind_cols
-run_topslam <- function(counts,
-                        start_cells,
-                        n_components = 2,
-                        n_neighbors = 10,
-                        linear_dims = 0,
-                        max_iters = 200,
-                        dimreds = rep(TRUE, 5)
-                      ) {
+run_topslam <- function(
+  expression,
+  start_cells,
+  n_components = 2,
+  n_neighbors = 10,
+  linear_dims = 0,
+  max_iters = 200,
+  dimreds = rep(TRUE, 5)
+) {
   dimreds_vec <- c("t-SNE", "PCA", "Spectral", "Isomap", "ICA")[dimreds]
 
-  start_cell <-
+  start_cell_id <-
     if (!is.null(start_cells)) {
       sample(start_cells, 1)
     } else {
@@ -37,8 +38,8 @@ run_topslam <- function(counts,
 
   # run topslam
   out <- topslam::topslam(
-    counts = counts,
-    start_cell = start_cell,
+    expression = expression,
+    start_cell_id = start_cell_id,
     n_components = n_components,
     n_neighbors = n_neighbors,
     linear_dims = linear_dims,
