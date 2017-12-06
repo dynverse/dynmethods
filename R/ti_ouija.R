@@ -18,7 +18,7 @@ description_ouija <- function() create_description(
 
 run_ouija <- function(
     expression,
-    marker_gene_ids,
+    marker_feature_ids,
     iter = 1000, # default is actually 10'000.
     response_type = "switch",
     inference_type = "hmc",
@@ -29,7 +29,7 @@ run_ouija <- function(
   requireNamespace("coda")
 
   # ouija assumes that a small number of marker genes is used, otherwise the method is verrry slow
-  expression <- expression[, marker_gene_ids]
+  expression <- expression[, marker_feature_ids]
 
   # write compiled instance of the stanmodel to HDD
   rstan::rstan_options(auto_write = TRUE)
