@@ -57,11 +57,11 @@ run_gpfates <- function(
   #  create milestone network
   milestone_network <- data_frame(
     from = "M0",
-    to = paste0("M", seq_len(nfates)),
+    to = paste0("M", seq_len(n_end_states)),
     length = 1,
     directed = TRUE
   )
-  milestone_ids <- paste0("M", seq(0, nfates))
+  milestone_ids <- paste0("M", seq(0, n_end_states))
 
   # return output
   wrap_ti_prediction(
