@@ -7,10 +7,10 @@ test_that("Retrieving dimred_methods", {
   expect_named(methods)
 })
 
-data("toy_tasks", package="dyntoy")
+tasks <- dyntoy::toy_tasks %>% sample_n(3)
 
-for (taski in seq_len(nrow(toy_tasks))) {
-  task <- extract_row_to_list(toy_tasks, taski)
+for (taski in seq_len(nrow(tasks))) {
+  task <- extract_row_to_list(tasks, taski)
   expr <- log2(task$counts+1)
 
   methods <- dynmethods:::list_dimred_methods()
