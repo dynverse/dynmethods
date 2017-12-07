@@ -23,6 +23,7 @@ description_wishbone <- function() create_description(
 run_wishbone <- function(
   counts,
   start_cells,
+  marker_feature_ids = NULL,
   knn = 10,
   n_diffusion_components = 2,
   n_pca_components = 15,
@@ -36,6 +37,13 @@ run_wishbone <- function(
 
   start_cell_id <- sample(start_cells, 1)
 
+  markers <-
+    if (is.null(marker_feature_ids)) {
+      "~"
+    } else {
+      marker_feature_ids
+    }
+
   # execute wishbone
   out <- Wishbone::Wishbone(
     counts = counts,
@@ -43,7 +51,7 @@ run_wishbone <- function(
     knn = knn,
     n_diffusion_components = n_diffusion_components,
     n_pca_components = n_pca_components,
-    markers = "~",
+    markers = markers,
     branch = branch,
     k = k,
     num_waypoints = num_waypoints,
