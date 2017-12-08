@@ -40,7 +40,6 @@ wrap_prediction_model <- function(
 #'
 #' @export
 wrap_prediction_model_linear <- function(
-  id,
   cell_ids,
   pseudotimes,
   ...

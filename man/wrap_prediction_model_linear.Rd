@@ -4,7 +4,7 @@
 \alias{wrap_prediction_model_linear}
 \title{Wrap a linear TI prediction}
 \usage{
-wrap_prediction_model_linear(id, cell_ids, pseudotimes, ...)
+wrap_prediction_model_linear(cell_ids, pseudotimes, ...)
 }
 \arguments{
 \item{cell_ids}{the ids of the cells in the trajectory and counts}
