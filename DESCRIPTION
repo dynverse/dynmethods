@@ -76,6 +76,7 @@ Suggests:
   Wishbone
 Remotes:
   berndbischl/ParamHelpers,
+  dynverse/cellTree@RELEASE_3_6,
   dynverse/embeddr,
   dynverse/GPfates,
   dynverse/monocle-release,
