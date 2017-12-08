@@ -127,9 +127,8 @@ run_stemid <- function(
   col_ann <- setNames(ltr@sc@fcol, out$milestone_ids)
 
   # return output
-  wrap_ti_prediction(
+  wrap_prediction_model(
     trajectory_type = "multifurcating",
-    id = "StemID",
     cell_ids = rownames(expression),
     milestone_ids = out$milestone_ids,
     milestone_network = out$milestone_network,

@@ -39,9 +39,8 @@ run_random <- function(counts, dummy_param = .5) {
   )
 
   # return output
-  wrap_ti_prediction(
+  wrap_prediction_model(
     trajectory_type = "multifurcating",
-    id = "random",
     cell_ids = cell_ids,
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,

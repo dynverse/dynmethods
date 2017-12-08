@@ -64,9 +64,8 @@ run_gpfates <- function(
   milestone_ids <- paste0("M", seq(0, n_end_states))
 
   # return output
-  wrap_ti_prediction(
+  wrap_prediction_model(
     trajectory_type = "GPfates",
-    id = "GPfates",
     cell_ids = rownames(counts),
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,

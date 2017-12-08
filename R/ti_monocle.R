@@ -118,9 +118,8 @@ run_monocle <- function(counts,
   plot_data <- postprocess_monocle_cds(cds)
 
   # wrap output
-  wrap_ti_prediction(
+  wrap_prediction_model(
     trajectory_type = "tree",
-    id = paste0("monocle with ", reduction_method),
     cell_ids = rownames(counts),
     milestone_ids = out$milestone_ids,
     milestone_network = out$milestone_network,

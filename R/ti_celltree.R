@@ -54,17 +54,23 @@ abstract_celltree_description <- function(method) {
 }
 
 #' @importFrom igraph degree distances get.vertex.attribute induced_subgraph
-run_celltree <- function(expression,
-                         start_cells = NULL,
-                         grouping_assignment = NULL,
-                         method = "maptpx",
-                         num_topics_lower = 2,
-                         num_topics_upper = 15,
-                         num_topics = num_topics_lower:num_topics_upper,
-                         sd_filter = .5,
-                         tot_iter = 1e6,
-                         tolerance = .05,
-                         width_scale_factor = 1.5
+run_celltree <- function(
+  # transcriptomics data
+  expression,
+
+  # prior information
+  start_cells = NULL,
+  grouping_assignment = NULL,
+
+  # parameters
+  method = "maptpx",
+  num_topics_lower = 2,
+  num_topics_upper = 15,
+  num_topics = num_topics_lower:num_topics_upper,
+  sd_filter = .5,
+  tot_iter = 1e6,
+  tolerance = .05,
+  width_scale_factor = 1.5
 ) {
   requireNamespace("cellTree")
 
@@ -123,9 +129,8 @@ run_celltree <- function(expression,
   edges <- igraph::as_data_frame(tree, "edges") %>% as_data_frame()
 
   # wrap output
-  wrap_ti_prediction(
+  wrap_prediction_model(
     trajectory_type = "tree",
-    id = paste0("cellTree with ", method),
     cell_ids = rownames(expression),
     milestone_ids = out$milestone_ids,
     milestone_network = out$milestone_network,

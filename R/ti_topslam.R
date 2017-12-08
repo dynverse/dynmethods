@@ -52,8 +52,7 @@ run_topslam <- function(
   model <- with(out, bind_cols(data_frame(cell_id = rownames(counts)), space, pseudotime))
 
   # return output
-  wrap_linear_ti_prediction(
-    id = "topslam",
+  wrap_prediction_model_linear(
     cell_ids = rownames(counts),
     pseudotimes = model$time,
     model = model,

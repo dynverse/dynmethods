@@ -62,8 +62,7 @@ run_pseudogp <- function(expression,
   sigma <- rstan::extract(fit, pars = "sigma", permute = FALSE)
 
   # return output
-  wrap_linear_ti_prediction(
-    id = "pseudogp",
+  wrap_prediction_model_linear(
     cell_ids = rownames(expression),
     pseudotimes = pseudotimes,
     spaces = spaces,

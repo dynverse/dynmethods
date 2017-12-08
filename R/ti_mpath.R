@@ -101,9 +101,8 @@ run_mpath <- function(expression,
   }
 
   # return output
-  wrap_ti_prediction(
+  wrap_prediction_model(
     trajectory_type = "tree",
-    id = "Mpath",
     cell_ids = rownames(expression),
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,

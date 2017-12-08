@@ -80,8 +80,7 @@ run_embeddr <- function(counts,
     select(pseudotime, starts_with("trajectory_"))
 
   # return output
-  wrap_linear_ti_prediction(
-    id = "embeddr",
+  wrap_prediction_model_linear(
     cell_ids = rownames(counts),
     pseudotimes = pseudotimes,
     dimred_samples = dimred_samples,

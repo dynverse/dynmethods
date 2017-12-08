@@ -20,9 +20,8 @@ test_that("Testing execute_method with dummy method", {
       milestone_network <- data_frame(from = milestone_ids[[1]], to = milestone_ids[[2]], length = 1, directed=TRUE)
       progressions <- data_frame(cell_id = names(pt), from = milestone_ids[[1]], to = milestone_ids[[2]], percentage = pt)
 
-      wrap_ti_prediction(
+      wrap_prediction_model(
         trajectory_type = "linear",
-        id = "dum2",
         cell_ids = rownames(counts),
         milestone_ids = milestone_ids,
         milestone_network = milestone_network,
@@ -86,9 +85,8 @@ test_that("Testing prior passing for execute_method", {
       milestone_network <- data_frame(from = milestone_ids[[1]], to = milestone_ids[[2]], length = 1, directed=TRUE)
       progressions <- data_frame(cell_id = names(pt), from = milestone_ids[[1]], to = milestone_ids[[2]], percentage = pt)
 
-      wrap_ti_prediction(
+      wrap_prediction_model(
         trajectory_type = "linear",
-        id = "dum2",
         cell_ids = rownames(expression),
         milestone_ids = milestone_ids,
         milestone_network = milestone_network,
@@ -137,9 +135,8 @@ test_that("Testing timeout functionality of execute_method with dummy wrapper", 
       milestone_network <- data_frame(from = milestone_ids[[1]], to = milestone_ids[[2]], length = 1, directed=TRUE)
       progressions <- data_frame(cell_id = names(pt), from = milestone_ids[[1]], to = milestone_ids[[2]], percentage = pt)
 
-      wrap_ti_prediction(
+      wrap_prediction_model(
         trajectory_type = "linear",
-        id = "dum3",
         cell_ids = rownames(counts),
         milestone_ids = milestone_ids,
         milestone_network = milestone_network,

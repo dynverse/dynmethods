@@ -20,8 +20,7 @@ run_waterfall <- function(expression, num_clusters = 10) {
   ps <- Waterfall::pseudotimeprog.foo(t(expression), k = num_clusters)
 
   # return output
-  wrap_linear_ti_prediction(
-    id = "Waterfall",
+  wrap_prediction_model_linear(
     cell_ids = rownames(expression),
     pseudotimes = ps$pseudotime,
     ps = ps

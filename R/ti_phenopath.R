@@ -45,8 +45,7 @@ run_phenopath <- function(expression,
     mutate(pseudotime = pseudotimes)
 
   # return output
-  wrap_linear_ti_prediction(
-    id = "phenopath",
+  wrap_prediction_model_linear(
     cell_ids = rownames(expression),
     pseudotimes = pseudotimes,
     space = space

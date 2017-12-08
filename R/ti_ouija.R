@@ -66,8 +66,7 @@ run_ouija <- function(
   t0_df$Gene <- factor(t0_df$Gene, t0_df$Gene[order(t0_means)])
 
   # return output
-  wrap_linear_ti_prediction(
-    id = "ouija",
+  wrap_prediction_model_linear(
     cell_ids = rownames(expression),
     pseudotimes = pseudotimes,
     t0_df = t0_df,

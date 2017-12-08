@@ -91,9 +91,8 @@ run_wishbone <- function(
   milestone_ids <- sort(unique(c(milestone_network$from, milestone_network$to)))
 
   # return output
-  wrap_ti_prediction(
+  wrap_prediction_model(
     trajectory_type = ifelse(branch, "branching", "linear"),
-    id = "Wishbone",
     cell_ids = rownames(counts),
     milestone_ids = milestone_ids,
     milestone_network = milestone_network ,

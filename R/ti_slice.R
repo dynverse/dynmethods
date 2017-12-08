@@ -161,9 +161,8 @@ run_slice <- function(
 
 
   # return output
-  wrap_ti_prediction(
+  wrap_prediction_model(
     trajectory_type = "tree",
-    id = "SLICE",
     cell_ids = rownames(expression),
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,

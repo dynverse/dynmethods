@@ -77,9 +77,8 @@ run_tscan <- function(counts,
   )
 
   # return output
-  wrap_ti_prediction(
+  wrap_prediction_model(
     trajectory_type = "branching",
-    id = "TSCAN",
     cell_ids = rownames(counts),
     milestone_ids = out$milestone_ids,
     milestone_network = out$milestone_network,

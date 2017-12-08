@@ -74,9 +74,8 @@ run_scuba <- function(counts,
     select(-label)
 
   # return output
-  wrap_ti_prediction(
+  wrap_prediction_model(
     trajectory_type = "tree",
-    id = "SCUBA",
     cell_ids = rownames(counts),
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,

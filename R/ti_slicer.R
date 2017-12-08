@@ -96,9 +96,8 @@ run_slicer <- function(expression,
   out <- simplify_sample_graph(simp_edges, to_keep, is_directed = FALSE)
 
   # return output
-  wrap_ti_prediction(
+  wrap_prediction_model(
     trajectory_type = "multifurcating",
-    id = "SLICER",
     cell_ids = rownames(expr_filt),
     milestone_ids = out$milestone_ids,
     milestone_network = out$milestone_network,
