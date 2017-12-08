@@ -29,20 +29,15 @@ execute_method <- function(
     # get the task
     task <- dynutils::extract_row_to_list(tasks, i)
 
-    # required params
+    # find out a method's required params (counts, expression, or any prior information)
     required_params <- formals(method$run_fun) %>%
       as.list %>%
       map_chr(class) %>%
       keep(~.=="name") %>%
       names
 
-    # counts or expression arguments
-    task_params <-
-      if ("counts" %in% required_params) {
-        list(counts = task$counts)
-      } else if("expression" %in% required_params) {
-        list(expression = task$expression)
-      }
+    # find out wether the method wants the counts, expression, or both
+    task_args <- task[intersect(required_params, c("counts", "expression"))]
 
     # determine which prior information is strictly required by the method
     required_priors <- setdiff(required_params, c("counts", "expression"))
@@ -59,14 +54,14 @@ execute_method <- function(
       stop("Prior information ", paste(setdiff(prior_names, names(prior_information)), collapse = ";"), " is missing from ", task$id)
     }
 
-    prior_list <- as.list(prior_information[prior_names])
+    prior_args <- as.list(prior_information[prior_names])
     prior_df <- data_frame(prior_type, prior_names)
 
     # create arglist. content:
     # * counts or expression
     # * parameters
-    # * any priors
-    arglist <- c(task_params, parameters, prior_list)
+    # * any prior information
+    arglist <- c(task_args, parameters, prior_args)
 
     # create a temporary directory to set as working directory,
     # to avoid polluting the working directory if a method starts
@@ -117,11 +112,16 @@ execute_method <- function(
         list(model = NULL, time1 = time0, time2 = Sys.time(), error = e)
       })
 
-    # retrieve the model and error message
+    # retrieve the model, error message, and timings
     model <- out$model
     error <- out$error
     time1 <- out$time1
     time2 <- out$time2
+
+    # add task id and method names to the model
+    model$task_id <- task$id
+    model$method_name <- method$name
+    model$method_short_name <- method$short_name
 
     # check whether the method produced output files and
     # wd to previous state
