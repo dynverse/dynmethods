@@ -40,7 +40,6 @@ run_random <- function(counts, dummy_param = .5) {
 
   # return output
   wrap_prediction_model(
-    trajectory_type = "multifurcating",
     cell_ids = cell_ids,
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,

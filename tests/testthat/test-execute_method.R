@@ -21,7 +21,6 @@ test_that("Testing execute_method with dummy method", {
       progressions <- data_frame(cell_id = names(pt), from = milestone_ids[[1]], to = milestone_ids[[2]], percentage = pt)
 
       wrap_prediction_model(
-        trajectory_type = "linear",
         cell_ids = rownames(counts),
         milestone_ids = milestone_ids,
         milestone_network = milestone_network,
@@ -87,7 +86,6 @@ test_that("Testing prior passing for execute_method", {
 
       wrap_prediction_model(
         trajectory_type = "linear",
-        cell_ids = rownames(expression),
         milestone_ids = milestone_ids,
         milestone_network = milestone_network,
         progressions = progressions
@@ -138,7 +136,6 @@ test_that("Testing timeout functionality of execute_method with dummy wrapper", 
       wrap_prediction_model(
         trajectory_type = "linear",
         cell_ids = rownames(counts),
-        milestone_ids = milestone_ids,
         milestone_network = milestone_network,
         progressions = progressions
       )

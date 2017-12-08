@@ -93,7 +93,6 @@ run_dpt <- function(expression,
 
   # return output
   wrap_prediction_model(
-    trajectory_type = "trifurcation",
     cell_ids = rownames(expression),
     milestone_ids = out$milestone_ids,
     milestone_network = out$milestone_network,

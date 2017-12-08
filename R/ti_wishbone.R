@@ -92,7 +92,6 @@ run_wishbone <- function(
 
   # return output
   wrap_prediction_model(
-    trajectory_type = ifelse(branch, "branching", "linear"),
     cell_ids = rownames(counts),
     milestone_ids = milestone_ids,
     milestone_network = milestone_network ,

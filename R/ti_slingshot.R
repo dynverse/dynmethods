@@ -144,7 +144,6 @@ run_slingshot <- function(
 
   # return output
   wrap_prediction_model(
-    trajectory_type = "dag?",
     cell_ids = rownames(counts),
     milestone_ids = out$milestone_ids,
     milestone_network = out$milestone_network,

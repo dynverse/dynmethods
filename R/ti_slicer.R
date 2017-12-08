@@ -97,7 +97,6 @@ run_slicer <- function(expression,
 
   # return output
   wrap_prediction_model(
-    trajectory_type = "multifurcating",
     cell_ids = rownames(expr_filt),
     milestone_ids = out$milestone_ids,
     milestone_network = out$milestone_network,

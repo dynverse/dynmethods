@@ -8,8 +8,6 @@ wrap_prediction_model(trajectory_type, cell_ids, milestone_ids,
   milestone_network, milestone_percentages = NULL, progressions = NULL, ...)
 }
 \arguments{
-\item{trajectory_type}{a descriptor specifying the TI type}
-
 \item{cell_ids}{the ids of the cells in the trajectory and counts}
 
 \item{milestone_ids}{the ids of the milestones in the trajectory}

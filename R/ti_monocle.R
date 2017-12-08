@@ -119,7 +119,6 @@ run_monocle <- function(counts,
 
   # wrap output
   wrap_prediction_model(
-    trajectory_type = "tree",
     cell_ids = rownames(counts),
     milestone_ids = out$milestone_ids,
     milestone_network = out$milestone_network,

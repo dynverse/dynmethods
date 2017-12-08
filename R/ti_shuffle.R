@@ -26,7 +26,6 @@ run_shuffle <- function(counts, task, dummy_param = .5) {
 
   # return output
   wrap_prediction_model(
-    trajectory_type = task$trajectory_type,
     cell_ids = task$cell_ids,
     milestone_ids = task$milestone_ids,
     milestone_network = task$milestone_network,

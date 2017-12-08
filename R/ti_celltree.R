@@ -130,7 +130,6 @@ run_celltree <- function(
 
   # wrap output
   wrap_prediction_model(
-    trajectory_type = "tree",
     cell_ids = rownames(expression),
     milestone_ids = out$milestone_ids,
     milestone_network = out$milestone_network,

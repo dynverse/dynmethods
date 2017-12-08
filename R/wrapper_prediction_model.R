@@ -1,6 +1,5 @@
 #' Wrapping TI predictions
 #'
-#' @param trajectory_type a descriptor specifying the TI type
 #' @param cell_ids the ids of the cells in the trajectory and counts
 #' @param milestone_ids the ids of the milestones in the trajectory
 #' @param milestone_network the network of the milestones
@@ -20,8 +19,7 @@ wrap_prediction_model <- function(
 ) {
   abstract_data_wrapper(
     type = "ti_pred",
-    trajectory_type = trajectory_type,
-    id = random_time_string("tipred"),
+    id = random_time_string("TIpred"),
     cell_ids = cell_ids,
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
@@ -60,7 +58,6 @@ wrap_prediction_model_linear <- function(
   )
 
   wrap_prediction_model(
-    trajectory_type = "linear",
     cell_ids = cell_ids,
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
