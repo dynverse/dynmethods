@@ -137,7 +137,7 @@ test_that("Testing timeout functionality of execute_method with dummy wrapper", 
         cell_ids = rownames(counts),
         milestone_network = milestone_network,
         progressions = progressions,
-        cell_ids = names(pt)
+        milestone_ids = milestone_ids
       )
     },
     plot_fun = function(out) {
