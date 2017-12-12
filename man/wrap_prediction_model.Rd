@@ -4,8 +4,8 @@
 \alias{wrap_prediction_model}
 \title{Wrapping TI predictions}
 \usage{
-wrap_prediction_model(trajectory_type, cell_ids, milestone_ids,
-  milestone_network, milestone_percentages = NULL, progressions = NULL, ...)
+wrap_prediction_model(cell_ids, milestone_ids, milestone_network,
+  milestone_percentages = NULL, progressions = NULL, ...)
 }
 \arguments{
 \item{cell_ids}{the ids of the cells in the trajectory and counts}

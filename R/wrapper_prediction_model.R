@@ -9,7 +9,6 @@
 #'
 #' @export
 wrap_prediction_model <- function(
-  trajectory_type,
   cell_ids,
   milestone_ids,
   milestone_network,
