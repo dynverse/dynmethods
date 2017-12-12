@@ -87,7 +87,8 @@ test_that("Testing prior passing for execute_method", {
       wrap_prediction_model(
         milestone_ids = milestone_ids,
         milestone_network = milestone_network,
-        progressions = progressions
+        progressions = progressions,
+        cell_ids = names(pt)
       )
     },
     plot_fun = function(out) {
@@ -135,7 +136,8 @@ test_that("Testing timeout functionality of execute_method with dummy wrapper", 
       wrap_prediction_model(
         cell_ids = rownames(counts),
         milestone_network = milestone_network,
-        progressions = progressions
+        progressions = progressions,
+        cell_ids = names(pt)
       )
     },
     plot_fun = function(out) {
