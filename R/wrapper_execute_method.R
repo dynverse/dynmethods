@@ -107,6 +107,11 @@ execute_method <- function(
           )
         }
 
+        # add task id and method names to the model
+        model$task_id <- task$id
+        model$method_name <- method$name
+        model$method_short_name <- method$short_name
+
         c(model, list(error = NULL))
       }, error = function(e) {
         list(model = NULL, time1 = time0, time2 = Sys.time(), error = e)
@@ -117,11 +122,6 @@ execute_method <- function(
     error <- out$error
     time1 <- out$time1
     time2 <- out$time2
-
-    # add task id and method names to the model
-    model$task_id <- task$id
-    model$method_name <- method$name
-    model$method_short_name <- method$short_name
 
     # check whether the method produced output files and
     # wd to previous state
