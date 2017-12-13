@@ -5,7 +5,7 @@
 \title{Run a method on a set of tasks with a set of parameters}
 \usage{
 execute_method(tasks, method, parameters, give_priors = NULL, timeout = 3600
-  * 24 * 365.25 * 10, debug_timeout = FALSE)
+  * 24 * 365.25 * 10, debug_timeout = FALSE, mc_cores = 1)
 }
 \arguments{
 \item{tasks}{The tasks on which to evaluate.}
@@ -22,6 +22,8 @@ execute_method(tasks, method, parameters, give_priors = NULL, timeout = 3600
 \item{debug_timeout}{Setting debug to \code{TRUE} will avoid running the method in a separate R session
 using \code{\link[dynutils]{eval_with_timeout}} and run the method directly. Note that the timeout functionality
 will not work when \code{debug} is \code{TRUE}.}
+
+\item{mc_cores}{The number of cores to use, allowing to parallellise the different tasks}
 }
 \description{
 Run a method on a set of tasks with a set of parameters

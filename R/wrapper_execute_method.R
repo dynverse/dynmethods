@@ -8,10 +8,12 @@
 #' @param debug_timeout Setting debug to \code{TRUE} will avoid running the method in a separate R session
 #'   using \code{\link[dynutils]{eval_with_timeout}} and run the method directly. Note that the timeout functionality
 #'   will not work when \code{debug} is \code{TRUE}.
+#' @param mc_cores The number of cores to use, allowing to parallellise the different tasks
 #'
 #' @importFrom utils capture.output
 #' @importFrom readr read_file
 #' @importFrom stringr str_length
+#' @importFrom parallel mclapply
 #' @export
 execute_method <- function(
   tasks,
@@ -19,10 +21,11 @@ execute_method <- function(
   parameters,
   give_priors = NULL,
   timeout = 3600 * 24 * 365.25 * 10,
-  debug_timeout = FALSE
+  debug_timeout = FALSE,
+  mc_cores = 1
 ) {
   # Run method on each task
-  lapply(seq_len(nrow(tasks)), function(i) {
+  parallel::mclapply(seq_len(nrow(tasks)), mc.cores = mc_cores, function(i) {
     # start the timer
     time0 <- Sys.time()
 

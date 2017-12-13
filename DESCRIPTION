@@ -26,6 +26,7 @@ Imports:
   lhs,
   magrittr, 
   methods,
+  parallel,
   ParamHelpers,
   pbapply,
   pdist,
