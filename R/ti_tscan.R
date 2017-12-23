@@ -19,14 +19,15 @@ description_tscan <- function() create_description(
   plot_fun = plot_tscan
 )
 
-run_tscan <- function(counts,
-                      minexpr_percent = 0,
-                      minexpr_value = 0,
-                      cvcutoff = 0,
-                      clusternum_lower = 2,
-                      clusternum_upper = 9,
-                      modelNames = "VVV"
-  ) {
+run_tscan <- function(
+  counts,
+  minexpr_percent = 0,
+  minexpr_value = 0,
+  cvcutoff = 0,
+  clusternum_lower = 2,
+  clusternum_upper = 9,
+  modelNames = "VVV"
+) {
   requireNamespace("TSCAN")
   requireNamespace("igraph")
 
