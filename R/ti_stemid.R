@@ -59,7 +59,7 @@ run_stemid <- function(
   requireNamespace("StemID")
 
   # initialize SCseq object with transcript expression
-  sc <- StemID::SCseq(data.frame(expression, check.names = FALSE))
+  sc <- StemID::SCseq(data.frame(t(expression), check.names = FALSE))
 
   # filtering of expression data
   sc <- StemID::filterdata(sc, mintotal = 1, minexpr = 0, minnumber = 0, maxexpr = Inf, downsample = TRUE, dsn = 1)
