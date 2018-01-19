@@ -16,15 +16,24 @@ description_waterfall <- function() create_description(
 run_waterfall <- function(expression, num_clusters = 10) {
   requireNamespace("Waterfall")
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   # run waterfall
   ps <- Waterfall::pseudotimeprog.foo(t(expression), k = num_clusters)
+
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
 
   # return output
   wrap_prediction_model_linear(
     cell_ids = rownames(expression),
     pseudotimes = ps$pseudotime,
     ps = ps
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 plot_waterfall <- function(prediction) {

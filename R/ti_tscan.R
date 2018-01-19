@@ -34,6 +34,9 @@ run_tscan <- function(
   # process clusternum
   clusternum <- seq(clusternum_lower, clusternum_upper, 1)
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   # preprocess counts
   cds_prep <- TSCAN::preprocess(
     t(as.matrix(counts)),
@@ -57,6 +60,9 @@ run_tscan <- function(
   # order the cells
   cds_order <- TSCAN::TSCANorder(cds_clus)
 
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+
   # process output
   cluster_network <- cds_clus$MSTtree %>%
     igraph::as_data_frame() %>%
@@ -77,6 +83,9 @@ run_tscan <- function(
     milestone_rename_fun = function(x) paste0("M", x)
   )
 
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts),
@@ -86,7 +95,7 @@ run_tscan <- function(
     space = out$space_df,
     centers = out$centers_df,
     edges = out$edge_df
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 plot_tscan <- function(prediction) {

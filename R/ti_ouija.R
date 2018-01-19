@@ -34,6 +34,9 @@ run_ouija <- function(
   # write compiled instance of the stanmodel to HDD
   rstan::rstan_options(auto_write = TRUE)
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   # run ouija
   oui <- ouija::ouija(
     x = expression,
@@ -42,6 +45,9 @@ run_ouija <- function(
     inference_type = inference_type,
     normalise_expression = normalise_expression
   )
+
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # obtain the pseudotimes
   pseudotimes <- ouija::map_pseudotime(oui)
@@ -65,13 +71,16 @@ run_ouija <- function(
   t0_df$Gene <- colnames(oui$Y[, oui$response_type == "switch"])
   t0_df$Gene <- factor(t0_df$Gene, t0_df$Gene[order(t0_means)])
 
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+
   # return output
   wrap_prediction_model_linear(
     cell_ids = rownames(expression),
     pseudotimes = pseudotimes,
     t0_df = t0_df,
     space = space
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 plot_ouija <- function(prediction) {

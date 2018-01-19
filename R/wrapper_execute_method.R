@@ -117,14 +117,20 @@ execute_method <- function(
 
         c(model, list(error = NULL))
       }, error = function(e) {
-        list(model = NULL, time1 = time0, time2 = Sys.time(), error = e)
+        timings_list <- list(
+          method_start = time0,
+          method_afterpreproc = time0,
+          method_aftermethod = time0,
+          method_afterpostproc = Sys.time(),
+          method_stop = Sys.time()
+        )
+        list(model = NULL, timings_list = timings_list, error = e)
       })
 
     # retrieve the model, error message, and timings
     model <- out$model
     error <- out$error
-    time1 <- out$time1
-    time2 <- out$time2
+    timings_list <- out$timings_list
 
     # check whether the method produced output files and
     # wd to previous state
@@ -160,9 +166,12 @@ execute_method <- function(
       method_name = method$name,
       method_short_name = method$short_name,
       task_id = task$id,
-      time_setup = as.numeric(difftime(time1, time0, units = "sec")),
-      time_method = as.numeric(difftime(time2, time1, units = "sec")),
-      time_cleanup = as.numeric(difftime(time3, time2, units = "sec")),
+      time_sessionsetup = as.numeric(difftime(timings_list$method_start, time0, units = "sec")),
+      time_preprocessing = as.numeric(difftime(timings_list$method_afterpreproc, timings_list$method_start, units = "sec")),
+      time_method = as.numeric(difftime(timings_list$method_aftermethod, timings_list$method_afterpreproc, units = "sec")),
+      time_postprocessing = as.numeric(difftime(timings_list$method_afterpostproc, timings_list$method_aftermethod, units = "sec")),
+      time_wrapping = as.numeric(difftime(timings_list$method_stop, timings_list$method_afterpostproc, units = "sec")),
+      time_sessioncleanup = as.numeric(difftime(time3, timings_list$method_stop, units = "sec")),
       error = list(error),
       num_files_created = num_files_created,
       num_setseed_calls = num_setseed_calls,
@@ -185,7 +194,7 @@ execute_method <- function(
 #'
 #' @export
 #' @importFrom readr write_file
-execute_method_internal <- function(method, arglist,setseed_detection_file) {
+execute_method_internal <- function(method, arglist, setseed_detection_file) {
   # disable seed setting
   # a method shouldn't set seeds during regular execution,
   # it should be left up to the user instead
@@ -203,13 +212,22 @@ execute_method_internal <- function(method, arglist,setseed_detection_file) {
   }
 
   # measure second time point
-  time1 <- Sys.time()
+  time_start <- Sys.time()
 
   # execute method and return model
   model <- do.call(method$run_fun, arglist)
 
   # measure third time point
-  time2 <- Sys.time()
+  time_stop <- Sys.time()
 
-  list(time1 = time1, time2 = time2, model = model)
+  # fetch timings from within method
+  timings_list <- get_timings_attribute(model)
+  timings_list <- c(
+    list(method_start = time_start),
+    timings_list,
+    list(method_stop = time_stop)
+  )
+
+  # return output
+  lst(timings_list, model)
 }

@@ -44,6 +44,9 @@ run_wishbone <- function(
       marker_feature_ids
     }
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   # execute wishbone
   out <- Wishbone::Wishbone(
     counts = counts,
@@ -58,6 +61,9 @@ run_wishbone <- function(
     normalize = normalize,
     epsilon = epsilon
   )
+
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # retrieve model
   model <- out$branch_assignment %>%
@@ -90,6 +96,9 @@ run_wishbone <- function(
   # get the milestone names
   milestone_ids <- sort(unique(c(milestone_network$from, milestone_network$to)))
 
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts),
@@ -97,7 +106,7 @@ run_wishbone <- function(
     milestone_network = milestone_network ,
     progressions = progressions,
     model = model
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 #' @importFrom viridis scale_colour_viridis

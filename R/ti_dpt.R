@@ -43,6 +43,9 @@ run_dpt <- function(expression,
   # create n_local vector
   n_local <- seq(n_local_lower, n_local_upper, by = 1)
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   # run diffusion maps
   dm <- destiny::DiffusionMap(
     expression,
@@ -65,6 +68,9 @@ run_dpt <- function(expression,
   tips <- destiny::tips(dpt)
   tip_names <- rownames(expression)[tips]
 
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+
   # retrieve dimred
   space <- dpt@dm@eigenvectors %>% magrittr::set_rownames(rownames(expression)) %>% as.matrix
 
@@ -82,6 +88,9 @@ run_dpt <- function(expression,
     length = sqrt(rowMeans((space_milestones[from,] - space_milestones[to,])^2)),
     directed = TRUE
   )
+
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
 
   # transform by projecting onto cluster medians
   out <- project_cells_to_segments(
@@ -101,7 +110,7 @@ run_dpt <- function(expression,
     centers = out$centers_df,
     edge = out$edge_df,
     tips = tip_names
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 plot_dpt <- function(prediction) {

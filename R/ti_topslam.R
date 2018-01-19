@@ -36,6 +36,9 @@ run_topslam <- function(
       NULL
     }
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   # run topslam
   out <- topslam::topslam(
     expression = expression,
@@ -47,9 +50,15 @@ run_topslam <- function(
     dimreds = dimreds_vec
   )
 
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+
   # combine data
   wad <- with(out, bind_cols(wad_grid, wad_energy))
   model <- with(out, bind_cols(data_frame(cell_id = rownames(counts)), space, pseudotime))
+
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
 
   # return output
   wrap_prediction_model_linear(
@@ -57,7 +66,7 @@ run_topslam <- function(
     pseudotimes = model$time,
     model = model,
     wad = wad
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 #' @importFrom viridis scale_colour_viridis

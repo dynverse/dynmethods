@@ -31,6 +31,9 @@ run_mpath <- function(expression,
 
   sample_info <- grouping_assignment %>% rename(GroupID = group_id) %>% as.data.frame
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   landmark_cluster <- Mpath::landmark_designation(
     rpkmFile = t(expression),
     baseName = NULL,
@@ -42,6 +45,9 @@ run_mpath <- function(expression,
     size_cut = size_cut,
     saveRes = FALSE
   )
+
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   milestone_ids <- unique(landmark_cluster$landmark_cluster)
 
@@ -100,6 +106,9 @@ run_mpath <- function(expression,
       ungroup()
   }
 
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression),
@@ -108,7 +117,7 @@ run_mpath <- function(expression,
     progressions = progressions,
     landmark_cluster = landmark_cluster,
     grouping_assignment = grouping_assignment
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 #' @importFrom ggforce geom_arc_bar

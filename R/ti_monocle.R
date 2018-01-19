@@ -71,6 +71,9 @@ run_monocle <- function(counts,
   # just in case
   if (is.factor(norm_method)) norm_method <- as.character(norm_method)
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   # load in the new dataset
   pd <- Biobase::AnnotatedDataFrame(data.frame(row.names = rownames(counts)))
   fd <- Biobase::AnnotatedDataFrame(data.frame(row.names = colnames(counts), gene_short_name = colnames(counts)))
@@ -91,6 +94,9 @@ run_monocle <- function(counts,
 
   # order the cells
   cds <- monocle::orderCells(cds, num_paths = n_end_states)
+
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # extract the igraph and which cells are on the trajectory
   gr <-
@@ -117,6 +123,9 @@ run_monocle <- function(counts,
   # retrieve data for visualisation
   plot_data <- postprocess_monocle_cds(cds)
 
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+
   # wrap output
   wrap_prediction_model(
     cell_ids = rownames(counts),
@@ -125,7 +134,7 @@ run_monocle <- function(counts,
     progressions = out$progressions,
     plot_data = plot_data,
     reduction_method = reduction_method
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 plot_monocle <- function(prediction) {

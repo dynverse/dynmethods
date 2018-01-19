@@ -43,6 +43,9 @@ run_embeddr <- function(counts,
   # calculate nn param
   nn <- round(log(nrow(counts)) * nn_pct)
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   # load data in scaterlegacy
   sce <- scaterlegacy::newSCESet(countData = t(counts))
 
@@ -68,6 +71,9 @@ run_embeddr <- function(counts,
     smoother = smoother
   )
 
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+
   # construct milestone network
   pseudotimes <- as(sce@phenoData, "data.frame")$pseudotime
 
@@ -79,13 +85,16 @@ run_embeddr <- function(counts,
     arrange(pseudotime) %>%
     select(pseudotime, starts_with("trajectory_"))
 
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+
   # return output
   wrap_prediction_model_linear(
     cell_ids = rownames(counts),
     pseudotimes = pseudotimes,
     dimred_samples = dimred_samples,
     dimred_traj = dimred_traj
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 plot_embeddr <- function(prediction) {

@@ -80,6 +80,9 @@ run_slingshot <- function(
     end.clus <- NULL
   }
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   # run slingshot
   sds <- slingshot::slingshot(
     reducedDim = space,
@@ -95,6 +98,9 @@ run_slingshot <- function(
     smoother = smoother,
     shrink.method = shrink.method
   )
+
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # adapted from plot-SlingshotDataSet
   # extract information on clusters
@@ -142,6 +148,9 @@ run_slingshot <- function(
     )
   })
 
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts),
@@ -152,7 +161,7 @@ run_slingshot <- function(
     centers = out$centers_df,
     edge = out$edge_df,
     curve = curve_df
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 #' @importFrom RColorBrewer brewer.pal

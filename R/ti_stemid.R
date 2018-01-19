@@ -58,6 +58,9 @@ run_stemid <- function(
 ) {
   requireNamespace("StemID")
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   # initialize SCseq object with transcript expression
   sc <- StemID::SCseq(data.frame(t(expression), check.names = FALSE))
 
@@ -105,6 +108,9 @@ run_stemid <- function(
   # compute a spanning tree
   ltr <- StemID::compspantree(ltr)
 
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+
   # get network info
   cluster_network <- data_frame(
     from = as.character(ltr@ldata$m[-1]),
@@ -126,6 +132,9 @@ run_stemid <- function(
   # get colours
   col_ann <- setNames(ltr@sc@fcol, out$milestone_ids)
 
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression),
@@ -136,7 +145,7 @@ run_stemid <- function(
     centers = out$centers_df,
     edge = out$edge_df,
     col_ann = col_ann
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 plot_stemid <- function(prediction) {

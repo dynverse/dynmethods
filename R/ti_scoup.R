@@ -50,6 +50,9 @@ run_scoup <- function(
     left_join(grouping_assignment, by = "group_id") %>%
     .$cell_id
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   # run SP and SCOUP
   model <- SCOUP::run_SCOUP(
     expr = expression,
@@ -66,6 +69,9 @@ run_scoup <- function(
     thresh = thresh,
     verbose = verbose
   )
+
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # create progressions
   milestone_percentages <- model$cpara %>%
@@ -93,6 +99,9 @@ run_scoup <- function(
     directed = TRUE
   )
 
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression),
@@ -100,7 +109,7 @@ run_scoup <- function(
     milestone_network = milestone_network,
     milestone_percentages = milestone_percentages,
     model = model
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 plot_scoup <- function(prediction, type = "dimred") {

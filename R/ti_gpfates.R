@@ -30,6 +30,9 @@ run_gpfates <- function(
   # documentation was not very detailed, so we had a hard time figuring out what the parameters were
   requireNamespace("GPfates")
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   gp_out <- GPfates::GPfates(
     counts = counts,
     nfates = n_end_states,
@@ -39,6 +42,9 @@ run_gpfates <- function(
     num_cores = num_cores,
     verbose = verbose
   )
+
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   pseudotime <- gp_out$pseudotime %>% mutate(time = dynutils::scale_minmax(time))
   phi <- gp_out$phi
@@ -63,6 +69,9 @@ run_gpfates <- function(
   )
   milestone_ids <- paste0("M", seq(0, n_end_states))
 
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts),
@@ -71,7 +80,7 @@ run_gpfates <- function(
     progressions = progressions,
     dimred_samples = dr,
     pseudotime = pseudotime
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 plot_gpfates <- function(prediction, type = c("dimred", "assignment")) {
