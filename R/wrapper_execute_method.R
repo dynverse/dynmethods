@@ -220,11 +220,10 @@ execute_method_internal <- function(method, arglist, setseed_detection_file) {
   # measure third time point
   time_stop <- Sys.time()
 
-  # fetch timings from within method
-  timings_list <- get_timings_attribute(model)
+  # fetch timings from within method (and place them in order of execution, just to make sure)
   timings_list <- c(
     list(method_start = time_start),
-    timings_list,
+    get_timings_attribute(model),
     list(method_stop = time_stop)
   )
 
