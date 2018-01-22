@@ -16,16 +16,25 @@ test_that("Testing execute_method with dummy method", {
     run_fun = function(counts, aggr_fun = "mean") {
       pt <- apply(counts, 1, aggr_fun) %>% dynutils::scale_minmax()
 
+      # TIMING: done with preproc
+      tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
       milestone_ids <- c("start", "end")
       milestone_network <- data_frame(from = milestone_ids[[1]], to = milestone_ids[[2]], length = 1, directed=TRUE)
       progressions <- data_frame(cell_id = names(pt), from = milestone_ids[[1]], to = milestone_ids[[2]], percentage = pt)
+
+      # TIMING: done with method
+      tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+
+      # TIMING: after postproc
+      tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
 
       wrap_prediction_model(
         cell_ids = rownames(counts),
         milestone_ids = milestone_ids,
         milestone_network = milestone_network,
         progressions = progressions
-      )
+      ) %>% attach_timings_attribute(tl)
     },
     plot_fun = function(out) {
       ggplot(out$progressions, aes(percentage, percentage)) +
@@ -35,7 +44,12 @@ test_that("Testing execute_method with dummy method", {
     }
   )
 
-  method_outs <- execute_method(toy_tasks, dummy, parameters = list(aggr_fun = "median"), timeout = 1e6)
+  method_outs <- execute_method(
+    tasks = toy_tasks,
+    method = dummy,
+    parameters = list(aggr_fun = "median"),
+    timeout = 1e6
+  )
 
   for (i in seq_along(method_outs)) {
     method_out <- method_outs[[i]]
@@ -80,16 +94,25 @@ test_that("Testing prior passing for execute_method", {
     ) {
       pt <- apply(expression, 1, aggr_fun) %>% dynutils::scale_minmax()
 
+      # TIMING: done with preproc
+      tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
       milestone_ids <- c("start", "end")
       milestone_network <- data_frame(from = milestone_ids[[1]], to = milestone_ids[[2]], length = 1, directed=TRUE)
       progressions <- data_frame(cell_id = names(pt), from = milestone_ids[[1]], to = milestone_ids[[2]], percentage = pt)
+
+      # TIMING: done with method
+      tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+
+      # TIMING: after postproc
+      tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
 
       wrap_prediction_model(
         milestone_ids = milestone_ids,
         milestone_network = milestone_network,
         progressions = progressions,
         cell_ids = names(pt)
-      )
+      ) %>% attach_timings_attribute(tl)
     },
     plot_fun = function(out) {
       ggplot(out$progressions, aes(percentage, percentage)) +
@@ -129,16 +152,26 @@ test_that("Testing timeout functionality of execute_method with dummy wrapper", 
       Sys.sleep(sleep_time)
 
       pt <- apply(counts, 1, "mean") %>% dynutils::scale_minmax()
+
+      # TIMING: done with preproc
+      tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
       milestone_ids <- c("start", "end")
       milestone_network <- data_frame(from = milestone_ids[[1]], to = milestone_ids[[2]], length = 1, directed=TRUE)
       progressions <- data_frame(cell_id = names(pt), from = milestone_ids[[1]], to = milestone_ids[[2]], percentage = pt)
+
+      # TIMING: done with method
+      tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+
+      # TIMING: after postproc
+      tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
 
       wrap_prediction_model(
         cell_ids = rownames(counts),
         milestone_network = milestone_network,
         progressions = progressions,
         milestone_ids = milestone_ids
-      )
+      ) %>% attach_timings_attribute(tl)
     },
     plot_fun = function(out) {
       ggplot(out$progressions, aes(percentage, percentage)) +
