@@ -182,8 +182,7 @@ test_that("Testing timeout functionality of execute_method with dummy wrapper", 
   }
 })
 
-tasks <- dyntoy::generate_toy_datasets(trajectory_types = c("simple_linear"), num_replicates = 1, num_cells = 100, num_genes = 51)
-# tasks <- dyntoy::toy_tasks %>% filter(trajectory_type == "linear") %>% slice(1)
+tasks <- dyntoy::toy_tasks %>% filter(model == "simple_linear") %>% slice(1)
 methods <- get_descriptions(as_tibble = FALSE)
 for (method in methods) {
   test_that(pritt("Testing whether {method$short_name} is able to run on simple data"), {
