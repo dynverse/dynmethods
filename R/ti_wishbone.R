@@ -6,12 +6,12 @@ description_wishbone <- function() create_description(
   package_loaded = c(),
   package_required = c("Wishbone"),
   par_set = makeParamSet(
-    makeIntegerParam(id = "knn", lower = 2L, default = 10L, upper = 100L),
+    makeIntegerParam(id = "knn", lower = 2L, default = 15L, upper = 100L),
     makeIntegerParam(id = "n_diffusion_components", lower = 2L, default = 2L, upper = 20L),
     makeIntegerParam(id = "n_pca_components", lower = 2L, default = 15L, upper = 30L),
     makeLogicalParam(id = "branch", default = TRUE),
     makeIntegerParam(id = "k", lower = 2L, default = 15L, upper = 100L),
-    makeIntegerParam(id = "num_waypoints", lower = 2L, default = 50L, upper = 500L),
+    makeIntegerParam(id = "num_waypoints", lower = 2L, default = 250L, upper = 500L),
     makeLogicalParam(id = "normalize", default = TRUE),
     makeNumericParam(id = "epsilon", lower = 0.1, default = 1, upper = 10)
   ),
@@ -24,12 +24,12 @@ run_wishbone <- function(
   counts,
   start_cells,
   marker_feature_ids = NULL,
-  knn = 10,
+  knn = 15,
   n_diffusion_components = 2,
   n_pca_components = 15,
   branch = TRUE,
   k = 15,
-  num_waypoints = 50,
+  num_waypoints = 250,
   normalize = TRUE,
   epsilon = 1
 ) {
