@@ -32,6 +32,9 @@ run_mfa <- function(
 ) {
   requireNamespace("mfa")
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   # perform MFA
   m <- mfa::mfa(
     y = expression,
@@ -43,6 +46,9 @@ run_mfa <- function(
     prop_collapse = prop_collapse,
     scale_input = scale_input
   )
+
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # obtain results
   ms <- summary(m)
@@ -67,6 +73,9 @@ run_mfa <- function(
   # pca for visualisation only
   pca_out <- stats::prcomp(expression)$x[,1:2]
 
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression),
@@ -75,7 +84,7 @@ run_mfa <- function(
     progressions = progressions,
     ms = ms,
     pca_out = pca_out
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 plot_mfa <- function(prediction) {

@@ -38,6 +38,9 @@ run_pseudogp <- function(expression,
   spaces <- list_dimred_methods()[dimreds] %>%
     map(~.(expression, 2)) # only 2 dimensions per dimred are allowed
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   # fit probabilistic pseudotime model
   fit <- pseudogp::fitPseudotime(
     X = spaces,
@@ -50,6 +53,9 @@ run_pseudogp <- function(expression,
     pseudotime_mean = pseudotime_mean
   )
 
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+
   # extract pseudotime
   pst <- rstan::extract(fit, pars = "t")$t
   tmcmc <- coda::mcmc(pst)
@@ -61,6 +67,9 @@ run_pseudogp <- function(expression,
   lambda <- rstan::extract(fit, pars = "lambda", permute = FALSE)
   sigma <- rstan::extract(fit, pars = "sigma", permute = FALSE)
 
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+
   # return output
   wrap_prediction_model_linear(
     cell_ids = rownames(expression),
@@ -70,7 +79,7 @@ run_pseudogp <- function(expression,
     pst = pst,
     lambda = lambda,
     sigma = sigma
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 plot_pseudogp <- function(prediction) {

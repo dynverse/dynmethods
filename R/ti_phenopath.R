@@ -25,6 +25,9 @@ run_phenopath <- function(expression,
 ) {
   requireNamespace("phenopath")
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   # run phenopath
   fit <- phenopath::phenopath(
     exprs_obj = expression,
@@ -37,6 +40,9 @@ run_phenopath <- function(expression,
   )
   pseudotimes <- phenopath::trajectory(fit)
 
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+
   # run pca for visualisation purposes
   space <- stats::prcomp(expression)$x[,1:2] %>%
     as.data.frame() %>%
@@ -44,12 +50,15 @@ run_phenopath <- function(expression,
     as_data_frame() %>%
     mutate(pseudotime = pseudotimes)
 
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+
   # return output
   wrap_prediction_model_linear(
     cell_ids = rownames(expression),
     pseudotimes = pseudotimes,
     space = space
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 #' @importFrom viridis scale_colour_viridis

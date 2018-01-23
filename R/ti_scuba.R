@@ -29,6 +29,9 @@ run_scuba <- function(counts,
                       min_percentage_split = 0.25) {
   requireNamespace("SCUBA")
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   # run scuba
   out <- SCUBA::SCUBA(
     counts = counts,
@@ -40,6 +43,9 @@ run_scuba <- function(counts,
     min_percentage_split = min_percentage_split,
     timecourse = timecourse
   )
+
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # get milestones
   unique_labs <- sort(unique(out$labels))
@@ -73,13 +79,16 @@ run_scuba <- function(counts,
     ungroup() %>%
     select(-label)
 
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts),
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     progressions = progressions
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 #' @importFrom grid arrow

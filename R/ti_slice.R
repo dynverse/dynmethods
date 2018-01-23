@@ -53,6 +53,9 @@ run_slice <- function(
     cellidentity <- factor(rep(1, nrow(expression)))
   }
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   # wrap data
   sc <- SLICE::construct(
     exprmatrix = as.data.frame(t(expression)),
@@ -102,6 +105,9 @@ run_slice <- function(
     k.opt.method = k.opt.method,
     do.plot = FALSE
   )
+
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # extract the milestone ids
   lin_model <- sc@model$lineageModel
@@ -159,6 +165,8 @@ run_slice <- function(
       dst.y = cells.df$y[iy]
     )
 
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
 
   # return output
   wrap_prediction_model(
@@ -168,7 +176,7 @@ run_slice <- function(
     progressions = progressions,
     cells.df = cells.df,
     edge.df = edge.df
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 #' @importFrom grid arrow

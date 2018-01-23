@@ -39,23 +39,30 @@ run_slicer <- function(expression,
   }
   expr_filt <- expression[, marker_feature_ids]
 
-  # stop output if not verbose
-  if (!verbose) {
-    sink("/dev/null")
-  }
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
-  # determine k for knn
-  k <- SLICER::select_k(expr_filt, kmin = kmin)
+  # try catch for sink
+  tryCatch({
+    # stop output if not verbose
+    if (!verbose) {
+      sink("/dev/null")
+    }
 
-  # perform local linear embedding
-  traj_lle <- lle::lle(expr_filt, m = m, k = k)$Y
-  rownames(traj_lle) <- rownames(expr_filt)
-  colnames(traj_lle) <- paste0("Comp", seq_len(ncol(traj_lle)))
+    # determine k for knn
+    k <- SLICER::select_k(expr_filt, kmin = kmin)
 
-  # resume output if not verbose
-  if (!verbose) {
-    sink()
-  }
+    # perform local linear embedding
+    traj_lle <- lle::lle(expr_filt, m = m, k = k)$Y
+    rownames(traj_lle) <- rownames(expr_filt)
+    colnames(traj_lle) <- paste0("Comp", seq_len(ncol(traj_lle)))
+
+  }, finally = {
+    # resume output if not verbose
+    if (!verbose) {
+      sink()
+    }
+  })
 
   # get LLE KNN graph
   traj_graph <- SLICER::conn_knn_graph(traj_lle, k = k)
@@ -70,6 +77,9 @@ run_slicer <- function(expression,
   # order cells
   start <- which(rownames(expr_filt) == start_cell)
   cells_ordered <- SLICER::cell_order(traj_graph, start)
+
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # get shortest paths to start and all other nodes
   shortest_paths <- igraph::shortest_paths(traj_graph, start)
@@ -95,6 +105,9 @@ run_slicer <- function(expression,
   # the start node and one of the end nodes
   out <- simplify_sample_graph(simp_edges, to_keep, is_directed = FALSE)
 
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expr_filt),
@@ -106,7 +119,7 @@ run_slicer <- function(expression,
     start = start,
     ends = ends,
     to_keep = to_keep
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 #' @importFrom grDevices colorRampPalette

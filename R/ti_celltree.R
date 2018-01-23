@@ -81,6 +81,9 @@ run_celltree <- function(
       NULL
     }
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   # infer the LDA model
   lda_out <- cellTree::compute.lda(
     t(expression) + min(expression) + 1,
@@ -111,6 +114,9 @@ run_celltree <- function(
   # construct the backbone tree
   mst_tree <- do.call(cellTree::compute.backbone.tree, backbone_params)
 
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+
   # simplify sample graph to just its backbone
   edges <- igraph::as_data_frame(mst_tree, "edges") %>%
     select(from, to, length = weight) %>%
@@ -128,6 +134,9 @@ run_celltree <- function(
   vertices <- igraph::as_data_frame(tree, "vertices") %>% as_data_frame()
   edges <- igraph::as_data_frame(tree, "edges") %>% as_data_frame()
 
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+
   # wrap output
   wrap_prediction_model(
     cell_ids = rownames(expression),
@@ -136,7 +145,7 @@ run_celltree <- function(
     progressions = out$progressions,
     vertices = vertices,
     edges = edges
-  )
+  )  %>% attach_timings_attribute(tl)
 }
 
 #' @importFrom ggforce geom_arc_bar

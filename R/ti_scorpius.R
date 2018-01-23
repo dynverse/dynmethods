@@ -34,6 +34,9 @@ run_scorpius <- function(expression,
     k <- NULL
   }
 
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   # calculate distances between cells
   dist <- SCORPIUS::correlation_distance(expression, method = distance_method)
 
@@ -50,13 +53,19 @@ run_scorpius <- function(expression,
     smoother = smoother
   )
 
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+
   # return output
   wrap_prediction_model_linear(
     cell_ids = rownames(expression),
     pseudotimes = traj$time,
     space = space,
     traj = traj
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 
 #' @importFrom RColorBrewer brewer.pal

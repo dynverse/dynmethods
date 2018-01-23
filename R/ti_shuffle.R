@@ -17,6 +17,10 @@ description_shuffle <- function() create_description(
 )
 
 run_shuffle <- function(counts, task, dummy_param = .5) {
+
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   # permute cell labels
   allcells <- rownames(counts)
   mapper <- setNames(sample(allcells), allcells)
@@ -24,12 +28,18 @@ run_shuffle <- function(counts, task, dummy_param = .5) {
     cell_id = mapper[cell_id]
   )
 
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+
   # return output
   wrap_prediction_model(
     cell_ids = task$cell_ids,
     milestone_ids = task$milestone_ids,
     milestone_network = task$milestone_network,
     progressions = progressions
-  )
+  ) %>% attach_timings_attribute(tl)
 }
 

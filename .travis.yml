@@ -20,14 +20,14 @@ addons:
       - libblas-dev
       - liblapack-dev
 before_install:
-  - sudo apt-get -y install python3-pip
-  - sudo pip3 install --upgrade pip setuptools wheel
-  - python3 -V
-  - pip3 -V
+ - sudo apt-get -y install python3-pip
+ - sudo pip3 install --upgrade pip setuptools wheel
+ - python3 -V
+ - pip3 -V
 install:
-  - sudo pip3 install --upgrade --only-binary=numpy,scipy numpy scipy
-  - sudo pip3 install --upgrade matplotlib pandas six jinja2 python-dateutil pytz pyparsing cycler tqdm python-igraph Cython statsmodels sklearn seaborn
-  - R -e 'install.packages("remotes")'
-  - R -e 'remotes::install_deps(dependencies = T, upgrade = T)'
-  - R -e 'remotes::install_local(".")'
-  - R -e 'dynmethods::check_dependencies()'
+ - sudo pip3 install --upgrade --only-binary=numpy,scipy numpy scipy
+ - sudo pip3 install --upgrade matplotlib pandas six jinja2 python-dateutil pytz pyparsing cycler tqdm python-igraph Cython statsmodels sklearn seaborn
+ - R -e 'install.packages("devtools")'
+ - R -e 'setRepositories(ind = 1:2)'
+ - R -e 'devtools::install(dependencies = T, upgrade = T)'
+ - R -e 'dynmethods::check_dependencies()'
