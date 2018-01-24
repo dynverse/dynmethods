@@ -117,12 +117,13 @@ execute_method <- function(
 
         c(model, list(error = NULL))
       }, error = function(e) {
+        time_new <- Sys.time()
         timings_list <- list(
           method_start = time0,
           method_afterpreproc = time0,
-          method_aftermethod = time0,
-          method_afterpostproc = Sys.time(),
-          method_stop = Sys.time()
+          method_aftermethod = time_new,
+          method_afterpostproc = time_new,
+          method_stop = time_new
         )
         list(model = NULL, timings_list = timings_list, error = e)
       })
