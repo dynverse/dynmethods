@@ -73,6 +73,10 @@ run_scoup <- function(
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
+  if (any(is.na(model$ll))) {
+    stop("SCOUP returned NaNs", call. = FALSE)
+  }
+
   # create progressions
   milestone_percentages <- model$cpara %>%
     as.data.frame() %>%
