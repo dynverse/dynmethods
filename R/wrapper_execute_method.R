@@ -4,10 +4,6 @@
 #' @param parameters The parameters to evaluate with.
 #' @param give_priors All the priors a method is allowed to receive. Must be a subset of: \code{"start_milestones"},
 #'  \code{"start_cells"}, \code{"end_milestones"}, \code{"end_cells"}, \code{"grouping_assignment"} and \code{"grouping_network"}
-#' @param timeout Kill execution after a given amount of time.
-#' @param debug_timeout Setting debug to \code{TRUE} will avoid running the method in a separate R session
-#'   using \code{\link[dynutils]{eval_with_timeout}} and run the method directly. Note that the timeout functionality
-#'   will not work when \code{debug} is \code{TRUE}.
 #' @param mc_cores The number of cores to use, allowing to parallellise the different tasks
 #'
 #' @importFrom utils capture.output
@@ -20,8 +16,6 @@ execute_method <- function(
   method,
   parameters,
   give_priors = NULL,
-  timeout = 3600 * 24 * 365.25 * 10,
-  debug_timeout = FALSE,
   mc_cores = 1
 ) {
   # Run method on each task
@@ -83,32 +77,13 @@ execute_method <- function(
     # run the method and catch the error, if necessary
     out <-
       tryCatch({
-        if (debug_timeout) {
-          cat("Running ", method$name, " on ", task$id, " in debug mode!\n", sep = "")
+        # create a temporary directory to set as working directory,
+        # to avoid polluting the working directory if a method starts
+        # producing files :angry_face:
+        setwd(tmp_dir)
 
-          # Execute method
-          model <- execute_method_internal(method, arglist, setseed_detection_file)
-        } else {
-          # Run the method on each of the tasks
-          model <- dynutils::eval_with_timeout(
-            timeout = timeout,
-            expr = {
-              tryCatch({
-                # create a temporary directory to set as working directory,
-                # to avoid polluting the working directory if a method starts
-                # producing files :angry_face:
-                setwd(tmp_dir)
-
-                # run method
-                execute_method_internal(method, arglist, setseed_detection_file)
-              }, finally = {
-                # return to old_wd
-                # (in the likely event that this is a different thread)
-                setwd(old_wd)
-              })
-            }
-          )
-        }
+        # run method
+        model <- execute_method_internal(method, arglist, setseed_detection_file)
 
         # add task id and method names to the model
         model$task_id <- task$id
@@ -126,6 +101,8 @@ execute_method <- function(
           method_stop = time_new
         )
         list(model = NULL, timings_list = timings_list, error = e)
+      }, finally = {
+        setwd(old_wd)
       })
 
     # retrieve the model, error message, and timings
