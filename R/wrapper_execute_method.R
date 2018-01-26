@@ -77,11 +77,6 @@ execute_method <- function(
     # run the method and catch the error, if necessary
     out <-
       tryCatch({
-        # create a temporary directory to set as working directory,
-        # to avoid polluting the working directory if a method starts
-        # producing files :angry_face:
-        setwd(tmp_dir)
-
         # run method
         model <- execute_method_internal(method, arglist, setseed_detection_file)
 
@@ -101,8 +96,6 @@ execute_method <- function(
           method_stop = time_new
         )
         list(model = NULL, timings_list = timings_list, error = e)
-      }, finally = {
-        setwd(old_wd)
       })
 
     # retrieve the model, error message, and timings
@@ -115,13 +108,8 @@ execute_method <- function(
     num_files_created <- length(list.files(tmp_dir, recursive = TRUE))
     setwd(old_wd)
 
-    # Temporary fix: do not remove the whole tmp wd, as futures might still be in this wd.
-    # TODO: solve it
-    # unlink(tmp_dir, recursive = TRUE, force = TRUE)
-    for (x in list.dirs(tmp_dir, recursive = FALSE)) {
-      unlink(x, recursive = TRUE, force = TRUE)
-    }
-    file.remove(list.files(tmp_dir))
+    # Remove temporary folder
+    unlink(tmp_dir, recursive = TRUE, force = TRUE)
 
     # read how many seeds were set and
     # restore environment to previous state
