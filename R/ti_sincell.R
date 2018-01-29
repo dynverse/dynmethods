@@ -33,10 +33,10 @@ run_sincell <- function(
   distance_method = "spearman",
   dimred_method = "none",
   cluster_method = "max.distance",
-  mutual=TRUE,
-  max.distance=0,
-  k=3L,
-  shortest.rank.percent=10,
+  mutual = TRUE,
+  max.distance = 0,
+  k = 3L,
+  shortest.rank.percent = 10,
   graph_method = "MST",
   graph.using.cells.clustering = FALSE,
   k_imc = 3L
@@ -46,31 +46,44 @@ run_sincell <- function(
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
-  SincellObject <- sincell::sc_InitializingSincellObject(t(expression))
+  # initialise sincell object
+  SO <- sincell::sc_InitializingSincellObject(t(expression))
 
-  SO <- sincell::sc_distanceObj(SincellObject, distance_method)
+  # calculate distances
+  SO <- sincell::sc_distanceObj(SO, distance_method)
 
+  # perform dimred, if necessary
   if (dimred_method != "none") {
-    SO <- sincell::sc_DimensionalityReductionObj(SO,dimred_method)
+    SO <- sincell::sc_DimensionalityReductionObj(SO, dimred_method)
   }
 
   cell2celldist <- SO$cell2celldist
 
-  SO <- sincell::sc_clusterObj(SO,cluster_method, mutual, max.distance, shortest.rank.percent, k)
+  # cluster cells
+  SO <- sincell::sc_clusterObj(SO, cluster_method, mutual, max.distance, shortest.rank.percent, k)
 
+  # build graph
   SO <- sincell::sc_GraphBuilderObj(SO, graph_method, graph.using.cells.clustering, k_imc)
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
-  edges <-SO$cellstateHierarchy %>% igraph::as_data_frame() %>% rename(length=weight) %>% mutate(directed=FALSE)
+  # extract cell hierarchy
+  edges <- SO$cellstateHierarchy %>%
+    igraph::as_data_frame() %>%
+    rename(length = weight) %>%
+    mutate(directed = FALSE)
+
+  # keep all cells
   to_keep <- setNames(rep(TRUE, nrow(expression)), rownames(expression))
-  out <- dynutils::simplify_sample_graph(edges,to_keep, is_directed=FALSE)
+
+  # simplify sample graph
+  out <- dynutils::simplify_sample_graph(edges, to_keep, is_directed=FALSE)
 
   # TIMING: after postproc
   tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
 
-  # extract data for visualisation
+  # remove extra data in SO for visualisation
   SO$expressionmatrix <- NULL
   SO$cell2celldist <- NULL
 
@@ -80,7 +93,7 @@ run_sincell <- function(
     milestone_ids = out$milestone_ids,
     milestone_network = out$milestone_network,
     progressions = out$progressions,
-    SO=SO
+    SO = SO
   ) %>% attach_timings_attribute(tl)
 }
 
@@ -90,8 +103,9 @@ plot_sincell<- function(prediction) {
   requireNamespace("sincell")
   requireNamespace("ggraph")
 
-  graph <- prediction$SO$cellstateHierarchy %>% tidygraph::as_tbl_graph(SO$cellstateHierarchy)
-  graph %>% ggraph::ggraph() +
+  prediction$SO$cellstateHierarchy %>%
+    tidygraph::as_tbl_graph(SO$cellstateHierarchy) %>%
+    ggraph::ggraph() +
     ggraph::geom_node_point() +
     ggraph::geom_edge_link() +
     ggraph::theme_graph()
