@@ -97,7 +97,7 @@ plot_ouija <- function(prediction) {
 
 
 
-#' Description for Ouijiaflow
+#' Description for Ouijaflow
 #' @export
 description_ouijaflow <- function() create_description(
   name = "ouijaflow",

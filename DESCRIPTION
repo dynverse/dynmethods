@@ -91,6 +91,7 @@ Remotes:
   dynverse/topslam,
   dynverse/Waterfall,
   dynverse/Wishbone,
+  igraph/rigraph,
   kieranrcampbell/pseudogp,
   kieranrcampbell/mfa,
   kieranrcampbell/ouija,

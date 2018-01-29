@@ -20,6 +20,28 @@ description_wishbone <- function() create_description(
   plot_fun = plot_wishbone
 )
 
+#' Description for Wanderlust
+#' @export
+description_wanderlust <- function() create_description(
+  name = "Wanderlust",
+  short_name = "wndrlust",
+  package_loaded = c(),
+  package_required = c("Wishbone"),
+  par_set = makeParamSet(
+    makeIntegerParam(id = "knn", lower = 2L, default = 15L, upper = 100L),
+    makeIntegerParam(id = "n_diffusion_components", lower = 2L, default = 2L, upper = 20L),
+    makeIntegerParam(id = "n_pca_components", lower = 2L, default = 15L, upper = 30L),
+    makeLogicalParam(id = "branch", default = FALSE, tunable = FALSE),
+    makeIntegerParam(id = "k", lower = 2L, default = 15L, upper = 100L),
+    makeIntegerParam(id = "num_waypoints", lower = 2L, default = 250L, upper = 500L),
+    makeLogicalParam(id = "normalize", default = TRUE),
+    makeNumericParam(id = "epsilon", lower = 0.1, default = 1, upper = 10)
+  ),
+  properties = c(),
+  run_fun = run_wishbone,
+  plot_fun = plot_wishbone
+)
+
 run_wishbone <- function(
   counts,
   start_cells,
