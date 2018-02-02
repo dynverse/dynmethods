@@ -9,13 +9,14 @@ description_sincell <- function() create_description(
     makeDiscreteParam(id = "distance_method", default = "euclidean", values = c("euclidean", "cosine", "pearson", "spearman", "L1", "MI")),
     makeDiscreteParam(id = "dimred_method", default = "none", values = c("none", "PCA", "ICA", "tSNE", "classical-MDS", "nonmetric-MDS")),
     makeDiscreteParam(id = "cluster_method", default = "max.distance", values = c("max.distance", "percent", "knn", "k-medoids", "ward.D","ward.D2", "single", "complete", "average", "mcquitty", "median", "centroid")),
-    makeLogicalParam(id="mutual", default = TRUE),#, requires = quote(cluster_method == "knn")),
-    makeNumericParam(id="max.distance", default = 0, lower = 0, upper = 5),#, requires = quote(cluster_method == "max.distance")),
-    makeIntegerParam(id="k", default = 3L, lower=1L, upper=99L),#, requires = quote(cluster_method == "knn")),
-    makeNumericParam(id="shortest.rank.percent", default = 10, lower=0, upper=100),#, requires = quote(cluster_method == "percent")),
+    makeLogicalParam(id = "mutual", default = TRUE), #, requires = quote(cluster_method == "knn")),
+    makeNumericParam(id = "max_distance", default = 0, lower = 0, upper = 5), #, requires = quote(cluster_method == "max.distance")),
+    makeIntegerParam(id = "k", default = 3L, lower=1L, upper=99L), #, requires = quote(cluster_method == "knn")),
+    makeNumericParam(id = "shortest_rank_percent", default = 10, lower=0, upper=100), #, requires = quote(cluster_method == "percent")),
     makeDiscreteParam(id = "graph_method", default = "MST", values = c("MST", "SST", "IMC")),
-    makeLogicalParam(id = "graph.using.cells.clustering", default = FALSE),#, requires = quote(graph_method == "MST")),
-    makeIntegerParam(id = "k_imc", default = 3L, lower=1L, upper=99L)#, requires = quote(graph_method == "IMC"))
+    makeLogicalParam(id = "graph_using_cells_clustering", default = FALSE), #, requires = quote(graph_method == "MST")),
+    makeIntegerParam(id = "k_imc", default = 3L, lower=1L, upper=99L), #, requires = quote(graph_method == "IMC")),
+    makeNumericParam(id = "pct_leaf_node_cutoff", default = .5, lower = .01, upper = .8) #, requires = quote(!graph_using_cells_clustering)),
   ),
   properties = c(),
   run_fun = run_sincell,
@@ -28,13 +29,14 @@ run_sincell <- function(
   dimred_method = "none",
   cluster_method = "max.distance",
   mutual = TRUE,
-  max.distance = 0,
+  max_distance = 0,
   k = 3L,
-  shortest.rank.percent = 10,
+  shortest_rank_percent = 10,
   graph_method = "MST",
-  graph.using.cells.clustering = FALSE,
-  k_imc = 3L
-  ) {
+  graph_using_cells_clustering = FALSE,
+  k_imc = 3L,
+  pct_leaf_node_cutoff = .5
+) {
   requireNamespace("sincell")
 
   # TIMING: done with preproc
@@ -44,20 +46,32 @@ run_sincell <- function(
   SO <- sincell::sc_InitializingSincellObject(t(expression))
 
   # calculate distances
-  SO <- sincell::sc_distanceObj(SO, distance_method)
+  SO <- SO %>% sincell::sc_distanceObj(
+    method = distance_method
+  )
 
   # perform dimred, if necessary
   if (dimred_method != "none") {
-    SO <- sincell::sc_DimensionalityReductionObj(SO, dimred_method)
+    SO <- SO %>% sincell::sc_DimensionalityReductionObj(
+      method = dimred_method
+    )
   }
 
-  cell2celldist <- SO$cell2celldist
-
   # cluster cells
-  SO <- sincell::sc_clusterObj(SO, cluster_method, mutual, max.distance, shortest.rank.percent, k)
+  SO <- SO %>% sincell::sc_clusterObj(
+    clust.method = cluster_method,
+    mutual = mutual,
+    max.distance = max_distance,
+    shortest.rank.percent = shortest_rank_percent,
+    k = k
+  )
 
   # build graph
-  SO <- sincell::sc_GraphBuilderObj(SO, graph_method, graph.using.cells.clustering, k_imc)
+  SO <- SO %>% sincell::sc_GraphBuilderObj(
+    graph.algorithm = graph_method,
+    graph.using.cells.clustering = graph_using_cells_clustering,
+    k = k_imc
+  )
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
@@ -68,37 +82,46 @@ run_sincell <- function(
     rename(length = weight) %>%
     mutate(directed = FALSE)
 
-  # keep all cells
-  to_keep <- setNames(rep(TRUE, nrow(expression)), rownames(expression))
+  # Leaf nodes are iteratively removed until the percentage of leaf nodes
+  # is below the given cutoff. Removed nodes are projected to their closest
+  # neighbour.
+  # This is to constrain the number of milestones being created.
+  gr <- SO$cellstateHierarchy
+  deg <- igraph::degree(gr)
+  prev_deg <- deg * 0
+  while (mean(deg <= 1) > pct_leaf_node_cutoff && any(deg != prev_deg)) {
+    del_v <- names(which(deg == 1))
+    cat("Removing ", length(del_v), " vertices with degree 1\n", sep = "")
+    gr <- igraph::delete_vertices(gr, del_v)
+    prev_deg <- deg[names(igraph::V(gr))]
+    deg <- igraph::degree(gr)
+  }
+  to_keep <- setNames(rownames(expression) %in% names(igraph::V(gr)), rownames(expression))
 
   # simplify sample graph
-  out <- dynutils::simplify_sample_graph(edges, to_keep, is_directed=FALSE)
+  out <- dynutils::simplify_sample_graph(edges, to_keep, is_directed = FALSE)
 
   # TIMING: after postproc
   tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
-  # remove extra data in SO for visualisation
-  SO$expressionmatrix <- NULL
-  SO$cell2celldist <- NULL
 
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression),
     milestone_ids = out$milestone_ids,
     milestone_network = out$milestone_network,
-    progressions = out$progressions,
-    SO = SO
+    progressions = out$progressions
   ) %>% attach_timings_attribute(tl)
 }
 
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom magrittr set_colnames
 plot_sincell<- function(prediction) {
-  requireNamespace("sincell")
   requireNamespace("ggraph")
+  requireNamespace("tidygraph")
 
-  prediction$SO$cellstateHierarchy %>%
-    tidygraph::as_tbl_graph(SO$cellstateHierarchy) %>%
+  prediction$milestone_network %>%
+    igraph::graph_from_data_frame(directed = F) %>%
+    tidygraph::as_tbl_graph() %>%
     ggraph::ggraph() +
     ggraph::geom_node_point() +
     ggraph::geom_edge_link() +
