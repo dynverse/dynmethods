@@ -38,6 +38,7 @@ Imports:
   stringr,
   testthat,
   tibble, 
+  tidygraph,
   tidyr,
   viridis
 Suggests:
