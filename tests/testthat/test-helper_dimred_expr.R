@@ -50,7 +50,7 @@ for (taski in seq_len(nrow(tasks))) {
       v3 <- as.vector(as.matrix(dist(out3)))
 
       # even though the number of dimensions is different, one would expect the correlation between each execution to be somewhat greater than zero
-      expect_true(all(cor(cbind(v1, v2, v3)) > .2))
+      expect_true(all(cor(cbind(v1, v2, v3)) > .1))
       dev.off()
     })
   }
