@@ -53,17 +53,19 @@ run_mpath <- function(expression,
 
   # catch situation where mpath only detects 1 landmark
   if (length(milestone_ids) == 1) {
+    milestone_ids <- c(milestone_ids, "MPATH_END")
+
     cell_ids <- rownames(expression)
     milestone_network <- data_frame(
-      from = milestone_ids,
-      to = milestone_ids,
+      from = milestone_ids[[1]],
+      to = milestone_ids[[2]],
       length = 1,
       directed = FALSE
     )
     progressions <- data_frame(
       cell_id = cell_ids,
-      from = milestone_ids,
-      to = milestone_ids,
+      from = milestone_ids[[1]],
+      to = milestone_ids[[2]],
       percentage = 1
     )
   } else {
