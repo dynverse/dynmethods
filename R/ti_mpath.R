@@ -20,20 +20,27 @@ description_mpath <- function() create_description(
 #' @importFrom utils write.table
 #' @importFrom stats na.omit
 #' @importFrom reshape2 melt
-run_mpath <- function(expression,
-                      grouping_assignment,
-                      distMethod = "euclidean",
-                      method = "kmeans",
-                      numcluster = 11,
-                      diversity_cut = .6,
-                      size_cut = .05) {
+run_mpath <- function(
+  expression,
+  grouping_assignment,
+  distMethod = "euclidean",
+  method = "kmeans",
+  numcluster = 11,
+  diversity_cut = .6,
+  size_cut = .05
+) {
   requireNamespace("igraph")
-
-  sample_info <- grouping_assignment %>% rename(GroupID = group_id) %>% as.data.frame
 
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
+  # collect sample info
+  sample_info <- grouping_assignment %>% rename(GroupID = group_id) %>% as.data.frame
+
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+
+  # designate landmarks
   landmark_cluster <- Mpath::landmark_designation(
     rpkmFile = t(expression),
     baseName = NULL,
@@ -45,9 +52,6 @@ run_mpath <- function(expression,
     size_cut = size_cut,
     saveRes = FALSE
   )
-
-  # TIMING: done with method
-  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   milestone_ids <- unique(landmark_cluster$landmark_cluster)
 
