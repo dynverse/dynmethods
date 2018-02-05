@@ -4,7 +4,8 @@
 \alias{execute_method}
 \title{Run a method on a set of tasks with a set of parameters}
 \usage{
-execute_method(tasks, method, parameters, give_priors = NULL, mc_cores = 1)
+execute_method(tasks, method, parameters, give_priors = NULL, mc_cores = 1,
+  verbose = FALSE)
 }
 \arguments{
 \item{tasks}{The tasks on which to evaluate.}
@@ -17,6 +18,8 @@ execute_method(tasks, method, parameters, give_priors = NULL, mc_cores = 1)
 \code{"start_cells"}, \code{"end_milestones"}, \code{"end_cells"}, \code{"grouping_assignment"} and \code{"grouping_network"}}
 
 \item{mc_cores}{The number of cores to use, allowing to parallellise the different tasks}
+
+\item{verbose}{Whether or not to print information output}
 }
 \description{
 Run a method on a set of tasks with a set of parameters

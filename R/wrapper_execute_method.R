@@ -5,6 +5,7 @@
 #' @param give_priors All the priors a method is allowed to receive. Must be a subset of: \code{"start_milestones"},
 #'  \code{"start_cells"}, \code{"end_milestones"}, \code{"end_cells"}, \code{"grouping_assignment"} and \code{"grouping_network"}
 #' @param mc_cores The number of cores to use, allowing to parallellise the different tasks
+#' @param verbose Whether or not to print information output
 #'
 #' @importFrom utils capture.output
 #' @importFrom readr read_file
@@ -16,8 +17,14 @@ execute_method <- function(
   method,
   parameters,
   give_priors = NULL,
-  mc_cores = 1
+  mc_cores = 1,
+  verbose = FALSE
 ) {
+  if (verbose) {
+    cat("Executing ", task$name, " on ", nrow(tasks), " tasks with parameters: \n", sep = "")
+    print(parameters)
+  }
+
   # Run method on each task
   parallel::mclapply(seq_len(nrow(tasks)), mc.cores = mc_cores, function(i) {
     # start the timer
