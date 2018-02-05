@@ -57,6 +57,12 @@ run_wishbone <- function(
 ) {
   requireNamespace("Wishbone")
 
+  if (num_waypoints > nrow(counts) / 2) {
+    new_num <- ceiling(nrow(counts) / 2)
+    warning("Reducing the number of waypoints to the number of cells (originally = ", num_waypoints, ", now = ", new_num, ")")
+    num_waypoints <- new_num
+  }
+
   start_cell_id <- sample(start_cells, 1)
 
   markers <-
