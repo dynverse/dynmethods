@@ -7,8 +7,9 @@ description_mpath <- function() create_description(
   package_required = c(),
   par_set = makeParamSet(
     makeDiscreteParam(id = "distMethod", default = "euclidean", values = c("pearson", "kendall", "spearman", "euclidean")),
-    makeDiscreteParam(id = "method", default = "diversity_size", values = c("kmeans", "diversity", "size", "diversity_size")),
+    makeDiscreteParam(id = "method", default = "kmeans", values = c("kmeans", "diversity", "size", "diversity_size")),
     makeIntegerParam(id = "numcluster", lower = 3L, default = 11L, upper = 30L),
+    makeLogicalParam(id = "numcluster_null", default = T),
     makeNumericParam(id = "diversity_cut", lower = .1, default = .6, upper = 1),
     makeNumericParam(id = "size_cut", lower = .01, default = .05, upper = 1)
   ),
@@ -21,15 +22,20 @@ description_mpath <- function() create_description(
 #' @importFrom stats na.omit
 #' @importFrom reshape2 melt
 run_mpath <- function(
-  expression,
+  counts,
   grouping_assignment,
   distMethod = "euclidean",
   method = "kmeans",
   numcluster = 11,
+  numcluster_null = TRUE,
   diversity_cut = .6,
   size_cut = .05
 ) {
   requireNamespace("igraph")
+
+  if (numcluster_null) {
+    numcluster <- NULL
+  }
 
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
@@ -42,7 +48,7 @@ run_mpath <- function(
 
   # designate landmarks
   landmark_cluster <- Mpath::landmark_designation(
-    rpkmFile = t(expression),
+    rpkmFile = t(counts),
     baseName = NULL,
     sampleFile = sample_info,
     distMethod = distMethod,
@@ -61,7 +67,7 @@ run_mpath <- function(
   } else {
     # build network
     network <- Mpath::build_network(
-      exprs = t(expression),
+      exprs = t(counts),
       baseName = NULL,
       landmark_cluster = landmark_cluster,
       distMethod = distMethod,
@@ -103,7 +109,7 @@ run_mpath <- function(
 
   # return output
   wrap_prediction_model(
-    cell_ids = rownames(expression),
+    cell_ids = rownames(counts),
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     progressions = progressions,
