@@ -20,7 +20,7 @@ description_stemid <- function() create_description(
     makeIntegerParam(id = "outlg", lower = 0L, default = 2L, upper = 100L),
     makeNumericParam(id = "probthr", lower = -10, default = -3, upper = -1, trafo = function(x) 10^x),
     makeNumericParam(id = "thr_lower", lower = -100, default = -40, upper = -1),
-    makeNumericParam(id = "thr_upper", lower = -100, default = -40, upper = -1),
+    makeNumericParam(id = "thr_upper", lower = -100, default = -1, upper = -1),
     makeNumericParam(id = "outdistquant", lower = 0, default = .95, upper = 1),
     makeLogicalParam(id = "nmode", default = FALSE),
     makeNumericParam(id = "pdishuf", lower = log(100), default = log(500), upper = log(10000), trafo = function(x) round(exp(x))), # orig 2000
@@ -65,28 +65,45 @@ run_stemid <- function(
   sc <- StemID::SCseq(data.frame(t(expression), check.names = FALSE))
 
   # filtering of expression data
-  sc <- StemID::filterdata(sc, mintotal = 1, minexpr = 0, minnumber = 0, maxexpr = Inf, downsample = TRUE, dsn = 1)
+  sc <- sc %>% StemID::filterdata(
+    mintotal = 1,
+    minexpr = 0,
+    minnumber = 0,
+    maxexpr = Inf,
+    downsample = TRUE,
+    dsn = 1
+  )
 
   # k-medoids clustering
   do_gap <- num_cluster_method == "gap"
   do_sat <- num_cluster_method == "sat"
-  sc <- StemID::clustexp(sc, clustnr = clustnr, bootnr = bootnr, metric = metric, do.gap = do_gap,
-                 sat = do_sat, SE.method = SE.method, SE.factor = SE.factor,
-                 B.gap = B.gap, cln = cln, FUNcluster = FUNcluster)
+  sc <- sc %>% StemID::clustexp(
+    clustnr = clustnr,
+    bootnr = bootnr,
+    metric = metric,
+    do.gap = do_gap,
+    sat = do_sat,
+    SE.method = SE.method,
+    SE.factor = SE.factor,
+    B.gap = B.gap,
+    cln = cln,
+    FUNcluster = FUNcluster
+  )
 
   # compute t-SNE map
   sammonmap <- dimred_method == "sammon"
   initial_cmd <- dimred_method == "tsne_initcmd"
-  sc <- StemID::comptsne(sc, sammonmap = sammonmap, initial_cmd = initial_cmd)
+  sc <- sc %>% StemID::comptsne(
+    sammonmap = sammonmap,
+    initial_cmd = initial_cmd
+  )
 
   # detect outliers and redefine clusters
-  thr <- 2^(thr_lower:thr_upper)
-  sc <- StemID::findoutliers(
-    sc,
+  sc <- sc %>% StemID::findoutliers(
     outminc = outminc,
     outlg = outlg,
     probthr = probthr,
-    thr = thr,
+    thr = 2^(thr_lower:thr_upper),
     outdistquant = outdistquant
   )
 
@@ -94,19 +111,19 @@ run_stemid <- function(
   ltr <- StemID::Ltree(sc)
 
   # computation of the entropy
-  ltr <- StemID::compentropy(ltr)
+  ltr <- ltr %>% StemID::compentropy()
 
   # computation of the projections for all cells
-  ltr <- StemID::projcells(ltr, cthr = 0, nmode = nmode)
+  ltr <- ltr %>% StemID::projcells(cthr = 0, nmode = nmode)
 
   # computation of the projections for all cells after randomization
-  ltr <- StemID::projback(ltr, pdishuf = pdishuf, nmode = nmode)
+  ltr <- ltr %>% StemID::projback(pdishuf = pdishuf, nmode = nmode)
 
   # assembly of the lineage tree
-  ltr <- StemID::lineagetree(ltr, pthr = pthr, nmode = nmode)
+  ltr <- ltr %>% StemID::lineagetree(pthr = pthr, nmode = nmode)
 
   # compute a spanning tree
-  ltr <- StemID::compspantree(ltr)
+  ltr <- ltr %>% StemID::compspantree()
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
