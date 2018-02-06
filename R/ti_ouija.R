@@ -102,15 +102,34 @@ plot_ouija <- function(prediction) {
 description_ouijaflow <- function() create_description(
   name = "ouijaflow",
   short_name = "ouijaf",
-  package_required = c("ouija", "rstan"),
-  package_loaded = c("coda"),
+  package_required = c("ouijaflow"),
+  package_loaded = c(),
   par_set = makeParamSet(
-    makeNumericParam(id = "iter", lower = log(2), default = log(100), upper = log(50000), trafo = function(x) round(exp(x))), # default 10000
-    makeDiscreteParam(id = "response_type", default = "switch", values = c("switch", "transient")),
-    makeDiscreteParam(id = "inference_type", default = "hmc", values = c("hmc", "vb")),
-    makeLogicalParam(id = "normalise_expression", default = TRUE)
+    makeNumericParam(id = "iter", lower = log(2), default = log(1000), upper = log(50000), trafo = function(x) round(exp(x)))
   ),
   properties = c(),
-  run_fun = run_ouija,
+  run_fun = run_ouijaflow,
   plot_fun = plot_ouija
 )
+
+run_ouijaflow <- function(
+  expression,
+  iter = 1000
+) {
+
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
+  pseudotimes <- ouijaflow::ouijaflow(expression, iter=iter)
+
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+
+  # TIMING: after postproc
+  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+
+  wrap_prediction_model_linear(
+    cell_ids = rownames(expression),
+    pseudotimes = pseudotimes
+  ) %>% attach_timings_attribute(tl)
+}
