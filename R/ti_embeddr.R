@@ -24,19 +24,21 @@ description_embeddr <- function() create_description(
   plot_fun = plot_embeddr
 )
 
-run_embeddr <- function(counts,
-                        kernel = "nn",
-                        metric = "correlation",
-                        nn_pct = 1,
-                        eps = 1,
-                        t = 1,
-                        symmetrize = "mean",
-                        measure_type = "unorm",
-                        p = 2,
-                        thresh = .001,
-                        maxit = 10,
-                        stretch = 2,
-                        smoother = "smooth.spline") {
+run_embeddr <- function(
+  counts,
+  kernel = "nn",
+  metric = "correlation",
+  nn_pct = 1,
+  eps = 1,
+  t = 1,
+  symmetrize = "mean",
+  measure_type = "unorm",
+  p = 2,
+  thresh = .001,
+  maxit = 10,
+  stretch = 2,
+  smoother = "smooth.spline"
+) {
   requireNamespace("scaterlegacy")
   requireNamespace("embeddr")
 
