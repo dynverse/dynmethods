@@ -1,10 +1,10 @@
 #' Description for monocle DDRTree
 #' @export
-description_mnclddr <- function() abstract_monocle_description("ddr")
+description_mnclddr <- function() abstract_monocle_description("mnclddr")
 
 #' Description for monocle ICA
 #' @export
-description_mnclica <- function() abstract_monocle_description("ica")
+description_mnclica <- function() abstract_monocle_description("mnclica")
 
 # These reduction methods are not implemented yet.
 #
@@ -20,35 +20,35 @@ description_mnclica <- function() abstract_monocle_description("ica")
 # #' @export
 # description_monocle2_sgltree <- function() abstract_monocle_description("SGL-tree")
 
-abstract_monocle_description <- function(reduction_method) {
+abstract_monocle_description <- function(short_name) {
 
-  param_name <- c(
+  reduction_method <- c(
     "mnclddr" = "DDRTree",
     "mnclica" = "ICA",
     "mncltsne" = "tSNE",
     "mnclsppt" = "SimplePPT",
     "mncll1gr" = "L1-graph",
     "mnclsglt" = "SGL-tree"
-  )[reduction_method]
+  )[short_name]
 
   par_set <- switch(
-    reduction_method,
-    DDRTree = makeParamSet(
-      makeDiscreteParam(id = "reduction_method", values = param_name, default = param_name),
+    short_name,
+    mnclddr = makeParamSet(
+      makeDiscreteParam(id = "reduction_method", values = reduction_method, default = reduction_method),
       makeIntegerParam(id = "max_components", lower = 2L, default = 2L, upper = 20L),
       makeDiscreteParam(id = "norm_method", default = "vstExprs", values = c("vstExprs", "log", "none")),
       makeLogicalParam(id = "auto_param_selection", default = TRUE)
     ),
-    ICA = makeParamSet(
-      makeDiscreteParam(id = "reduction_method", values = param_name, default = param_name),
+    mnclica = makeParamSet(
+      makeDiscreteParam(id = "reduction_method", values = reduction_method, default = reduction_method),
       makeIntegerParam(id = "max_components", lower = 2L, default = 2L, upper = 20L),
       makeDiscreteParam(id = "norm_method", default = "vstExprs", values = c("vstExprs", "log", "none"))
     )
   )
 
   create_description(
-    name = pritt("monocle with {param_name}"),
-    short_name = reduction_method,
+    name = pritt("monocle with {reduction_method}"),
+    short_name = short_name,
     package_loaded = c("monocle"),
     package_required = c("BiocGenerics", "igraph", "Biobase"),
     par_set = par_set,
@@ -58,12 +58,14 @@ abstract_monocle_description <- function(reduction_method) {
   )
 }
 
-run_monocle <- function(counts,
-                        n_end_states = NULL,
-                        reduction_method,
-                        max_components = 2,
-                        norm_method = "vstExprs",
-                        auto_param_selection = TRUE) {
+run_monocle <- function(
+  counts,
+  n_end_states = NULL,
+  reduction_method,
+  max_components = 2,
+  norm_method = "vstExprs",
+  auto_param_selection = TRUE
+) {
   requireNamespace("monocle")
   requireNamespace("BiocGenerics")
   requireNamespace("igraph")
@@ -202,7 +204,7 @@ postprocess_monocle_cds <- function(cds) {
     edge_df
   )
 
-  if (cds@dim_reduce_type == 'DDRTree'){
+  if (cds@dim_reduce_type == "DDRTree"){
     mst_branch_nodes <- cds@auxOrderingData[[cds@dim_reduce_type]]$branch_points
     out$branch_point_df <- ica_space_df %>%
       slice(match(mst_branch_nodes, sample_name)) %>%
