@@ -1,8 +1,8 @@
 #' Description for phenopath
 #' @export
-description_phenopath <- function() create_description(
+description_phenopth <- function() create_description(
   name = "phenopath",
-  short_name = "phenopat",
+  short_name = "phenopth",
   package_required = c("phenopath"),
   package_loaded = c(),
   par_set = makeParamSet(

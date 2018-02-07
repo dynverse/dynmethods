@@ -1,10 +1,10 @@
 #' Description for monocle DDRTree
 #' @export
-description_monocle2_ddrtree <- function() abstract_monocle_description("DDRTree")
+description_mnclddr <- function() abstract_monocle_description("ddr")
 
 #' Description for monocle ICA
 #' @export
-description_monocle1_ica <- function() abstract_monocle_description("ICA")
+description_mnclica <- function() abstract_monocle_description("ica")
 
 # These reduction methods are not implemented yet.
 #
@@ -21,32 +21,34 @@ description_monocle1_ica <- function() abstract_monocle_description("ICA")
 # description_monocle2_sgltree <- function() abstract_monocle_description("SGL-tree")
 
 abstract_monocle_description <- function(reduction_method) {
+
+  param_name <- c(
+    "mnclddr" = "DDRTree",
+    "mnclica" = "ICA",
+    "mncltsne" = "tSNE",
+    "mnclsppt" = "SimplePPT",
+    "mncll1gr" = "L1-graph",
+    "mnclsglt" = "SGL-tree"
+  )[reduction_method]
+
   par_set <- switch(
     reduction_method,
     DDRTree = makeParamSet(
-      makeDiscreteParam(id = "reduction_method", values = reduction_method, default = reduction_method),
+      makeDiscreteParam(id = "reduction_method", values = param_name, default = param_name),
       makeIntegerParam(id = "max_components", lower = 2L, default = 2L, upper = 20L),
       makeDiscreteParam(id = "norm_method", default = "vstExprs", values = c("vstExprs", "log", "none")),
       makeLogicalParam(id = "auto_param_selection", default = TRUE)
     ),
     ICA = makeParamSet(
-      makeDiscreteParam(id = "reduction_method", values = reduction_method, default = reduction_method),
+      makeDiscreteParam(id = "reduction_method", values = param_name, default = param_name),
       makeIntegerParam(id = "max_components", lower = 2L, default = 2L, upper = 20L),
       makeDiscreteParam(id = "norm_method", default = "vstExprs", values = c("vstExprs", "log", "none"))
     )
   )
 
-  short_name <- c(
-    "DDRTree" = "mnclddr",
-    "ICA" = "mnclica",
-    "tSNE" = "mncltsne",
-    "SimplePPT" = "mnclsppt",
-    "L1-graph" = "mncll1gr",
-    "SGL-tree" = "mnclsglt"
-  )
   create_description(
-    name = pritt("monocle with {reduction_method}"),
-    short_name = short_name[reduction_method],
+    name = pritt("monocle with {param_name}"),
+    short_name = reduction_method,
     package_loaded = c("monocle"),
     package_required = c("BiocGenerics", "igraph", "Biobase"),
     par_set = par_set,

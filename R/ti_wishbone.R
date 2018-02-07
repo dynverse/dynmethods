@@ -1,46 +1,35 @@
+abstract_wishbone_description <- function(method) {
+  allow_branching <- method == "wishbone"
+  name <- c("wishbone" = "Wishbone", "wndrlst" = "Wanderlust")[method]
+
+  function() create_description(
+    name = name,
+    short_name = method,
+    package_loaded = c(),
+    package_required = c("Wishbone"),
+    par_set = makeParamSet(
+      makeIntegerParam(id = "knn", lower = 2L, default = 15L, upper = 100L),
+      makeIntegerParam(id = "n_diffusion_components", lower = 2L, default = 2L, upper = 20L),
+      makeIntegerParam(id = "n_pca_components", lower = 2L, default = 15L, upper = 30L),
+      makeLogicalParam(id = "branch", default = allow_branching, tunable = allow_branching),
+      makeIntegerParam(id = "k", lower = 2L, default = 15L, upper = 100L),
+      makeIntegerParam(id = "num_waypoints", lower = 2L, default = 250L, upper = 500L),
+      makeLogicalParam(id = "normalize", default = TRUE),
+      makeNumericParam(id = "epsilon", lower = 0.1, default = 1, upper = 10)
+    ),
+    properties = c(),
+    run_fun = run_wishbone,
+    plot_fun = plot_wishbone
+  )
+}
+
 #' Description for Wishbone
 #' @export
-description_wishbone <- function() create_description(
-  name = "Wishbone",
-  short_name = "wishbone",
-  package_loaded = c(),
-  package_required = c("Wishbone"),
-  par_set = makeParamSet(
-    makeIntegerParam(id = "knn", lower = 2L, default = 15L, upper = 100L),
-    makeIntegerParam(id = "n_diffusion_components", lower = 2L, default = 2L, upper = 20L),
-    makeIntegerParam(id = "n_pca_components", lower = 2L, default = 15L, upper = 30L),
-    makeLogicalParam(id = "branch", default = TRUE),
-    makeIntegerParam(id = "k", lower = 2L, default = 15L, upper = 100L),
-    makeIntegerParam(id = "num_waypoints", lower = 2L, default = 250L, upper = 500L),
-    makeLogicalParam(id = "normalize", default = TRUE),
-    makeNumericParam(id = "epsilon", lower = 0.1, default = 1, upper = 10)
-  ),
-  properties = c(),
-  run_fun = run_wishbone,
-  plot_fun = plot_wishbone
-)
+description_wishbone <- abstract_wishbone_description("wishbone")
 
 #' Description for Wanderlust
 #' @export
-description_wanderlust <- function() create_description(
-  name = "Wanderlust",
-  short_name = "wndrlust",
-  package_loaded = c(),
-  package_required = c("Wishbone"),
-  par_set = makeParamSet(
-    makeIntegerParam(id = "knn", lower = 2L, default = 15L, upper = 100L),
-    makeIntegerParam(id = "n_diffusion_components", lower = 2L, default = 2L, upper = 20L),
-    makeIntegerParam(id = "n_pca_components", lower = 2L, default = 15L, upper = 30L),
-    makeLogicalParam(id = "branch", default = FALSE, tunable = FALSE),
-    makeIntegerParam(id = "k", lower = 2L, default = 15L, upper = 100L),
-    makeIntegerParam(id = "num_waypoints", lower = 2L, default = 250L, upper = 500L),
-    makeLogicalParam(id = "normalize", default = TRUE),
-    makeNumericParam(id = "epsilon", lower = 0.1, default = 1, upper = 10)
-  ),
-  properties = c(),
-  run_fun = run_wishbone,
-  plot_fun = plot_wishbone
-)
+description_wndrlust <- abstract_wishbone_description("wndrlust")
 
 run_wishbone <- function(
   counts,

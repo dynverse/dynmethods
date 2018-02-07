@@ -1,6 +1,6 @@
 #' Description for Ouijaflow
 #' @export
-description_ouijaflow <- function() create_description(
+description_ouijaflw <- function() create_description(
   name = "ouijaflow",
   short_name = "ouijaflw",
   package_required = c("ouijaflow"),
