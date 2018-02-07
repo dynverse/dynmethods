@@ -2,7 +2,7 @@
 #' @export
 description_scoup <- function() create_description(
   name = "SCOUP",
-  short_name = "SCOUP",
+  short_name = "scoup",
   package_required = c(),
   package_loaded = c(),
   par_set = makeParamSet(

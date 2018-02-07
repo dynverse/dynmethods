@@ -2,7 +2,7 @@
 #' @export
 description_stemid <- function() create_description(
   name = "StemID",
-  short_name = "StemID",
+  short_name = "stemid",
   package_loaded = c(),
   package_required = c("StemID"),
   par_set = makeParamSet(

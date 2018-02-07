@@ -2,7 +2,7 @@
 #' @export
 description_slice <- function() create_description(
   name = "SLICE",
-  short_name = "SLICE",
+  short_name = "slice",
   package_loaded = c(),
   package_required = c("SLICE", "igraph"),
   par_set = makeParamSet(

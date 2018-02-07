@@ -2,7 +2,7 @@
 #' @export
 description_mpath <- function() create_description(
   name = "Mpath",
-  short_name = "Mpath",
+  short_name = "mpath",
   package_loaded = c("Mpath"),
   package_required = c(),
   par_set = makeParamSet(

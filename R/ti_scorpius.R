@@ -2,7 +2,7 @@
 #' @export
 description_scorpius <- function() create_description(
   name = "SCORPIUS",
-  short_name = "SCORPIUS",
+  short_name = "scorpius",
   package_loaded = c(),
   package_required = c("SCORPIUS"),
   par_set = makeParamSet(

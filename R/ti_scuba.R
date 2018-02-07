@@ -2,7 +2,7 @@
 #' @export
 description_scuba <- function() create_description(
   name = "SCUBA",
-  short_name = "SCUBA",
+  short_name = "scuba",
   package_loaded = c(),
   package_required = c("jsonlite", "readr", "SCUBA"),
   par_set = makeParamSet(

@@ -2,7 +2,7 @@
 #' @export
 description_slicer <- function() create_description(
   name = "SLICER",
-  short_name = "SLICER",
+  short_name = "slicer",
   package_loaded = c(),
   package_required = c("SLICER", "lle", "igraph"),
   par_set = makeParamSet(

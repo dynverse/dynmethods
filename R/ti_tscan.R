@@ -2,7 +2,7 @@
 #' @export
 description_tscan <- function() create_description(
   name = "TSCAN",
-  short_name = "TSCAN",
+  short_name = "tscan",
   package_loaded = c(),
   package_required = c("TSCAN", "igraph"),
   par_set = makeParamSet(

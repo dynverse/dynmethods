@@ -4,11 +4,11 @@ description_celltree_maptpx <- function() abstract_celltree_description("maptpx"
 
 #' Description for celltree gibbs
 #' @export
-description_celltree_gibbs <- function() abstract_celltree_description("Gibbs")
+description_celltree_gibbs <- function() abstract_celltree_description("gibbs")
 
 #' Description for celltree vem
 #' @export
-description_celltree_vem <- function() abstract_celltree_description("VEM")
+description_celltree_vem <- function() abstract_celltree_description("vem")
 
 abstract_celltree_description <- function(method) {
   par_set <- switch(
@@ -23,7 +23,7 @@ abstract_celltree_description <- function(method) {
       makeNumericParam(id = "width_scale_factor", lower = 1.01, default = 1.2, upper = 2),
       forbidden = quote(num_topics_lower > num_topics_upper)
     ),
-    Gibbs = makeParamSet(
+    gibbs = makeParamSet(
       makeDiscreteParam(id = "method", values = "Gibbs", default = "Gibbs"),
       makeIntegerParam(id = "num_topics", lower = 2L, default = 4L, upper = 15L),
       makeNumericParam(id = "sd_filter", lower = log(.01), upper = log(5.0), default = log(.5), special.vals = list(FALSE), trafo = exp),
@@ -31,7 +31,7 @@ abstract_celltree_description <- function(method) {
       makeNumericParam(id = "tolerance", lower = log(10^-7), upper = log(10^-3), default = log(10^-5), trafo = exp),
       makeNumericParam(id = "width_scale_factor", lower = log(.1), default = log(1.2), upper = log(100), trafo = exp)
     ),
-    VEM = makeParamSet(
+    vem = makeParamSet(
       makeDiscreteParam(id = "method", values = "VEM", default = "VEM"),
       makeIntegerParam(id = "num_topics", lower = 2L, default = 4L, upper = 15L),
       makeNumericParam(id = "sd_filter", lower = log(.01), upper = log(5.0), default = log(.5), special.vals = list(FALSE), trafo = exp),
@@ -43,7 +43,7 @@ abstract_celltree_description <- function(method) {
 
   create_description(
     name = pritt("cellTree with {method}"),
-    short_name = pritt("CT{method}"),
+    short_name = pritt("ct{method}"),
     package_loaded = c(),
     package_required = c("cellTree"),
     par_set = par_set,

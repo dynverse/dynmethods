@@ -2,7 +2,7 @@
 #' @export
 description_gpfates <- function() create_description(
   name = "GPfates",
-  short_name = "GPfates",
+  short_name = "gpfates",
   package_loaded = c(),
   package_required = c("GPfates"),
   par_set = makeParamSet(

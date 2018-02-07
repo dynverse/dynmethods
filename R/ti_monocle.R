@@ -37,12 +37,12 @@ abstract_monocle_description <- function(reduction_method) {
   )
 
   short_name <- c(
-    "DDRTree" = "mnclDDR",
-    "ICA" = "mnclICA",
-    "tSNE" = "mncltSNE",
-    "SimplePPT" = "mnclSPPT",
-    "L1-graph" = "mnclL1gr",
-    "SGL-tree" = "mnclSGLT"
+    "DDRTree" = "mnclddr",
+    "ICA" = "mnclica",
+    "tSNE" = "mncltsne",
+    "SimplePPT" = "mnclsppt",
+    "L1-graph" = "mncll1gr",
+    "SGL-tree" = "mnclsglt"
   )
   create_description(
     name = pritt("monocle with {reduction_method}"),

@@ -2,7 +2,7 @@
 #' @export
 description_wishbone <- function() create_description(
   name = "Wishbone",
-  short_name = "Wishbone",
+  short_name = "wishbone",
   package_loaded = c(),
   package_required = c("Wishbone"),
   par_set = makeParamSet(

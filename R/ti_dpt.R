@@ -2,7 +2,7 @@
 #' @export
 description_dpt <- function() create_description(
   name = "DPT",
-  short_name = "DPT",
+  short_name = "dpt",
   package_loaded = c("destiny"),
   package_required = c("dynutils", "reshape2"),
   par_set = makeParamSet(
