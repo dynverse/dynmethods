@@ -1,6 +1,6 @@
 abstract_wishbone_description <- function(method) {
   allow_branching <- method == "wishbone"
-  name <- c("wishbone" = "Wishbone", "wndrlst" = "Wanderlust")[method]
+  name <- c("wishbone" = "Wishbone", "wndrlst" = "Wanderlust")[method] %>% setNames(NULL)
 
   function() create_description(
     name = name,
@@ -29,7 +29,7 @@ description_wishbone <- abstract_wishbone_description("wishbone")
 
 #' Description for Wanderlust
 #' @export
-description_wndrlust <- abstract_wishbone_description("wndrlust")
+description_wndrlust <- abstract_wishbone_description("wndrlst")
 
 run_wishbone <- function(
   counts,
