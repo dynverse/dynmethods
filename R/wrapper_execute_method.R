@@ -21,7 +21,7 @@ execute_method <- function(
   verbose = FALSE
 ) {
   if (verbose) {
-    cat("Executing ", task$name, " on ", nrow(tasks), " tasks with parameters: \n", sep = "")
+    cat("Executing ", method$name, " on ", nrow(tasks), " tasks with parameters: \n", sep = "")
     print(parameters)
   }
 
