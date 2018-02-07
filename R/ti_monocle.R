@@ -21,7 +21,6 @@ description_mnclica <- function() abstract_monocle_description("mnclica")
 # description_monocle2_sgltree <- function() abstract_monocle_description("SGL-tree")
 
 abstract_monocle_description <- function(short_name) {
-
   reduction_method <- c(
     "mnclddr" = "DDRTree",
     "mnclica" = "ICA",
@@ -29,7 +28,7 @@ abstract_monocle_description <- function(short_name) {
     "mnclsppt" = "SimplePPT",
     "mncll1gr" = "L1-graph",
     "mnclsglt" = "SGL-tree"
-  )[short_name]
+  )[short_name] %>% setNames(NULL)
 
   par_set <- switch(
     short_name,
