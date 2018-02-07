@@ -17,16 +17,18 @@ description_slicer <- function() create_description(
   plot_fun = plot_slicer
 )
 
-run_slicer <- function(expression,
-                       start_cells,
-                       marker_feature_ids = NULL,
-                       end_cells = NULL,
-                       kmin = 10,
-                       m = 2,
-                       min_branch_len = 5,
-                       min_representative_percentage = 0.8,
-                       max_same_milestone_distance = 0.1,
-                       verbose = FALSE) {
+run_slicer <- function(
+  expression,
+  start_cells,
+  marker_feature_ids = NULL,
+  end_cells = NULL,
+  kmin = 10,
+  m = 2,
+  min_branch_len = 5,
+  min_representative_percentage = 0.8,
+  max_same_milestone_distance = 0.1,
+  verbose = FALSE
+) {
   requireNamespace("SLICER")
   requireNamespace("lle")
   requireNamespace("igraph")
