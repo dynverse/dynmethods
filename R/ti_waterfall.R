@@ -1,6 +1,6 @@
 #' Description for Waterfall
 #' @export
-description_waterfall <- function() create_description(
+description_waterfll <- function() create_description(
   name = "Waterfall",
   short_name = "waterfll", # max 8 chars
   package_loaded = c(),

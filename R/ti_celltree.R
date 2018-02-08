@@ -1,14 +1,14 @@
 #' Description for celltree maptpx
 #' @export
-description_celltree_maptpx <- function() abstract_celltree_description("maptpx")
+description_ctmaptpx <- function() abstract_celltree_description("maptpx")
 
 #' Description for celltree gibbs
 #' @export
-description_celltree_gibbs <- function() abstract_celltree_description("gibbs")
+description_ctgibbs <- function() abstract_celltree_description("gibbs")
 
 #' Description for celltree vem
 #' @export
-description_celltree_vem <- function() abstract_celltree_description("vem")
+description_ctvem <- function() abstract_celltree_description("vem")
 
 abstract_celltree_description <- function(method) {
   par_set <- switch(
