@@ -23,7 +23,12 @@ run_manual <- function(counts, task, folder, person_id="wouters", dimred_id="pca
 
   run_id <- dynutils::pritt("{dimred_id}_{person_id}_{run_i}")
 
-  predictions <- readRDS(dynutils::pritt("{manual_folder}/predictions_{run_id}.rds"))
+  predictions_location <- dynutils::pritt("{manual_folder}/predictions_{run_id}.rds")
+  tryCatch(
+    predictions <- readRDS(predictions_location),
+    error = function(e) stop(dynutils::pritt("No predictions found at {predictions_location}."))
+  )
+
 
   if(!(task$id %in% predictions$task_id)) {
     stop("No manual prediction found in predictions")
