@@ -3,15 +3,18 @@ project_cells_to_segments <- function(
   cluster_network,
   cluster_space,
   sample_space,
-  sample_cluster,
+  sample_cluster = NULL,
   num_segments_per_edge = 100,
   milestone_rename_fun = NULL
 ) {
   # collect information on cells
   space_df <- sample_space %>%
     as.data.frame %>%
-    rownames_to_column("cell_id") %>%
-    mutate(label = sample_cluster)
+    rownames_to_column("cell_id")
+
+  if (!is.null(sample_cluster)) {
+    space_df$label <- sample_cluster
+  }
 
   # collect information on clusters
   centers_df <- cluster_space %>%
@@ -40,8 +43,15 @@ project_cells_to_segments <- function(
   # calculate shortest segment piece for each cell
   segment_ix <- sapply(seq_len(nrow(sample_space)), function(i) {
     x <- sample_space[i,]
-    la <- space_df$label[[i]]
-    ix <- which(segment_df$from == la | segment_df$to == la)
+
+    # limit possible edges based on sample cluster
+    if (!is.null(sample_cluster)) {
+      la <- space_df$label[[i]]
+      ix <- which(segment_df$from == la | segment_df$to == la)
+    } else {
+      ix <- seq_len(nrow(segment_df))
+    }
+
     dis <- pdist::pdist(x, segment_df[ix,colnames(sample_space)])
     wm <- which.min(as.matrix(dis)[1,])
     ix[wm]
