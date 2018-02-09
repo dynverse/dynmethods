@@ -18,7 +18,7 @@ description_manual <- function() create_description(
   plot_fun = plot_manual
 )
 
-run_manual <- function(counts, task, folder, person_id="wouters", dimred_id="pca", run_i=1) {
+run_manual <- function(counts, task, person_id="wouters", dimred_id="pca", run_i=1) {
   manual_folder <- default_manual_folder <- file.path(Sys.getenv("DYNALYSIS_PATH"), "analysis/data/derived_data/manual_ti/")
 
   run_id <- dynutils::pritt("{dimred_id}_{person_id}_{run_i}")
