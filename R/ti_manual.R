@@ -19,14 +19,16 @@ description_manual <- function() create_description(
 )
 
 run_manual <- function(counts, task, folder, person_id="wouters", dimred_id="pca", run_i=1) {
-  manual_folder <- default_manual_folder <- file.path(Sys.getenv("DYNALYSIS_PATH"), "analysis/data/derived_data/manual_ti/")
+  manual_folder <- file.path(Sys.getenv("DYNALYSIS_PATH"), "analysis/data/derived_data/manual_ti/")
 
   run_id <- dynutils::pritt("{dimred_id}_{person_id}_{run_i}")
 
   predictions_location <- dynutils::pritt("{manual_folder}/predictions_{run_id}.rds")
   tryCatch(
-    predictions <- readRDS(predictions_location),
-    error = function(e) stop(dynutils::pritt("No predictions found at {predictions_location}."))
+    predictions <- readr::read_rds(predictions_location),
+    error = function(e) {
+      stop(dynutils::pritt("No predictions found at {predictions_location}."))
+    }
   )
 
 
@@ -53,9 +55,9 @@ plot_manual <- function(prediction) {
   cluster_graph <- tidygraph::tbl_graph(prediction$centers, prediction$edge)
   cluster_graph %>%
     ggraph::ggraph("manual", node.positions=prediction$centers) +
-      geom_point(aes(x, y), data=prediction$space, size=1) +
-      ggraph::geom_edge_link(edge_colour="red", edge_width=4) +
-      ggraph::geom_node_point(size=10, color="red") +
-      ggraph::geom_node_point(size=5, color="white") +
-      ggraph::theme_graph()
+    geom_point(aes(x, y), data=prediction$space, size=1) +
+    ggraph::geom_edge_link(edge_colour="red", edge_width=4) +
+    ggraph::geom_node_point(size=10, color="red") +
+    ggraph::geom_node_point(size=5, color="white") +
+    ggraph::theme_graph()
 }
