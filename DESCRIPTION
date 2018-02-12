@@ -83,6 +83,7 @@ Remotes:
   berndbischl/ParamHelpers,
   dynverse/cellTree@RELEASE_3_6,
   dynverse/embeddr,
+  dynverse/destiny,
   dynverse/GPfates,
   dynverse/monocle-release,
   dynverse/Mpath,
