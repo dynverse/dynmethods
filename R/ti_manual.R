@@ -18,7 +18,17 @@ description_manual <- function() create_description(
   plot_fun = plot_manual
 )
 
-run_manual <- function(counts, task, person_id="wouters", dimred_id="pca", run_i=1) {
+run_manual <- function(
+  counts,
+  task,
+  person_id = "wouters",
+  dimred_id = "pca",
+  run_i = 1
+) {
+
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   manual_folder <- file.path(Sys.getenv("DYNALYSIS_PATH"), "analysis/data/derived_data/manual_ti/")
 
   run_id <- dynutils::pritt("{dimred_id}_{person_id}_{run_i}")
@@ -31,13 +41,9 @@ run_manual <- function(counts, task, person_id="wouters", dimred_id="pca", run_i
     }
   )
 
-
   if(!(task$id %in% predictions$task_id)) {
     stop("No manual prediction found in predictions")
   }
-
-  # TIMING: done with preproc
-  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
   prediction <- predictions %>% filter(task_id == task$id) %>% pull(prediction) %>% first()
 
@@ -54,10 +60,10 @@ run_manual <- function(counts, task, person_id="wouters", dimred_id="pca", run_i
 plot_manual <- function(prediction) {
   cluster_graph <- tidygraph::tbl_graph(prediction$centers, prediction$edge)
   cluster_graph %>%
-    ggraph::ggraph("manual", node.positions=prediction$centers) +
-    geom_point(aes(x, y), data=prediction$space, size=1) +
-    ggraph::geom_edge_link(edge_colour="red", edge_width=4) +
-    ggraph::geom_node_point(size=10, color="red") +
-    ggraph::geom_node_point(size=5, color="white") +
+    ggraph::ggraph("manual", node.positions = prediction$centers) +
+    geom_point(aes(x, y), data = prediction$space, size = 1) +
+    ggraph::geom_edge_link(edge_colour = "red", edge_width = 4) +
+    ggraph::geom_node_point(size = 10, color = "red") +
+    ggraph::geom_node_point(size = 5, color = "white") +
     ggraph::theme_graph()
 }
