@@ -9,9 +9,9 @@ description_manual <- function() create_description(
   package_loaded = c(),
   package_required = c(),
   par_set = makeParamSet(
-    makeDiscreteParam(id = "person_id", values = c("wouters"), default="wouters"),
-    makeDiscreteParam(id = "dimred_id", values = c("pca"), default="pca"),
-    makeDiscreteParam(id = "run_i", values = c(1), default=1)
+    makeDiscreteParam(id = "person_id", values = c("wouters", "robrechtc", "liesbetm", "helenat"), default = "wouters"),
+    makeDiscreteParam(id = "dimred_id", values = c("pca", "mds", "tsne", "dm"), default = "pca"),
+    makeDiscreteParam(id = "run_i", values = c("1"), default = "1")
   ),
   properties = c(),
   run_fun = run_manual,
