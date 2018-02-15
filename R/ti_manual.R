@@ -33,7 +33,7 @@ run_manual <- function(counts, task, person_id="wouters", dimred_id="pca", run_i
 
 
   if(!(task$id %in% predictions$task_id)) {
-    stop("No manual prediction found in predictions")
+    stop(dynutils::pritt("No prediction of {task$id} found prediction found in predictions"))
   }
 
   # TIMING: done with preproc
@@ -52,9 +52,9 @@ run_manual <- function(counts, task, person_id="wouters", dimred_id="pca", run_i
 }
 
 plot_manual <- function(prediction) {
-  cluster_graph <- tidygraph::tbl_graph(prediction$centers, prediction$edge)
+  cluster_graph <- prediction$graph_scaled
   cluster_graph %>%
-    ggraph::ggraph("manual", node.positions=prediction$centers) +
+    ggraph::ggraph() +
     geom_point(aes(x, y), data=prediction$space, size=1) +
     ggraph::geom_edge_link(edge_colour="red", edge_width=4) +
     ggraph::geom_node_point(size=10, color="red") +
