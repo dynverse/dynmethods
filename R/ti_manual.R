@@ -18,7 +18,17 @@ description_manual <- function() create_description(
   plot_fun = plot_manual
 )
 
-run_manual <- function(counts, task, person_id="wouters", dimred_id="pca", run_i=1) {
+run_manual <- function(
+  counts,
+  task,
+  person_id = "wouters",
+  dimred_id = "pca",
+  run_i = 1
+) {
+
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
   manual_folder <- file.path(Sys.getenv("DYNALYSIS_PATH"), "analysis/data/derived_data/manual_ti/")
 
   run_id <- dynutils::pritt("{dimred_id}_{person_id}_{run_i}")
@@ -31,13 +41,9 @@ run_manual <- function(counts, task, person_id="wouters", dimred_id="pca", run_i
     }
   )
 
-
   if(!(task$id %in% predictions$task_id)) {
     stop(dynutils::pritt("No prediction of {task$id} found prediction found in predictions"))
   }
-
-  # TIMING: done with preproc
-  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
   prediction <- predictions %>% filter(task_id == task$id) %>% pull(prediction) %>% first()
 
