@@ -21,8 +21,13 @@ execute_method <- function(
   verbose = FALSE
 ) {
   if (verbose) {
-    cat("Executing ", method$name, " on ", nrow(tasks), " tasks with parameters: \n", sep = "")
-    print(parameters)
+    if (nrow(tasks) == 1) {
+      task_str <- tasks$id
+    } else {
+      task_str <- paste0(nrow(tasks), " tasks")
+    }
+    prm_str <- paste(names(parameters), " = ", parameters, collapse = ", ", sep = "")
+    cat("Executing ", method$name, " on ", task_str, " with parameters: [", prm_str, "]\n", sep = "")
   }
 
   # Run method on each task
