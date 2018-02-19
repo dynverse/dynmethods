@@ -77,8 +77,15 @@ run_gpfates <- function(
     as.matrix()
   pseudotimes <- setNames(pseudotime$time, pseudotime$cell_id)
 
+  divergence_regions <-
+    data_frame(
+      divergence_id = "divergence",
+      milestone_id = paste0("M", seq(0, n_end_states)),
+      is_start = milestone_id == "M0"
+    )
+
   # return output
-  prediction <- abstract_prediction_model(
+  abstract_prediction_model(
     cell_ids = rownames(expression)
   ) %>%
     add_trajectory_to_wrapper(
@@ -86,7 +93,7 @@ run_gpfates <- function(
       milestone_network = milestone_network,
       progressions = progressions,
       pseudotimes = pseudotimes,
-      divergence_regions = NULL
+      divergence_regions = divergence_regions
     ) %>%
     add_dimred_to_wrapper(
       dimred = dimred
