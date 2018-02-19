@@ -21,16 +21,18 @@ description_dpt <- function() create_description(
 )
 
 #' @importFrom reshape2 melt
-run_dpt <- function(expression,
-                    start_cells = NULL,
-                    marker_feature_ids = NULL,
-                    sigma = "local",
-                    distance = "euclidean",
-                    n_eigs = 20,
-                    density_norm = TRUE,
-                    n_local_lower = 5,
-                    n_local_upper = 7,
-                    w_width = .1) {
+run_dpt <- function(
+  expression,
+  start_cells = NULL,
+  marker_feature_ids = NULL,
+  sigma = "local",
+  distance = "euclidean",
+  n_eigs = 20,
+  density_norm = TRUE,
+  n_local_lower = 5,
+  n_local_upper = 7,
+  w_width = .1
+) {
   requireNamespace("destiny")
 
   start_cell <-
@@ -48,7 +50,7 @@ run_dpt <- function(expression,
 
   # run diffusion maps
   dm <- destiny::DiffusionMap(
-    expression,
+    data = expression,
     sigma = sigma,
     distance = distance,
     n_eigs = n_eigs,
@@ -72,45 +74,39 @@ run_dpt <- function(expression,
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # retrieve dimred
-  space <- dpt@dm@eigenvectors %>% magrittr::set_rownames(rownames(expression)) %>% as.matrix
+  dimred_cells <- dpt@dm@eigenvectors %>% magrittr::set_rownames(rownames(expression)) %>% as.matrix
 
   # get cluster assignment
-  branch_assignment <- dpt@branch[,1] %>% ifelse(is.na(.), 0, .) %>% paste0("Branch", .)
-  branches <- sort(unique(branch_assignment))
+  milestone_assignment_cells <- dpt@branch[,1] %>%
+    ifelse(is.na(.), 0, .) %>%
+    as.character()
+  branches <- sort(unique(milestone_assignment_cells))
 
   # calculate cluster medians
-  space_milestones <- t(sapply(branches, function(br) colMeans(space[branch_assignment == br,,drop=F])))
+  dimred_milestones <- t(sapply(branches, function(br) colMeans(dimred_cells[milestone_assignment_cells == br,,drop=F])))
 
   # create star network
-  cluster_network <- data_frame(
-    from = "Branch0",
-    to = setdiff(branches, "Branch0"),
-    length = sqrt(rowMeans((space_milestones[from,] - space_milestones[to,])^2)),
+  milestone_network <- data_frame(
+    from = "0",
+    to = setdiff(branches, "0"),
+    length = sqrt(rowMeans((dimred_milestones[from,] - dimred_milestones[to,])^2)),
     directed = TRUE
   )
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
-  # transform by projecting onto cluster medians
-  out <- project_cells_to_segments(
-    cluster_network = cluster_network,
-    cluster_space = space_milestones,
-    sample_space = space,
-    sample_cluster = branch_assignment
-  )
-
   # return output
-  wrap_prediction_model(
-    cell_ids = rownames(expression),
-    milestone_ids = out$milestone_ids,
-    milestone_network = out$milestone_network,
-    progressions = out$progressions,
-    space = out$space_df,
-    centers = out$centers_df,
-    edge = out$edge_df,
-    tips = tip_names
-  ) %>% attach_timings_attribute(tl)
+  abstract_prediction_model(
+    cell_ids = rownames(counts)
+  ) %>%
+    add_cluster_projection_to_wrapper(
+      milestone_network = milestone_network,
+      dimred_milestones = dimred_milestones,
+      dimred_cells = dimred_cells,
+      milestone_assignment_cells = milestone_assignment_cells,
+      tips = tip_names
+    ) %>%
+    add_timings_to_wrapper(
+      timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+    )
 }
 
 plot_dpt <- function(prediction) {
@@ -118,12 +114,15 @@ plot_dpt <- function(prediction) {
 
   palette <- c("#8DD3C7", "#FFED6F", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#BC80BD", "#FCCDE5", "gray85", "#CCEBC5", "#FFFFB3")
   ann_cols <- c(
-    setNames(c("lightgray", palette), paste0("Branch", seq(0, length(palette)))),
+    setNames(c("lightgray", palette), seq(0, length(palette))),
     Tip = "red"
   )
+  space <- prediction$dimred %>%
+    data.frame() %>%
+    rownames_to_column("cell_id")
 
-  g <- ggplot(prediction$space) +
-    geom_point(aes(DC1, DC2, colour = ifelse(cell_id %in% prediction$tips, "Tip", label)), size = 2) +
+  g <- ggplot(space) +
+    geom_point(aes(DC1, DC2, colour = ifelse(cell_id %in% prediction$tips, "Tip", prediction$milestone_assignment_cells)), size = 2) +
     scale_colour_manual(values = ann_cols) +
     labs(colour = "Branch") +
     theme(legend.position = c(0.9, 0.1))
