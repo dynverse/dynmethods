@@ -9,10 +9,10 @@ description_recat <- function() create_description(
     makeIntegerParam(id = "TSPFold", default = 2, lower=2, upper=10),
     makeIntegerParam(id = "beginNum", default = 10, lower=2, upper=20),
     makeIntegerParam(id = "endNum", default = 15, lower=2, upper=20),
-    makeIntegerParam(id = "stepSize", default = 2, lower=2, upper=20),
-    makeIntegerParam(id = "base_cycle_range_begin", default = 6, lower=2, upper=20),
+    makeIntegerParam(id = "step_size", default = 2, lower=2, upper=20),
+    makeIntegerParam(id = "base_cycle_range_start", default = 6, lower=2, upper=20),
     makeIntegerParam(id = "base_cycle_range_end", default = 9, lower=2, upper=20),
-    makeIntegerParam(id = "max_num", default = 9, lower=2, upper=20)
+    makeIntegerParam(id = "max_num", default = 300, lower=100, upper=500)
   ),
   properties = c(),
   run_fun = run_recat,
@@ -28,7 +28,6 @@ run_recat <- function(
   step_size = 2,
   base_cycle_range_start = 6,
   base_cycle_range_end = 9,
-  max_loop = NULL,
   max_num = 300
 ) {
   requireNamespace("reCAT")
@@ -44,7 +43,6 @@ run_recat <- function(
     endNum = endNum,
     base_cycle_range = base_cycle_range_start:base_cycle_range_end,
     step_size = step_size,
-    max_loop = max_loop,
     max_num = max_num,
     threads = num_cores
   )
