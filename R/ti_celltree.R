@@ -66,7 +66,6 @@ run_celltree <- function(
   method = "maptpx",
   num_topics_lower = 2,
   num_topics_upper = 15,
-  num_topics = num_topics_lower:num_topics_upper,
   sd_filter = .5,
   tot_iter = 1e6,
   tolerance = .05,
@@ -81,6 +80,8 @@ run_celltree <- function(
       NULL
     }
 
+  num_topics <- seq(num_topics_lower, num_topics_upper)
+
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
@@ -92,7 +93,8 @@ run_celltree <- function(
     log.scale = FALSE,
     sd.filter = sd_filter,
     tot.iter = tot_iter,
-    tol = tolerance)
+    tol = tolerance
+  )
 
   # put the parameters for the backbones in a list,
   # for adding optional grouping_assignment and (if grouping is given) start group
@@ -118,7 +120,7 @@ run_celltree <- function(
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # simplify sample graph to just its backbone
-  edges <- igraph::as_data_frame(mst_tree, "edges") %>%
+  cell_graph <- igraph::as_data_frame(mst_tree, "edges") %>%
     select(from, to, length = weight) %>%
     mutate(
       from = rownames(expression)[from],
@@ -127,33 +129,34 @@ run_celltree <- function(
     )
   to_keep <- igraph::V(mst_tree)$is.backbone %>%
     setNames(rownames(expression))
-  out <- dynutils::simplify_sample_graph(edges, to_keep, is_directed = FALSE)
 
   # extract data for visualisations
   tree <- cellTree:::.compute.tree.layout(mst_tree, ratio = 1)
   vertices <- igraph::as_data_frame(tree, "vertices") %>% as_data_frame()
   edges <- igraph::as_data_frame(tree, "edges") %>% as_data_frame()
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
   # wrap output
-  wrap_prediction_model(
-    cell_ids = rownames(expression),
-    milestone_ids = out$milestone_ids,
-    milestone_network = out$milestone_network,
-    progressions = out$progressions,
-    vertices = vertices,
-    edges = edges
-  )  %>% attach_timings_attribute(tl)
+  abstract_prediction_model(
+    cell_ids = rownames(expression)
+  ) %>%
+    add_cell_graph_to_wrapper(
+      cell_graph = cell_graph,
+      to_keep = to_keep,
+      is_directed = FALSE,
+      plot_vertices = vertices,
+      plot_edges = edges
+    ) %>%
+    add_timings_to_wrapper(
+      timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+    )
 }
 
 #' @importFrom ggforce geom_arc_bar
 #' @importFrom grDevices rainbow
 plot_celltree <- function(prediction) {
   # Based on cellTree::ct.plot.topics(prediction$mst_tree)
-  vertices <- prediction$vertices
-  edges <- prediction$edges
+  vertices <- prediction$plot_vertices
+  edges <- prediction$plot_edges
 
   # calculate pie sizes
   pie_df <- map_df(seq_len(nrow(vertices)), function(i) {
