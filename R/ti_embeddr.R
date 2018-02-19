@@ -43,7 +43,7 @@ run_embeddr <- function(
   requireNamespace("embeddr")
 
   # calculate nn param
-  nn <- round(log(nrow(counts)) * nn_pct)
+  nn <- max(round(log(nrow(counts)) * nn_pct), 9)
 
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
@@ -77,34 +77,53 @@ run_embeddr <- function(
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # construct milestone network
-  pseudotimes <- as(sce@phenoData, "data.frame")$pseudotime
+  pseudotimes <- as(sce@phenoData, "data.frame")$pseudotime %>%
+    setNames(rownames(counts))
 
   # creating extra output for visualisation purposes
-  dimred_samples <- sce@reducedDimension %>%
-    as.data.frame() %>%
-    rownames_to_column("cell_id")
-  dimred_traj <- as(sce@phenoData, "data.frame") %>%
-    arrange(pseudotime) %>%
-    select(pseudotime, starts_with("trajectory_"))
+  dimred_cells <- sce@reducedDimension
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+  traj <- as(sce@phenoData, "data.frame") %>%
+    arrange(pseudotime) %>%
+    select(starts_with("trajectory_")) %>%
+    as.matrix()
+
+  dimred_trajectory_segments <- cbind(
+    traj[-nrow(traj), , drop = F],
+    traj[-1, , drop = F]
+  )
+  colnames(dimred_trajectory_segments) <- c(
+    paste0("from_", colnames(dimred_cells)),
+    paste0("to_", colnames(dimred_cells))
+  )
 
   # return output
-  wrap_prediction_model_linear(
-    cell_ids = rownames(counts),
-    pseudotimes = pseudotimes,
-    dimred_samples = dimred_samples,
-    dimred_traj = dimred_traj
-  ) %>% attach_timings_attribute(tl)
+  abstract_prediction_model(
+    cell_ids = rownames(counts)
+  ) %>%
+    add_linear_trajectory_to_wrapper(
+      pseudotimes = pseudotimes
+    ) %>%
+    add_dimred_to_wrapper(
+      dimred = dimred_cells,
+      dimred_trajectory_segments = dimred_trajectory_segments
+    ) %>%
+    add_timings_to_wrapper(
+      timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+    )
 }
 
 plot_embeddr <- function(prediction) {
-  sample_df <- prediction$dimred_samples %>% mutate(time = prediction$pseudotimes)
-  traj_df <- prediction$dimred_traj
+  sample_df <- prediction$dimred %>%
+    as.data.frame() %>%
+    rownames_to_column("cell_id") %>%
+    mutate(time = prediction$pseudotimes)
+  traj_df <- prediction$dimred_trajectory_segments %>%
+    as.data.frame()
   g <- ggplot() +
     geom_point(aes(component_1, component_2, fill = time), sample_df, pch = 21, alpha = .65, size = 3.5) +
-    geom_path(aes(trajectory_1, trajectory_2), traj_df, size = 1.5, alpha = 0.8, linetype = 2) +
+    geom_segment(aes(x = from_component_1, xend = to_component_1, y = from_component_2, yend = to_component_2),
+                 traj_df, size = 1.5, alpha = 0.8, linetype = 2) +
     scale_fill_distiller(palette = "YlOrRd") +
     scale_colour_distiller(palette = "YlOrRd") +
     theme(legend.position = "none")
