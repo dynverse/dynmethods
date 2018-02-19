@@ -30,7 +30,6 @@ Imports:
   parallel,
   ParamHelpers,
   pbapply,
-  pdist,
   purrr, 
   RColorBrewer,
   readr,
