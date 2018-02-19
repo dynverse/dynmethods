@@ -69,24 +69,40 @@ run_gpfates <- function(
   )
   milestone_ids <- paste0("M", seq(0, n_end_states))
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+  # convert dimred and pseudotimes to right format
+  dimred <- dr %>%
+    as.data.frame() %>%
+    magrittr::set_rownames(., .$cell_id) %>%
+    select(-cell_id) %>%
+    as.matrix()
+  pseudotimes <- setNames(pseudotime$time, pseudotime$cell_id)
 
   # return output
-  wrap_prediction_model(
-    cell_ids = rownames(counts),
-    milestone_ids = milestone_ids,
-    milestone_network = milestone_network,
-    progressions = progressions,
-    dimred_samples = dr,
-    pseudotime = pseudotime
-  ) %>% attach_timings_attribute(tl)
+  prediction <- abstract_prediction_model(
+    cell_ids = rownames(expression)
+  ) %>%
+    add_trajectory_to_wrapper(
+      milestone_ids = milestone_ids,
+      milestone_network = milestone_network,
+      progressions = progressions,
+      pseudotimes = pseudotimes,
+      divergence_regions = NULL
+    ) %>%
+    add_dimred_to_wrapper(
+      dimred = dimred
+    ) %>%
+    add_timings_to_wrapper(
+      tl %>% add_timing_checkpoint("method_afterpostproc")
+    )
 }
 
 plot_gpfates <- function(prediction, type = c("dimred", "assignment")) {
   type <- match.arg(type)
-  sample_df <- prediction$dimred_samples %>%
-    left_join(prediction$pseudotime, by = "cell_id")
+
+  sample_df <- prediction$dimred %>%
+    as.data.frame %>%
+    rownames_to_column("cell_id") %>%
+    mutate(time = prediction$pseudotime[cell_id])
 
   switch(
     type,
