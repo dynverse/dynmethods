@@ -1,3 +1,6 @@
+############### TODO: REMOVE THIS FILE
+
+
 #' Wrapping TI predictions
 #'
 #' @param cell_ids the ids of the cells in the trajectory and counts
@@ -16,16 +19,7 @@ wrap_prediction_model <- function(
   progressions = NULL,
   ...
 ) {
-  abstract_data_wrapper(
-    type = "ti_pred",
-    id = random_time_string("TIpred"),
-    cell_ids = cell_ids,
-    milestone_ids = milestone_ids,
-    milestone_network = milestone_network,
-    milestone_percentages = milestone_percentages,
-    progressions = progressions,
-    ...
-  )
+  .Deprecated("add_trajectory_to_wrapper", package = "dynutils")
 }
 
 #' Wrap a linear TI prediction
@@ -41,27 +35,5 @@ wrap_prediction_model_linear <- function(
   pseudotimes,
   ...
 ) {
-  pseudotimes <- scale_minmax(pseudotimes)
-  milestone_ids <- c("milestone_A", "milestone_B")
-  milestone_network <- data_frame(
-    from = milestone_ids[[1]],
-    to = milestone_ids[[2]],
-    length = 1,
-    directed = FALSE
-  )
-  progressions <- data_frame(
-    cell_id = cell_ids,
-    from = milestone_ids[[1]],
-    to = milestone_ids[[2]],
-    percentage = pseudotimes
-  )
-
-  wrap_prediction_model(
-    cell_ids = cell_ids,
-    milestone_ids = milestone_ids,
-    milestone_network = milestone_network,
-    progressions = progressions,
-    pseudotimes = pseudotimes,
-    ...
-  )
+  .Deprecated("add_linear_trajectory_to_wrapper", package = "dynutils")
 }
