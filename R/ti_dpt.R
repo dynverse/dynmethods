@@ -95,7 +95,7 @@ run_dpt <- function(
 
   # return output
   wrap_prediction_model(
-    cell_ids = rownames(counts)
+    cell_ids = rownames(expression)
   ) %>%
     add_cluster_projection_to_wrapper(
       milestone_network = milestone_network,
