@@ -38,21 +38,23 @@ run_random <- function(counts, dummy_param = .5) {
   progressions <- data.frame(
     cell_id = cell_ids,
     milestone_network[sample.int(nrow(milestone_network), length(cell_ids), replace = TRUE), 1:2],
-    percentage = runif(length(cell_ids))
+    percentage = runif(length(cell_ids)),
+    stringsAsFactors = FALSE
   )
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
   # return output
   wrap_prediction_model(
-    cell_ids = cell_ids,
+    cell_ids = cell_ids
+  ) %>% add_trajectory_to_wrapper(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
-    progressions = progressions
-  ) %>% attach_timings_attribute(tl)
+    progressions = progressions,
+    divergence_regions = NULL
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
