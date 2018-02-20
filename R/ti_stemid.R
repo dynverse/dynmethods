@@ -136,41 +136,38 @@ run_stemid <- function(
     directed = FALSE
   )
 
-  # project cells onto segments
-  out <- project_cells_to_segments(
-    cluster_network = cluster_network,
-    cluster_space = ltr@ldata$cnl,
-    sample_space = ltr@ltcoord,
-    sample_cluster = as.character(ltr@ldata$lp),
-    num_segments_per_edge = 100,
-    milestone_rename_fun = function(x) paste0("M", x)
-  )
-
-  # get colours
-  col_ann <- setNames(ltr@sc@fcol, out$milestone_ids)
-
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
   # return output
   wrap_prediction_model(
-    cell_ids = rownames(expression),
-    milestone_ids = out$milestone_ids,
-    milestone_network = out$milestone_network,
-    progressions = out$progressions,
-    space = out$space_df,
-    centers = out$centers_df,
-    edge = out$edge_df,
-    col_ann = col_ann
-  ) %>% attach_timings_attribute(tl)
+    cell_ids = rownames(expression)
+  ) %>% add_cluster_projection_to_wrapper(
+    milestone_network = cluster_network,
+    dimred_milestones = ltr@ldata$cnl %>% as.matrix,
+    dimred_cells = ltr@ltcoord,
+    milestone_assignment_cells = as.character(ltr@ldata$lp) %>% setNames(rownames(expression)),
+    num_segments_per_edge = 100,
+    col_ann = ltr@sc@fcol
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 plot_stemid <- function(prediction) {
+  col_ann <- setNames(ltr@sc@fcol, prediction$milestone_ids)
+
+  space <- prediction$dimred %>%
+    as.data.frame %>%
+    rownames_to_column("cell_id") %>%
+    mutate(label = prediction$milestone_assignment_cells[cell_id])
+
+  space_clus <- prediction$dimred_milestones %>%
+    as.data.frame %>%
+    rownames_to_column("clus_id")
+
   g <- ggplot() +
-    geom_point(aes(V1, V2), prediction$space, size = 2, colour = "darkgray", na.rm = TRUE) +
-    geom_text(aes(V1, V2, label = label, colour = label), prediction$space, na.rm = TRUE) +
-    geom_text(aes(V1, V2, label = clus_id), prediction$centers, size = 8) +
-    geom_segment(aes(x = from.V1, xend = to.V1, y = from.V2, yend = to.V2), prediction$edge) +
+    geom_point(aes(V1, V2), space, size = 2, colour = "darkgray", na.rm = TRUE) +
+    geom_text(aes(V1, V2, label = label, colour = label), space, na.rm = TRUE) +
+    geom_text(aes(V1, V2, label = clus_id), space_clus, size = 8) +
+    geom_segment(aes(x = from_V1, xend = to_V1, y = from_V2, yend = to_V2), prediction$dimred_trajectory_segments %>% as.data.frame) +
     scale_colour_manual(values = prediction$col_ann) +
     theme(legend.position = "none")
   process_dynplot(g, prediction$id)
