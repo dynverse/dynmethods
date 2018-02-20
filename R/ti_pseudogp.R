@@ -20,15 +20,17 @@ description_pseudogp <- function() create_description(
   plot_fun = plot_pseudogp
 )
 
-run_pseudogp <- function(expression,
-                         dimreds = names(list_dimred_methods()) == "pca",
-                         chains = 1,
-                         iter = 1000,
-                         smoothing_alpha = 10,
-                         smoothing_beta = 3,
-                         pseudotime_mean = 0.5,
-                         pseudotime_var = 1,
-                         initialise_from = "random") {
+run_pseudogp <- function(
+  expression,
+  dimreds = names(list_dimred_methods()) == "pca",
+  chains = 1,
+  iter = 1000,
+  smoothing_alpha = 10,
+  smoothing_beta = 3,
+  pseudotime_mean = 0.5,
+  pseudotime_var = 1,
+  initialise_from = "random"
+) {
   requireNamespace("pseudogp")
   requireNamespace("rstan")
   requireNamespace("coda")
@@ -59,7 +61,8 @@ run_pseudogp <- function(expression,
   # extract pseudotime
   pst <- rstan::extract(fit, pars = "t")$t
   tmcmc <- coda::mcmc(pst)
-  pseudotimes <- MCMCglmm::posterior.mode(tmcmc)
+  pseudotimes <- MCMCglmm::posterior.mode(tmcmc) %>%
+    setNames(rownames(expression))
 
   # collect data for visualisation purposes
   # code is adapted from pseudogp::posteriorCurvePlot
@@ -67,19 +70,19 @@ run_pseudogp <- function(expression,
   lambda <- rstan::extract(fit, pars = "lambda", permute = FALSE)
   sigma <- rstan::extract(fit, pars = "sigma", permute = FALSE)
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
   # return output
-  wrap_prediction_model_linear(
-    cell_ids = rownames(expression),
+  wrap_prediction_model(
+    cell_ids = rownames(expression)
+  ) %>% add_linear_trajectory_to_wrapper(
     pseudotimes = pseudotimes,
     spaces = spaces,
     chains = chains,
     pst = pst,
     lambda = lambda,
     sigma = sigma
-  ) %>% attach_timings_attribute(tl)
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 plot_pseudogp <- function(prediction) {
@@ -151,4 +154,3 @@ plot_pseudogp <- function(prediction) {
 
   process_dynplot(g, prediction$id)
 }
-
