@@ -25,7 +25,7 @@ run_recat <- function(
   num_cores = 1,
   TSPFold = 2,
   beginNum = 10,
-  endNum=15,
+  endNum = 15,
   step_size = 2,
   base_cycle_range_start = 6,
   base_cycle_range_end = 9,
@@ -47,7 +47,8 @@ run_recat <- function(
     step_size = step_size,
     max_num = max_num,
     clustMethod = clustMethod,
-    threads = num_cores
+    threads = num_cores,
+    output = FALSE
   )
 
   # TIMING: done with method
@@ -55,26 +56,37 @@ run_recat <- function(
 
   pseudotimes <- result$ensembleResultLst[dim(result$ensembleResultLst)[1], ]
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
   # process output
-  milestone_network <- tibble(from=c("A", "B", "C"), to=c("B", "C", "A"), directed=TRUE, length=1, edge_id=1:3)
+  milestone_network <- tibble(
+    from = c("A", "B", "C"),
+    to = c("B", "C", "A"),
+    directed = TRUE,
+    length = 1,
+    edge_id = 1:3
+  )
   milestone_ids <- c("A", "B", "C")
-  progressions <- tibble(time = 3*pseudotimes, cell_id = rownames(expression)) %>%
+  progressions <- tibble(
+    time = 3 * pseudotimes,
+    cell_id = rownames(expression)
+  ) %>%
     mutate(edge_id = floor(time+1)) %>%
     left_join(milestone_network, by="edge_id") %>%
-    mutate(percentage = time - edge_id+1) %>%
+    mutate(percentage = time - edge_id + 1) %>%
     select(cell_id, from, to, percentage)
-  milestone_network <- milestone_network %>% select(from, to, length, directed)
+  milestone_network <- milestone_network %>%
+    select(from, to, length, directed)
 
   # wrap
   wrap_prediction_model(
-    cell_ids = rownames(counts),
+    cell_ids = rownames(counts)
+  ) %>% add_trajectory_to_wrapper(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
-    progressions = progressions
-  ) %>% attach_timings_attribute(tl)
+    progressions = progressions,
+    divergence_regions = NULL
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 plot_recat <- function(prediction) {
