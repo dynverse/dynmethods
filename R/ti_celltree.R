@@ -66,6 +66,7 @@ run_celltree <- function(
   method = "maptpx",
   num_topics_lower = 2,
   num_topics_upper = 15,
+  num_topics = seq(num_topics_lower, num_topics_upper),
   sd_filter = .5,
   tot_iter = 1e6,
   tolerance = .05,
@@ -79,8 +80,6 @@ run_celltree <- function(
     } else {
       NULL
     }
-
-  num_topics <- seq(num_topics_lower, num_topics_upper)
 
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
