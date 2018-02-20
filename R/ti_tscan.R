@@ -88,10 +88,16 @@ run_tscan <- function(
 }
 
 plot_tscan <- function(prediction) {
+  space <-
+    prediction$dimred %>%
+    as.data.frame() %>%
+    rownames_to_column("cell_id") %>%
+    mutate(label = prediction$milestone_assignment_cells[cell_id])
+
   g <- ggplot() +
-    geom_point(aes(PC1, PC2, colour = label, shape = label), prediction$space) +
-    geom_text(aes(PC1, PC2, label = clus_id), prediction$centers, size = 6) +
-    geom_segment(aes(x = from.PC1, xend = to.PC1, y = from.PC2, yend = to.PC2), prediction$edges) +
+    geom_point(aes(PC1, PC2, colour = label, shape = label), space) +
+    geom_text(aes(PC1, PC2, label = clus_id), prediction$dimred_milestones %>% as.data.frame %>% rownames_to_column("clus_id"), size = 6) +
+    geom_segment(aes(x = from_PC1, xend = to_PC1, y = from_PC2, yend = to_PC2), prediction$dimred_trajectory_segments %>% as.data.frame()) +
     theme(legend.position = "none")
   process_dynplot(g, prediction$id)
 }
