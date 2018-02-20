@@ -50,14 +50,11 @@ run_ouija <- function(
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # obtain the pseudotimes
-  pseudotimes <- ouija::map_pseudotime(oui)
+  pseudotimes <- ouija::map_pseudotime(oui) %>%
+    setNames(rownames(expression))
 
   # run pca for visualisation purposes
-  space <- stats::prcomp(expression)$x[,1:2] %>%
-    as.data.frame() %>%
-    rownames_to_column() %>%
-    as_data_frame() %>%
-    mutate(pseudotime = pseudotimes)
+  space <- stats::prcomp(expression)$x[,1:2]
 
   # extract data for visualisation
   # adapted from ouija::plot_switch_times(oui)
@@ -71,20 +68,26 @@ run_ouija <- function(
   t0_df$Gene <- colnames(oui$Y[, oui$response_type == "switch"])
   t0_df$Gene <- factor(t0_df$Gene, t0_df$Gene[order(t0_means)])
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
   # return output
-  wrap_prediction_model_linear(
-    cell_ids = rownames(expression),
+  wrap_prediction_model(
+    cell_ids = rownames(expression)
+  ) %>% add_linear_trajectory_to_wrapper(
     pseudotimes = pseudotimes,
-    t0_df = t0_df,
-    space = space
-  ) %>% attach_timings_attribute(tl)
+    t0_df = t0_df
+  ) %>% add_dimred_to_wrapper(
+    dimred = space
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 plot_ouija <- function(prediction) {
-  g <- ggplot(prediction$space) +
+  space <- prediction$dimred %>%
+    as.data.frame() %>%
+    rownames_to_column("cell_id") %>%
+    mutate(pseudotime = prediction$pseudotimes[cell_id])
+
+  g <- ggplot(space) +
     geom_point(aes(PC1, PC2, colour = pseudotime)) +
     viridis::scale_colour_viridis() +
     labs(colour = "Pseudotime") +
