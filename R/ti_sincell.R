@@ -77,7 +77,7 @@ run_sincell <- function(
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # extract cell hierarchy
-  edges <- SO$cellstateHierarchy %>%
+  cell_graph <- SO$cellstateHierarchy %>%
     igraph::as_data_frame() %>%
     rename(length = weight) %>%
     mutate(directed = FALSE)
@@ -98,19 +98,15 @@ run_sincell <- function(
   }
   to_keep <- setNames(rownames(expression) %in% names(igraph::V(gr)), rownames(expression))
 
-  # simplify sample graph
-  out <- dynutils::simplify_sample_graph(edges, to_keep, is_directed = FALSE)
-
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
   # return output
   wrap_prediction_model(
-    cell_ids = rownames(expression),
-    milestone_ids = out$milestone_ids,
-    milestone_network = out$milestone_network,
-    progressions = out$progressions
-  ) %>% attach_timings_attribute(tl)
+    cell_ids = rownames(expression)
+  ) %>% add_cell_graph_to_wrapper(
+    cell_graph = cell_graph,
+    to_keep = to_keep
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 #' @importFrom RColorBrewer brewer.pal
