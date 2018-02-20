@@ -16,8 +16,11 @@ description_shuffle <- function() create_description(
   plot_fun = dynplot::plot_default
 )
 
-run_shuffle <- function(counts, task, dummy_param = .5) {
-
+run_shuffle <- function(
+  counts,
+  task,
+  dummy_param = .5
+) {
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
@@ -31,15 +34,16 @@ run_shuffle <- function(counts, task, dummy_param = .5) {
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
   # return output
   wrap_prediction_model(
-    cell_ids = task$cell_ids,
+    cell_ids = task$cell_ids
+  ) %>% add_trajectory_to_wrapper(
     milestone_ids = task$milestone_ids,
     milestone_network = task$milestone_network,
-    progressions = progressions
-  ) %>% attach_timings_attribute(tl)
+    progressions = progressions,
+    divergence_regions = task$divergence_regions
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
