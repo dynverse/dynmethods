@@ -141,7 +141,7 @@ plot_slicer <- function(prediction) {
   edge_df <- prediction$traj_graph %>%
     igraph::as_data_frame("edges") %>%
     do(with(., data.frame(row.names = NULL, from = dimred_samples[from,], to = dimred_samples[to,], stringsAsFactors = F))) %>%
-    mutate(edge_kept = prediction$to_keep[from.cell_id] & prediction$to_keep[to.cell_id])
+    mutate(edge_kept = prediction$is_kept[from.cell_id] & prediction$is_kept[to.cell_id])
 
   # make plot
   aes_segm <- aes(x = from.Comp1, xend = to.Comp1, y = from.Comp2, yend = to.Comp2)
