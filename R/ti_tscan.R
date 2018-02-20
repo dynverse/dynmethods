@@ -73,29 +73,18 @@ run_tscan <- function(
   rownames(cluster_space) <- as.character(seq_len(nrow(cluster_space)))
   colnames(cluster_space) <- colnames(sample_space)
 
-  # project cells onto segments
-  out <- project_cells_to_segments(
-    cluster_network = cluster_network,
-    cluster_space = cluster_space,
-    sample_space = sample_space,
-    sample_cluster = cds_clus$clusterid,
-    num_segments_per_edge = 100,
-    milestone_rename_fun = function(x) paste0("M", x)
-  )
-
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
   # return output
   wrap_prediction_model(
-    cell_ids = rownames(counts),
-    milestone_ids = out$milestone_ids,
-    milestone_network = out$milestone_network,
-    progressions = out$progressions,
-    space = out$space_df,
-    centers = out$centers_df,
-    edges = out$edge_df
-  ) %>% attach_timings_attribute(tl)
+    cell_ids = rownames(counts)
+  ) %>% add_cluster_projection_to_wrapper(
+    milestone_network = cluster_network,
+    dimred_milestones = cluster_space,
+    dimred_cells = sample_space,
+    milestone_assignment_cells = cds_clus$clusterid,
+    num_segments_per_edge = 100
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 plot_tscan <- function(prediction) {
