@@ -201,9 +201,11 @@ execute_method_internal <- function(method, arglist, setseed_detection_file) {
   # fetch timings from within method (and place them in order of execution, just to make sure)
   timings_list <- c(
     list(method_start = time_start),
-    get_timings_attribute(model),
+    model$timings,
     list(method_stop = time_stop)
   )
+
+  model <- model[names(model) != "timings"]
 
   # return output
   lst(timings_list, model)
