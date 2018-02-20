@@ -10,7 +10,7 @@ description_ouijaflw <- function() create_description(
   ),
   properties = c(),
   run_fun = run_ouijaflow,
-  plot_fun = plot_default
+  plot_fun = plot_ouijaflow
 )
 
 run_ouijaflow <- function(
@@ -34,4 +34,8 @@ run_ouijaflow <- function(
   ) %>% add_timings_to_wrapper(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
+}
+
+plot_ouijaflow <- function(prediction) {
+  # TODO
 }
