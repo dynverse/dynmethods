@@ -51,7 +51,9 @@ run_mfa <- function(
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # obtain results
-  ms <- summary(m)
+  ms <- summary(m) %>%
+    mutate(cell_id = rownames(expression)) %>%
+    select(cell_id, everything())
 
   # create milestone network
   milestone_ids <- paste0("M", seq(0, b))
@@ -73,24 +75,29 @@ run_mfa <- function(
   # pca for visualisation only
   pca_out <- stats::prcomp(expression)$x[,1:2]
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression),
-    milestone_ids = milestone_ids,
-    milestone_network = milestone_network,
-    progressions = progressions,
-    ms = ms,
-    pca_out = pca_out
-  ) %>% attach_timings_attribute(tl)
+    cell_info = ms
+  ) %>%
+    add_trajectory_to_wrapper(
+      milestone_ids = milestone_ids,
+      milestone_network = milestone_network,
+      progressions = progressions,
+      divergence_regions = NULL
+    ) %>%
+    add_dimred_to_wrapper(
+      dimred = pca_out
+    ) %>%
+    add_timings_to_wrapper(
+      tl %>% add_timing_checkpoint("method_afterpostproc")
+    )
 }
 
 plot_mfa <- function(prediction) {
   df <- data.frame(
-    prediction$pca_out,
-    prediction$ms
+    prediction$dimred,
+    prediction$cell_info
   )
   g <- ggplot() +
     geom_point(aes(PC1, PC2, colour = branch), df) +
