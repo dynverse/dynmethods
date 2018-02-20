@@ -107,7 +107,7 @@ run_slingshot <- function(
   lineages <- slingshot::lineages(sds)
   lineage_ctrl <- slingshot::lineageControl(sds)
   connectivity <- slingshot::connectivity(sds)
-  clusterLabels <- slingshot::clusterLabels(sds)
+  clusterLabels <- slingshot::clusterLabels(sds) %>% setNames(rownames(counts))
 
   # calculate cluster centers
   centers <- t(sapply(rownames(connectivity), function(cli){
@@ -122,16 +122,6 @@ run_slingshot <- function(
       length = lineage_ctrl$dist[cbind(from, to)],
       directed = TRUE # TODO: should be true
     )
-
-  # project cells onto segments
-  out <- project_cells_to_segments(
-    cluster_network = cluster_network,
-    cluster_space = centers,
-    sample_space = sds@reducedDim,
-    sample_cluster = clusterLabels,
-    num_segments_per_edge = 100,
-    milestone_rename_fun = function(x) paste0("M", x)
-  )
 
   # collect curve data for visualisation purposes
   curves <- slingshot::curves(sds)
@@ -148,20 +138,19 @@ run_slingshot <- function(
     )
   })
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
   # return output
-  wrap_prediction_model(
-    cell_ids = rownames(counts),
-    milestone_ids = out$milestone_ids,
-    milestone_network = out$milestone_network,
-    progressions = out$progressions,
-    space = out$space_df,
-    centers = out$centers_df,
-    edge = out$edge_df,
+  swrap_prediction_model(
+    cell_ids = rownames(counts)
+  ) %>% add_cluster_projection_to_wrapper(
+    milestone_network = cluster_network,
+    dimred_milestones = centers,
+    dimred_cells = sds@reducedDim,
+    milestone_assignment_cells = clusterLabels,
+    num_segments_per_edge = 100,
     curve = curve_df
-  ) %>% attach_timings_attribute(tl)
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 #' @importFrom RColorBrewer brewer.pal
@@ -188,18 +177,23 @@ plot_slingshot <- function(prediction, type = c("lineage", "curve", "both")) {
 
   # create plots for lineage if so requested
   if (type %in% c("lineage", "both")) {
-    gcenter <- geom_point(aes(PC1, PC2), prediction$centers, size = 3)
-    gsegment <- geom_segment(aes(x = from.PC1, xend = to.PC1, y = from.PC2, yend = to.PC2), prediction$edge)
+    gcenter <- geom_point(aes(PC1, PC2), prediction$dimred_milestones %>% as.data.frame, size = 3)
+    gsegment <- geom_segment(aes(x = from_PC1, xend = to_PC1, y = from_PC2, yend = to_PC2), prediction$dimred_trajectory_segments %>% as.data.frame())
   } else {
     gcenter <- NULL
     gsegment <- NULL
   }
 
+  space <- prediction$dimred %>%
+    as.data.frame %>%
+    rownames_to_column("cell_id") %>%
+    mutate(label = prediction$milestone_assignment_cells[cell_id])
+
   # return plot
   g <- ggplot() +
     gcurve +
     gsegment +
-    geom_point(aes(PC1, PC2, colour = label), prediction$space) +
+    geom_point(aes(PC1, PC2, colour = label), space) +
     gcenter +
     scale_colour_manual(values = cols) +
     labs(colour = "Milestone") +
