@@ -10,7 +10,7 @@ description_ouijaflw <- function() create_description(
   ),
   properties = c(),
   run_fun = run_ouijaflow,
-  plot_fun = plot_ouija
+  plot_fun = plot_default
 )
 
 run_ouijaflow <- function(
@@ -21,16 +21,17 @@ run_ouijaflow <- function(
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
-  pseudotimes <- ouijaflow::ouijaflow(expression, iter=iter)
+  # run ouijaflow
+  pseudotimes <- ouijaflow::ouijaflow(expression, iter = iter)
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
-  wrap_prediction_model_linear(
-    cell_ids = rownames(expression),
+  wrap_prediction_model(
+    cell_ids = rownames(expression)
+  ) %>% add_linear_trajectory_to_wrapper(
     pseudotimes = pseudotimes
-  ) %>% attach_timings_attribute(tl)
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
