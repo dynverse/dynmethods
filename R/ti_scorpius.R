@@ -19,14 +19,16 @@ description_scorpius <- function() create_description(
   plot_fun = plot_scorpius
 )
 
-run_scorpius <- function(expression,
-                         ndim = 3,
-                         k = 4,
-                         distance_method = "spearman",
-                         thresh = .001,
-                         maxit = 10,
-                         stretch = 0,
-                         smoother = "smooth.spline") {
+run_scorpius <- function(
+  expression,
+  ndim = 3,
+  k = 4,
+  distance_method = "spearman",
+  thresh = .001,
+  maxit = 10,
+  stretch = 0,
+  smoother = "smooth.spline"
+) {
   requireNamespace("SCORPIUS")
 
   # if k is too low, turn off clustering
@@ -53,19 +55,27 @@ run_scorpius <- function(expression,
     smoother = smoother
   )
 
+  # convert trajectory to segments
+  dimred_trajectory_segments <-
+    cbind(
+      traj$path[-nrow(traj$path), , drop = FALSE] %>% set_colnames(., paste0("from_", colnames(.))),
+      traj$path[-1, , drop = FALSE] %>% set_colnames(., paste0("to_", colnames(.)))
+    )
+
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
   # return output
-  wrap_prediction_model_linear(
-    cell_ids = rownames(expression),
-    pseudotimes = traj$time,
-    space = space,
-    traj = traj
-  ) %>% attach_timings_attribute(tl)
+  wrap_prediction_model(
+    cell_ids = rownames(expression)
+  ) %>% add_linear_trajectory_to_wrapper(
+    pseudotimes = traj$time
+  ) %>% add_dimred_to_wrapper(
+    dimred = space,
+    dimred_trajectory_segments = dimred_trajectory_segments
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 #' @importFrom RColorBrewer brewer.pal
@@ -74,7 +84,7 @@ plot_scorpius <- function(prediction) {
   requireNamespace("SCORPIUS")
   requireNamespace("MASS")
 
-  space <- prediction$space[,1:2]
+  space <- prediction$dimred
   ranges <- apply(space, 2, range)
   maxrange <- apply(ranges, 2, diff) %>% max
 
@@ -82,18 +92,16 @@ plot_scorpius <- function(prediction) {
 
   space_df <- space %>%
     as.data.frame() %>%
-    set_colnames(paste0("Comp", seq_len(ncol(.)))) %>%
     rownames_to_column("cell_id") %>%
-    mutate(time = prediction$pseudotimes)
+    mutate(time = prediction$pseudotimes[cell_id])
 
-  traj_df <- prediction$traj$path[,1:2] %>%
-    as.data.frame() %>%
-    set_colnames(paste0("Comp", seq_len(ncol(.))))
+  seg_df <- prediction$dimred_trajectory_segments %>%
+    as.data.frame
 
   g <- ggplot() +
     geom_path(aes(Comp1, Comp2), alpha = 0, data.frame(ranges %>% sweep(1, c(-.2, .2) * maxrange, "+"))) +
     geom_point(aes(Comp1, Comp2, colour = time), space_df) +
-    geom_path(aes(Comp1, Comp2), traj_df) +
+    geom_segment(aes(x = from_Comp1, xend = to_Comp1, y = from_Comp2, yend = to_Comp2), seg_df) +
     scale_colour_gradientn(colours = RColorBrewer::brewer.pal(3, "Dark2")) +
     labs(colour = "Pseudotime") +
     theme(legend.position = c(.92, .12))
