@@ -165,18 +165,19 @@ run_slice <- function(
       dst.y = cells.df$y[iy]
     )
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
   # return output
   wrap_prediction_model(
-    cell_ids = rownames(expression),
+    cell_ids = rownames(expression)
+  ) %>% add_trajectory_to_wrapper(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     progressions = progressions,
     cells.df = cells.df,
-    edge.df = edge.df
-  ) %>% attach_timings_attribute(tl)
+    edge.df = edge.df,
+    divergence_regions = NULL
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 #' @importFrom grid arrow
