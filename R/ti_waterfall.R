@@ -25,15 +25,15 @@ run_waterfall <- function(expression, num_clusters = 10) {
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
   # return output
-  wrap_prediction_model_linear(
-    cell_ids = rownames(expression),
-    pseudotimes = ps$pseudotime,
+  wrap_prediction_model(
+    cell_ids = rownames(expression)
+  ) %>% add_linear_trajectory_to_wrapper(
+    pseudotimes = ps$pseudotime %>% setNames(rownames(expression)),
     ps = ps
-  ) %>% attach_timings_attribute(tl)
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 plot_waterfall <- function(prediction) {
