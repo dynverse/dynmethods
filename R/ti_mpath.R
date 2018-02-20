@@ -57,7 +57,8 @@ run_mpath <- function(
     diversity_cut = diversity_cut,
     size_cut = size_cut,
     saveRes = FALSE
-  )
+  ) %>%
+    mutate_if(is.factor, as.character)
 
   milestone_ids <- unique(landmark_cluster$landmark_cluster)
 
@@ -104,18 +105,18 @@ run_mpath <- function(
       ungroup()
   }
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
-  # return output
   wrap_prediction_model(
-    cell_ids = rownames(counts),
+    cell_ids = rownames(counts)
+  ) %>% add_trajectory_to_wrapper(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     progressions = progressions,
+    divergence_regions = NULL,
     landmark_cluster = landmark_cluster,
     grouping_assignment = grouping_assignment
-  ) %>% attach_timings_attribute(tl)
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 #' @importFrom ggforce geom_arc_bar
