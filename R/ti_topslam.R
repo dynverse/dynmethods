@@ -57,16 +57,16 @@ run_topslam <- function(
   wad <- with(out, bind_cols(wad_grid, wad_energy))
   model <- with(out, bind_cols(data_frame(cell_id = rownames(expression)), space, pseudotime))
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
   # return output
-  wrap_prediction_model_linear(
-    cell_ids = rownames(expression),
-    pseudotimes = model$time,
+  wrap_prediction_model(
+    cell_ids = rownames(expression)
+  ) %>% add_linear_trajectory_to_wrapper(
+    pseudotimes = model$time %>% setNames(rownames(expression)),
     model = model,
     wad = wad
-  ) %>% attach_timings_attribute(tl)
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 #' @importFrom viridis scale_colour_viridis
