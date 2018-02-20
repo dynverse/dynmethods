@@ -103,17 +103,27 @@ run_scoup <- function(
     directed = TRUE
   )
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+  # create divergence_regions
+  divergence_regions <- data_frame(
+    divergence_id = "divergence",
+    milestone_id = milestone_ids,
+    is_start = milestone_id == milestone_ids[[1]]
+  )
 
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression),
+    cell_info = model$cpara %>% rownames_to_column("cell_id")
+  ) %>% add_trajectory_to_wrapper(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     milestone_percentages = milestone_percentages,
-    model = model
-  ) %>% attach_timings_attribute(tl)
+    divergence_regions = divergence_regions
+  ) %>% add_dimred_to_wrapper(
+    dimred = model$dimred %>% as.matrix
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 plot_scoup <- function(prediction, type = "dimred") {
@@ -126,7 +136,7 @@ plot_scoup <- function(prediction, type = "dimred") {
     slice(1)
 
   # combine data
-  space_df <- prediction$model$dimred %>%
+  space_df <- prediction$dimred %>%
     as.data.frame %>%
     rownames_to_column(var = "cell_id") %>%
     left_join(celltypes, by = "cell_id")
