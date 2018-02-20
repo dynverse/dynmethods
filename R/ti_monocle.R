@@ -111,33 +111,31 @@ run_monocle <- function(
   to_keep <- setNames(rep(TRUE, nrow(counts)), rownames(counts))
 
   # convert to milestone representation
-  edges <- igraph::as_data_frame(gr, "edges")
-  if ("weight" %in% edges) {
-    edges <- edges %>% rename(length = weight)
+  cell_graph <- igraph::as_data_frame(gr, "edges") %>% mutate(directed = FALSE)
+
+  if ("weight" %in% colnames(cell_graph)) {
+    cell_graph <- cell_graph %>% rename(length = weight)
   } else {
-    edges <- edges %>% mutate(length = 1)
+    cell_graph <- cell_graph %>% mutate(length = 1)
   }
-  out <- dynutils::simplify_sample_graph(
-    edges =  edges %>% mutate(directed = FALSE),
-    to_keep = to_keep,
-    is_directed = FALSE
-  )
 
   # retrieve data for visualisation
   plot_data <- postprocess_monocle_cds(cds)
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
   # wrap output
   wrap_prediction_model(
-    cell_ids = rownames(counts),
-    milestone_ids = out$milestone_ids,
-    milestone_network = out$milestone_network,
-    progressions = out$progressions,
-    plot_data = plot_data,
-    reduction_method = reduction_method
-  ) %>% attach_timings_attribute(tl)
+    cell_ids = rownames(counts)
+  ) %>%
+    add_cell_graph_to_wrapper(
+      cell_graph = cell_graph,
+      to_keep = to_keep,
+      plot_data = plot_data,
+      reduction_method = reduction_method
+    ) %>%
+    add_timings_to_wrapper(
+      timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+    )
+
 }
 
 plot_monocle <- function(prediction) {
@@ -178,7 +176,7 @@ postprocess_monocle_cds <- function(cds) {
   } else if (cds@dim_reduce_type %in% c("simplePPT", "DDRTree") ){
     reduced_dim_coords <- monocle::reducedDimK(cds)
   }
-  ica_space_df <- Matrix::t(reduced_dim_coords) %>%
+  space_df <- Matrix::t(reduced_dim_coords) %>%
     as.data.frame() %>%
     select_(prin_graph_dim_1 = 1, prin_graph_dim_2 = 2) %>%
     mutate(sample_name = rownames(.), sample_state = rownames(.))
@@ -187,8 +185,8 @@ postprocess_monocle_cds <- function(cds) {
     monocle::minSpanningTree() %>%
     igraph::as_data_frame() %>%
     select_(source = "from", target = "to") %>%
-    left_join(ica_space_df %>% select_(source="sample_name", source_prin_graph_dim_1="prin_graph_dim_1", source_prin_graph_dim_2="prin_graph_dim_2"), by = "source") %>%
-    left_join(ica_space_df %>% select_(target="sample_name", target_prin_graph_dim_1="prin_graph_dim_1", target_prin_graph_dim_2="prin_graph_dim_2"), by = "target")
+    left_join(space_df %>% select_(source="sample_name", source_prin_graph_dim_1="prin_graph_dim_1", source_prin_graph_dim_2="prin_graph_dim_2"), by = "source") %>%
+    left_join(space_df %>% select_(target="sample_name", target_prin_graph_dim_1="prin_graph_dim_1", target_prin_graph_dim_2="prin_graph_dim_2"), by = "target")
 
   data_df <- t(monocle::reducedDimS(cds)) %>%
     as.data.frame() %>%
@@ -198,14 +196,14 @@ postprocess_monocle_cds <- function(cds) {
     left_join(lib_info_with_pseudo %>% rownames_to_column("sample_name"), by = "sample_name")
 
   out <- lst(
-    ica_space_df,
+    space_df,
     data_df,
     edge_df
   )
 
   if (cds@dim_reduce_type == "DDRTree"){
     mst_branch_nodes <- cds@auxOrderingData[[cds@dim_reduce_type]]$branch_points
-    out$branch_point_df <- ica_space_df %>%
+    out$branch_point_df <- space_df %>%
       slice(match(mst_branch_nodes, sample_name)) %>%
       mutate(branch_point_idx = seq_len(n()))
   }
