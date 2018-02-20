@@ -113,17 +113,18 @@ run_wishbone <- function(
   # get the milestone names
   milestone_ids <- sort(unique(c(milestone_network$from, milestone_network$to)))
 
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
   # return output
   wrap_prediction_model(
-    cell_ids = rownames(counts),
+    cell_ids = rownames(counts)
+  ) %>% add_trajectory_to_wrapper(
     milestone_ids = milestone_ids,
-    milestone_network = milestone_network ,
+    milestone_network = milestone_network,
     progressions = progressions,
-    model = model
-  ) %>% attach_timings_attribute(tl)
+    model = model,
+    divergence_regions = NULL
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 #' @importFrom viridis scale_colour_viridis
