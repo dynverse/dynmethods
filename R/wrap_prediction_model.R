@@ -1,14 +1,14 @@
 #' An abstract data wrapper for TI predictions
 #'
-#' @inheritParams dynutils::abstract_data_wrapper
+#' @inheritParams dynutils::wrap_data
 #'
 #' @export
-abstract_prediction_model <- function(
+wrap_prediction_model <- function(
   cell_ids,
   cell_info = NULL,
   ...
 ) {
-  abstract_data_wrapper(
+  wrap_data(
     id = random_time_string("TIpred"),
     cell_ids = cell_ids,
     cell_info = cell_info,

@@ -136,7 +136,7 @@ run_celltree <- function(
   edges <- igraph::as_data_frame(tree, "edges") %>% as_data_frame()
 
   # wrap output
-  abstract_prediction_model(
+  wrap_prediction_model(
     cell_ids = rownames(expression)
   ) %>%
     add_cell_graph_to_wrapper(

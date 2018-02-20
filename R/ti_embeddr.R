@@ -98,7 +98,7 @@ run_embeddr <- function(
   )
 
   # return output
-  abstract_prediction_model(
+  wrap_prediction_model(
     cell_ids = rownames(counts)
   ) %>%
     add_linear_trajectory_to_wrapper(

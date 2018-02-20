@@ -7,11 +7,11 @@
 wrap_prediction_model_linear(cell_ids, pseudotimes, ...)
 }
 \arguments{
-\item{cell_ids}{the ids of the cells in the trajectory and counts}
+\item{cell_ids}{The ids of the cells.}
 
 \item{pseudotimes}{The pseudotimes of the \code{cell_ids}}
 
-\item{...}{extra information to be stored in the wrapper}
+\item{...}{Extra information to be stored in the wrapper.}
 }
 \description{
 This function will generate the milestone_network and progressions.

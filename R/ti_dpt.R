@@ -94,7 +94,7 @@ run_dpt <- function(
   )
 
   # return output
-  abstract_prediction_model(
+  wrap_prediction_model(
     cell_ids = rownames(counts)
   ) %>%
     add_cluster_projection_to_wrapper(
