@@ -17,11 +17,12 @@ description_phenopth <- function() create_description(
 )
 
 #' @importFrom stats prcomp
-run_phenopath <- function(expression,
-                          thin = 40,
-                          z_init = 1,
-                          model_mu = FALSE,
-                          scale_y = TRUE
+run_phenopath <- function(
+  expression,
+  thin = 40,
+  z_init = 1,
+  model_mu = FALSE,
+  scale_y = TRUE
 ) {
   requireNamespace("phenopath")
 
@@ -38,32 +39,34 @@ run_phenopath <- function(expression,
     model_mu = model_mu,
     scale_y = scale_y
   )
-  pseudotimes <- phenopath::trajectory(fit)
+  pseudotimes <- phenopath::trajectory(fit) %>%
+    setNames(rownames(expression))
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # run pca for visualisation purposes
-  space <- stats::prcomp(expression)$x[,1:2] %>%
-    as.data.frame() %>%
-    rownames_to_column() %>%
-    as_data_frame() %>%
-    mutate(pseudotime = pseudotimes)
-
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
+  space <- stats::prcomp(expression)$x[,1:2]
 
   # return output
-  wrap_prediction_model_linear(
-    cell_ids = rownames(expression),
-    pseudotimes = pseudotimes,
-    space = space
-  ) %>% attach_timings_attribute(tl)
+  wrap_prediction_model(
+    cell_ids = rownames(expression)
+  ) %>% add_linear_trajectory_to_wrapper(
+    pseudotimes = pseudotimes
+  ) %>% add_dimred_to_wrapper(
+    dimred = space
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 #' @importFrom viridis scale_colour_viridis
 plot_phenopath <- function(prediction) {
-  g <- ggplot(prediction$space) +
+  space <- prediction$dimred %>%
+    as.data.frame() %>%
+    rownames_to_column("cell_id") %>%
+    mutate(pseudotime = prediction$pseudotimes[cell_id])
+  g <- ggplot(space) +
     geom_point(aes(PC1, PC2, colour = pseudotime)) +
     viridis::scale_colour_viridis() +
     labs(colour = "Pseudotime") +
