@@ -85,14 +85,14 @@ run_slicer <- function(
 
   # get shortest paths to start and all other nodes
   shortest_paths <- igraph::shortest_paths(traj_graph, start)
-  edges <- lapply(shortest_paths$vpath, function(path) {
+  gr <- lapply(shortest_paths$vpath, function(path) {
     P <- rbind(path[-length(path)], path[-1]) %>% as.vector
     igraph::E(traj_graph, P = P)
   })
-  subgr <- igraph::subgraph.edges(traj_graph, eids = unique(unlist(edges)))
+  subgr <- igraph::subgraph.edges(traj_graph, eids = unique(unlist(gr)))
 
   # prepare sample graph simplification
-  simp_edges <- igraph::as_data_frame(subgr, "edges") %>%
+  cell_graph <- igraph::as_data_frame(subgr, "edges") %>%
     select(from, to, length = weight) %>%
     mutate(
       from = rownames(expr_filt)[from],
@@ -103,25 +103,21 @@ run_slicer <- function(
   nodes_to_keep <- unique(sh_p_to_ends$vpath %>% unlist)
   to_keep <- setNames(igraph::V(traj_graph) %in% nodes_to_keep, rownames(expr_filt))
 
-  # simplify graph by projecting cells to the closest point on a trajectory between
-  # the start node and one of the end nodes
-  out <- simplify_sample_graph(simp_edges, to_keep, is_directed = FALSE)
-
-  # TIMING: after postproc
-  tl <- tl %>% add_timing_checkpoint("method_afterpostproc")
-
   # return output
   wrap_prediction_model(
-    cell_ids = rownames(expr_filt),
-    milestone_ids = out$milestone_ids,
-    milestone_network = out$milestone_network,
-    progressions = out$progressions,
-    dimred_samples = traj_lle %>% as.data.frame() %>% rownames_to_column("cell_id"),
+    cell_ids = rownames(expr_filt)
+  ) %>% add_cell_graph_to_wrapper(
+    cell_graph = cell_graph,
+    to_keep = to_keep,
     traj_graph = subgr,
     start = start,
     ends = ends,
-    to_keep = to_keep
-  ) %>% attach_timings_attribute(tl)
+    is_kept = to_keep
+  ) %>% add_dimred_to_wrapper(
+    dimred = traj_lle
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 #' @importFrom grDevices colorRampPalette
@@ -132,7 +128,7 @@ plot_slicer <- function(prediction) {
   # based on SLICER::graph_process_distance(traj_graph, dimred_samples[,c("Comp1", "Comp2")], start)
 
   # calculate the geodesic distances between samples
-  dimred_samples <- prediction$dimred_samples
+  dimred_samples <- prediction$dimred %>% as.data.frame() %>% rownames_to_column("cell_id")
   geodesic_dists <- SLICER::process_distance(prediction$traj_graph, prediction$start)[1,] %>% dynutils::scale_minmax()
 
   # get colour scale
