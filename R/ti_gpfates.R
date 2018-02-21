@@ -86,7 +86,7 @@ run_gpfates <- function(
 
   # return output
   wrap_prediction_model(
-    cell_ids = rownames(expression)
+    cell_ids = rownames(counts)
   ) %>%
     add_trajectory_to_wrapper(
       milestone_ids = milestone_ids,
