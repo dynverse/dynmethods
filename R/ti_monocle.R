@@ -119,6 +119,8 @@ run_monocle <- function(
     cell_graph <- cell_graph %>% mutate(length = 1)
   }
 
+  cell_graph <- cell_graph %>% select(from, to, length, directed)
+
   # retrieve data for visualisation
   plot_data <- postprocess_monocle_cds(cds)
 
