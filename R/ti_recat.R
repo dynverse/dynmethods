@@ -78,7 +78,7 @@ run_recat <- function(
 
   # wrap
   wrap_prediction_model(
-    cell_ids = rownames(counts)
+    cell_ids = rownames(expression)
   ) %>% add_trajectory_to_wrapper(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
