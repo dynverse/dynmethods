@@ -8,7 +8,7 @@ description_scorpius <- function() create_description(
   par_set = makeParamSet(
     makeDiscreteParam(id = "distance_method", default = "spearman", values = c("spearman", "pearson", "kendall")),
     makeIntegerParam(id = "ndim", lower = 2L, default = 3L, upper = 20L),
-    makeIntegerParam(id = "k", lower = 0L, default = 4L, upper = 20L),
+    makeIntegerParam(id = "k", lower = 1L, default = 4L, upper = 20L),
     makeNumericParam(id = "thresh", lower = -5, upper = 5, default = -3, trafo = function(x) 10^x),
     makeIntegerParam(id = "maxit", lower = 0L, upper = 50L, default = 10L),
     makeNumericParam(id = "stretch", lower = 0, upper = 5, default = 0),
@@ -32,7 +32,7 @@ run_scorpius <- function(
   requireNamespace("SCORPIUS")
 
   # if k is too low, turn off clustering
-  if (k < 2) {
+  if (k <= 1) {
     k <- NULL
   }
 
