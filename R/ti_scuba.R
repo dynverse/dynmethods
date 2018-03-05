@@ -64,29 +64,15 @@ run_scuba <- function(counts,
     )
 
   # put cells on edges
-  both_directions <- bind_rows(
-    milestone_network %>% select(from, to) %>% mutate(label = from, percentage = 0),
-    milestone_network %>% select(from, to) %>% mutate(label = to, percentage = 1)
-  )
-  progressions <- data_frame(
-    cell_id = rownames(counts),
-    label = milestone_fun(out$labels)
-  ) %>%
-    left_join(both_directions, by = "label") %>%
-    group_by(cell_id) %>%
-    arrange(desc(percentage)) %>%
-    slice(1) %>%
-    ungroup() %>%
-    select(-label)
+  milestone_assignment <- milestone_fun(out$labels) %>% setNames(rownames(counts))
 
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>% add_trajectory_to_wrapper(
+  ) %>% add_cluster_graph_to_wrapper(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
-    progressions = progressions,
-    divergence_regions = NULL
+    milestone_assignment_cells = milestone_assignment
   ) %>% add_timings_to_wrapper(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
