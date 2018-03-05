@@ -65,54 +65,40 @@ run_mpath <- function(
   # catch situation where mpath only detects 1 landmark
   if (length(milestone_ids) == 1) {
     stop("Mpath only detected one landmark")
-  } else {
-    # build network
-    network <- Mpath::build_network(
-      exprs = t(counts),
-      baseName = NULL,
-      landmark_cluster = landmark_cluster,
-      distMethod = distMethod,
-      writeRes = FALSE
-    )
-
-    # trim network
-    trimmed_network <- Mpath::trim_net(
-      nb12 = network,
-      writeRes = FALSE
-    )
-
-    # create final milestone network
-    class(trimmed_network) <- NULL
-    milestone_network <- trimmed_network %>%
-      reshape2::melt(varnames = c("from", "to"), value.name = "length") %>%
-      mutate_if(is.factor, as.character) %>%
-      filter(length > 0, from < to) %>%
-      mutate(directed = FALSE)
-
-    # find an edge for each cell to sit on
-    connections <- bind_rows(
-      milestone_network %>% mutate(landmark_cluster = from, percentage = 0),
-      milestone_network %>% mutate(landmark_cluster = to, percentage = 1)
-    )
-    progressions <-
-      landmark_cluster %>%
-      left_join(connections, by = "landmark_cluster") %>%
-      select(cell_id = cell, from, to, percentage) %>%
-      stats::na.omit() %>%
-      group_by(cell_id) %>%
-      arrange(desc(percentage)) %>%
-      slice(1) %>%
-      ungroup()
   }
+
+  # build network
+  network <- Mpath::build_network(
+    exprs = t(counts),
+    baseName = NULL,
+    landmark_cluster = landmark_cluster,
+    distMethod = distMethod,
+    writeRes = FALSE
+  )
+
+  # trim network
+  trimmed_network <- Mpath::trim_net(
+    nb12 = network,
+    writeRes = FALSE
+  )
+
+  # create final milestone network
+  class(trimmed_network) <- NULL
+  milestone_network <- trimmed_network %>%
+    reshape2::melt(varnames = c("from", "to"), value.name = "length") %>%
+    mutate_if(is.factor, as.character) %>%
+    filter(length > 0, from < to) %>%
+    mutate(directed = FALSE)
+
+  milestone_assignment <-
+    with(landmark_cluster, setNames(landmark_cluster, cell))
 
   wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>% add_trajectory_to_wrapper(
+  ) %>% add_cluster_graph_to_wrapper(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
-    progressions = progressions,
-    divergence_regions = NULL,
-    landmark_cluster = landmark_cluster,
+    milestone_assignment_cells = milestone_assignment,
     grouping_assignment = grouping_assignment
   ) %>% add_timings_to_wrapper(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
