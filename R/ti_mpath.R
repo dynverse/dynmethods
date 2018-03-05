@@ -94,12 +94,12 @@ run_mpath <- function(
     with(landmark_cluster, setNames(landmark_cluster, cell))
 
   wrap_prediction_model(
-    cell_ids = rownames(counts)
+    cell_ids = rownames(counts),
+    grouping_assignment = grouping_assignment
   ) %>% add_cluster_graph_to_wrapper(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
-    milestone_assignment_cells = milestone_assignment,
-    grouping_assignment = grouping_assignment
+    milestone_assignment_cells = milestone_assignment
   ) %>% add_timings_to_wrapper(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
