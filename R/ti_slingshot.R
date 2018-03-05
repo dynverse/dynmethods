@@ -141,7 +141,7 @@ run_slingshot <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>% add_cluster_projection_to_wrapper(
+  ) %>% add_dimred_projection_to_wrapper(
     milestone_network = cluster_network,
     dimred_milestones = centers,
     dimred_cells = sds@reducedDim,
