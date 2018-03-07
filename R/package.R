@@ -6,6 +6,7 @@
 #' @import ParamHelpers
 #' @import tibble
 #' @import ggplot2
+#' @import dynwrap
 #' @import dynutils
 #' @importFrom dynplot process_dynplot plot_default
 #' @importFrom stats cor dist kmeans median prcomp quantile runif setNames step time

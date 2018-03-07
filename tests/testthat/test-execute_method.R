@@ -54,7 +54,7 @@ test_that("Testing execute_method with dummy method", {
   for (i in seq_along(method_outs)) {
     method_out <- method_outs[[i]]
 
-    expect_true( dynutils::is_data_wrapper(method_out$model) )
+    expect_true( dynwrap::is_data_wrapper(method_out$model) )
     expect_is( method_out$summary, "data.frame" )
 
     pdf("/dev/null")
@@ -128,7 +128,7 @@ test_that("Testing prior passing for execute_method", {
   for (i in seq_along(method_outs)) {
     method_out <- method_outs[[i]]
 
-    expect_true( dynutils::is_data_wrapper(method_out$model) )
+    expect_true( dynwrap::is_data_wrapper(method_out$model) )
     expect_is( method_out$summary, "data.frame" )
 
     pdf("/dev/null")

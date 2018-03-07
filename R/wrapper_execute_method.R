@@ -206,7 +206,7 @@ execute_method_internal <- function(method, arglist, setseed_detection_file) {
   )
 
   model$timings <- NULL
-  class(model) <- class(model) %>% discard(~. == "dynutils::with_timings")
+  class(model) <- class(model) %>% discard(~. %in% c("dynutils::with_timings", "dynwrap::with_timings"))
 
   # return output
   lst(timings_list, model)

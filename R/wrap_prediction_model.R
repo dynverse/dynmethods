@@ -1,6 +1,6 @@
 #' An abstract data wrapper for TI predictions
 #'
-#' @inheritParams dynutils::wrap_data
+#' @inheritParams dynwrap::wrap_data
 #'
 #' @export
 wrap_prediction_model <- function(
