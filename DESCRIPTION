@@ -17,6 +17,7 @@ Imports:
   dplyr, 
   dynplot,
   dynutils,
+  dynwrap,
   ggforce,
   ggraph,
   ggplot2,
@@ -107,6 +108,7 @@ Remotes:
   kieranrcampbell/phenopath,
   kstreet13/slingshot,
   rcannood/dynutils,
+  rcannood/dynwrap,
   rcannood/SCORPIUS,
   Zouter/dynplot,
   Zouter/dyntoy
