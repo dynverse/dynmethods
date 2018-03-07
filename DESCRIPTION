@@ -83,6 +83,10 @@ Suggests:
   Wishbone
 Remotes:
   berndbischl/ParamHelpers,
+  dynverse/dynutils,
+  dynverse/dynwrap,
+  dynverse/dynplot,
+  dynverse/dyntoy,
   dynverse/cellTree@RELEASE_3_6,
   dynverse/embeddr,
   dynverse/destiny,
@@ -107,9 +111,5 @@ Remotes:
   kieranrcampbell/ouija,
   kieranrcampbell/phenopath,
   kstreet13/slingshot,
-  rcannood/dynutils,
-  rcannood/dynwrap,
-  rcannood/SCORPIUS,
-  Zouter/dynplot,
-  Zouter/dyntoy
+  rcannood/SCORPIUS
 
