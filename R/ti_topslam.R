@@ -4,7 +4,7 @@ description_topslam <- function() create_description(
   name = "topslam",
   short_name = "topslam",
   package_loaded = c(),
-  package_required = c("jsonlite", "topslam"),
+  package_required = c("topslam"),
   par_set = makeParamSet(
     makeIntegerParam(id = "n_components", lower = 2L, default=2L, upper=10L),
     makeIntegerParam(id = "n_neighbors", lower = 2L, default=10L, upper=100L),

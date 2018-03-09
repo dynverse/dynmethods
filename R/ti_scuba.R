@@ -4,7 +4,7 @@ description_scuba <- function() create_description(
   name = "SCUBA",
   short_name = "scuba",
   package_loaded = c(),
-  package_required = c("jsonlite", "readr", "SCUBA"),
+  package_required = c("SCUBA"),
   par_set = makeParamSet(
     makeLogicalParam(id = "rigorous_gap_stats", default = TRUE),
     makeIntegerParam(id = "N_dim", lower = 2L, upper = 3L, default = 2L), # limit to 3, limitation of sklearn tsne

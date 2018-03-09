@@ -4,7 +4,9 @@ dist: trusty
 cache: packages
 warnings_are_errors: false
 env:
-  - R_MAX_NUM_DLLS=250
+  global:
+    - R_MAX_NUM_DLLS=250
+    - _R_CHECK_FORCE_SUGGESTS_="FALSE"
 addons:
   apt:
     packages:
@@ -20,5 +22,4 @@ install:
  - R -e 'install.packages("devtools")'
  - R -e 'setRepositories(ind = 1:2)'
  - R -e 'devtools::install()'
-r_check_args:
- - "--no-clean --no-codoc --no-examples --no-install --no-tests --no-manual --no-vignettes --no-build-vignettes"
+r_check_args: "--no-tests --no-manual --no-vignettes --no-build-vignettes"
