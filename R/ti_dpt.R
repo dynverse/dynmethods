@@ -114,15 +114,18 @@ plot_dpt <- function(prediction) {
 
   palette <- c("#8DD3C7", "#FFED6F", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#BC80BD", "#FCCDE5", "gray85", "#CCEBC5", "#FFFFB3")
   ann_cols <- c(
-    setNames(c("lightgray", palette), seq(0, length(palette))),
+    setNames(c("lightgray", palette), paste0("milestone_", seq(0, length(palette)))),
     Tip = "red"
   )
   space <- prediction$dimred %>%
     data.frame() %>%
-    rownames_to_column("cell_id")
+    rownames_to_column("cell_id") %>%
+    mutate(
+      col = ifelse(cell_id %in% prediction$tips, "Tip", prediction$milestone_assignment_cells)
+    )
 
   g <- ggplot(space) +
-    geom_point(aes(DC1, DC2, colour = ifelse(cell_id %in% prediction$tips, "Tip", prediction$milestone_assignment_cells)), size = 2) +
+    geom_point(aes(DC1, DC2, colour = col), size = 2) +
     scale_colour_manual(values = ann_cols) +
     labs(colour = "Branch") +
     theme(legend.position = c(0.9, 0.1))
