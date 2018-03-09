@@ -20,6 +20,5 @@ install:
  - R -e 'install.packages("devtools")'
  - R -e 'setRepositories(ind = 1:2)'
  - R -e 'devtools::install()'
- - R -e 'dynmethods::check_dependencies()'
 r_check_args:
  - "--no-clean --no-codoc --no-examples --no-install --no-tests --no-manual --no-vignettes --no-build-vignettes"
