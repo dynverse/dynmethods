@@ -1,23 +1,37 @@
 #' Description for SCORPIUS
 #' @export
-description_scorpius <- function() create_description(
-  name = "SCORPIUS",
-  short_name = "scorpius",
-  package_loaded = c(),
-  package_required = c("SCORPIUS"),
-  par_set = makeParamSet(
-    makeDiscreteParam(id = "distance_method", default = "spearman", values = c("spearman", "pearson", "kendall")),
-    makeIntegerParam(id = "ndim", lower = 2L, default = 3L, upper = 20L),
-    makeIntegerParam(id = "k", lower = 1L, default = 4L, upper = 20L),
-    makeNumericParam(id = "thresh", lower = -5, upper = 5, default = -3, trafo = function(x) 10^x),
-    makeIntegerParam(id = "maxit", lower = 0L, upper = 50L, default = 10L),
-    makeNumericParam(id = "stretch", lower = 0, upper = 5, default = 0),
-    makeDiscreteParam(id = "smoother", default = "smooth.spline", values = c("smooth.spline", "lowess", "periodic.lowess"))
-  ),
-  properties = c(),
-  run_fun = run_scorpius,
-  plot_fun = plot_scorpius
-)
+description_scorpius <- function() abstract_scorpius_description("scorpius")
+
+#' Description for SCORPIUS-sparse
+#' @export
+description_scorpius_sparse <- function() abstract_scorpius_description("scorspar")
+
+abstract_scorpius_description <- function(short_name) {
+  name <- c(
+    "scorpius" = "SCORPIUS",
+    "scorspar" = "SCORPIUS sparse"
+  )[short_name] %>% setNames(NULL)
+
+  function() create_description(
+    name = name,
+    short_name = short_name,
+    package_loaded = c(),
+    package_required = c("SCORPIUS"),
+    par_set = makeParamSet(
+      makeDiscreteParam(id = "distance_method", default = "spearman", values = c("spearman", "pearson", "kendall")),
+      makeIntegerParam(id = "ndim", lower = 2L, default = 3L, upper = 20L),
+      makeIntegerParam(id = "k", lower = 1L, default = 4L, upper = 20L),
+      makeNumericParam(id = "thresh", lower = -5, upper = 5, default = -3, trafo = function(x) 10^x),
+      makeIntegerParam(id = "maxit", lower = 0L, upper = 50L, default = 10L),
+      makeNumericParam(id = "stretch", lower = 0, upper = 5, default = 0),
+      makeDiscreteParam(id = "smoother", default = "smooth.spline", values = c("smooth.spline", "lowess", "periodic.lowess")),
+      makeLogicalParam(id = "sparse", default = short_name == "scorspar")
+    ),
+    properties = c(),
+    run_fun = run_scorpius,
+    plot_fun = plot_scorpius
+  )
+}
 
 run_scorpius <- function(
   expression,
@@ -27,7 +41,8 @@ run_scorpius <- function(
   thresh = .001,
   maxit = 10,
   stretch = 0,
-  smoother = "smooth.spline"
+  smoother = "smooth.spline",
+  sparse = FALSE
 ) {
   requireNamespace("SCORPIUS")
 
@@ -39,11 +54,16 @@ run_scorpius <- function(
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
-  # calculate distances between cells
-  dist <- SCORPIUS::correlation_distance(expression, method = distance_method)
+  if (!sparse) {
+    # calculate distances between cells
+    dist <- SCORPIUS::correlation_distance(expression, method = distance_method)
 
-  # perform dimensionality reduction
-  space <- SCORPIUS::reduce_dimensionality(dist, ndim = ndim)
+    # perform dimensionality reduction
+    space <- SCORPIUS::reduce_dimensionality(dist, ndim = ndim)
+  } else {
+    dist_fun <- function(x, y) SCORPIUS::correlation_distance(x, y, method = distance_method)
+    space <- SCORPIUS::reduce_dimensionality_landmarked(expression, dist_fun = dist_fun, ndim = ndim)
+  }
 
   # infer a trajectory through the data
   traj <- SCORPIUS::infer_trajectory(
