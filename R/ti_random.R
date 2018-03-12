@@ -4,7 +4,7 @@
 #'
 #' @export
 description_random <- function() create_description(
-  name = "random",
+  name = "Control: random",
   short_name = "random",
   package_loaded = c(),
   package_required = c(),

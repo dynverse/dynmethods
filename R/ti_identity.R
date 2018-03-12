@@ -4,7 +4,7 @@
 #'
 #' @export
 description_identity <- function() create_description(
-  name = "identity",
+  name = "Control: identity",
   short_name = "identity",
   package_loaded = c(),
   package_required = c(),

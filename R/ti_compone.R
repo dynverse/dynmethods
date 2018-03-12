@@ -2,7 +2,7 @@
 #' @export
 description_compone <- function() create_description(
   name = "Component 1",
-  short_name = "compone",
+  short_name = "comp1",
   package_loaded = c(),
   package_required = c(),
   par_set = makeParamSet(
