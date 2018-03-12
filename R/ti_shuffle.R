@@ -4,7 +4,7 @@
 #'
 #' @export
 description_shuffle <- function() create_description(
-  name = "shuffle",
+  name = "Control: shuffle",
   short_name = "shuffle",
   package_loaded = c(),
   package_required = c(),

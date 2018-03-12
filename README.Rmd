@@ -38,6 +38,7 @@ df <- list.files("R", pattern = "ti_", full.names = T) %>%
       short_name = short_names
     )
   }) %>% 
+  arrange(long_name) %>% 
   mutate(
     url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{file}#L{line_number}"),
     label = glue::glue("- [{long_name}]({url})")

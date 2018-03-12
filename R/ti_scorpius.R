@@ -12,7 +12,7 @@ abstract_scorpius_description <- function(short_name) {
     "scorspar" = "SCORPIUS sparse"
   )[short_name] %>% setNames(NULL)
 
-  function() create_description(
+  create_description(
     name = name,
     short_name = short_name,
     package_loaded = c(),
