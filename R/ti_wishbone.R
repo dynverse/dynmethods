@@ -30,7 +30,7 @@ description_wishbone <- abstract_wishbone_description("wishbone")
 
 #' Description for Wanderlust
 #' @export
-description_wndrlust <- abstract_wishbone_description("wndrlst")
+description_wndrlst <- abstract_wishbone_description("wndrlst")
 
 run_wishbone <- function(
   counts,
