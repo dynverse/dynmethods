@@ -1,0 +1,46 @@
+---
+output: github_document
+editor_options: 
+  chunk_output_type: console
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+[![Build status](https://travis-ci.org/dynverse/dynmethods.svg?branch=master)](https://travis-ci.org/dynverse/dynmethods)
+
+# dynmethods
+This package contains wrappers for all of the trajectory inference methods included in the [dynverse](https://www.github.com/dynverse/dynverse) review. 
+These wrappers contain code to translate the data structures produced by any of the methods to the common trajectory model (Fig 1b in manuscript). 
+There are several common post-processing functions provided by the [dynwrap](https://www.github.com/dynverse/dynwrap) package (Supp. Fig. 19b in manuscript), which the different wrappers are allowed to make use of.
+
+Currently implemented are the following wrappers:
+
+```{r, echo = FALSE, warning = FALSE, error = FALSE, message = FALSE, results='asis'}
+library(tidyverse)
+library(dynmethods)
+
+df <- list.files("R", pattern = "ti_", full.names = T) %>% 
+  map_df(function(file) {
+    file_text <- readr::read_lines(file)
+    
+    line_numbers <- which(str_detect(file_text, "description_[ a-zA-Z]*<- function"))
+    descr_funs <- str_replace(file_text[line_numbers], "(description_[a-zA-Z]*) <- .*", "\\1")
+    descriptions <- map(descr_funs, ~ do.call(., args = list(), envir = asNamespace("dynmethods")))
+    long_names <- map_chr(descriptions, ~ .$name)
+    short_names <- map_chr(descriptions, ~ .$short_name)
+    
+    data_frame(
+      file, 
+      line_number = line_numbers,
+      fun_name = descr_funs,
+      long_name = long_names,
+      short_name = short_names
+    )
+  }) %>% 
+  mutate(
+    url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{file}#L{line_number}"),
+    label = glue::glue("- [{long_name}]({url})")
+  )
+df$label %>% paste(collapse = "\n", sep = "") %>% cat(., "\n", sep = "")
+
+```
