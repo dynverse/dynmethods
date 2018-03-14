@@ -1,10 +1,10 @@
 #' Description for StemID
 #' @export
-description_stemid <- function() create_description(
-  name = "StemID",
-  short_name = "stemid",
+description_stemid2 <- function() create_description(
+  name = "StemID2",
+  short_name = "stemid2",
   package_loaded = c(),
-  package_required = c("StemID"),
+  package_required = c("StemID2"),
   par_set = makeParamSet(
     makeIntegerParam(id = "clustnr", lower = 10L, default = 30L, upper = 100L),
     makeIntegerParam(id = "bootnr", lower = 20L, default = 50L, upper = 100L),
@@ -29,11 +29,11 @@ description_stemid <- function() create_description(
     forbidden = quote(thr_lower > thr_upper)
   ),
   properties = c(),
-  run_fun = run_stemid,
-  plot_fun = plot_stemid
+  run_fun = run_stemid2,
+  plot_fun = plot_stemid2
 )
 
-run_stemid <- function(
+run_stemid2 <- function(
   expression,
   clustnr = 30,
   bootnr = 50,
@@ -56,28 +56,33 @@ run_stemid <- function(
   pthr = .01,
   pethr = .01
 ) {
-  requireNamespace("StemID")
+  requireNamespace("StemID2")
 
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
   # initialize SCseq object with transcript expression
-  sc <- StemID::SCseq(data.frame(t(expression), check.names = FALSE))
+  sc <- StemID2::SCseq(data.frame(t(expression), check.names = FALSE))
 
   # filtering of expression data
-  sc <- sc %>% StemID::filterdata(
+  sc <- sc %>% StemID2::filterdata(
     mintotal = 1,
     minexpr = 0,
     minnumber = 0,
     maxexpr = Inf,
-    downsample = TRUE,
-    dsn = 1
+    downsample = FALSE,
+    sfn = FALSE, # newly added
+    hkn = FALSE, # newly added
+    dsn = 1,
+    CGenes = NULL, # newly added
+    FGenes = NULL, # newly added
+    ccor = .4 # newly added
   )
 
   # k-medoids clustering
   do_gap <- num_cluster_method == "gap"
   do_sat <- num_cluster_method == "sat"
-  sc <- sc %>% StemID::clustexp(
+  sc <- sc %>% StemID2::clustexp(
     clustnr = clustnr,
     bootnr = bootnr,
     metric = metric,
@@ -87,19 +92,23 @@ run_stemid <- function(
     SE.factor = SE.factor,
     B.gap = B.gap,
     cln = cln,
-    FUNcluster = FUNcluster
+    FUNcluster = FUNcluster,
+    FSelect = TRUE # newly added
   )
 
   # compute t-SNE map
   sammonmap <- dimred_method == "sammon"
   initial_cmd <- dimred_method == "tsne_initcmd"
-  sc <- sc %>% StemID::comptsne(
+  sc <- sc %>% StemID2::comptsne(
     sammonmap = sammonmap,
-    initial_cmd = initial_cmd
+    sammonmap = TRUE, # newly added
+    initial_cmd = initial_cmd,
+    fast = TRUE, # newly added
+    perplexity = 30 # newly added
   )
 
   # detect outliers and redefine clusters
-  sc <- sc %>% StemID::findoutliers(
+  sc <- sc %>% StemID2::findoutliers(
     outminc = outminc,
     outlg = outlg,
     probthr = probthr,
@@ -107,23 +116,39 @@ run_stemid <- function(
     outdistquant = outdistquant
   )
 
+  sc <- sc %>% StemID2::rfcorrect(
+    final = TRUE, # newly added
+    nbfactor = 5 # newly added
+  )
+
   # initialization
-  ltr <- StemID::Ltree(sc)
+  ltr <- StemID2::Ltree(sc)
 
   # computation of the entropy
-  ltr <- ltr %>% StemID::compentropy()
+  ltr <- ltr %>% StemID2::compentropy()
 
   # computation of the projections for all cells
-  ltr <- ltr %>% StemID::projcells(cthr = 0, nmode = nmode)
+  ltr <- ltr %>% StemID2::projcells(
+    cthr = 0, # default = 2
+    nmode = nmode
+  )
 
   # computation of the projections for all cells after randomization
-  ltr <- ltr %>% StemID::projback(pdishuf = pdishuf, nmode = nmode)
+  ltr <- ltr %>% StemID2::projback(
+    pdishuf = pdishuf,
+    nmode = nmode,
+    fast = FALSE # newly added
+  )
 
   # assembly of the lineage tree
-  ltr <- ltr %>% StemID::lineagetree(pthr = pthr, nmode = nmode)
+  ltr <- ltr %>% StemID2::lineagetree(
+    pthr = pthr,
+    nmode = nmode,
+    fast = FALSE # newly added
+  )
 
   # compute a spanning tree
-  ltr <- ltr %>% StemID::compspantree()
+  ltr <- ltr %>% StemID2::compspantree()
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
