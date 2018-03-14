@@ -101,7 +101,6 @@ run_stemid2 <- function(
   initial_cmd <- dimred_method == "tsne_initcmd"
   sc <- sc %>% StemID2::comptsne(
     sammonmap = sammonmap,
-    sammonmap = TRUE, # newly added
     initial_cmd = initial_cmd,
     fast = TRUE, # newly added
     perplexity = 30 # newly added
@@ -176,7 +175,7 @@ run_stemid2 <- function(
   )
 }
 
-plot_stemid <- function(prediction) {
+plot_stemid2 <- function(prediction) {
   col_ann <- setNames(ltr@sc@fcol, prediction$milestone_ids)
 
   space <- prediction$dimred %>%
