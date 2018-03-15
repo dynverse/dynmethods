@@ -62,7 +62,8 @@ run_scorpius <- function(
     space <- SCORPIUS::reduce_dimensionality(dist, ndim = ndim)
   } else {
     dist_fun <- function(x, y) SCORPIUS::correlation_distance(x, y, method = distance_method)
-    space <- SCORPIUS::reduce_dimensionality_landmarked(expression, dist_fun = dist_fun, ndim = ndim)
+    num_landmarks <- ifelse(nrow(expression) > 1000, 500, nrow(expression))
+    space <- SCORPIUS::reduce_dimensionality_landmarked(expression, dist_fun = dist_fun, ndim = ndim, num_landmarks = num_landmarks)
   }
 
   # infer a trajectory through the data

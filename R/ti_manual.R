@@ -4,7 +4,7 @@
 #'
 #' @export
 description_manual <- function() create_description(
-  name = "manual",
+  name = "Control: manual",
   short_name = "manual",
   package_loaded = c(),
   package_required = c(),
