@@ -74,7 +74,10 @@ run_aga <- function(
     stop("Not supported yet, have to combine pseudotimes (located in obs dataframe) with network structure. Probably will have to convert the graph to its line graph and put the cells on that by scaling the pseudotime for each branch")
   }
 
-  prediction
+  prediction %>%
+    add_timings_to_wrapper(
+      tl %>% add_timing_checkpoint("method_afterpostproc")
+    )
 }
 
 
