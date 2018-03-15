@@ -82,13 +82,33 @@ plot_aga <- function(prediction) {
   requireNamespace("ggraph")
   requireNamespace("tidygraph")
 
-  milestone_graph <- prediction$aga_out$adj %>% tidygraph::as_tbl_graph()
-  layout <- ggraph::create_layout()
-  milestone_graph %>%
-    ggraph::ggraph("tree") +
-      ggraph::geom_node_point(aes(color = name), size=5) +
-      geom_text(aes(x, y, label=name)) +
-      geom_
+  milestone_graph <- prediction$aga_out$adj %>%
+    tidygraph::as_tbl_graph() %>%
+    tidygraph::activate(edges) %>%
+    filter(aga_adjacency_full_attachedness > 0) %>%
+    # remove duplicates, retain the edge with higher weight
+    arrange(-aga_adjacency_tree_confidence, -aga_adjacency_full_confidence) %>%
+    mutate(edge_id = map2_chr(from, to, ~paste0(sort(c(.x, .y)), collapse="#"))) %>%
+    group_by(edge_id) %>%
+    filter(row_number() == 1) %>%
+    ungroup() %>%
+    # add edge type
+    mutate(
+      edge_type = ifelse(aga_adjacency_tree_confidence > 0, "tree", ifelse(aga_adjacency_full_confidence > 0, "full", "attached"))
+    )
+  layout <- ggraph::create_layout(
+    milestone_graph,
+    "fr",
+    weights = milestone_graph %>% tidygraph::activate(edges) %>% pull(aga_adjacency_tree_confidence) %>% {.+1}
+  )
+  layout %>%
+    ggraph::ggraph() +
+      ggraph::geom_edge_link(aes(edge_linetype = edge_type, alpha=edge_type)) +
+      ggraph::geom_edge_link(aes(x=x+(xend-x)/2, y=y+(yend-y)/2, xend = x+(xend-x)/1.999, yend=y+(yend-y)/1.999), arrow=arrow(length=unit(0.1, "inches"))) +
+      ggraph::scale_edge_linetype_manual(values=c(tree="solid", full="longdash", attached="dashed")) +
+      ggraph::scale_edge_alpha_manual(values=c(tree=1, full=1, attached=0.5)) +
+      ggraph::geom_node_point(aes(color = name), size=10) +
+      geom_text(aes(x, y, label=name), size=8) +
       ggraph::theme_graph() +
       theme(legend.position = "none")
 }
