@@ -40,6 +40,7 @@ Imports:
   tidyr,
   viridis
 Suggests:
+  aga,
   Biobase,
   BiocGenerics,
   cellTree,
@@ -82,6 +83,7 @@ Suggests:
   Wishbone
 Remotes:
   berndbischl/ParamHelpers,
+  dynverse/aga,
   dynverse/dynutils,
   dynverse/dynwrap,
   dynverse/dynplot,

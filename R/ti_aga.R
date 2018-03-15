@@ -45,29 +45,50 @@ run_aga <- function(
       percentage = 1
     )
     milestone_network <- aga_out$adj %>%
-      reshape2::melt(varnames=c("from", "to")) %>%
       mutate_at(vars(from, to), as.character) %>%
-      filter(value == 1) %>%
-      rename(length=value) %>%
-      mutate(directed=FALSE)
-    divergence_regions <- tibble(divergence_id=character(), milestone_id=character(), is_start=logical())
+      filter(aga_adjacency_tree_confidence > 0) %>%
+      mutate(length = 1) %>%
+      mutate(directed=TRUE) %>%
+      select(from, to, length, directed)
+    divergence_regions <- milestone_network %>%
+      group_by(from) %>%
+      filter(n() > 1) %>%
+      mutate(divergence_id = from) %>%
+      gather(fromto, milestone_id, from, to) %>%
+      mutate(is_start = fromto == "from") %>%
+      select(divergence_id, milestone_id, is_start) %>%
+      distinct()
 
     milestone_ids <- unique(c(milestone_network$from, milestone_network$to, milestone_percentages$milestone_id))
-    wrap_prediction_model(
+    prediction <- wrap_prediction_model(
       cell_ids = rownames(counts)
     ) %>%
       add_trajectory_to_wrapper(
         milestone_ids = milestone_ids,
         milestone_network = milestone_network,
         milestone_percentages = milestone_percentages,
-        divergence_regions = divergence_regions
+        divergence_regions = divergence_regions,
+        aga_out = aga_out
       )
   } else {
     stop("Not supported yet, have to combine pseudotimes (located in obs dataframe) with network structure. Probably will have to convert the graph to its line graph and put the cells on that by scaling the pseudotime for each branch")
   }
+
+  prediction
 }
 
 
-plot_aga <- function(x) {
-  print("Whatever!")
+plot_aga <- function(prediction) {
+  requireNamespace("ggraph")
+  requireNamespace("tidygraph")
+
+  milestone_graph <- prediction$aga_out$adj %>% tidygraph::as_tbl_graph()
+  layout <- ggraph::create_layout()
+  milestone_graph %>%
+    ggraph::ggraph("tree") +
+      ggraph::geom_node_point(aes(color = name), size=5) +
+      geom_text(aes(x, y, label=name)) +
+      geom_
+      ggraph::theme_graph() +
+      theme(legend.position = "none")
 }
