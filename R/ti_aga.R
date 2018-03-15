@@ -16,7 +16,7 @@ description_aga <- function() create_description(
   plot_fun = plot_aga
 )
 
-## TODO: handle start cells
+## TODO: handle start cells (see below)
 run_aga <- function(
   counts,
   grouping_assignment=NULL,
@@ -24,7 +24,7 @@ run_aga <- function(
   n_neighbours = 30,
   n_pcs = 50,
   n_dcs = 10,
-  verbose=F,
+  verbose=FALSE,
   num_cores=1
 ) {
   requireNamespace("aga")
