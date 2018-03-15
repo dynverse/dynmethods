@@ -6,10 +6,11 @@ description_aga <- function() create_description(
   package_loaded = c(),
   package_required = c("aga"),
   par_set = makeParamSet(
-    makeNumericParam(id = "n_neighbours", lower = 1, default = 30, upper = 100),
-    makeNumericParam(id = "n_pcs", lower = 0, default = 50, upper = 100),
-    makeNumericParam(id = "n_dcs", lower = 2, default = 10, upper = 50)
-
+    makeIntegerParam(id = "n_neighbours", lower = 1, default = 30, upper = 100),
+    makeIntegerParam(id = "n_pcs", lower = 0, default = 50, upper = 100),
+    makeIntegerParam(id = "n_dcs", lower = 2, default = 10, upper = 50),
+    makeNumericParam(id = "resolution", lower = 0.1, default = 1, upper = 10),
+    makeLogicalParam(id = "tree_based_confidence", default = TRUE)
   ),
   properties = c(),
   run_fun = run_aga,
@@ -24,6 +25,8 @@ run_aga <- function(
   n_neighbours = 30,
   n_pcs = 50,
   n_dcs = 10,
+  resolution = 1,
+  tree_based_confidence = TRUE,
   verbose=FALSE,
   num_cores=1
 ) {
