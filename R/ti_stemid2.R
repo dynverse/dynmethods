@@ -108,7 +108,7 @@ run_stemid2 <- function(
 
   # detect outliers and redefine clusters
   sc <- sc %>% StemID2::findoutliers(
-    outminc = outminc,
+    outminc = 5,
     outlg = outlg,
     probthr = probthr,
     thr = 2^(thr_lower:thr_upper),
