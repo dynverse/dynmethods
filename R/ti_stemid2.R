@@ -16,7 +16,7 @@ description_stemid2 <- function() create_description(
     makeIntegerParam(id = "cln", lower = 20L, default = 30L, upper = 100L),
     makeDiscreteParam(id = "FUNcluster", default = "kmedoids", values = c("kmedoids", "kmeans", "hclust")),
     makeDiscreteParam(id = "dimred_method", default = "tsne", values = c("tsne", "sammon", "tsne_initcmd")),
-    makeIntegerParam(id = "outminc", lower = 0L, default = 5L, upper = 100L),
+    makeIntegerParam(id = "outminc", lower = 0L, default = 0L, upper = 100L), # default should be 5, but stemid otherwise frequently produces errors
     makeIntegerParam(id = "outlg", lower = 0L, default = 2L, upper = 100L),
     makeNumericParam(id = "probthr", lower = -10, default = -10, upper = -1, trafo = function(x) 10^x), # lowered to almost zero, was 10^-3
     makeNumericParam(id = "thr_lower", lower = -100, default = -40, upper = -1),
@@ -45,7 +45,7 @@ run_stemid2 <- function(
   cln = 30L,
   FUNcluster = "kmedoids",
   dimred_method = "tsne", # tsne, sammon, tsne_initcmd
-  outminc = 5,
+  outminc = 0,
   outlg = 2,
   probthr = 1e-3,
   thr_lower = -40,
@@ -108,7 +108,7 @@ run_stemid2 <- function(
 
   # detect outliers and redefine clusters
   sc <- sc %>% StemID2::findoutliers(
-    outminc = outminc,
+    outminc = 5,
     outlg = outlg,
     probthr = probthr,
     thr = 2^(thr_lower:thr_upper),
