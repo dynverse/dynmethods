@@ -2,6 +2,7 @@
 
 export(check_dependencies)
 export(description_aga)
+export(description_agapt)
 export(description_compone)
 export(description_ctgibbs)
 export(description_ctmaptpx)
