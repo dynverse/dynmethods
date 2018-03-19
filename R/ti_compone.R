@@ -15,7 +15,7 @@ description_compone <- function() create_description(
 
 run_compone <- function(
   expression,
-  dimred
+  dimred = "pca"
 ) {
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
