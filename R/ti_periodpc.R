@@ -17,7 +17,7 @@ description_periodpc <- function() create_description(
 run_periodpc <- function(
   expression,
   ndim = 3,
-  maxit = 100
+  maxit = 10
 ) {
   requireNamespace("princurve")
 
