@@ -56,34 +56,11 @@ run_recat <- function(
 
   pseudotimes <- result$ensembleResultLst[dim(result$ensembleResultLst)[1], ]
 
-  # process output
-  milestone_network <- tibble(
-    from = c("A", "B", "C"),
-    to = c("B", "C", "A"),
-    directed = TRUE,
-    length = 1,
-    edge_id = 1:3
-  )
-  milestone_ids <- c("A", "B", "C")
-  progressions <- tibble(
-    time = 3 * pseudotimes,
-    cell_id = rownames(expression)
-  ) %>%
-    mutate(edge_id = floor(time+1)) %>%
-    left_join(milestone_network, by="edge_id") %>%
-    mutate(percentage = time - edge_id + 1) %>%
-    select(cell_id, from, to, percentage)
-  milestone_network <- milestone_network %>%
-    select(from, to, length, directed)
-
   # wrap
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_trajectory_to_wrapper(
-    milestone_ids = milestone_ids,
-    milestone_network = milestone_network,
-    progressions = progressions,
-    divergence_regions = NULL
+  ) %>% add_cyclic_trajectory_to_wrapper(
+    pseudotimes = pseudotimes
   ) %>% add_timings_to_wrapper(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
