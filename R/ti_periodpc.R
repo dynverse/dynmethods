@@ -3,7 +3,7 @@
 description_periodpc <- function() create_description(
   name = "Periodic PrinCurve",
   short_name = "periodpc",
-  package_loaded = c("princurve"),
+  package_loaded = c("stats", "princurve"),
   package_required = c(),
   par_set = makeParamSet(
     makeIntegerParam(id = "ndim", default = 3L, lower = 2L, upper = 10L),
@@ -19,13 +19,14 @@ run_periodpc <- function(
   ndim = 3,
   maxit = 10
 ) {
+  requireNamespace("stats")
   requireNamespace("princurve")
 
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
   # perform PCA dimred
-  dimred <- prcomp(x)$x[,seq_len(ndim)]
+  dimred <- stats::prcomp(expression)$x[,seq_len(ndim)]
 
   # apply principal curve with periodic lowess smoother
   fit <- princurve::principal.curve(dimred, smoother = "periodic.lowess", maxit = maxit)
