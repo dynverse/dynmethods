@@ -82,19 +82,36 @@ run_stemid2 <- function(
   # k-medoids clustering
   do_gap <- num_cluster_method == "gap"
   do_sat <- num_cluster_method == "sat"
-  sc <- sc %>% StemID2::clustexp(
-    clustnr = clustnr,
-    bootnr = bootnr,
-    metric = metric,
-    do.gap = do_gap,
-    sat = do_sat,
-    SE.method = SE.method,
-    SE.factor = SE.factor,
-    B.gap = B.gap,
-    cln = cln,
-    FUNcluster = FUNcluster,
-    FSelect = TRUE # newly added
-  )
+
+  sc <- tryCatch({
+    sc %>% StemID2::clustexp(
+      clustnr = clustnr,
+      bootnr = bootnr,
+      metric = metric,
+      do.gap = do_gap,
+      sat = do_sat,
+      SE.method = SE.method,
+      SE.factor = SE.factor,
+      B.gap = B.gap,
+      cln = cln,
+      FUNcluster = FUNcluster,
+      FSelect = TRUE
+    )
+  }, error = function(e) {
+    sc %>% StemID2::clustexp(
+      clustnr = clustnr,
+      bootnr = bootnr,
+      metric = metric,
+      do.gap = do_gap,
+      sat = do_sat,
+      SE.method = SE.method,
+      SE.factor = SE.factor,
+      B.gap = B.gap,
+      cln = cln,
+      FUNcluster = FUNcluster,
+      FSelect = FALSE # turn off feature filtering if clusterexp errors because of it
+    )
+  })
 
   # compute t-SNE map
   sammonmap <- dimred_method == "sammon"

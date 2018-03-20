@@ -41,7 +41,9 @@ run_slice <- function(
   requireNamespace("igraph")
 
   # if k is 0, set to NULL
-  if (k == 0) k = NULL
+  if (k == 0) {
+    k <- NULL
+  }
 
   # if grouping_assignment is not given, fill it with 1's
   if(!is.null(grouping_assignment)) {
@@ -62,10 +64,6 @@ run_slice <- function(
     cellidentity = cellidentity
   )
 
-  # TODO: Should we provide a better km?
-  # According to the documentation, km should be:
-  # A symmetric matrix encoding the functional similarity of genes;
-  # the row names and column names must be official NCBI gene symbols.
   num_genes <- ncol(expression)
   km <- matrix(
     runif(num_genes * num_genes),

@@ -50,6 +50,7 @@ Suggests:
   dyntoy,
   embeddr,
   fastICA,
+  GNG,
   GPfates,
   lle,
   MASS,
@@ -61,6 +62,7 @@ Suggests:
   ouija,
   ouijaflow,
   phenopath,
+  princurve,
   pseudogp,
   reCAT,
   Rtsne,
@@ -95,6 +97,7 @@ Remotes:
   dynverse/monocle-release,
   dynverse/Mpath,
   dynverse/ouijaflow,
+  dynverse/princurve,
   dynverse/reCAT,
   dynverse/scaterlegacy,
   dynverse/SCIMITAR,
@@ -113,5 +116,6 @@ Remotes:
   kieranrcampbell/ouija,
   kieranrcampbell/phenopath,
   kstreet13/slingshot,
+  rcannood/GNG,
   rcannood/SCORPIUS
 
