@@ -56,9 +56,16 @@ run_aga <- function(
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
+  # sample one start cell, if any are given
+  if (!is.null(start_cells)) {
+    start_cell <- sample(start_cells, 1)
+  } else {
+    start_cell <- NULL
+  }
+
   aga_out <- aga::aga(
     counts = counts,
-    start_cells = start_cells,
+    start_cell = start_cell,
     grouping_assignment = grouping_assignment,
     n_neighbours = n_neighbours,
     n_pcs = n_pcs,
