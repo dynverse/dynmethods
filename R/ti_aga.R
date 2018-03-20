@@ -35,7 +35,7 @@ abstract_aga_description <- function(method) {
 
 ## TODO: handle start cells (see below)
 run_aga <- function(
-  counts,
+  expression,
   grouping_assignment=NULL,
   start_cells=NULL,
   n_neighbours = 30,
@@ -61,15 +61,15 @@ run_aga <- function(
 
   tryCatch({
     # write counts to temporary file
-    utils::write.table(t(counts), counts_file, sep=",")
+    utils::write.table(t(expression), counts_file, sep=",")
 
     params <- as.list(environment())[methods::formalArgs(run_aga)]
     params <- params[names(params) != "counts"]
 
     if (!is.null(grouping_assignment)) {
-      groups <- grouping_assignment %>% slice(match(rownames(counts), cell_id))
+      groups <- grouping_assignment %>% slice(match(rownames(expression), cell_id))
     } else {
-      groups <- tibble(cell_id = rownames(counts))
+      groups <- tibble(cell_id = rownames(expression))
     }
     groups_file <- paste0(temp_folder, "/groups.csv")
     utils::write.table(groups, groups_file, sep=",")
@@ -127,7 +127,7 @@ run_aga <- function(
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
-  cell_ids <- rownames(counts)
+  cell_ids <- rownames(expression)
 
   if(is.null(start_cells)) {
     milestone_percentages <- tibble(
@@ -210,7 +210,7 @@ run_aga <- function(
     distinct()
 
   prediction <- wrap_prediction_model(
-    cell_ids = rownames(counts)
+    cell_ids = rownames(expression)
   ) %>%
     add_trajectory_to_wrapper(
       milestone_ids = milestone_ids,
@@ -226,7 +226,7 @@ run_aga <- function(
     )
 }
 
-run_agapt <- function(counts, start_cells) {
+run_agapt <- function(expression, start_cells) {
   invoke(run_aga, environment())
 }
 formals(run_agapt) <- c(
