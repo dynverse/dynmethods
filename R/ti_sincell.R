@@ -89,7 +89,7 @@ run_sincell <- function(
   gr <- SO$cellstateHierarchy
   deg <- igraph::degree(gr)
   prev_deg <- deg * 0
-  while (mean(deg <= 1) > pct_leaf_node_cutoff && any(deg != prev_deg)) {
+  while (length(deg) > 10 && mean(deg <= 1) > pct_leaf_node_cutoff && any(deg != prev_deg)) {
     del_v <- names(which(deg == 1))
     cat("Removing ", length(del_v), " vertices with degree 1\n", sep = "")
     gr <- igraph::delete_vertices(gr, del_v)
