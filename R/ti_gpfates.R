@@ -33,6 +33,11 @@ run_gpfates <- function(
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
+  # if the dataset is cyclic, pretend it isn't
+  if (n_end_states == 0) {
+    n_end_states <- 1
+  }
+
   gp_out <- GPfates::GPfates(
     counts = counts,
     nfates = n_end_states,

@@ -41,6 +41,11 @@ run_scoup <- function(
 ) {
   requireNamespace("SCOUP")
 
+  # if the dataset is cyclic, pretend it isn't
+  if (n_end_states == 0) {
+    n_end_states <- 1
+  }
+
   start_cell <- sample(start_cells, 1)
   # figure out indices of starting population
   # from the grouping_assignment and the start_cell
