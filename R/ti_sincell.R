@@ -1,7 +1,7 @@
 #' Description for sincell
 #' @export
 description_sincell <- function() create_description(
-  name = "sincell",
+  name = "Sincell",
   short_name = "sincell",
   package_loaded = c(),
   package_required = c("sincell"),

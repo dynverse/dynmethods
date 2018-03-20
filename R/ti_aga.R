@@ -15,14 +15,18 @@ abstract_aga_description <- function(method) {
     makeLogicalParam(id = "tree_based_confidence", default = TRUE)
   )
 
-  run_fun <- switch(
+  run_fun <- run_aga
+  if (method == "agapt") {
+    formals(run_fun)$start_cells <- formals(run_fun)$counts
+  }
+  name <- switch(
     method,
-    aga = run_aga,
-    agapt = run_agapt
+    aga = "AGA",
+    agapt = "AGA pseudotime"
   )
 
   create_description(
-    name = ifelse(method == "aga", "AGA", "AGA pseudotime"),
+    name = name,
     short_name = method,
     package_loaded = c(),
     package_required = c("aga"),
@@ -36,15 +40,15 @@ abstract_aga_description <- function(method) {
 ## TODO: handle start cells (see below)
 run_aga <- function(
   counts,
-  grouping_assignment=NULL,
-  start_cells=NULL,
+  start_cells = NULL,
+  grouping_assignment = NULL,
   n_neighbours = 30,
   n_pcs = 50,
   n_dcs = 10,
   resolution = 1,
   tree_based_confidence = TRUE,
-  verbose=FALSE,
-  num_cores=1
+  verbose = FALSE,
+  num_cores = 1
 ) {
   requireNamespace("aga")
 
@@ -164,7 +168,7 @@ run_aga <- function(
       mutate(flip = map2(from, to, ~diff(match(c(.x, .y), branch_order)) < 0)) %>%
       mutate(
         from = ifelse(flip, to_original, from_original),
-        to = ifelse(flip, from_original, to_original),
+        to = ifelse(flip, from_original, to_original)
       ) %>%
       select(from, to)
 
@@ -225,14 +229,6 @@ run_aga <- function(
       tl %>% add_timing_checkpoint("method_afterpostproc")
     )
 }
-
-run_agapt <- function(counts, start_cells) {
-  invoke(run_aga, environment())
-}
-formals(run_agapt) <- c(
-  formals(run_agapt),
-  formals(run_aga)[!names(formals(run_aga)) %in% names(formals(run_agapt))]
-)
 
 
 plot_aga <- function(prediction) {

@@ -46,7 +46,7 @@ abstract_monocle_description <- function(short_name) {
   )
 
   create_description(
-    name = pritt("monocle with {reduction_method}"),
+    name = pritt("Monocle {reduction_method}"),
     short_name = short_name,
     package_loaded = c("monocle"),
     package_required = c("BiocGenerics", "igraph", "Biobase"),

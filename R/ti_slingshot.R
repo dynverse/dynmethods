@@ -1,7 +1,7 @@
 #' Description for slingshot
 #' @export
 description_slngsht <- function() create_description(
-  name = "slingshot",
+  name = "Slingshot",
   short_name = "slngsht",
   package_loaded = c(),
   package_required = c("slingshot"),

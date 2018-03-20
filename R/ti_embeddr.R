@@ -1,7 +1,7 @@
 #' Description for Embeddr
 #' @export
 description_embeddr <- function() create_description(
-  name = "embeddr",
+  name = "Embeddr",
   short_name = "embeddr",
   package_loaded = c(),
   package_required = c("scaterlegacy", "embeddr"),
