@@ -50,6 +50,7 @@ Suggests:
   dyntoy,
   embeddr,
   fastICA,
+  GNG,
   GPfates,
   lle,
   MASS,
@@ -115,5 +116,6 @@ Remotes:
   kieranrcampbell/ouija,
   kieranrcampbell/phenopath,
   kstreet13/slingshot,
+  rcannood/GNG,
   rcannood/SCORPIUS
 
