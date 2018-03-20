@@ -32,20 +32,19 @@ run_gng <- function(
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
+  # perform dimensionality reduction
   space <- list_dimred_methods()[[dimred]](expression, ndim)
 
+  # calculate GNG
   gng_out <- GNG::gng(
     space,
     max_iter = max_iter,
     max_nodes = max_nodes,
     assign_cluster = FALSE
   )
-
   node_dist <- stats::dist(gng_out$node_space) %>% as.matrix
 
-  # TIMING: done with method
-  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
-
+  # transform to milestone network
   node_names <- gng_out$nodes %>% mutate(name = as.character(name))
   milestone_network <- gng_out$edges %>%
     left_join(node_names %>% select(i = index, from = name), by = "i") %>%
@@ -56,10 +55,14 @@ run_gng <- function(
     ) %>%
     select(from, to, length, directed)
 
+  # apply MST, if required
   if (apply_mst) {
     gr <- igraph::graph_from_data_frame(milestone_network, directed = F, vertices = node_names$name)
     milestone_network <- igraph::minimum.spanning.tree(gr, weights = igraph::E(gr)$length) %>% igraph::as_data_frame()
   }
+
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # return output
   wrap_prediction_model(
