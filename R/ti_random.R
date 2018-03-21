@@ -17,13 +17,15 @@ description_random <- function() create_description(
 )
 
 run_random <- function(counts, dummy_param = .5) {
+  num_milestones <- 50
+
   # generate network
-  milestone_ids <- paste0("milestone_", seq_len(10))
+  milestone_ids <- paste0("milestone_", seq_len(num_milestones))
 
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
-  gr <- igraph::ba.game(10)
+  gr <- igraph::ba.game(num_milestones)
   milestone_network <- igraph::as_data_frame(gr) %>%
     mutate(
       from = paste0("milestone_", from),
