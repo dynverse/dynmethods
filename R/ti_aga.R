@@ -17,7 +17,7 @@ abstract_aga_description <- function(method) {
 
   run_fun <- run_aga
   if (method == "agapt") {
-    formals(run_fun)$start_cells <- formals(run_fun)$counts
+    formals(run_fun)$start_cells <- formals(run_fun)$expression
   }
   name <- switch(
     method,
@@ -39,7 +39,7 @@ abstract_aga_description <- function(method) {
 
 ## TODO: handle start cells (see below)
 run_aga <- function(
-  counts,
+  expression,
   start_cells = NULL,
   grouping_assignment = NULL,
   n_neighbours = 30,
@@ -64,7 +64,7 @@ run_aga <- function(
   }
 
   aga_out <- aga::aga(
-    counts = counts,
+    counts = expression,
     start_cell = start_cell,
     grouping_assignment = grouping_assignment,
     n_neighbours = n_neighbours,
@@ -80,7 +80,7 @@ run_aga <- function(
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # Reformat everything into milestone_network and milestone_percentages
-  cell_ids <- rownames(counts)
+  cell_ids <- rownames(expression)
 
   if(is.null(start_cells)) {
     milestone_percentages <- tibble(
@@ -167,7 +167,7 @@ run_aga <- function(
     distinct()
 
   wrap_prediction_model(
-    cell_ids = rownames(counts)
+    cell_ids = rownames(expression)
   ) %>% add_trajectory_to_wrapper(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
@@ -205,12 +205,12 @@ plot_aga <- function(prediction) {
   )
   layout %>%
     ggraph::ggraph() +
-      ggraph::geom_edge_link(aes(edge_linetype = edge_type, alpha=edge_type)) +
-      ggraph::geom_edge_link(aes(x=x+(xend-x)/2, y=y+(yend-y)/2, xend = x+(xend-x)/1.999, yend=y+(yend-y)/1.999), arrow=arrow(length=unit(0.1, "inches"))) +
-      ggraph::scale_edge_linetype_manual(values=c(tree="solid", full="longdash", attached="dashed")) +
-      ggraph::scale_edge_alpha_manual(values=c(tree=1, full=1, attached=0.5)) +
-      ggraph::geom_node_point(aes(color = name), size=10) +
-      geom_text(aes(x, y, label=name), size=8) +
-      ggraph::theme_graph() +
-      theme(legend.position = "none")
+    ggraph::geom_edge_link(aes(edge_linetype = edge_type, alpha=edge_type)) +
+    ggraph::geom_edge_link(aes(x=x+(xend-x)/2, y=y+(yend-y)/2, xend = x+(xend-x)/1.999, yend=y+(yend-y)/1.999), arrow=arrow(length=unit(0.1, "inches"))) +
+    ggraph::scale_edge_linetype_manual(values=c(tree="solid", full="longdash", attached="dashed")) +
+    ggraph::scale_edge_alpha_manual(values=c(tree=1, full=1, attached=0.5)) +
+    ggraph::geom_node_point(aes(color = name), size=10) +
+    geom_text(aes(x, y, label=name), size=8) +
+    ggraph::theme_graph() +
+    theme(legend.position = "none")
 }
