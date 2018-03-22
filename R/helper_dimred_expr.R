@@ -25,9 +25,9 @@ process_dimred <- function(space, rn) {
   space
 }
 
-
 dimred_pca <- function(x, ndim = 3) {
-  space <- prcomp(t(x))$rotation[,seq_len(ndim)]
+  requireNamespace("stats")
+  space <- stats::prcomp(x)$x[,seq_len(ndim)]
   process_dimred(space, rownames(x))
 }
 
