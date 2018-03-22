@@ -54,7 +54,7 @@ run_ouija <- function(
     setNames(rownames(expression))
 
   # run pca for visualisation purposes
-  space <- stats::prcomp(expression)$x[,1:2]
+  space <- dimred(expression, method = "pca", ndim = 2)
 
   # extract data for visualisation
   # adapted from ouija::plot_switch_times(oui)
@@ -88,7 +88,7 @@ plot_ouija <- function(prediction) {
     mutate(pseudotime = prediction$pseudotimes[cell_id])
 
   g <- ggplot(space) +
-    geom_point(aes(PC1, PC2, colour = pseudotime)) +
+    geom_point(aes(Comp1, Comp2, colour = pseudotime)) +
     viridis::scale_colour_viridis() +
     labs(colour = "Pseudotime") +
     theme(legend.position = c(.92, .12))

@@ -19,7 +19,6 @@ description_mfa <- function() create_description(
   plot_fun = plot_mfa
 )
 
-#' @importFrom stats prcomp
 run_mfa <- function(
   expression,
   b = 2,
@@ -73,7 +72,7 @@ run_mfa <- function(
   ))
 
   # pca for visualisation only
-  pca_out <- stats::prcomp(expression)$x[,1:2]
+  pca_out <- dimred(expression, method = "pca", ndim = 2)
 
   # return output
   wrap_prediction_model(
@@ -100,7 +99,7 @@ plot_mfa <- function(prediction) {
     prediction$cell_info
   )
   g <- ggplot() +
-    geom_point(aes(PC1, PC2, colour = branch), df) +
+    geom_point(aes(Comp1, Comp2, colour = branch), df) +
     labs(colour = "Branch") +
     theme(legend.position = c(.92, .1))
   process_dynplot(g, prediction$id)

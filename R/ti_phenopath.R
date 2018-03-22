@@ -16,7 +16,6 @@ description_phenopth <- function() create_description(
   plot_fun = plot_phenopath
 )
 
-#' @importFrom stats prcomp
 run_phenopath <- function(
   expression,
   thin = 40,
@@ -46,7 +45,7 @@ run_phenopath <- function(
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # run pca for visualisation purposes
-  space <- stats::prcomp(expression)$x[,1:2]
+  space <- dimred(expression, method = "pca", ndim = 2)
 
   # return output
   wrap_prediction_model(
@@ -67,7 +66,7 @@ plot_phenopath <- function(prediction) {
     rownames_to_column("cell_id") %>%
     mutate(pseudotime = prediction$pseudotimes[cell_id])
   g <- ggplot(space) +
-    geom_point(aes(PC1, PC2, colour = pseudotime)) +
+    geom_point(aes(Comp1, Comp2, colour = pseudotime)) +
     viridis::scale_colour_viridis() +
     labs(colour = "Pseudotime") +
     theme(legend.position = c(.92, .12))

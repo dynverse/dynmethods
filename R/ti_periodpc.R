@@ -26,7 +26,7 @@ run_periodpc <- function(
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
   # perform PCA dimred
-  dimred <- stats::prcomp(expression)$x[,seq_len(ndim)]
+  dimred <- dimred(expression, method = "pca", ndim = ndim)
 
   # apply principal curve with periodic lowess smoother
   fit <- princurve::principal.curve(dimred, smoother = "periodic.lowess", maxit = maxit)
@@ -62,7 +62,7 @@ plot_periodpc <- function(prediction) {
   dimred_df <- data.frame(prediction$dimred)
   seg_df <- data.frame(prediction$dimred_trajectory_segments)
   g <- ggplot() +
-    geom_point(aes(PC1, PC2), dimred_df) +
-    geom_segment(aes(x = from_PC1, xend = to_PC1, y = from_PC2, yend = to_PC2), seg_df, colour = "darkgray")
+    geom_point(aes(Comp1, Comp2), dimred_df) +
+    geom_segment(aes(x = from_Comp1, xend = to_Comp1, y = from_Comp2, yend = to_Comp2), seg_df, colour = "darkgray")
   process_dynplot(g, prediction$id)
 }
