@@ -24,7 +24,7 @@ run_atan <- function(
   space <- dimred(expression, method = dimred, ndim = 2)
 
   # transform to pseudotimes using atan2
-  pseudotimes <- atan2(dimred[,2], dimred[,1]) / 2 / pi + .5
+  pseudotimes <- atan2(space[,2], space[,1]) / 2 / pi + .5
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
@@ -36,7 +36,7 @@ run_atan <- function(
     pseudotimes = pseudotimes,
     do_scale_minmax = FALSE
   ) %>% add_dimred_to_wrapper(
-    dimred = dimred
+    dimred = space
   ) %>% add_timings_to_wrapper(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
