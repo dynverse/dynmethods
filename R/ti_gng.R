@@ -33,7 +33,7 @@ run_gng <- function(
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
   # perform dimensionality reduction
-  space <- list_dimred_methods()[[dimred]](expression, ndim)
+  space <- dimred(expression, method = dimred, ndim = ndim)
 
   # calculate GNG
   gng_out <- GNG::gng(

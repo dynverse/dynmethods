@@ -37,8 +37,7 @@ run_pseudogp <- function(
   requireNamespace("MCMCglmm")
 
   # perform dimreds
-  spaces <- list_dimred_methods()[dimreds] %>%
-    map(~.(expression, 2)) # only 2 dimensions per dimred are allowed
+  spaces <- map(dimreds, ~ dimred(expression, method = ., ndim = 2)) # only 2 dimensions per dimred are allowed
 
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")

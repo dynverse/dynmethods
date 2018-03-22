@@ -21,7 +21,7 @@ run_acos <- function(
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
   # perform PCA dimred
-  dimred <- list_dimred_methods()[[dimred]](expression, 2)
+  space <- dimred(expression, method = dimred, ndim = 2)
 
   pseudotimes <- acos(dimred[,1] / sqrt(rowSums(dimred^2))) / (2 * pi)
 
