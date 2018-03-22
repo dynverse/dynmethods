@@ -15,10 +15,12 @@ abstract_aga_description <- function(method) {
     makeLogicalParam(id = "tree_based_confidence", default = TRUE)
   )
 
-  run_fun <- run_aga
-  if (method == "agapt") {
-    formals(run_fun)$start_cells <- formals(run_fun)$expression
-  }
+  run_fun <- switch(
+    method,
+    aga = run_aga,
+    agapt = run_agapt
+  )
+
   name <- switch(
     method,
     aga = "AGA",
@@ -39,7 +41,6 @@ abstract_aga_description <- function(method) {
 
 run_aga <- function(
   expression,
-  start_cells = NULL,
   grouping_assignment = NULL,
   n_neighbours = 30,
   n_pcs = 50,
@@ -55,12 +56,70 @@ run_aga <- function(
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
-  # sample one start cell, if any are given
-  if (!is.null(start_cells)) {
-    start_cell <- sample(start_cells, 1)
-  } else {
-    start_cell <- NULL
-  }
+  aga_out <- aga::aga(
+    counts = expression,
+    start_cell = NULL,
+    grouping_assignment = grouping_assignment,
+    n_neighbours = n_neighbours,
+    n_pcs = n_pcs,
+    n_dcs = n_dcs,
+    resolution = resolution,
+    tree_based_confidence = tree_based_confidence,
+    verbose = verbose,
+    num_cores = num_cores
+  )
+
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+
+  # Reformat everything into milestone_network and milestone_percentages
+  cell_ids <- rownames(expression)
+
+  milestone_assignment_cells <- setNames(aga_out$obs$group_id, aga_out$obs$cell_id)
+
+  milestone_network <- aga_out$adj %>%
+    mutate_at(vars(from, to), as.character) %>%
+    filter(aga_adjacency_tree_confidence > 0) %>%
+    mutate(
+      length = 1,
+      directed = TRUE
+    ) %>%
+    select(from, to, length, directed)
+
+  milestone_ids <- sort(unique(milestone_assignment_cells))
+
+  wrap_prediction_model(
+    cell_ids = rownames(expression)
+  ) %>% add_cluster_graph_to_wrapper(
+    milestone_ids = milestone_ids,
+    milestone_network = milestone_network,
+    milestone_assignment_cells = milestone_assignment_cells,
+    aga_out = aga_out
+  ) %>% add_timings_to_wrapper(
+    tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
+}
+
+run_agapt <- function(
+  expression,
+  start_cells,
+  grouping_assignment = NULL,
+  n_neighbours = 30,
+  n_pcs = 50,
+  n_dcs = 10,
+  resolution = 1,
+  tree_based_confidence = TRUE,
+  verbose = FALSE,
+  num_cores = 1
+) {
+  requireNamespace("aga")
+  requireNamespace("igraph")
+
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
+  # sample one start cell
+  start_cell <- sample(start_cells, 1)
 
   aga_out <- aga::aga(
     counts = expression,
@@ -81,80 +140,62 @@ run_aga <- function(
   # Reformat everything into milestone_network and milestone_percentages
   cell_ids <- rownames(expression)
 
-  if(is.null(start_cells)) {
-    milestone_percentages <- tibble(
-      cell_id = aga_out$obs$cell_id,
-      milestone_id = aga_out$obs$group_id,
-      percentage = 1
-    )
-    milestone_network <- aga_out$adj %>%
-      mutate_at(vars(from, to), as.character) %>%
-      filter(aga_adjacency_tree_confidence > 0) %>%
-      mutate(
-        length = 1,
-        directed = TRUE
-      ) %>%
-      select(from, to, length, directed)
+  # create network between branches
+  branch_network <- aga_out$adj %>%
+    mutate_at(vars(from, to), as.character) %>%
+    filter(aga_adjacency_tree_confidence > 0) %>%
+    select(from, to)
 
-    milestone_ids <- unique(c(milestone_network$from, milestone_network$to, milestone_percentages$milestone_id))
-  } else {
-    # create network between branches
-    branch_network <- aga_out$adj %>%
-      mutate_at(vars(from, to), as.character) %>%
-      filter(aga_adjacency_tree_confidence > 0) %>%
-      select(from, to)
+  # determine order of branches, based on location of root cell
+  branch_graph <- igraph::graph_from_data_frame(branch_network)
+  branch_order <- igraph::dfs(
+    branch_graph,
+    aga_out$obs %>%
+      filter(cell_id == start_cells[[1]]) %>%
+      pull(group_id)
+  )$order %>%
+    names()
 
-    # determine order of branches, based on location of root cell
-    branch_graph <- igraph::graph_from_data_frame(branch_network)
-    branch_order <- igraph::dfs(
-      branch_graph,
-      aga_out$obs %>%
-        filter(cell_id == start_cells[[1]]) %>%
-        pull(group_id)
-    )$order %>%
-      names()
+  # now flip order of branch network if from branch is later than to branch
+  branch_network <- branch_network %>%
+    mutate(from_original = from, to_original = to) %>%
+    mutate(flip = map2(from, to, ~diff(match(c(.x, .y), branch_order)) < 0)) %>%
+    mutate(
+      from = ifelse(flip, to_original, from_original),
+      to = ifelse(flip, from_original, to_original)
+    ) %>%
+    select(from, to)
 
-    # now flip order of branch network if from branch is later than to branch
-    branch_network <- branch_network %>%
-      mutate(from_original = from, to_original = to) %>%
-      mutate(flip = map2(from, to, ~diff(match(c(.x, .y), branch_order)) < 0)) %>%
-      mutate(
-        from = ifelse(flip, to_original, from_original),
-        to = ifelse(flip, from_original, to_original)
-      ) %>%
-      select(from, to)
+  # now create milestone network by giving each branch an edge, and adding a zero-length edge between each branch
+  branch_ids <- unique(c(branch_network$from, branch_network$to, aga_out$obs$louvain_groups))
 
-    # now create milestone network by giving each branch an edge, and adding a zero-length edge between each branch
-    branch_ids <- unique(c(branch_network$from, branch_network$to, aga_out$obs$louvain_groups))
+  milestone_network <- bind_rows(
+    tibble(
+      from = paste0(branch_ids, "_from"),
+      to = paste0(branch_ids, "_to"),
+      length = 1,
+      directed = TRUE
+    ),
+    branch_network %>% mutate(from = paste0(from, "_to"), to = paste0(to, "_from"), length=0, directed=TRUE)
+  )
 
-    milestone_network <- bind_rows(
-      tibble(
-        from = paste0(branch_ids, "_from"),
-        to = paste0(branch_ids, "_to"),
-        length = 1,
-        directed = TRUE
-      ),
-      branch_network %>% mutate(from = paste0(from, "_to"), to = paste0(to, "_from"), length=0, directed=TRUE)
-    )
+  progressions <- aga_out$obs %>%
+    mutate(from = paste0(group_id, "_from"), to = paste0(group_id, "_to")) %>%
+    group_by(group_id) %>%
+    mutate(percentage = dynutils::scale_minmax(aga_pseudotime)) %>%
+    ungroup()
 
-    progressions <- aga_out$obs %>%
-      mutate(from = paste0(group_id, "_from"), to = paste0(group_id, "_to")) %>%
-      group_by(group_id) %>%
-      mutate(percentage = dynutils::scale_minmax(aga_pseudotime)) %>%
-      ungroup()
+  progressions <- progressions %>%
+    select(cell_id, from, to, percentage)
 
-    progressions <- progressions %>%
-      select(cell_id, from, to, percentage)
+  milestone_ids <- unique(c(milestone_network$from, milestone_network$to, progressions$from, progressions$to))
 
-    milestone_ids <- unique(c(milestone_network$from, milestone_network$to, progressions$from, progressions$to))
-
-    milestone_percentages <- dynwrap::convert_progressions_to_milestone_percentages(
-      cell_ids,
-      milestone_ids,
-      milestone_network,
-      progressions
-    )
-  }
+  milestone_percentages <- dynwrap::convert_progressions_to_milestone_percentages(
+    cell_ids,
+    milestone_ids,
+    milestone_network,
+    progressions
+  )
 
   divergence_regions <- milestone_network %>%
     group_by(from) %>%
