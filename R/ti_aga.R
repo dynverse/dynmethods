@@ -37,7 +37,6 @@ abstract_aga_description <- function(method) {
   )
 }
 
-## TODO: handle start cells (see below)
 run_aga <- function(
   expression,
   start_cells = NULL,
