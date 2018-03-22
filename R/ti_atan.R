@@ -46,7 +46,7 @@ run_atan <- function(
 plot_atan <- function(prediction) {
   dimred_df <- data.frame(prediction$dimred, pseudotime = cos(prediction$pseudotimes * 2 * pi))
   g <- ggplot() +
-    geom_point(aes(PC1, PC2, colour = pseudotime), dimred_df) +
+    geom_point(aes(Comp1, Comp2, colour = pseudotime), dimred_df) +
     viridis::scale_color_viridis()
   process_dynplot(g, prediction$id)
 }
