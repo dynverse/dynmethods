@@ -20,7 +20,7 @@ run_compone <- function(
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
-  space <- dimred(expression, method = dimred, ndim = ndim)
+  space <- dimred(expression, method = dimred, ndim = 2)
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
