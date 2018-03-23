@@ -1,6 +1,6 @@
 #' Run a method on a set of tasks with a set of parameters
-#' @param tasks The tasks on which to evaluate.
-#' @param method The method to evaluate.
+#' @param tasks Datasets containing single-cell expression data.
+#' @param method The method to execute.
 #' @param parameters The parameters to evaluate with.
 #' @param give_priors All the priors a method is allowed to receive. Must be a subset of: \code{"start_milestones"},
 #'  \code{"start_cells"}, \code{"end_milestones"}, \code{"end_cells"}, \code{"grouping_assignment"} and \code{"grouping_network"}
@@ -11,6 +11,7 @@
 #' @importFrom readr read_file
 #' @importFrom stringr str_length
 #' @importFrom parallel mclapply
+#' @importFrom testthat expect_true
 #' @export
 execute_method <- function(
   tasks,
@@ -30,6 +31,9 @@ execute_method <- function(
     cat("Executing ", method$name, " on ", task_str, " with parameters: [", prm_str, "]\n", sep = "")
   }
 
+  # test whether the method is truely a method
+  testthat::expect_true(is_description(method))
+
   # Run method on each task
   parallel::mclapply(seq_len(nrow(tasks)), mc.cores = mc_cores, function(i) {
     # start the timer
@@ -37,6 +41,10 @@ execute_method <- function(
 
     # get the task
     task <- dynutils::extract_row_to_list(tasks, i)
+
+    # test whether the task is truely a task
+    testthat::expect_true(is_data_wrapper(task))
+    testthat::expect_true(is_wrapper_with_expression(task))
 
     # find out a method's required params (counts, expression, or any prior information)
     required_params <- formals(method$run_fun) %>%

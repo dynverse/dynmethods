@@ -8,10 +8,21 @@ wrap_prediction_model <- function(
   cell_info = NULL,
   ...
 ) {
-  wrap_data(
+  out <- wrap_data(
     id = random_time_string("TIpred"),
     cell_ids = cell_ids,
     cell_info = cell_info,
     ...
   )
+  class(out) <- c("dynmethod::prediction", class(out))
+  out
+}
+
+#' Tests whether an object is a trajectory created by a TI method.
+#'
+#' @param object The object to be tested
+#'
+#' @export
+is_prediction <- function(object) {
+  "dynmethod::prediction" %in% class(object)
 }

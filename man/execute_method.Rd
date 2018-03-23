@@ -8,9 +8,9 @@ execute_method(tasks, method, parameters, give_priors = NULL, mc_cores = 1,
   verbose = FALSE)
 }
 \arguments{
-\item{tasks}{The tasks on which to evaluate.}
+\item{tasks}{Datasets containing single-cell expression data.}
 
-\item{method}{The method to evaluate.}
+\item{method}{The method to execute.}
 
 \item{parameters}{The parameters to evaluate with.}
 
