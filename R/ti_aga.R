@@ -57,7 +57,7 @@ run_aga <- function(
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
   aga_out <- aga::aga(
-    counts = expression,
+    expression = expression,
     start_cell = NULL,
     grouping_assignment = grouping_assignment,
     n_neighbours = n_neighbours,
