@@ -27,7 +27,7 @@ before_install:
  - pip3 -V
 install:
  - sudo pip3 install --upgrade --only-binary=numpy,scipy numpy scipy
- - sudo pip3 install --upgrade matplotlib pandas six jinja2 python-dateutil pytz pyparsing cycler tqdm python-igraph Cython statsmodels sklearn seaborn
+ - sudo pip3 install --upgrade matplotlib pandas six jinja2 python-dateutil pytz pyparsing cycler tqdm python-igraph Cython statsmodels sklearn seaborn h5py anndata
  - R -e 'install.packages("devtools")'
  - R -e 'setRepositories(ind = 1:2)'
  - R -e 'devtools::install(dependencies = T, upgrade = T)'
