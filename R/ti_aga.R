@@ -124,7 +124,7 @@ run_agapt <- function(
   start_cell <- sample(start_cells, 1)
 
   aga_out <- aga::aga(
-    counts = expression,
+    expression = expression,
     start_cell = start_cell,
     grouping_assignment = grouping_assignment,
     n_neighbours = n_neighbours,
