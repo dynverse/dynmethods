@@ -32,7 +32,7 @@ create_description <- function(
 
     formals(run_fun)[names(default_params)] <- default_params
   }
-  lst(
+  desc <- lst(
     name,
     short_name,
     package_loaded,
@@ -42,4 +42,15 @@ create_description <- function(
     run_fun,
     plot_fun
   )
+  class(desc) <- c("dynmethod::description", class(desc))
+  desc
+}
+
+#' Tests whether an object is a TI method description
+#'
+#' @param object The object to be tested
+#'
+#' @export
+is_description <- function(object) {
+  "dynmethod::description" %in% class(object)
 }
