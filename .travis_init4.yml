@@ -18,10 +18,15 @@ addons:
       - libudunits2-dev
       - libblas-dev
       - liblapack-dev
+before_install:
+ - sudo apt-get -y install python3-pip
+ - sudo pip3 install --upgrade pip setuptools wheel
+ - python3 -V
+ - pip3 -V
 install:
+ - sudo pip3 install --upgrade --only-binary=numpy,scipy numpy scipy
+ - sudo pip3 install --upgrade matplotlib pandas six jinja2 python-dateutil pytz pyparsing cycler tqdm python-igraph Cython statsmodels sklearn seaborn h5py anndata
  - R -e 'install.packages("devtools")'
-
  - R -e 'setRepositories(ind = 1:2)'
- - R -e 'devtools::install_github(c("dynverse/StemID", "dynverse/topslam", "dynverse/Waterfall", "dynverse/Wishbone", "igraph/rigraph", "kieranrcampbell/pseudogp", "kieranrcampbell/mfa", "kieranrcampbell/ouija", "kieranrcampbell/phenopath", "kstreet13/slingshot"))'
- - R -e 'devtools::install()'
+ - R -e 'devtools::install(dep = T, upgr = T)'
 r_check_args: "--no-tests --no-manual --no-vignettes --no-build-vignettes"
