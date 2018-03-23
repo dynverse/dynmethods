@@ -72,22 +72,24 @@ run_aga <- function(
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
-  # Reformat everything into milestone_network and milestone_percentages
+  # After building a kNN graph (not shown), the kNN graph is clustered into louvain groups:
   cell_ids <- rownames(expression)
-
   milestone_assignment_cells <- setNames(aga_out$obs$group_id, aga_out$obs$cell_id)
 
+  # Several tests are used to assess which transitions exist between the louvain groups.
+  # We use the `aga_adjacency_tree_confidence` to construct the milestone network.
   milestone_network <- aga_out$adj %>%
     mutate_at(vars(from, to), as.character) %>%
     filter(aga_adjacency_tree_confidence > 0) %>%
     mutate(
       length = 1,
-      directed = TRUE
+      directed = FALSE
     ) %>%
     select(from, to, length, directed)
 
   milestone_ids <- sort(unique(milestone_assignment_cells))
 
+  # Wrap the output
   wrap_prediction_model(
     cell_ids = rownames(expression)
   ) %>% add_cluster_graph_to_wrapper(
