@@ -86,7 +86,7 @@ out$summary %>% knitr::kable()
 
 | method\_name | method\_short\_name | task\_id     |  time\_sessionsetup|  time\_preprocessing|  time\_method|  time\_postprocessing|  time\_wrapping|  time\_sessioncleanup| error |  num\_files\_created|  num\_setseed\_calls| prior\_df                                                   |
 |:-------------|:--------------------|:-------------|-------------------:|--------------------:|-------------:|---------------------:|---------------:|---------------------:|:------|--------------------:|--------------------:|:------------------------------------------------------------|
-| Arc-tangent  | atan                | toy/cycle\_2 |           0.0132666|             3.65e-05|      0.003264|             0.1931798|       0.0001848|             0.0005691| NULL  |                    0|                    0| list(prior\_type = logical(0), prior\_names = character(0)) |
+| Arc-tangent  | atan                | toy/cycle\_2 |           0.0020926|             2.38e-05|     0.0030949|             0.0384302|       0.0001853|             0.0006635| NULL  |                    0|                    0| list(prior\_type = logical(0), prior\_names = character(0)) |
 
 ``` r
 model <- out$model 
