@@ -40,9 +40,15 @@ df <- list.files("R", pattern = "ti_", full.names = T) %>%
   }) %>% 
   arrange(long_name) %>% 
   mutate(
-    url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{file}#L{line_number}"),
-    label = glue::glue("- [{long_name}]({url})")
+    code_label = glue::glue("{file}#L{line_number}"),
+    code_url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{code_label}"),
+    Code = glue::glue("[{code_label}]({code_url})"),
+    vignette_label = glue::glue("{short_name}.md"),
+    vignette_relpath = glue::glue("inst/doc/{vignette_label}"),
+    vignette_url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{vignette_relpath}"),
+    Vignette = ifelse(file.exists(vignette_relpath), glue::glue("[{vignette_label}]({vignette_url})"), "")
   )
-df$label %>% paste(collapse = "\n", sep = "") %>% cat(., "\n", sep = "")
+
+knitr::kable(df %>% select(Name = long_name, Code, Vignette))
 
 ```

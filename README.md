@@ -9,40 +9,42 @@ This package contains wrappers for all of the trajectory inference methods inclu
 
 Currently implemented are the following wrappers:
 
--   [AGA](https://github.com/dynverse/dynmethods/blob/master/R/ti_aga.R#L3)
--   [AGA pseudotime](https://github.com/dynverse/dynmethods/blob/master/R/ti_aga.R#L7)
--   [Arc-tangent](https://github.com/dynverse/dynmethods/blob/master/R/ti_atan.R#L3)
--   [cellTree with gibbs](https://github.com/dynverse/dynmethods/blob/master/R/ti_celltree.R#L7)
--   [cellTree with maptpx](https://github.com/dynverse/dynmethods/blob/master/R/ti_celltree.R#L3)
--   [cellTree with vem](https://github.com/dynverse/dynmethods/blob/master/R/ti_celltree.R#L11)
--   [Component 1](https://github.com/dynverse/dynmethods/blob/master/R/ti_comp1.R#L3)
--   [Control: identity](https://github.com/dynverse/dynmethods/blob/master/R/ti_identity.R#L6)
--   [Control: manual](https://github.com/dynverse/dynmethods/blob/master/R/ti_manual.R#L6)
--   [Control: random](https://github.com/dynverse/dynmethods/blob/master/R/ti_random.R#L6)
--   [Control: shuffle](https://github.com/dynverse/dynmethods/blob/master/R/ti_shuffle.R#L6)
--   [DPT](https://github.com/dynverse/dynmethods/blob/master/R/ti_dpt.R#L3)
--   [Embeddr](https://github.com/dynverse/dynmethods/blob/master/R/ti_embeddr.R#L3)
--   [GPfates](https://github.com/dynverse/dynmethods/blob/master/R/ti_gpfates.R#L3)
--   [Growing Neural Gas](https://github.com/dynverse/dynmethods/blob/master/R/ti_gng.R#L3)
--   [mfa](https://github.com/dynverse/dynmethods/blob/master/R/ti_mfa.R#L3)
--   [Monocle DDRTree](https://github.com/dynverse/dynmethods/blob/master/R/ti_monocle.R#L3)
--   [Monocle ICA](https://github.com/dynverse/dynmethods/blob/master/R/ti_monocle.R#L7)
--   [Mpath](https://github.com/dynverse/dynmethods/blob/master/R/ti_mpath.R#L3)
--   [ouija](https://github.com/dynverse/dynmethods/blob/master/R/ti_ouija.R#L3)
--   [ouijaflow](https://github.com/dynverse/dynmethods/blob/master/R/ti_ouijaflow.R#L3)
--   [Periodic PrinCurve](https://github.com/dynverse/dynmethods/blob/master/R/ti_periodpc.R#L3)
--   [PhenoPath](https://github.com/dynverse/dynmethods/blob/master/R/ti_phenopath.R#L3)
--   [pseudogp](https://github.com/dynverse/dynmethods/blob/master/R/ti_pseudogp.R#L3)
--   [recat](https://github.com/dynverse/dynmethods/blob/master/R/ti_recat.R#L3)
--   [SCIMITAR](https://github.com/dynverse/dynmethods/blob/master/R/ti_scimitar.R#L3)
--   [SCORPIUS](https://github.com/dynverse/dynmethods/blob/master/R/ti_scorpius.R#L3)
--   [SCOUP](https://github.com/dynverse/dynmethods/blob/master/R/ti_scoup.R#L3)
--   [SCUBA](https://github.com/dynverse/dynmethods/blob/master/R/ti_scuba.R#L3)
--   [Sincell](https://github.com/dynverse/dynmethods/blob/master/R/ti_sincell.R#L3)
--   [SLICE](https://github.com/dynverse/dynmethods/blob/master/R/ti_slice.R#L3)
--   [SLICER](https://github.com/dynverse/dynmethods/blob/master/R/ti_slicer.R#L3)
--   [Slingshot](https://github.com/dynverse/dynmethods/blob/master/R/ti_slingshot.R#L3)
--   [StemID](https://github.com/dynverse/dynmethods/blob/master/R/ti_stemid.R#L3)
--   [topslam](https://github.com/dynverse/dynmethods/blob/master/R/ti_topslam.R#L3)
--   [TSCAN](https://github.com/dynverse/dynmethods/blob/master/R/ti_tscan.R#L3)
--   [Waterfall](https://github.com/dynverse/dynmethods/blob/master/R/ti_waterfall.R#L3)
+| Name                 | Code                                                                                            | Vignette                                                                         |
+|:---------------------|:------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|
+| AGA                  | [R/ti\_aga.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_aga.R#L3)             | [aga.md](https://github.com/dynverse/dynmethods/blob/master/inst/doc/aga.md)     |
+| AGA pseudotime       | [R/ti\_aga.R\#L7](https://github.com/dynverse/dynmethods/blob/master/R/ti_aga.R#L7)             | [agapt.md](https://github.com/dynverse/dynmethods/blob/master/inst/doc/agapt.md) |
+| Arc-tangent          | [R/ti\_atan.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_atan.R#L3)           |                                                                                  |
+| cellTree with gibbs  | [R/ti\_celltree.R\#L7](https://github.com/dynverse/dynmethods/blob/master/R/ti_celltree.R#L7)   |                                                                                  |
+| cellTree with maptpx | [R/ti\_celltree.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_celltree.R#L3)   |                                                                                  |
+| cellTree with vem    | [R/ti\_celltree.R\#L11](https://github.com/dynverse/dynmethods/blob/master/R/ti_celltree.R#L11) |                                                                                  |
+| Component 1          | [R/ti\_comp1.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_comp1.R#L3)         |                                                                                  |
+| Control: identity    | [R/ti\_identity.R\#L6](https://github.com/dynverse/dynmethods/blob/master/R/ti_identity.R#L6)   |                                                                                  |
+| Control: manual      | [R/ti\_manual.R\#L6](https://github.com/dynverse/dynmethods/blob/master/R/ti_manual.R#L6)       |                                                                                  |
+| Control: random      | [R/ti\_random.R\#L6](https://github.com/dynverse/dynmethods/blob/master/R/ti_random.R#L6)       |                                                                                  |
+| Control: shuffle     | [R/ti\_shuffle.R\#L6](https://github.com/dynverse/dynmethods/blob/master/R/ti_shuffle.R#L6)     |                                                                                  |
+| DPT                  | [R/ti\_dpt.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_dpt.R#L3)             |                                                                                  |
+| Embeddr              | [R/ti\_embeddr.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_embeddr.R#L3)     |                                                                                  |
+| GPfates              | [R/ti\_gpfates.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_gpfates.R#L3)     |                                                                                  |
+| Growing Neural Gas   | [R/ti\_gng.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_gng.R#L3)             |                                                                                  |
+| mfa                  | [R/ti\_mfa.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_mfa.R#L3)             |                                                                                  |
+| Monocle DDRTree      | [R/ti\_monocle.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_monocle.R#L3)     |                                                                                  |
+| Monocle ICA          | [R/ti\_monocle.R\#L7](https://github.com/dynverse/dynmethods/blob/master/R/ti_monocle.R#L7)     |                                                                                  |
+| Mpath                | [R/ti\_mpath.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_mpath.R#L3)         |                                                                                  |
+| ouija                | [R/ti\_ouija.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_ouija.R#L3)         |                                                                                  |
+| ouijaflow            | [R/ti\_ouijaflow.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_ouijaflow.R#L3) |                                                                                  |
+| Periodic PrinCurve   | [R/ti\_periodpc.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_periodpc.R#L3)   |                                                                                  |
+| PhenoPath            | [R/ti\_phenopath.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_phenopath.R#L3) |                                                                                  |
+| pseudogp             | [R/ti\_pseudogp.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_pseudogp.R#L3)   |                                                                                  |
+| recat                | [R/ti\_recat.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_recat.R#L3)         |                                                                                  |
+| SCIMITAR             | [R/ti\_scimitar.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_scimitar.R#L3)   |                                                                                  |
+| SCORPIUS             | [R/ti\_scorpius.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_scorpius.R#L3)   |                                                                                  |
+| SCOUP                | [R/ti\_scoup.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_scoup.R#L3)         |                                                                                  |
+| SCUBA                | [R/ti\_scuba.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_scuba.R#L3)         |                                                                                  |
+| Sincell              | [R/ti\_sincell.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_sincell.R#L3)     |                                                                                  |
+| SLICE                | [R/ti\_slice.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_slice.R#L3)         |                                                                                  |
+| SLICER               | [R/ti\_slicer.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_slicer.R#L3)       |                                                                                  |
+| Slingshot            | [R/ti\_slingshot.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_slingshot.R#L3) |                                                                                  |
+| StemID               | [R/ti\_stemid.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_stemid.R#L3)       |                                                                                  |
+| topslam              | [R/ti\_topslam.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_topslam.R#L3)     |                                                                                  |
+| TSCAN                | [R/ti\_tscan.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_tscan.R#L3)         |                                                                                  |
+| Waterfall            | [R/ti\_waterfall.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_waterfall.R#L3) |                                                                                  |
