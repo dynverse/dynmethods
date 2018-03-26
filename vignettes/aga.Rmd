@@ -7,7 +7,9 @@ editor_options:
 ---
 
 ```{r eval=FALSE, include=FALSE}
-rmarkdown::render('~/Workspace/dynverse/dynmethods/vignettes/aga.Rmd', output_dir = "~/Workspace/dynverse/dynmethods/inst/doc/")
+file <- "aga"
+rmarkdown::render(glue::glue("vignettes/{file}.Rmd"), output_dir = "inst/doc/")
+readr::read_lines(glue::glue("inst/doc/{file}.md")) %>% stringr::str_replace_all(paste0(rprojroot::find_rstudio_root_file(), "/"), "") %>% readr::write_lines(glue::glue("inst/doc/{file}.md"))
 ```
 
 This document serves to provide insight into how a trajectory inference method was used and wrapped. 
@@ -51,7 +53,7 @@ toy_task <- toy_tasks %>% extract_row_to_list(1)
 plot_default(toy_task)
 ```
 
-We eExtract the default parameters from the method.
+We extract the default parameters from the method.
 ```{r}
 defprm <- get_default_parameters(method)
 ```

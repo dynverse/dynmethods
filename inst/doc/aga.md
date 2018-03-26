@@ -40,7 +40,7 @@ str(method, max.level = 1)
     ##     verbose = FALSE, num_cores = 1)  
     ##  $ plot_fun        :function (prediction)  
     ##   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 225 13 258 1 13 1 310 343
-    ##   .. .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0x7cbfb28> 
+    ##   .. .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0x8c55c08> 
     ##  - attr(*, "class")= chr [1:2] "dynmethod::description" "list"
 
 ``` r
@@ -68,9 +68,9 @@ toy_task <- toy_tasks %>% extract_row_to_list(1)
 plot_default(toy_task)
 ```
 
-![](/home/rcannood/Workspace/dynverse/dynmethods/inst/doc/aga_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](inst/doc/aga_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
-We eExtract the default parameters from the method.
+We extract the default parameters from the method.
 
 ``` r
 defprm <- get_default_parameters(method)
@@ -98,7 +98,7 @@ out$summary %>% knitr::kable()
 
 | method\_name | method\_short\_name | task\_id                        |  time\_sessionsetup|  time\_preprocessing|  time\_method|  time\_postprocessing|  time\_wrapping|  time\_sessioncleanup| error |  num\_files\_created|  num\_setseed\_calls| prior\_df                                                   |
 |:-------------|:--------------------|:--------------------------------|-------------------:|--------------------:|-------------:|---------------------:|---------------:|---------------------:|:------|--------------------:|--------------------:|:------------------------------------------------------------|
-| AGA          | aga                 | toy/consecutive\_bifurcating\_1 |           0.0023472|              4.1e-05|       1.48427|             0.0750899|       0.0002046|             0.0007057| NULL  |                    0|                    0| list(prior\_type = logical(0), prior\_names = character(0)) |
+| AGA          | aga                 | toy/consecutive\_bifurcating\_1 |           0.0025806|             3.96e-05|      1.385517|             0.0625882|       0.0001979|             0.0005817| NULL  |                    0|                    0| list(prior\_type = logical(0), prior\_names = character(0)) |
 
 ``` r
 model <- out$model 
@@ -106,13 +106,13 @@ model <- out$model
 plot_default(model)
 ```
 
-![](/home/rcannood/Workspace/dynverse/dynmethods/inst/doc/aga_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](inst/doc/aga_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
 ``` r
 plot_trajectory(model, method)
 ```
 
-![](/home/rcannood/Workspace/dynverse/dynmethods/inst/doc/aga_files/figure-markdown_github/unnamed-chunk-8-2.png)
+![](inst/doc/aga_files/figure-markdown_github/unnamed-chunk-8-2.png)
 
 Wrapper implementation
 ======================
@@ -208,13 +208,13 @@ prediction <- wrap_prediction_model(
 plot_default(prediction)
 ```
 
-![](/home/rcannood/Workspace/dynverse/dynmethods/inst/doc/aga_files/figure-markdown_github/unnamed-chunk-12-1.png)
+![](inst/doc/aga_files/figure-markdown_github/unnamed-chunk-12-1.png)
 
 ``` r
 plot_trajectory(model, method)
 ```
 
-![](/home/rcannood/Workspace/dynverse/dynmethods/inst/doc/aga_files/figure-markdown_github/unnamed-chunk-12-2.png)
+![](inst/doc/aga_files/figure-markdown_github/unnamed-chunk-12-2.png)
 
 Quality control
 ===============
