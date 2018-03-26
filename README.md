@@ -13,7 +13,7 @@ Currently implemented are the following wrappers:
 |:---------------------|:------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|
 | AGA                  | [R/ti\_aga.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_aga.R#L3)             | [aga.md](https://github.com/dynverse/dynmethods/blob/master/inst/doc/aga.md)     |
 | AGA pseudotime       | [R/ti\_aga.R\#L7](https://github.com/dynverse/dynmethods/blob/master/R/ti_aga.R#L7)             | [agapt.md](https://github.com/dynverse/dynmethods/blob/master/inst/doc/agapt.md) |
-| Arc-tangent          | [R/ti\_atan.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_atan.R#L3)           |                                                                                  |
+| Arc-tangent          | [R/ti\_atan.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_atan.R#L3)           | [atan.md](https://github.com/dynverse/dynmethods/blob/master/inst/doc/atan.md)   |
 | cellTree with gibbs  | [R/ti\_celltree.R\#L7](https://github.com/dynverse/dynmethods/blob/master/R/ti_celltree.R#L7)   |                                                                                  |
 | cellTree with maptpx | [R/ti\_celltree.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_celltree.R#L3)   |                                                                                  |
 | cellTree with vem    | [R/ti\_celltree.R\#L11](https://github.com/dynverse/dynmethods/blob/master/R/ti_celltree.R#L11) |                                                                                  |
