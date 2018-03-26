@@ -6,6 +6,9 @@ editor_options:
   chunk_output_type: console
 ---
 
+```{r eval=FALSE, include=FALSE}
+rmarkdown::render('~/Workspace/dynverse/dynmethods/vignettes/aga.Rmd', output_dir = "~/Workspace/dynverse/dynmethods/inst/doc/")
+```
 
 This document serves to provide insight into how a trajectory inference method was used and wrapped. 
 Feel free to discuss implementation-specific details by [creating an issue](https://github.com/dynverse/dynmethods/issues) on GitHub,
@@ -20,14 +23,10 @@ library(dynutils)
 library(dynplot)
 ```
 
-
-
-# `aga`: AGA
+# Description
 AGA is a trajectory inference method implemented in the [Scanpy](https://scanpy.readthedocs.io/en/latest/) package.
 The core algorithms used are k-nearest-neighbours for representing cells as a graph, louvain clustering for grouping 
 cells into milestones, and connectivity testing for identifying transitions between the milestones.
-
-## Description
 The wrapper can be accessed using the `description_aga` function.
 ```{r}
 method <- description_aga()
@@ -41,7 +40,7 @@ str(method, max.level = 1)
 method$par_set
 ```
 
-## Example
+# Example
 First we retrieve a toy dataset from [http://github.com/dynverse/dyntoy](dyntoy).
 ```{r}
 toy_tasks <- dyntoy::toy_tasks %>% 
@@ -75,7 +74,7 @@ plot_default(model)
 plot_trajectory(model, method)
 ```
 
-## Wrapper implementation
+# Wrapper implementation
 This section will detail the specific wrapper implementation by applying it on the toy dataset, 
 and should follow the same implementation structure as the [https://github.com/dynverse/dynmethods/blob/master/R/ti_aga.R](source code).
 
@@ -137,8 +136,8 @@ plot_default(prediction)
 plot_trajectory(model, method)
 ```
 
-## Quality control
+# Quality control
 TODO
 
-## To do's
+# To do's
  * Allow the aga R package to return the dimensionality reductions created by scanpy.
