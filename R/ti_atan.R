@@ -3,7 +3,7 @@
 description_atan <- function() create_description(
   name = "Arc-tangent",
   short_name = "atan",
-  package_loaded = c(""),
+  package_loaded = c(),
   package_required = c(),
   par_set = makeParamSet(
     makeDiscreteParam(id = "dimred", default = "pca", values = names(list_dimred_methods()))
