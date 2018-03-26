@@ -73,7 +73,6 @@ run_aga <- function(
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # After building a kNN graph (not shown), the kNN graph is clustered into louvain groups:
-  cell_ids <- rownames(expression)
   milestone_assignment_cells <- setNames(aga_out$obs$group_id, aga_out$obs$cell_id)
 
   # Several tests are used to assess which transitions exist between the louvain groups.
@@ -139,8 +138,7 @@ run_agapt <- function(
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
-  # Reformat everything into milestone_network and milestone_percentages
-  cell_ids <- rownames(expression)
+
 
   # create network between branches
   branch_network <- aga_out$adj %>%
@@ -153,12 +151,12 @@ run_agapt <- function(
   branch_order <- igraph::dfs(
     branch_graph,
     aga_out$obs %>%
-      filter(cell_id == start_cells[[1]]) %>%
+      filter(cell_id == start_cell) %>%
       pull(group_id)
   )$order %>%
     names()
 
-  # now flip order of branch network if from branch is later than to branch
+  # flip order of branch network if from branch is later than to branch
   branch_network <- branch_network %>%
     mutate(from_original = from, to_original = to) %>%
     mutate(flip = map2(from, to, ~diff(match(c(.x, .y), branch_order)) < 0)) %>%
@@ -178,43 +176,33 @@ run_agapt <- function(
       length = 1,
       directed = TRUE
     ),
-    branch_network %>% mutate(from = paste0(from, "_to"), to = paste0(to, "_from"), length=0, directed=TRUE)
+    mutate(
+      branch_network,
+      from = paste0(from, "_to"),
+      to = paste0(to, "_from"),
+      length = 0,
+      directed = TRUE
+    )
   )
+
+  # Place each cell along an edge of the milestone network:
+  milestone_ids <- unlist(map(branch_ids, ~ paste0(., c("_from", "_to"))))
 
   progressions <- aga_out$obs %>%
     mutate(from = paste0(group_id, "_from"), to = paste0(group_id, "_to")) %>%
     group_by(group_id) %>%
     mutate(percentage = dynutils::scale_minmax(aga_pseudotime)) %>%
-    ungroup()
-
-  progressions <- progressions %>%
+    ungroup() %>%
     select(cell_id, from, to, percentage)
 
-  milestone_ids <- unique(c(milestone_network$from, milestone_network$to, progressions$from, progressions$to))
-
-  milestone_percentages <- dynwrap::convert_progressions_to_milestone_percentages(
-    cell_ids,
-    milestone_ids,
-    milestone_network,
-    progressions
-  )
-
-  divergence_regions <- milestone_network %>%
-    group_by(from) %>%
-    filter(n() > 1) %>%
-    mutate(divergence_id = from) %>%
-    gather(fromto, milestone_id, from, to) %>%
-    mutate(is_start = fromto == "from") %>%
-    select(divergence_id, milestone_id, is_start) %>%
-    distinct()
-
+  # Create and return the predicted trajectory
   wrap_prediction_model(
     cell_ids = rownames(expression)
   ) %>% add_trajectory_to_wrapper(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
-    milestone_percentages = milestone_percentages,
-    divergence_regions = divergence_regions,
+    progressions = progressions,
+    divergence_regions = NULL,
     aga_out = aga_out
   ) %>% add_timings_to_wrapper(
     tl %>% add_timing_checkpoint("method_afterpostproc")

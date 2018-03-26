@@ -39,8 +39,8 @@ str(method, max.level = 1)
     ##     n_pcs = 50L, n_dcs = 10L, resolution = 1, tree_based_confidence = TRUE, 
     ##     verbose = FALSE, num_cores = 1)  
     ##  $ plot_fun        :function (prediction)  
-    ##   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 225 13 258 1 13 1 310 343
-    ##   .. .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0x8c55c08> 
+    ##   ..- attr(*, "srcref")=Class 'srcref'  atomic [1:8] 213 13 246 1 13 1 298 331
+    ##   .. .. ..- attr(*, "srcfile")=Classes 'srcfilealias', 'srcfile' <environment: 0xec24cb8> 
     ##  - attr(*, "class")= chr [1:2] "dynmethod::description" "list"
 
 ``` r
@@ -98,7 +98,7 @@ out$summary %>% knitr::kable()
 
 | method\_name | method\_short\_name | task\_id                        |  time\_sessionsetup|  time\_preprocessing|  time\_method|  time\_postprocessing|  time\_wrapping|  time\_sessioncleanup| error |  num\_files\_created|  num\_setseed\_calls| prior\_df                                                   |
 |:-------------|:--------------------|:--------------------------------|-------------------:|--------------------:|-------------:|---------------------:|---------------:|---------------------:|:------|--------------------:|--------------------:|:------------------------------------------------------------|
-| AGA          | aga                 | toy/consecutive\_bifurcating\_1 |           0.0025315|              3.6e-05|      1.400802|             0.0618958|       0.0001857|             0.0005617| NULL  |                    0|                    0| list(prior\_type = logical(0), prior\_names = character(0)) |
+| AGA          | aga                 | toy/consecutive\_bifurcating\_1 |           0.0130212|             8.65e-05|       1.43611|             0.2281947|       0.0001907|             0.0005667| NULL  |                    0|                    0| list(prior\_type = logical(0), prior\_names = character(0)) |
 
 ``` r
 model <- out$model 
@@ -111,6 +111,10 @@ plot_default(model)
 ``` r
 plot_trajectory(model, method)
 ```
+
+    ## Loading required namespace: ggraph
+
+    ## Loading required namespace: tidygraph
 
 ![](aga_files/figure-markdown_github/unnamed-chunk-8-2.png)
 
@@ -161,7 +165,6 @@ aga_out$obs %>% head(6) %>% knitr::kable()
 | C6       |    0.0683206|                1| 1         |
 
 ``` r
-cell_ids <- rownames(expression)
 milestone_assignment_cells <- setNames(aga_out$obs$group_id, aga_out$obs$cell_id)
 ```
 
