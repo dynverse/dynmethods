@@ -44,7 +44,8 @@ run_atan <- function(
 
 #' @importFrom viridis scale_colour_viridis
 plot_atan <- function(prediction) {
-  dimred_df <- data.frame(prediction$dimred, pseudotime = cos(prediction$pseudotimes * 2 * pi))
+  dimred_df <-
+    data.frame(prediction$dimred, pseudotime = prediction$pseudotimes * 2 * pi)
   g <- ggplot() +
     geom_point(aes(Comp1, Comp2, colour = pseudotime), dimred_df) +
     viridis::scale_color_viridis()
