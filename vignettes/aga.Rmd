@@ -9,7 +9,7 @@ editor_options:
 ```{r eval=FALSE, include=FALSE}
 file <- "aga"
 rmarkdown::render(glue::glue("vignettes/{file}.Rmd"), output_dir = "inst/doc/")
-readr::read_lines(glue::glue("inst/doc/{file}.md")) %>% stringr::str_replace_all(paste0(rprojroot::find_rstudio_root_file(), "/"), "") %>% readr::write_lines(glue::glue("inst/doc/{file}.md"))
+readr::read_lines(glue::glue("inst/doc/{file}.md")) %>% stringr::str_replace_all(paste0(rprojroot::find_rstudio_root_file(), "/inst/doc/"), "") %>% readr::write_lines(glue::glue("inst/doc/{file}.md"))
 ```
 
 This document serves to provide insight into how a trajectory inference method was used and wrapped. 

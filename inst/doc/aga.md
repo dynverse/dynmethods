@@ -68,7 +68,7 @@ toy_task <- toy_tasks %>% extract_row_to_list(1)
 plot_default(toy_task)
 ```
 
-![](inst/doc/aga_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](aga_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 We extract the default parameters from the method.
 
@@ -98,7 +98,7 @@ out$summary %>% knitr::kable()
 
 | method\_name | method\_short\_name | task\_id                        |  time\_sessionsetup|  time\_preprocessing|  time\_method|  time\_postprocessing|  time\_wrapping|  time\_sessioncleanup| error |  num\_files\_created|  num\_setseed\_calls| prior\_df                                                   |
 |:-------------|:--------------------|:--------------------------------|-------------------:|--------------------:|-------------:|---------------------:|---------------:|---------------------:|:------|--------------------:|--------------------:|:------------------------------------------------------------|
-| AGA          | aga                 | toy/consecutive\_bifurcating\_1 |           0.0025806|             3.96e-05|      1.385517|             0.0625882|       0.0001979|             0.0005817| NULL  |                    0|                    0| list(prior\_type = logical(0), prior\_names = character(0)) |
+| AGA          | aga                 | toy/consecutive\_bifurcating\_1 |           0.0025315|              3.6e-05|      1.400802|             0.0618958|       0.0001857|             0.0005617| NULL  |                    0|                    0| list(prior\_type = logical(0), prior\_names = character(0)) |
 
 ``` r
 model <- out$model 
@@ -106,13 +106,13 @@ model <- out$model
 plot_default(model)
 ```
 
-![](inst/doc/aga_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](aga_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
 ``` r
 plot_trajectory(model, method)
 ```
 
-![](inst/doc/aga_files/figure-markdown_github/unnamed-chunk-8-2.png)
+![](aga_files/figure-markdown_github/unnamed-chunk-8-2.png)
 
 Wrapper implementation
 ======================
@@ -208,13 +208,13 @@ prediction <- wrap_prediction_model(
 plot_default(prediction)
 ```
 
-![](inst/doc/aga_files/figure-markdown_github/unnamed-chunk-12-1.png)
+![](aga_files/figure-markdown_github/unnamed-chunk-12-1.png)
 
 ``` r
 plot_trajectory(model, method)
 ```
 
-![](inst/doc/aga_files/figure-markdown_github/unnamed-chunk-12-2.png)
+![](aga_files/figure-markdown_github/unnamed-chunk-12-2.png)
 
 Quality control
 ===============
