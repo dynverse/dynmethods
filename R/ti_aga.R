@@ -68,6 +68,10 @@ run_aga <- function(
     verbose = verbose,
     num_cores = num_cores
   )
+  aga_out$obs <- aga_out$obs %>% mutate(group_id = paste0("B", group_id))
+  aga_out$adj <- aga_out$adj %>% mutate(from = paste0("B", from), to = paste0("B", to))
+
+  milestone_ids <- unique(c(aga_out$adj$from, aga_out$adj$to, aga_out$obs$group_id))
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
@@ -78,15 +82,12 @@ run_aga <- function(
   # Several tests are used to assess which transitions exist between the louvain groups.
   # We use the `aga_adjacency_tree_confidence` to construct the milestone network.
   milestone_network <- aga_out$adj %>%
-    mutate_at(vars(from, to), as.character) %>%
     filter(aga_adjacency_tree_confidence > 0) %>%
     mutate(
       length = 1,
       directed = FALSE
     ) %>%
     select(from, to, length, directed)
-
-  milestone_ids <- sort(unique(milestone_assignment_cells))
 
   # Wrap the output
   wrap_prediction_model(
@@ -134,11 +135,13 @@ run_agapt <- function(
     verbose = verbose,
     num_cores = num_cores
   )
+  aga_out$obs <- aga_out$obs %>% mutate(group_id = paste0("B", group_id))
+  aga_out$adj <- aga_out$adj %>% mutate(from = paste0("B", from), to = paste0("B", to))
+
+  branch_ids <- unique(c(aga_out$adj$from, aga_out$adj$to, aga_out$obs$group_id))
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
-
-
 
   # create network between branches
   branch_network <- aga_out$adj %>%
@@ -148,12 +151,10 @@ run_agapt <- function(
 
   # determine order of branches, based on location of root cell
   branch_graph <- igraph::graph_from_data_frame(branch_network)
-  branch_order <- igraph::dfs(
-    branch_graph,
-    aga_out$obs %>%
-      filter(cell_id == start_cell) %>%
-      pull(group_id)
-  )$order %>%
+  branch_order <-
+    branch_graph %>%
+    igraph::dfs(aga_out$obs %>% filter(cell_id == start_cell) %>% pull(group_id)) %>%
+    .$order %>%
     names()
 
   # flip order of branch network if from branch is later than to branch
@@ -167,8 +168,6 @@ run_agapt <- function(
     select(from, to)
 
   # now create milestone network by giving each branch an edge, and adding a zero-length edge between each branch
-  branch_ids <- unique(c(branch_network$from, branch_network$to, aga_out$obs$louvain_groups))
-
   milestone_network <- bind_rows(
     tibble(
       from = paste0(branch_ids, "_from"),

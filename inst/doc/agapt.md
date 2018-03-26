@@ -99,7 +99,7 @@ out$summary %>% knitr::kable()
 
 | method\_name   | method\_short\_name | task\_id                        |  time\_sessionsetup|  time\_preprocessing|  time\_method|  time\_postprocessing|  time\_wrapping|  time\_sessioncleanup| error |  num\_files\_created|  num\_setseed\_calls| prior\_df                                                     |
 |:---------------|:--------------------|:--------------------------------|-------------------:|--------------------:|-------------:|---------------------:|---------------:|---------------------:|:------|--------------------:|--------------------:|:--------------------------------------------------------------|
-| AGA pseudotime | agapt               | toy/consecutive\_bifurcating\_1 |           0.0110867|             4.94e-05|      1.406051|             0.0937734|       0.0002069|             0.0005894| NULL  |                    0|                    0| list(prior\_type = "required", prior\_names = "start\_cells") |
+| AGA pseudotime | agapt               | toy/consecutive\_bifurcating\_1 |           0.0022018|             4.08e-05|      1.349711|             0.0908575|       0.0001893|             0.0005817| NULL  |                    0|                    0| list(prior\_type = "required", prior\_names = "start\_cells") |
 
 ``` r
 model <- out$model 
@@ -150,6 +150,13 @@ aga_out <- aga::aga(
     ##   group_id = col_integer()
     ## )
 
+``` r
+aga_out$obs <- aga_out$obs %>% mutate(group_id = paste0("B", group_id))
+aga_out$adj <- aga_out$adj %>% mutate(from = paste0("B", from), to = paste0("B", to))
+
+branch_ids <- unique(c(aga_out$adj$from, aga_out$adj$to, aga_out$obs$group_id))
+```
+
 After building a kNN graph, the kNN graph is clustered into louvain groups. Each cluster is considered a separate branch, on which cells are pseudotemporally ordered.
 
 ``` r
@@ -158,12 +165,12 @@ aga_out$obs %>% head(6) %>% knitr::kable()
 
 | cell\_id |  X\_diffmap0|  louvain\_groups|  aga\_pseudotime| group\_id |
 |:---------|------------:|----------------:|----------------:|:----------|
-| C1       |    0.0733178|                3|        0.3983045| 3         |
-| C2       |    0.0729600|                3|        0.3875125| 3         |
-| C3       |    0.0701184|                2|        0.1315740| 2         |
-| C4       |    0.0731877|                3|        0.3925576| 3         |
-| C5       |    0.0684289|                1|        0.0457155| 1         |
-| C6       |    0.0683206|                1|        0.0463136| 1         |
+| C1       |    0.0733178|                3|        0.3983045| B3        |
+| C2       |    0.0729600|                3|        0.3875125| B3        |
+| C3       |    0.0701184|                2|        0.1315740| B2        |
+| C4       |    0.0731877|                3|        0.3925576| B3        |
+| C5       |    0.0684289|                1|        0.0457155| B1        |
+| C6       |    0.0683206|                1|        0.0463136| B1        |
 
 Several tests are used to assess which transitions exist between the louvain groups. We use the `aga_adjacency_tree_confidence` to determine how the branches are connected.
 
@@ -173,12 +180,12 @@ aga_out$adj %>% head(6) %>% knitr::kable()
 
 | from | to  |  aga\_adjacency\_tree\_confidence|  aga\_adjacency\_full\_confidence|  aga\_adjacency\_full\_attachedness|
 |:-----|:----|---------------------------------:|---------------------------------:|-----------------------------------:|
-| 0    | 0   |                                 0|                         0.0000000|                                   0|
-| 1    | 0   |                                 0|                         0.0000000|                                   0|
-| 2    | 0   |                                 0|                         0.0000000|                                   0|
-| 3    | 0   |                                 0|                         0.2819045|                                  28|
-| 4    | 0   |                                 0|                         1.0000000|                                 213|
-| 0    | 1   |                                 0|                         0.0000000|                                   0|
+| B0   | B0  |                                 0|                         0.0000000|                                   0|
+| B1   | B0  |                                 0|                         0.0000000|                                   0|
+| B2   | B0  |                                 0|                         0.0000000|                                   0|
+| B3   | B0  |                                 0|                         0.2819045|                                  28|
+| B4   | B0  |                                 0|                         1.0000000|                                 213|
+| B0   | B1  |                                 0|                         0.0000000|                                   0|
 
 ``` r
 branch_network <- aga_out$adj %>%
@@ -190,22 +197,20 @@ knitr::kable(branch_network)
 
 | from | to  |
 |:-----|:----|
-| 2    | 1   |
-| 0    | 3   |
-| 2    | 3   |
-| 0    | 4   |
+| B2   | B1  |
+| B0   | B3  |
+| B2   | B3  |
+| B0   | B4  |
 
 We transform the network according to the distance it has from the starting cell.
 
 ``` r
 # determine order of branches, based on location of root cell
-branch_graph <- igraph::graph_from_data_frame(branch_network)
-branch_order <- igraph::dfs(
-  branch_graph,
-  aga_out$obs %>%
-    filter(cell_id == start_cell) %>%
-    pull(group_id)
-)$order %>%
+branch_graph <- igraph::graph_from_data_frame(branch_network, directed = FALSE, vertices = branch_ids)
+branch_order <- 
+  branch_graph %>% 
+  igraph::dfs(aga_out$obs %>% filter(cell_id == start_cell) %>% pull(group_id)) %>%
+  .$order %>% 
   names()
 
 # now flip order of branch network if from branch is later than to branch
@@ -222,16 +227,14 @@ knitr::kable(branch_network)
 
 | from | to  |
 |:-----|:----|
-| 1    | 2   |
-| 3    | 0   |
-| 2    | 3   |
-| 0    | 4   |
+| B1   | B2  |
+| B3   | B0  |
+| B2   | B3  |
+| B0   | B4  |
 
 Now we create milestone network by giving each branch an edge, and adding a zero-length edge between each branch
 
 ``` r
-branch_ids <- unique(c(branch_network$from, branch_network$to, aga_out$obs$louvain_groups))
-
 milestone_network <- bind_rows(
   tibble(
     from = paste0(branch_ids, "_from"),
@@ -279,13 +282,13 @@ prediction <-
 plot_default(prediction)
 ```
 
-![](agapt_files/figure-markdown_github/unnamed-chunk-16-1.png)
+![](agapt_files/figure-markdown_github/unnamed-chunk-15-1.png)
 
 ``` r
 plot_trajectory(model, method)
 ```
 
-![](agapt_files/figure-markdown_github/unnamed-chunk-16-2.png)
+![](agapt_files/figure-markdown_github/unnamed-chunk-15-2.png)
 
 Quality control
 ===============
@@ -295,4 +298,5 @@ TODO
 To do's
 =======
 
+-   Remove zero edges from the branch network
 -   Allow the aga R package to return the dimensionality reductions created by scanpy.

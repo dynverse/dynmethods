@@ -101,6 +101,10 @@ aga_out <- aga::aga(
   verbose = FALSE,
   num_cores = 1
 )
+aga_out$obs <- aga_out$obs %>% mutate(group_id = paste0("B", group_id))
+aga_out$adj <- aga_out$adj %>% mutate(from = paste0("B", from), to = paste0("B", to))
+
+branch_ids <- unique(c(aga_out$adj$from, aga_out$adj$to, aga_out$obs$group_id))
 ```
 
 
@@ -114,8 +118,7 @@ Several tests are used to assess which transitions exist between the louvain gro
 We use the `aga_adjacency_tree_confidence` to determine how the branches are connected.
 ```{r}
 aga_out$adj %>% head(6) %>% knitr::kable()
-```
-```{r}
+
 branch_network <- aga_out$adj %>%
   mutate_at(vars(from, to), as.character) %>%
   filter(aga_adjacency_tree_confidence > 0) %>%
@@ -125,14 +128,13 @@ knitr::kable(branch_network)
 
 We transform the network according to the distance it has from the starting cell.
 ```{r}
+
 # determine order of branches, based on location of root cell
-branch_graph <- igraph::graph_from_data_frame(branch_network)
-branch_order <- igraph::dfs(
-  branch_graph,
-  aga_out$obs %>%
-    filter(cell_id == start_cell) %>%
-    pull(group_id)
-)$order %>%
+branch_graph <- igraph::graph_from_data_frame(branch_network, directed = FALSE, vertices = branch_ids)
+branch_order <- 
+  branch_graph %>% 
+  igraph::dfs(aga_out$obs %>% filter(cell_id == start_cell) %>% pull(group_id)) %>%
+  .$order %>% 
   names()
 
 # now flip order of branch network if from branch is later than to branch
@@ -150,8 +152,6 @@ knitr::kable(branch_network)
 
 Now we create milestone network by giving each branch an edge, and adding a zero-length edge between each branch
 ```{r}
-branch_ids <- unique(c(branch_network$from, branch_network$to, aga_out$obs$louvain_groups))
-
 milestone_network <- bind_rows(
   tibble(
     from = paste0(branch_ids, "_from"),
@@ -203,4 +203,5 @@ plot_trajectory(model, method)
 TODO
 
 # To do's
+ * Remove zero edges from the branch network
  * Allow the aga R package to return the dimensionality reductions created by scanpy.

@@ -96,6 +96,10 @@ aga_out <- aga::aga(
   verbose = FALSE,
   num_cores = 1
 )
+aga_out$obs <- aga_out$obs %>% mutate(group_id = paste0("B", group_id))
+aga_out$adj <- aga_out$adj %>% mutate(from = paste0("B", from), to = paste0("B", to))
+
+milestone_ids <- unique(c(aga_out$adj$from, aga_out$adj$to, aga_out$obs$group_id))
 ```
 
 After building a kNN graph, the kNN graph is clustered into louvain groups:
@@ -118,8 +122,6 @@ milestone_network <- aga_out$adj %>%
     directed = FALSE
   ) %>%
   select(from, to, length, directed)
-
-milestone_ids <- sort(unique(milestone_assignment_cells))
 ```
 
 The prediction is wrapped using the `add_cluster_graph_to_wrapper` function. 
