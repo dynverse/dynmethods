@@ -1,5 +1,5 @@
 ---
-title: "Arc-tangent"
+title: "Angle"
 date: "`r Sys.Date()`"
 output: github_document
 editor_options: 
@@ -7,7 +7,7 @@ editor_options:
 ---
 
 ```{r eval=FALSE, include=FALSE}
-file <- "atan"
+file <- "angle"
 rmarkdown::render(glue::glue("vignettes/{file}.Rmd"), output_dir = "inst/doc/")
 readr::read_lines(glue::glue("inst/doc/{file}.md")) %>% stringr::str_replace_all(paste0(rprojroot::find_rstudio_root_file(), "/inst/doc/"), "") %>% readr::write_lines(glue::glue("inst/doc/{file}.md"))
 ```
@@ -27,12 +27,12 @@ library(dynplot)
 
 # Description
 This is a control method for inferring cyclic trajectories in a very simple approach,
-consisting of a dimensionality reduction step and followed by calculating the arc-tangent
+consisting of a dimensionality reduction step and followed by calculating the angle
 between the first and the second component.
 
-The wrapper can be accessed using the `description_atan` function.
+The wrapper can be accessed using the `description_angle` function.
 ```{r}
-method <- description_atan()
+method <- description_angle()
 ```
 
 This description contains information on which packages need to have been installed in order to run 
@@ -79,7 +79,7 @@ plot_trajectory(model, method)
 
 # Wrapper implementation
 This section will detail the specific wrapper implementation by applying it on the toy dataset, 
-and should follow the same implementation structure as the [https://github.com/dynverse/dynmethods/blob/master/R/ti_atan.R](source code).
+and should follow the same implementation structure as the [https://github.com/dynverse/dynmethods/blob/master/R/ti_angle.R](source code).
 
 In the first step, a dimensionality reduction to two dimensions is computed. By default, this is PCA. 
 Here, it is assumed that the dimensionality reduction will be centered around the origin 0.
@@ -97,7 +97,7 @@ ggplot(dimred_df) +
 
 ```
 
-The ordering of the cells is computed by calculating the bearing of each cell with respect to the origin. The bearing is transformed to a [0,1] range.
+The ordering of the cells is computed by calculating the degree of each cell with respect to the origin. The bearing is transformed to a [0,1] range.
 
 ```{r}
 pseudotimes <- atan2(dimred[,2], dimred[,1]) / 2 / pi + .5
