@@ -1,19 +1,19 @@
-#' Description for atan
+#' Description for angle
 #' @export
-description_atan <- function() create_description(
-  name = "Arc-tangent",
-  short_name = "atan",
+description_angle <- function() create_description(
+  name = "Angle",
+  short_name = "angle",
   package_loaded = c(),
   package_required = c(),
   par_set = makeParamSet(
     makeDiscreteParam(id = "dimred", default = "pca", values = names(list_dimred_methods()))
   ),
   properties = c(),
-  run_fun = run_atan,
-  plot_fun = plot_atan
+  run_fun = run_angle,
+  plot_fun = plot_angle
 )
 
-run_atan <- function(
+run_angle <- function(
   expression,
   dimred = "pca"
 ) {
@@ -43,7 +43,7 @@ run_atan <- function(
 }
 
 #' @importFrom viridis scale_colour_viridis
-plot_atan <- function(prediction) {
+plot_angle <- function(prediction) {
   dimred_df <-
     data.frame(prediction$dimred, pseudotime = prediction$pseudotimes * 2 * pi)
   g <- ggplot() +
