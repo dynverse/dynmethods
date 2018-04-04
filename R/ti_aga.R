@@ -232,7 +232,7 @@ plot_aga <- function(prediction) {
     "fr",
     weights = milestone_graph %>% tidygraph::activate(edges) %>% pull(aga_adjacency_tree_confidence) %>% {.+1}
   )
-  layout %>%
+  aga_plot <- layout %>%
     ggraph::ggraph() +
     ggraph::geom_edge_link(aes(edge_linetype = edge_type, alpha=edge_type)) +
     ggraph::geom_edge_link(aes(x=x+(xend-x)/2, y=y+(yend-y)/2, xend = x+(xend-x)/1.999, yend=y+(yend-y)/1.999), arrow=arrow(length=unit(0.1, "inches"))) +
@@ -240,6 +240,7 @@ plot_aga <- function(prediction) {
     ggraph::scale_edge_alpha_manual(values=c(tree=1, full=1, attached=0.5)) +
     ggraph::geom_node_point(aes(color = name), size=10) +
     geom_text(aes(x, y, label=name), size=8) +
-    ggraph::theme_graph() +
     theme(legend.position = "none")
+
+  aga_plot %>% process_dynplot(prediction$id)
 }
