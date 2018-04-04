@@ -170,15 +170,15 @@ plot_slingshot <- function(prediction, type = c("lineage", "curve", "both")) {
 
   # create plots for curve if so requested
   if (type %in% c("curve", "both")) {
-    gcurve <- geom_path(aes(Comp1, Comp2, group = curve), prediction$curve %>% arrange(curve, lambda))
+    gcurve <- geom_path(aes(PC1, PC2, group = curve), prediction$curve %>% arrange(curve, lambda))
   } else {
     gcurve <- NULL
   }
 
   # create plots for lineage if so requested
   if (type %in% c("lineage", "both")) {
-    gcenter <- geom_point(aes(Comp1, Comp2), prediction$dimred_milestones %>% as.data.frame, size = 3)
-    gsegment <- geom_segment(aes(x = from_Comp1, xend = to_Comp1, y = from_Comp2, yend = to_Comp2), prediction$dimred_trajectory_segments %>% as.data.frame())
+    gcenter <- geom_point(aes(PC1, PC2), prediction$dimred_milestones %>% as.data.frame, size = 3)
+    gsegment <- geom_segment(aes(x = from_PC1, xend = to_PC1, y = from_PC2, yend = to_PC2), prediction$dimred_trajectory_segments %>% as.data.frame())
   } else {
     gcenter <- NULL
     gsegment <- NULL
@@ -193,7 +193,7 @@ plot_slingshot <- function(prediction, type = c("lineage", "curve", "both")) {
   g <- ggplot() +
     gcurve +
     gsegment +
-    geom_point(aes(Comp1, Comp2, colour = label), space) +
+    geom_point(aes(PC1, PC2, colour = label), space) +
     gcenter +
     scale_colour_manual(values = cols) +
     labs(colour = "Milestone") +
