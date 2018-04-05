@@ -226,7 +226,9 @@ plot_aga <- function(prediction) {
     # add edge type
     mutate(
       edge_type = ifelse(aga_adjacency_tree_confidence > 0, "tree", ifelse(aga_adjacency_full_confidence > 0, "full", "attached"))
-    )
+    ) %>%
+    filter(edge_type == "tree" | (edge_type == "full" & aga_adjacency_full_confidence > 1e-6))
+
   layout <- ggraph::create_layout(
     milestone_graph,
     "fr",
@@ -234,10 +236,11 @@ plot_aga <- function(prediction) {
   )
   aga_plot <- layout %>%
     ggraph::ggraph() +
-    ggraph::geom_edge_link(aes(edge_linetype = edge_type, alpha=edge_type)) +
-    ggraph::geom_edge_link(aes(x=x+(xend-x)/2, y=y+(yend-y)/2, xend = x+(xend-x)/1.999, yend=y+(yend-y)/1.999), arrow=arrow(length=unit(0.1, "inches"))) +
+    ggraph::geom_edge_link(aes(edge_linetype = edge_type, alpha=edge_type, edge_width=edge_type)) +
+    ggraph::geom_edge_link(aes(x=x+(xend-x)/2, y=y+(yend-y)/2, xend = x+(xend-x)/1.999, yend=y+(yend-y)/1.999)) +
     ggraph::scale_edge_linetype_manual(values=c(tree="solid", full="longdash", attached="dashed")) +
-    ggraph::scale_edge_alpha_manual(values=c(tree=1, full=1, attached=0.5)) +
+    ggraph::scale_edge_alpha_manual(values=c(tree=1, full=0.5, attached=0.5)) +
+    ggraph::scale_edge_width_manual(values=c(tree=2, full=1, attached=1)) +
     ggraph::geom_node_point(aes(color = name), size=10) +
     geom_text(aes(x, y, label=name), size=8) +
     theme(legend.position = "none")
