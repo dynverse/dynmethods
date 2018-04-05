@@ -154,7 +154,7 @@ run_slingshot <- function(
 }
 
 #' @importFrom RColorBrewer brewer.pal
-plot_slingshot <- function(prediction, type = c("lineage", "curve", "both")) {
+plot_slingshot <- function(prediction, type = c("curve", "lineage", "both")) {
   type <- match.arg(type)
 
   # reconstruct palette
@@ -191,9 +191,9 @@ plot_slingshot <- function(prediction, type = c("lineage", "curve", "both")) {
 
   # return plot
   g <- ggplot() +
+    geom_point(aes(PC1, PC2, colour = label), space) +
     gcurve +
     gsegment +
-    geom_point(aes(PC1, PC2, colour = label), space) +
     gcenter +
     scale_colour_manual(values = cols) +
     labs(colour = "Milestone") +
