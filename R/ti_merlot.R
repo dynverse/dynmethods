@@ -5,9 +5,9 @@ description_merlot <- function(short_name) {
     package_loaded = c("merlot", "destiny"),
     package_required = c("destiny"),
     par_set = makeParamSet(
-      makeLogicalParam("density_norm", TRUE)
-      makeIntegerParam("n_components", 2, 20, default=20)
-      makeIntegerParam("n_components_to_use", 2, 20, default=3)
+      makeLogicalParam("density_norm", TRUE),
+      makeIntegerParam("n_components", 2, 20, default=20),
+      makeIntegerParam("n_components_to_use", 2, 20, default=3),
       makeIntegerParam("NumberOfNodes", 2, 1000, default=100)
     ),
     properties = c(),
