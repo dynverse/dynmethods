@@ -100,12 +100,11 @@ run_merlot <- function(
       milestone_network,
       NULL,
       progressions = progressions,
-      EmbeddedTree
+      ElasticTree
     ) %>%
     add_timings_to_wrapper(
       timings = tl %>% add_timing_checkpoint("method_afterpostproc")
     )
-
 }
 
 plot_merlot <- function(prediction) {
