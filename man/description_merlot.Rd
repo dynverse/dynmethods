@@ -4,7 +4,7 @@
 \alias{description_merlot}
 \title{Description for MERLot}
 \usage{
-description_merlot(short_name)
+description_merlot()
 }
 \description{
 Description for MERLot
