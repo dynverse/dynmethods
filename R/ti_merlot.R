@@ -1,3 +1,5 @@
+#' Description for MERLot
+#' @export
 description_merlot <- function(short_name) {
   create_description(
     name = "MERLot",
