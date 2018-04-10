@@ -38,7 +38,7 @@ run_merlot <- function(
   DatasetDM <- destiny::DiffusionMap(expression, density_norm = density_norm, verbose = F, n_eigs = n_components)
 
   # The first 3 diffusion map components will be used for this example
-  CellCoordinates=DatasetDM@eigenvectors[,1:ncomp]
+  CellCoordinates=DatasetDM@eigenvectors[,1:n_components_to_use]
 
   # We calculate the scaffold tree using the first 3 diffusion components from the diffusion map
   ScaffoldTree=CalculateScaffoldTree(CellCoordinates = CellCoordinates)
