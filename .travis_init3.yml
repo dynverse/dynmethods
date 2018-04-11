@@ -1,7 +1,12 @@
 language: r
 sudo: required
 dist: trusty
-cache: packages
+cache:
+  timeout: 2000
+  apt: true
+  directories:
+    - $HOME/.cache/pip
+    - $HOME/R
 warnings_are_errors: false
 env:
   global:
