@@ -33,9 +33,10 @@ before_install:
 install:
  - pip3 install --user --upgrade --only-binary=numpy,scipy numpy scipy
  - pip3 install --user --upgrade matplotlib pandas six jinja2 python-dateutil pytz pyparsing cycler tqdm python-igraph Cython statsmodels sklearn seaborn h5py anndata
- - R -e 'for (pa in c("devtools", "covr")) { if (pa %in% rownames(installed.packages())) update.packages(oldPkgs = pa, ask = FALSE) else install.packages(pa) }'
+ - R -e 'if ("devtools" %in% rownames(installed.packages())) update.packages(oldPkgs = "devtools", ask = FALSE) else install.packages("devtools")'
  - R -e 'setRepositories(ind = 1:2)'
- - R -e 'devtools::install(dependencies = T, upgrade = T)'
+ - R -e 'devtools::install_cran("covr")'
+ - R -e 'devtools::install(dependencies = TRUE, upgrade = TRUE)'
  - R -e 'dynmethods::check_dependencies()'
 after_success:
- - R -e 'library(covr); codecov()'
+ - R -e 'covr::codecov()'
