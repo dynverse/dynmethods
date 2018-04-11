@@ -3,6 +3,7 @@ sudo: required
 dist: trusty
 bioc_required: true
 cache:
+  timeout: 2000
   apt: true
   directories:
     - $HOME/.cache/pip
