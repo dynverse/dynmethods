@@ -73,7 +73,6 @@ run_scuba <- function(counts,
     group_ids = milestone_ids,
     cell_group = cell_group
   ) %>% add_cluster_graph_to_wrapper(
-    milestone_ids = milestone_ids,
     milestone_network = milestone_network
   ) %>% add_timings_to_wrapper(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")

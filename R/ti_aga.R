@@ -96,7 +96,6 @@ run_aga <- function(
     group_ids = milestone_ids,
     cell_group = cell_group
   ) %>% add_cluster_graph_to_wrapper(
-    milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     aga_out = aga_out
   ) %>% add_timings_to_wrapper(
