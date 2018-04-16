@@ -96,17 +96,15 @@ run_merlot <- function(
   # wrap output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>%
-    add_trajectory_to_wrapper(
-      unique(c(milestone_network$from, milestone_network$to)),
-      milestone_network,
-      NULL,
-      progressions = progressions,
-      ElasticTree
-    ) %>%
-    add_timings_to_wrapper(
-      timings = tl %>% add_timing_checkpoint("method_afterpostproc")
-    )
+  ) %>% add_trajectory_to_wrapper(
+    unique(c(milestone_network$from, milestone_network$to)),
+    milestone_network,
+    NULL,
+    progressions = progressions,
+    ElasticTree
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 plot_merlot <- function(prediction) {
