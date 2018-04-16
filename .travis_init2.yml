@@ -23,6 +23,7 @@ addons:
       - libudunits2-dev
       - libblas-dev
       - liblapack-dev
+      - python3-pip
 install:
  - R -e 'install.packages("devtools")'
 
