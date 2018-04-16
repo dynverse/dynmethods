@@ -64,15 +64,17 @@ run_scuba <- function(counts,
     )
 
   # put cells on edges
-  milestone_assignment <- milestone_fun(out$labels) %>% setNames(rownames(counts))
+  cell_group <- milestone_fun(out$labels) %>% setNames(rownames(counts))
 
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts)
+  ) %>% add_cell_group_to_wrapper(
+    group_ids = milestone_ids,
+    cell_group = cell_group
   ) %>% add_cluster_graph_to_wrapper(
     milestone_ids = milestone_ids,
-    milestone_network = milestone_network,
-    milestone_assignment_cells = milestone_assignment
+    milestone_network = milestone_network
   ) %>% add_timings_to_wrapper(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )

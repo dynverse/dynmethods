@@ -77,7 +77,7 @@ run_aga <- function(
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # After building a kNN graph (not shown), the kNN graph is clustered into louvain groups:
-  milestone_assignment_cells <- setNames(aga_out$obs$group_id, aga_out$obs$cell_id)
+  cell_group <- setNames(aga_out$obs$group_id, aga_out$obs$cell_id)
 
   # Several tests are used to assess which transitions exist between the louvain groups.
   # We use the `aga_adjacency_tree_confidence` to construct the milestone network.
@@ -92,10 +92,12 @@ run_aga <- function(
   # Wrap the output
   wrap_prediction_model(
     cell_ids = rownames(expression)
+  ) %>% add_cell_group_to_wrapper(
+    group_ids = milestone_ids,
+    cell_group = cell_group
   ) %>% add_cluster_graph_to_wrapper(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
-    milestone_assignment_cells = milestone_assignment_cells,
     aga_out = aga_out
   ) %>% add_timings_to_wrapper(
     tl %>% add_timing_checkpoint("method_afterpostproc")
