@@ -142,7 +142,7 @@ run_stemid <- function(
   ) %>% add_dimred_projection_to_wrapper(
     milestone_network = cluster_network,
     dimred_milestones = ltr@ldata$cnl %>% as.matrix,
-    dimred_cells = ltr@ltcoord,
+    dimred = ltr@ltcoord,
     milestone_assignment_cells = as.character(ltr@ldata$lp) %>% setNames(rownames(expression)),
     num_segments_per_edge = 100,
     col_ann = ltr@sc@fcol

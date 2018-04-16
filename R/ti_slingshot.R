@@ -144,7 +144,7 @@ run_slingshot <- function(
   ) %>% add_dimred_projection_to_wrapper(
     milestone_network = cluster_network,
     dimred_milestones = centers,
-    dimred_cells = sds@reducedDim,
+    dimred = sds@reducedDim,
     milestone_assignment_cells = clusterLabels,
     num_segments_per_edge = 100,
     curve = curve_df

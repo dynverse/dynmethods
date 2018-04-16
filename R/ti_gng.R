@@ -70,7 +70,7 @@ run_gng <- function(
   ) %>% add_dimred_projection_to_wrapper(
     milestone_network = milestone_network,
     dimred_milestones = gng_out$node_space,
-    dimred_cells = space
+    dimred = space
   ) %>% add_timings_to_wrapper(
     tl %>% add_timing_checkpoint("method_afterpostproc")
   )

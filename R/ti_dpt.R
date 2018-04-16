@@ -99,7 +99,7 @@ run_dpt <- function(
   ) %>% add_dimred_projection_to_wrapper(
     milestone_network = milestone_network,
     dimred_milestones = dimred_milestones,
-    dimred_cells = dimred_cells,
+    dimred = dimred_cells,
     milestone_assignment_cells = milestone_assignment_cells,
     tips = tip_names
   ) %>% add_timings_to_wrapper(
