@@ -92,20 +92,17 @@ run_gpfates <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>%
-    add_trajectory_to_wrapper(
-      milestone_ids = milestone_ids,
-      milestone_network = milestone_network,
-      progressions = progressions,
-      pseudotimes = pseudotimes,
-      divergence_regions = divergence_regions
-    ) %>%
-    add_dimred_to_wrapper(
-      dimred = dimred
-    ) %>%
-    add_timings_to_wrapper(
-      tl %>% add_timing_checkpoint("method_afterpostproc")
-    )
+  ) %>% add_trajectory_to_wrapper(
+    milestone_ids = milestone_ids,
+    milestone_network = milestone_network,
+    progressions = progressions,
+    pseudotimes = pseudotimes,
+    divergence_regions = divergence_regions
+  ) %>% add_dimred_to_wrapper(
+    dimred = dimred
+  ) %>% add_timings_to_wrapper(
+    tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 plot_gpfates <- function(prediction, type = c("dimred", "assignment")) {

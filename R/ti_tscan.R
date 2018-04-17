@@ -79,7 +79,7 @@ run_tscan <- function(
   ) %>% add_dimred_projection_to_wrapper(
     milestone_network = cluster_network,
     dimred_milestones = cluster_space,
-    dimred_cells = sample_space,
+    dimred = sample_space,
     milestone_assignment_cells = cds_clus$clusterid,
     num_segments_per_edge = 100
   ) %>% add_timings_to_wrapper(

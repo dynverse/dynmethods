@@ -90,16 +90,17 @@ run_mpath <- function(
     filter(length > 0, from < to) %>%
     mutate(directed = FALSE)
 
-  milestone_assignment <-
+  cell_group <-
     with(landmark_cluster, setNames(landmark_cluster, cell))
 
   wrap_prediction_model(
     cell_ids = rownames(counts),
     grouping_assignment = grouping_assignment
+  ) %>% add_cell_group_to_wrapper(
+    group_ids = milestone_ids,
+    cell_group = cell_group
   ) %>% add_cluster_graph_to_wrapper(
-    milestone_ids = milestone_ids,
-    milestone_network = milestone_network,
-    milestone_assignment_cells = milestone_assignment
+    milestone_network = milestone_network
   ) %>% add_timings_to_wrapper(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )

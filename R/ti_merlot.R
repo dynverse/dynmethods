@@ -7,10 +7,10 @@ description_merlot <- function() {
     package_loaded = c("merlot", "destiny"),
     package_required = c("destiny"),
     par_set = makeParamSet(
-      makeLogicalParam("density_norm", TRUE),
-      makeIntegerParam("n_components", 2, 20, default=20),
-      makeIntegerParam("n_components_to_use", 2, 20, default=3),
-      makeIntegerParam("NumberOfNodes", 2, 1000, default=100)
+      makeLogicalParam("density_norm", default=TRUE),
+      makeIntegerParam("n_components", lower=2, upper=20, default=20),
+      makeIntegerParam("n_components_to_use", lower=2, upper=20, default=3),
+      makeIntegerParam("NumberOfNodes", lower=2, upper=1000, default=100)
     ),
     properties = c(),
     run_fun = run_merlot,
@@ -79,7 +79,7 @@ run_merlot <- function(
   ) %>%
     left_join(milestone_network, "edge_id")
 
-  # now calcualte milestone network lengths
+  # now calculate milestone network lengths
   milestone_network <- left_join(
     milestone_network,
     progressions %>%
@@ -98,17 +98,15 @@ run_merlot <- function(
   # wrap output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>%
-    add_trajectory_to_wrapper(
-      unique(c(milestone_network$from, milestone_network$to)),
-      milestone_network,
-      NULL,
-      progressions = progressions,
-      ElasticTree
-    ) %>%
-    add_timings_to_wrapper(
-      timings = tl %>% add_timing_checkpoint("method_afterpostproc")
-    )
+  ) %>% add_trajectory_to_wrapper(
+    unique(c(milestone_network$from, milestone_network$to)),
+    milestone_network,
+    NULL,
+    progressions = progressions,
+    ElasticTree
+  ) %>% add_timings_to_wrapper(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 plot_merlot <- function(prediction) {
