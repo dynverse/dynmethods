@@ -24,7 +24,7 @@ df <- list.files("R", pattern = "ti_", full.names = T) %>%
   map_df(function(file) {
     file_text <- readr::read_lines(file)
     
-    line_numbers <- which(str_detect(file_text, "description_[ a-zA-Z]*<- function"))
+    line_numbers <- which(str_detect(file_text, "^description_[ a-zA-Z]*<- function"))
     descr_funs <- str_replace(file_text[line_numbers], "(description_[a-zA-Z]*) <- .*", "\\1")
     descriptions <- map(descr_funs, ~ do.call(., args = list(), envir = asNamespace("dynmethods")))
     long_names <- map_chr(descriptions, ~ .$name)

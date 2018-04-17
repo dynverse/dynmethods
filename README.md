@@ -18,6 +18,7 @@ Currently implemented are the following wrappers:
 | cellTree with maptpx | [R/ti\_celltree.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_celltree.R#L3)   |                                                                                  |
 | cellTree with vem    | [R/ti\_celltree.R\#L11](https://github.com/dynverse/dynmethods/blob/master/R/ti_celltree.R#L11) |                                                                                  |
 | Component 1          | [R/ti\_comp1.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_comp1.R#L3)         |                                                                                  |
+| Control: error       | [R/ti\_error.R\#L6](https://github.com/dynverse/dynmethods/blob/master/R/ti_error.R#L6)         |                                                                                  |
 | Control: identity    | [R/ti\_identity.R\#L6](https://github.com/dynverse/dynmethods/blob/master/R/ti_identity.R#L6)   |                                                                                  |
 | Control: manual      | [R/ti\_manual.R\#L6](https://github.com/dynverse/dynmethods/blob/master/R/ti_manual.R#L6)       |                                                                                  |
 | Control: random      | [R/ti\_random.R\#L6](https://github.com/dynverse/dynmethods/blob/master/R/ti_random.R#L6)       |                                                                                  |
@@ -26,6 +27,7 @@ Currently implemented are the following wrappers:
 | Embeddr              | [R/ti\_embeddr.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_embeddr.R#L3)     |                                                                                  |
 | GPfates              | [R/ti\_gpfates.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_gpfates.R#L3)     |                                                                                  |
 | Growing Neural Gas   | [R/ti\_gng.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_gng.R#L3)             |                                                                                  |
+| MERLot               | [R/ti\_merlot.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_merlot.R#L3)       |                                                                                  |
 | mfa                  | [R/ti\_mfa.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_mfa.R#L3)             |                                                                                  |
 | Monocle DDRTree      | [R/ti\_monocle.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_monocle.R#L3)     |                                                                                  |
 | Monocle ICA          | [R/ti\_monocle.R\#L7](https://github.com/dynverse/dynmethods/blob/master/R/ti_monocle.R#L7)     |                                                                                  |
