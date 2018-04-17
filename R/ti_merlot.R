@@ -33,7 +33,8 @@ run_merlot <- function(
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
-  # From inst/examples/ExampleGuo2010.R
+  #### Example fromrom inst/examples/ExampleGuo2010.R
+
   # Embed Cells into their manifold, in this case we use Diffusion Maps as calculated by Destiny
   DatasetDM <- destiny::DiffusionMap(expression, density_norm = density_norm, verbose = F, n_eigs = n_components)
 
@@ -44,6 +45,7 @@ run_merlot <- function(
   ScaffoldTree=CalculateScaffoldTree(CellCoordinates = CellCoordinates)
 
   # Set the number of nodes to be used to build the Principal Elastic Tree.
+  # This is now a parameter of the method
   # NumberOfNodes=100
 
   # We calculate the elastic principal tree using the scaffold tree for its initialization
