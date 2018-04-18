@@ -27,7 +27,8 @@ Currently implemented are the following wrappers:
 | Embeddr              | [R/ti\_embeddr.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_embeddr.R#L3)     |                                                                                  |
 | GPfates              | [R/ti\_gpfates.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_gpfates.R#L3)     |                                                                                  |
 | Growing Neural Gas   | [R/ti\_gng.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_gng.R#L3)             |                                                                                  |
-| MERLot               | [R/ti\_merlot.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_merlot.R#L3)       |                                                                                  |
+| MATCHER              | [R/ti\_matcher.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_matcher.R#L3)     |                                                                                  |
+| MERLoT               | [R/ti\_merlot.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_merlot.R#L3)       |                                                                                  |
 | mfa                  | [R/ti\_mfa.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_mfa.R#L3)             |                                                                                  |
 | Monocle DDRTree      | [R/ti\_monocle.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_monocle.R#L3)     |                                                                                  |
 | Monocle ICA          | [R/ti\_monocle.R\#L7](https://github.com/dynverse/dynmethods/blob/master/R/ti_monocle.R#L7)     |                                                                                  |
