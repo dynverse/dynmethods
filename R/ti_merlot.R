@@ -35,7 +35,7 @@ run_merlot <- function(
   #### Example fromrom inst/examples/ExampleGuo2010.R
 
   if(!is.null(n_end_states)) {
-    n_components_to_use <- n_end_states + 1
+    n_components_to_use <- n_end_states - 1
   }
   n_components <- max(n_components_to_use, n_components) # always make sure that enough components are extracted, even if the provided n_components is too low
 
