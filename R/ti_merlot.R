@@ -34,15 +34,16 @@ run_merlot <- function(
 
   #### Example fromrom inst/examples/ExampleGuo2010.R
 
+  if(!is.null(n_end_states)) {
+    n_components_to_use <- n_end_states + 1
+  }
+  n_components <- max(n_components_to_use, n_components) # always make sure that enough components are extracted, even if the provided n_components is too low
+
   # Embed Cells into their manifold, in this case we use Diffusion Maps as calculated by Destiny
   DatasetDM <- destiny::DiffusionMap(expression, verbose = F, n_eigs = n_components)
 
   # Extract dimensionality reduction
-  if(!is.null(n_branches)) {
-    CellCoordinates=DatasetDM@eigenvectors[,1:min(n_components, n_end_states + 1)]
-  } else {
-    CellCoordinates=DatasetDM@eigenvectors[,1:min(n_components, n_components_to_use)]
-  }
+  CellCoordinates=DatasetDM@eigenvectors[,1:n_components]
 
   # We calculate the scaffold tree using the first 3 diffusion components from the diffusion map
   ScaffoldTree=CalculateScaffoldTree(CellCoordinates = CellCoordinates)
