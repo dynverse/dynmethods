@@ -66,6 +66,5 @@ plot_matcher <- function(prediction) {
     ) %>%
     ggplot(aes(global_pseudotime, pseudotime)) +
     geom_point(shape="x", size=2) +
-    geom_smooth() +
-    cowplot::theme_cowplot()
+    geom_smooth()
 }
