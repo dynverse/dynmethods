@@ -32,6 +32,7 @@ Imports:
   ParamHelpers (>= 1.11),
   purrr, 
   RColorBrewer,
+  reticulate,
   readr,
   reshape2,
   stringr,

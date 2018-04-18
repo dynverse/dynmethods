@@ -12,6 +12,7 @@ description_matcher <- function() create_description(
   plot_fun = plot_matcher
 )
 
+#' @import reticulate
 run_matcher <- function(
   counts
 ) {
