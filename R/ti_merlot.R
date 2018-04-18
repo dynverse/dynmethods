@@ -7,7 +7,6 @@ description_merlot <- function() {
     package_loaded = c("merlot", "destiny"),
     package_required = c("destiny"),
     par_set = makeParamSet(
-      makeLogicalParam("density_norm", default=TRUE),
       makeIntegerParam("n_components", lower=2, upper=20, default=20),
       makeIntegerParam("n_components_to_use", lower=2, upper=20, default=3),
       makeIntegerParam("NumberOfNodes", lower=2, upper=1000, default=100)
@@ -21,7 +20,6 @@ description_merlot <- function() {
 run_merlot <- function(
   expression,
   start_cell_ids = NULL,
-  density_norm = TRUE,
   n_components = 20,
   n_components_to_use = 3,
   NumberOfNodes = 100
@@ -36,7 +34,7 @@ run_merlot <- function(
   #### Example fromrom inst/examples/ExampleGuo2010.R
 
   # Embed Cells into their manifold, in this case we use Diffusion Maps as calculated by Destiny
-  DatasetDM <- destiny::DiffusionMap(expression, density_norm = density_norm, verbose = F, n_eigs = n_components)
+  DatasetDM <- destiny::DiffusionMap(expression, verbose = F, n_eigs = n_components)
 
   # The first 3 diffusion map components will be used for this example
   CellCoordinates=DatasetDM@eigenvectors[,1:n_components_to_use]
