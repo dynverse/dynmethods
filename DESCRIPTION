@@ -42,7 +42,7 @@ Imports:
   tidyr,
   viridis
 Suggests: 
-  aga,
+  paga,
   Biobase,
   BiocGenerics,
   cellTree,
@@ -91,7 +91,7 @@ Suggests:
   rmarkdown
 Remotes:
   berndbischl/ParamHelpers,
-  dynverse/aga,
+  dynverse/paga,
   dynverse/dynutils,
   dynverse/dynwrap,
   dynverse/dynplot,
