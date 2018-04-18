@@ -11,8 +11,6 @@ Currently implemented are the following wrappers:
 
 | Name                 | Code                                                                                            | Vignette                                                                         |
 |:---------------------|:------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|
-| AGA                  | [R/ti\_aga.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_aga.R#L3)             | [aga.md](https://github.com/dynverse/dynmethods/blob/master/inst/doc/aga.md)     |
-| AGA pseudotime       | [R/ti\_aga.R\#L7](https://github.com/dynverse/dynmethods/blob/master/R/ti_aga.R#L7)             | [agapt.md](https://github.com/dynverse/dynmethods/blob/master/inst/doc/agapt.md) |
 | Angle                | [R/ti\_angle.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_angle.R#L3)         | [angle.md](https://github.com/dynverse/dynmethods/blob/master/inst/doc/angle.md) |
 | cellTree with gibbs  | [R/ti\_celltree.R\#L7](https://github.com/dynverse/dynmethods/blob/master/R/ti_celltree.R#L7)   |                                                                                  |
 | cellTree with maptpx | [R/ti\_celltree.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_celltree.R#L3)   |                                                                                  |
@@ -35,6 +33,7 @@ Currently implemented are the following wrappers:
 | Mpath                | [R/ti\_mpath.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_mpath.R#L3)         |                                                                                  |
 | ouija                | [R/ti\_ouija.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_ouija.R#L3)         |                                                                                  |
 | ouijaflow            | [R/ti\_ouijaflow.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_ouijaflow.R#L3) |                                                                                  |
+| PAGA                 | [R/ti\_paga.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_paga.R#L3)           |                                                                                  |
 | Periodic PrinCurve   | [R/ti\_periodpc.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_periodpc.R#L3)   |                                                                                  |
 | PhenoPath            | [R/ti\_phenopath.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_phenopath.R#L3) |                                                                                  |
 | pseudogp             | [R/ti\_pseudogp.R\#L3](https://github.com/dynverse/dynmethods/blob/master/R/ti_pseudogp.R#L3)   |                                                                                  |
