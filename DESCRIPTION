@@ -22,6 +22,7 @@ Imports:
   ggraph,
   ggrepel,
   ggplot2,
+  glue,
   grDevices,
   grid,
   igraph,
