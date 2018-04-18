@@ -13,7 +13,7 @@ curl -sSf -o ${archive_filename} ${archive_url}
 sudo tar xjf ${archive_filename} --directory /
 rm ${archive_filename}
 echo 'export PATH=/opt/python/${vers}/bin:$PATH' | sudo tee -a ${PYENV_PATH_FILE} &>/dev/null
-export PATH="/opt/python/${vers}/bin:$PATH""
+export PATH="/opt/python/${vers}/bin:$PATH"
 
 sudo pip3 install --upgrade pip setuptools wheel
 python3 -V
