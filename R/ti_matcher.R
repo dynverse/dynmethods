@@ -18,11 +18,14 @@ description_matcher <- function() create_description(
 run_matcher <- function(
   counts,
   quantiles=50,
-  method="gp"
+  method="gp",
+  n_cores = 1
 ) {
   requireNamespace("MATCHER")
 
   # load matcher
+  set_cores(n_cores)
+
   use_virtualenv(file.path(find.package("MATCHER"), "venv"))
   pymatcher <- import("pymatcher")
 
