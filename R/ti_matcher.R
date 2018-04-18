@@ -22,10 +22,9 @@ run_matcher <- function(
   n_cores = 1
 ) {
   requireNamespace("MATCHER")
-
-  # load matcher
   set_cores(n_cores)
 
+  # load matcher
   use_virtualenv(file.path(find.package("MATCHER"), "venv"))
   pymatcher <- import("pymatcher")
 
