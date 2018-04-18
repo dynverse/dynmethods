@@ -2,7 +2,7 @@
 #' @export
 description_merlot <- function() {
   create_description(
-    name = "MERLot",
+    name = "MERLoT",
     short_name = "merlot",
     package_loaded = c("merlot", "destiny"),
     package_required = c("destiny"),
@@ -37,7 +37,7 @@ run_merlot <- function(
   # Embed Cells into their manifold, in this case we use Diffusion Maps as calculated by Destiny
   DatasetDM <- destiny::DiffusionMap(expression, verbose = F, n_eigs = n_components)
 
-  # The first 3 diffusion map components will be used for this example
+  # Extract dimensionality reduction
   if(!is.null(n_branches)) {
     CellCoordinates=DatasetDM@eigenvectors[,1:min(n_components, n_end_states + 1)]
   } else {
