@@ -6,6 +6,8 @@ description_matcher <- function() create_description(
   package_loaded = c(),
   package_required = c("MATCHER"),
   par_set = makeParamSet(
+    makeIntegerParam("quantiles", 2, 500, default=50),
+    makeDiscreteParam("method", values=c("gp", "linear"), default="linear")
   ),
   properties = c(),
   run_fun = run_matcher,
@@ -14,16 +16,15 @@ description_matcher <- function() create_description(
 
 #' @import reticulate
 run_matcher <- function(
-  counts
+  counts,
+  quantiles=50,
+  method="gp"
 ) {
   requireNamespace("MATCHER")
-
-  # run matcher
 
   # load matcher
   use_virtualenv(file.path(find.package("MATCHER"), "venv"))
   pymatcher <- import("pymatcher")
-  plt <- import("matplotlib.pyplot", as="plt")
 
   # setup data
   X <- np_array(np_array(counts))
@@ -33,7 +34,7 @@ run_matcher <- function(
 
   # run matcher
   m <- pymatcher$matcher$MATCHER(list(X))
-  m$infer()
+  m$infer(quantiles=as.integer(quantiles), method=list("gp"))
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
