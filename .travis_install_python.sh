@@ -15,6 +15,6 @@ rm ${archive_filename}
 echo 'export PATH=/opt/python/${vers}/bin:$PATH' | sudo tee -a ${PYENV_PATH_FILE} &>/dev/null
 export PATH="/opt/python/${vers}/bin:$PATH"
 
-sudo pip3 install --upgrade pip setuptools wheel
+sudo /opt/python/${vers}/bin/pip3.6 install --upgrade pip setuptools wheel
 python3 -V
 pip3 -V
