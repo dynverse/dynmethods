@@ -90,7 +90,7 @@ run_paga <- function(
   # get data
   py$adata <- adata
 
-  cell_group <- py_eval("adata.obs.astype({'louvain':str})") %>%  # avoid conversion error
+  grouping <- py_eval("adata.obs.astype({'louvain':str})") %>%  # avoid conversion error
     py_to_r() %>%
     pull(louvain) %>%
     set_names(rownames(expression))
@@ -115,9 +115,9 @@ run_paga <- function(
   # Wrap the output
   prediction <- wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_cell_group_to_wrapper(
+  ) %>% add_grouping_to_wrapper(
     group_ids = milestone_ids,
-    cell_group = cell_group
+    grouping = grouping
   ) %>% add_cluster_graph_to_wrapper(
     milestone_network = milestone_network,
     adj = adj
