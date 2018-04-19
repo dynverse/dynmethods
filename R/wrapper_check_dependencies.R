@@ -33,8 +33,12 @@ install_dependencies <- function(descr) {
   remotes <- desc::desc_get_remotes(find.package("dynmethods")) %>%
     set_names(., stringr::str_replace(., ".*/([:alpha:]*).*", "\\1"))
 
-  walk(dependencies[dependencies %in% names(remotes)], function(dependency) {devtools::install_github(remotes[[dependency]])})
-  walk(dependencies[!dependencies %in% names(remotes)], function(dependency) {devtools::install_cran(dependency)})
+  for (dependency in dependencies[dependencies %in% names(remotes)]) {
+    devtools::install_github(remotes[[dependency]])
+  }
+  for (dependency in dependencies[!dependencies %in% names(remotes)]) {
+    devtools::install_cran(dependency)
+  }
 
   message("Installed ", paste0(dependencies, collapse = ", "))
 }
