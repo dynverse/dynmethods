@@ -181,6 +181,7 @@ run_stemid2 <- function(
   wrap_prediction_model(
     cell_ids = rownames(expression)
   ) %>% add_dimred_projection_to_wrapper(
+    milestone_ids = unique(c(cluster_network$from, cluster_network$to)),
     milestone_network = cluster_network,
     dimred_milestones = ltr@ldata$cnl %>% as.matrix,
     dimred = ltr@ltcoord,

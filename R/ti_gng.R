@@ -68,6 +68,8 @@ run_gng <- function(
   wrap_prediction_model(
     cell_ids = rownames(expression)
   ) %>% add_dimred_projection_to_wrapper(
+    milestone_ids = unique(c(milestone_network$from, milestone_network$to)),
+    milestone_ids, milestone_ids,
     milestone_network = milestone_network,
     dimred_milestones = gng_out$node_space,
     dimred = space

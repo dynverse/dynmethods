@@ -77,6 +77,7 @@ run_tscan <- function(
   wrap_prediction_model(
     cell_ids = rownames(counts)
   ) %>% add_dimred_projection_to_wrapper(
+    milestone_ids = unique(c(cluster_network$from, cluster_network$to)),
     milestone_network = cluster_network,
     dimred_milestones = cluster_space,
     dimred = sample_space,
