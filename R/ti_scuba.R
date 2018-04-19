@@ -64,14 +64,14 @@ run_scuba <- function(counts,
     )
 
   # put cells on edges
-  cell_group <- milestone_fun(out$labels) %>% setNames(rownames(counts))
+  grouping <- milestone_fun(out$labels) %>% setNames(rownames(counts))
 
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>% add_cell_group_to_wrapper(
+  ) %>% add_grouping_to_wrapper(
     group_ids = milestone_ids,
-    cell_group = cell_group
+    grouping = grouping
   ) %>% add_cluster_graph_to_wrapper(
     milestone_network = milestone_network
   ) %>% add_timings_to_wrapper(
