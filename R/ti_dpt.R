@@ -97,6 +97,7 @@ run_dpt <- function(
   wrap_prediction_model(
     cell_ids = rownames(expression)
   ) %>% add_dimred_projection_to_wrapper(
+    milestone_ids = rownames(dimred_milestones),
     milestone_network = milestone_network,
     dimred_milestones = dimred_milestones,
     dimred = dimred_cells,
