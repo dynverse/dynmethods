@@ -128,5 +128,6 @@ Remotes:
   kieranrcampbell/phenopath,
   kstreet13/slingshot,
   rcannood/GNG,
-  rcannood/SCORPIUS
+  rcannood/SCORPIUS,
+  zji90/TSCAN
 VignetteBuilder: knitr
