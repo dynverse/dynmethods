@@ -28,6 +28,8 @@ install:
  - R -e 'install.packages("devtools")'
 
  - R -e 'setRepositories(ind = 1:2)'
- - R -e 'devtools::install_github(c("dynverse/StemID", "dynverse/topslam", "dynverse/Waterfall", "dynverse/Wishbone", "igraph/rigraph", "kieranrcampbell/pseudogp", "kieranrcampbell/mfa", "kieranrcampbell/ouija", "kieranrcampbell/phenopath", "kstreet13/slingshot"))'
- - R -e 'devtools::install()'
+ - R -e 'setRepositories(ind = 1:2); devtools::install_github(c("dynverse/StemID", "dynverse/topslam", "dynverse/Waterfall", "dynverse/Wishbone", "igraph/rigraph", "kieranrcampbell/pseudogp", "kieranrcampbell/mfa", "kieranrcampbell/ouija", "kieranrcampbell/phenopath", "kstreet13/slingshot"))'
+ - R -e 'install.packages("knitr")'
+ - R -e 'setRepositories(ind = 1:2); devtools::install()'
 r_check_args: "--no-tests --no-manual --no-vignettes --no-build-vignettes"
+r_build_args: "--no-build-vignettes"
