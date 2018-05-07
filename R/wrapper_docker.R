@@ -21,5 +21,5 @@ start_dynmethods_docker <- function() {
       shQuote("library(dynmethods)")
     )
   )
-  future::plan(cluster, workers = cl)
+  future::plan(future::cluster, workers = cl)
 }

@@ -36,13 +36,12 @@ execute_method <- function(
 
   # Run method on each task
   parallel::mclapply(seq_len(nrow(tasks)), mc.cores = mc_cores, function(i) {
-    # start the timer
-    time0 <- Sys.time()
-
     # get the task
     task <- dynutils::extract_row_to_list(tasks, i)
 
-    execute_method_on_task(task, method, parameters, give_priors, mc_cores, verbose)
+    model <- execute_method_on_task(task, method, parameters, give_priors, mc_cores, verbose)
+
+    output <- list(model=model, summary=attr(model, "summary"))
   })
 }
 
@@ -52,6 +51,9 @@ execute_method <- function(
 #' @param task The task
 #' @export
 execute_method_on_task <- function(task, method, parameters=list(), give_priors=NULL, mc_cores=1, verbose=FALSE) {
+  # start the timer
+  time0 <- Sys.time()
+
   # test whether the task is truely a task
   testthat::expect_true(is_data_wrapper(task))
   testthat::expect_true(is_wrapper_with_expression(task))
@@ -174,8 +176,9 @@ execute_method_on_task <- function(task, method, parameters=list(), give_priors=
     prior_df = list(prior_df)
   )
 
-  # return output
-  list(model = model, summary = summary)
+  attr(model, "summary") <- summary
+
+  model
 }
 
 #' Internal method for executing a method
