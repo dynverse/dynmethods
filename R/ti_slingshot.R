@@ -154,8 +154,9 @@ run_slingshot <- function(
   )
 }
 
-#' @importFrom RColorBrewer brewer.pal
 plot_slingshot <- function(prediction, type = c("curve", "lineage", "both")) {
+  requireNamespace("RColorBrewer")
+
   type <- match.arg(type)
 
   # reconstruct palette

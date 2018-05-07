@@ -106,9 +106,10 @@ run_mpath <- function(
   )
 }
 
-#' @importFrom ggforce geom_arc_bar
 plot_mpath <- function(prediction) {
   requireNamespace("igraph")
+  requireNamespace("ggforce")
+  requireNamespace("RColorBrewer")
 
   # milestone net as igraph in order to perform dimred
   edges <- prediction$milestone_network %>% filter(to != "FILTERED_CELLS")

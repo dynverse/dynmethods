@@ -99,11 +99,11 @@ run_scorpius <- function(
   )
 }
 
-#' @importFrom RColorBrewer brewer.pal
 #' @importFrom magrittr set_colnames
 plot_scorpius <- function(prediction) {
   requireNamespace("SCORPIUS")
   requireNamespace("MASS")
+  requireNamespace("RColorBrewer")
 
   space <- prediction$dimred
   ranges <- apply(space, 2, range)

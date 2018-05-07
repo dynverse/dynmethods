@@ -148,9 +148,10 @@ run_celltree <- function(
   )
 }
 
-#' @importFrom ggforce geom_arc_bar
 #' @importFrom grDevices rainbow
 plot_celltree <- function(prediction) {
+  requireNamespace("ggforce")
+
   # Based on cellTree::ct.plot.topics(prediction$mst_tree)
   vertices <- prediction$plot_vertices
   edges <- prediction$plot_edges

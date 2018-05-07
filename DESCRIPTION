@@ -20,9 +20,7 @@ Imports:
   dynplot,
   dynutils,
   dynwrap,
-  ggforce,
-  ggraph,
-  ggrepel,
+  future,
   ggplot2,
   glue,
   grDevices,
@@ -34,7 +32,6 @@ Imports:
   parallel,
   ParamHelpers (>= 1.11),
   purrr, 
-  RColorBrewer,
   reticulate,
   readr,
   reshape2,
@@ -90,8 +87,12 @@ Suggests:
   TSCAN,
   Waterfall,
   Wishbone,
+  ggforce,
+  ggraph,
+  ggrepel,
   knitr,
-  rmarkdown
+  rmarkdown,
+  RColorBrewer
 Remotes:
   berndbischl/ParamHelpers,
   dynverse/paga,

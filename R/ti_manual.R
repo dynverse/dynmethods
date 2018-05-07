@@ -57,6 +57,7 @@ run_manual <- function(
 }
 
 plot_manual <- function(prediction) {
+  requireNamespace("ggraph")
   cluster_graph <- prediction$graph_scaled
   cluster_graph %>%
     ggraph::ggraph() +

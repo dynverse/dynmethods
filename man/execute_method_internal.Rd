@@ -7,7 +7,7 @@
 execute_method_internal(method, arglist, setseed_detection_file)
 }
 \arguments{
-\item{method}{A TI method wrapper}
+\item{method}{The method to execute.}
 
 \item{arglist}{The arguments to apply to the method}
 

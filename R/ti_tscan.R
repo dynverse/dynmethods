@@ -89,6 +89,8 @@ run_tscan <- function(
 }
 
 plot_tscan <- function(prediction) {
+  requireNamespace("ggrepel")
+
   space <-
     prediction$dimred %>%
     as.data.frame() %>%

@@ -109,7 +109,6 @@ run_sincell <- function(
   )
 }
 
-#' @importFrom RColorBrewer brewer.pal
 #' @importFrom magrittr set_colnames
 plot_sincell<- function(prediction) {
   requireNamespace("ggraph")
