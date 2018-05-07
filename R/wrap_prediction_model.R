@@ -14,7 +14,7 @@ wrap_prediction_model <- function(
     cell_info = cell_info,
     ...
   )
-  class(out) <- c("dynmethod::prediction", class(out))
+  class(out) <- c("dynmethods::prediction", class(out))
   out
 }
 
@@ -24,5 +24,5 @@ wrap_prediction_model <- function(
 #'
 #' @export
 is_prediction <- function(object) {
-  "dynmethod::prediction" %in% class(object)
+  "dynmethods::prediction" %in% class(object)
 }

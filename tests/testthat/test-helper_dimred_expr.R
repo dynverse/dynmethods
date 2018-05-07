@@ -13,6 +13,8 @@ for (taski in seq_len(nrow(tasks))) {
   task <- extract_row_to_list(tasks, taski)
   expr <- log2(task$counts+1)
 
+  expect_error(dynmethods:::dimred(expr, method = "prism_in_the_steets_of_london", ndim = 5))
+
   methods <- dynmethods:::list_dimred_methods()
 
   for (method_name in names(methods)) {
