@@ -176,6 +176,10 @@ execute_method_on_task <- function(task, method, parameters=list(), give_priors=
     prior_df = list(prior_df)
   )
 
+  if (is.null(model)) {
+    model <- NA
+  }
+
   attr(model, "summary") <- summary
 
   model

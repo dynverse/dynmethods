@@ -1,5 +1,6 @@
 #' Stop the dynmethods docker
 #'
+#' @importFrom stringr str_glue
 #' @export
 stop_dynmethods_docker <- function() {
   to_stop <- system("docker ps -a | grep dynmethods | awk '{print $1}'", intern=T)
