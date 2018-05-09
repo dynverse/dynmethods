@@ -104,14 +104,14 @@ run_slingshot <- function(
 
   # adapted from plot-SlingshotDataSet
   # extract information on clusters
-  lineages <- slingshot::lineages(sds)
-  lineage_ctrl <- slingshot::lineageControl(sds)
-  connectivity <- slingshot::connectivity(sds)
+  lineages <- slingshot::slingLineages(sds)
+  lineage_ctrl <- slingshot::slingParams(sds)
+  connectivity <- slingshot::slingAdjacency(sds)
   clusterLabels <- slingshot::clusterLabels(sds) %>% setNames(rownames(counts))
 
   # calculate cluster centers
   centers <- t(sapply(rownames(connectivity), function(cli){
-    colMeans(space[clusterLabels == cli,])
+    colMeans(space[clusterLabels[, cli] == 1,,drop=T])
   }))
 
   # collect milestone network
@@ -124,7 +124,7 @@ run_slingshot <- function(
     )
 
   # collect curve data for visualisation purposes
-  curves <- slingshot::curves(sds)
+  curves <- slingshot::slingCurves(sds)
   curve_df <- names(curves) %>% map_df(function(id) {
     curve <- curves[[id]]
     data.frame(
