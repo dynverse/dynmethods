@@ -85,8 +85,8 @@ run_slingshot <- function(
 
   # run slingshot
   sds <- slingshot::slingshot(
-    reducedDim = space,
-    clusterLabels = labels,
+    space,
+    labels,
     start.clus = start.clus,
     end.clus = end.clus,
     shrink = shrink,
