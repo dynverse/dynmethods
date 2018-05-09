@@ -1,6 +1,6 @@
 #' Helper function for nasty Python code
 #'
-#' @param n_codes the number of cores Python is allowed to use.
+#' @param n_cores the number of cores Python is allowed to use.
 set_cores <- function(n_cores = 1) {
   Sys.setenv(
     MKL_NUM_THREADS = n_cores,

@@ -11,20 +11,24 @@ test_that("Testing infer_trajectory with control methods", {
   expect_s3_class(model, "dynwrap::with_trajectory")
 
   # run with multiple tasks and one method
-  models <- infer_trajectory(list(task, task), description_angle())
+  models <- infer_trajectories(list(task, task), description_angle())
   expect_true(is_tibble(models))
   expect_equal(nrow(models), 2)
 
-  models <- infer_trajectory(list_as_tibble(list(task, task)), description_angle())
+  models <- infer_trajectories(list_as_tibble(list(task, task)), description_angle())
   expect_true(is_tibble(models))
   expect_equal(nrow(models), 2)
 
   # run with multiple methods
-  models <- infer_trajectory(task, list(description_angle(), description_angle()))
+  models <- infer_trajectories(task, list(description_angle(), description_angle()))
   expect_true(is_tibble(models))
   expect_equal(nrow(models), 2)
 
-  models <- infer_trajectory(task, list_as_tibble(list(description_angle(), description_angle())))
+  models <- infer_trajectories(task, list_as_tibble(list(description_angle(), description_angle())))
+  expect_true(is_tibble(models))
+  expect_equal(nrow(models), 2)
+
+  models <- infer_trajectories(task, c("angle", "angle"))
   expect_true(is_tibble(models))
   expect_equal(nrow(models), 2)
 })

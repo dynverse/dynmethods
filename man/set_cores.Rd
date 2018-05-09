@@ -7,7 +7,7 @@
 set_cores(n_cores = 1)
 }
 \arguments{
-\item{n_codes}{the number of cores Python is allowed to use.}
+\item{n_cores}{the number of cores Python is allowed to use.}
 }
 \description{
 Helper function for nasty Python code
