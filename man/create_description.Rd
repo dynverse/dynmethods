@@ -16,7 +16,7 @@ create_description(name, short_name, package_loaded, package_required, par_set,
 
 \item{package_required}{The packages that need to be installed before executing the method}
 
-\item{par_set}{A bunch of parameters created by \code{\link[ParamHelpers]{makeParamSet}}}
+\item{par_set}{A bunch of parameters created by \code{\link[ParamHelpers:makeParamSet]{ParamHelpers::makeParamSet()}}}
 
 \item{properties}{Several descriptive properties of the method. WIP.}
 

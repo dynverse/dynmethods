@@ -2,10 +2,23 @@
 % Please edit documentation in R/wrapper_docker.R
 \name{start_dynmethods_docker}
 \alias{start_dynmethods_docker}
-\title{Start the dynmethods docker}
+\alias{stop_dynmethods_docker}
+\alias{start_dynmethods_docker}
+\title{Methods for working with the dynmethods docker}
 \usage{
+start_dynmethods_docker()
+
+stop_dynmethods_docker()
+
 start_dynmethods_docker()
 }
 \description{
-Make sure docker is installed and available through path
+Make sure docker is installed and available through path, see \link{https://docs.docker.com/install/}.
+After running \code{start_dynmethods_docker}, methods can be run on the docker using \code{x \%<-\% ...}
+}
+\examples{
+start_dynmethods_docker()
+tasks <- dyntoy::toy_tasks[1, ]
+models \%<-\% infer_trajectory(tasks, description_compone())
+
 }

@@ -15,7 +15,7 @@ env:
 addons:
   apt:
     packages:
-      - libgsl-dev                        # dyngen > splatter > zinbwave > copula > gsl
+      - libgsl0-dev                        # dyngen > splatter > zinbwave > copula > gsl
       - libsdl1.2-dev
       - libreadline-dev
       - imagemagick

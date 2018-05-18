@@ -132,3 +132,4 @@ Remotes:
   rcannood/SCORPIUS,
   zji90/TSCAN
 VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)

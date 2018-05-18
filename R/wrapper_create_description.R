@@ -4,12 +4,12 @@
 #' @param short_name A short name for the method, max 8 characters
 #' @param package_loaded The packages that need to be loaded before executing the method
 #' @param package_required The packages that need to be installed before executing the method
-#' @param par_set A bunch of parameters created by \code{\link[ParamHelpers]{makeParamSet}}
+#' @param par_set A bunch of parameters created by [ParamHelpers::makeParamSet()]
 #' @param properties Several descriptive properties of the method. WIP.
 #' @param run_fun A function to run the TI, needs to have 'counts' as its first param.
 #' @param plot_fun A function to plot the results of a TI, needs to have 'prediction' as its first param.
 #' @param override_runfun_params Whether or not to override the default parameters
-#' of \code{run_fun} with those described in \code{par_set}.
+#' of `run_fun` with those described in `par_set`.
 create_description <- function(
   name,
   short_name,

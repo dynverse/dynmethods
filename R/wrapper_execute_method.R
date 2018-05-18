@@ -2,8 +2,8 @@
 #' @param tasks Datasets containing single-cell expression data.
 #' @param method The method to execute.
 #' @param parameters The parameters to evaluate with.
-#' @param give_priors All the priors a method is allowed to receive. Must be a subset of: \code{"start_milestones"},
-#'  \code{"start_cells"}, \code{"end_milestones"}, \code{"end_cells"}, \code{"grouping_assignment"} and \code{"grouping_network"}
+#' @param give_priors All the priors a method is allowed to receive. Must be a subset of: `"start_milestones"`,
+#'  `"start_cells"`, `"end_milestones"`, `"end_cells"`, `"grouping_assignment"` and `"grouping_network"`
 #' @param mc_cores The number of cores to use, allowing to parallellise the different tasks
 #' @param verbose Whether or not to print information output
 #'
@@ -187,7 +187,7 @@ execute_method_on_task <- function(task, method, parameters=list(), give_priors=
 
 #' Internal method for executing a method
 #'
-#' If you're reading this, you're supposed to be using \code{execute_method} instead.
+#' If you're reading this, you're supposed to be using `execute_method` instead.
 #'
 #' @inheritParams execute_method_on_task
 #'
