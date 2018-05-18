@@ -53,7 +53,7 @@ start_dynmethods_docker <- function() {
     rscript_args = c(
       "-e",
       shQuote("library(dynmethods)")
-    ),🦒
+    ),
     connectTimeout=10
   )
   future::plan(future::cluster, workers = cl)
