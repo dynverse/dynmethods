@@ -6,11 +6,9 @@
 #'   See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.
 #'
 #' @export
-description_angle <- function(
-  dimred = "pca"
-) {
-  run_fun_defaults <- as.list(environment())[formalArgs(description_angle)]
-
+#'
+#' @include wrapper_create_description.R
+description_angle <-
   create_description(
     name = "Angle",
     short_name = "angle",
@@ -20,11 +18,10 @@ description_angle <- function(
       makeDiscreteParam(id = "dimred", default = "pca", values = names(list_dimred_methods()))
     ),
     properties = c(),
-    run_fun = run_angle,
-    plot_fun = plot_angle,
-    run_fun_defaults = run_fun_defaults
+    run_fun = "run_angle",
+    plot_fun = "plot_angle"
   )
-}
+
 run_angle <- function(
   expression,
   dimred

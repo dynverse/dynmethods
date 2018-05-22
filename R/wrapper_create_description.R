@@ -9,7 +9,6 @@
 #' @param run_fun A function to run the TI, needs to have 'counts' as its first param.
 #' @param plot_fun A function to plot the results of a TI, needs to have 'prediction' as its first param.
 #'   of `run_fun` with those described in `par_set`.
-#' @param run_fun_defaults A named list with which to override the default parameters of the \code{run_fun}
 create_description <- function(
   name,
   short_name,
@@ -18,14 +17,8 @@ create_description <- function(
   par_set,
   properties,
   run_fun,
-  plot_fun,
-  run_fun_defaults
+  plot_fun
 ) {
-  if(!all(names(run_fun_defaults) %in% formalArgs(run_fun))) {
-    stop("Not all default params described in par_set are listed in the run_fun.")
-  }
-
-  formals(run_fun)[names(run_fun_defaults)] <- run_fun_defaults
 
   desc <- lst(
     name,
@@ -33,12 +26,39 @@ create_description <- function(
     package_loaded,
     package_required,
     par_set,
-    properties,
-    run_fun,
-    plot_fun
-  )
-  class(desc) <- c("dynmethod::description", class(desc))
-  desc
+    properties
+  ) %>% add_class("dynmethod::description")
+
+  default_params <- par_set %>%
+    generateDesignOfDefaults(trafo = TRUE) %>%
+    ParamHelpers::dfRowToList(par_set, 1)
+
+  description_fun_constructor_with_params <- function(...) {
+
+    if (is.character(run_fun)) {
+      run_fun <- get(run_fun)
+    }
+    if (is.character(plot_fun)) {
+      plot_fun <- get(plot_fun)
+    }
+
+    # get the parameters from this function
+    run_fun_defaults <- as.list(environment())[formalArgs(description_fun_constructor_with_params)]
+
+    # override default parameters in the run_fun
+    formals(run_fun)[names(run_fun_defaults)] <- run_fun_defaults
+
+    # supply run_fun to the description
+    desc$run_fun <- run_fun
+    desc$plot_fun <- plot_fun
+
+    # return the description
+    desc
+  }
+
+  formals(description_fun_constructor_with_params) <- default_params
+
+  description_fun_constructor_with_params
 }
 
 #' Tests whether an object is a TI method description

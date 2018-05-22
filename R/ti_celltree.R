@@ -22,11 +22,11 @@
 #' ‘null’ picks the best method based on the type of grouping and start group information available.
 #'
 #' @rdname celltree
+#'
+#' @include wrapper_create_description.R
 abstract_celltree_description <- function(
   method
 ) {
-  # run_fun_defaults <- as.list(environment())[formalArgs(abstract_celltree_description)]
-
   method_value <- c(maptpx = "maptpx", gibbs = "Gibbs", vem = "VEM")[[method]]
 
   common_params <- list(
@@ -65,26 +65,16 @@ abstract_celltree_description <- function(
     )
   )
 
-  default_params <- par_set %>%
-    generateDesignOfDefaults(trafo = TRUE) %>%
-    ParamHelpers::dfRowToList(par_set, 1)
-
-  test <- function(...) {
-    create_description(
-      name = pritt("cellTree with {method}"),
-      short_name = pritt("ct{method}"),
-      package_loaded = c(),
-      package_required = c("cellTree"),
-      par_set = par_set,
-      properties = c(),
-      run_fun = run_celltree,
-      plot_fun = plot_celltree,
-      run_fun_defaults = as.list(environment())[formalArgs(test)]
-    )
-  }
-  formals(test) <- default_params
-
-  test
+  create_description(
+    name = pritt("cellTree with {method}"),
+    short_name = pritt("ct{method}"),
+    package_loaded = c(),
+    package_required = c("cellTree"),
+    par_set = par_set,
+    properties = c(),
+    run_fun = "run_celltree",
+    plot_fun = "plot_celltree"
+  )
 }
 
 
