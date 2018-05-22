@@ -9,7 +9,7 @@
 description_angle <- function(
   dimred = "pca"
 ) {
-  run_fun_defaults <- as.list(environment())[formalArgs(abstract_celltree_description)]
+  run_fun_defaults <- as.list(environment())[formalArgs(description_angle)]
 
   create_description(
     name = "Angle",

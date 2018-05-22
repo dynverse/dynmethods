@@ -21,15 +21,11 @@ create_description <- function(
   plot_fun,
   run_fun_defaults
 ) {
-  default_params <- par_set %>%
-    generateDesignOfDefaults(trafo = TRUE) %>%
-    ParamHelpers::dfRowToList(par_set, 1)
-
-  if(!all(names(default_params) %in% formalArgs(run_fun))) {
+  if(!all(names(run_fun_defaults) %in% formalArgs(run_fun))) {
     stop("Not all default params described in par_set are listed in the run_fun.")
   }
 
-  formals(run_fun)[names(default_params)] <- default_params
+  formals(run_fun)[names(run_fun_defaults)] <- run_fun_defaults
 
   desc <- lst(
     name,
