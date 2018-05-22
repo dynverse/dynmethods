@@ -59,9 +59,9 @@ run_recat <- function(
   # wrap
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_cyclic_trajectory_to_wrapper(
+  ) %>% add_cyclic_trajectory(
     pseudotimes = pseudotimes
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

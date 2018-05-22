@@ -60,11 +60,11 @@ run_topslam <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_linear_trajectory_to_wrapper(
+  ) %>% add_linear_trajectory(
     pseudotimes = model$time %>% setNames(rownames(expression)),
     model = model,
     wad = wad
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

@@ -32,12 +32,12 @@ run_angle <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_cyclic_trajectory_to_wrapper(
+  ) %>% add_cyclic_trajectory(
     pseudotimes = pseudotimes,
     do_scale_minmax = FALSE
-  ) %>% add_dimred_to_wrapper(
+  ) %>% add_dimred(
     dimred = space
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

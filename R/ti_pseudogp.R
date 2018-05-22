@@ -73,14 +73,14 @@ run_pseudogp <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_linear_trajectory_to_wrapper(
+  ) %>% add_linear_trajectory(
     pseudotimes = pseudotimes,
     spaces = spaces,
     chains = chains,
     pst = pst,
     lambda = lambda,
     sigma = sigma
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

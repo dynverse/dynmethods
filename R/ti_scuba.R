@@ -69,12 +69,12 @@ run_scuba <- function(counts,
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>% add_grouping_to_wrapper(
+  ) %>% add_grouping(
     group_ids = milestone_ids,
     grouping = grouping
-  ) %>% add_cluster_graph_to_wrapper(
+  ) %>% add_cluster_graph(
     milestone_network = milestone_network
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

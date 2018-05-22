@@ -49,10 +49,10 @@ run_matcher <- function(
   # return output
   prediction <- wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>% add_linear_trajectory_to_wrapper(
+  ) %>% add_linear_trajectory(
     pseudotimes = pseudotimes,
     sample_master_time = sample_master_time
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     tl %>% add_timing_checkpoint("method_afterpostproc")
   )
   prediction

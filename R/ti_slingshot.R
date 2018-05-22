@@ -141,7 +141,7 @@ run_slingshot <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>% add_dimred_projection_to_wrapper(
+  ) %>% add_dimred_projection(
     milestone_ids = rownames(centers),
     milestone_network = cluster_network,
     dimred_milestones = centers,
@@ -149,7 +149,7 @@ run_slingshot <- function(
     milestone_assignment_cells = clusterLabels,
     num_segments_per_edge = 100,
     curve = curve_df
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

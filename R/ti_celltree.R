@@ -137,13 +137,13 @@ run_celltree <- function(
   # wrap output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_cell_graph_to_wrapper(
+  ) %>% add_cell_graph(
     cell_graph = cell_graph,
     to_keep = to_keep,
     is_directed = FALSE,
     plot_vertices = vertices,
     plot_edges = edges
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

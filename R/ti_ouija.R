@@ -71,12 +71,12 @@ run_ouija <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_linear_trajectory_to_wrapper(
+  ) %>% add_linear_trajectory(
     pseudotimes = pseudotimes,
     t0_df = t0_df
-  ) %>% add_dimred_to_wrapper(
+  ) %>% add_dimred(
     dimred = space
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

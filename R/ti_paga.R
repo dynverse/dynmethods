@@ -115,13 +115,13 @@ run_paga <- function(
   # Wrap the output
   prediction <- wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_grouping_to_wrapper(
+  ) %>% add_grouping(
     group_ids = milestone_ids,
     grouping = grouping
-  ) %>% add_cluster_graph_to_wrapper(
+  ) %>% add_cluster_graph(
     milestone_network = milestone_network,
     adj = adj
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     tl %>% add_timing_checkpoint("method_afterpostproc")
   )
   prediction
@@ -224,13 +224,13 @@ run_paga <- function(
 #   # Create and return the predicted trajectory
 #   wrap_prediction_model(
 #     cell_ids = rownames(expression)
-#   ) %>% add_trajectory_to_wrapper(
+#   ) %>% add_trajectory(
 #     milestone_ids = milestone_ids,
 #     milestone_network = milestone_network,
 #     progressions = progressions,
 #     divergence_regions = NULL,
 #     aga_out = aga_out
-#   ) %>% add_timings_to_wrapper(
+#   ) %>% add_timings(
 #     tl %>% add_timing_checkpoint("method_afterpostproc")
 #   )
 # }

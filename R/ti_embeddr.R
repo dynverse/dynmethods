@@ -100,12 +100,12 @@ run_embeddr <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>% add_linear_trajectory_to_wrapper(
+  ) %>% add_linear_trajectory(
     pseudotimes = pseudotimes
-  ) %>% add_dimred_to_wrapper(
+  ) %>% add_dimred(
     dimred = dimred_cells,
     dimred_trajectory_segments = dimred_trajectory_segments
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

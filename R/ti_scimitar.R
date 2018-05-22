@@ -72,13 +72,13 @@ run_scimitar <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_trajectory_to_wrapper(
+  ) %>% add_trajectory(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     progressions = progressions,
     divergence_regions = NULL,
     pseudotime = pseudotime
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

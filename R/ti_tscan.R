@@ -76,14 +76,14 @@ run_tscan <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>% add_dimred_projection_to_wrapper(
+  ) %>% add_dimred_projection(
     milestone_ids = rownames(cluster_space),
     milestone_network = cluster_network,
     dimred_milestones = cluster_space,
     dimred = sample_space,
     milestone_assignment_cells = cds_clus$clusterid,
     num_segments_per_edge = 100
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

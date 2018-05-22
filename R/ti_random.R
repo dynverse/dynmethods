@@ -50,12 +50,12 @@ run_random <- function(counts, dummy_param = .5) {
   # return output
   wrap_prediction_model(
     cell_ids = cell_ids
-  ) %>% add_trajectory_to_wrapper(
+  ) %>% add_trajectory(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     progressions = progressions,
     divergence_regions = NULL
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

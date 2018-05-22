@@ -166,18 +166,18 @@ run_slice <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_trajectory_to_wrapper(
+  ) %>% add_trajectory(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     progressions = progressions,
     divergence_regions = NULL
-  ) %>% add_dimred_to_wrapper(
+  ) %>% add_dimred(
     dimred = cells.df %>% subset(slice.realcell == 1) %>% as.matrix %>% .[,c("x", "y")],
     dimred_milestones = cells.df %>% subset(slice.realcell == 0) %>% as.matrix %>% .[,c("x", "y")],
     dimred_trajectory_segments = edge.df[,c("src.x", "src.y", "dst.x", "dst.y")] %>% as.matrix %>% set_colnames(c("from_x", "from_y", "to_x", "to_y")),
     cells.df = cells.df, # todo: remove this and modify plot function
     edge.df = edge.df
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

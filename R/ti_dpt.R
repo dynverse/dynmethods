@@ -96,14 +96,14 @@ run_dpt <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_dimred_projection_to_wrapper(
+  ) %>% add_dimred_projection(
     milestone_ids = rownames(dimred_milestones),
     milestone_network = milestone_network,
     dimred_milestones = dimred_milestones,
     dimred = dimred_cells,
     milestone_assignment_cells = milestone_assignment_cells,
     tips = tip_names
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

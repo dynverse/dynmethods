@@ -89,12 +89,12 @@ run_scorpius <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_linear_trajectory_to_wrapper(
+  ) %>% add_linear_trajectory(
     pseudotimes = traj$time
-  ) %>% add_dimred_to_wrapper(
+  ) %>% add_dimred(
     dimred = space,
     dimred_trajectory_segments = dimred_trajectory_segments
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

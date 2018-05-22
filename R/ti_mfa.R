@@ -78,14 +78,14 @@ run_mfa <- function(
   wrap_prediction_model(
     cell_ids = rownames(expression),
     cell_info = ms
-  ) %>% add_trajectory_to_wrapper(
+  ) %>% add_trajectory(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     progressions = progressions,
     divergence_regions = NULL
-  ) %>% add_dimred_to_wrapper(
+  ) %>% add_dimred(
     dimred = pca_out
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

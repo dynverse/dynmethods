@@ -119,14 +119,14 @@ run_scoup <- function(
   wrap_prediction_model(
     cell_ids = rownames(expression),
     cell_info = model$cpara %>% rownames_to_column("cell_id")
-  ) %>% add_trajectory_to_wrapper(
+  ) %>% add_trajectory(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     milestone_percentages = milestone_percentages,
     divergence_regions = divergence_regions
-  ) %>% add_dimred_to_wrapper(
+  ) %>% add_dimred(
     dimred = model$dimred %>% as.matrix
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

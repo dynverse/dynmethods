@@ -393,11 +393,11 @@ progressions &lt;-<span class="st"> </span>aga_out<span class="op">$</span>obs <
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">percentage =</span> dynutils<span class="op">::</span><span class="kw">scale_minmax</span>(aga_pseudotime)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select</span>(cell_id, from, to, percentage)</code></pre></div>
-<p>The prediction is wrapped using the <code>add_trajectory_to_wrapper</code> function.</p>
+<p>The prediction is wrapped using the <code>add_trajectory</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prediction &lt;-<span class="st"> </span>
 <span class="st">  </span><span class="kw">wrap_prediction_model</span>(
     <span class="dt">cell_ids =</span> <span class="kw">rownames</span>(expression)
-  ) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_trajectory_to_wrapper</span>(
+  ) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_trajectory</span>(
     <span class="dt">milestone_ids =</span> milestone_ids,
     <span class="dt">milestone_network =</span> milestone_network,
     <span class="dt">progressions =</span> progressions,

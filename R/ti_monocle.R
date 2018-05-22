@@ -127,12 +127,12 @@ run_monocle <- function(
   # wrap output
   wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>% add_cell_graph_to_wrapper(
+  ) %>% add_cell_graph(
     cell_graph = cell_graph,
     to_keep = to_keep,
     plot_data = plot_data,
     reduction_method = reduction_method
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

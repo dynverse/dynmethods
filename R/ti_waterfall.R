@@ -28,10 +28,10 @@ run_waterfall <- function(expression, num_clusters = 10) {
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_linear_trajectory_to_wrapper(
+  ) %>% add_linear_trajectory(
     pseudotimes = ps$pseudotime %>% setNames(rownames(expression)),
     ps = ps
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

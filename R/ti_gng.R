@@ -67,12 +67,12 @@ run_gng <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_dimred_projection_to_wrapper(
+  ) %>% add_dimred_projection(
     milestone_ids = rownames(gng_out$node_space),
     milestone_network = milestone_network,
     dimred_milestones = gng_out$node_space,
     dimred = space
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

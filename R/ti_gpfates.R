@@ -92,15 +92,15 @@ run_gpfates <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>% add_trajectory_to_wrapper(
+  ) %>% add_trajectory(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     progressions = progressions,
     pseudotimes = pseudotimes,
     divergence_regions = divergence_regions
-  ) %>% add_dimred_to_wrapper(
+  ) %>% add_dimred(
     dimred = dimred
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

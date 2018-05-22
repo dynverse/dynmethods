@@ -37,12 +37,12 @@ run_shuffle <- function(
   # return output
   wrap_prediction_model(
     cell_ids = task$cell_ids
-  ) %>% add_trajectory_to_wrapper(
+  ) %>% add_trajectory(
     milestone_ids = task$milestone_ids,
     milestone_network = task$milestone_network,
     progressions = progressions,
     divergence_regions = task$divergence_regions
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

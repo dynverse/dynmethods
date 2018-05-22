@@ -152,15 +152,15 @@ ggplot(dimred_df) +
 
 ![](angle_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
-The prediction is wrapped using the `add_cycling_trajectory_to_wrapper` function.
+The prediction is wrapped using the `add_cycling_trajectory` function.
 
 ``` r
 prediction <- wrap_prediction_model(
   cell_ids = rownames(expression)
-) %>% add_cyclic_trajectory_to_wrapper(
+) %>% add_cyclic_trajectory(
   pseudotimes = pseudotimes,
   do_scale_minmax = FALSE
-) %>% add_dimred_to_wrapper(
+) %>% add_dimred(
   dimred = dimred
 )
 

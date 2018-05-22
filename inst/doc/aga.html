@@ -290,10 +290,10 @@ aga_out &lt;-<span class="st"> </span>aga<span class="op">::</span><span class="
 <span class="st">  </span><span class="kw">select</span>(from, to, length, directed)
 
 milestone_ids &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">unique</span>(milestone_assignment_cells))</code></pre></div>
-<p>The prediction is wrapped using the <code>add_cluster_graph_to_wrapper</code> function.</p>
+<p>The prediction is wrapped using the <code>add_cluster_graph</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prediction &lt;-<span class="st"> </span><span class="kw">wrap_prediction_model</span>(
   <span class="dt">cell_ids =</span> <span class="kw">rownames</span>(expression)
-) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_cluster_graph_to_wrapper</span>(
+) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_cluster_graph</span>(
   <span class="dt">milestone_ids =</span> milestone_ids,
   <span class="dt">milestone_network =</span> milestone_network,
   <span class="dt">milestone_assignment_cells =</span> milestone_assignment_cells,

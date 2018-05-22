@@ -265,13 +265,13 @@ progressions <- aga_out$obs %>%
   select(cell_id, from, to, percentage)
 ```
 
-The prediction is wrapped using the `add_trajectory_to_wrapper` function.
+The prediction is wrapped using the `add_trajectory` function.
 
 ``` r
 prediction <- 
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_trajectory_to_wrapper(
+  ) %>% add_trajectory(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     progressions = progressions,

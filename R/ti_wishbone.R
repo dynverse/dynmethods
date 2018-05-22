@@ -127,13 +127,13 @@ run_wishbone <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>% add_trajectory_to_wrapper(
+  ) %>% add_trajectory(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     progressions = progressions,
     model = model,
     divergence_regions = NULL
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

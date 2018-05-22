@@ -51,7 +51,7 @@ run_manual <- function(
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # return output
-  prediction %>% add_timings_to_wrapper(
+  prediction %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }
