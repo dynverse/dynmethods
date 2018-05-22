@@ -31,3 +31,5 @@ install:
  - R -e 'setRepositories(ind = 1:2); devtools::install()'
 r_check_args: "--no-tests --no-manual --no-vignettes --no-build-vignettes"
 r_build_args: "--no-build-vignettes"
+after_success:
+ - R -e 'cat("covr")'
