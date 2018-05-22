@@ -1,21 +1,35 @@
-#' Description for angle
+#' Description object for the \code{angle} method
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
+#' @inheritParams run_angle
+#'
 #' @export
-description_angle <- function() create_description(
-  name = "Angle",
-  short_name = "angle",
-  package_loaded = c(),
-  package_required = c(),
-  par_set = makeParamSet(
-    makeDiscreteParam(id = "dimred", default = "pca", values = names(list_dimred_methods()))
-  ),
-  properties = c(),
-  run_fun = run_angle,
-  plot_fun = plot_angle
-)
+description_angle <- function(
+  dimred = "pca"
+) {
+  create_description(
+    name = "Angle",
+    short_name = "angle",
+    package_loaded = c(),
+    package_required = c(),
+    par_set = makeParamSet(
+      makeDiscreteParam(id = "dimred", default = dimred, values = names(list_dimred_methods()))
+    ),
+    properties = c(),
+    run_fun = run_angle,
+    plot_fun = plot_angle
+  )
+}
 
+#' Infer trajectory with \code{angle}
+#'
+#' @param expression An M-by-N expression matrix, with M the number of cells and N the number of genes.
+#' @param dimred A character vector specifying which dimensionality reduction method to use.
+#'   See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.
 run_angle <- function(
   expression,
-  dimred = "pca"
+  dimred
 ) {
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
