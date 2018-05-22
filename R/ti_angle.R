@@ -9,17 +9,20 @@
 description_angle <- function(
   dimred = "pca"
 ) {
+  run_fun_defaults <- as.list(environment())[formalArgs(abstract_celltree_description)]
+
   create_description(
     name = "Angle",
     short_name = "angle",
     package_loaded = c(),
     package_required = c(),
     par_set = makeParamSet(
-      makeDiscreteParam(id = "dimred", default = dimred, values = names(list_dimred_methods()))
+      makeDiscreteParam(id = "dimred", default = "pca", values = names(list_dimred_methods()))
     ),
     properties = c(),
     run_fun = run_angle,
-    plot_fun = plot_angle
+    plot_fun = plot_angle,
+    run_fun_defaults = run_fun_defaults
   )
 }
 run_angle <- function(
