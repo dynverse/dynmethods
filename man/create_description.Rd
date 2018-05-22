@@ -5,7 +5,7 @@
 \title{Create a TI method description}
 \usage{
 create_description(name, short_name, package_loaded, package_required, par_set,
-  properties, run_fun, plot_fun, override_runfun_params = TRUE)
+  properties, run_fun, plot_fun, run_fun_defaults)
 }
 \arguments{
 \item{name}{The name of the TI method}
@@ -22,10 +22,10 @@ create_description(name, short_name, package_loaded, package_required, par_set,
 
 \item{run_fun}{A function to run the TI, needs to have 'counts' as its first param.}
 
-\item{plot_fun}{A function to plot the results of a TI, needs to have 'prediction' as its first param.}
-
-\item{override_runfun_params}{Whether or not to override the default parameters
+\item{plot_fun}{A function to plot the results of a TI, needs to have 'prediction' as its first param.
 of \code{run_fun} with those described in \code{par_set}.}
+
+\item{run_fun_defaults}{A named list with which to override the default parameters of the \code{run_fun}}
 }
 \description{
 Create a TI method description
