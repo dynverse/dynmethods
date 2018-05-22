@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_angle.R
 \name{description_angle}
 \alias{description_angle}
-\title{Description object for the \code{angle} method}
+\title{Inferring trajectories with \code{angle}}
 \usage{
 description_angle(dimred = "pca")
 }

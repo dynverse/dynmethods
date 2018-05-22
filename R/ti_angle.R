@@ -1,8 +1,9 @@
-#' Description object for the \code{angle} method
+#' Inferring trajectories with \code{angle}
 #'
 #' Arguments passed to this function will be used as default parameters for the method.
 #'
-#' @inheritParams run_angle
+#' @param dimred A character vector specifying which dimensionality reduction method to use.
+#'   See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.
 #'
 #' @export
 description_angle <- function(
@@ -21,12 +22,6 @@ description_angle <- function(
     plot_fun = plot_angle
   )
 }
-
-#' Infer trajectory with \code{angle}
-#'
-#' @param expression An M-by-N expression matrix, with M the number of cells and N the number of genes.
-#' @param dimred A character vector specifying which dimensionality reduction method to use.
-#'   See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.
 run_angle <- function(
   expression,
   dimred
