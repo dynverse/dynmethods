@@ -23,26 +23,16 @@
 #'
 #' @rdname celltree
 abstract_celltree_description <- function(
-  method,
-  num_topics_lower,
-  num_topics_upper,
-  num_topics,
-  tot_iter,
-  tolerance,
-  sd_filter,
-  absolute_width,
-  width_scale_factor,
-  outlier_tolerance_factor,
-  rooting_method
+  method
 ) {
-  run_fun_defaults <- as.list(environment())[formalArgs(abstract_celltree_description)]
+  # run_fun_defaults <- as.list(environment())[formalArgs(abstract_celltree_description)]
 
-  method_value <- c(maptpx = "maptpx", gibbs = "Gibbs", vem = "VEM")[method]
+  method_value <- c(maptpx = "maptpx", gibbs = "Gibbs", vem = "VEM")[[method]]
 
   common_params <- list(
     makeDiscreteParam(id = "method", values = method_value, default = method_value),
     makeNumericParam(id = "sd_filter", lower = log(.01), upper = log(5.0), default = log(.5), special.vals = list(FALSE), trafo = exp),
-    makeNumericParam(id = "absolute_width", lower = log(.0001), default = log(0), upper = log(1000), trafo = exp, special.vals = list(log(0))),
+    makeDiscreteParam(id = "absolute_width", values = 0, default = 0, tunable = FALSE),
     makeNumericParam(id = "width_scale_factor", lower = log(.1), default = log(1.5), upper = log(100), trafo = exp),
     makeNumericParam(id = "outlier_tolerance_factor", lower = log(.0001), default = log(.1), upper = log(1000), trafo = exp),
     makeDiscreteParam(id = "rooting_method", values = c("longest.path", "center.start.group", "average.start.group", "null"), default = "null")
@@ -75,101 +65,40 @@ abstract_celltree_description <- function(
     )
   )
 
-  create_description(
-    name = pritt("cellTree with {method}"),
-    short_name = pritt("ct{method}"),
-    package_loaded = c(),
-    package_required = c("cellTree"),
-    par_set = par_set,
-    properties = c(),
-    run_fun = run_celltree,
-    plot_fun = plot_celltree,
-    run_fun_defaults = run_fun_defaults
-  )
+  default_params <- par_set %>%
+    generateDesignOfDefaults(trafo = TRUE) %>%
+    ParamHelpers::dfRowToList(par_set, 1)
+
+  test <- function(...) {
+    create_description(
+      name = pritt("cellTree with {method}"),
+      short_name = pritt("ct{method}"),
+      package_loaded = c(),
+      package_required = c("cellTree"),
+      par_set = par_set,
+      properties = c(),
+      run_fun = run_celltree,
+      plot_fun = plot_celltree,
+      run_fun_defaults = as.list(environment())[formalArgs(test)]
+    )
+  }
+  formals(test) <- default_params
+
+  test
 }
 
 
 #' @rdname celltree
 #' @export
-description_ctmaptpx <- function(
-  num_topics_lower = 2,
-  num_topics_upper = 15,
-  tot_iter = 1e6,
-  tolerance = .05,
-  sd_filter = .5,
-  absolute_width = 0,
-  width_scale_factor = 1.5,
-  outlier_tolerance_factor = 0.1,
-  rooting_method = "null"
-) {
-  abstract_celltree_description(
-    method = "maptpx",
-    num_topics_lower = num_topics_lower,
-    num_topics_upper = num_topics_upper,
-    num_topics = seq(num_topics_lower, num_topics_upper),
-    tot_iter = tot_iter,
-    tolerance = tolerance,
-    sd_filter = sd_filter,
-    absolute_width = absolute_width0,
-    width_scale_factor = width_scale_factor,
-    outlier_tolerance_factor = outlier_tolerance_factor,
-    rooting_method = rooting_method
-  )
-}
+description_ctmaptpx <- abstract_celltree_description("maptpx")
 
 #' @rdname celltree
 #' @export
-description_ctgibbs <- function(
-  num_topics = 4L,
-  tot_iter = 200,
-  tolerance = 1e-5,
-  sd_filter = .5,
-  absolute_width = 0,
-  width_scale_factor = 1.5,
-  outlier_tolerance_factor = 0.1,
-  rooting_method = "null"
-) {
-  abstract_celltree_description(
-    method = "gibbs",
-    num_topics_lower = NULL,
-    num_topics_upper = NULL,
-    num_topics = num_topics,
-    tot_iter = tot_iter,
-    tolerance = tolerance,
-    sd_filter = sd_filter,
-    absolute_width = absolute_width0,
-    width_scale_factor = width_scale_factor,
-    outlier_tolerance_factor = outlier_tolerance_factor,
-    rooting_method = rooting_method
-  )
-}
+description_ctgibbs <- abstract_celltree_description("gibbs")
 
 #' @rdname celltree
 #' @export
-description_ctvem <- function(
-  num_topics = 4L,
-  tot_iter = 1e6,
-  tolerance = 1e-5,
-  sd_filter = .5,
-  absolute_width = 0,
-  width_scale_factor = 1.5,
-  outlier_tolerance_factor = 0.1,
-  rooting_method = "null"
-) {
-  abstract_celltree_description(
-    method = "vem",
-    num_topics_lower = NULL,
-    num_topics_upper = NULL,
-    num_topics = num_topics,
-    tot_iter = tot_iter,
-    tolerance = tolerance,
-    sd_filter = sd_filter,
-    absolute_width = absolute_width0,
-    width_scale_factor = width_scale_factor,
-    outlier_tolerance_factor = outlier_tolerance_factor,
-    rooting_method = rooting_method
-  )
-}
+description_ctvem <- abstract_celltree_description("vem")
 
 #' @importFrom igraph degree distances get.vertex.attribute induced_subgraph
 run_celltree <- function(
@@ -182,9 +111,9 @@ run_celltree <- function(
 
   # parameters
   method,
-  num_topics_lower,
-  num_topics_upper,
-  num_topics,
+  num_topics_lower = NULL,
+  num_topics_upper = NULL,
+  num_topics = NULL,
   sd_filter,
   tot_iter,
   tolerance,
@@ -204,6 +133,10 @@ run_celltree <- function(
 
   if (rooting_method == "null") {
     rooting_method <- NULL
+  }
+
+  if (is.null(num_topics)) {
+    num_topics <- seq(num_topics_lower, num_topics_upper)
   }
 
   # TIMING: done with preproc

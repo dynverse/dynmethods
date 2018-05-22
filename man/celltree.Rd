@@ -7,34 +7,25 @@
 \alias{description_ctvem}
 \title{Inferring trajectories with \code{celltree}}
 \usage{
-abstract_celltree_description(method, num_topics_lower, num_topics_upper,
-  num_topics, tot_iter, tolerance, sd_filter, absolute_width,
-  width_scale_factor, outlier_tolerance_factor, rooting_method)
+abstract_celltree_description(method)
 
-description_ctmaptpx(num_topics_lower = 2, num_topics_upper = 15,
-  tot_iter = 1e+06, tolerance = 0.05, sd_filter = 0.5,
+description_ctmaptpx(method = "maptpx", sd_filter = 0.5,
   absolute_width = 0, width_scale_factor = 1.5,
-  outlier_tolerance_factor = 0.1, rooting_method = "null")
+  outlier_tolerance_factor = 0.1, rooting_method = "null",
+  num_topics_lower = 2L, num_topics_upper = 15L, tot_iter = 1e+06,
+  tolerance = 0.05)
 
-description_ctgibbs(num_topics = 4L, tot_iter = 200, tolerance = 1e-05,
-  sd_filter = 0.5, absolute_width = 0, width_scale_factor = 1.5,
-  outlier_tolerance_factor = 0.1, rooting_method = "null")
+description_ctgibbs(method = "Gibbs", sd_filter = 0.5, absolute_width = 0,
+  width_scale_factor = 1.5, outlier_tolerance_factor = 0.1,
+  rooting_method = "null", num_topics = 4L, tot_iter = 200,
+  tolerance = 1e-05)
 
-description_ctvem(num_topics = 4L, tot_iter = 1e+06, tolerance = 1e-05,
-  sd_filter = 0.5, absolute_width = 0, width_scale_factor = 1.5,
-  outlier_tolerance_factor = 0.1, rooting_method = "null")
+description_ctvem(method = "VEM", sd_filter = 0.5, absolute_width = 0,
+  width_scale_factor = 1.5, outlier_tolerance_factor = 0.1,
+  rooting_method = "null", num_topics = 4L, tot_iter = 1e+06,
+  tolerance = 1e-05)
 }
 \arguments{
-\item{num_topics_lower}{The lower bound of topics to be fitted in the model.}
-
-\item{num_topics_upper}{The upper bound of topics to be fitted in the model.}
-
-\item{num_topics}{The number of topics to fit in the model.}
-
-\item{tot_iter}{Number of iterations of the LDA inference.}
-
-\item{tolerance}{Tolerance values of the LDA inference.}
-
 \item{sd_filter}{Standard-deviation threshold below which genes should be removed from the data.}
 
 \item{absolute_width}{Distance threshold below which a cell vertex is considered to be attached to a backbone vertex (see paper for more details).
@@ -48,6 +39,16 @@ Higher values will result in less branches in the backbone tree, while lower val
 'center.start.group’ picks the vertex in the starting group with lowest mean-square-distance to the others.
 ‘average.start.group’ creates a new artificial vertex, as the average of all cells in the starting group.
 ‘null’ picks the best method based on the type of grouping and start group information available.}
+
+\item{num_topics_lower}{The lower bound of topics to be fitted in the model.}
+
+\item{num_topics_upper}{The upper bound of topics to be fitted in the model.}
+
+\item{tot_iter}{Number of iterations of the LDA inference.}
+
+\item{tolerance}{Tolerance values of the LDA inference.}
+
+\item{num_topics}{The number of topics to fit in the model.}
 
 \item{outlier_distance_factor}{Proportion of vertices, out of the total number of vertices divided by the total number of branches,
 that can be left at the end of the backbone tree-building algorithm.}
