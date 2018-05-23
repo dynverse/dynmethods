@@ -2,10 +2,14 @@
 % Please edit documentation in R/ti_comp1.R
 \name{description_compone}
 \alias{description_compone}
-\title{Description for compone}
+\title{Inferring trajectories with Component 1}
 \usage{
-description_compone()
+description_compone(dimred = "pca")
+}
+\arguments{
+\item{dimred}{A character vector specifying which dimensionality reduction method to use.
+See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.}
 }
 \description{
-Description for compone
+Arguments passed to this function will be used as default parameters for the method.
 }

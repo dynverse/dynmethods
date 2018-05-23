@@ -2,10 +2,12 @@
 % Please edit documentation in R/ti_slingshot.R
 \name{description_slngsht}
 \alias{description_slngsht}
-\title{Description for slingshot}
+\title{Inferring trajectories with Slingshot}
 \usage{
-description_slngsht()
+description_slngsht(ndim = 3L, nclus = 5L, dimred = "pca", shrink = 1,
+  reweight = TRUE, drop.multi = TRUE, thresh = 0.001, maxit = 10L,
+  stretch = 2, smoother = "smooth.spline", shrink.method = "cosine")
 }
 \description{
-Description for slingshot
+Arguments passed to this function will be used as default parameters for the method.
 }

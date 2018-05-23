@@ -2,10 +2,11 @@
 % Please edit documentation in R/ti_ouija.R
 \name{description_ouija}
 \alias{description_ouija}
-\title{Description for Ouijia}
+\title{Inferring trajectories with ouija}
 \usage{
-description_ouija()
+description_ouija(iter = 100, response_type = "switch",
+  inference_type = "hmc", normalise_expression = TRUE)
 }
 \description{
-Description for Ouijia
+Arguments passed to this function will be used as default parameters for the method.
 }

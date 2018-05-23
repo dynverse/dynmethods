@@ -1,9 +1,13 @@
-#' Description for random
+#' Inferring trajectories with Control: random
 #'
-#' @importFrom dynplot plot_default
+#' This control method will always produce a random trajectory.
+#'
+#' @param dummy_param This parameter does not do anything.
 #'
 #' @export
-description_random <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_random <- create_description(
   name = "Control: random",
   short_name = "random",
   package_loaded = c(),
@@ -11,9 +15,8 @@ description_random <- function() create_description(
   par_set = makeParamSet(
     makeNumericParam(id = "dummy_param", lower = 0, default = 0.5, upper = 1)
   ),
-  properties = c(),
-  run_fun = run_random,
-  plot_fun = dynplot::plot_default
+  run_fun = "run_random",
+  plot_fun = "dynplot::plot_default"
 )
 
 run_random <- function(counts, dummy_param = .5) {

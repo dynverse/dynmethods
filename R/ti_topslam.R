@@ -1,6 +1,11 @@
-#' Description for topslam
+#' Inferring trajectories with topslam
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_topslam <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_topslam <- create_description(
   name = "topslam",
   short_name = "topslam",
   package_loaded = c(),
@@ -12,9 +17,8 @@ description_topslam <- function() create_description(
     makeNumericParam(id = "max_iters", lower = log(10), default = log(1000), upper = log(10000), trafo = function(x) round(exp(x))),
     makeLogicalVectorParam(id = "dimreds", len = 5, default = rep(TRUE, 5))
   ),
-  properties = c(),
-  run_fun = run_topslam,
-  plot_fun = plot_topslam
+  run_fun = "run_topslam",
+  plot_fun = "plot_topslam"
 )
 
 #' @importFrom dplyr bind_cols

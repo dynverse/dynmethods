@@ -2,10 +2,11 @@
 % Please edit documentation in R/ti_merlot.R
 \name{description_merlot}
 \alias{description_merlot}
-\title{Description for MERLot}
+\title{Inferring trajectories with MERLoT}
 \usage{
-description_merlot()
+description_merlot(n_components = 20L, n_components_to_use = 3L,
+  NumberOfNodes = 100L)
 }
 \description{
-Description for MERLot
+Arguments passed to this function will be used as default parameters for the method.
 }

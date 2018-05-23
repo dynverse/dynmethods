@@ -1,6 +1,11 @@
-#' Description for SCOUP
+#' Inferring trajectories with SCOUP
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_scoup <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_scoup <- create_description(
   name = "SCOUP",
   short_name = "scoup",
   package_required = c(),
@@ -16,9 +21,8 @@ description_scoup <- function() create_description(
     makeNumericParam(id = "sigma_squared_min", lower = log(.001), default = log(.1), upper = log(10), trafo = exp),
     makeNumericParam(id = "thresh", lower = log(.01), default = log(.01), upper = log(10), trafo = exp)
   ),
-  properties = c(),
-  run_fun = run_scoup,
-  plot_fun = plot_scoup
+  run_fun = "run_scoup",
+  plot_fun = "plot_scoup"
 )
 
 #' @importFrom utils read.table write.table

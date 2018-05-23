@@ -2,10 +2,13 @@
 % Please edit documentation in R/ti_slice.R
 \name{description_slice}
 \alias{description_slice}
-\title{Description for SLICE}
+\title{Inferring trajectories with SLICE}
 \usage{
-description_slice()
+description_slice(lm.method = "clustering", model.type = "tree",
+  ss.method = "all", ss.threshold = 0.25, community.method = "louvain",
+  cluster.method = "kmeans", k = 0, k.max = 10L, B = 100L,
+  k.opt.method = "firstmax")
 }
 \description{
-Description for SLICE
+Arguments passed to this function will be used as default parameters for the method.
 }

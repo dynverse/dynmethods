@@ -1,6 +1,11 @@
-#' Description for TSCAN
+#' Inferring trajectories with TSCAN
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_tscan <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_tscan <- create_description(
   name = "TSCAN",
   short_name = "tscan",
   package_loaded = c(),
@@ -14,9 +19,8 @@ description_tscan <- function() create_description(
     makeDiscreteParam(id = "modelNames", default = "VVV", values = c("EII", "VII", "EEI", "VEI", "EVI", "VVI", "EEE", "EVE", "VEE", "VVE", "EEV", "VEV", "EVV", "VVV")),
     forbidden = quote(clusternum_lower > clusternum_upper)
   ),
-  properties = c(),
-  run_fun = run_tscan,
-  plot_fun = plot_tscan
+  run_fun = "run_tscan",
+  plot_fun = "plot_tscan"
 )
 
 run_tscan <- function(

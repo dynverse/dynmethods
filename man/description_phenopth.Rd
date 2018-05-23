@@ -2,10 +2,11 @@
 % Please edit documentation in R/ti_phenopath.R
 \name{description_phenopth}
 \alias{description_phenopth}
-\title{Description for phenopath}
+\title{Inferring trajectories with PhenoPath}
 \usage{
-description_phenopth()
+description_phenopth(thin = 40L, z_init = 1, model_mu = FALSE,
+  scale_y = TRUE)
 }
 \description{
-Description for phenopath
+Arguments passed to this function will be used as default parameters for the method.
 }

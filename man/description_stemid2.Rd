@@ -2,10 +2,15 @@
 % Please edit documentation in R/ti_stemid2.R
 \name{description_stemid2}
 \alias{description_stemid2}
-\title{Description for StemID}
+\title{Inferring trajectories with StemID2}
 \usage{
-description_stemid2()
+description_stemid2(clustnr = 30L, bootnr = 50L, metric = "pearson",
+  num_cluster_method = "sat", SE.method = "Tibs2001SEmax",
+  SE.factor = 0.25, B.gap = 50L, cln = 30L, FUNcluster = "kmedoids",
+  dimred_method = "tsne", outminc = 0L, outlg = 2L, probthr = 1e-10,
+  thr_lower = -40, thr_upper = -1, outdistquant = 0.95, nmode = FALSE,
+  pdishuf = 500, pthr = 0.01, pethr = 0.01)
 }
 \description{
-Description for StemID
+Arguments passed to this function will be used as default parameters for the method.
 }

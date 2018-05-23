@@ -2,10 +2,11 @@
 % Please edit documentation in R/ti_gpfates.R
 \name{description_gpfates}
 \alias{description_gpfates}
-\title{Description for GPfates}
+\title{Inferring trajectories with GPfates}
 \usage{
-description_gpfates()
+description_gpfates(log_expression_cutoff = 2,
+  min_cells_expression_cutoff = 2, ndims = 2L)
 }
 \description{
-Description for GPfates
+Arguments passed to this function will be used as default parameters for the method.
 }

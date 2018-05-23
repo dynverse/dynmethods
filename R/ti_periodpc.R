@@ -1,6 +1,11 @@
-#' Description for periodpc
+#' Inferring trajectories with Periodic PrinCurvee
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_periodpc <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_periodpc <- create_description(
   name = "Periodic PrinCurve",
   short_name = "periodpc",
   package_loaded = c("stats", "princurve"),
@@ -9,9 +14,8 @@ description_periodpc <- function() create_description(
     makeIntegerParam(id = "ndim", default = 3L, lower = 2L, upper = 10L),
     makeIntegerParam(id = "maxit", default = 10L, lower = 0L, upper = 100L)
   ),
-  properties = c(),
-  run_fun = run_periodpc,
-  plot_fun = plot_periodpc
+  run_fun = "run_periodpc",
+  plot_fun = "plot_periodpc"
 )
 
 run_periodpc <- function(

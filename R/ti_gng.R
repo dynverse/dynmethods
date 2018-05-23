@@ -1,6 +1,14 @@
-#' Description for gng
+#' Inferring trajectories with Growing Neural Gas
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
+#' @param dimred A character vector specifying which dimensionality reduction method to use.
+#'   See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.
+#'
 #' @export
-description_gng <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_gng <- create_description(
   name = "Growing Neural Gas",
   short_name = "gng",
   package_loaded = c(),
@@ -12,9 +20,8 @@ description_gng <- function() create_description(
     makeIntegerParam(id = "max_nodes", default = 8L, lower = 2L, upper = 30L),
     makeLogicalParam(id = "apply_mst", default = TRUE)
   ),
-  properties = c(),
-  run_fun = run_gng,
-  plot_fun = plot_gng
+  run_fun = "run_gng",
+  plot_fun = "plot_gng"
 )
 
 #' @importFrom stats dist

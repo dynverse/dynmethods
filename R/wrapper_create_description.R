@@ -5,7 +5,6 @@
 #' @param package_loaded The packages that need to be loaded before executing the method
 #' @param package_required The packages that need to be installed before executing the method
 #' @param par_set A bunch of parameters created by [ParamHelpers::makeParamSet()]
-#' @param properties Several descriptive properties of the method. WIP.
 #' @param run_fun A function to run the TI, needs to have 'counts' as its first param.
 #' @param plot_fun A function to plot the results of a TI, needs to have 'prediction' as its first param.
 #'   of `run_fun` with those described in `par_set`.
@@ -15,9 +14,9 @@ create_description <- function(
   package_loaded,
   package_required,
   par_set,
-  properties,
   run_fun,
-  plot_fun
+  plot_fun,
+  properties = NA
 ) {
 
   desc <- lst(
@@ -25,8 +24,7 @@ create_description <- function(
     short_name,
     package_loaded,
     package_required,
-    par_set,
-    properties
+    par_set
   ) %>% add_class("dynmethod::description")
 
   default_params <- par_set %>%
@@ -36,10 +34,20 @@ create_description <- function(
   description_fun_constructor_with_params <- function(...) {
 
     if (is.character(run_fun)) {
-      run_fun <- get(run_fun)
+      if (grepl("::", run_fun)) {
+        parts <- strsplit(run_fun, "::")[[1]]
+        run_fun <- get(parts[[2]], envir = asNamespace(parts[[1]]))
+      } else {
+        run_fun <- get(run_fun)
+      }
     }
     if (is.character(plot_fun)) {
-      plot_fun <- get(plot_fun)
+      if (grepl("::", plot_fun)) {
+        parts <- strsplit(plot_fun, "::")[[1]]
+        plot_fun <- get(parts[[2]], envir = asNamespace(parts[[1]]))
+      } else {
+        plot_fun <- get(plot_fun)
+      }
     }
 
     # get the parameters from this function

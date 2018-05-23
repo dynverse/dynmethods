@@ -2,10 +2,10 @@
 % Please edit documentation in R/ti_ouijaflow.R
 \name{description_ouijaflw}
 \alias{description_ouijaflw}
-\title{Description for Ouijaflow}
+\title{Inferring trajectories with ouijaflow}
 \usage{
-description_ouijaflw()
+description_ouijaflw(iter = 1000)
 }
 \description{
-Description for Ouijaflow
+Arguments passed to this function will be used as default parameters for the method.
 }

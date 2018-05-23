@@ -5,7 +5,7 @@
 \alias{description_ctmaptpx}
 \alias{description_ctgibbs}
 \alias{description_ctvem}
-\title{Inferring trajectories with \code{celltree}}
+\title{Inferring trajectories with cellTree}
 \usage{
 abstract_celltree_description(method)
 

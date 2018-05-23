@@ -1,6 +1,11 @@
-#' Description for GPfates
+#' Inferring trajectories with GPfates
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_gpfates <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_gpfates <- create_description(
   name = "GPfates",
   short_name = "gpfates",
   package_loaded = c(),
@@ -10,9 +15,8 @@ description_gpfates <- function() create_description(
     makeNumericParam(id = "min_cells_expression_cutoff", lower = 0, upper = 20, default = 2),
     makeIntegerParam(id = "ndims", lower = 1L, upper = 5L, default = 2L)
   ),
-  properties = c(),
-  run_fun = run_gpfates,
-  plot_fun = plot_gpfates
+  run_fun = "run_gpfates",
+  plot_fun = "plot_gpfates"
 )
 
 ## TODO: give simulationtime as prior

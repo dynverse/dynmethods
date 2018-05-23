@@ -1,6 +1,11 @@
-#' Description for SLICER
+#' Inferring trajectories with SLICER
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_slicer <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_slicer <- create_description(
   name = "SLICER",
   short_name = "slicer",
   package_loaded = c(),
@@ -12,9 +17,8 @@ description_slicer <- function() create_description(
     makeNumericParam(id = "min_representative_percentage", lower = 0.5, upper = 1, default = 0.8),
     makeNumericParam(id = "max_same_milestone_distance", lower = 0.1, upper = 10, default = 0.1)
   ),
-  properties = c(),
-  run_fun = run_slicer,
-  plot_fun = plot_slicer
+  run_fun = "run_slicer",
+  plot_fun = "plot_slicer"
 )
 
 run_slicer <- function(

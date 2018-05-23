@@ -1,6 +1,11 @@
-#' Description for pseudogp
+#' Inferring trajectories with pseudogp
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_pseudogp <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_pseudogp <- create_description(
   name = "pseudogp",
   short_name = "pseudogp",
   package_loaded = c("pseudogp"),
@@ -15,9 +20,8 @@ description_pseudogp <- function() create_description(
     makeLogicalVectorParam(id = "dimreds", len = length(list_dimred_methods()), default = names(list_dimred_methods()) %in% c("pca", "mds")),
     makeDiscreteParam(id = "initialise_from", values = c("random", "principal_curve", "pca"), default = "random")
   ),
-  properties = c(),
-  run_fun = run_pseudogp,
-  plot_fun = plot_pseudogp
+  run_fun = "run_pseudogp",
+  plot_fun = "plot_pseudogp"
 )
 
 run_pseudogp <- function(

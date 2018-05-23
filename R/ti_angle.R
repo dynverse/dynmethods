@@ -1,4 +1,4 @@
-#' Inferring trajectories with \code{angle}
+#' Inferring trajectories with Angle
 #'
 #' Arguments passed to this function will be used as default parameters for the method.
 #'
@@ -17,7 +17,6 @@ description_angle <-
     par_set = makeParamSet(
       makeDiscreteParam(id = "dimred", default = "pca", values = names(list_dimred_methods()))
     ),
-    properties = c(),
     run_fun = "run_angle",
     plot_fun = "plot_angle"
   )

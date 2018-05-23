@@ -1,6 +1,11 @@
-#' Description for SCIMITAR
+#' Inferring trajectories with SCIMITAR
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_scimitar <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_scimitar <- create_description(
   name = "SCIMITAR",
   short_name = "scimitar",
   package_loaded = c(),
@@ -13,9 +18,8 @@ description_scimitar <- function() create_description(
     makeNumericParam(id = "cov_reg", lower = 0.01, upper = 0.1, default = 0.05),
     makeIntegerParam(id = "max_iter", lower = 1, upper = 20, default = 3)
   ),
-  properties = c(),
-  run_fun = run_scimitar,
-  plot_fun = plot_scimitar
+  run_fun = "run_scimitar",
+  plot_fun = "plot_scimitar"
 )
 
 #' @importFrom readr read_csv

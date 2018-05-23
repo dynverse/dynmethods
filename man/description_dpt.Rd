@@ -2,10 +2,12 @@
 % Please edit documentation in R/ti_dpt.R
 \name{description_dpt}
 \alias{description_dpt}
-\title{Description for DPT}
+\title{Inferring trajectories with DPT}
 \usage{
-description_dpt()
+description_dpt(sigma = "local", distance = "euclidean", n_eigs = 20L,
+  density_norm = TRUE, n_local_lower = 5L, n_local_upper = 7L,
+  w_width = 0.1)
 }
 \description{
-Description for DPT
+Arguments passed to this function will be used as default parameters for the method.
 }

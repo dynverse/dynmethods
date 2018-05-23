@@ -1,6 +1,11 @@
-#' Description for slingshot
+#' Inferring trajectories with Slingshot
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_slngsht <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_slngsht <- create_description(
   name = "Slingshot",
   short_name = "slngsht",
   package_loaded = c(),
@@ -19,9 +24,8 @@ description_slngsht <- function() create_description(
     makeDiscreteParam(id = "shrink.method", default = "cosine", values = c("cosine", "tricube", "density"))
 
   ),
-  properties = c(),
-  run_fun = run_slingshot,
-  plot_fun = plot_slingshot
+  run_fun = "run_slingshot",
+  plot_fun = "plot_slingshot"
 )
 
 run_slingshot <- function(

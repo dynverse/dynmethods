@@ -1,9 +1,13 @@
-#' Description for identity
+#' Inferring trajectories with Control: identity
 #'
-#' @importFrom dynplot plot_default
+#' This control method will return the gold standard.
+#'
+#' @param dummy_param This parameter does not do anything.
 #'
 #' @export
-description_identity <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_identity <- create_description(
   name = "Control: identity",
   short_name = "identity",
   package_loaded = c(),
@@ -11,9 +15,8 @@ description_identity <- function() create_description(
   par_set = makeParamSet(
     makeNumericParam(id = "dummy_param", lower = 0, default = 0.5, upper = 1)
   ),
-  properties = c(),
-  run_fun = run_identity,
-  plot_fun = dynplot::plot_default
+  run_fun = "run_identity",
+  plot_fun = "dynplot::plot_default"
 )
 
 run_identity <- function(counts, task, dummy_param = .5) {

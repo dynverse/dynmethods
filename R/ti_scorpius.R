@@ -1,11 +1,16 @@
-#' Description for SCORPIUS
-#' @export
-description_scorpius <- function() abstract_scorpius_description("scorpius")
-
-#' Description for SCORPIUS-sparse
-#' @export
-description_scorpius_sparse <- function() abstract_scorpius_description("scorspar")
-
+#' Inferring trajectories with SCORPIUS
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
+#' @inheritParams SCORPIUS::correlation_distance
+#' @inheritParams SCORPIUS::reduce_dimensionality
+#' @inheritParams SCORPIUS::infer_trajectory
+#' @param sparse Whether or not to use sparse MDS dimensionality reduction,
+#'   for datasets with large amounts of cells.
+#'
+#' @rdname scorpius
+#'
+#' @include wrapper_create_description.R
 abstract_scorpius_description <- function(short_name) {
   name <- c(
     "scorpius" = "SCORPIUS",
@@ -27,11 +32,19 @@ abstract_scorpius_description <- function(short_name) {
       makeDiscreteParam(id = "smoother", default = "smooth.spline", values = c("smooth.spline", "lowess", "periodic.lowess")),
       makeLogicalParam(id = "sparse", default = short_name == "scorspar")
     ),
-    properties = c(),
-    run_fun = run_scorpius,
-    plot_fun = plot_scorpius
+    run_fun = "run_scorpius",
+    plot_fun = "plot_scorpius"
   )
 }
+
+
+#' @rdname scorpius
+#' @export
+description_scorpius <- abstract_scorpius_description("scorpius")
+
+#' @rdname scorpius
+#' @export
+description_scorpius_sparse <- abstract_scorpius_description("scorspar")
 
 run_scorpius <- function(
   expression,

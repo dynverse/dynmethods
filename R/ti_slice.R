@@ -1,6 +1,11 @@
-#' Description for SLICE
+#' Inferring trajectories with SLICE
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_slice <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_slice <- create_description(
   name = "SLICE",
   short_name = "slice",
   package_loaded = c(),
@@ -17,9 +22,8 @@ description_slice <- function() create_description(
     makeIntegerParam(id = "B", lower = 3L, upper = 500L, default = 100L),
     makeDiscreteParam(id = "k.opt.method", default = "firstmax", values = c("firstmax", "globalmax", "Tibs2001SEmax", "firstSEmax", "globalSEmax"))
   ),
-  properties = c(),
-  run_fun = run_slice,
-  plot_fun = plot_slice
+  run_fun = "run_slice",
+  plot_fun = "plot_slice"
 )
 
 run_slice <- function(

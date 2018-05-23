@@ -2,10 +2,12 @@
 % Please edit documentation in R/ti_scimitar.R
 \name{description_scimitar}
 \alias{description_scimitar}
-\title{Description for SCIMITAR}
+\title{Inferring trajectories with SCIMITAR}
 \usage{
-description_scimitar()
+description_scimitar(covariance_type = "diag", degree = 3L,
+  step_size = 0.07, cov_estimator = "corpcor", cov_reg = 0.05,
+  max_iter = 3L)
 }
 \description{
-Description for SCIMITAR
+Arguments passed to this function will be used as default parameters for the method.
 }

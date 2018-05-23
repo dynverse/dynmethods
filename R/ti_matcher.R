@@ -1,6 +1,11 @@
-#' Description for MATCHER
+#' Inferring trajectories with MATCHER
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_matcher <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_matcher <- create_description(
   name = "MATCHER",
   short_name = "matcher",
   package_loaded = c(),
@@ -9,9 +14,8 @@ description_matcher <- function() create_description(
     makeIntegerParam("quantiles", 2, 500, default=50),
     makeDiscreteParam("method", values=c("gp", "linear"), default="linear")
   ),
-  properties = c(),
-  run_fun = run_matcher,
-  plot_fun = plot_matcher
+  run_fun = "run_matcher",
+  plot_fun = "plot_matcher"
 )
 
 #' @import reticulate

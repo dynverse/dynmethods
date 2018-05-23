@@ -1,7 +1,12 @@
-#' Description for reCAT
+#' Inferring trajectories with reCAT
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_recat <- function() create_description(
-  name = "recat",
+#'
+#' @include wrapper_create_description.R
+description_recat <- create_description(
+  name = "reCAT",
   short_name = "recat",
   package_loaded = c(),
   package_required = c("reCAT"),
@@ -15,9 +20,8 @@ description_recat <- function() create_description(
     makeIntegerParam(id = "max_num", default = 300, lower=100, upper=500),
     makeDiscreteParam(id = "clustMethod", default = "GMM", values = c("GMM", "Pam", "Kmeans"))
   ),
-  properties = c(),
-  run_fun = run_recat,
-  plot_fun = plot_recat
+  run_fun = "run_recat",
+  plot_fun = "plot_recat"
 )
 
 run_recat <- function(

@@ -1,6 +1,12 @@
-#' Description for DPT
+#' Inferring trajectories with DPT
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
+#'
 #' @export
-description_dpt <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_dpt <- create_description(
   name = "DPT",
   short_name = "dpt",
   package_loaded = c("destiny"),
@@ -15,7 +21,6 @@ description_dpt <- function() create_description(
     makeNumericParam(id = "w_width", lower = -4, upper = 0, default = log(.1), trafo = exp),
     forbidden = quote(n_local_lower > n_local_upper)
   ),
-  properties = c(),
   run_fun = run_dpt,
   plot_fun = plot_dpt
 )

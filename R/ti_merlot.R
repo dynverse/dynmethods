@@ -1,21 +1,23 @@
-#' Description for MERLot
+#' Inferring trajectories with MERLoT
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_merlot <- function() {
-  create_description(
-    name = "MERLoT",
-    short_name = "merlot",
-    package_loaded = c("merlot", "destiny"),
-    package_required = c("destiny"),
-    par_set = makeParamSet(
-      makeIntegerParam("n_components", lower=2, upper=20, default=20),
-      makeIntegerParam("n_components_to_use", lower=2, upper=20, default=3),
-      makeIntegerParam("NumberOfNodes", lower=2, upper=1000, default=100)
-    ),
-    properties = c(),
-    run_fun = run_merlot,
-    plot_fun = plot_merlot
-  )
-}
+#'
+#' @include wrapper_create_description.R
+description_merlot <- create_description(
+  name = "MERLoT",
+  short_name = "merlot",
+  package_loaded = c("merlot", "destiny"),
+  package_required = c("destiny"),
+  par_set = makeParamSet(
+    makeIntegerParam("n_components", lower=2, upper=20, default=20),
+    makeIntegerParam("n_components_to_use", lower=2, upper=20, default=3),
+    makeIntegerParam("NumberOfNodes", lower=2, upper=1000, default=100)
+  ),
+  run_fun = "run_merlot",
+  plot_fun = "plot_merlot"
+)
 
 run_merlot <- function(
   expression,
@@ -24,7 +26,6 @@ run_merlot <- function(
   n_components = 20,
   n_components_to_use = 3,
   NumberOfNodes = 100
-
 ) {
   requireNamespace("destiny")
   requireNamespace("merlot")

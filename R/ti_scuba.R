@@ -1,6 +1,11 @@
-#' Description for SCUBA
+#' Inferring trajectories with SCUBA
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_scuba <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_scuba <- create_description(
   name = "SCUBA",
   short_name = "scuba",
   package_loaded = c(),
@@ -13,9 +18,8 @@ description_scuba <- function() create_description(
     makeIntegerParam(id = "min_split", lower=1L, upper = 100L, default = 15L),
     makeNumericParam(id = "min_percentage_split", lower = 0, upper = 1, default = 0.25)
   ),
-  properties = c(),
-  run_fun = run_scuba,
-  plot_fun = plot_scuba
+  run_fun = "run_scuba",
+  plot_fun = "plot_scuba"
 )
 
 

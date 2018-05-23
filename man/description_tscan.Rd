@@ -2,10 +2,11 @@
 % Please edit documentation in R/ti_tscan.R
 \name{description_tscan}
 \alias{description_tscan}
-\title{Description for TSCAN}
+\title{Inferring trajectories with TSCAN}
 \usage{
-description_tscan()
+description_tscan(minexpr_percent = 0, minexpr_value = 0, cvcutoff = 0,
+  clusternum_lower = 2L, clusternum_upper = 9L, modelNames = "VVV")
 }
 \description{
-Description for TSCAN
+Arguments passed to this function will be used as default parameters for the method.
 }

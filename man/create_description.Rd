@@ -5,7 +5,7 @@
 \title{Create a TI method description}
 \usage{
 create_description(name, short_name, package_loaded, package_required, par_set,
-  properties, run_fun, plot_fun)
+  run_fun, plot_fun, properties = NA)
 }
 \arguments{
 \item{name}{The name of the TI method}
@@ -17,8 +17,6 @@ create_description(name, short_name, package_loaded, package_required, par_set,
 \item{package_required}{The packages that need to be installed before executing the method}
 
 \item{par_set}{A bunch of parameters created by \code{\link[ParamHelpers:makeParamSet]{ParamHelpers::makeParamSet()}}}
-
-\item{properties}{Several descriptive properties of the method. WIP.}
 
 \item{run_fun}{A function to run the TI, needs to have 'counts' as its first param.}
 

@@ -1,6 +1,14 @@
-#' Description for compone
+#' Inferring trajectories with Component 1
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
+#' @param dimred A character vector specifying which dimensionality reduction method to use.
+#'   See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.
+#'
 #' @export
-description_compone <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_compone <- create_description(
   name = "Component 1",
   short_name = "comp1",
   package_loaded = c(),
@@ -9,8 +17,8 @@ description_compone <- function() create_description(
     makeDiscreteParam(id = "dimred", default = "pca", values = names(list_dimred_methods()))
   ),
   properties = c(),
-  run_fun = run_compone,
-  plot_fun = plot_compone
+  run_fun = "run_compone",
+  plot_fun = "plot_compone"
 )
 
 run_compone <- function(

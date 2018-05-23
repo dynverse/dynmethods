@@ -2,10 +2,12 @@
 % Please edit documentation in R/ti_pseudogp.R
 \name{description_pseudogp}
 \alias{description_pseudogp}
-\title{Description for pseudogp}
+\title{Inferring trajectories with pseudogp}
 \usage{
-description_pseudogp()
+description_pseudogp(smoothing_alpha = 10, smoothing_beta = 3,
+  pseudotime_mean = 0.5, pseudotime_var = 1, chains = 3L, iter = 100,
+  dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE), initialise_from = "random")
 }
 \description{
-Description for pseudogp
+Arguments passed to this function will be used as default parameters for the method.
 }

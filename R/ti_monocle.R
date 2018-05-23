@@ -1,33 +1,15 @@
-#' Description for monocle DDRTree
-#' @export
-description_mnclddr <- function() abstract_monocle_description("mnclddr")
-
-#' Description for monocle ICA
-#' @export
-description_mnclica <- function() abstract_monocle_description("mnclica")
-
-# These reduction methods are not implemented yet.
-#
-# #' Description for monocle SimplePPT
-# #' @export
-# description_monocle2_simpleppt <- function() abstract_monocle_description("SimplePPT")
-#
-# #' Description for monocle L1-graph
-# #' @export
-# description_monocle2_l1graph <- function() abstract_monocle_description("L1-graph")
-#
-# #' Description for monocle SGL-tree
-# #' @export
-# description_monocle2_sgltree <- function() abstract_monocle_description("SGL-tree")
-
+#' Inferring trajectories with Monocle
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
+#'
+#' @rdname monocle
+#'
+#' @include wrapper_create_description.R
 abstract_monocle_description <- function(short_name) {
   reduction_method <- c(
     "mnclddr" = "DDRTree",
-    "mnclica" = "ICA",
-    "mncltsne" = "tSNE",
-    "mnclsppt" = "SimplePPT",
-    "mncll1gr" = "L1-graph",
-    "mnclsglt" = "SGL-tree"
+    "mnclica" = "ICA"
   )[short_name] %>% setNames(NULL)
 
   par_set <- switch(
@@ -51,11 +33,20 @@ abstract_monocle_description <- function(short_name) {
     package_loaded = c("monocle"),
     package_required = c("BiocGenerics", "igraph", "Biobase"),
     par_set = par_set,
-    properties = c(),
-    run_fun = run_monocle,
-    plot_fun = plot_monocle
+    run_fun = "run_monocle",
+    plot_fun = "plot_monocle"
   )
 }
+
+
+#' @rdname monocle
+#' @export
+description_mnclddr <- abstract_monocle_description("mnclddr")
+
+#' @rdname monocle
+#' @export
+description_mnclica <- abstract_monocle_description("mnclica")
+
 
 run_monocle <- function(
   counts,

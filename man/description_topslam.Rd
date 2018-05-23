@@ -2,10 +2,12 @@
 % Please edit documentation in R/ti_topslam.R
 \name{description_topslam}
 \alias{description_topslam}
-\title{Description for topslam}
+\title{Inferring trajectories with topslam}
 \usage{
-description_topslam()
+description_topslam(n_components = 2L, n_neighbors = 10L,
+  linear_dims = 0L, max_iters = 1000, dimreds = c(TRUE, TRUE, TRUE, TRUE,
+  TRUE))
 }
 \description{
-Description for topslam
+Arguments passed to this function will be used as default parameters for the method.
 }

@@ -2,10 +2,12 @@
 % Please edit documentation in R/ti_embeddr.R
 \name{description_embeddr}
 \alias{description_embeddr}
-\title{Description for Embeddr}
+\title{Inferring trajectories with Embeddr}
 \usage{
-description_embeddr()
+description_embeddr(kernel = "nn", metric = "correlation", nn_pct = 1,
+  eps = 1, t = 1, symmetrize = "mean", measure_type = "unorm", p = 2L,
+  thresh = 0.001, maxit = 10L, stretch = 2, smoother = "smooth.spline")
 }
 \description{
-Description for Embeddr
+Arguments passed to this function will be used as default parameters for the method.
 }

@@ -2,10 +2,14 @@
 % Please edit documentation in R/ti_shuffle.R
 \name{description_shuffle}
 \alias{description_shuffle}
-\title{Description for shuffled}
+\title{Inferring trajectories with Control: shuffle}
 \usage{
-description_shuffle()
+description_shuffle(dummy_param = 0.5)
+}
+\arguments{
+\item{dummy_param}{This parameter does not do anything.}
 }
 \description{
-Description for shuffled
+This control method will return the milestone network of the provided
+gold standard, but will shuffle the cell positions randomly.
 }

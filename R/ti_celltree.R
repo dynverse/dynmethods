@@ -1,5 +1,4 @@
-
-#' Inferring trajectories with \code{celltree}
+#' Inferring trajectories with cellTree
 #'
 #' Arguments passed to this function will be used as default parameters for the method.
 #'
@@ -71,7 +70,6 @@ abstract_celltree_description <- function(
     package_loaded = c(),
     package_required = c("cellTree"),
     par_set = par_set,
-    properties = c(),
     run_fun = "run_celltree",
     plot_fun = "plot_celltree"
   )
