@@ -1,6 +1,11 @@
-#' Description for Ouijaflow
+#' Inferring trajectories with ouijaflow
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_ouijaflw <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_ouijaflw <- create_description(
   name = "ouijaflow",
   short_name = "ouijaflw",
   package_required = c("ouijaflow"),
@@ -9,8 +14,8 @@ description_ouijaflw <- function() create_description(
     makeNumericParam(id = "iter", lower = log(2), default = log(1000), upper = log(50000), trafo = function(x) round(exp(x)))
   ),
   properties = c(),
-  run_fun = run_ouijaflow,
-  plot_fun = plot_ouijaflow
+  run_fun = "run_ouijaflow",
+  plot_fun = "plot_ouijaflow"
 )
 
 run_ouijaflow <- function(

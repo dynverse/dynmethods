@@ -2,10 +2,12 @@
 % Please edit documentation in R/ti_scoup.R
 \name{description_scoup}
 \alias{description_scoup}
-\title{Description for SCOUP}
+\title{Inferring trajectories with SCOUP}
 \usage{
-description_scoup()
+description_scoup(ndim = 2L, max_ite1 = 100, max_ite2 = 100,
+  alpha_min = 0.1, alpha_max = 100, t_min = 0.001, t_max = 2,
+  sigma_squared_min = 0.1, thresh = 0.01)
 }
 \description{
-Description for SCOUP
+Arguments passed to this function will be used as default parameters for the method.
 }

@@ -2,10 +2,11 @@
 % Please edit documentation in R/ti_mfa.R
 \name{description_mfa}
 \alias{description_mfa}
-\title{Description for mfa}
+\title{Inferring trajectories with mfa}
 \usage{
-description_mfa()
+description_mfa(b = 2L, iter = 2000L, thin = 1L, pc_initialise = 1L,
+  prop_collapse = 0, scale_input = TRUE, zero_inflation = FALSE)
 }
 \description{
-Description for mfa
+Arguments passed to this function will be used as default parameters for the method.
 }

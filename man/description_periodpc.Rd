@@ -2,10 +2,10 @@
 % Please edit documentation in R/ti_periodpc.R
 \name{description_periodpc}
 \alias{description_periodpc}
-\title{Description for periodpc}
+\title{Inferring trajectories with Periodic PrinCurvee}
 \usage{
-description_periodpc()
+description_periodpc(ndim = 3L, maxit = 10L)
 }
 \description{
-Description for periodpc
+Arguments passed to this function will be used as default parameters for the method.
 }

@@ -2,10 +2,12 @@
 % Please edit documentation in R/ti_mpath.R
 \name{description_mpath}
 \alias{description_mpath}
-\title{Description for Mpath}
+\title{Inferring trajectories with Mpath}
 \usage{
-description_mpath()
+description_mpath(distMethod = "euclidean", method = "kmeans",
+  numcluster = 11L, numcluster_null = TRUE, diversity_cut = 0.6,
+  size_cut = 0.05)
 }
 \description{
-Description for Mpath
+Arguments passed to this function will be used as default parameters for the method.
 }

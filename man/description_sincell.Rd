@@ -2,10 +2,14 @@
 % Please edit documentation in R/ti_sincell.R
 \name{description_sincell}
 \alias{description_sincell}
-\title{Description for sincell}
+\title{Inferring trajectories with Sincell}
 \usage{
-description_sincell()
+description_sincell(distance_method = "euclidean", dimred_method = "none",
+  cluster_method = "max.distance", mutual = TRUE, max_distance = 0,
+  k = 3L, shortest_rank_percent = 10, graph_method = "MST",
+  graph_using_cells_clustering = FALSE, k_imc = 3L,
+  pct_leaf_node_cutoff = 0.5)
 }
 \description{
-Description for sincell
+Arguments passed to this function will be used as default parameters for the method.
 }

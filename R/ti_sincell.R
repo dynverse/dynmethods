@@ -1,6 +1,11 @@
-#' Description for sincell
+#' Inferring trajectories with Sincell
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_sincell <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_sincell <- create_description(
   name = "Sincell",
   short_name = "sincell",
   package_loaded = c(),
@@ -18,9 +23,8 @@ description_sincell <- function() create_description(
     makeIntegerParam(id = "k_imc", default = 3L, lower=1L, upper=99L), #, requires = quote(graph_method == "IMC")),
     makeNumericParam(id = "pct_leaf_node_cutoff", default = .5, lower = .01, upper = .8) #, requires = quote(!graph_using_cells_clustering)),
   ),
-  properties = c(),
-  run_fun = run_sincell,
-  plot_fun = plot_sincell
+  run_fun = "run_sincell",
+  plot_fun = "plot_sincell"
 )
 
 run_sincell <- function(

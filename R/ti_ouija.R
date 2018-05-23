@@ -1,6 +1,11 @@
-#' Description for Ouijia
+#' Inferring trajectories with ouija
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_ouija <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_ouija <- create_description(
   name = "ouija",
   short_name = "ouija",
   package_required = c("ouija", "rstan"),
@@ -11,9 +16,8 @@ description_ouija <- function() create_description(
     makeDiscreteParam(id = "inference_type", default = "hmc", values = c("hmc", "vb")),
     makeLogicalParam(id = "normalise_expression", default = TRUE)
   ),
-  properties = c(),
-  run_fun = run_ouija,
-  plot_fun = plot_ouija
+  run_fun = "run_ouija",
+  plot_fun = "plot_ouija"
 )
 
 run_ouija <- function(

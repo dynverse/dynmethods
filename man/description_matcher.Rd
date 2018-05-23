@@ -2,10 +2,10 @@
 % Please edit documentation in R/ti_matcher.R
 \name{description_matcher}
 \alias{description_matcher}
-\title{Description for MATCHER}
+\title{Inferring trajectories with MATCHER}
 \usage{
-description_matcher()
+description_matcher(quantiles = 50L, method = "linear")
 }
 \description{
-Description for MATCHER
+Arguments passed to this function will be used as default parameters for the method.
 }

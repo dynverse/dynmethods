@@ -2,10 +2,13 @@
 % Please edit documentation in R/ti_identity.R
 \name{description_identity}
 \alias{description_identity}
-\title{Description for identity}
+\title{Inferring trajectories with Control: identity}
 \usage{
-description_identity()
+description_identity(dummy_param = 0.5)
+}
+\arguments{
+\item{dummy_param}{This parameter does not do anything.}
 }
 \description{
-Description for identity
+This control method will return the gold standard.
 }

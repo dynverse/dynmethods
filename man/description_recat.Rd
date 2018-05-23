@@ -2,10 +2,12 @@
 % Please edit documentation in R/ti_recat.R
 \name{description_recat}
 \alias{description_recat}
-\title{Description for reCAT}
+\title{Inferring trajectories with reCAT}
 \usage{
-description_recat()
+description_recat(TSPFold = 2L, beginNum = 10L, endNum = 15L,
+  step_size = 2L, base_cycle_range_start = 6L, base_cycle_range_end = 9L,
+  max_num = 300L, clustMethod = "GMM")
 }
 \description{
-Description for reCAT
+Arguments passed to this function will be used as default parameters for the method.
 }

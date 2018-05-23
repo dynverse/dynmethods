@@ -2,10 +2,14 @@
 % Please edit documentation in R/ti_angle.R
 \name{description_angle}
 \alias{description_angle}
-\title{Description for angle}
+\title{Inferring trajectories with Angle}
 \usage{
-description_angle()
+description_angle(dimred = "pca")
+}
+\arguments{
+\item{dimred}{A character vector specifying which dimensionality reduction method to use.
+See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.}
 }
 \description{
-Description for angle
+Arguments passed to this function will be used as default parameters for the method.
 }

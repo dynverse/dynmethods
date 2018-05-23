@@ -2,10 +2,12 @@
 % Please edit documentation in R/ti_scuba.R
 \name{description_scuba}
 \alias{description_scuba}
-\title{Description for SCUBA}
+\title{Inferring trajectories with SCUBA}
 \usage{
-description_scuba()
+description_scuba(rigorous_gap_stats = TRUE, N_dim = 2L,
+  low_gene_threshold = 1, low_gene_fraction_max = 0.7, min_split = 15L,
+  min_percentage_split = 0.25)
 }
 \description{
-Description for SCUBA
+Arguments passed to this function will be used as default parameters for the method.
 }

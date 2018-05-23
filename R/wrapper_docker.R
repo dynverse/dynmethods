@@ -1,6 +1,6 @@
 #' Methods for working with the dynmethods docker
 #'
-#' Make sure docker is installed and available through path, see [https://docs.docker.com/install/].
+#' Make sure docker is installed and available through path, see \url{https://docs.docker.com/install}.
 #' After running `start_dynmethods_docker`, methods can be run on the docker using \code{x \%<-\% ...}
 #'
 #' @examples
@@ -62,3 +62,4 @@ start_dynmethods_docker <- function() {
 #' @importFrom future %<-%
 #' @export
 future::`%<-%`
+

@@ -1,6 +1,11 @@
-#' Description for Embeddr
+#' Inferring trajectories with Embeddr
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_embeddr <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_embeddr <- create_description(
   name = "Embeddr",
   short_name = "embeddr",
   package_loaded = c(),
@@ -19,9 +24,8 @@ description_embeddr <- function() create_description(
     makeNumericParam(id = "stretch", lower = 0, upper = 5, default = 2),
     makeDiscreteParam(id = "smoother", default = "smooth.spline", values = c("smooth.spline", "lowess", "periodic.lowess"))
   ),
-  properties = c(),
-  run_fun = run_embeddr,
-  plot_fun = plot_embeddr
+  run_fun = "run_embeddr",
+  plot_fun = "plot_embeddr"
 )
 
 run_embeddr <- function(

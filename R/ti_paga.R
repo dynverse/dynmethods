@@ -1,11 +1,3 @@
-#' Description for paga
-#' @export
-description_paga <- function() abstract_paga_description("paga")
-
-# #' Description for agapt
-# #' @export
-# # description_agapt <- function() abstract_aga_description("agapt")
-
 abstract_paga_description <- function(method) {
   par_set <- makeParamSet(
     makeIntegerParam(id = "n_neighbours", lower = 1, default = 30, upper = 100),
@@ -15,14 +7,14 @@ abstract_paga_description <- function(method) {
 
   run_fun <- switch(
     method,
-    paga = run_paga#,
-    # agapt = run_agapt
+    paga = "run_paga",
+    agapt = "run_agapt"
   )
 
   name <- switch(
     method,
-    paga = "PAGA"#,
-    # agapt = "AGA pseudotime"
+    paga = "PAGA",
+    agapt = "AGA pseudotime"
   )
 
   create_description(
@@ -31,11 +23,24 @@ abstract_paga_description <- function(method) {
     package_loaded = c(),
     package_required = c("paga", "igraph"),
     par_set = par_set,
-    properties = c(),
     run_fun = run_fun,
-    plot_fun = plot_paga
+    plot_fun = "plot_paga"
   )
 }
+
+#' Inferring trajectories with PAGA
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
+#' @rdname paga
+#'
+#' @include wrapper_create_description.R
+#' @export
+description_paga <- abstract_paga_description("paga")
+
+# #' Description for agapt
+# #' @export
+# description_agapt <- abstract_aga_description("agapt")
 
 run_paga <- function(
   expression,

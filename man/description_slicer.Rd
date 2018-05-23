@@ -2,10 +2,11 @@
 % Please edit documentation in R/ti_slicer.R
 \name{description_slicer}
 \alias{description_slicer}
-\title{Description for SLICER}
+\title{Inferring trajectories with SLICER}
 \usage{
-description_slicer()
+description_slicer(kmin = 10L, m = 2L, min_branch_len = 5,
+  min_representative_percentage = 0.8, max_same_milestone_distance = 0.1)
 }
 \description{
-Description for SLICER
+Arguments passed to this function will be used as default parameters for the method.
 }

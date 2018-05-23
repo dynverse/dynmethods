@@ -1,6 +1,11 @@
-#' Description for phenopath
+#' Inferring trajectories with PhenoPath
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_phenopth <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_phenopth <- create_description(
   name = "PhenoPath",
   short_name = "phenopth",
   package_required = c("phenopath"),
@@ -11,9 +16,8 @@ description_phenopth <- function() create_description(
     makeLogicalParam(id = "model_mu", default = FALSE),
     makeLogicalParam(id = "scale_y", default = TRUE)
   ),
-  properties = c(),
-  run_fun = run_phenopath,
-  plot_fun = plot_phenopath
+  run_fun = "run_phenopath",
+  plot_fun = "plot_phenopath"
 )
 
 run_phenopath <- function(

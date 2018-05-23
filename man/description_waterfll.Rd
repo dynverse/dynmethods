@@ -2,10 +2,10 @@
 % Please edit documentation in R/ti_waterfall.R
 \name{description_waterfll}
 \alias{description_waterfll}
-\title{Description for Waterfall}
+\title{Inferring trajectories with Waterfall}
 \usage{
-description_waterfll()
+description_waterfll(num_clusters = 10L)
 }
 \description{
-Description for Waterfall
+Arguments passed to this function will be used as default parameters for the method.
 }

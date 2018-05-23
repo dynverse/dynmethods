@@ -1,9 +1,15 @@
-#' Description for shuffled
+#' Inferring trajectories with Control: shuffle
 #'
-#' @importFrom dynplot plot_default
+#' This control method will return the milestone network of the provided
+#' gold standard, but will shuffle the cell positions randomly.
+#'
+#' @param dummy_param This parameter does not do anything.
 #'
 #' @export
-description_shuffle <- function() create_description(
+#' @importFrom dynplot plot_default
+#'
+#' @include wrapper_create_description.R
+description_shuffle <- create_description(
   name = "Control: shuffle",
   short_name = "shuffle",
   package_loaded = c(),
@@ -11,9 +17,8 @@ description_shuffle <- function() create_description(
   par_set = makeParamSet(
     makeNumericParam(id = "dummy_param", lower = 0, default = 0.5, upper = 1)
   ),
-  properties = c(),
-  run_fun = run_shuffle,
-  plot_fun = dynplot::plot_default
+  run_fun = "run_shuffle",
+  plot_fun = "dynplot::plot_default"
 )
 
 run_shuffle <- function(

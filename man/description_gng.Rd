@@ -2,10 +2,15 @@
 % Please edit documentation in R/ti_gng.R
 \name{description_gng}
 \alias{description_gng}
-\title{Description for gng}
+\title{Inferring trajectories with Growing Neural Gas}
 \usage{
-description_gng()
+description_gng(dimred = "pca", ndim = 5L, max_iter = 1e+06,
+  max_nodes = 8L, apply_mst = TRUE)
+}
+\arguments{
+\item{dimred}{A character vector specifying which dimensionality reduction method to use.
+See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.}
 }
 \description{
-Description for gng
+Arguments passed to this function will be used as default parameters for the method.
 }

@@ -1,21 +1,29 @@
-#' Description for angle
+#' Inferring trajectories with Angle
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
+#' @param dimred A character vector specifying which dimensionality reduction method to use.
+#'   See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.
+#'
 #' @export
-description_angle <- function() create_description(
-  name = "Angle",
-  short_name = "angle",
-  package_loaded = c(),
-  package_required = c(),
-  par_set = makeParamSet(
-    makeDiscreteParam(id = "dimred", default = "pca", values = names(list_dimred_methods()))
-  ),
-  properties = c(),
-  run_fun = run_angle,
-  plot_fun = plot_angle
-)
+#'
+#' @include wrapper_create_description.R
+description_angle <-
+  create_description(
+    name = "Angle",
+    short_name = "angle",
+    package_loaded = c(),
+    package_required = c(),
+    par_set = makeParamSet(
+      makeDiscreteParam(id = "dimred", default = "pca", values = names(list_dimred_methods()))
+    ),
+    run_fun = "run_angle",
+    plot_fun = "plot_angle"
+  )
 
 run_angle <- function(
   expression,
-  dimred = "pca"
+  dimred
 ) {
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")

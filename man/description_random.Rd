@@ -2,10 +2,13 @@
 % Please edit documentation in R/ti_random.R
 \name{description_random}
 \alias{description_random}
-\title{Description for random}
+\title{Inferring trajectories with Control: random}
 \usage{
-description_random()
+description_random(dummy_param = 0.5)
+}
+\arguments{
+\item{dummy_param}{This parameter does not do anything.}
 }
 \description{
-Description for random
+This control method will always produce a random trajectory.
 }

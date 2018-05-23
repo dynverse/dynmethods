@@ -1,6 +1,11 @@
-#' Description for Mpath
+#' Inferring trajectories with Mpath
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_mpath <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_mpath <- create_description(
   name = "Mpath",
   short_name = "mpath",
   package_loaded = c("Mpath"),
@@ -13,9 +18,8 @@ description_mpath <- function() create_description(
     makeNumericParam(id = "diversity_cut", lower = .1, default = .6, upper = 1),
     makeNumericParam(id = "size_cut", lower = .01, default = .05, upper = 1)
   ),
-  properties = c(),
-  run_fun = run_mpath,
-  plot_fun = plot_mpath
+  run_fun = "run_mpath",
+  plot_fun = "plot_mpath"
 )
 
 #' @importFrom utils write.table

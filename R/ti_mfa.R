@@ -1,6 +1,11 @@
-#' Description for mfa
+#' Inferring trajectories with mfa
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_mfa <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_mfa <- create_description(
   name = "mfa",
   short_name = "mfa",
   package_loaded = c(),
@@ -14,9 +19,8 @@ description_mfa <- function() create_description(
     makeLogicalParam(id = "scale_input", default = TRUE),
     makeLogicalParam(id = "zero_inflation", default = FALSE)
   ),
-  properties = c(),
-  run_fun = run_mfa,
-  plot_fun = plot_mfa
+  run_fun = "run_mfa",
+  plot_fun = "plot_mfa"
 )
 
 run_mfa <- function(

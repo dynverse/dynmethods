@@ -1,6 +1,11 @@
-#' Description for StemID
+#' Inferring trajectories with StemID2
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @export
-description_stemid2 <- function() create_description(
+#'
+#' @include wrapper_create_description.R
+description_stemid2 <- create_description(
   name = "StemID2",
   short_name = "stemid2",
   package_loaded = c(),
@@ -28,9 +33,8 @@ description_stemid2 <- function() create_description(
     makeNumericParam(id = "pethr", lower = -4, default = -2, upper = 0, trafo = function(x) 10^x),
     forbidden = quote(thr_lower > thr_upper)
   ),
-  properties = c(),
-  run_fun = run_stemid2,
-  plot_fun = plot_stemid2
+  run_fun = "run_stemid2",
+  plot_fun = "plot_stemid2"
 )
 
 run_stemid2 <- function(

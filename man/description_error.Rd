@@ -2,10 +2,13 @@
 % Please edit documentation in R/ti_error.R
 \name{description_error}
 \alias{description_error}
-\title{Description for error}
+\title{Inferring trajectories with Control: error}
 \usage{
-description_error()
+description_error(dummy_param = 0.5)
+}
+\arguments{
+\item{dummy_param}{This parameter does not do anything.}
 }
 \description{
-Description for error
+This control method will always produce an error.
 }
