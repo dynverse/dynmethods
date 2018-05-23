@@ -1,11 +1,3 @@
-#' Inferring trajectories with Monocle
-#'
-#' Arguments passed to this function will be used as default parameters for the method.
-#'
-#'
-#' @rdname monocle
-#'
-#' @include wrapper_create_description.R
 abstract_monocle_description <- function(short_name) {
   reduction_method <- c(
     "mnclddr" = "DDRTree",
@@ -38,8 +30,15 @@ abstract_monocle_description <- function(short_name) {
   )
 }
 
-
+#' Inferring trajectories with Monocle
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
+#'
 #' @rdname monocle
+#'
+#' @include wrapper_create_description.R
+#'
 #' @export
 description_mnclddr <- abstract_monocle_description("mnclddr")
 

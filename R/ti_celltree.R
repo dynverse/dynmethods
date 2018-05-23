@@ -1,31 +1,4 @@
-#' Inferring trajectories with cellTree
-#'
-#' Arguments passed to this function will be used as default parameters for the method.
-#'
-#' @param num_topics_lower The lower bound of topics to be fitted in the model.
-#' @param num_topics_upper The upper bound of topics to be fitted in the model.
-#' @param num_topics The number of topics to fit in the model.
-#' @param tot_iter Number of iterations of the LDA inference.
-#' @param tolerance Tolerance values of the LDA inference.
-#' @param sd_filter Standard-deviation threshold below which genes should be removed from the data.
-#' @param absolute_width Distance threshold below which a cell vertex is considered to be attached to a backbone vertex (see paper for more details).
-#'   By default, this threshold is computed dynamically, based on the distance distribution for each branch.
-#' @param width_scale_factor A scaling factor for the dynamically-computed distance threshold (ignored if absolute_width is provided).
-#'   Higher values will result in less branches in the backbone tree, while lower values might lead to a large number of backbone branches.
-#' @param outlier_distance_factor Proportion of vertices, out of the total number of vertices divided by the total number of branches,
-#'   that can be left at the end of the backbone tree-building algorithm.
-#' @param rooting_method Method used to root the backbone tree. Must be one of: ‘null’, ‘longest.path’, ‘center.start.group’ or ‘average.start.group’.
-#' ‘longest.path' picks one end of the longest shortest-path between two vertices.
-#' 'center.start.group’ picks the vertex in the starting group with lowest mean-square-distance to the others.
-#' ‘average.start.group’ creates a new artificial vertex, as the average of all cells in the starting group.
-#' ‘null’ picks the best method based on the type of grouping and start group information available.
-#'
-#' @rdname celltree
-#'
-#' @include wrapper_create_description.R
-abstract_celltree_description <- function(
-  method
-) {
+abstract_celltree_description <- function(method) {
   method_value <- c(maptpx = "maptpx", gibbs = "Gibbs", vem = "VEM")[[method]]
 
   common_params <- list(
@@ -75,8 +48,31 @@ abstract_celltree_description <- function(
   )
 }
 
-
+#' Inferring trajectories with cellTree
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
+#' @param num_topics_lower The lower bound of topics to be fitted in the model.
+#' @param num_topics_upper The upper bound of topics to be fitted in the model.
+#' @param num_topics The number of topics to fit in the model.
+#' @param tot_iter Number of iterations of the LDA inference.
+#' @param tolerance Tolerance values of the LDA inference.
+#' @param sd_filter Standard-deviation threshold below which genes should be removed from the data.
+#' @param absolute_width Distance threshold below which a cell vertex is considered to be attached to a backbone vertex (see paper for more details).
+#'   By default, this threshold is computed dynamically, based on the distance distribution for each branch.
+#' @param width_scale_factor A scaling factor for the dynamically-computed distance threshold (ignored if absolute_width is provided).
+#'   Higher values will result in less branches in the backbone tree, while lower values might lead to a large number of backbone branches.
+#' @param outlier_distance_factor Proportion of vertices, out of the total number of vertices divided by the total number of branches,
+#'   that can be left at the end of the backbone tree-building algorithm.
+#' @param rooting_method Method used to root the backbone tree. Must be one of: ‘null’, ‘longest.path’, ‘center.start.group’ or ‘average.start.group’.
+#' ‘longest.path' picks one end of the longest shortest-path between two vertices.
+#' 'center.start.group’ picks the vertex in the starting group with lowest mean-square-distance to the others.
+#' ‘average.start.group’ creates a new artificial vertex, as the average of all cells in the starting group.
+#' ‘null’ picks the best method based on the type of grouping and start group information available.
+#'
 #' @rdname celltree
+#'
+#' @include wrapper_create_description.R
 #' @export
 description_ctmaptpx <- abstract_celltree_description("maptpx")
 

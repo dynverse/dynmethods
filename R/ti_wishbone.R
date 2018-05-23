@@ -1,10 +1,3 @@
-#' Inferring trajectories with Wanderlust/Wishbone
-#'
-#' Arguments passed to this function will be used as default parameters for the method.
-#'
-#' @rdname wishbone
-#'
-#' @include wrapper_create_description.R
 abstract_wishbone_description <- function(method) {
   allow_branching <- method == "wishbone"
   name <- c("wishbone" = "Wishbone", "wndrlst" = "Wanderlust")[method] %>% setNames(NULL)
@@ -30,7 +23,14 @@ abstract_wishbone_description <- function(method) {
   )
 }
 
+#' Inferring trajectories with Wanderlust/Wishbone
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @rdname wishbone
+#'
+#' @include wrapper_create_description.R
+#'
 #' @export
 description_wishbone <- abstract_wishbone_description("wishbone")
 

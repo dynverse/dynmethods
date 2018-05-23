@@ -1,10 +1,3 @@
-#' Inferring trajectories with PAGA
-#'
-#' Arguments passed to this function will be used as default parameters for the method.
-#'
-#' @rdname paga
-#'
-#' @include wrapper_create_description.R
 abstract_paga_description <- function(method) {
   par_set <- makeParamSet(
     makeIntegerParam(id = "n_neighbours", lower = 1, default = 30, upper = 100),
@@ -35,7 +28,13 @@ abstract_paga_description <- function(method) {
   )
 }
 
+#' Inferring trajectories with PAGA
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
 #' @rdname paga
+#'
+#' @include wrapper_create_description.R
 #' @export
 description_paga <- abstract_paga_description("paga")
 

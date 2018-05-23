@@ -1,16 +1,3 @@
-#' Inferring trajectories with SCORPIUS
-#'
-#' Arguments passed to this function will be used as default parameters for the method.
-#'
-#' @inheritParams SCORPIUS::correlation_distance
-#' @inheritParams SCORPIUS::reduce_dimensionality
-#' @inheritParams SCORPIUS::infer_trajectory
-#' @param sparse Whether or not to use sparse MDS dimensionality reduction,
-#'   for datasets with large amounts of cells.
-#'
-#' @rdname scorpius
-#'
-#' @include wrapper_create_description.R
 abstract_scorpius_description <- function(short_name) {
   name <- c(
     "scorpius" = "SCORPIUS",
@@ -38,7 +25,20 @@ abstract_scorpius_description <- function(short_name) {
 }
 
 
+#' Inferring trajectories with SCORPIUS
+#'
+#' Arguments passed to this function will be used as default parameters for the method.
+#'
+#' @inheritParams SCORPIUS::correlation_distance
+#' @inheritParams SCORPIUS::reduce_dimensionality
+#' @inheritParams SCORPIUS::infer_trajectory
+#' @param sparse Whether or not to use sparse MDS dimensionality reduction,
+#'   for datasets with large amounts of cells.
+#'
 #' @rdname scorpius
+#'
+#' @include wrapper_create_description.R
+#'
 #' @export
 description_scorpius <- abstract_scorpius_description("scorpius")
 
