@@ -76,7 +76,7 @@ We extract the default parameters from the method.
 defprm <- get_default_parameters(method)
 ```
 
-Applying AGA on the toy dataset can be performed using the `execute_method` function.
+Applying AGA on the toy dataset can be performed using the `infer_trajectory` function.
 
 ``` r
 out <- execute_method(toy_tasks, method, parameters = defprm)[[1]]

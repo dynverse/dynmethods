@@ -1,61 +1,310 @@
-#' Infer a trajectory on one (or more) tasks, using one (or more) methods
-#' @param task A task, a tibble of tasks
-#' @param method A method, list of methods, or a design tibble
-#' @param parameters Parameters, or a list of parameters
-#' @param tasks One or more tasks (either as a list or tibble)
-#' @param methods One or more methods (either as a list or tibble)
+#' Infer trajectories
+#' @param task One or more datasets, as created using dynwrap
+#' @param method One or more methods. Can be a description as created by the description_... functions, a character vector containing the methods to execute, or a dynguidelines dataframe
+#' @param give_priors All the priors a method is allowed to receive. Must be a subset of: `"start_milestones"`,
+#'  `"start_cells"`, `"end_milestones"`, `"end_cells"`, `"grouping_assignment"` and `"grouping_network"`
+#' @param verbose Whether or not to print information output
 #'
+#' @importFrom utils capture.output
+#' @importFrom readr read_file
+#' @importFrom stringr str_length
+#' @importFrom parallel mclapply
+#' @importFrom testthat expect_true
 #' @export
-infer_trajectory <- function(task, method, parameters = NULL) {
-  infer_trajectories(task, method, parameters) %>% pull(model) %>% first()
-}
+infer_trajectories <- function(
+  task,
+  method,
+  give_priors = NULL,
+  verbose = FALSE
+) {
+  if (verbose) {
+    if (nrow(task) == 1) {
+      task_str <- task$id
+    } else {
+      task_str <- paste0(nrow(task), " tasks")
+    }
+    cat("Executing ", method$name, " on ", task_str, "\n", sep = "")
+  }
 
-#' @rdname infer_trajectory
-#' @export
-infer_trajectories <- function(tasks, methods, parameters = NULL) {
-  # process method
-  # allow giving names of methods
-  if(is.character(methods)) {
-    methods <- dynmethods::get_descriptions() %>% slice(map_int(methods, agrep, dynmethods::get_descriptions()$short_name))
-    # allow single description
-  } else if ("dynmethod::description" %in% class(methods)) {
-    methods <- list_as_tibble(list(methods))
-  } else if (is.data.frame(methods)) {
-  } else if (is.list(methods)) {
-    methods <- list_as_tibble(methods)
+  # process method ----------------------
+  if(is.character(method)) {
+    # names of method
+    # do some fuzzy matching, try both short name and real name
+    all_desc <- get_descriptions()
+    method <- all_desc %>% slice(
+      map_int(
+        method,
+        function(x) {
+          distances <- adist(x, c(all_desc$name, all_desc$short_name))
+          id <- which.min(distances) %% nrow(all_desc)
+          if(min(distances) > 0) {
+            message(stringr::str_glue("Converted {x} -> {all_desc$name[[id]]}"))
+          }
+          id
+        }
+      )
+    )
+    method
+  } else if (is_description(method)) {
+    # single description
+    method <- list_as_tibble(list(method))
+  } else if (is.data.frame(method)) {
+    # dataframe
+  } else if (is.list(method)) {
+    # list of method
+    method <- list_as_tibble(method)
+  } else if (is_guidelines(method)) {
+    # guidelines object
+    method <- method$methods_selected
   } else {
-    stop("Invalid methods")
+    stop("Invalid method argument, it is of class ", paste0(class(method), collapse = ", "))
   }
-  methods <- map(seq_len(nrow(methods)), extract_row_to_list, tib=methods)
+  method <- map(seq_len(nrow(method)), extract_row_to_list, tib=method)
 
-  # process task
-  # allow single task
-  if(dynwrap::is_data_wrapper(tasks)) {
-    tasks <- list_as_tibble(list(tasks))
-  } else if (is.data.frame(tasks)) {
-  } else if (is.list(tasks)) {
-    tasks <- list_as_tibble(tasks)
+  # process task ----------------------
+  if(dynwrap::is_data_wrapper(task)) {
+    # allow single task
+    task <- list_as_tibble(list(task))
+  } else if (is.data.frame(task)) {
+    # dataframe of tasks
+  } else if (is.list(task)) {
+    # list of tasks
+    task <- list_as_tibble(task)
   } else {
-    stop("Invalid task")
+    stop("Invalid task argument, it is of class ", paste0(class(task), collapse = ", "))
   }
-  tasks <- map(seq_len(nrow(tasks)), extract_row_to_list, tib=tasks)
+  task <- map(seq_len(nrow(task)), extract_row_to_list, tib=task)
 
-  # process parameters
-  # allow null parameters
-  if (is.null(parameters)) {
-    parameters <- map(seq_along(methods), ~list())
-  }
-
+  # Run methods on each tasks ---------
   # construct overall design
   design <- tibble(
-    task = tasks,
-    method = methods,
-    parameters = parameters
+    task=task,
+    method=method
   )
 
-  # execute
-  design$model <- design %>%
-    pmap(execute_method_on_task)
+  output <- design %>%
+    pmap(execute_method_on_task, give_priors=give_priors, verbose=verbose)
 
-  design
+  tibble(
+    model = map(output, "model"),
+    summary = map(output, "summary"),
+    task_id = map(task, "id"),
+    method_name = map(method, "name")
+  )
+}
+
+
+#' @rdname infer_trajectories
+#' @export
+infer_trajectory <- function(
+  task,
+  method,
+  give_priors=NULL,
+  verbose = FALSE
+) {
+  design <- infer_trajectories(task, method, give_priors, verbose)
+
+  if(is.null(design$model[[1]])) {
+    stop("Error during trajectory inference \n", design$summary[[1]]$error)
+  } else {
+    first(design$model)
+  }
+}
+
+
+#' Run a method on a task with a set of parameters
+#'
+#' @inheritParams infer_trajectory
+#' @param task The task
+#' @export
+execute_method_on_task <- function(
+  task,
+  method,
+  parameters=list(),
+  give_priors=NULL,
+  mc_cores=1,
+  verbose=FALSE
+) {
+  # start the timer
+  time0 <- Sys.time()
+
+  # test whether the task is truely a task
+  testthat::expect_true(is_data_wrapper(task))
+  testthat::expect_true(is_wrapper_with_expression(task))
+
+  # find out a method's required params (counts, expression, or any prior information)
+  required_params <- formals(method$run_fun) %>%
+    as.list %>%
+    map_chr(class) %>%
+    keep(~.=="name") %>%
+    names
+
+  # find out wether the method wants the counts, expression, or both
+  task_args <- task[intersect(required_params, c("counts", "expression"))]
+
+  # determine which prior information is strictly required by the method
+  required_priors <- setdiff(required_params, c("counts", "expression"))
+
+  # collect all prior information
+  prior_information <- task$prior_information
+  prior_information$task <- task
+
+  # determine which priors to give and give it
+  prior_names <- union(give_priors, required_priors)
+  prior_type <- ifelse(prior_names %in% required_priors, "required", "optional")
+
+  if (!all(prior_names %in% names(prior_information))) {
+    stop("Prior information ", paste(setdiff(prior_names, names(prior_information)), collapse = ";"), " is missing from ", task$id)
+  }
+
+  prior_args <- as.list(prior_information[prior_names])
+
+  # only retain priors which the method accepts
+  prior_args <- prior_args[intersect(names(formals(method$run_fun)), names(prior_args))]
+
+  prior_df <- data_frame(prior_type, prior_names)
+
+  # create arglist. content:
+  # * counts or expression
+  # * parameters
+  # * any prior information
+  arglist <- c(task_args, parameters, prior_args)
+
+  # create a temporary directory to set as working directory,
+  # to avoid polluting the working directory if a method starts
+  # producing files :angry_face:
+  tmp_dir <- tempfile(pattern = method$short_name)
+  dir.create(tmp_dir)
+  old_wd <- getwd()
+  setwd(tmp_dir)
+
+  # disable seed setting
+  # a method shouldn't set seeds during regular execution,
+  # it should be left up to the user instead
+  orig_setseed <- base::set.seed
+  setseed_detection_file <- tempfile(pattern = "seedsetcheck")
+
+  # run the method and catch the error, if necessary
+  out <-
+    tryCatch({
+      # run method
+      model <- execute_method_internal(method, arglist, setseed_detection_file)
+
+      # add task id and method names to the model
+      model$task_id <- task$id
+      model$method_name <- method$name
+      model$method_short_name <- method$short_name
+
+      c(model, list(error = NULL))
+    }, error = function(e) {
+      time_new <- Sys.time()
+      timings_list <- list(
+        method_start = time0,
+        method_afterpreproc = time0,
+        method_aftermethod = time_new,
+        method_afterpostproc = time_new,
+        method_stop = time_new
+      )
+      list(model = NULL, timings_list = timings_list, error = e)
+    })
+
+  # retrieve the model, error message, and timings
+  model <- out$model
+  error <- out$error
+  timings_list <- out$timings_list
+
+  # check whether the method produced output files and
+  # wd to previous state
+  num_files_created <- length(list.files(tmp_dir, recursive = TRUE))
+  setwd(old_wd)
+
+  # Remove temporary folder
+  unlink(tmp_dir, recursive = TRUE, force = TRUE)
+
+  # read how many seeds were set and
+  # restore environment to previous state
+  num_setseed_calls <-
+    if (file.exists(setseed_detection_file)) {
+      stringr::str_length(readr::read_file(setseed_detection_file))
+    } else {
+      0
+    }
+  if (file.exists(setseed_detection_file)) {
+    file.remove(setseed_detection_file)
+  }
+  dynutils::override_setseed(orig_setseed)
+
+  # stop the timer
+  time3 <- Sys.time()
+
+  # create a summary tibble
+  summary <- tibble(
+    method_name = method$name,
+    method_short_name = method$short_name,
+    task_id = task$id,
+    time_sessionsetup = as.numeric(difftime(timings_list$method_start, time0, units = "sec")),
+    time_preprocessing = as.numeric(difftime(timings_list$method_afterpreproc, timings_list$method_start, units = "sec")),
+    time_method = as.numeric(difftime(timings_list$method_aftermethod, timings_list$method_afterpreproc, units = "sec")),
+    time_postprocessing = as.numeric(difftime(timings_list$method_afterpostproc, timings_list$method_aftermethod, units = "sec")),
+    time_wrapping = as.numeric(difftime(timings_list$method_stop, timings_list$method_afterpostproc, units = "sec")),
+    time_sessioncleanup = as.numeric(difftime(time3, timings_list$method_stop, units = "sec")),
+    error = list(error),
+    num_files_created = num_files_created,
+    num_setseed_calls = num_setseed_calls,
+    prior_df = list(prior_df)
+  )
+
+  lst(model, summary)
+}
+
+#' Internal method for executing a method
+#'
+#' If you're reading this, you're supposed to be using `infer_trajectory` instead.
+#'
+#' @inheritParams execute_method_on_task
+#'
+#' @param arglist The arguments to apply to the method
+#' @param setseed_detection_file A file to which will be written if a method
+#'   uses the set.seed function.
+#'
+#' @export
+#' @importFrom readr write_file
+execute_method_internal <- function(method, arglist, setseed_detection_file) {
+  # disable seed setting
+  # a method shouldn't set seeds during regular execution,
+  # it should be left up to the user instead
+  new_setseed <- function(i) {
+    readr::write_file("1", setseed_detection_file, append = TRUE)
+  }
+  dynutils::override_setseed(new_setseed)
+
+  # Load required packages and namespaces
+  for (pack in method$package_loaded) {
+    suppressMessages(do.call(require, list(pack)))
+  }
+  for (pack in method$package_required) {
+    suppressMessages(do.call(requireNamespace, list(pack)))
+  }
+
+  # measure second time point
+  time_start <- Sys.time()
+
+  # execute method and return model
+  model <- do.call(method$run_fun, arglist)
+
+  # measure third time point
+  time_stop <- Sys.time()
+
+  # fetch timings from within method (and place them in order of execution, just to make sure)
+  timings_list <- c(
+    list(method_start = time_start),
+    model$timings,
+    list(method_stop = time_stop)
+  )
+
+  model$timings <- NULL
+  class(model) <- class(model) %>% discard(~. %in% c("dynutils::with_timings", "dynwrap::with_timings"))
+
+  # return output
+  lst(timings_list, model)
 }

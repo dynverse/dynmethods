@@ -4,16 +4,23 @@ context("Testing infer_trajectory")
 test_that("Testing infer_trajectory with control methods", {
   data("toy_tasks", package="dyntoy")
 
-  task <- toy_tasks %>% extract_row_to_list(1)
-
   # run with one task and one method
-  model <- infer_trajectory(task, description_angle())
+  task <- toy_tasks %>% extract_row_to_list(1)
+  method <- description_compone()
+
+  model <- infer_trajectory(task, method)
   expect_s3_class(model, "dynwrap::with_trajectory")
 
+  model <- infer_trajectory(task, method, give_priors = c("start_cells"))
+  expect_s3_class(model, "dynwrap::with_trajectory")
+
+  expect_error(infer_trajectory(task, method, give_priors = c("to be or not to be")))
+
   # run with multiple tasks and one method
-  models <- infer_trajectories(list(task, task), description_angle())
+  models <- infer_trajectories(list(task, task), method)
   expect_true(is_tibble(models))
   expect_equal(nrow(models), 2)
+  expect_setequal(c("model", "method_name", "task_id", "summary"), names(models))
 
   models <- infer_trajectories(list_as_tibble(list(task, task)), description_angle())
   expect_true(is_tibble(models))
@@ -28,7 +35,12 @@ test_that("Testing infer_trajectory with control methods", {
   expect_true(is_tibble(models))
   expect_equal(nrow(models), 2)
 
-  models <- infer_trajectories(task, c("angle", "angle"))
+  models <- infer_trajectories(task, c("shuffle", "random"))
   expect_true(is_tibble(models))
   expect_equal(nrow(models), 2)
+
+  expect_message(infer_trajectories(task, c("shoffle")))
+
+  expect_error(infer_trajectories(task, c(1,2,3)))
+  expect_error(infer_trajectories(c(1,2,3), c(1,2,3)))
 })
