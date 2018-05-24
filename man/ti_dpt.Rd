@@ -4,7 +4,7 @@
 \alias{ti_dpt}
 \title{Inferring trajectories with DPT}
 \usage{
-ti_dpt(sigma = "local", distance = "euclidean", n_eigs = 20L,
+ti_dpt(sigma = "local", distance = "euclidean", ndim = 20L,
   density_norm = TRUE, n_local_lower = 5L, n_local_upper = 7L,
   w_width = 0.1)
 }
@@ -15,7 +15,7 @@ A larger sigma might be necessary if the eigenvalues can not be found because of
 
 \item{distance}{Distance measurement method applied to \code{data} or a distance matrix/\code{\link[stats]{dist}}. For the allowed values, see \code{\link{find_knn}}}
 
-\item{n_eigs}{Number of eigenvectors/values to return (default: 20)}
+\item{ndim}{Number of eigenvectors/dimensions to return}
 
 \item{density_norm}{logical. If TRUE, use density normalisation}
 

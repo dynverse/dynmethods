@@ -6,6 +6,7 @@
 #' @param n_local_lower If sigma == 'local', the \code{n_local_lower}:\code{n_local_upper} nearest neighbor(s) determine(s) the local sigma
 #' @param n_local_upper See \code{n_local_lower}
 #' @inheritParams destiny::DPT
+#' @param ndim Number of eigenvectors/dimensions to return
 #'
 #' @export
 #'
@@ -18,7 +19,7 @@ ti_dpt <- create_ti_method(
   par_set = makeParamSet(
     makeDiscreteParam(id = "sigma", default = "local", values = c("local", "global")),
     makeDiscreteParam(id = "distance", default = "euclidean", values = c("euclidean", "cosine", "rankcor")),
-    makeIntegerParam(id = "n_eigs", lower = 3L, upper = 100L, default = 20L),
+    makeIntegerParam(id = "ndim", lower = 3L, upper = 100L, default = 20L),
     makeLogicalParam(id = "density_norm", default = TRUE),
     makeIntegerParam(id = "n_local_lower", lower = 2L, upper = 20L, default = 5L),
     makeIntegerParam(id = "n_local_upper", lower = 2L, upper = 20L, default = 7L),
@@ -36,7 +37,7 @@ run_dpt <- function(
   marker_feature_ids = NULL,
   sigma,
   distance,
-  n_eigs,
+  ndim,
   density_norm,
   n_local_lower,
   n_local_upper,
@@ -62,7 +63,7 @@ run_dpt <- function(
     data = expression,
     sigma = sigma,
     distance = distance,
-    n_eigs = n_eigs,
+    n_eigs = ndim,
     density_norm = density_norm,
     n_local = n_local,
     vars = marker_feature_ids
