@@ -2,6 +2,9 @@
 #'
 #' Arguments passed to this function will be used as default parameters for the method.
 #'
+#' @param ndim The number of dimensions
+#' @inheritParams GPfates::GPfates
+#'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R
@@ -13,7 +16,7 @@ ti_gpfates <- create_ti_method(
   par_set = makeParamSet(
     makeNumericParam(id = "log_expression_cutoff", lower = 0.5, upper = 5, default = 2),
     makeNumericParam(id = "min_cells_expression_cutoff", lower = 0, upper = 20, default = 2),
-    makeIntegerParam(id = "ndims", lower = 1L, upper = 5L, default = 2L)
+    makeIntegerParam(id = "ndim", lower = 1L, upper = 5L, default = 2L)
   ),
   run_fun = "run_gpfates",
   plot_fun = "plot_gpfates"
@@ -25,9 +28,9 @@ ti_gpfates <- create_ti_method(
 run_gpfates <- function(
   counts,
   n_end_states,
-  ndims = 2,
-  log_expression_cutoff = 2,
-  min_cells_expression_cutoff = 2,
+  ndim,
+  log_expression_cutoff,
+  min_cells_expression_cutoff,
   num_cores = 1,
   verbose = FALSE
 ) {
@@ -45,7 +48,7 @@ run_gpfates <- function(
   gp_out <- GPfates::GPfates(
     counts = counts,
     nfates = n_end_states,
-    ndims = ndims,
+    ndims = ndim,
     log_expression_cutoff = log_expression_cutoff,
     min_cells_expression_cutoff = min_cells_expression_cutoff,
     num_cores = num_cores,
