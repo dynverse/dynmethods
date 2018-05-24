@@ -4,8 +4,28 @@
 \alias{ti_merlot}
 \title{Inferring trajectories with MERLoT}
 \usage{
-ti_merlot(n_components = 20L, n_components_to_use = 3L,
-  NumberOfNodes = 100L)
+ti_merlot(sigma = "local", distance = "euclidean", ndim = 20L,
+  density_norm = TRUE, n_local_lower = 5L, n_local_upper = 7L,
+  w_width = 0.1, n_components_to_use = 3L, number_of_nodes = 100L)
+}
+\arguments{
+\item{sigma}{Diffusion scale parameter of the Gaussian kernel. One of \code{'local'}, \code{'global'}, a (\link[base]{numeric}) global sigma or a \link{Sigmas} object.
+When choosing \code{'global'}, a global sigma will be calculated using \code{\link{find_sigmas}}. (Optional. default: \code{'local'})
+A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix}
+
+\item{distance}{Distance measurement method applied to \code{data} or a distance matrix/\code{\link[stats]{dist}}. For the allowed values, see \code{\link{find_knn}}}
+
+\item{ndim}{Number of eigenvectors/dimensions to return}
+
+\item{density_norm}{logical. If TRUE, use density normalisation}
+
+\item{n_local_lower}{If sigma == 'local', the \code{n_local_lower}:\code{n_local_upper} nearest neighbor(s) determine(s) the local sigma}
+
+\item{n_local_upper}{See \code{n_local_lower}}
+
+\item{n_components_to_use}{Which components to use in downstream analysis}
+
+\item{number_of_nodes}{number of nodes for the elastic principal tree}
 }
 \description{
 Inferring trajectories with MERLoT
