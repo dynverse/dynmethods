@@ -8,5 +8,5 @@ ti_mfa(b = 2L, iter = 2000L, thin = 1L, pc_initialise = 1L,
   prop_collapse = 0, scale_input = TRUE, zero_inflation = FALSE)
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with mfa
 }

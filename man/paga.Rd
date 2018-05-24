@@ -7,5 +7,5 @@
 ti_paga(n_neighbours = 30L, n_comps = 50L, resolution = 2.5)
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with PAGA
 }

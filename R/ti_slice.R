@@ -2,6 +2,9 @@
 #'
 #' @inherit ti_identity description
 #'
+#' @inheritParams SLICE::getEntropy
+#' @inheritParams SLICE::getLineageModel
+#'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R

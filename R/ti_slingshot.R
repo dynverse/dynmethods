@@ -2,6 +2,10 @@
 #'
 #' @inherit ti_identity description
 #'
+#' @param nclust Number of clusters
+#' @inheritParams ti_compone
+#' @inheritParams slingshot::slingshot
+#'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R

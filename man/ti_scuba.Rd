@@ -9,5 +9,5 @@ ti_scuba(rigorous_gap_stats = TRUE, N_dim = 2L, low_gene_threshold = 1,
   min_percentage_split = 0.25)
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with SCUBA
 }

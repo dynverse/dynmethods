@@ -8,5 +8,5 @@ ti_merlot(n_components = 20L, n_components_to_use = 3L,
   NumberOfNodes = 100L)
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with MERLoT
 }

@@ -9,5 +9,5 @@ ti_recat(TSPFold = 2L, beginNum = 10L, endNum = 15L, step_size = 2L,
   clustMethod = "GMM")
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with reCAT
 }

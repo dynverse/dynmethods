@@ -50,5 +50,5 @@ Higher values will result in less branches in the backbone tree, while lower val
 that can be left at the end of the backbone tree-building algorithm.}
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with cellTree
 }

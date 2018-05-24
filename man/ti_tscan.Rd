@@ -7,6 +7,15 @@
 ti_tscan(minexpr_percent = 0, minexpr_value = 0, cvcutoff = 0,
   clusternum_lower = 2L, clusternum_upper = 9L, modelNames = "VVV")
 }
+\arguments{
+\item{minexpr_percent}{Numeric value specifying the lowest percentage of highly expressed cells (expression value bigger than minexpr_value) for the genes/features to be retained.}
+
+\item{minexpr_value}{Numeric value specifying the minimum cutoff of log transformed (if takelog is TRUE) value}
+
+\item{cvcutoff}{Numeric value specifying the minimum value of coefficient of variance for the genes/features to be retained.}
+
+\item{modelNames}{model to be used in model-based clustering. By default "ellipsoidal, varying volume, shape, and orientation" is used.}
+}
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with TSCAN
 }

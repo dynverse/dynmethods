@@ -38,5 +38,5 @@ type is 'unorm' (default), then the graph measure used is the identity matrix, w
 used is the degree matrix.}
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with Embeddr
 }

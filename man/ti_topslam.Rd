@@ -7,6 +7,10 @@
 ti_topslam(n_components = 2L, n_neighbors = 10L, linear_dims = 0L,
   max_iters = 1000, dimreds = c(TRUE, TRUE, TRUE, TRUE, TRUE))
 }
+\arguments{
+\item{dimreds}{A character vector specifying which dimensionality reduction methods to use.
+See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.}
+}
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with topslam
 }

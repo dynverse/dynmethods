@@ -11,5 +11,5 @@ ti_angle(dimred = "pca")
 See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.}
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with Angle
 }

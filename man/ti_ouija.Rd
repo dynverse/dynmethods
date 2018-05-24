@@ -8,5 +8,5 @@ ti_ouija(iter = 100, response_type = "switch", inference_type = "hmc",
   normalise_expression = TRUE)
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with ouija
 }

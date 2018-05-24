@@ -4,9 +4,11 @@
 \alias{ti_slicer}
 \title{Inferring trajectories with SLICER}
 \usage{
-ti_slicer(kmin = 10L, m = 2L, min_branch_len = 5,
-  min_representative_percentage = 0.8, max_same_milestone_distance = 0.1)
+ti_slicer(kmin = 10L, m = 2L)
+}
+\arguments{
+\item{m}{ intrinsic dimension of the data. This parameter mainly influences the visualisation of the results. The real intrinsic dimension will be calculated automaticly. }
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with SLICER
 }

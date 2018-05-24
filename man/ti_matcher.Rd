@@ -7,5 +7,5 @@
 ti_matcher(quantiles = 50L, method = "linear")
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with MATCHER
 }

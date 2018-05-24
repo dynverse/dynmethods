@@ -3,7 +3,8 @@
 #' @inherit ti_identity description
 #'
 #' @inheritParams topslam::topslam
-#' @param dimreds The dimred methods to use
+#' @param dimreds A character vector specifying which dimensionality reduction methods to use.
+#'   See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.
 #'
 #' @export
 #'

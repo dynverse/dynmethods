@@ -8,5 +8,5 @@ ti_scimitar(covariance_type = "diag", degree = 3L, step_size = 0.07,
   cov_estimator = "corpcor", cov_reg = 0.05, max_iter = 3L)
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with SCIMITAR
 }
