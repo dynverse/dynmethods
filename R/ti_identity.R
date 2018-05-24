@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_identity <- create_description(
+ti_identity <- create_description(
   name = "Control: identity",
   short_name = "identity",
   package_loaded = c(),

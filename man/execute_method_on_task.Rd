@@ -10,7 +10,7 @@ execute_method_on_task(task, method, parameters = list(),
 \arguments{
 \item{task}{The task}
 
-\item{method}{One or more methods. Can be a description as created by the description_... functions, a character vector containing the methods to execute, or a dynguidelines dataframe}
+\item{method}{One or more methods. Can be a description as created by the ti_... functions, a character vector containing the methods to execute, or a dynguidelines dataframe}
 
 \item{give_priors}{All the priors a method is allowed to receive. Must be a subset of: \code{"start_milestones"},
 \code{"start_cells"}, \code{"end_milestones"}, \code{"end_cells"}, \code{"grouping_assignment"} and \code{"grouping_network"}}

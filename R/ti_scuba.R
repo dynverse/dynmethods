@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_scuba <- create_description(
+ti_scuba <- create_description(
   name = "SCUBA",
   short_name = "scuba",
   package_loaded = c(),

@@ -24,11 +24,11 @@ df <- list.files("R", pattern = "ti_", full.names = T) %>%
   map_df(function(file) {
     file_text <- readr::read_lines(file)
     
-    line_numbers <- which(str_detect(file_text, "^description_[ a-zA-Z]*<- function"))
-    descr_funs <- str_replace(file_text[line_numbers], "(description_[a-zA-Z]*) <- .*", "\\1")
-    descriptions <- map(descr_funs, ~ do.call(., args = list(), envir = asNamespace("dynmethods")))
-    long_names <- map_chr(descriptions, ~ .$name)
-    short_names <- map_chr(descriptions, ~ .$short_name)
+    line_numbers <- which(str_detect(file_text, "^ti_[ a-zA-Z]*<- function"))
+    descr_funs <- str_replace(file_text[line_numbers], "(ti_[a-zA-Z]*) <- .*", "\\1")
+    ti_methods <- map(descr_funs, ~ do.call(., args = list(), envir = asNamespace("dynmethods")))
+    long_names <- map_chr(ti_methods, ~ .$name)
+    short_names <- map_chr(ti_methods, ~ .$short_name)
     
     data_frame(
       file, 

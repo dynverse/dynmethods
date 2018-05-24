@@ -74,15 +74,15 @@ abstract_celltree_description <- function(method) {
 #'
 #' @include wrapper_create_description.R
 #' @export
-description_ctmaptpx <- abstract_celltree_description("maptpx")
+ti_ctmaptpx <- abstract_celltree_description("maptpx")
 
 #' @rdname celltree
 #' @export
-description_ctgibbs <- abstract_celltree_description("gibbs")
+ti_ctgibbs <- abstract_celltree_description("gibbs")
 
 #' @rdname celltree
 #' @export
-description_ctvem <- abstract_celltree_description("vem")
+ti_ctvem <- abstract_celltree_description("vem")
 
 #' @importFrom igraph degree distances get.vertex.attribute induced_subgraph
 run_celltree <- function(

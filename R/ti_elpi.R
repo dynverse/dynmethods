@@ -1,10 +1,10 @@
 #' #' Description for elpi
 #' #' @export
-#' description_elpi <- function() abstract_aga_description("elpi")
+#' ti_elpi <- function() abstract_aga_description("elpi")
 #'
 #' #' Description for elpifix
 #' #' @export
-#' description_elpifix <- function() abstract_aga_description("elpifix")
+#' ti_elpifix <- function() abstract_aga_description("elpifix")
 #'
 #' abstract_elpi_description <- function(method) {
 #'   par_set <- makeParamSet(

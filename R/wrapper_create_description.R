@@ -31,7 +31,7 @@ create_description <- function(
     generateDesignOfDefaults(trafo = TRUE) %>%
     ParamHelpers::dfRowToList(par_set, 1)
 
-  description_fun_constructor_with_params <- function(...) {
+  ti_fun_constructor_with_params <- function(...) {
 
     if (is.character(run_fun)) {
       if (grepl("::", run_fun)) {
@@ -51,7 +51,7 @@ create_description <- function(
     }
 
     # get the parameters from this function
-    run_fun_defaults <- as.list(environment())[formalArgs(description_fun_constructor_with_params)]
+    run_fun_defaults <- as.list(environment())[formalArgs(ti_fun_constructor_with_params)]
 
     # override default parameters in the run_fun
     formals(run_fun)[names(run_fun_defaults)] <- run_fun_defaults
@@ -64,9 +64,9 @@ create_description <- function(
     desc
   }
 
-  formals(description_fun_constructor_with_params) <- default_params
+  formals(ti_fun_constructor_with_params) <- default_params
 
-  description_fun_constructor_with_params
+  ti_fun_constructor_with_params
 }
 
 #' Tests whether an object is a TI method description

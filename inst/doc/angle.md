@@ -31,10 +31,10 @@ Description
 
 This is a control method for inferring cyclic trajectories in a very simple approach, consisting of a dimensionality reduction step and followed by calculating the angle between the first and the second component.
 
-The wrapper can be accessed using the `description_angle` function.
+The wrapper can be accessed using the `ti_angle` function.
 
 ``` r
-method <- description_angle()
+method <- ti_angle()
 ```
 
 This description contains information on which packages need to have been installed in order to run the method and what are the parameters.

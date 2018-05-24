@@ -19,6 +19,6 @@ After running \code{start_dynmethods_docker}, methods can be run on the docker u
 \examples{
 start_dynmethods_docker()
 tasks <- dyntoy::toy_tasks[1, ]
-models \%<-\% infer_trajectory(tasks, description_compone())
+models \%<-\% infer_trajectory(tasks, ti_compone())
 
 }

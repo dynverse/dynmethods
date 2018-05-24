@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_gng <- create_description(
+ti_gng <- create_description(
   name = "Growing Neural Gas",
   short_name = "gng",
   package_loaded = c(),

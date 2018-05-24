@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_periodpc <- create_description(
+ti_periodpc <- create_description(
   name = "Periodic PrinCurve",
   short_name = "periodpc",
   package_loaded = c("stats", "princurve"),

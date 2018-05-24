@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_stemid <- create_description(
+ti_stemid <- create_description(
   name = "StemID",
   short_name = "stemid",
   package_loaded = c(),

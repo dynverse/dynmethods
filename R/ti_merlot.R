@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_merlot <- create_description(
+ti_merlot <- create_description(
   name = "MERLoT",
   short_name = "merlot",
   package_loaded = c("merlot", "destiny"),

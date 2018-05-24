@@ -1,10 +1,10 @@
-context("Testing get_descriptions")
+context("Testing get_ti_methods")
 
 test_that("Descriptions can be retrieved", {
-  tib <- get_descriptions()
+  tib <- get_ti_methods()
   expect_that(tib, is_a("tbl"))
 
-  lis <- get_descriptions(as_tibble = FALSE)
+  lis <- get_ti_methods(as_tibble = FALSE)
   expect_that(lis, is_a("list"))
 
   for (descr in lis) {
@@ -15,7 +15,7 @@ test_that("Descriptions can be retrieved", {
   }
 })
 
-methods <- get_descriptions()
+methods <- get_ti_methods()
 
 for (i in seq_len(nrow(methods))) {
   method <- extract_row_to_list(methods, i)

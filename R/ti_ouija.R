@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_ouija <- create_description(
+ti_ouija <- create_description(
   name = "ouija",
   short_name = "ouija",
   package_required = c("ouija", "rstan"),

@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_slicer <- create_description(
+ti_slicer <- create_description(
   name = "SLICER",
   short_name = "slicer",
   package_loaded = c(),

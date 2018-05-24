@@ -15,10 +15,10 @@ library(dynplot)
 Description
 ===========
 
-AGA Pseudotime is similar to the [AGA wrapper](aga.md), except that a start cell has to be given, and the method produces a more refined pseudotemporal ordering of each cell. The core algorithms used are k-nearest-neighbours for representing cells as a graph, louvain clustering for grouping cells into milestones, connectivity testing for identifying transitions between the milestones, and random walks for determining the pseudotemporal ordering of the cells. The wrapper can be accessed using the `description_agapt` function.
+AGA Pseudotime is similar to the [AGA wrapper](aga.md), except that a start cell has to be given, and the method produces a more refined pseudotemporal ordering of each cell. The core algorithms used are k-nearest-neighbours for representing cells as a graph, louvain clustering for grouping cells into milestones, connectivity testing for identifying transitions between the milestones, and random walks for determining the pseudotemporal ordering of the cells. The wrapper can be accessed using the `ti_agapt` function.
 
 ``` r
-method <- description_agapt()
+method <- ti_agapt()
 ```
 
 This description contains information on which packages need to have been installed in order to run the method and what are the parameters.

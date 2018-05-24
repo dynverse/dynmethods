@@ -40,11 +40,11 @@ abstract_scorpius_description <- function(short_name) {
 #' @include wrapper_create_description.R
 #'
 #' @export
-description_scorpius <- abstract_scorpius_description("scorpius")
+ti_scorpius <- abstract_scorpius_description("scorpius")
 
 #' @rdname scorpius
 #' @export
-description_scorpius_sparse <- abstract_scorpius_description("scorspar")
+ti_scorpius_sparse <- abstract_scorpius_description("scorspar")
 
 run_scorpius <- function(
   expression,

@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_sincell <- create_description(
+ti_sincell <- create_description(
   name = "Sincell",
   short_name = "sincell",
   package_loaded = c(),

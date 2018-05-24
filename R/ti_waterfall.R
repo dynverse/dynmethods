@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_waterfll <-  create_description(
+ti_waterfll <-  create_description(
   name = "Waterfall",
   short_name = "waterfll", # max 8 chars
   package_loaded = c(),

@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_angle <-
+ti_angle <-
   create_description(
     name = "Angle",
     short_name = "angle",

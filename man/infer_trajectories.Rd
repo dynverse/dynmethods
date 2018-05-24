@@ -12,7 +12,7 @@ infer_trajectory(task, method, give_priors = NULL, verbose = FALSE)
 \arguments{
 \item{task}{One or more datasets, as created using dynwrap}
 
-\item{method}{One or more methods. Can be a description as created by the description_... functions, a character vector containing the methods to execute, or a dynguidelines dataframe}
+\item{method}{One or more methods. Can be a description as created by the ti_... functions, a character vector containing the methods to execute, or a dynguidelines dataframe}
 
 \item{give_priors}{All the priors a method is allowed to receive. Must be a subset of: \code{"start_milestones"},
 \code{"start_cells"}, \code{"end_milestones"}, \code{"end_cells"}, \code{"grouping_assignment"} and \code{"grouping_network"}}

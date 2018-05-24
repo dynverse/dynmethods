@@ -180,7 +180,6 @@ Collate:
     'wrap_prediction_model.R'
     'wrapper_check_dependencies.R'
     'wrapper_docker.R'
-    'wrapper_execute_method.R'
     'wrapper_get_default_parameters.R'
     'wrapper_get_descriptions.R'
     'wrapper_infer_trajectory.R'

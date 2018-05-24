@@ -32,11 +32,11 @@ abstract_wishbone_description <- function(method) {
 #' @include wrapper_create_description.R
 #'
 #' @export
-description_wishbone <- abstract_wishbone_description("wishbone")
+ti_wishbone <- abstract_wishbone_description("wishbone")
 
 #' @rdname wishbone
 #' @export
-description_wndrlst <- abstract_wishbone_description("wndrlst")
+ti_wndrlst <- abstract_wishbone_description("wndrlst")
 
 run_wishbone <- function(
   counts,

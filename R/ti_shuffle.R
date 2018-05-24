@@ -9,7 +9,7 @@
 #' @importFrom dynplot plot_default
 #'
 #' @include wrapper_create_description.R
-description_shuffle <- create_description(
+ti_shuffle <- create_description(
   name = "Control: shuffle",
   short_name = "shuffle",
   package_loaded = c(),

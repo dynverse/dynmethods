@@ -1,6 +1,6 @@
 #' Infer trajectories
 #' @param task One or more datasets, as created using dynwrap
-#' @param method One or more methods. Can be a description as created by the description_... functions, a character vector containing the methods to execute, or a dynguidelines dataframe
+#' @param method One or more methods. Can be a description as created by the ti_... functions, a character vector containing the methods to execute, or a dynguidelines dataframe
 #' @param give_priors All the priors a method is allowed to receive. Must be a subset of: `"start_milestones"`,
 #'  `"start_cells"`, `"end_milestones"`, `"end_cells"`, `"grouping_assignment"` and `"grouping_network"`
 #' @param verbose Whether or not to print information output
@@ -30,7 +30,7 @@ infer_trajectories <- function(
   if(is.character(method)) {
     # names of method
     # do some fuzzy matching, try both short name and real name
-    all_desc <- get_descriptions()
+    all_desc <- get_ti_methods()
     method <- all_desc %>% slice(
       map_int(
         method,

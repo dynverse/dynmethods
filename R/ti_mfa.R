@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_mfa <- create_description(
+ti_mfa <- create_description(
   name = "mfa",
   short_name = "mfa",
   package_loaded = c(),

@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_random <- create_description(
+ti_random <- create_description(
   name = "Control: random",
   short_name = "random",
   package_loaded = c(),

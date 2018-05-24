@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_mpath <- create_description(
+ti_mpath <- create_description(
   name = "Mpath",
   short_name = "mpath",
   package_loaded = c("Mpath"),

@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_slngsht <- create_description(
+ti_slngsht <- create_description(
   name = "Slingshot",
   short_name = "slngsht",
   package_loaded = c(),

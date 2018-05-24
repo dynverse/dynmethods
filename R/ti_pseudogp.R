@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_pseudogp <- create_description(
+ti_pseudogp <- create_description(
   name = "pseudogp",
   short_name = "pseudogp",
   package_loaded = c("pseudogp"),

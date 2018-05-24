@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_scimitar <- create_description(
+ti_scimitar <- create_description(
   name = "SCIMITAR",
   short_name = "scimitar",
   package_loaded = c(),

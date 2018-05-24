@@ -2,7 +2,7 @@
 #'
 #' @export
 check_dependencies <- function() {
-  for (descr in get_descriptions(as_tibble = FALSE)) {
+  for (descr in get_ti_methods(as_tibble = FALSE)) {
     check_dependency(descr)
   }
 }

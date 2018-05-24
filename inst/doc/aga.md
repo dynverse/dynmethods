@@ -15,10 +15,10 @@ library(dynplot)
 Description
 ===========
 
-AGA is a trajectory inference method implemented in the [Scanpy](https://scanpy.readthedocs.io/en/latest/) package. The core algorithms used are k-nearest-neighbours for representing cells as a graph, louvain clustering for grouping cells into milestones, and connectivity testing for identifying transitions between the milestones. The wrapper can be accessed using the `description_aga` function.
+AGA is a trajectory inference method implemented in the [Scanpy](https://scanpy.readthedocs.io/en/latest/) package. The core algorithms used are k-nearest-neighbours for representing cells as a graph, louvain clustering for grouping cells into milestones, and connectivity testing for identifying transitions between the milestones. The wrapper can be accessed using the `ti_aga` function.
 
 ``` r
-method <- description_aga()
+method <- ti_aga()
 ```
 
 This description contains information on which packages need to have been installed in order to run the method and what are the parameters.

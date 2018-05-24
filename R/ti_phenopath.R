@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_phenopth <- create_description(
+ti_phenopth <- create_description(
   name = "PhenoPath",
   short_name = "phenopth",
   package_required = c("phenopath"),

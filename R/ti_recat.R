@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_recat <- create_description(
+ti_recat <- create_description(
   name = "reCAT",
   short_name = "recat",
   package_loaded = c(),

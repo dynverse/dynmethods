@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_ouijaflw <- create_description(
+ti_ouijaflw <- create_description(
   name = "ouijaflow",
   short_name = "ouijaflw",
   package_required = c("ouijaflow"),

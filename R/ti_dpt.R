@@ -6,7 +6,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_dpt <- create_description(
+ti_dpt <- create_description(
   name = "DPT",
   short_name = "dpt",
   package_loaded = c("destiny"),

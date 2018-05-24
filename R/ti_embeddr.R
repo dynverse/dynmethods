@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_embeddr <- create_description(
+ti_embeddr <- create_description(
   name = "Embeddr",
   short_name = "embeddr",
   package_loaded = c(),

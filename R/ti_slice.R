@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_slice <- create_description(
+ti_slice <- create_description(
   name = "SLICE",
   short_name = "slice",
   package_loaded = c(),

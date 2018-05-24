@@ -36,11 +36,11 @@ abstract_paga_description <- function(method) {
 #'
 #' @include wrapper_create_description.R
 #' @export
-description_paga <- abstract_paga_description("paga")
+ti_paga <- abstract_paga_description("paga")
 
 # #' Description for agapt
 # #' @export
-# description_agapt <- abstract_aga_description("agapt")
+# ti_agapt <- abstract_aga_description("agapt")
 
 run_paga <- function(
   expression,

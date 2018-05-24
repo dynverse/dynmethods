@@ -40,11 +40,11 @@ abstract_monocle_description <- function(short_name) {
 #' @include wrapper_create_description.R
 #'
 #' @export
-description_mnclddr <- abstract_monocle_description("mnclddr")
+ti_mnclddr <- abstract_monocle_description("mnclddr")
 
 #' @rdname monocle
 #' @export
-description_mnclica <- abstract_monocle_description("mnclica")
+ti_mnclica <- abstract_monocle_description("mnclica")
 
 
 run_monocle <- function(

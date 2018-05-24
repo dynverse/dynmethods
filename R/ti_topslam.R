@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_topslam <- create_description(
+ti_topslam <- create_description(
   name = "topslam",
   short_name = "topslam",
   package_loaded = c(),

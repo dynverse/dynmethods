@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_error <- create_description(
+ti_error <- create_description(
   name = "Control: error",
   short_name = "error",
   package_loaded = c(),

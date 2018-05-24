@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_matcher <- create_description(
+ti_matcher <- create_description(
   name = "MATCHER",
   short_name = "matcher",
   package_loaded = c(),

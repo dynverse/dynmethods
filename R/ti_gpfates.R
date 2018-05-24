@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_gpfates <- create_description(
+ti_gpfates <- create_description(
   name = "GPfates",
   short_name = "gpfates",
   package_loaded = c(),

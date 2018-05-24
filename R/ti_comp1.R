@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_compone <- create_description(
+ti_compone <- create_description(
   name = "Component 1",
   short_name = "comp1",
   package_loaded = c(),

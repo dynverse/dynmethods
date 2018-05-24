@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_scoup <- create_description(
+ti_scoup <- create_description(
   name = "SCOUP",
   short_name = "scoup",
   package_required = c(),

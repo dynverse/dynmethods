@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @include wrapper_create_description.R
-description_tscan <- create_description(
+ti_tscan <- create_description(
   name = "TSCAN",
   short_name = "tscan",
   package_loaded = c(),

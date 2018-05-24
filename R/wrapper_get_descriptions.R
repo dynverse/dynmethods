@@ -1,18 +1,18 @@
-#' Return all TI descriptions
+#' Return all TI ti_methods
 #'
-#' @param as_tibble Whether or not to return the descriptions as a tibble
+#' @param as_tibble Whether or not to return the ti_methods as a tibble
 #'
 #' @importFrom utils lsf.str
 #' @export
-get_descriptions <- function(as_tibble = TRUE) {
+get_ti_methods <- function(as_tibble = TRUE) {
   requireNamespace("dynmethods")
 
-  descriptions <- lsf.str(asNamespace("dynmethods"), pattern = "description_") %>%
+  ti_methods <- lsf.str(asNamespace("dynmethods"), pattern = "ti_") %>%
     map(~ do.call(., args = list(), envir = asNamespace("dynmethods")))
 
   if (as_tibble) {
-    list_as_tibble(descriptions)
+    list_as_tibble(ti_methods)
   } else {
-    descriptions %>% setNames(descriptions %>% map_chr(~.$short_name))
+    ti_methods %>% setNames(ti_methods %>% map_chr(~.$short_name))
   }
 }
