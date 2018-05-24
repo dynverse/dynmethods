@@ -10,6 +10,14 @@ ti_gng(dimred = "pca", ndim = 5L, max_iter = 1e+06, max_nodes = 8L,
 \arguments{
 \item{dimred}{A character vector specifying which dimensionality reduction method to use.
 See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.}
+
+\item{ndim}{The number of dimensions}
+
+\item{max_iter}{The max number of iterations}
+
+\item{max_nodes}{The maximum number of nodes}
+
+\item{apply_mst}{If true, an MST post-processing of the GNG is performed.}
 }
 \description{
 Arguments passed to this function will be used as default parameters for the method.

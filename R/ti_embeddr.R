@@ -35,18 +35,18 @@ ti_embeddr <- create_ti_method(
 
 run_embeddr <- function(
   counts,
-  ndim = 2,
-  kernel = "nn",
-  metric = "correlation",
-  nn_pct = 1,
-  eps = 1,
-  t = 1,
-  symmetrize = "mean",
-  measure_type = "unorm",
-  thresh = .001,
-  maxit = 10,
-  stretch = 2,
-  smoother = "smooth.spline"
+  ndim,
+  kernel,
+  metric,
+  nn_pct,
+  eps,
+  t,
+  symmetrize,
+  measure_type,
+  thresh,
+  maxit,
+  stretch,
+  smoother
 ) {
   requireNamespace("scaterlegacy")
   requireNamespace("embeddr")

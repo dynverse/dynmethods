@@ -23,7 +23,7 @@ ti_compone <- create_ti_method(
 
 run_compone <- function(
   expression,
-  dimred = "pca"
+  dimred
 ) {
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")

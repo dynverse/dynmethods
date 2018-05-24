@@ -5,6 +5,10 @@
 #' @param dimred A character vector specifying which dimensionality reduction method to use.
 #'   See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.
 #'
+#' @inheritParams dimred
+#' @inheritParams GNG::gng
+#' @param apply_mst If true, an MST post-processing of the GNG is performed.
+#'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R
@@ -27,11 +31,11 @@ ti_gng <- create_ti_method(
 #' @importFrom stats dist
 run_gng <- function(
   expression,
-  dimred = "pca",
-  ndim = 5,
-  max_iter = 1e6,
-  max_nodes = 8,
-  apply_mst = TRUE
+  dimred,
+  ndim,
+  max_iter,
+  max_nodes,
+  apply_mst
 ) {
   requireNamespace("GNG")
   requireNamespace("igraph")
