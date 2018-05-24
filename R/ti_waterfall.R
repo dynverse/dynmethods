@@ -1,6 +1,8 @@
 #' Inferring trajectories with Waterfall
 #'
-#' Arguments passed to this function will be used as default parameters for the method.
+#' @inherit ti_identity description
+#'
+#' @param num_clusters Number of clusters
 #'
 #' @export
 #'

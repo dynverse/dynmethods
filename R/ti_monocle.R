@@ -32,7 +32,7 @@ abstract_monocle_description <- function(short_name) {
 
 #' Inferring trajectories with Monocle
 #'
-#' Arguments passed to this function will be used as default parameters for the method.
+#' @inherit ti_identity description
 #'
 #'
 #' @rdname monocle

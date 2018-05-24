@@ -1,6 +1,6 @@
 #' Inferring trajectories with SCOUP
 #'
-#' Arguments passed to this function will be used as default parameters for the method.
+#' @inherit ti_identity description
 #'
 #' @export
 #'

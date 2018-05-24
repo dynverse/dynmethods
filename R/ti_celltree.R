@@ -50,7 +50,7 @@ abstract_celltree_description <- function(method) {
 
 #' Inferring trajectories with cellTree
 #'
-#' Arguments passed to this function will be used as default parameters for the method.
+#' @inherit ti_identity description
 #'
 #' @param num_topics_lower The lower bound of topics to be fitted in the model.
 #' @param num_topics_upper The upper bound of topics to be fitted in the model.

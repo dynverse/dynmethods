@@ -30,7 +30,7 @@ abstract_paga_description <- function(method) {
 
 #' Inferring trajectories with PAGA
 #'
-#' Arguments passed to this function will be used as default parameters for the method.
+#' @inherit ti_identity description
 #'
 #' @rdname paga
 #'

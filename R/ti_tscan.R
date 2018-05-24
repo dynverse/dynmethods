@@ -1,6 +1,9 @@
 #' Inferring trajectories with TSCAN
 #'
-#' Arguments passed to this function will be used as default parameters for the method.
+#' @inherit ti_identity description
+#'
+#' @inheritParams TSCAN::preprocess
+#' @inheritParams TSCAN::exprmclust
 #'
 #' @export
 #'

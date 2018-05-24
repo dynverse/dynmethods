@@ -25,7 +25,16 @@ abstract_wishbone_description <- function(method) {
 
 #' Inferring trajectories with Wanderlust/Wishbone
 #'
-#' Arguments passed to this function will be used as default parameters for the method.
+#' @inherit ti_identity description
+#'
+#' @param knn Number of nearest neighbours for diffusion map
+#' @param n_diffusion_components Number of diffusion components
+#' @param n_pca_components Number of pca components
+#' @param branch Whether to find a branching (wishbone) or linear (wanderlust) trajectory
+#' @param k Number of nearest neighbors for graph construction
+#' @param num_waypoints Number of waypoints to sample
+#' @param normalize Whether to normalize the data
+#' @param epsilon Gaussian standard deviation for converting distances to affinities, for diffusion map
 #'
 #' @rdname wishbone
 #'

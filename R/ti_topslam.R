@@ -1,6 +1,9 @@
 #' Inferring trajectories with topslam
 #'
-#' Arguments passed to this function will be used as default parameters for the method.
+#' @inherit ti_identity description
+#'
+#' @inheritParams topslam::topslam
+#' @param dimreds The dimred methods to use
 #'
 #' @export
 #'

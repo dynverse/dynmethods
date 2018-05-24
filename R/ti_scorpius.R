@@ -27,7 +27,7 @@ abstract_scorpius_description <- function(short_name) {
 
 #' Inferring trajectories with SCORPIUS
 #'
-#' Arguments passed to this function will be used as default parameters for the method.
+#' @inherit ti_identity description
 #'
 #' @inheritParams SCORPIUS::correlation_distance
 #' @inheritParams SCORPIUS::reduce_dimensionality

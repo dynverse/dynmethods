@@ -13,6 +13,23 @@ ti_wndrlst(knn = 15L, n_diffusion_components = 2L, n_pca_components = 15L,
   branch = FALSE, k = 15L, num_waypoints = 250L, normalize = TRUE,
   epsilon = 1, method_name = "wndrlst")
 }
+\arguments{
+\item{knn}{Number of nearest neighbours for diffusion map}
+
+\item{n_diffusion_components}{Number of diffusion components}
+
+\item{n_pca_components}{Number of pca components}
+
+\item{branch}{Whether to find a branching (wishbone) or linear (wanderlust) trajectory}
+
+\item{k}{Number of nearest neighbors for graph construction}
+
+\item{num_waypoints}{Number of waypoints to sample}
+
+\item{normalize}{Whether to normalize the data}
+
+\item{epsilon}{Gaussian standard deviation for converting distances to affinities, for diffusion map}
+}
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with Wanderlust/Wishbone
 }

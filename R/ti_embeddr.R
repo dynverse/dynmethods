@@ -1,6 +1,6 @@
 #' Inferring trajectories with Embeddr
 #'
-#' Arguments passed to this function will be used as default parameters for the method.
+#' @inherit ti_identity description
 #'
 #' @inheritParams embeddr::embeddr
 #' @inheritParams embeddr::fit_pseudotime
