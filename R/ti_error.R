@@ -19,7 +19,7 @@ ti_error <- create_ti_method(
   plot_fun = "dynplot::plot_default"
 )
 
-run_error <- function(counts, dummy_param = .5) {
+run_error <- function(counts, dummy_param) {
   stop("This control method always errors.")
 }
 

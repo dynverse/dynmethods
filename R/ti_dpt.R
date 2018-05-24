@@ -34,13 +34,13 @@ run_dpt <- function(
   expression,
   start_cells = NULL,
   marker_feature_ids = NULL,
-  sigma = "local",
-  distance = "euclidean",
-  n_eigs = 20,
-  density_norm = TRUE,
-  n_local_lower = 5,
-  n_local_upper = 7,
-  w_width = .1
+  sigma,
+  distance,
+  n_eigs,
+  density_norm,
+  n_local_lower,
+  n_local_upper,
+  w_width
 ) {
   requireNamespace("destiny")
 

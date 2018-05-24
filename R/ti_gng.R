@@ -31,11 +31,11 @@ ti_gng <- create_ti_method(
 #' @importFrom stats dist
 run_gng <- function(
   expression,
-  dimred = "pca",
-  ndim = 5,
-  max_iter = 1e6,
-  max_nodes = 8,
-  apply_mst = TRUE
+  dimred,
+  ndim,
+  max_iter,
+  max_nodes,
+  apply_mst
 ) {
   requireNamespace("GNG")
   requireNamespace("igraph")
