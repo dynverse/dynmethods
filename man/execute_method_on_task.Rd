@@ -10,10 +10,20 @@ execute_method_on_task(task, method, parameters = list(),
 \arguments{
 \item{task}{The task}
 
-\item{method}{One or more methods. Can be a description as created by the ti_... functions, a character vector containing the methods to execute, or a dynguidelines dataframe}
+\item{method}{One or more methods. Must be one of:
+\item an object or list of ti_... objects (e.g. \code{\link{ti_paga}()}),
+\item a character vector containing the names of methods to execute (e.g. \code{"scorpius"}), or
+\item a dynguidelines data frame.}
+
+\item{parameters}{A set of parameters to be used during trajectory inference.
+A parameter set must be a named list of parameters.
+If multiple methods were provided in the \code{method} parameter,
+\code{parameters} must be an unnamed list of the same length.}
 
 \item{give_priors}{All the priors a method is allowed to receive. Must be a subset of: \code{"start_milestones"},
 \code{"start_cells"}, \code{"end_milestones"}, \code{"end_cells"}, \code{"grouping_assignment"} and \code{"grouping_network"}}
+
+\item{mc_cores}{The number of cores to use, allowing to parallellise the different tasks}
 
 \item{verbose}{Whether or not to print information output}
 }

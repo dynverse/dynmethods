@@ -1,8 +1,17 @@
 #' Infer trajectories
+#'
 #' @param task One or more datasets, as created using dynwrap
-#' @param method One or more methods. Can be a description as created by the ti_... functions, a character vector containing the methods to execute, or a dynguidelines dataframe
+#' @param method One or more methods. Must be one of:
+#'   \item an object or list of ti_... objects (e.g. \code{\link{ti_paga}()}),
+#'   \item a character vector containing the names of methods to execute (e.g. \code{"scorpius"}), or
+#'   \item a dynguidelines data frame.
+#' @param parameters A set of parameters to be used during trajectory inference.
+#'   A parameter set must be a named list of parameters.
+#'   If multiple methods were provided in the \code{method} parameter,
+#'    \code{parameters} must be an unnamed list of the same length.
 #' @param give_priors All the priors a method is allowed to receive. Must be a subset of: `"start_milestones"`,
 #'  `"start_cells"`, `"end_milestones"`, `"end_cells"`, `"grouping_assignment"` and `"grouping_network"`
+#' @param mc_cores The number of cores to use, allowing to parallellise the different tasks
 #' @param verbose Whether or not to print information output
 #'
 #' @importFrom utils capture.output
@@ -14,7 +23,9 @@
 infer_trajectories <- function(
   task,
   method,
+  parameters = NULL,
   give_priors = NULL,
+  mc_cores = 1,
   verbose = FALSE
 ) {
   if (verbose) {
@@ -27,7 +38,7 @@ infer_trajectories <- function(
   }
 
   # process method ----------------------
-  if(is.character(method)) {
+  if (is.character(method)) {
     # names of method
     # do some fuzzy matching, try both short name and real name
     all_desc <- get_ti_methods()
@@ -45,8 +56,8 @@ infer_trajectories <- function(
       )
     )
     method
-  } else if (is_description(method)) {
-    # single description
+  } else if (is_ti_method(method)) {
+    # single method
     method <- list_as_tibble(list(method))
   } else if (is.data.frame(method)) {
     # dataframe
@@ -59,7 +70,29 @@ infer_trajectories <- function(
   } else {
     stop("Invalid method argument, it is of class ", paste0(class(method), collapse = ", "))
   }
-  method <- map(seq_len(nrow(method)), extract_row_to_list, tib=method)
+  method <- map(seq_len(nrow(method)), extract_row_to_list, tib = method)
+
+  # process parameters ----------------
+  testthat::expect_is(parameters, "list")
+
+  is_paramset <- nrow(method) == 1 && !is.null(names(parameters))
+  is_list_of_paramsets <- is.null(names(parameters)) && all(map_lgl(parameters, function(x) is.null(names(x))))
+
+  if (!is_paramset && !is_list_of_paramsets) {
+    stop(
+      sQuote("parameters"), " must be an unnamed list of named lists, ",
+      "where the named lists correspond to the parameters of methods to be executed. ",
+      "If only one method is to be executed, ", sQuote("parameters"), " can also be a single ",
+      "named list of parameters."
+    )
+  }
+
+  if (is_paramset) {
+    parameters <- list(parameters)
+  }
+
+  # check whether parameters is of the correct length
+  testthat::expect_equal(nrow(method), length(parameters))
 
   # process task ----------------------
   if(dynwrap::is_data_wrapper(task)) {
@@ -73,19 +106,36 @@ infer_trajectories <- function(
   } else {
     stop("Invalid task argument, it is of class ", paste0(class(task), collapse = ", "))
   }
-  task <- map(seq_len(nrow(task)), extract_row_to_list, tib=task)
+  task <- map(seq_len(nrow(task)), extract_row_to_list, tib = task)
 
   # Run methods on each tasks ---------
   # construct overall design
-  design <- tibble(
-    task=task,
-    method=method
+  design <- crossing(
+    taski = seq_along(task),
+    methodi = seq_along(method)
   )
 
-  output <- design %>%
-    pmap(execute_method_on_task, give_priors=give_priors, verbose=verbose)
+  output <- parallel::mclapply(
+    X = seq_len(nrow(design)),
+    mc.cores = mc_cores,
+    FUN = function(ri) {
+      tari <- task[[design$taski[[ri]]]]
+      meri <- method[[design$methodi[[ri]]]]
+      pari <- parameters[[design$methodi[[ri]]]]
+
+      execute_method_on_task(
+        task = tari,
+        method = meri,
+        parameters = pari,
+        give_priors = give_priors,
+        verbose = verbose
+      )
+    }
+  )
 
   tibble(
+    task_ix = design$taski,
+    method_ix = design$methodi,
     model = map(output, "model"),
     summary = map(output, "summary"),
     task_id = map(task, "id"),
@@ -99,10 +149,11 @@ infer_trajectories <- function(
 infer_trajectory <- function(
   task,
   method,
-  give_priors=NULL,
+  parameters = NULL,
+  give_priors = NULL,
   verbose = FALSE
 ) {
-  design <- infer_trajectories(task, method, give_priors, verbose)
+  design <- infer_trajectories(task, method, parameters, give_priors, verbose)
 
   if(is.null(design$model[[1]])) {
     stop("Error during trajectory inference \n", design$summary[[1]]$error)
@@ -120,10 +171,10 @@ infer_trajectory <- function(
 execute_method_on_task <- function(
   task,
   method,
-  parameters=list(),
-  give_priors=NULL,
-  mc_cores=1,
-  verbose=FALSE
+  parameters = list(),
+  give_priors = NULL,
+  mc_cores = 1,
+  verbose = FALSE
 ) {
   # start the timer
   time0 <- Sys.time()
