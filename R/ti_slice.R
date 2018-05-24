@@ -1,6 +1,6 @@
 #' Inferring trajectories with SLICE
 #'
-#' @inherit ti_identity description
+#' @inherit ti_angle description
 #'
 #' @inheritParams SLICE::getEntropy
 #' @inheritParams SLICE::getLineageModel

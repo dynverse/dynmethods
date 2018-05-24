@@ -1,4 +1,4 @@
-#' Create a TI method description
+#' Create a TI method wrapper
 #'
 #' @param name The name of the TI method
 #' @param short_name A short name for the method, max 8 characters

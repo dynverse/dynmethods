@@ -32,7 +32,7 @@ abstract_monocle_description <- function(short_name) {
 
 #' Inferring trajectories with Monocle
 #'
-#' @inherit ti_identity description
+#' @inherit ti_angle description
 #'
 #'
 #' @rdname monocle

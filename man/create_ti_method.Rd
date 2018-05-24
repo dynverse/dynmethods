@@ -2,7 +2,7 @@
 % Please edit documentation in R/wrapper_create_ti_method.R
 \name{create_ti_method}
 \alias{create_ti_method}
-\title{Create a TI method description}
+\title{Create a TI method wrapper}
 \usage{
 create_ti_method(name, short_name, package_loaded, package_required, par_set,
   run_fun, plot_fun, properties = NA)
@@ -24,5 +24,5 @@ create_ti_method(name, short_name, package_loaded, package_required, par_set,
 of \code{run_fun} with those described in \code{par_set}.}
 }
 \description{
-Create a TI method description
+Create a TI method wrapper
 }

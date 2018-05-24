@@ -25,7 +25,7 @@ abstract_wishbone_description <- function(method) {
 
 #' Inferring trajectories with Wanderlust/Wishbone
 #'
-#' @inherit ti_identity description
+#' @inherit ti_angle description
 #'
 #' @param knn Number of nearest neighbours for diffusion map
 #' @param n_diffusion_components Number of diffusion components

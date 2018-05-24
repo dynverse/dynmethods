@@ -1,6 +1,6 @@
 #' Inferring trajectories with SCOUP
 #'
-#' @inherit ti_identity description
+#' @inherit ti_angle description
 #'
 #' @export
 #'

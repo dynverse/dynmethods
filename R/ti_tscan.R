@@ -1,6 +1,6 @@
 #' Inferring trajectories with TSCAN
 #'
-#' @inherit ti_identity description
+#' @inherit ti_angle description
 #'
 #' @inheritParams TSCAN::preprocess
 #' @inheritParams TSCAN::exprmclust

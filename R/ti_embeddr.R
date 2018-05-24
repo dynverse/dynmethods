@@ -1,6 +1,6 @@
 #' Inferring trajectories with Embeddr
 #'
-#' @inherit ti_identity description
+#' @inherit ti_angle description
 #'
 #' @inheritParams embeddr::embeddr
 #' @inheritParams embeddr::fit_pseudotime

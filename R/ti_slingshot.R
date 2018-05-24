@@ -1,6 +1,6 @@
 #' Inferring trajectories with Slingshot
 #'
-#' @inherit ti_identity description
+#' @inherit ti_angle description
 #'
 #' @param nclust Number of clusters
 #' @inheritParams ti_compone
