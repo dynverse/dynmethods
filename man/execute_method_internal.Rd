@@ -7,7 +7,10 @@
 execute_method_internal(method, arglist, setseed_detection_file)
 }
 \arguments{
-\item{method}{One or more methods. Can be a description as created by the ti_... functions, a character vector containing the methods to execute, or a dynguidelines dataframe}
+\item{method}{One or more methods. Must be one of:
+\item an object or list of ti_... objects (e.g. \code{\link{ti_paga}()}),
+\item a character vector containing the names of methods to execute (e.g. \code{"scorpius"}), or
+\item a dynguidelines data frame.}
 
 \item{arglist}{The arguments to apply to the method}
 

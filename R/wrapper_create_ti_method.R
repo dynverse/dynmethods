@@ -25,7 +25,7 @@ create_ti_method <- function(
     package_loaded,
     package_required,
     par_set
-  ) %>% add_class("dynmethod::description")
+  ) %>% add_class("dynmethod::ti_method")
 
   default_params <- par_set %>%
     generateDesignOfDefaults(trafo = TRUE) %>%
@@ -74,6 +74,6 @@ create_ti_method <- function(
 #' @param object The object to be tested
 #'
 #' @export
-is_description <- function(object) {
-  "dynmethod::description" %in% class(object)
+is_ti_method <- function(object) {
+  "dynmethod::ti_method" %in% class(object)
 }

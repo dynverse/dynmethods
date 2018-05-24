@@ -10,7 +10,7 @@ plot_trajectory <- function(
   ...
 ) {
   testthat::expect_true(is_prediction(prediction))
-  testthat::expect_true(is_description(method))
+  testthat::expect_true(is_ti_method(method))
 
   method$plot_fun(prediction, ...)
 }
