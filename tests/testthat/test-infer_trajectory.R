@@ -55,8 +55,8 @@ test_that("Testing infer_trajectory with control methods", {
 
   # run with multiple tasks and multiple methods with specified parameters
   models <- infer_trajectories(
-    task = list(task, task),
-    method = list(ti_angle(), ti_compone()),
+    task = toy_tasks[c(1,2),],
+    method = list_as_tibble(list(ti_angle(), ti_compone())),
     parameters = list(list(method = "mds"), list(method = "pca"))
   )
 
