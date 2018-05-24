@@ -32,23 +32,9 @@ create_ti_method <- function(
     ParamHelpers::dfRowToList(par_set, 1)
 
   ti_fun_constructor_with_params <- function(...) {
+    run_fun <- get_function(run_fun)
 
-    if (is.character(run_fun)) {
-      if (grepl("::", run_fun)) {
-        parts <- strsplit(run_fun, "::")[[1]]
-        run_fun <- get(parts[[2]], envir = asNamespace(parts[[1]]))
-      } else {
-        run_fun <- get(run_fun)
-      }
-    }
-    if (is.character(plot_fun)) {
-      if (grepl("::", plot_fun)) {
-        parts <- strsplit(plot_fun, "::")[[1]]
-        plot_fun <- get(parts[[2]], envir = asNamespace(parts[[1]]))
-      } else {
-        plot_fun <- get(plot_fun)
-      }
-    }
+    plot_fun <- get_function(plot_fun)
 
     # get the parameters from this function
     run_fun_defaults <- as.list(environment())[formalArgs(ti_fun_constructor_with_params)]
@@ -76,4 +62,19 @@ create_ti_method <- function(
 #' @export
 is_ti_method <- function(object) {
   "dynmethod::ti_method" %in% class(object)
+}
+
+get_function <- function(fun) {
+  if (is.character(fun)) {
+    if (grepl("::", fun)) {
+      parts <- strsplit(fun, "::")[[1]]
+      get(parts[[2]], envir = asNamespace(parts[[1]]))
+    } else {
+      get(fun)
+    }
+  } else if (is.function(fun)) {
+    fun
+  } else {
+    stop(sQuote("fun"), " has an incompatible format.")
+  }
 }
