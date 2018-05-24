@@ -75,7 +75,7 @@ infer_trajectories <- function(
   method <- map(seq_len(nrow(method)), extract_row_to_list, tib = method)
 
   # process parameters ----------------
-  if (is.null(parameters)) {
+  if (is.null(parameters) || length(parameters) == 0) {
     parameters <- lapply(seq_along(method), function(i) list())
   }
   testthat::expect_is(parameters, "list")
