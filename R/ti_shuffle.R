@@ -18,7 +18,7 @@ ti_shuffle <- create_ti_method(
     makeNumericParam(id = "dummy_param", lower = 0, default = 0.5, upper = 1)
   ),
   run_fun = "run_shuffle",
-  plot_fun = "dynplot::plot_default"
+  plot_fun = dynplot::plot_default
 )
 
 run_shuffle <- function(

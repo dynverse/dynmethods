@@ -16,7 +16,7 @@ ti_identity <- create_ti_method(
     makeNumericParam(id = "dummy_param", lower = 0, default = 0.5, upper = 1)
   ),
   run_fun = "run_identity",
-  plot_fun = "dynplot::plot_default"
+  plot_fun = dynplot::plot_default
 )
 
 run_identity <- function(counts, task, dummy_param = .5) {
