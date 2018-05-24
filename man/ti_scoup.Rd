@@ -9,5 +9,5 @@ ti_scoup(ndim = 2L, max_ite1 = 100, max_ite2 = 100, alpha_min = 0.1,
   thresh = 0.01)
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with SCOUP
 }

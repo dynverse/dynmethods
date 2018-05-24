@@ -9,5 +9,5 @@ ti_slngsht(ndim = 3L, nclus = 5L, dimred = "pca", shrink = 1,
   stretch = 2, smoother = "smooth.spline", shrink.method = "cosine")
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with Slingshot
 }

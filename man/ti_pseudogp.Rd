@@ -9,5 +9,5 @@ ti_pseudogp(smoothing_alpha = 10, smoothing_beta = 3,
   dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE), initialise_from = "random")
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with pseudogp
 }

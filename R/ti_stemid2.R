@@ -1,6 +1,6 @@
 #' Inferring trajectories with StemID2
 #'
-#' @inherit ti_identity description
+#' @inherit ti_angle description
 #'
 #' @export
 #'

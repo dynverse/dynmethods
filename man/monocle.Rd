@@ -12,5 +12,5 @@ ti_mnclica(reduction_method = "ICA", max_components = 2L,
   norm_method = "vstExprs")
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with Monocle
 }

@@ -1,6 +1,10 @@
 #' Inferring trajectories with MATCHER
 #'
-#' @inherit ti_identity description
+#' @inherit ti_angle description
+#'
+#' @param quantiles How many quantiles to use when computing warp functions (integer)
+#' @param method Gaussian process regression or linear interpolation? ("gp" or "linear)
+#' @param n_cores The number of cores to use
 #'
 #' @export
 #'
@@ -11,8 +15,8 @@ ti_matcher <- create_ti_method(
   package_loaded = c(),
   package_required = c("MATCHER"),
   par_set = makeParamSet(
-    makeIntegerParam("quantiles", 2, 500, default=50),
-    makeDiscreteParam("method", values=c("gp", "linear"), default="linear")
+    makeIntegerParam("quantiles", 2, 500, default = 50),
+    makeDiscreteParam("method", values = c("gp", "linear"), default = "linear")
   ),
   run_fun = "run_matcher",
   plot_fun = "plot_matcher"
@@ -21,8 +25,8 @@ ti_matcher <- create_ti_method(
 #' @import reticulate
 run_matcher <- function(
   counts,
-  quantiles=50,
-  method="gp",
+  quantiles = 50,
+  method = "gp",
   n_cores = 1
 ) {
   requireNamespace("MATCHER")
@@ -40,7 +44,7 @@ run_matcher <- function(
 
   # run matcher
   m <- pymatcher$matcher$MATCHER(list(X))
-  m$infer(quantiles=as.integer(quantiles), method=list("gp"))
+  m$infer(quantiles = as.integer(quantiles), method = list(method))
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
@@ -64,13 +68,13 @@ run_matcher <- function(
 
 plot_matcher <- function(prediction) {
   prediction$sample_master_time %>%
-    reshape2::melt(varnames=c("sample_id", "cell_id"), value.name="pseudotime") %>%
+    reshape2::melt(varnames = c("sample_id", "cell_id"), value.name = "pseudotime") %>%
     mutate_if(is.factor, as.character) %>%
     left_join(
       tibble(global_pseudotime = prediction$pseudotimes, cell_id = prediction$cell_id),
       "cell_id"
     ) %>%
     ggplot(aes(global_pseudotime, pseudotime)) +
-    geom_point(shape="x", size=2) +
+    geom_point(shape = "x", size=2) +
     geom_smooth()
 }

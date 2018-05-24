@@ -7,5 +7,5 @@
 ti_ouijaflw(iter = 1000)
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with ouijaflow
 }

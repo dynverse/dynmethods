@@ -6,6 +6,9 @@
 \usage{
 ti_waterfll(num_clusters = 10L)
 }
+\arguments{
+\item{num_clusters}{Number of clusters}
+}
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with Waterfall
 }

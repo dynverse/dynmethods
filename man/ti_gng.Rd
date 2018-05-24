@@ -20,5 +20,5 @@ See \code{\link{list_dimred_methods}} for the list of available dimensionality r
 \item{apply_mst}{If true, an MST post-processing of the GNG is performed.}
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with Growing Neural Gas
 }

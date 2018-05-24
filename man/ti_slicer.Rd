@@ -8,5 +8,5 @@ ti_slicer(kmin = 10L, m = 2L, min_branch_len = 5,
   min_representative_percentage = 0.8, max_same_milestone_distance = 0.1)
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with SLICER
 }

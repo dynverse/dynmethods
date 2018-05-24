@@ -50,7 +50,7 @@ abstract_celltree_description <- function(method) {
 
 #' Inferring trajectories with cellTree
 #'
-#' @inherit ti_identity description
+#' @inherit ti_angle description
 #'
 #' @param num_topics_lower The lower bound of topics to be fitted in the model.
 #' @param num_topics_upper The upper bound of topics to be fitted in the model.

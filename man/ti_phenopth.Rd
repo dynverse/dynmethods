@@ -7,5 +7,5 @@
 ti_phenopth(thin = 40L, z_init = 1, model_mu = FALSE, scale_y = TRUE)
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with PhenoPath
 }

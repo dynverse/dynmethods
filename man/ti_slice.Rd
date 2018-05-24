@@ -10,5 +10,5 @@ ti_slice(lm.method = "clustering", model.type = "tree", ss.method = "all",
   k.opt.method = "firstmax")
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with SLICE
 }

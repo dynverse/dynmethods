@@ -1,6 +1,6 @@
 #' Inferring trajectories with Component 1
 #'
-#' @inherit ti_identity description
+#' @inherit ti_angle description
 #'
 #' @param dimred A character vector specifying which dimensionality reduction method to use.
 #'   See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.

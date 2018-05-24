@@ -7,5 +7,5 @@
 ti_periodpc(ndim = 3L, maxit = 10L)
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with Periodic PrinCurvee
 }

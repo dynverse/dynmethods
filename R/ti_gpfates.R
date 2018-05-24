@@ -1,6 +1,6 @@
 #' Inferring trajectories with GPfates
 #'
-#' @inherit ti_identity description
+#' @inherit ti_angle description
 #'
 #' @param ndim The number of dimensions
 #' @inheritParams GPfates::GPfates

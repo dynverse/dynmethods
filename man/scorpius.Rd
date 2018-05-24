@@ -30,5 +30,5 @@ ti_scorpius_sparse(distance_method = "spearman", ndim = 3L, k = 4L,
 for datasets with large amounts of cells.}
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with SCORPIUS
 }

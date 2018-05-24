@@ -30,7 +30,7 @@ abstract_paga_description <- function(method) {
 
 #' Inferring trajectories with PAGA
 #'
-#' @inherit ti_identity description
+#' @inherit ti_angle description
 #'
 #' @rdname paga
 #'

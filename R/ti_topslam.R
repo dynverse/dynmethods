@@ -1,6 +1,6 @@
 #' Inferring trajectories with topslam
 #'
-#' @inherit ti_identity description
+#' @inherit ti_angle description
 #'
 #' @inheritParams topslam::topslam
 #' @param dimreds The dimred methods to use

@@ -1,6 +1,6 @@
 #' Inferring trajectories with Waterfall
 #'
-#' @inherit ti_identity description
+#' @inherit ti_angle description
 #'
 #' @param num_clusters Number of clusters
 #'

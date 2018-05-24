@@ -11,5 +11,5 @@ ti_sincell(distance_method = "euclidean", dimred_method = "none",
   pct_leaf_node_cutoff = 0.5)
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with Sincell
 }

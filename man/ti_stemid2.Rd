@@ -12,5 +12,5 @@ ti_stemid2(clustnr = 30L, bootnr = 50L, metric = "pearson",
   pdishuf = 500, pthr = 0.01, pethr = 0.01)
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with StemID2
 }

@@ -7,6 +7,17 @@
 ti_topslam(n_components = 2L, n_neighbors = 10L, linear_dims = 0L,
   max_iters = 1000, dimreds = c(TRUE, TRUE, TRUE, TRUE, TRUE))
 }
+\arguments{
+\item{n_components}{the number of components}
+
+\item{n_neighbors}{the number of neighbors}
+
+\item{linear_dims}{?}
+
+\item{max_iters}{the number of iterations to optimize over}
+
+\item{dimreds}{The dimred methods to use}
+}
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with topslam
 }

@@ -15,5 +15,5 @@ ti_gpfates(log_expression_cutoff = 2, min_cells_expression_cutoff = 2,
 \item{ndim}{The number of dimensions}
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with GPfates
 }

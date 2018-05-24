@@ -8,5 +8,5 @@ ti_mpath(distMethod = "euclidean", method = "kmeans", numcluster = 11L,
   numcluster_null = TRUE, diversity_cut = 0.6, size_cut = 0.05)
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with Mpath
 }

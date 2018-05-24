@@ -1,6 +1,6 @@
 #' Inferring trajectories with DPT
 #'
-#' @inherit ti_identity description
+#' @inherit ti_angle description
 #'
 #' @inheritParams destiny::DiffusionMap
 #' @param n_local_lower If sigma == 'local', the \code{n_local_lower}:\code{n_local_upper} nearest neighbor(s) determine(s) the local sigma

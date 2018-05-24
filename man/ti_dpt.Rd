@@ -26,5 +26,5 @@ A larger sigma might be necessary if the eigenvalues can not be found because of
 \item{w_width}{Window width to use for deciding the branch cutoff}
 }
 \description{
-Arguments passed to this function will be used as default parameters for the method.
+Inferring trajectories with DPT
 }

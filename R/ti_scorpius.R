@@ -27,7 +27,7 @@ abstract_scorpius_description <- function(short_name) {
 
 #' Inferring trajectories with SCORPIUS
 #'
-#' @inherit ti_identity description
+#' @inherit ti_angle description
 #'
 #' @inheritParams SCORPIUS::correlation_distance
 #' @inheritParams SCORPIUS::reduce_dimensionality
