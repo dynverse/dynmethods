@@ -2,6 +2,9 @@
 #'
 #' @inherit ti_angle description
 #'
+#' @inheritParams SLICE::getEntropy
+#' @inheritParams SLICE::getLineageModel
+#'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R

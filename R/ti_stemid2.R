@@ -1,6 +1,27 @@
 #' Inferring trajectories with StemID2
 #'
-#' @inherit ti_angle description
+#' @param clustnr maximum number of clusters for the computation of the gap statistic or derivation of the cluster number by the saturation criterion. Default is 30. If more major cell types are expected a higher number should be chosen.
+#' @param bootnr number of booststrapping runs for clusterboot. Default is 50
+#' @param metric the input data are transformed to a distance object. Distances can be computed based on different metrics. Possible values are "pearson", "spearman", "logpearson", "euclidean", "kendall", "maximum", "manhattan", "canberra", "binary" or "minkowski". Default is "pearson". In case of the correlation based methods, the distance is computed as 1 – correlation. K-medoids clustering is performed on this distance object.
+#' @param num_cluster_method the type of clustering method, can be sat, gap or manual
+#' @param SE.method the clustering routine calls a modified version of the maxSE function from the cluster package to determine the first local maximum of the gap statistic. By default, we use the method "Tibs2001SEmax" for calling the first local maximum (see specification of maxSE). This method requires that the maximum exceeds the values of its neighbors by a fraction of their standard deviation. This fraction is defined by the parameter SE.factor. All methods defined for the original maxSE function can also be used.
+#' @param SE.factor fraction of the standard deviation by which the local maximum is required to differ from the neighboring points it is compared to. Default is 0.25.
+#' @param B.gap number of bootstrap runs for the calculation of the gap statistic. Default is 50.
+#' @param cln the number of clusters for k-medoids clustering. Default is 0. In this case, the cluster number is determined based on the gap statistic6 and do.gap has to be TRUE.
+#' @param FUNcluster the clustering method applied. One of the following methods can be selected: kmedoids, kmeans, hclust. RaceID3 is designed for k-medoids clustering and therefore it is recommended to use only the kmedoids method. Default is kmedoids.
+#' @param dimred_method the dimensionality reduction method, can be tsne, sammon or tsne_initcmd
+#' @param outminc expression cutoff for the identification of outlier genes is defined. Default is 5.
+#' @param outlg minimal number of outlier genes required to identify a cell as an outlier. Default is 2.
+#' @param probthr defines the probability threshold for outlier calling. If the probability of observing a given expression level for a gene in a cell is lower than this cutoff (based on the negative binomial distribution for the calibrated noise model), the cell is considered an outlier for this gene. Default is 10-3.
+#' @param thr_lower lower probability for which the number of outliers is computed in order to plot the dependence of the number of outliers on the probability threshold
+#' @param thr_upper upper probability for which the number of outliers is computed in order to plot the dependence of the number of outliers on the probability threshold
+#' @param outdistquant outlier cells are merged to outlier clusters if their similarity exceeds the outdistquant-quantile of the similarity distribution for all pairs of cells that are together in one of the original clusters. Default is 0.95.
+#' @param nmode Boolean argument. If nmode is set to TRUE the assignment to inter-cluster links for each cell is not done based on the longest projection, but based on identifying the cluster (other than the cluster the cell belongs to) that contains the nearest neighbor of the cell, i. e. the cell with the most similar transcriptome. The coordinate on the assigned link is still derived based on the projection. Default is FALSE.
+#' @param pdishuf positive integer. This is the number of randomizations to be performed. As a rule of thumb this number should be at least one order of magnitude larger than the desired p-value on the significance of the number of cells on a connection. Default is 2000.
+#' @param pthr positive number. This number corresponds to the p-value threshold, which is used to determine, whether the magnitude of an observed trajectory is significantly larger than observed for the randomized background distribution. This criterion is not used to infer significance of a link, but shown in a graphical representation of the tree
+#' @param pethr positive number. This number corresponds to the p-value threshold, which isused to determine for each link if it is populated by a number of cellssignificantly larger than expected for the randomized background distribution. This p-value threshold determines, which connections are considered validdifferentiation trajectories in the derived lineage tree.
+#'
+#' @inherit ti_identity description
 #'
 #' @export
 #'

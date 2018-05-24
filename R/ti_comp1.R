@@ -14,7 +14,8 @@ ti_compone <- create_ti_method(
   package_loaded = c(),
   package_required = c(),
   par_set = makeParamSet(
-    makeDiscreteParam(id = "dimred", default = "pca", values = names(list_dimred_methods()))
+    makeDiscreteParam(id = "dimred", default = "pca", values = names(list_dimred_methods())),
+    makeIntegerParam(id="ndim", default = 2, lower=2, upper=30)
   ),
   properties = c(),
   run_fun = "run_compone",
@@ -23,12 +24,13 @@ ti_compone <- create_ti_method(
 
 run_compone <- function(
   expression,
+  ndim,
   dimred
 ) {
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
-  space <- dimred(expression, method = dimred, ndim = 2)
+  space <- dimred(expression, method = dimred, ndim = ndim)
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
