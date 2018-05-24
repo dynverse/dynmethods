@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_phenopth <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_phenopth <- create_ti_method(
   name = "PhenoPath",
   short_name = "phenopth",
   package_required = c("phenopath"),

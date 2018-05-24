@@ -17,7 +17,7 @@ abstract_paga_description <- function(method) {
     agapt = "AGA pseudotime"
   )
 
-  create_description(
+  create_ti_method(
     name = name,
     short_name = method,
     package_loaded = c(),
@@ -34,7 +34,7 @@ abstract_paga_description <- function(method) {
 #'
 #' @rdname paga
 #'
-#' @include wrapper_create_description.R
+#' @include wrapper_create_ti_method.R
 #' @export
 ti_paga <- abstract_paga_description("paga")
 

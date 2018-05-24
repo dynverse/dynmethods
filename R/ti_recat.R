@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_recat <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_recat <- create_ti_method(
   name = "reCAT",
   short_name = "recat",
   package_loaded = c(),

@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_mfa <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_mfa <- create_ti_method(
   name = "mfa",
   short_name = "mfa",
   package_loaded = c(),

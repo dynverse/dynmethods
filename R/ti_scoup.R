@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_scoup <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_scoup <- create_ti_method(
   name = "SCOUP",
   short_name = "scoup",
   package_required = c(),

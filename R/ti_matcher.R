@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_matcher <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_matcher <- create_ti_method(
   name = "MATCHER",
   short_name = "matcher",
   package_loaded = c(),

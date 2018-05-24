@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_merlot <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_merlot <- create_ti_method(
   name = "MERLoT",
   short_name = "merlot",
   package_loaded = c("merlot", "destiny"),

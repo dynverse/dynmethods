@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_slngsht <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_slngsht <- create_ti_method(
   name = "Slingshot",
   short_name = "slngsht",
   package_loaded = c(),

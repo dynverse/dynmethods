@@ -8,7 +8,7 @@
 #' @param run_fun A function to run the TI, needs to have 'counts' as its first param.
 #' @param plot_fun A function to plot the results of a TI, needs to have 'prediction' as its first param.
 #'   of `run_fun` with those described in `par_set`.
-create_description <- function(
+create_ti_method <- function(
   name,
   short_name,
   package_loaded,

@@ -8,8 +8,8 @@
 #' @export
 #' @importFrom dynplot plot_default
 #'
-#' @include wrapper_create_description.R
-ti_shuffle <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_shuffle <- create_ti_method(
   name = "Control: shuffle",
   short_name = "shuffle",
   package_loaded = c(),

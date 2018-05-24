@@ -7,8 +7,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_compone <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_compone <- create_ti_method(
   name = "Component 1",
   short_name = "comp1",
   package_loaded = c(),

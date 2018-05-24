@@ -1,8 +1,8 @@
-context("Testing create_description")
+context("Testing create_ti_method")
 
 
-test_that("Testing create_description with dummy method", {
-  dummy <- dynmethods:::create_description(
+test_that("Testing create_ti_method with dummy method", {
+  dummy <- dynmethods:::create_ti_method(
     name = "dummy 1",
     short_name = "dum1",
     package_loaded = c("dynverse"),

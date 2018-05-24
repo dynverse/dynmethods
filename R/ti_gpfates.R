@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_gpfates <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_gpfates <- create_ti_method(
   name = "GPfates",
   short_name = "gpfates",
   package_loaded = c(),

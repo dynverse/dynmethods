@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_mpath <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_mpath <- create_ti_method(
   name = "Mpath",
   short_name = "mpath",
   package_loaded = c("Mpath"),

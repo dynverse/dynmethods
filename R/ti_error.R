@@ -6,8 +6,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_error <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_error <- create_ti_method(
   name = "Control: error",
   short_name = "error",
   package_loaded = c(),

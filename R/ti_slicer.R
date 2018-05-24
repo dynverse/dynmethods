@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_slicer <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_slicer <- create_ti_method(
   name = "SLICER",
   short_name = "slicer",
   package_loaded = c(),

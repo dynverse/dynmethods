@@ -19,7 +19,7 @@ abstract_monocle_description <- function(short_name) {
     )
   )
 
-  create_description(
+  create_ti_method(
     name = pritt("Monocle {reduction_method}"),
     short_name = short_name,
     package_loaded = c("monocle"),
@@ -37,7 +37,7 @@ abstract_monocle_description <- function(short_name) {
 #'
 #' @rdname monocle
 #'
-#' @include wrapper_create_description.R
+#' @include wrapper_create_ti_method.R
 #'
 #' @export
 ti_mnclddr <- abstract_monocle_description("mnclddr")

@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_tscan <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_tscan <- create_ti_method(
   name = "TSCAN",
   short_name = "tscan",
   package_loaded = c(),

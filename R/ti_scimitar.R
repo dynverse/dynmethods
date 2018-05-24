@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_scimitar <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_scimitar <- create_ti_method(
   name = "SCIMITAR",
   short_name = "scimitar",
   package_loaded = c(),

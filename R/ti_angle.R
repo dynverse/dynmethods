@@ -7,9 +7,9 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
+#' @include wrapper_create_ti_method.R
 ti_angle <-
-  create_description(
+  create_ti_method(
     name = "Angle",
     short_name = "angle",
     package_loaded = c(),

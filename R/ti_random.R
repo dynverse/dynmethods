@@ -6,8 +6,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_random <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_random <- create_ti_method(
   name = "Control: random",
   short_name = "random",
   package_loaded = c(),

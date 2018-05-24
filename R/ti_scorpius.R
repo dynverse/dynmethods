@@ -4,7 +4,7 @@ abstract_scorpius_description <- function(short_name) {
     "scorspar" = "SCORPIUS sparse"
   )[short_name] %>% setNames(NULL)
 
-  create_description(
+  create_ti_method(
     name = name,
     short_name = short_name,
     package_loaded = c(),
@@ -37,7 +37,7 @@ abstract_scorpius_description <- function(short_name) {
 #'
 #' @rdname scorpius
 #'
-#' @include wrapper_create_description.R
+#' @include wrapper_create_ti_method.R
 #'
 #' @export
 ti_scorpius <- abstract_scorpius_description("scorpius")

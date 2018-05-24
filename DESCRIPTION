@@ -137,7 +137,7 @@ Collate:
     'helper_dimred_expr.R'
     'helper_set_cores.R'
     'package.R'
-    'wrapper_create_description.R'
+    'wrapper_create_ti_method.R'
     'ti_angle.R'
     'ti_celltree.R'
     'ti_comp1.R'

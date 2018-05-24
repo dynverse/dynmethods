@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_sincell <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_sincell <- create_ti_method(
   name = "Sincell",
   short_name = "sincell",
   package_loaded = c(),

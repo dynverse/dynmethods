@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_topslam <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_topslam <- create_ti_method(
   name = "topslam",
   short_name = "topslam",
   package_loaded = c(),

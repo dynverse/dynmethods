@@ -5,8 +5,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_dpt <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_dpt <- create_ti_method(
   name = "DPT",
   short_name = "dpt",
   package_loaded = c("destiny"),

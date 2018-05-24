@@ -2,7 +2,7 @@ abstract_wishbone_description <- function(method) {
   allow_branching <- method == "wishbone"
   name <- c("wishbone" = "Wishbone", "wndrlst" = "Wanderlust")[method] %>% setNames(NULL)
 
-  create_description(
+  create_ti_method(
     name = name,
     short_name = method,
     package_loaded = c(),
@@ -29,7 +29,7 @@ abstract_wishbone_description <- function(method) {
 #'
 #' @rdname wishbone
 #'
-#' @include wrapper_create_description.R
+#' @include wrapper_create_ti_method.R
 #'
 #' @export
 ti_wishbone <- abstract_wishbone_description("wishbone")

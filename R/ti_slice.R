@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_slice <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_slice <- create_ti_method(
   name = "SLICE",
   short_name = "slice",
   package_loaded = c(),

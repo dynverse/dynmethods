@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_stemid <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_stemid <- create_ti_method(
   name = "StemID",
   short_name = "stemid",
   package_loaded = c(),

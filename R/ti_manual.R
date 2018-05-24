@@ -3,7 +3,7 @@
 #' #' @importFrom dynplot plot_default
 #' #'
 #' #' @export
-#' ti_manual <- function() create_description(
+#' ti_manual <- function() create_ti_method(
 #'   name = "Control: manual",
 #'   short_name = "manual",
 #'   package_loaded = c(),

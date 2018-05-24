@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_pseudogp <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_pseudogp <- create_ti_method(
   name = "pseudogp",
   short_name = "pseudogp",
   package_loaded = c("pseudogp"),

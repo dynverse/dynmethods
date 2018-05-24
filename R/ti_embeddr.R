@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_embeddr <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_embeddr <- create_ti_method(
   name = "Embeddr",
   short_name = "embeddr",
   package_loaded = c(),

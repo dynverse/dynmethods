@@ -17,7 +17,7 @@
 #'     agapt = run_elpifix
 #'   )
 #'
-#'   create_description(
+#'   create_ti_method(
 #'     name = ifelse(method == "elpi", "ElPiGraph", "ElPiGraph fixed"),
 #'     short_name = method,
 #'     package_loaded = c(),

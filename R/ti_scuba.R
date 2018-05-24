@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_scuba <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_scuba <- create_ti_method(
   name = "SCUBA",
   short_name = "scuba",
   package_loaded = c(),

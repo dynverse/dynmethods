@@ -7,8 +7,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_gng <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_gng <- create_ti_method(
   name = "Growing Neural Gas",
   short_name = "gng",
   package_loaded = c(),

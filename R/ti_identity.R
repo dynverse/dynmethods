@@ -6,8 +6,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_identity <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_identity <- create_ti_method(
   name = "Control: identity",
   short_name = "identity",
   package_loaded = c(),

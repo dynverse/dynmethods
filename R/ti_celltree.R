@@ -37,7 +37,7 @@ abstract_celltree_description <- function(method) {
     )
   )
 
-  create_description(
+  create_ti_method(
     name = pritt("cellTree with {method}"),
     short_name = pritt("ct{method}"),
     package_loaded = c(),
@@ -72,7 +72,7 @@ abstract_celltree_description <- function(method) {
 #'
 #' @rdname celltree
 #'
-#' @include wrapper_create_description.R
+#' @include wrapper_create_ti_method.R
 #' @export
 ti_ctmaptpx <- abstract_celltree_description("maptpx")
 

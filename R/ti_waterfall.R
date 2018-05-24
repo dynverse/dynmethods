@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_waterfll <-  create_description(
+#' @include wrapper_create_ti_method.R
+ti_waterfll <-  create_ti_method(
   name = "Waterfall",
   short_name = "waterfll", # max 8 chars
   package_loaded = c(),

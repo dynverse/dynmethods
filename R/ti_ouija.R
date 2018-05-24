@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_ouija <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_ouija <- create_ti_method(
   name = "ouija",
   short_name = "ouija",
   package_required = c("ouija", "rstan"),

@@ -4,8 +4,8 @@
 #'
 #' @export
 #'
-#' @include wrapper_create_description.R
-ti_periodpc <- create_description(
+#' @include wrapper_create_ti_method.R
+ti_periodpc <- create_ti_method(
   name = "Periodic PrinCurve",
   short_name = "periodpc",
   package_loaded = c("stats", "princurve"),
