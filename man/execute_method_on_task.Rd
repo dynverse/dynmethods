@@ -11,9 +11,11 @@ execute_method_on_task(task, method, parameters = list(),
 \item{task}{The task}
 
 \item{method}{One or more methods. Must be one of:
-\item an object or list of ti_... objects (e.g. \code{\link{ti_paga}()}),
-\item a character vector containing the names of methods to execute (e.g. \code{"scorpius"}), or
-\item a dynguidelines data frame.}
+\itemize{
+\item{an object or list of ti_... objects (e.g. \code{\link{ti_paga}()}),}
+\item{a character vector containing the names of methods to execute (e.g. \code{"scorpius"}), or}
+\item{a dynguidelines data frame.}
+}}
 
 \item{parameters}{A set of parameters to be used during trajectory inference.
 A parameter set must be a named list of parameters.

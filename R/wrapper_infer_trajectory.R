@@ -2,9 +2,11 @@
 #'
 #' @param task One or more datasets, as created using dynwrap
 #' @param method One or more methods. Must be one of:
-#'   \item an object or list of ti_... objects (e.g. \code{\link{ti_paga}()}),
-#'   \item a character vector containing the names of methods to execute (e.g. \code{"scorpius"}), or
-#'   \item a dynguidelines data frame.
+#' \itemize{
+#'   \item{an object or list of ti_... objects (e.g. \code{\link{ti_paga}()}),}
+#'   \item{a character vector containing the names of methods to execute (e.g. \code{"scorpius"}), or}
+#'   \item{a dynguidelines data frame.}
+#' }
 #' @param parameters A set of parameters to be used during trajectory inference.
 #'   A parameter set must be a named list of parameters.
 #'   If multiple methods were provided in the \code{method} parameter,
@@ -73,10 +75,13 @@ infer_trajectories <- function(
   method <- map(seq_len(nrow(method)), extract_row_to_list, tib = method)
 
   # process parameters ----------------
+  if (is.null(parameters)) {
+    parameters <- lapply(seq_along(method), function(i) list())
+  }
   testthat::expect_is(parameters, "list")
 
   is_paramset <- nrow(method) == 1 && !is.null(names(parameters))
-  is_list_of_paramsets <- is.null(names(parameters)) && all(map_lgl(parameters, function(x) is.null(names(x))))
+  is_list_of_paramsets <- is.null(names(parameters)) && all(map_lgl(parameters, function(x) length(x) == 0 || !is.null(names(x))))
 
   if (!is_paramset && !is_list_of_paramsets) {
     stop(
@@ -92,7 +97,7 @@ infer_trajectories <- function(
   }
 
   # check whether parameters is of the correct length
-  testthat::expect_equal(nrow(method), length(parameters))
+  testthat::expect_equal(length(method), length(parameters))
 
   # process task ----------------------
   if(dynwrap::is_data_wrapper(task)) {
@@ -136,10 +141,10 @@ infer_trajectories <- function(
   tibble(
     task_ix = design$taski,
     method_ix = design$methodi,
+    task_id = map_chr(task, "id")[design$taski],
+    method_name = map_chr(method, "name")[design$methodi],
     model = map(output, "model"),
-    summary = map(output, "summary"),
-    task_id = map(task, "id"),
-    method_name = map(method, "name")
+    summary = map(output, "summary")
   )
 }
 
@@ -151,9 +156,17 @@ infer_trajectory <- function(
   method,
   parameters = NULL,
   give_priors = NULL,
+  mc_cores = 1,
   verbose = FALSE
 ) {
-  design <- infer_trajectories(task, method, parameters, give_priors, verbose)
+  design <- infer_trajectories(
+    task = task,
+    method = method,
+    parameters = parameters,
+    give_priors = give_priors,
+    mc_cores = mc_cores,
+    verbose = verbose
+  )
 
   if(is.null(design$model[[1]])) {
     stop("Error during trajectory inference \n", design$summary[[1]]$error)

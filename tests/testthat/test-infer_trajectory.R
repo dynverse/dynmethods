@@ -20,7 +20,7 @@ test_that("Testing infer_trajectory with control methods", {
   models <- infer_trajectories(list(task, task), method)
   expect_true(is_tibble(models))
   expect_equal(nrow(models), 2)
-  expect_setequal(c("model", "method_name", "task_id", "summary"), names(models))
+  expect_setequal(c("task_ix", "method_ix", "model", "method_name", "task_id", "summary"), names(models))
 
   models <- infer_trajectories(list_as_tibble(list(task, task)), ti_angle())
   expect_true(is_tibble(models))
@@ -43,4 +43,23 @@ test_that("Testing infer_trajectory with control methods", {
 
   expect_error(infer_trajectories(task, c(1,2,3)))
   expect_error(infer_trajectories(c(1,2,3), c(1,2,3)))
+
+  # run with multiple tasks and multiple methods
+  models <- infer_trajectories(
+    task = list(task, task, task),
+    method = list(ti_angle(), ti_compone())
+  )
+
+  expect_true(is_tibble(models))
+  expect_equal(nrow(models), 6)
+
+  # run with multiple tasks and multiple methods with specified parameters
+  models <- infer_trajectories(
+    task = list(task, task),
+    method = list(ti_angle(), ti_compone()),
+    parameters = list(list(method = "mds"), list(method = "pca"))
+  )
+
+  expect_true(is_tibble(models))
+  expect_equal(nrow(models), 4)
 })
