@@ -2,6 +2,11 @@
 #'
 #' Arguments passed to this function will be used as default parameters for the method.
 #'
+#' @inheritParams embeddr::embeddr
+#' @inheritParams embeddr::fit_pseudotime
+#' @param ndim Dimension of the embedded space, default is 2
+#' @param nn_pct The percentage of cells to use as tge number of nearest neighbours if kernel == 'nn'.
+#'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R
@@ -11,6 +16,7 @@ ti_embeddr <- create_ti_method(
   package_loaded = c(),
   package_required = c("scaterlegacy", "embeddr"),
   par_set = makeParamSet(
+    makeIntegerParam(id = "ndim", lower = 2L, upper = 10L, default = 2L),
     makeDiscreteParam(id = "kernel", default = "nn", values = c("nn", "dist", "heat")),
     makeDiscreteParam(id = "metric", default = "correlation", values = c("correlation", "euclidean", "cosine")),
     makeNumericParam(id = "nn_pct", lower = -2, upper = log10(10), default = 0, trafo = function(x) 10^x),
@@ -18,7 +24,6 @@ ti_embeddr <- create_ti_method(
     makeNumericParam(id = "t", lower = -5, upper = 5, default = 0, trafo = function(x) 10^x),
     makeDiscreteParam(id = "symmetrize", default = "mean", values = c("mean", "ceil", "floor")),
     makeDiscreteParam(id = "measure_type", default = "unorm", values = c("unorm", "norm")),
-    makeIntegerParam(id = "p", lower = 2L, upper = 10L, default = 2L),
     makeNumericParam(id = "thresh", lower = -5, upper = 5, default = -3, trafo = function(x) 10^x),
     makeIntegerParam(id = "maxit", lower = 0L, upper = 50L, default = 10L),
     makeNumericParam(id = "stretch", lower = 0, upper = 5, default = 2),
@@ -30,6 +35,7 @@ ti_embeddr <- create_ti_method(
 
 run_embeddr <- function(
   counts,
+  ndim = 2,
   kernel = "nn",
   metric = "correlation",
   nn_pct = 1,
@@ -37,7 +43,6 @@ run_embeddr <- function(
   t = 1,
   symmetrize = "mean",
   measure_type = "unorm",
-  p = 2,
   thresh = .001,
   maxit = 10,
   stretch = 2,
@@ -65,7 +70,7 @@ run_embeddr <- function(
     t = t,
     symmetrize = symmetrize,
     measure_type = measure_type,
-    p = p
+    p = ndim
   )
 
   # fit pseudotime

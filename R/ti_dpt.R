@@ -2,6 +2,10 @@
 #'
 #' Arguments passed to this function will be used as default parameters for the method.
 #'
+#' @inheritParams destiny::DiffusionMap
+#' @param n_local_lower If sigma == 'local', the \code{n_local_lower}:\code{n_local_upper} nearest neighbor(s) determine(s) the local sigma
+#' @param n_local_upper See \code{n_local_lower}
+#' @inheritParams destiny::DPT
 #'
 #' @export
 #'

@@ -8,6 +8,23 @@ ti_dpt(sigma = "local", distance = "euclidean", n_eigs = 20L,
   density_norm = TRUE, n_local_lower = 5L, n_local_upper = 7L,
   w_width = 0.1)
 }
+\arguments{
+\item{sigma}{Diffusion scale parameter of the Gaussian kernel. One of \code{'local'}, \code{'global'}, a (\link[base]{numeric}) global sigma or a \link{Sigmas} object.
+When choosing \code{'global'}, a global sigma will be calculated using \code{\link{find_sigmas}}. (Optional. default: \code{'local'})
+A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix}
+
+\item{distance}{Distance measurement method applied to \code{data} or a distance matrix/\code{\link[stats]{dist}}. For the allowed values, see \code{\link{find_knn}}}
+
+\item{n_eigs}{Number of eigenvectors/values to return (default: 20)}
+
+\item{density_norm}{logical. If TRUE, use density normalisation}
+
+\item{n_local_lower}{If sigma == 'local', the \code{n_local_lower}:\code{n_local_upper} nearest neighbor(s) determine(s) the local sigma}
+
+\item{n_local_upper}{See \code{n_local_lower}}
+
+\item{w_width}{Window width to use for deciding the branch cutoff}
+}
 \description{
 Arguments passed to this function will be used as default parameters for the method.
 }
