@@ -4,7 +4,6 @@
 #'
 #' @param quantiles How many quantiles to use when computing warp functions (integer)
 #' @param method Gaussian process regression or linear interpolation? ("gp" or "linear)
-#' @param n_cores The number of cores to use
 #'
 #' @export
 #'
@@ -27,10 +26,10 @@ run_matcher <- function(
   counts,
   quantiles = 50,
   method = "gp",
-  n_cores = 1
+  num_cores = 1
 ) {
   requireNamespace("MATCHER")
-  set_cores(n_cores)
+  set_cores(num_cores)
 
   # load matcher
   use_virtualenv(file.path(find.package("MATCHER"), "venv"))

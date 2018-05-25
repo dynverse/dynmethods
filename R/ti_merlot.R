@@ -2,12 +2,15 @@
 #'
 #' @inherit ti_angle description
 #'
-#' @inheritParams destiny::DiffusionMap
+#' @inheritParams ti_dpt
 #' @param n_local_lower If sigma == 'local', the \code{n_local_lower}:\code{n_local_upper} nearest neighbor(s) determine(s) the local sigma
 #' @param n_local_upper See \code{n_local_lower}
 #' @param ndim Number of eigenvectors/dimensions to return
 #' @param n_components_to_use Which components to use in downstream analysis
-#' @param number_of_nodes number of nodes for the elastic principal tree
+#' @inheritParams merlot::CalculateElasticTree
+#' @param FixEndpoints Documentation not provided by authors
+#' @param increaseFactor_mu factor by which the mu will be increased for the embedding
+#' @param increaseFactor_lambda factor by which the mu will be increased for the embedding
 #'
 #' @export
 #'
@@ -26,7 +29,12 @@ ti_merlot <- create_ti_method(
     makeIntegerParam(id = "n_local_upper", lower = 2L, upper = 20L, default = 7L),
     makeNumericParam(id = "w_width", lower = -4, upper = 0, default = log(.1), trafo = exp),
     makeIntegerParam(id = "n_components_to_use", lower=2, upper=20, default=3),
-    makeIntegerParam(id = "number_of_nodes", lower=2, upper=1000, default=100),
+    makeIntegerParam(id = "N_yk", lower=2, upper=1000, default=100),
+    makeNumericParam(id = "lambda_0", lower = -15, upper = -4, default = -10, trafo = exp),
+    makeNumericParam(id = "mu_0", lower = 0.0005, upper = 0.005, default = 0.0025),
+    makeNumericParam(id = "increaseFactor_mu", lower=2, upper = 50, default = 20),
+    makeNumericParam(id = "increaseFactor_lambda", lower=2, upper = 50, default = 20),
+    makeLogicalParam(id = "FixEndpoints", default = F),
     forbidden = quote(n_local_lower > n_local_upper)
   ),
   run_fun = "run_merlot",
@@ -45,7 +53,12 @@ run_merlot <- function(
   n_local_upper,
   w_width,
   n_components_to_use,
-  number_of_nodes
+  N_yk,
+  lambda_0,
+  mu_0,
+  FixEndpoints,
+  increaseFactor_mu,
+  increaseFactor_lambda
 ) {
   requireNamespace("destiny")
   requireNamespace("merlot")
@@ -77,16 +90,32 @@ run_merlot <- function(
   CellCoordinates <- DatasetDM@eigenvectors[,seq_len(n_components_to_use)]
 
   # We calculate the scaffold tree using the first 3 diffusion components from the diffusion map
-  ScaffoldTree <- merlot::CalculateScaffoldTree(CellCoordinates = CellCoordinates)
+  ScaffoldTree <- merlot::CalculateScaffoldTree(
+    CellCoordinates = CellCoordinates,
+    NEndpoints = n_end_states
+  )
 
   # Set the number of nodes to be used to build the Principal Elastic Tree.
   # This is now a parameter of the method
 
   # We calculate the elastic principal tree using the scaffold tree for its initialization
-  ElasticTree <- merlot::CalculateElasticTree(ScaffoldTree = ScaffoldTree, N_yk = number_of_nodes)
+  ElasticTree <- merlot::CalculateElasticTree(
+    ScaffoldTree = ScaffoldTree,
+    N_yk = N_yk,
+    lambda_0 = lambda_0,
+    mu_0 = mu_0,
+    FixEndpoints = FixEndpoints
+  )
 
   # Embedd the principal elastic tree into the gene expression space from which it was calculated.
-  EmbeddedTree <- merlot::GenesSpaceEmbedding(ExpressionMatrix = expression, ElasticTree = ElasticTree)
+  EmbeddedTree <- merlot::GenesSpaceEmbedding(
+    ExpressionMatrix = expression,
+    ElasticTree = ElasticTree,
+    lambda_0 = lambda_0,
+    mu_0 = mu_0,
+    increaseFactor_mu = increaseFactor_mu,
+    increaseFactor_lambda = increaseFactor_lambda
+  )
 
   # Calculate Pseudotimes for the nodes in the Tree in the full gene expression space.
   # T0=3 means that the Endpoint number 3 in the Endpoints list corresponds to the zygote fate and is used as initial pseudotime t0

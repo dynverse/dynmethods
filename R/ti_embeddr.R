@@ -4,6 +4,7 @@
 #'
 #' @inheritParams embeddr::embeddr
 #' @inheritParams embeddr::fit_pseudotime
+#' @inheritParams princurve::principal.curve
 #' @param ndim Dimension of the embedded space, default is 2
 #' @param nn_pct The percentage of cells to use as tge number of nearest neighbours if kernel == 'nn'.
 #'

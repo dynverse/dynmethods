@@ -4,6 +4,7 @@
 #'
 #' @param nclus Number of clusters
 #' @inheritParams dimred
+#' @inheritParams ti_comp1
 #' @inheritParams slingshot::slingshot
 #'
 #' @seealso [slingshot::slingshot()]
