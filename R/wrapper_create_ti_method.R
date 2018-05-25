@@ -10,12 +10,12 @@
 #'   of `run_fun` with those described in `par_set`.
 create_ti_method <- function(
   name,
-  short_name,
-  package_loaded,
-  package_required,
+  short_name = name,
+  package_loaded = c(),
+  package_required = c(),
   par_set,
   run_fun,
-  plot_fun
+  plot_fun = dynplot::plot_default
 ) {
 
   desc <- lst(
