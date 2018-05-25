@@ -2,8 +2,6 @@
 #'
 #' @inherit ti_angle description
 #'
-#' @param iter Number of iterations of optimisation to perform
-#'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R
@@ -15,7 +13,6 @@ ti_ouijaflow <- create_ti_method(
   par_set = makeParamSet(
     makeNumericParam(id = "iter", lower = log(2), default = log(1000), upper = log(50000), trafo = function(x) round(exp(x)))
   ),
-  properties = c(),
   run_fun = "run_ouijaflow",
   plot_fun = "plot_ouijaflow"
 )

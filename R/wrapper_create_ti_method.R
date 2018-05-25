@@ -15,8 +15,7 @@ create_ti_method <- function(
   package_required,
   par_set,
   run_fun,
-  plot_fun,
-  properties = NA
+  plot_fun
 ) {
 
   desc <- lst(

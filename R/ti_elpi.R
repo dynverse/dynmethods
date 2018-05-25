@@ -23,7 +23,6 @@
 #'     package_loaded = c(),
 #'     package_required = c("ElPiGraph.R"),
 #'     par_set = par_set,
-#'     properties = c(),
 #'     run_fun = run_fun,
 #'     plot_fun = plot_elpi
 #'   )

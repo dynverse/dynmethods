@@ -5,7 +5,7 @@
 \title{Create a TI method wrapper}
 \usage{
 create_ti_method(name, short_name, package_loaded, package_required, par_set,
-  run_fun, plot_fun, properties = NA)
+  run_fun, plot_fun)
 }
 \arguments{
 \item{name}{The name of the TI method}

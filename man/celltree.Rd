@@ -22,6 +22,8 @@ ti_celltree_vem(method = "VEM", sd_filter = 0.5, absolute_width = 0,
   tolerance = 1e-05)
 }
 \arguments{
+\item{method}{LDA inference method to use. Can be any unique prefix of ‘maptpx’, ‘Gibbs’ or ‘VEM’ (defaults to ‘maptpx’)}
+
 \item{sd_filter}{Standard-deviation threshold below which genes should be removed from the data.}
 
 \item{absolute_width}{Distance threshold below which a cell vertex is considered to be attached to a backbone vertex (see paper for more details).
@@ -29,6 +31,9 @@ By default, this threshold is computed dynamically, based on the distance distri
 
 \item{width_scale_factor}{A scaling factor for the dynamically-computed distance threshold (ignored if absolute_width is provided).
 Higher values will result in less branches in the backbone tree, while lower values might lead to a large number of backbone branches.}
+
+\item{outlier_tolerance_factor}{Proportion of vertices, out of the total number of vertices divided by the total number of branches,
+that can be left at the end of the backbone tree-building algorithm.}
 
 \item{rooting_method}{Method used to root the backbone tree. Must be one of: ‘null’, ‘longest.path’, ‘center.start.group’ or ‘average.start.group’.
 ‘longest.path' picks one end of the longest shortest-path between two vertices.
@@ -45,9 +50,6 @@ Higher values will result in less branches in the backbone tree, while lower val
 \item{tolerance}{Tolerance values of the LDA inference.}
 
 \item{num_topics}{The number of topics to fit in the model.}
-
-\item{outlier_distance_factor}{Proportion of vertices, out of the total number of vertices divided by the total number of branches,
-that can be left at the end of the backbone tree-building algorithm.}
 }
 \description{
 Inferring trajectories with cellTree

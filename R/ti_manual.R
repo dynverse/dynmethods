@@ -13,7 +13,6 @@
 #'     makeDiscreteParam(id = "dimred_id", values = c("pca", "mds", "tsne", "dm"), default = "pca"),
 #'     makeDiscreteParam(id = "run_i", values = c("1"), default = "1")
 #'   ),
-#'   properties = c(),
 #'   run_fun = run_manual,
 #'   plot_fun = plot_manual
 #' )
