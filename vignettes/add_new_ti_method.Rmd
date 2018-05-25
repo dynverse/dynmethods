@@ -1,6 +1,11 @@
 ---
 title: "Adding a new TI method"
-output: html_document
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
 ---
 
 This vignette describes how to include your own method into the dynverse workflow. We'll illustrate this with a very basic method: using one of the components of a PCA as the pseudotime.
@@ -156,7 +161,7 @@ trajectory <-
   )
 ```
 
-In some cases, we already provide functions which do the calculation of milestone_percentages or progressions under the hood. For example, when a method returns only a pseudotime:
+In some cases, we already provide functions which do the calculation of milestone_percentages or progressions. For example, when a method returns only a pseudotime:
 
 ```{r}
 trajectory <- 
