@@ -3,9 +3,6 @@
 #' @inherit ti_angle description
 #'
 #' @inheritParams ti_dpt
-#' @param n_local_lower If sigma == 'local', the \code{n_local_lower}:\code{n_local_upper} nearest neighbor(s) determine(s) the local sigma
-#' @param n_local_upper See \code{n_local_lower}
-#' @param ndim Number of eigenvectors/dimensions to return
 #' @param n_components_to_use Which components to use in downstream analysis
 #' @inheritParams merlot::CalculateElasticTree
 #' @param FixEndpoints Documentation not provided by authors

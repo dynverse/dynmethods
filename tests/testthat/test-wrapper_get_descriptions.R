@@ -9,8 +9,7 @@ test_that("Descriptions can be retrieved", {
 
   for (descr in lis) {
     test_that(paste0("Description ", descr$name), {
-      expect_lte(str_length(descr$short_name), 8)
-      expect_match(descr$short_name, "^[a-z0-9]*$")
+      expect_match(descr$short_name, "^[a-z0-9_]*$")
     })
   }
 })

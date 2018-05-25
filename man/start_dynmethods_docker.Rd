@@ -17,8 +17,10 @@ Make sure docker is installed and available through path, see \url{https://docs.
 After running \code{start_dynmethods_docker}, methods can be run on the docker using \code{x \%<-\% ...}
 }
 \examples{
+\dontrun{
 start_dynmethods_docker()
 tasks <- dyntoy::toy_tasks[1, ]
 models \%<-\% infer_trajectory(tasks, ti_compone())
+}
 
 }

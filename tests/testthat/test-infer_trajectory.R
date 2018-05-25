@@ -6,7 +6,7 @@ test_that("Testing infer_trajectory with control methods", {
 
   # run with one task and one method
   task <- toy_tasks %>% extract_row_to_list(1)
-  method <- ti_compone()
+  method <- ti_comp1()
 
   model <- infer_trajectory(task, method)
   expect_s3_class(model, "dynwrap::with_trajectory")
@@ -47,7 +47,7 @@ test_that("Testing infer_trajectory with control methods", {
   # run with multiple tasks and multiple methods
   models <- infer_trajectories(
     task = list(task, task, task),
-    method = list(ti_angle(), ti_compone())
+    method = list(ti_angle(), ti_comp1())
   )
 
   expect_true(is_tibble(models))
@@ -56,7 +56,7 @@ test_that("Testing infer_trajectory with control methods", {
   # run with multiple tasks and multiple methods with specified parameters
   models <- infer_trajectories(
     task = toy_tasks[c(1,2),],
-    method = list_as_tibble(list(ti_angle(), ti_compone())),
+    method = list_as_tibble(list(ti_angle(), ti_comp1())),
     parameters = list(list(method = "mds"), list(method = "pca"))
   )
 
