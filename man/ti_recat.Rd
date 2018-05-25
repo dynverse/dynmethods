@@ -23,7 +23,7 @@ ti_recat(TSPFold = 2L, beginNum = 10L, endNum = 15L, step_size = 2L,
 
 \item{max_num}{No documentation provided by authors}
 
-\item{num_cores}{Number of cores}
+\item{clustMethod}{No documentation provided by authors}
 }
 \description{
 Inferring trajectories with reCAT

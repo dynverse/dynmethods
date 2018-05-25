@@ -35,6 +35,7 @@ abstract_wishbone_description <- function(method) {
 #' @param num_waypoints Number of waypoints to sample
 #' @param normalize Whether to normalize the data
 #' @param epsilon Gaussian standard deviation for converting distances to affinities, for diffusion map
+#' @param method_name Whether to use "wishbone" and "wanderlust", will influence the branch parameter
 #'
 #' @rdname wishbone
 #'

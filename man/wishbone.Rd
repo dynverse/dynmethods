@@ -29,6 +29,8 @@ ti_wanderlust(knn = 15L, n_diffusion_components = 2L,
 \item{normalize}{Whether to normalize the data}
 
 \item{epsilon}{Gaussian standard deviation for converting distances to affinities, for diffusion map}
+
+\item{method_name}{Whether to use "wishbone" and "wanderlust", will influence the branch parameter}
 }
 \description{
 Inferring trajectories with Wanderlust/Wishbone

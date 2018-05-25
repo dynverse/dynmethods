@@ -7,6 +7,9 @@
 ti_phenopath(thin = 40L, z_init = 1, model_mu = FALSE, scale_y = TRUE)
 }
 \arguments{
+\item{thin}{The number of iterations to wait each time before
+re-calculating the elbo}
+
 \item{z_init}{The initialisation of the latent trajectory. Should be one of
 \enumerate{
 \item A positive integer describing which principal component of the data should
@@ -16,10 +19,14 @@ directly for initialisation, \emph{or}
 \item The text character \code{"random"}, for random initialisation 
 from a standard normal distribution.
 }}
+
+\item{model_mu}{Logical - should a gene-specific intercept term be modelled?}
+
+\item{scale_y}{Logical - should the expression matrix be centre scaled?}
 }
 \description{
 Inferring trajectories with PhenoPath
 }
 \seealso{
-\code{\link[phenopath:phenopath]{phenopath::phenopath()}}
+\code{\link[phenopath:phenopath]{phenopath::phenopath()}}, \code{\link[phenopath:clvm]{phenopath::clvm()}}
 }

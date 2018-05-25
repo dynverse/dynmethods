@@ -12,8 +12,6 @@ ti_paga(n_neighbours = 30L, n_comps = 50L, resolution = 2.5)
 \item{n_comps}{Number of principal components}
 
 \item{resolution}{Resolution of louvain clustering, which determines the granularity of the clustering. Higher values will result in more clusters.}
-
-\item{num_cores}{Number of cores}
 }
 \description{
 Inferring trajectories with PAGA
