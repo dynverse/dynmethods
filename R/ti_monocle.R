@@ -1,18 +1,18 @@
 abstract_monocle_description <- function(short_name) {
   reduction_method <- c(
-    "mnclddr" = "DDRTree",
-    "mnclica" = "ICA"
+    "monocle_ddrtree" = "DDRTree",
+    "monocle_ica" = "ICA"
   )[short_name] %>% setNames(NULL)
 
   par_set <- switch(
     short_name,
-    mnclddr = makeParamSet(
+    monocle_ddrtree = makeParamSet(
       makeDiscreteParam(id = "reduction_method", values = reduction_method, default = reduction_method),
       makeIntegerParam(id = "max_components", lower = 2L, default = 2L, upper = 20L),
       makeDiscreteParam(id = "norm_method", default = "vstExprs", values = c("vstExprs", "log", "none")),
       makeLogicalParam(id = "auto_param_selection", default = TRUE)
     ),
-    mnclica = makeParamSet(
+    monocle_ica = makeParamSet(
       makeDiscreteParam(id = "reduction_method", values = reduction_method, default = reduction_method),
       makeIntegerParam(id = "max_components", lower = 2L, default = 2L, upper = 20L),
       makeDiscreteParam(id = "norm_method", default = "vstExprs", values = c("vstExprs", "log", "none"))
@@ -44,11 +44,11 @@ abstract_monocle_description <- function(short_name) {
 #' @include wrapper_create_ti_method.R
 #'
 #' @export
-ti_mnclddr <- abstract_monocle_description("mnclddr")
+ti_monocle_ddrtree <- abstract_monocle_description("monocle_ddrtree")
 
 #' @rdname monocle
 #' @export
-ti_mnclica <- abstract_monocle_description("mnclica")
+ti_monocle_ica <- abstract_monocle_description("monocle_ica")
 
 
 run_monocle <- function(

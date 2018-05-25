@@ -7,9 +7,9 @@
 #' @export
 #'
 #' @include wrapper_create_ti_method.R
-ti_ouijaflw <- create_ti_method(
+ti_ouijaflow <- create_ti_method(
   name = "ouijaflow",
-  short_name = "ouijaflw",
+  short_name = "ouijaflow",
   package_required = c("ouijaflow"),
   package_loaded = c(),
   par_set = makeParamSet(
