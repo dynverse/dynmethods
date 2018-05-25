@@ -52,6 +52,7 @@ abstract_celltree_description <- function(method) {
 #'
 #' @inherit ti_angle description
 #'
+#' @param method LDA inference method to use. Can be any unique prefix of ‘maptpx’, ‘Gibbs’ or ‘VEM’ (defaults to ‘maptpx’)
 #' @param num_topics_lower The lower bound of topics to be fitted in the model.
 #' @param num_topics_upper The upper bound of topics to be fitted in the model.
 #' @param num_topics The number of topics to fit in the model.
@@ -62,7 +63,7 @@ abstract_celltree_description <- function(method) {
 #'   By default, this threshold is computed dynamically, based on the distance distribution for each branch.
 #' @param width_scale_factor A scaling factor for the dynamically-computed distance threshold (ignored if absolute_width is provided).
 #'   Higher values will result in less branches in the backbone tree, while lower values might lead to a large number of backbone branches.
-#' @param outlier_distance_factor Proportion of vertices, out of the total number of vertices divided by the total number of branches,
+#' @param outlier_tolerance_factor Proportion of vertices, out of the total number of vertices divided by the total number of branches,
 #'   that can be left at the end of the backbone tree-building algorithm.
 #' @param rooting_method Method used to root the backbone tree. Must be one of: ‘null’, ‘longest.path’, ‘center.start.group’ or ‘average.start.group’.
 #' ‘longest.path' picks one end of the longest shortest-path between two vertices.
