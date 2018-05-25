@@ -7,6 +7,19 @@
 ti_scimitar(covariance_type = "diag", degree = 3L, step_size = 0.07,
   cov_estimator = "corpcor", cov_reg = 0.05, max_iter = 3L)
 }
+\arguments{
+\item{covariance_type}{No documentation provided by authors}
+
+\item{degree}{No documentation provided by authors}
+
+\item{step_size}{No documentation provided by authors}
+
+\item{cov_estimator}{No documentation provided by authors}
+
+\item{cov_reg}{No documentation provided by authors}
+
+\item{max_iter}{Maximum number of iterations}
+}
 \description{
 Inferring trajectories with SCIMITAR
 }

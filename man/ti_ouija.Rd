@@ -10,3 +10,6 @@ ti_ouija(iter = 100, response_type = "switch", inference_type = "hmc",
 \description{
 Inferring trajectories with ouija
 }
+\seealso{
+\code{\link[ouija:ouija]{ouija::ouija()}}
+}

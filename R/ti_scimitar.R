@@ -2,6 +2,13 @@
 #'
 #' @inherit ti_angle description
 #'
+#' @param covariance_type No documentation provided by authors
+#' @param degree No documentation provided by authors
+#' @param step_size No documentation provided by authors
+#' @param cov_estimator No documentation provided by authors
+#' @param cov_reg No documentation provided by authors
+#' @param max_iter Maximum number of iterations
+#'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R

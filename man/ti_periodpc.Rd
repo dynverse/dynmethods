@@ -6,6 +6,14 @@
 \usage{
 ti_periodpc(ndim = 3L, maxit = 10L)
 }
+\arguments{
+\item{ndim}{The number of dimensions}
+
+\item{maxit}{maximum number of iterations.}
+}
 \description{
 Inferring trajectories with Periodic PrinCurvee
+}
+\seealso{
+\code{\link[princurve:principal.curve]{princurve::principal.curve()}}
 }

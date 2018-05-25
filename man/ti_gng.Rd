@@ -13,6 +13,10 @@ See \code{\link{list_dimred_methods}} for the list of available dimensionality r
 
 \item{ndim}{The number of dimensions}
 
+\item{max_iter}{The max number of iterations}
+
+\item{max_nodes}{The maximum number of nodes}
+
 \item{apply_mst}{If true, an MST post-processing of the GNG is performed.}
 }
 \description{

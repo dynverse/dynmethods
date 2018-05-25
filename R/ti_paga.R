@@ -32,6 +32,11 @@ abstract_paga_description <- function(method) {
 #'
 #' @inherit ti_angle description
 #'
+#' @param n_neighbours Number of neighbours for knn
+#' @param n_comps Number of principal components
+#' @param resolution Resolution of louvain clustering, which determines the granularity of the clustering. Higher values will result in more clusters.
+#' @param num_cores Number of cores
+#'
 #' @rdname paga
 #'
 #' @include wrapper_create_ti_method.R

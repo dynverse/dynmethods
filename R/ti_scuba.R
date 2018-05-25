@@ -2,6 +2,13 @@
 #'
 #' @inherit ti_angle description
 #'
+#' @param rigorous_gap_stats Whether to use rigorous gap statistics to determine number of clusters
+#' @param N_dim Number of TSNE dimensions
+#' @param low_gene_threshold Threshold value for genes of low expression levels
+#' @param low_gene_fraction_max Maximum fraction of lowly-expressed cells allowed for each gene
+#' @param min_split Lower threshold on the number of cells in a cluster for this cluster to be split.
+#' @param min_percentage_split Minimum fraction of cells in the smaller cluster during a bifurcation.
+#'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R

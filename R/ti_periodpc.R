@@ -2,6 +2,11 @@
 #'
 #' @inherit ti_angle description
 #'
+#' @inheritParams dimred
+#' @inheritParams princurve::principal.curve
+#'
+#' @seealso [princurve::principal.curve()]
+#'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R

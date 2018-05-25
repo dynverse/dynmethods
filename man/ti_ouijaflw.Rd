@@ -6,6 +6,9 @@
 \usage{
 ti_ouijaflw(iter = 1000)
 }
+\arguments{
+\item{iter}{Number of iterations of optimisation to perform}
+}
 \description{
 Inferring trajectories with ouijaflow
 }

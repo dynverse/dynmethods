@@ -11,6 +11,18 @@ ti_mnclddr(reduction_method = "DDRTree", max_components = 2L,
 ti_mnclica(reduction_method = "ICA", max_components = 2L,
   norm_method = "vstExprs")
 }
+\arguments{
+\item{reduction_method}{A character string specifying the algorithm to use for dimensionality reduction.}
+
+\item{max_components}{the dimensionality of the reduced space}
+
+\item{norm_method}{Determines how to transform expression values prior to reducing dimensionality}
+
+\item{auto_param_selection}{when this argument is set to TRUE (default), it will automatically calculate the proper value for the ncenter (number of centroids) parameters which will be passed into DDRTree call.}
+}
 \description{
 Inferring trajectories with Monocle
+}
+\seealso{
+\code{\link[monocle:reduceDimension]{monocle::reduceDimension()}}, \code{\link[monocle:orderCells]{monocle::orderCells()}}
 }
