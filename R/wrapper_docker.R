@@ -4,9 +4,11 @@
 #' After running `start_dynmethods_docker`, methods can be run on the docker using \code{x \%<-\% ...}
 #'
 #' @examples
+#' \dontrun{
 #' start_dynmethods_docker()
 #' tasks <- dyntoy::toy_tasks[1, ]
 #' models %<-% infer_trajectory(tasks, ti_compone())
+#' }
 #'
 #' @export
 start_dynmethods_docker <- function() {
