@@ -7,6 +7,8 @@
 ti_slicer(kmin = 10L, m = 2L)
 }
 \arguments{
+\item{kmin}{Smallest value of k to try}
+
 \item{m}{ intrinsic dimension of the data. This parameter mainly influences the visualisation of the results. The real intrinsic dimension will be calculated automaticly. }
 }
 \description{
