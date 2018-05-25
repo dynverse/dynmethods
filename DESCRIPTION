@@ -181,6 +181,6 @@ Collate:
     'wrapper_check_dependencies.R'
     'wrapper_docker.R'
     'wrapper_get_default_parameters.R'
-    'wrapper_get_descriptions.R'
+    'wrapper_get_ti_methods.R'
     'wrapper_infer_trajectory.R'
     'wrapper_plot_trajectory.R'
