@@ -4,11 +4,12 @@
 #'
 #' @param dimred A character vector specifying which dimensionality reduction method to use.
 #'   See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.
+#' @inheritParams dimred
 #'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R
-ti_compone <- create_ti_method(
+ti_comp1 <- create_ti_method(
   name = "Component 1",
   short_name = "comp1",
   package_loaded = c(),
@@ -17,11 +18,11 @@ ti_compone <- create_ti_method(
     makeDiscreteParam(id = "dimred", default = "pca", values = names(list_dimred_methods())),
     makeIntegerParam(id="ndim", default = 2, lower=2, upper=30)
   ),
-  run_fun = "run_compone",
-  plot_fun = "plot_compone"
+  run_fun = "run_comp1",
+  plot_fun = "plot_comp1"
 )
 
-run_compone <- function(
+run_comp1 <- function(
   expression,
   ndim,
   dimred
@@ -47,7 +48,7 @@ run_compone <- function(
 }
 
 #' @importFrom viridis scale_colour_viridis
-plot_compone <- function(prediction) {
+plot_comp1 <- function(prediction) {
   g <- ggplot() +
     geom_point(aes(Comp1, Comp2, color = Comp1), data.frame(prediction$dimred)) +
     viridis::scale_colour_viridis(option = "plasma") +

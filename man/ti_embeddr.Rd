@@ -36,6 +36,20 @@ j has node i. There are several ways to get round this:
 \item{measure_type}{Type of laplacian eigenmap, which corresponds to the constraint on the eigenvalue problem. If
 type is 'unorm' (default), then the graph measure used is the identity matrix, while if type is 'norm' then the measure
 used is the degree matrix.}
+
+\item{thresh}{convergence threshold on shortest distances to the curve.}
+
+\item{maxit}{maximum number of iterations.}
+
+\item{stretch}{a factor by which the curve can be extrapolated when
+points are projected.  Default is 2 (times the last segment
+length). The default is 0 for \code{smoother} equal to
+\code{"periodic.lowess"}.}
+
+\item{smoother}{choice of smoother. The default is
+\code{"smooth.spline"}, and other choices are \code{"lowess"} and
+\code{"periodic.lowess"}. The latter allows one to fit closed curves.
+Beware, you may want to use \code{iter = 0} with \code{lowess()}.}
 }
 \description{
 Inferring trajectories with Embeddr

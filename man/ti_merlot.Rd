@@ -6,7 +6,9 @@
 \usage{
 ti_merlot(sigma = "local", distance = "euclidean", ndim = 20L,
   density_norm = TRUE, n_local_lower = 5L, n_local_upper = 7L,
-  w_width = 0.1, n_components_to_use = 3L, number_of_nodes = 100L)
+  w_width = 0.1, n_components_to_use = 3L, N_yk = 100L,
+  lambda_0 = 4.53999297624849e-05, mu_0 = 0.0025, increaseFactor_mu = 20,
+  increaseFactor_lambda = 20, FixEndpoints = FALSE)
 }
 \arguments{
 \item{sigma}{Diffusion scale parameter of the Gaussian kernel. A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix. Must be one of:
@@ -35,7 +37,17 @@ ti_merlot(sigma = "local", distance = "euclidean", ndim = 20L,
 
 \item{n_components_to_use}{Which components to use in downstream analysis}
 
-\item{number_of_nodes}{number of nodes for the elastic principal tree}
+\item{N_yk}{number of nodes for the elastic principal tree}
+
+\item{lambda_0}{principal elastic tree energy function parameter.}
+
+\item{mu_0}{principal elastic tree energy function parameter.}
+
+\item{increaseFactor_mu}{factor by which the mu will be increased for the embedding}
+
+\item{increaseFactor_lambda}{factor by which the mu will be increased for the embedding}
+
+\item{FixEndpoints}{Documentation not provided by authors}
 }
 \description{
 Inferring trajectories with MERLoT

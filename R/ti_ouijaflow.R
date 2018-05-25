@@ -2,6 +2,8 @@
 #'
 #' @inherit ti_angle description
 #'
+#' @inheritParams ti_ouija
+#'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R

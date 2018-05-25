@@ -6,6 +6,9 @@
 \usage{
 ti_ouijaflow(iter = 1000)
 }
+\arguments{
+\item{iter}{Number of iterations}
+}
 \description{
 Inferring trajectories with ouijaflow
 }
