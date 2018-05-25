@@ -2,6 +2,8 @@
 #'
 #' @inherit ti_angle description
 #'
+#' @param iter Number of iterations of optimisation to perform
+#'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R

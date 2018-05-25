@@ -50,3 +50,6 @@ as well as \code{"tricube"} and \code{"density"}. See 'Details' for more.}
 \description{
 Inferring trajectories with Slingshot
 }
+\seealso{
+\code{\link[slingshot:slingshot]{slingshot::slingshot()}}
+}

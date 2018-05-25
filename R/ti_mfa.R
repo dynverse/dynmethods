@@ -2,6 +2,10 @@
 #'
 #' @inherit ti_angle description
 #'
+#' @inheritParams mfa::mfa
+#'
+#' @seealso [mfa::mfa()]
+#'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R

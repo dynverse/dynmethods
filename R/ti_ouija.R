@@ -2,6 +2,10 @@
 #'
 #' @inherit ti_angle description
 #'
+#' @inheritParams ouija::ouija
+#'
+#' @seealso [ouija::ouija()]
+#'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R

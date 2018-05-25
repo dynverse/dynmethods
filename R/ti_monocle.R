@@ -34,6 +34,10 @@ abstract_monocle_description <- function(short_name) {
 #'
 #' @inherit ti_angle description
 #'
+#' @inheritParams monocle::reduceDimension
+#' @inheritParams monocle::orderCells
+#'
+#' @seealso [monocle::reduceDimension()], [monocle::orderCells()]
 #'
 #' @rdname monocle
 #'

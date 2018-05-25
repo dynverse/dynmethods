@@ -6,6 +6,20 @@
 \usage{
 ti_phenopath(thin = 40L, z_init = 1, model_mu = FALSE, scale_y = TRUE)
 }
+\arguments{
+\item{z_init}{The initialisation of the latent trajectory. Should be one of
+\enumerate{
+\item A positive integer describing which principal component of the data should
+be used for initialisation (default 1), \emph{or}
+\item A numeric vector of length number of samples to be used 
+directly for initialisation, \emph{or}
+\item The text character \code{"random"}, for random initialisation 
+from a standard normal distribution.
+}}
+}
 \description{
 Inferring trajectories with PhenoPath
+}
+\seealso{
+\code{\link[phenopath:phenopath]{phenopath::phenopath()}}
 }

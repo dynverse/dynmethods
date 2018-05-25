@@ -2,6 +2,9 @@
 #'
 #' @inherit ti_angle description
 #'
+#' @inheritParams Mpath::landmark_designation
+#' @param numcluster_null If TRUE, will automatically select the number of clusters
+#'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R

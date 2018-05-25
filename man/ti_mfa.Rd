@@ -7,6 +7,24 @@
 ti_mfa(b = 2L, iter = 2000L, thin = 1L, pc_initialise = 1L,
   prop_collapse = 0, scale_input = TRUE, zero_inflation = FALSE)
 }
+\arguments{
+\item{b}{Number of branches to model}
+
+\item{iter}{Number of MCMC iterations}
+
+\item{thin}{MCMC samples to thin}
+
+\item{pc_initialise}{Which principal component to initialise pseudotimes to}
+
+\item{prop_collapse}{Proportion of Gibbs samples which should marginalise over c}
+
+\item{scale_input}{Logical. If true, input is scaled to have mean 0 variance 1}
+
+\item{zero_inflation}{Logical, should zero inflation be enabled?}
+}
 \description{
 Inferring trajectories with mfa
+}
+\seealso{
+\code{\link[mfa:mfa]{mfa::mfa()}}
 }

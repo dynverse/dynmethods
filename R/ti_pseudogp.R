@@ -2,6 +2,12 @@
 #'
 #' @inherit ti_angle description
 #'
+#' @inheritParams pseudogp::fitPseudotime
+#' @param dimreds A character vector specifying which dimensionality reduction methods to use.
+#'   See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.
+#'
+#' @seealso [pseudogp::fitPseudotime()]
+#'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R

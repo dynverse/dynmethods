@@ -2,6 +2,10 @@
 #'
 #' @inherit ti_angle description
 #'
+#' @inheritParams phenopath::phenopath
+#'
+#' @seealso [phenopath::phenopath()]
+#'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R

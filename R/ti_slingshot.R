@@ -6,6 +6,8 @@
 #' @inheritParams ti_compone
 #' @inheritParams slingshot::slingshot
 #'
+#' @seealso [slingshot::slingshot()]
+#'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R

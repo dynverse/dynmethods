@@ -2,6 +2,16 @@
 #'
 #' @inherit ti_angle description
 #'
+#' @param ndim Number of pca dimensions
+#' @param max_ite1 Upper bound of EM iteration (without pseudo-time optimization). The detailed explanation is described in the supplementary text. (default is 1,000)
+#' @param max_ite2 Upper bound of EM iteration (including pseudo-time optimization) (default is 1,000).
+#' @param alpha_min Lower bound of alpha (default is 0.1)
+#' @param alpha_max Upper bound of alpha (default is 100)
+#' @param t_min Lower bound of pseudo-time (default is 0.001)
+#' @param t_max Upper bound of pseudo-time (default is 2.0)
+#' @param sigma_squared_min Lower bound of sigma squared (default is 0.1)
+#' @param thresh Threshold
+#'
 #' @export
 #'
 #' @include wrapper_create_ti_method.R
