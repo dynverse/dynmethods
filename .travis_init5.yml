@@ -24,13 +24,16 @@ addons:
       - libblas-dev
       - liblapack-dev
       - python3-pip
+before_install:
+ - sudo pip3 install --upgrade pip setuptools wheel
+ - python3 -V
+ - pip3 -V
 install:
+ - pip3 install --user --upgrade --only-binary=numpy,scipy numpy scipy
+ - pip3 install --user --upgrade matplotlib pandas six jinja2 python-dateutil pytz pyparsing cycler tqdm python-igraph Cython statsmodels sklearn seaborn h5py anndata
  - R -e 'install.packages("devtools")'
- - R -e 'setRepositories(ind = 1:2); devtools::install_github(c("dynverse/cellTree@RELEASE_3_6", "dynverse/embeddr", "dynverse/destiny", "dynverse/GPfates", "dynverse/monocle-release", "dynverse/Mpath", "dynverse/ouijaflow", "dynverse/reCAT", "dynverse/scaterlegacy", "dynverse/SCIMITAR", "dynverse/SCOUP", "dynverse/SLICER", "dynverse/SLICE"))'
  - R -e 'install.packages("knitr")'
  - R -e 'devtools::install_github(c("r-lib/rlang", "tidyverse/ggplot2"))'
- - R -e 'setRepositories(ind = 1:2); devtools::install()'
+ - R -e 'setRepositories(ind = 1:2); devtools::install(dep = T, upgr = T)'
 r_check_args: "--no-tests --no-manual --no-vignettes --no-build-vignettes"
 r_build_args: "--no-build-vignettes"
-after_success:
- - R -e 'cat("covr")'
