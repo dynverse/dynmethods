@@ -2,14 +2,14 @@
 % Please edit documentation in R/ti_wishbone.R
 \name{ti_wishbone}
 \alias{ti_wishbone}
-\alias{ti_wandrlust}
+\alias{ti_wanderlust}
 \title{Inferring trajectories with Wanderlust/Wishbone}
 \usage{
 ti_wishbone(knn = 15L, n_diffusion_components = 2L,
   n_pca_components = 15L, branch = TRUE, k = 15L, num_waypoints = 250L,
   normalize = TRUE, epsilon = 1, method_name = "wishbone")
 
-ti_wandrlust(knn = 15L, n_diffusion_components = 2L,
+ti_wanderlust(knn = 15L, n_diffusion_components = 2L,
   n_pca_components = 15L, branch = FALSE, k = 15L, num_waypoints = 250L,
   normalize = TRUE, epsilon = 1, method_name = "wanderlust")
 }

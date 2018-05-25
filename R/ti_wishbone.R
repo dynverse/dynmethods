@@ -45,7 +45,7 @@ ti_wishbone <- abstract_wishbone_description("wishbone")
 
 #' @rdname wishbone
 #' @export
-ti_wandrlust <- abstract_wishbone_description("wanderlust")
+ti_wanderlust <- abstract_wishbone_description("wanderlust")
 
 run_wishbone <- function(
   counts,
