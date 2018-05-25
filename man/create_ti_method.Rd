@@ -4,17 +4,11 @@
 \alias{create_ti_method}
 \title{Create a TI method wrapper}
 \usage{
-create_ti_method(name, short_name, package_loaded, package_required, par_set,
-  run_fun, plot_fun)
+create_ti_method(name, par_set, run_fun, plot_fun = dynplot::plot_default,
+  package_loaded = c(), package_required = c(), short_name = name)
 }
 \arguments{
 \item{name}{The name of the TI method}
-
-\item{short_name}{A short name for the method, max 8 characters}
-
-\item{package_loaded}{The packages that need to be loaded before executing the method}
-
-\item{package_required}{The packages that need to be installed before executing the method}
 
 \item{par_set}{A bunch of parameters created by \code{\link[ParamHelpers:makeParamSet]{ParamHelpers::makeParamSet()}}}
 
@@ -22,6 +16,12 @@ create_ti_method(name, short_name, package_loaded, package_required, par_set,
 
 \item{plot_fun}{A function to plot the results of a TI, needs to have 'prediction' as its first param.
 of \code{run_fun} with those described in \code{par_set}.}
+
+\item{package_loaded}{The packages that need to be loaded before executing the method}
+
+\item{package_required}{The packages that need to be installed before executing the method}
+
+\item{short_name}{A short name for the method, max 8 characters}
 }
 \description{
 Create a TI method wrapper

@@ -66,7 +66,7 @@ infer_trajectories <- function(
   } else if (is.list(method)) {
     # list of method
     method <- list_as_tibble(method)
-  } else if (is_guidelines(method)) {
+  } else if ("dynguidelines::guidelines" %in% class(method)) {
     # guidelines object
     method <- method$methods_selected
   } else {
@@ -358,6 +358,15 @@ execute_method_internal <- function(method, arglist, setseed_detection_file) {
 
   # measure third time point
   time_stop <- Sys.time()
+
+  # add missing timings
+  if (is.null(model$timings)) {
+    model$timings <- list(
+      method_afterpreproc = time_start,
+      method_aftermethod = time_stop,
+      method_afterpostproc = time_stop
+    )
+  }
 
   # fetch timings from within method (and place them in order of execution, just to make sure)
   timings_list <- c(
