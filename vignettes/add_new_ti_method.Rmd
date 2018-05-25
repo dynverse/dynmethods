@@ -1,0 +1,250 @@
+---
+title: "Adding a new TI method"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+This vignette describes how to include your own method into the dynverse workflow. We'll illustrate this with a very basic method: using one of the components of a PCA as the pseudotime.
+
+The main function to create a new ti method is `create_ti_method`. This wraps:
+
+* The name of the method
+* The main function to run a method on a dataset
+* The parameters required by a method, and their ranges
+
+## Input
+
+To test our method, we will use a very simple toy data example:
+
+```{r, message=FALSE}
+library(dynwrap)
+library(dynmethods)
+library(tidyverse)
+library(ParamHelpers)
+```
+
+The main function will receive three different types of input parameters: the expression data, extra parameters and prior information.
+
+### Expression data
+
+The The raw `counts` or normalised `expression`. This is a matrix with in the columns different features (genes) and in the rows different cells.
+
+```{r}
+ncells <- 1000
+pseudotime <- runif(ncells)
+
+expression <- matrix(
+  c(
+    (pseudotime - 0.5) ** 2,
+    sqrt(pseudotime + 20),
+    pseudotime
+  ),
+  ncol = 3,
+  dimnames = list(as.character(rep(seq_len(ncells))), as.character(c("A", "B", "C")))
+)
+expression <- expression + rnorm(length(expression), sd=0.02)
+```
+
+In this example, we'll use the expression data as follows:
+```{r}
+pca <- prcomp(expression)
+```
+
+### Parameters
+
+The main function can accept any additional parameters, which should also be defined in a parameter set using the `ParamHelpers` package. This allows you to specify the type of parameter (integer, numeric, discrete, logical, ...), the possible range of values and the default value.
+
+In this example we'll define one parameter, the `component`:
+
+```{r}
+par_set <- makeParamSet(
+  makeIntegerParam("component", lower=1, upper=10, default = 1)
+)
+```
+
+```{r}
+component <- 1
+pseudotime <- pca$x[, component]
+pseudotime <- (pseudotime - min(pseudotime)) / (max(pseudotime) - min(pseudotime))
+```
+
+### Prior information
+
+Prior information can be required (no default) or optional (default is `NULL`). 
+
+Following prior information requests are possible:
+
+```{r, echo=FALSE}
+data("priors", package="dynwrap")
+priors %>% 
+  select(prior_id, prior_description) %>% 
+  rename(`Name of parameter` = prior_id, `Description` = prior_description) %>% 
+  knitr::kable("markdown")
+```
+
+In this example we will use the `start_cell_id`:
+```{r}
+start_cell_ids <- as.character(which.min(pseudotime))
+```
+
+```{r}
+if (!is.null(start_cell_ids)) {
+  if(mean(pseudotime[start_cell_ids]) > 0.5) {
+    pseudotime <- 1-pseudotime
+  }
+}
+```
+## Output
+
+In the end, the output of the method should be transformed into the common trajectory format:
+
+**[Figure of common output model]**
+
+The topology of the trajectory requires:
+
+* `milestone_ids` The ids of the milestones in the trajectory. Type: Character vector.
+* `milestone_network` The network of the milestones. Is a dataframe with columns from, to, length and whether it is directed
+* `divergence_regions` A data frame specifying the divergence regions between milestones (e.g. a bifurcation). Is a dataframe containing a divergence_id, milestone_id, and is_start (TRUE when this milestone is the start of this divergence
+
+```{r}
+milestone_ids <- c("A", "B")
+milestone_network <- tibble(from="A", to="B", length=1, directed=TRUE)
+divergence_regions <- tibble()
+```
+
+The location of the cells can be provided in two ways:
+
+* `milestone_percentages` A data frame specifying what percentage milestone each cell consists of. Is a dataframe with columns cell_id, milestone_id, and percentage
+* `progressions` Specifies the progression of a cell along a transition in the milestone_network. Is a dataframe with columns cell_id, from, to, and percentage
+
+Example of `milestone_percentages`:
+```{r}
+milestone_percentages <- bind_rows(
+  tibble(
+    milestone_id = "A",
+    cell_id = names(pseudotime),
+    percentage = 1-pseudotime
+  ),
+  tibble(
+    milestone_id = "B",
+    cell_id = names(pseudotime),
+    percentage = pseudotime
+  )
+)
+```
+
+Example of `progressions`:
+```{r}
+progressions <- tibble(
+  cell_id = names(pseudotime),
+  from = "A",
+  to = "B",
+  percentage = pseudotime
+)
+```
+
+We can now wrap this information up:
+```{r}
+trajectory <- 
+  wrap_data(
+    cell_id = names(pseudotime)
+  ) %>% 
+  add_trajectory(
+    milestone_ids = milestone_ids,
+    milestone_network = milestone_network,
+    divergence_regions = divergence_regions,
+    progressions = progressions # either milestone_percentages or progressions have to be provided
+  )
+```
+
+In some cases, we already provide functions which do the calculation of milestone_percentages or progressions. For example, when a method returns only a pseudotime:
+
+```{r}
+trajectory <- 
+  wrap_data(
+    cell_id = names(pseudotime)
+  ) %>% 
+  add_linear_trajectory(pseudotime)
+```
+
+Other examples include:
+
+**[Figure of common wrapping methods]**
+
+We can plot this output using the plotting functions provided by the `dynplot` package:
+
+```{r}
+dynplot::plot_dimred(trajectory, "pseudotime", expression_source = expression)
+```
+
+
+## Creating the method object
+
+Combining everything in a function:
+
+```{r}
+run_fun <- function(expression, component, start_cell_id = NULL) {
+  pca <- prcomp(expression)
+  
+  pseudotimes <- pca$x[, component]
+  
+  milestone_ids <- c("A", "B")
+  milestone_network <- tibble(from="A", to="B", length=1, directed=TRUE)
+  divergence_regions <- tibble()
+  
+  progressions <- tibble(
+    cell_id = names(pseudotime),
+    from = "A",
+    to = "B",
+    percentage = pseudotime
+  )
+  
+  trajectory <- 
+    wrap_data(
+      cell_id = names(pseudotime)
+    ) %>% 
+    add_trajectory(
+      milestone_ids = milestone_ids,
+      milestone_network = milestone_network,
+      divergence_regions = divergence_regions,
+      progressions = progressions # either milestone_percentages or progressions have to be provided
+    )
+}
+```
+
+We can now create the TI object
+
+```{r}
+ti_dummy <- create_ti_method(
+  "dummy", 
+  par_set,
+  run_fun
+)
+```
+
+This function also has several alternative parameters, among which:
+
+* R packages which have to be installed, and R packages which have to be installed and loaded
+* The function to plot the output of a method, default is `dynplot::plot_default`
+* A short name of the method
+
+## Running the method
+
+Running the method is easy given a task.
+
+```{r}
+task <- wrap_data("", rownames(expression)) %>% add_expression(expression, expression)
+
+model <- infer_trajectory(task, ti_dummy())
+```
+
+
+```{r}
+library(dynplot)
+dynplot::plot_dimred(model, color_cells = "pseudotime" , expression_source = task$expression)
+```
+

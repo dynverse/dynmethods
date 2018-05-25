@@ -3,6 +3,7 @@
 export("%<-%")
 export(check_dependencies)
 export(check_dependency)
+export(create_ti_method)
 export(dimred)
 export(execute_method_internal)
 export(execute_method_on_task)
