@@ -17,7 +17,6 @@ ti_compone <- create_ti_method(
     makeDiscreteParam(id = "dimred", default = "pca", values = names(list_dimred_methods())),
     makeIntegerParam(id="ndim", default = 2, lower=2, upper=30)
   ),
-  properties = c(),
   run_fun = "run_compone",
   plot_fun = "plot_compone"
 )
