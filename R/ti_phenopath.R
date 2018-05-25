@@ -5,9 +5,9 @@
 #' @export
 #'
 #' @include wrapper_create_ti_method.R
-ti_phenopth <- create_ti_method(
+ti_phenopath <- create_ti_method(
   name = "PhenoPath",
-  short_name = "phenopth",
+  short_name = "phenopath",
   package_required = c("phenopath"),
   package_loaded = c(),
   par_set = makeParamSet(

@@ -9,9 +9,9 @@
 #' @export
 #'
 #' @include wrapper_create_ti_method.R
-ti_slngsht <- create_ti_method(
+ti_slingshot <- create_ti_method(
   name = "Slingshot",
-  short_name = "slngsht",
+  short_name = "slingshot",
   package_loaded = c(),
   package_required = c("slingshot"),
   par_set = makeParamSet(

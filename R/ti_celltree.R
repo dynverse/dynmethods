@@ -39,7 +39,7 @@ abstract_celltree_description <- function(method) {
 
   create_ti_method(
     name = pritt("cellTree with {method}"),
-    short_name = pritt("ct{method}"),
+    short_name = pritt("celltree_{method}"),
     package_loaded = c(),
     package_required = c("cellTree"),
     par_set = par_set,
@@ -74,15 +74,15 @@ abstract_celltree_description <- function(method) {
 #'
 #' @include wrapper_create_ti_method.R
 #' @export
-ti_ctmaptpx <- abstract_celltree_description("maptpx")
+ti_celltree_maptpx <- abstract_celltree_description("maptpx")
 
 #' @rdname celltree
 #' @export
-ti_ctgibbs <- abstract_celltree_description("gibbs")
+ti_celltree_gibbs <- abstract_celltree_description("gibbs")
 
 #' @rdname celltree
 #' @export
-ti_ctvem <- abstract_celltree_description("vem")
+ti_celltree_vem <- abstract_celltree_description("vem")
 
 #' @importFrom igraph degree distances get.vertex.attribute induced_subgraph
 run_celltree <- function(

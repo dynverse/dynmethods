@@ -1,6 +1,6 @@
 abstract_wishbone_description <- function(method) {
   allow_branching <- method == "wishbone"
-  name <- c("wishbone" = "Wishbone", "wndrlst" = "Wanderlust")[method] %>% setNames(NULL)
+  name <- c("wishbone" = "Wishbone", "wanderlust" = "Wanderlust")[method] %>% setNames(NULL)
 
   create_ti_method(
     name = name,
@@ -16,7 +16,7 @@ abstract_wishbone_description <- function(method) {
       makeIntegerParam(id = "num_waypoints", lower = 2L, default = 250L, upper = 500L),
       makeLogicalParam(id = "normalize", default = TRUE),
       makeNumericParam(id = "epsilon", lower = 0.1, default = 1, upper = 10),
-      makeDiscreteParam(id = "method_name", values = c("wndrlst", "wishbone"), default = method, tunable = FALSE)
+      makeDiscreteParam(id = "method_name", values = method, default = method, tunable = FALSE)
     ),
     run_fun = "run_wishbone",
     plot_fun = "plot_wishbone"
@@ -45,7 +45,7 @@ ti_wishbone <- abstract_wishbone_description("wishbone")
 
 #' @rdname wishbone
 #' @export
-ti_wndrlst <- abstract_wishbone_description("wndrlst")
+ti_wandrlust <- abstract_wishbone_description("wanderlust")
 
 run_wishbone <- function(
   counts,

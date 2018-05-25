@@ -2,16 +2,16 @@
 % Please edit documentation in R/ti_wishbone.R
 \name{ti_wishbone}
 \alias{ti_wishbone}
-\alias{ti_wndrlst}
+\alias{ti_wandrlust}
 \title{Inferring trajectories with Wanderlust/Wishbone}
 \usage{
 ti_wishbone(knn = 15L, n_diffusion_components = 2L,
   n_pca_components = 15L, branch = TRUE, k = 15L, num_waypoints = 250L,
   normalize = TRUE, epsilon = 1, method_name = "wishbone")
 
-ti_wndrlst(knn = 15L, n_diffusion_components = 2L, n_pca_components = 15L,
-  branch = FALSE, k = 15L, num_waypoints = 250L, normalize = TRUE,
-  epsilon = 1, method_name = "wndrlst")
+ti_wandrlust(knn = 15L, n_diffusion_components = 2L,
+  n_pca_components = 15L, branch = FALSE, k = 15L, num_waypoints = 250L,
+  normalize = TRUE, epsilon = 1, method_name = "wanderlust")
 }
 \arguments{
 \item{knn}{Number of nearest neighbours for diffusion map}

@@ -1,7 +1,7 @@
 abstract_scorpius_description <- function(short_name) {
   name <- c(
     "scorpius" = "SCORPIUS",
-    "scorspar" = "SCORPIUS sparse"
+    "scorpius_sparse" = "SCORPIUS sparse"
   )[short_name] %>% setNames(NULL)
 
   create_ti_method(
@@ -17,7 +17,7 @@ abstract_scorpius_description <- function(short_name) {
       makeIntegerParam(id = "maxit", lower = 0L, upper = 50L, default = 10L),
       makeNumericParam(id = "stretch", lower = 0, upper = 5, default = 0),
       makeDiscreteParam(id = "smoother", default = "smooth.spline", values = c("smooth.spline", "lowess", "periodic.lowess")),
-      makeLogicalParam(id = "sparse", default = short_name == "scorspar")
+      makeLogicalParam(id = "sparse", default = short_name == "scorpius_sparse")
     ),
     run_fun = "run_scorpius",
     plot_fun = "plot_scorpius"
@@ -44,7 +44,7 @@ ti_scorpius <- abstract_scorpius_description("scorpius")
 
 #' @rdname scorpius
 #' @export
-ti_scorpius_sparse <- abstract_scorpius_description("scorspar")
+ti_scorpius_sparse <- abstract_scorpius_description("scorpius_sparse")
 
 run_scorpius <- function(
   expression,
