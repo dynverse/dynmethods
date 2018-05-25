@@ -10,8 +10,6 @@ ti_matcher(quantiles = 50L, method = "linear")
 \item{quantiles}{How many quantiles to use when computing warp functions (integer)}
 
 \item{method}{Gaussian process regression or linear interpolation? ("gp" or "linear)}
-
-\item{n_cores}{The number of cores to use}
 }
 \description{
 Inferring trajectories with MATCHER

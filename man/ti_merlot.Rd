@@ -11,11 +11,19 @@ ti_merlot(sigma = "local", distance = "euclidean", ndim = 20L,
   increaseFactor_lambda = 20, FixEndpoints = FALSE)
 }
 \arguments{
-\item{sigma}{Diffusion scale parameter of the Gaussian kernel. One of \code{'local'}, \code{'global'}, a (\link[base]{numeric}) global sigma or a \link{Sigmas} object.
-When choosing \code{'global'}, a global sigma will be calculated using \code{\link{find_sigmas}}. (Optional. default: \code{'local'})
-A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix}
+\item{sigma}{Diffusion scale parameter of the Gaussian kernel. A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix. Must be one of:
+\itemize{
+\item{A character vector: \code{"local"} (default) or \code{"global"},}
+\item{a numeric global sigma -- a global sigma will be calculated using \code{\link[destiny]{find_sigmas}}}
+\item{or a \code{\link[destiny]{Sigmas-class}} object.}
+}}
 
-\item{distance}{Distance measurement method applied to \code{data} or a distance matrix/\code{\link[stats]{dist}}. For the allowed values, see \code{\link{find_knn}}}
+\item{distance}{A \code{\link[stats]{dist}} object, or a character vector specifying which distance metric to use. Allowed measures:
+\itemize{
+\item{Euclidean distance (default),}
+\item{cosine distance (1-corr(c_1, c_2)), or}
+\item{rank correlation distance (1-corr(rank(c_1), rank(c_2)))}
+}}
 
 \item{ndim}{Number of eigenvectors/dimensions to return}
 
