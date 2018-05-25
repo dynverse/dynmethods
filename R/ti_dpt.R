@@ -3,11 +3,22 @@
 #' @inherit ti_angle description
 #'
 #' @inheritParams destiny::DiffusionMap
+#' @inheritParams destiny::DPT
+#' @param sigma Diffusion scale parameter of the Gaussian kernel. A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix. Must be one of:
+#'   \itemize{
+#'     \item{A character vector: \code{"local"} (default) or \code{"global"},}
+#'     \item{a numeric global sigma -- a global sigma will be calculated using \code{\link[destiny]{find_sigmas}}}
+#'     \item{or a \code{\link[destiny]{Sigmas-class}} object.}
+#'   }
+#' @param ndim Number of eigenvectors/dimensions to return
 #' @param n_local_lower If sigma == 'local', the \code{n_local_lower}:\code{n_local_upper} nearest neighbor(s) determine(s) the local sigma
 #' @param n_local_upper See \code{n_local_lower}
-#' @inheritParams destiny::DPT
-#' @param ndim Number of eigenvectors/dimensions to return
-#'
+#' @param distance A \code{\link[stats]{dist}} object, or a character vector specifying which distance metric to use. Allowed measures:
+#'   \itemize{
+#'     \item{Euclidean distance (default),}
+#'     \item{cosine distance (1-corr(c_1, c_2)), or}
+#'     \item{rank correlation distance (1-corr(rank(c_1), rank(c_2)))}
+#'   }
 #' @export
 #'
 #' @include wrapper_create_ti_method.R
