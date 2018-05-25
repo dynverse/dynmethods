@@ -3,8 +3,9 @@
 #' @inherit ti_angle description
 #'
 #' @inheritParams phenopath::phenopath
+#' @inheritParams phenopath::clvm
 #'
-#' @seealso [phenopath::phenopath()]
+#' @seealso [phenopath::phenopath()], [phenopath::clvm()]
 #'
 #' @export
 #'

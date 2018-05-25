@@ -4,6 +4,8 @@
 #'
 #' @inheritParams TSCAN::preprocess
 #' @inheritParams TSCAN::exprmclust
+#' @param clusternum_lower An integer specifying the minimal possible cluster numbers. The best cluster number will be picked using BIC.
+#' @param clusternum_upper An integer specifying the maximal possible cluster numbers. The best cluster number will be picked using BIC.
 #'
 #' @export
 #'

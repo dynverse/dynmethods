@@ -9,7 +9,7 @@
 #' @param base_cycle_range_start The minimal number of four k’s for computing the reference cycle mentioned in the manuscript. Can be set to 6 or 7
 #' @param base_cycle_range_end The maximal number of four k’s for computing the reference cycle mentioned in the manuscript. Can be set to 6 or 7
 #' @param max_num No documentation provided by authors
-#' @param num_cores Number of cores
+#' @param clustMethod No documentation provided by authors
 #'
 #' @export
 #'

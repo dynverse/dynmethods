@@ -8,6 +8,8 @@ ti_ouija(iter = 100, response_type = "switch", inference_type = "hmc",
   normalise_expression = TRUE)
 }
 \arguments{
+\item{iter}{Number of iterations}
+
 \item{response_type}{A vector declaring whether each gene exhibits "switch" or "transient"
 expression. Defaults to "switch" for all genes}
 

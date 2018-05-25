@@ -9,8 +9,9 @@ ti_slngsht(ndim = 3L, nclus = 5L, dimred = "pca", shrink = 1,
   stretch = 2, smoother = "smooth.spline", shrink.method = "cosine")
 }
 \arguments{
-\item{dimred}{A character vector specifying which dimensionality reduction method to use.
-See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.}
+\item{ndim}{The number of dimensions}
+
+\item{nclus}{Number of clusters}
 
 \item{shrink}{logical or numeric between 0 and 1, determines whether and how 
 much to shrink branching lineages toward their average prior to the split.}
@@ -44,8 +45,6 @@ endpoints. Default is \code{2}, see \code{\link{principal.curve}}.}
 amount of shrinkage for a branching lineage. Accepted values are the same
 as for \code{kernel} in \code{\link{density}} (default is \code{"cosine"}),
 as well as \code{"tricube"} and \code{"density"}. See 'Details' for more.}
-
-\item{nclust}{Number of clusters}
 }
 \description{
 Inferring trajectories with Slingshot

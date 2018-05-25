@@ -2,8 +2,8 @@
 #'
 #' @inherit ti_angle description
 #'
-#' @param nclust Number of clusters
-#' @inheritParams ti_compone
+#' @param nclus Number of clusters
+#' @inheritParams dimred
 #' @inheritParams slingshot::slingshot
 #'
 #' @seealso [slingshot::slingshot()]

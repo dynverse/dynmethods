@@ -3,6 +3,7 @@
 #' @inherit ti_angle description
 #'
 #' @inheritParams ouija::ouija
+#' @param iter Number of iterations
 #'
 #' @seealso [ouija::ouija()]
 #'

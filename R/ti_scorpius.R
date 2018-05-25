@@ -34,6 +34,8 @@ abstract_scorpius_description <- function(short_name) {
 #' @inheritParams SCORPIUS::infer_trajectory
 #' @param sparse Whether or not to use sparse MDS dimensionality reduction,
 #'   for datasets with large amounts of cells.
+#' @param distance_method A character string indicating which correlation
+#'  coefficient (or covariance) is to be computed. One of "pearson", "kendall", or "spearman".
 #'
 #' @rdname scorpius
 #'

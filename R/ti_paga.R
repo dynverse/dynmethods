@@ -35,7 +35,6 @@ abstract_paga_description <- function(method) {
 #' @param n_neighbours Number of neighbours for knn
 #' @param n_comps Number of principal components
 #' @param resolution Resolution of louvain clustering, which determines the granularity of the clustering. Higher values will result in more clusters.
-#' @param num_cores Number of cores
 #'
 #' @rdname paga
 #'

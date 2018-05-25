@@ -14,6 +14,10 @@ ti_tscan(minexpr_percent = 0, minexpr_value = 0, cvcutoff = 0,
 
 \item{cvcutoff}{Numeric value specifying the minimum value of coefficient of variance for the genes/features to be retained.}
 
+\item{clusternum_lower}{An integer specifying the minimal possible cluster numbers. The best cluster number will be picked using BIC.}
+
+\item{clusternum_upper}{An integer specifying the maximal possible cluster numbers. The best cluster number will be picked using BIC.}
+
 \item{modelNames}{model to be used in model-based clustering. By default "ellipsoidal, varying volume, shape, and orientation" is used.}
 }
 \description{

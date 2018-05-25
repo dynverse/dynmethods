@@ -14,6 +14,9 @@ ti_scorpius_sparse(distance_method = "spearman", ndim = 3L, k = 4L,
   sparse = TRUE)
 }
 \arguments{
+\item{distance_method}{A character string indicating which correlation
+coefficient (or covariance) is to be computed. One of "pearson", "kendall", or "spearman".}
+
 \item{ndim}{The number of dimensions in the new space.}
 
 \item{k}{The number of clusters to cluster the data into.}
