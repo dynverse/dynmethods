@@ -92,7 +92,8 @@ Suggests:
   ggrepel,
   knitr,
   rmarkdown,
-  RColorBrewer
+  RColorBrewer,
+  tidyverse
 Remotes:
   berndbischl/ParamHelpers,
   dynverse/paga,
