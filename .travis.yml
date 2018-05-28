@@ -42,3 +42,5 @@ install:
  - R -e 'dynmethods::check_dependencies()'
 after_success:
  - R -e 'covr::codecov()'
+r_check_args: "--no-tests --no-manual --no-vignettes --no-build-vignettes --no-examples"
+r_build_args: "--no-build-vignettes"

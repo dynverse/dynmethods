@@ -29,5 +29,5 @@ install:
  - R -e 'install.packages("knitr")'
  - R -e 'devtools::install_github(c("r-lib/rlang", "tidyverse/ggplot2"))'
  - R -e 'setRepositories(ind = 1:2); devtools::install()'
-r_check_args: "--no-tests --no-manual --no-vignettes --no-build-vignettes"
+r_check_args: "--no-tests --no-manual --no-vignettes --no-build-vignettes --no-examples"
 r_build_args: "--no-build-vignettes"
