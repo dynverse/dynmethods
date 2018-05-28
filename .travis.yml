@@ -23,6 +23,8 @@ addons:
       - libudunits2-dev
       - libblas-dev
       - liblapack-dev
+      - libglu1-mesa-dev                    # dynmethods > merlot > rgl
+      - libx11-dev                          # dynmethods > merlot > rgl
 before_install:
  - source <( curl --insecure https://raw.githubusercontent.com/dynverse/dynmethods/master/.travis_install_python.sh ) # use travis's own python
 install:
