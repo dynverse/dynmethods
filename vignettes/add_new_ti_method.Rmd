@@ -46,7 +46,7 @@ expression <- matrix(
   ncol = 3,
   dimnames = list(as.character(rep(seq_len(ncells))), as.character(c("A", "B", "C")))
 )
-expression <- expression + rnorm(length(expression), sd=0.02)
+expression <- expression + rnorm(length(expression), sd = 0.02)
 ```
 
 In this example, we'll use the expression data as follows:
@@ -62,7 +62,7 @@ In this example we'll define one parameter, the `component`:
 
 ```{r}
 par_set <- makeParamSet(
-  makeIntegerParam("component", lower=1, upper=10, default = 1)
+  makeIntegerParam("component", lower = 1, upper = 10, default = 1)
 )
 ```
 
@@ -79,7 +79,7 @@ Prior information can be required (no default) or optional (default is `NULL`).
 Following prior information requests are possible:
 
 ```{r, echo=FALSE}
-data("priors", package="dynwrap")
+data("priors", package = "dynwrap")
 priors %>% 
   select(prior_id, prior_description) %>% 
   rename(`Name of parameter` = prior_id, `Description` = prior_description) %>% 
@@ -112,7 +112,7 @@ The topology of the trajectory requires:
 
 ```{r}
 milestone_ids <- c("A", "B")
-milestone_network <- tibble(from="A", to="B", length=1, directed=TRUE)
+milestone_network <- tibble(from = "A", to = "B", length = 1, directed = TRUE)
 divergence_regions <- tibble()
 ```
 

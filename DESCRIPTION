@@ -92,7 +92,8 @@ Suggests:
   ggrepel,
   knitr,
   rmarkdown,
-  RColorBrewer
+  RColorBrewer,
+  tidyverse
 Remotes:
   berndbischl/ParamHelpers,
   dynverse/paga,
@@ -102,6 +103,7 @@ Remotes:
   dynverse/dyntoy,
   dynverse/cellTree@RELEASE_3_6,
   dynverse/embeddr,
+  dynverse/ElPiGraph.R,
   dynverse/destiny,
   dynverse/GPfates,
   dynverse/merlot,
@@ -181,6 +183,6 @@ Collate:
     'wrapper_check_dependencies.R'
     'wrapper_docker.R'
     'wrapper_get_default_parameters.R'
-    'wrapper_get_descriptions.R'
+    'wrapper_get_ti_methods.R'
     'wrapper_infer_trajectory.R'
     'wrapper_plot_trajectory.R'

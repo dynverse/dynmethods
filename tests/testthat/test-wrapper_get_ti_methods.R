@@ -22,8 +22,8 @@ for (i in seq_len(nrow(methods))) {
   test_that(pritt("Checking whether {method$short_name} can generate parameters"), {
     par_set <- method$par_set
 
-    # must be able to generate a 10 random parameters
-    design <- ParamHelpers::generateDesign(10, par_set)
+    # must be able to generate a 3 random parameters
+    design <- ParamHelpers::generateDesign(3, par_set)
 
     # must be able to generate the default parameters
     design <- ParamHelpers::generateDesignOfDefaults(par_set)
