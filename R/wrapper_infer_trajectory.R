@@ -49,14 +49,16 @@ infer_trajectories <- function(
         method,
         function(x) {
           distances <- adist(x, c(all_desc$name, all_desc$short_name))
-          id <- which.min(distances) %% nrow(all_desc)
+          id <- as.integer(((which.min(distances)-1) %% nrow(all_desc)) + 1)
           if(min(distances) > 0) {
             message(stringr::str_glue("Converted {x} -> {all_desc$name[[id]]}"))
           }
+
           id
         }
       )
     )
+
     method
   } else if (is_ti_method(method)) {
     # single method
