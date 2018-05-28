@@ -103,6 +103,7 @@ Remotes:
   dynverse/dyntoy,
   dynverse/cellTree@RELEASE_3_6,
   dynverse/embeddr,
+  dynverse/ElPiGraph.R,
   dynverse/destiny,
   dynverse/GPfates,
   dynverse/merlot,
