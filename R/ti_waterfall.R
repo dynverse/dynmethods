@@ -1,6 +1,13 @@
-#' Description for Waterfall
+#' Inferring trajectories with Waterfall
+#'
+#' @inherit ti_angle description
+#'
+#' @param num_clusters Number of clusters
+#'
 #' @export
-description_waterfll <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_waterfll <-  create_ti_method(
   name = "Waterfall",
   short_name = "waterfll", # max 8 chars
   package_loaded = c(),
@@ -8,9 +15,8 @@ description_waterfll <- function() create_description(
   par_set = makeParamSet(
     makeIntegerParam(id = "num_clusters", lower = 2L, default = 10L, upper = 20L)
   ),
-  properties = c("pseudotime"),
-  run_fun = run_waterfall,
-  plot_fun = plot_waterfall
+  run_fun = "run_waterfall",
+  plot_fun = "plot_waterfall"
 )
 
 run_waterfall <- function(expression, num_clusters = 10) {
@@ -28,10 +34,10 @@ run_waterfall <- function(expression, num_clusters = 10) {
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_linear_trajectory_to_wrapper(
+  ) %>% add_linear_trajectory(
     pseudotimes = ps$pseudotime %>% setNames(rownames(expression)),
     ps = ps
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

@@ -1,16 +1,22 @@
-#' Description for Ouijaflow
+#' Inferring trajectories with ouijaflow
+#'
+#' @inherit ti_angle description
+#'
+#' @inheritParams ti_ouija
+#'
 #' @export
-description_ouijaflw <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_ouijaflow <- create_ti_method(
   name = "ouijaflow",
-  short_name = "ouijaflw",
+  short_name = "ouijaflow",
   package_required = c("ouijaflow"),
   package_loaded = c(),
   par_set = makeParamSet(
     makeNumericParam(id = "iter", lower = log(2), default = log(1000), upper = log(50000), trafo = function(x) round(exp(x)))
   ),
-  properties = c(),
-  run_fun = run_ouijaflow,
-  plot_fun = plot_ouijaflow
+  run_fun = "run_ouijaflow",
+  plot_fun = "plot_ouijaflow"
 )
 
 run_ouijaflow <- function(
@@ -28,9 +34,9 @@ run_ouijaflow <- function(
 
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_linear_trajectory_to_wrapper(
+  ) %>% add_linear_trajectory(
     pseudotimes = pseudotimes %>% setNames(rownames(expression))
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

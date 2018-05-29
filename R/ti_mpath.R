@@ -1,6 +1,14 @@
-#' Description for Mpath
+#' Inferring trajectories with Mpath
+#'
+#' @inherit ti_angle description
+#'
+#' @inheritParams Mpath::landmark_designation
+#' @param numcluster_null If TRUE, will automatically select the number of clusters
+#'
 #' @export
-description_mpath <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_mpath <- create_ti_method(
   name = "Mpath",
   short_name = "mpath",
   package_loaded = c("Mpath"),
@@ -13,9 +21,8 @@ description_mpath <- function() create_description(
     makeNumericParam(id = "diversity_cut", lower = .1, default = .6, upper = 1),
     makeNumericParam(id = "size_cut", lower = .01, default = .05, upper = 1)
   ),
-  properties = c(),
-  run_fun = run_mpath,
-  plot_fun = plot_mpath
+  run_fun = "run_mpath",
+  plot_fun = "plot_mpath"
 )
 
 #' @importFrom utils write.table
@@ -96,19 +103,20 @@ run_mpath <- function(
   wrap_prediction_model(
     cell_ids = rownames(counts),
     grouping_assignment = grouping_assignment
-  ) %>% add_grouping_to_wrapper(
+  ) %>% add_grouping(
     group_ids = milestone_ids,
     grouping = grouping
-  ) %>% add_cluster_graph_to_wrapper(
+  ) %>% add_cluster_graph(
     milestone_network = milestone_network
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }
 
-#' @importFrom ggforce geom_arc_bar
 plot_mpath <- function(prediction) {
   requireNamespace("igraph")
+  requireNamespace("ggforce")
+  requireNamespace("RColorBrewer")
 
   # milestone net as igraph in order to perform dimred
   edges <- prediction$milestone_network %>% filter(to != "FILTERED_CELLS")

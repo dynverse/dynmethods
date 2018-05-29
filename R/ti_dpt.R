@@ -1,6 +1,28 @@
-#' Description for DPT
+#' Inferring trajectories with DPT
+#'
+#' @inherit ti_angle description
+#'
+#' @inheritParams destiny::DiffusionMap
+#' @inheritParams destiny::DPT
+#' @param sigma Diffusion scale parameter of the Gaussian kernel. A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix. Must be one of:
+#'   \itemize{
+#'     \item{A character vector: \code{"local"} (default) or \code{"global"},}
+#'     \item{a numeric global sigma -- a global sigma will be calculated using \code{\link[destiny]{find_sigmas}}}
+#'     \item{or a \code{\link[destiny]{Sigmas-class}} object.}
+#'   }
+#' @param ndim Number of eigenvectors/dimensions to return
+#' @param n_local_lower If sigma == 'local', the \code{n_local_lower}:\code{n_local_upper} nearest neighbor(s) determine(s) the local sigma
+#' @param n_local_upper See \code{n_local_lower}
+#' @param distance A \code{\link[stats]{dist}} object, or a character vector specifying which distance metric to use. Allowed measures:
+#'   \itemize{
+#'     \item{Euclidean distance (default),}
+#'     \item{cosine distance (1-corr(c_1, c_2)), or}
+#'     \item{rank correlation distance (1-corr(rank(c_1), rank(c_2)))}
+#'   }
 #' @export
-description_dpt <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_dpt <- create_ti_method(
   name = "DPT",
   short_name = "dpt",
   package_loaded = c("destiny"),
@@ -8,14 +30,13 @@ description_dpt <- function() create_description(
   par_set = makeParamSet(
     makeDiscreteParam(id = "sigma", default = "local", values = c("local", "global")),
     makeDiscreteParam(id = "distance", default = "euclidean", values = c("euclidean", "cosine", "rankcor")),
-    makeIntegerParam(id = "n_eigs", lower = 3L, upper = 100L, default = 20L),
+    makeIntegerParam(id = "ndim", lower = 3L, upper = 100L, default = 20L),
     makeLogicalParam(id = "density_norm", default = TRUE),
     makeIntegerParam(id = "n_local_lower", lower = 2L, upper = 20L, default = 5L),
     makeIntegerParam(id = "n_local_upper", lower = 2L, upper = 20L, default = 7L),
     makeNumericParam(id = "w_width", lower = -4, upper = 0, default = log(.1), trafo = exp),
     forbidden = quote(n_local_lower > n_local_upper)
   ),
-  properties = c(),
   run_fun = run_dpt,
   plot_fun = plot_dpt
 )
@@ -25,13 +46,13 @@ run_dpt <- function(
   expression,
   start_cells = NULL,
   marker_feature_ids = NULL,
-  sigma = "local",
-  distance = "euclidean",
-  n_eigs = 20,
-  density_norm = TRUE,
-  n_local_lower = 5,
-  n_local_upper = 7,
-  w_width = .1
+  sigma,
+  distance,
+  ndim,
+  density_norm,
+  n_local_lower,
+  n_local_upper,
+  w_width
 ) {
   requireNamespace("destiny")
 
@@ -53,7 +74,7 @@ run_dpt <- function(
     data = expression,
     sigma = sigma,
     distance = distance,
-    n_eigs = n_eigs,
+    n_eigs = ndim,
     density_norm = density_norm,
     n_local = n_local,
     vars = marker_feature_ids
@@ -96,14 +117,14 @@ run_dpt <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_dimred_projection_to_wrapper(
+  ) %>% add_dimred_projection(
     milestone_ids = rownames(dimred_milestones),
     milestone_network = milestone_network,
     dimred_milestones = dimred_milestones,
     dimred = dimred_cells,
     milestone_assignment_cells = milestone_assignment_cells,
     tips = tip_names
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

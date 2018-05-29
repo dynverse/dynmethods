@@ -1,6 +1,14 @@
-#' Description for SLICE
+#' Inferring trajectories with SLICE
+#'
+#' @inherit ti_angle description
+#'
+#' @inheritParams SLICE::getEntropy
+#' @inheritParams SLICE::getLineageModel
+#'
 #' @export
-description_slice <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_slice <- create_ti_method(
   name = "SLICE",
   short_name = "slice",
   package_loaded = c(),
@@ -17,9 +25,8 @@ description_slice <- function() create_description(
     makeIntegerParam(id = "B", lower = 3L, upper = 500L, default = 100L),
     makeDiscreteParam(id = "k.opt.method", default = "firstmax", values = c("firstmax", "globalmax", "Tibs2001SEmax", "firstSEmax", "globalSEmax"))
   ),
-  properties = c(),
-  run_fun = run_slice,
-  plot_fun = plot_slice
+  run_fun = "run_slice",
+  plot_fun = "plot_slice"
 )
 
 run_slice <- function(
@@ -166,18 +173,18 @@ run_slice <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_trajectory_to_wrapper(
+  ) %>% add_trajectory(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     progressions = progressions,
     divergence_regions = NULL
-  ) %>% add_dimred_to_wrapper(
+  ) %>% add_dimred(
     dimred = cells.df %>% subset(slice.realcell == 1) %>% as.matrix %>% .[,c("x", "y")],
     dimred_milestones = cells.df %>% subset(slice.realcell == 0) %>% as.matrix %>% .[,c("x", "y")],
     dimred_trajectory_segments = edge.df[,c("src.x", "src.y", "dst.x", "dst.y")] %>% as.matrix %>% set_colnames(c("from_x", "from_y", "to_x", "to_y")),
     cells.df = cells.df, # todo: remove this and modify plot function
     edge.df = edge.df
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

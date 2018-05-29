@@ -1,6 +1,21 @@
-#' Description for SCOUP
+#' Inferring trajectories with SCOUP
+#'
+#' @inherit ti_angle description
+#'
+#' @param ndim Number of pca dimensions
+#' @param max_ite1 Upper bound of EM iteration (without pseudo-time optimization). The detailed explanation is described in the supplementary text. (default is 1,000)
+#' @param max_ite2 Upper bound of EM iteration (including pseudo-time optimization) (default is 1,000).
+#' @param alpha_min Lower bound of alpha (default is 0.1)
+#' @param alpha_max Upper bound of alpha (default is 100)
+#' @param t_min Lower bound of pseudo-time (default is 0.001)
+#' @param t_max Upper bound of pseudo-time (default is 2.0)
+#' @param sigma_squared_min Lower bound of sigma squared (default is 0.1)
+#' @param thresh Threshold
+#'
 #' @export
-description_scoup <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_scoup <- create_ti_method(
   name = "SCOUP",
   short_name = "scoup",
   package_required = c(),
@@ -16,9 +31,8 @@ description_scoup <- function() create_description(
     makeNumericParam(id = "sigma_squared_min", lower = log(.001), default = log(.1), upper = log(10), trafo = exp),
     makeNumericParam(id = "thresh", lower = log(.01), default = log(.01), upper = log(10), trafo = exp)
   ),
-  properties = c(),
-  run_fun = run_scoup,
-  plot_fun = plot_scoup
+  run_fun = "run_scoup",
+  plot_fun = "plot_scoup"
 )
 
 #' @importFrom utils read.table write.table
@@ -119,14 +133,14 @@ run_scoup <- function(
   wrap_prediction_model(
     cell_ids = rownames(expression),
     cell_info = model$cpara %>% rownames_to_column("cell_id")
-  ) %>% add_trajectory_to_wrapper(
+  ) %>% add_trajectory(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     milestone_percentages = milestone_percentages,
     divergence_regions = divergence_regions
-  ) %>% add_dimred_to_wrapper(
+  ) %>% add_dimred(
     dimred = model$dimred %>% as.matrix
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

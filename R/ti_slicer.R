@@ -1,20 +1,24 @@
-#' Description for SLICER
+#' Inferring trajectories with SLICER
+#'
+#' @inherit ti_angle description
+#'
+#' @inheritParams lle::lle
+#' @inheritParams SLICER::select_k
+#'
 #' @export
-description_slicer <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_slicer <- create_ti_method(
   name = "SLICER",
   short_name = "slicer",
   package_loaded = c(),
   package_required = c("SLICER", "lle", "igraph"),
   par_set = makeParamSet(
     makeIntegerParam(id = "kmin", lower = 2L, upper = 20L, default = 10L),
-    makeIntegerParam(id = "m", lower = 2L, upper = 20L, default = 2L),
-    makeNumericParam(id = "min_branch_len", lower = 0.5, upper = 20, default = 5),
-    makeNumericParam(id = "min_representative_percentage", lower = 0.5, upper = 1, default = 0.8),
-    makeNumericParam(id = "max_same_milestone_distance", lower = 0.1, upper = 10, default = 0.1)
+    makeIntegerParam(id = "m", lower = 2L, upper = 20L, default = 2L)
   ),
-  properties = c(),
-  run_fun = run_slicer,
-  plot_fun = plot_slicer
+  run_fun = "run_slicer",
+  plot_fun = "plot_slicer"
 )
 
 run_slicer <- function(
@@ -24,9 +28,6 @@ run_slicer <- function(
   end_cells = NULL,
   kmin = 10,
   m = 2,
-  min_branch_len = 5,
-  min_representative_percentage = 0.8,
-  max_same_milestone_distance = 0.1,
   verbose = FALSE
 ) {
   requireNamespace("SLICER")
@@ -106,16 +107,16 @@ run_slicer <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expr_filt)
-  ) %>% add_cell_graph_to_wrapper(
+  ) %>% add_cell_graph(
     cell_graph = cell_graph,
     to_keep = to_keep,
     traj_graph = subgr,
     start = start,
     ends = ends,
     is_kept = to_keep
-  ) %>% add_dimred_to_wrapper(
+  ) %>% add_dimred(
     dimred = traj_lle
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

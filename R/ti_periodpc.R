@@ -1,6 +1,16 @@
-#' Description for periodpc
+#' Inferring trajectories with Periodic PrinCurvee
+#'
+#' @inherit ti_angle description
+#'
+#' @inheritParams dimred
+#' @inheritParams princurve::principal.curve
+#'
+#' @seealso [princurve::principal.curve()]
+#'
 #' @export
-description_periodpc <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_periodpc <- create_ti_method(
   name = "Periodic PrinCurve",
   short_name = "periodpc",
   package_loaded = c("stats", "princurve"),
@@ -9,9 +19,8 @@ description_periodpc <- function() create_description(
     makeIntegerParam(id = "ndim", default = 3L, lower = 2L, upper = 10L),
     makeIntegerParam(id = "maxit", default = 10L, lower = 0L, upper = 100L)
   ),
-  properties = c(),
-  run_fun = run_periodpc,
-  plot_fun = plot_periodpc
+  run_fun = "run_periodpc",
+  plot_fun = "plot_periodpc"
 )
 
 run_periodpc <- function(
@@ -48,12 +57,12 @@ run_periodpc <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_cyclic_trajectory_to_wrapper(
+  ) %>% add_cyclic_trajectory(
     pseudotimes = pseudotimes
-  ) %>% add_dimred_to_wrapper(
+  ) %>% add_dimred(
     dimred = dimred,
     dimred_trajectory_segments = dimred_trajectory_segments
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

@@ -1,8 +1,20 @@
-#' Description for slingshot
+#' Inferring trajectories with Slingshot
+#'
+#' @inherit ti_angle description
+#'
+#' @param nclus Number of clusters
+#' @inheritParams dimred
+#' @inheritParams ti_comp1
+#' @inheritParams slingshot::slingshot
+#'
+#' @seealso [slingshot::slingshot()]
+#'
 #' @export
-description_slngsht <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_slingshot <- create_ti_method(
   name = "Slingshot",
-  short_name = "slngsht",
+  short_name = "slingshot",
   package_loaded = c(),
   package_required = c("slingshot"),
   par_set = makeParamSet(
@@ -19,9 +31,8 @@ description_slngsht <- function() create_description(
     makeDiscreteParam(id = "shrink.method", default = "cosine", values = c("cosine", "tricube", "density"))
 
   ),
-  properties = c(),
-  run_fun = run_slingshot,
-  plot_fun = plot_slingshot
+  run_fun = "run_slingshot",
+  plot_fun = "plot_slingshot"
 )
 
 run_slingshot <- function(
@@ -85,8 +96,8 @@ run_slingshot <- function(
 
   # run slingshot
   sds <- slingshot::slingshot(
-    reducedDim = space,
-    clusterLabels = labels,
+    space,
+    labels,
     start.clus = start.clus,
     end.clus = end.clus,
     shrink = shrink,
@@ -104,14 +115,14 @@ run_slingshot <- function(
 
   # adapted from plot-SlingshotDataSet
   # extract information on clusters
-  lineages <- slingshot::lineages(sds)
-  lineage_ctrl <- slingshot::lineageControl(sds)
-  connectivity <- slingshot::connectivity(sds)
+  lineages <- slingshot::slingLineages(sds)
+  lineage_ctrl <- slingshot::slingParams(sds)
+  connectivity <- slingshot::slingAdjacency(sds)
   clusterLabels <- slingshot::clusterLabels(sds) %>% setNames(rownames(counts))
 
   # calculate cluster centers
   centers <- t(sapply(rownames(connectivity), function(cli){
-    colMeans(space[clusterLabels == cli,])
+    colMeans(space[clusterLabels[, cli] == 1,,drop=T])
   }))
 
   # collect milestone network
@@ -124,7 +135,7 @@ run_slingshot <- function(
     )
 
   # collect curve data for visualisation purposes
-  curves <- slingshot::curves(sds)
+  curves <- slingshot::slingCurves(sds)
   curve_df <- names(curves) %>% map_df(function(id) {
     curve <- curves[[id]]
     data.frame(
@@ -141,7 +152,7 @@ run_slingshot <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>% add_dimred_projection_to_wrapper(
+  ) %>% add_dimred_projection(
     milestone_ids = rownames(centers),
     milestone_network = cluster_network,
     dimred_milestones = centers,
@@ -149,13 +160,14 @@ run_slingshot <- function(
     milestone_assignment_cells = clusterLabels,
     num_segments_per_edge = 100,
     curve = curve_df
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }
 
-#' @importFrom RColorBrewer brewer.pal
 plot_slingshot <- function(prediction, type = c("curve", "lineage", "both")) {
+  requireNamespace("RColorBrewer")
+
   type <- match.arg(type)
 
   # reconstruct palette

@@ -1,6 +1,16 @@
-#' Description for Ouijia
+#' Inferring trajectories with ouija
+#'
+#' @inherit ti_angle description
+#'
+#' @inheritParams ouija::ouija
+#' @param iter Number of iterations
+#'
+#' @seealso [ouija::ouija()]
+#'
 #' @export
-description_ouija <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_ouija <- create_ti_method(
   name = "ouija",
   short_name = "ouija",
   package_required = c("ouija", "rstan"),
@@ -11,9 +21,8 @@ description_ouija <- function() create_description(
     makeDiscreteParam(id = "inference_type", default = "hmc", values = c("hmc", "vb")),
     makeLogicalParam(id = "normalise_expression", default = TRUE)
   ),
-  properties = c(),
-  run_fun = run_ouija,
-  plot_fun = plot_ouija
+  run_fun = "run_ouija",
+  plot_fun = "plot_ouija"
 )
 
 run_ouija <- function(
@@ -71,12 +80,12 @@ run_ouija <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_linear_trajectory_to_wrapper(
+  ) %>% add_linear_trajectory(
     pseudotimes = pseudotimes,
     t0_df = t0_df
-  ) %>% add_dimred_to_wrapper(
+  ) %>% add_dimred(
     dimred = space
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

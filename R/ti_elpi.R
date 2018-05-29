@@ -1,10 +1,10 @@
 #' #' Description for elpi
 #' #' @export
-#' description_elpi <- function() abstract_aga_description("elpi")
+#' ti_elpi <- function() abstract_aga_description("elpi")
 #'
 #' #' Description for elpifix
 #' #' @export
-#' description_elpifix <- function() abstract_aga_description("elpifix")
+#' ti_elpifix <- function() abstract_aga_description("elpifix")
 #'
 #' abstract_elpi_description <- function(method) {
 #'   par_set <- makeParamSet(
@@ -17,13 +17,12 @@
 #'     agapt = run_elpifix
 #'   )
 #'
-#'   create_description(
+#'   create_ti_method(
 #'     name = ifelse(method == "elpi", "ElPiGraph", "ElPiGraph fixed"),
 #'     short_name = method,
 #'     package_loaded = c(),
 #'     package_required = c("ElPiGraph.R"),
 #'     par_set = par_set,
-#'     properties = c(),
 #'     run_fun = run_fun,
 #'     plot_fun = plot_elpi
 #'   )

@@ -1,6 +1,16 @@
-#' Description for gng
+#' Inferring trajectories with Growing Neural Gas
+#'
+#' @inherit ti_angle description
+#'
+#' @inheritParams ti_comp1
+#' @inheritParams dimred
+#' @inheritParams GNG::gng
+#' @param apply_mst If true, an MST post-processing of the GNG is performed.
+#'
 #' @export
-description_gng <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_gng <- create_ti_method(
   name = "Growing Neural Gas",
   short_name = "gng",
   package_loaded = c(),
@@ -12,19 +22,18 @@ description_gng <- function() create_description(
     makeIntegerParam(id = "max_nodes", default = 8L, lower = 2L, upper = 30L),
     makeLogicalParam(id = "apply_mst", default = TRUE)
   ),
-  properties = c(),
-  run_fun = run_gng,
-  plot_fun = plot_gng
+  run_fun = "run_gng",
+  plot_fun = "plot_gng"
 )
 
 #' @importFrom stats dist
 run_gng <- function(
   expression,
-  dimred = "pca",
-  ndim = 5,
-  max_iter = 1e6,
-  max_nodes = 8,
-  apply_mst = TRUE
+  dimred,
+  ndim,
+  max_iter,
+  max_nodes,
+  apply_mst
 ) {
   requireNamespace("GNG")
   requireNamespace("igraph")
@@ -67,12 +76,12 @@ run_gng <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_dimred_projection_to_wrapper(
+  ) %>% add_dimred_projection(
     milestone_ids = rownames(gng_out$node_space),
     milestone_network = milestone_network,
     dimred_milestones = gng_out$node_space,
     dimred = space
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

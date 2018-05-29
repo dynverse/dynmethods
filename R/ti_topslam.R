@@ -1,6 +1,15 @@
-#' Description for topslam
+#' Inferring trajectories with topslam
+#'
+#' @inherit ti_angle description
+#'
+#' @inheritParams topslam::topslam
+#' @param dimreds A character vector specifying which dimensionality reduction methods to use.
+#'   See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.
+#'
 #' @export
-description_topslam <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_topslam <- create_ti_method(
   name = "topslam",
   short_name = "topslam",
   package_loaded = c(),
@@ -12,9 +21,8 @@ description_topslam <- function() create_description(
     makeNumericParam(id = "max_iters", lower = log(10), default = log(1000), upper = log(10000), trafo = function(x) round(exp(x))),
     makeLogicalVectorParam(id = "dimreds", len = 5, default = rep(TRUE, 5))
   ),
-  properties = c(),
-  run_fun = run_topslam,
-  plot_fun = plot_topslam
+  run_fun = "run_topslam",
+  plot_fun = "plot_topslam"
 )
 
 #' @importFrom dplyr bind_cols
@@ -60,11 +68,11 @@ run_topslam <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_linear_trajectory_to_wrapper(
+  ) %>% add_linear_trajectory(
     pseudotimes = model$time %>% setNames(rownames(expression)),
     model = model,
     wad = wad
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

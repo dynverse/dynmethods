@@ -1,6 +1,20 @@
-#' Description for sincell
+#' Inferring trajectories with Sincell
+#'
+#' @inherit ti_angle description
+#'
+#' @param distance_method Distance method to be used. The available distances are the Euclidean distance (method="euclidean"), Manhattan distance (also called L1 distance, method="L1"), cosine distance (method="cosine") , distance based on Pearson (method="pearson") or Spearman (method="spearman") correlation coefficients, and distance based on Mutual Information (method="MI"). Intervals used to assess Mutual Information are indicated in the parameter “bins”.
+#' @param dimred_method Dimensionality reduction algorithm to be used. Options are: Principal Component Analysis (method="PCA"), Independent Component Analysis (method="ICA"; using fastICA() function in fastICA package), t-Distributed Stochastic Neighbor Embedding (method="tSNE"; using Rtsne() function in Rtsne package with parameters tsne.perplexity=1 and tsne.theta=0.25), classical Multidimensional Scaling (method="classical-MDS"; using the cmdscale() function) and non-metric Multidimensional Scaling (method="nonmetric-MDS";using the isoMDS() function in MASS package). if method="PCA" is chosen, the proportion of variance explained by each of the principal axes is plotted. We note that Sincell makes use of the Rtsne implementation of the Barnes-Hut algorithm, which approximates the likelihood. The user should be aware that this is a less accurate version of t-SNE than e.g. the one used as basis of viSNE (Amir,E.D. et al. 2013, Nat Biotechnol 31, 545–552).
+#' @inheritParams sincell::sc_clusterObj
+#' @inheritParams sincell::sc_GraphBuilderObj
+#' @param k_imc If IMC algorithm is selected, the number of nearest neighbors used in the underlying K-Mutual Nearest Neighbour (K-MNN) algorithm is set to k.
+#' @param pct_leaf_node_cutoff Leaf nodes are iteratively removed until the percentage of leaf nodes is below the given cutoff. Removed nodes are projected to their closest neighbour. This is to constrain the number of milestones being created.
+#'
+#' @seealso [sincell::sc_distanceObj()], [sincell::sc_DimensionalityReductionObj()], [sincell::sc_clusterObj()]
+#'
 #' @export
-description_sincell <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_sincell <- create_ti_method(
   name = "Sincell",
   short_name = "sincell",
   package_loaded = c(),
@@ -8,32 +22,31 @@ description_sincell <- function() create_description(
   par_set = makeParamSet(
     makeDiscreteParam(id = "distance_method", default = "euclidean", values = c("euclidean", "cosine", "pearson", "spearman", "L1", "MI")),
     makeDiscreteParam(id = "dimred_method", default = "none", values = c("none", "PCA", "ICA", "tSNE", "classical-MDS", "nonmetric-MDS")),
-    makeDiscreteParam(id = "cluster_method", default = "max.distance", values = c("max.distance", "percent", "knn", "k-medoids", "ward.D","ward.D2", "single", "complete", "average", "mcquitty", "median", "centroid")),
+    makeDiscreteParam(id = "clust.method", default = "max.distance", values = c("max.distance", "percent", "knn", "k-medoids", "ward.D","ward.D2", "single", "complete", "average", "mcquitty", "median", "centroid")),
     makeLogicalParam(id = "mutual", default = TRUE), #, requires = quote(cluster_method == "knn")),
-    makeNumericParam(id = "max_distance", default = 0, lower = 0, upper = 5), #, requires = quote(cluster_method == "max.distance")),
+    makeNumericParam(id = "max.distance", default = 0, lower = 0, upper = 5), #, requires = quote(cluster_method == "max.distance")),
     makeIntegerParam(id = "k", default = 3L, lower=1L, upper=99L), #, requires = quote(cluster_method == "knn")),
-    makeNumericParam(id = "shortest_rank_percent", default = 10, lower=0, upper=100), #, requires = quote(cluster_method == "percent")),
-    makeDiscreteParam(id = "graph_method", default = "MST", values = c("MST", "SST", "IMC")),
-    makeLogicalParam(id = "graph_using_cells_clustering", default = FALSE), #, requires = quote(graph_method == "MST")),
+    makeNumericParam(id = "shortest.rank.percent", default = 10, lower=0, upper=100), #, requires = quote(cluster_method == "percent")),
+    makeDiscreteParam(id = "graph.algorithm", default = "MST", values = c("MST", "SST", "IMC")),
+    makeLogicalParam(id = "graph.using.cells.clustering", default = FALSE), #, requires = quote(graph_method == "MST")),
     makeIntegerParam(id = "k_imc", default = 3L, lower=1L, upper=99L), #, requires = quote(graph_method == "IMC")),
     makeNumericParam(id = "pct_leaf_node_cutoff", default = .5, lower = .01, upper = .8) #, requires = quote(!graph_using_cells_clustering)),
   ),
-  properties = c(),
-  run_fun = run_sincell,
-  plot_fun = plot_sincell
+  run_fun = "run_sincell",
+  plot_fun = "plot_sincell"
 )
 
 run_sincell <- function(
   expression,
   distance_method = "spearman",
   dimred_method = "none",
-  cluster_method = "max.distance",
+  clust.method = "max.distance",
   mutual = TRUE,
-  max_distance = 0,
+  max.distance = 0,
   k = 3L,
-  shortest_rank_percent = 10,
-  graph_method = "MST",
-  graph_using_cells_clustering = FALSE,
+  shortest.rank.percent = 10,
+  graph.algorithm = "MST",
+  graph.using.cells.clustering = FALSE,
   k_imc = 3L,
   pct_leaf_node_cutoff = .5
 ) {
@@ -59,17 +72,17 @@ run_sincell <- function(
 
   # cluster cells
   SO <- SO %>% sincell::sc_clusterObj(
-    clust.method = cluster_method,
+    clust.method = clust.method,
     mutual = mutual,
-    max.distance = max_distance,
-    shortest.rank.percent = shortest_rank_percent,
+    max.distance = max.distance,
+    shortest.rank.percent = shortest.rank.percent,
     k = k
   )
 
   # build graph
   SO <- SO %>% sincell::sc_GraphBuilderObj(
-    graph.algorithm = graph_method,
-    graph.using.cells.clustering = graph_using_cells_clustering,
+    graph.algorithm = graph.algorithm,
+    graph.using.cells.clustering = graph.using.cells.clustering,
     k = k_imc
   )
 
@@ -101,15 +114,14 @@ run_sincell <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_cell_graph_to_wrapper(
+  ) %>% add_cell_graph(
     cell_graph = cell_graph,
     to_keep = to_keep
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }
 
-#' @importFrom RColorBrewer brewer.pal
 #' @importFrom magrittr set_colnames
 plot_sincell<- function(prediction) {
   requireNamespace("ggraph")

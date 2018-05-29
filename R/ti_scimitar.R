@@ -1,6 +1,18 @@
-#' Description for SCIMITAR
+#' Inferring trajectories with SCIMITAR
+#'
+#' @inherit ti_angle description
+#'
+#' @param covariance_type No documentation provided by authors
+#' @param degree No documentation provided by authors
+#' @param step_size No documentation provided by authors
+#' @param cov_estimator No documentation provided by authors
+#' @param cov_reg No documentation provided by authors
+#' @param max_iter Maximum number of iterations
+#'
 #' @export
-description_scimitar <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_scimitar <- create_ti_method(
   name = "SCIMITAR",
   short_name = "scimitar",
   package_loaded = c(),
@@ -13,9 +25,8 @@ description_scimitar <- function() create_description(
     makeNumericParam(id = "cov_reg", lower = 0.01, upper = 0.1, default = 0.05),
     makeIntegerParam(id = "max_iter", lower = 1, upper = 20, default = 3)
   ),
-  properties = c(),
-  run_fun = run_scimitar,
-  plot_fun = plot_scimitar
+  run_fun = "run_scimitar",
+  plot_fun = "plot_scimitar"
 )
 
 #' @importFrom readr read_csv
@@ -72,13 +83,13 @@ run_scimitar <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_trajectory_to_wrapper(
+  ) %>% add_trajectory(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     progressions = progressions,
     divergence_regions = NULL,
     pseudotime = pseudotime
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

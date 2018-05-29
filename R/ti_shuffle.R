@@ -1,9 +1,15 @@
-#' Description for shuffled
+#' Inferring trajectories with Control: shuffle
 #'
-#' @importFrom dynplot plot_default
+#' This control method will return the milestone network of the provided
+#' gold standard, but will shuffle the cell positions randomly.
+#'
+#' @param dummy_param This parameter does not do anything.
 #'
 #' @export
-description_shuffle <- function() create_description(
+#' @importFrom dynplot plot_default
+#'
+#' @include wrapper_create_ti_method.R
+ti_shuffle <- create_ti_method(
   name = "Control: shuffle",
   short_name = "shuffle",
   package_loaded = c(),
@@ -11,8 +17,7 @@ description_shuffle <- function() create_description(
   par_set = makeParamSet(
     makeNumericParam(id = "dummy_param", lower = 0, default = 0.5, upper = 1)
   ),
-  properties = c(),
-  run_fun = run_shuffle,
+  run_fun = "run_shuffle",
   plot_fun = dynplot::plot_default
 )
 
@@ -37,12 +42,12 @@ run_shuffle <- function(
   # return output
   wrap_prediction_model(
     cell_ids = task$cell_ids
-  ) %>% add_trajectory_to_wrapper(
+  ) %>% add_trajectory(
     milestone_ids = task$milestone_ids,
     milestone_network = task$milestone_network,
     progressions = progressions,
     divergence_regions = task$divergence_regions
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

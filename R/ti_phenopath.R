@@ -1,8 +1,18 @@
-#' Description for phenopath
+#' Inferring trajectories with PhenoPath
+#'
+#' @inherit ti_angle description
+#'
+#' @inheritParams phenopath::phenopath
+#' @inheritParams phenopath::clvm
+#'
+#' @seealso [phenopath::phenopath()], [phenopath::clvm()]
+#'
 #' @export
-description_phenopth <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_phenopath <- create_ti_method(
   name = "PhenoPath",
-  short_name = "phenopth",
+  short_name = "phenopath",
   package_required = c("phenopath"),
   package_loaded = c(),
   par_set = makeParamSet(
@@ -11,9 +21,8 @@ description_phenopth <- function() create_description(
     makeLogicalParam(id = "model_mu", default = FALSE),
     makeLogicalParam(id = "scale_y", default = TRUE)
   ),
-  properties = c(),
-  run_fun = run_phenopath,
-  plot_fun = plot_phenopath
+  run_fun = "run_phenopath",
+  plot_fun = "plot_phenopath"
 )
 
 run_phenopath <- function(
@@ -50,11 +59,11 @@ run_phenopath <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_linear_trajectory_to_wrapper(
+  ) %>% add_linear_trajectory(
     pseudotimes = pseudotimes
-  ) %>% add_dimred_to_wrapper(
+  ) %>% add_dimred(
     dimred = space
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

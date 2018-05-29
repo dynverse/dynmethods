@@ -1,6 +1,15 @@
-#' Description for mfa
+#' Inferring trajectories with mfa
+#'
+#' @inherit ti_angle description
+#'
+#' @inheritParams mfa::mfa
+#'
+#' @seealso [mfa::mfa()]
+#'
 #' @export
-description_mfa <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_mfa <- create_ti_method(
   name = "mfa",
   short_name = "mfa",
   package_loaded = c(),
@@ -14,9 +23,8 @@ description_mfa <- function() create_description(
     makeLogicalParam(id = "scale_input", default = TRUE),
     makeLogicalParam(id = "zero_inflation", default = FALSE)
   ),
-  properties = c(),
-  run_fun = run_mfa,
-  plot_fun = plot_mfa
+  run_fun = "run_mfa",
+  plot_fun = "plot_mfa"
 )
 
 run_mfa <- function(
@@ -78,14 +86,14 @@ run_mfa <- function(
   wrap_prediction_model(
     cell_ids = rownames(expression),
     cell_info = ms
-  ) %>% add_trajectory_to_wrapper(
+  ) %>% add_trajectory(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     progressions = progressions,
     divergence_regions = NULL
-  ) %>% add_dimred_to_wrapper(
+  ) %>% add_dimred(
     dimred = pca_out
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

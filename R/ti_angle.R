@@ -1,21 +1,29 @@
-#' Description for angle
+#' Inferring trajectories with Angle
+#'
+#' @inherit ti_angle description
+#'
+#' @param dimred A character vector specifying which dimensionality reduction method to use.
+#'   See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.
+#'
 #' @export
-description_angle <- function() create_description(
-  name = "Angle",
-  short_name = "angle",
-  package_loaded = c(),
-  package_required = c(),
-  par_set = makeParamSet(
-    makeDiscreteParam(id = "dimred", default = "pca", values = names(list_dimred_methods()))
-  ),
-  properties = c(),
-  run_fun = run_angle,
-  plot_fun = plot_angle
-)
+#'
+#' @include wrapper_create_ti_method.R
+ti_angle <-
+  create_ti_method(
+    name = "Angle",
+    short_name = "angle",
+    package_loaded = c(),
+    package_required = c(),
+    par_set = makeParamSet(
+      makeDiscreteParam(id = "dimred", default = "pca", values = names(list_dimred_methods()))
+    ),
+    run_fun = "run_angle",
+    plot_fun = "plot_angle"
+  )
 
 run_angle <- function(
   expression,
-  dimred = "pca"
+  dimred
 ) {
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
@@ -32,12 +40,12 @@ run_angle <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_cyclic_trajectory_to_wrapper(
+  ) %>% add_cyclic_trajectory(
     pseudotimes = pseudotimes,
     do_scale_minmax = FALSE
-  ) %>% add_dimred_to_wrapper(
+  ) %>% add_dimred(
     dimred = space
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

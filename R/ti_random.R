@@ -1,9 +1,13 @@
-#' Description for random
+#' Inferring trajectories with Control: random
 #'
-#' @importFrom dynplot plot_default
+#' This control method will always produce a random trajectory.
+#'
+#' @param dummy_param This parameter does not do anything.
 #'
 #' @export
-description_random <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_random <- create_ti_method(
   name = "Control: random",
   short_name = "random",
   package_loaded = c(),
@@ -11,8 +15,7 @@ description_random <- function() create_description(
   par_set = makeParamSet(
     makeNumericParam(id = "dummy_param", lower = 0, default = 0.5, upper = 1)
   ),
-  properties = c(),
-  run_fun = run_random,
+  run_fun = "run_random",
   plot_fun = dynplot::plot_default
 )
 
@@ -50,12 +53,12 @@ run_random <- function(counts, dummy_param = .5) {
   # return output
   wrap_prediction_model(
     cell_ids = cell_ids
-  ) %>% add_trajectory_to_wrapper(
+  ) %>% add_trajectory(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     progressions = progressions,
     divergence_regions = NULL
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

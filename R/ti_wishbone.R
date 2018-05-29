@@ -1,8 +1,8 @@
 abstract_wishbone_description <- function(method) {
   allow_branching <- method == "wishbone"
-  name <- c("wishbone" = "Wishbone", "wndrlst" = "Wanderlust")[method] %>% setNames(NULL)
+  name <- c("wishbone" = "Wishbone", "wanderlust" = "Wanderlust")[method] %>% setNames(NULL)
 
-  function() create_description(
+  create_ti_method(
     name = name,
     short_name = method,
     package_loaded = c(),
@@ -16,21 +16,37 @@ abstract_wishbone_description <- function(method) {
       makeIntegerParam(id = "num_waypoints", lower = 2L, default = 250L, upper = 500L),
       makeLogicalParam(id = "normalize", default = TRUE),
       makeNumericParam(id = "epsilon", lower = 0.1, default = 1, upper = 10),
-      makeDiscreteParam(id = "method_name", values = c("wndrlst", "wishbone"), default = method, tunable = FALSE)
+      makeDiscreteParam(id = "method_name", values = method, default = method, tunable = FALSE)
     ),
-    properties = c(),
-    run_fun = run_wishbone,
-    plot_fun = plot_wishbone
+    run_fun = "run_wishbone",
+    plot_fun = "plot_wishbone"
   )
 }
 
-#' Description for Wishbone
+#' Inferring trajectories with Wanderlust/Wishbone
+#'
+#' @inherit ti_angle description
+#'
+#' @param knn Number of nearest neighbours for diffusion map
+#' @param n_diffusion_components Number of diffusion components
+#' @param n_pca_components Number of pca components
+#' @param branch Whether to find a branching (wishbone) or linear (wanderlust) trajectory
+#' @param k Number of nearest neighbors for graph construction
+#' @param num_waypoints Number of waypoints to sample
+#' @param normalize Whether to normalize the data
+#' @param epsilon Gaussian standard deviation for converting distances to affinities, for diffusion map
+#' @param method_name Whether to use "wishbone" and "wanderlust", will influence the branch parameter
+#'
+#' @rdname wishbone
+#'
+#' @include wrapper_create_ti_method.R
+#'
 #' @export
-description_wishbone <- abstract_wishbone_description("wishbone")
+ti_wishbone <- abstract_wishbone_description("wishbone")
 
-#' Description for Wanderlust
+#' @rdname wishbone
 #' @export
-description_wndrlst <- abstract_wishbone_description("wndrlst")
+ti_wanderlust <- abstract_wishbone_description("wanderlust")
 
 run_wishbone <- function(
   counts,
@@ -127,13 +143,13 @@ run_wishbone <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>% add_trajectory_to_wrapper(
+  ) %>% add_trajectory(
     milestone_ids = milestone_ids,
     milestone_network = milestone_network,
     progressions = progressions,
     model = model,
     divergence_regions = NULL
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

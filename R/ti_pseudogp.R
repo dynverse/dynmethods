@@ -1,6 +1,17 @@
-#' Description for pseudogp
+#' Inferring trajectories with pseudogp
+#'
+#' @inherit ti_angle description
+#'
+#' @inheritParams pseudogp::fitPseudotime
+#' @param dimreds A character vector specifying which dimensionality reduction methods to use.
+#'   See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.
+#'
+#' @seealso [pseudogp::fitPseudotime()]
+#'
 #' @export
-description_pseudogp <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_pseudogp <- create_ti_method(
   name = "pseudogp",
   short_name = "pseudogp",
   package_loaded = c("pseudogp"),
@@ -15,9 +26,8 @@ description_pseudogp <- function() create_description(
     makeLogicalVectorParam(id = "dimreds", len = length(list_dimred_methods()), default = names(list_dimred_methods()) %in% c("pca", "mds")),
     makeDiscreteParam(id = "initialise_from", values = c("random", "principal_curve", "pca"), default = "random")
   ),
-  properties = c(),
-  run_fun = run_pseudogp,
-  plot_fun = plot_pseudogp
+  run_fun = "run_pseudogp",
+  plot_fun = "plot_pseudogp"
 )
 
 run_pseudogp <- function(
@@ -73,14 +83,14 @@ run_pseudogp <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_linear_trajectory_to_wrapper(
+  ) %>% add_linear_trajectory(
     pseudotimes = pseudotimes,
     spaces = spaces,
     chains = chains,
     pst = pst,
     lambda = lambda,
     sigma = sigma
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

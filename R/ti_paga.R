@@ -1,11 +1,3 @@
-#' Description for paga
-#' @export
-description_paga <- function() abstract_paga_description("paga")
-
-# #' Description for agapt
-# #' @export
-# # description_agapt <- function() abstract_aga_description("agapt")
-
 abstract_paga_description <- function(method) {
   par_set <- makeParamSet(
     makeIntegerParam(id = "n_neighbours", lower = 1, default = 30, upper = 100),
@@ -15,27 +7,44 @@ abstract_paga_description <- function(method) {
 
   run_fun <- switch(
     method,
-    paga = run_paga#,
-    # agapt = run_agapt
+    paga = "run_paga",
+    agapt = "run_agapt"
   )
 
   name <- switch(
     method,
-    paga = "PAGA"#,
-    # agapt = "AGA pseudotime"
+    paga = "PAGA",
+    agapt = "AGA pseudotime"
   )
 
-  create_description(
+  create_ti_method(
     name = name,
     short_name = method,
     package_loaded = c(),
     package_required = c("paga", "igraph"),
     par_set = par_set,
-    properties = c(),
     run_fun = run_fun,
-    plot_fun = plot_paga
+    plot_fun = "plot_paga"
   )
 }
+
+#' Inferring trajectories with PAGA
+#'
+#' @inherit ti_angle description
+#'
+#' @param n_neighbours Number of neighbours for knn
+#' @param n_comps Number of principal components
+#' @param resolution Resolution of louvain clustering, which determines the granularity of the clustering. Higher values will result in more clusters.
+#'
+#' @rdname paga
+#'
+#' @include wrapper_create_ti_method.R
+#' @export
+ti_paga <- abstract_paga_description("paga")
+
+# #' Description for agapt
+# #' @export
+# ti_agapt <- abstract_aga_description("agapt")
 
 run_paga <- function(
   expression,
@@ -115,13 +124,13 @@ run_paga <- function(
   # Wrap the output
   prediction <- wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_grouping_to_wrapper(
+  ) %>% add_grouping(
     group_ids = milestone_ids,
     grouping = grouping
-  ) %>% add_cluster_graph_to_wrapper(
+  ) %>% add_cluster_graph(
     milestone_network = milestone_network,
     adj = adj
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     tl %>% add_timing_checkpoint("method_afterpostproc")
   )
   prediction
@@ -224,13 +233,13 @@ run_paga <- function(
 #   # Create and return the predicted trajectory
 #   wrap_prediction_model(
 #     cell_ids = rownames(expression)
-#   ) %>% add_trajectory_to_wrapper(
+#   ) %>% add_trajectory(
 #     milestone_ids = milestone_ids,
 #     milestone_network = milestone_network,
 #     progressions = progressions,
 #     divergence_regions = NULL,
 #     aga_out = aga_out
-#   ) %>% add_timings_to_wrapper(
+#   ) %>% add_timings(
 #     tl %>% add_timing_checkpoint("method_afterpostproc")
 #   )
 # }

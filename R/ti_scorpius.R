@@ -1,18 +1,10 @@
-#' Description for SCORPIUS
-#' @export
-description_scorpius <- function() abstract_scorpius_description("scorpius")
-
-#' Description for SCORPIUS-sparse
-#' @export
-description_scorpius_sparse <- function() abstract_scorpius_description("scorspar")
-
 abstract_scorpius_description <- function(short_name) {
   name <- c(
     "scorpius" = "SCORPIUS",
-    "scorspar" = "SCORPIUS sparse"
+    "scorpius_sparse" = "SCORPIUS sparse"
   )[short_name] %>% setNames(NULL)
 
-  create_description(
+  create_ti_method(
     name = name,
     short_name = short_name,
     package_loaded = c(),
@@ -25,13 +17,36 @@ abstract_scorpius_description <- function(short_name) {
       makeIntegerParam(id = "maxit", lower = 0L, upper = 50L, default = 10L),
       makeNumericParam(id = "stretch", lower = 0, upper = 5, default = 0),
       makeDiscreteParam(id = "smoother", default = "smooth.spline", values = c("smooth.spline", "lowess", "periodic.lowess")),
-      makeLogicalParam(id = "sparse", default = short_name == "scorspar")
+      makeLogicalParam(id = "sparse", default = short_name == "scorpius_sparse")
     ),
-    properties = c(),
-    run_fun = run_scorpius,
-    plot_fun = plot_scorpius
+    run_fun = "run_scorpius",
+    plot_fun = "plot_scorpius"
   )
 }
+
+
+#' Inferring trajectories with SCORPIUS
+#'
+#' @inherit ti_angle description
+#'
+#' @inheritParams SCORPIUS::correlation_distance
+#' @inheritParams SCORPIUS::reduce_dimensionality
+#' @inheritParams SCORPIUS::infer_trajectory
+#' @param sparse Whether or not to use sparse MDS dimensionality reduction,
+#'   for datasets with large amounts of cells.
+#' @param distance_method A character string indicating which correlation
+#'  coefficient (or covariance) is to be computed. One of "pearson", "kendall", or "spearman".
+#'
+#' @rdname scorpius
+#'
+#' @include wrapper_create_ti_method.R
+#'
+#' @export
+ti_scorpius <- abstract_scorpius_description("scorpius")
+
+#' @rdname scorpius
+#' @export
+ti_scorpius_sparse <- abstract_scorpius_description("scorpius_sparse")
 
 run_scorpius <- function(
   expression,
@@ -89,21 +104,21 @@ run_scorpius <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_linear_trajectory_to_wrapper(
+  ) %>% add_linear_trajectory(
     pseudotimes = traj$time
-  ) %>% add_dimred_to_wrapper(
+  ) %>% add_dimred(
     dimred = space,
     dimred_trajectory_segments = dimred_trajectory_segments
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }
 
-#' @importFrom RColorBrewer brewer.pal
 #' @importFrom magrittr set_colnames
 plot_scorpius <- function(prediction) {
   requireNamespace("SCORPIUS")
   requireNamespace("MASS")
+  requireNamespace("RColorBrewer")
 
   space <- prediction$dimred
   ranges <- apply(space, 2, range)

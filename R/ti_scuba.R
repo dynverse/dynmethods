@@ -1,6 +1,18 @@
-#' Description for SCUBA
+#' Inferring trajectories with SCUBA
+#'
+#' @inherit ti_angle description
+#'
+#' @param rigorous_gap_stats Whether to use rigorous gap statistics to determine number of clusters
+#' @param N_dim Number of TSNE dimensions
+#' @param low_gene_threshold Threshold value for genes of low expression levels
+#' @param low_gene_fraction_max Maximum fraction of lowly-expressed cells allowed for each gene
+#' @param min_split Lower threshold on the number of cells in a cluster for this cluster to be split.
+#' @param min_percentage_split Minimum fraction of cells in the smaller cluster during a bifurcation.
+#'
 #' @export
-description_scuba <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_scuba <- create_ti_method(
   name = "SCUBA",
   short_name = "scuba",
   package_loaded = c(),
@@ -13,9 +25,8 @@ description_scuba <- function() create_description(
     makeIntegerParam(id = "min_split", lower=1L, upper = 100L, default = 15L),
     makeNumericParam(id = "min_percentage_split", lower = 0, upper = 1, default = 0.25)
   ),
-  properties = c(),
-  run_fun = run_scuba,
-  plot_fun = plot_scuba
+  run_fun = "run_scuba",
+  plot_fun = "plot_scuba"
 )
 
 
@@ -69,12 +80,12 @@ run_scuba <- function(counts,
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>% add_grouping_to_wrapper(
+  ) %>% add_grouping(
     group_ids = milestone_ids,
     grouping = grouping
-  ) %>% add_cluster_graph_to_wrapper(
+  ) %>% add_cluster_graph(
     milestone_network = milestone_network
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

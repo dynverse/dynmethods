@@ -1,61 +1,55 @@
-#' Description for monocle DDRTree
-#' @export
-description_mnclddr <- function() abstract_monocle_description("mnclddr")
-
-#' Description for monocle ICA
-#' @export
-description_mnclica <- function() abstract_monocle_description("mnclica")
-
-# These reduction methods are not implemented yet.
-#
-# #' Description for monocle SimplePPT
-# #' @export
-# description_monocle2_simpleppt <- function() abstract_monocle_description("SimplePPT")
-#
-# #' Description for monocle L1-graph
-# #' @export
-# description_monocle2_l1graph <- function() abstract_monocle_description("L1-graph")
-#
-# #' Description for monocle SGL-tree
-# #' @export
-# description_monocle2_sgltree <- function() abstract_monocle_description("SGL-tree")
-
 abstract_monocle_description <- function(short_name) {
   reduction_method <- c(
-    "mnclddr" = "DDRTree",
-    "mnclica" = "ICA",
-    "mncltsne" = "tSNE",
-    "mnclsppt" = "SimplePPT",
-    "mncll1gr" = "L1-graph",
-    "mnclsglt" = "SGL-tree"
+    "monocle_ddrtree" = "DDRTree",
+    "monocle_ica" = "ICA"
   )[short_name] %>% setNames(NULL)
 
   par_set <- switch(
     short_name,
-    mnclddr = makeParamSet(
+    monocle_ddrtree = makeParamSet(
       makeDiscreteParam(id = "reduction_method", values = reduction_method, default = reduction_method),
       makeIntegerParam(id = "max_components", lower = 2L, default = 2L, upper = 20L),
       makeDiscreteParam(id = "norm_method", default = "vstExprs", values = c("vstExprs", "log", "none")),
       makeLogicalParam(id = "auto_param_selection", default = TRUE)
     ),
-    mnclica = makeParamSet(
+    monocle_ica = makeParamSet(
       makeDiscreteParam(id = "reduction_method", values = reduction_method, default = reduction_method),
       makeIntegerParam(id = "max_components", lower = 2L, default = 2L, upper = 20L),
       makeDiscreteParam(id = "norm_method", default = "vstExprs", values = c("vstExprs", "log", "none"))
     )
   )
 
-  create_description(
+  create_ti_method(
     name = pritt("Monocle {reduction_method}"),
     short_name = short_name,
     package_loaded = c("monocle"),
     package_required = c("BiocGenerics", "igraph", "Biobase"),
     par_set = par_set,
-    properties = c(),
-    run_fun = run_monocle,
-    plot_fun = plot_monocle
+    run_fun = "run_monocle",
+    plot_fun = "plot_monocle"
   )
 }
+
+#' Inferring trajectories with Monocle
+#'
+#' @inherit ti_angle description
+#'
+#' @inheritParams monocle::reduceDimension
+#' @inheritParams monocle::orderCells
+#'
+#' @seealso [monocle::reduceDimension()], [monocle::orderCells()]
+#'
+#' @rdname monocle
+#'
+#' @include wrapper_create_ti_method.R
+#'
+#' @export
+ti_monocle_ddrtree <- abstract_monocle_description("monocle_ddrtree")
+
+#' @rdname monocle
+#' @export
+ti_monocle_ica <- abstract_monocle_description("monocle_ica")
+
 
 run_monocle <- function(
   counts,
@@ -127,12 +121,12 @@ run_monocle <- function(
   # wrap output
   wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>% add_cell_graph_to_wrapper(
+  ) %>% add_cell_graph(
     cell_graph = cell_graph,
     to_keep = to_keep,
     plot_data = plot_data,
     reduction_method = reduction_method
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

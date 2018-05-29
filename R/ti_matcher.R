@@ -1,28 +1,35 @@
-#' Description for MATCHER
+#' Inferring trajectories with MATCHER
+#'
+#' @inherit ti_angle description
+#'
+#' @param quantiles How many quantiles to use when computing warp functions (integer)
+#' @param method Gaussian process regression or linear interpolation? ("gp" or "linear)
+#'
 #' @export
-description_matcher <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_matcher <- create_ti_method(
   name = "MATCHER",
   short_name = "matcher",
   package_loaded = c(),
   package_required = c("MATCHER"),
   par_set = makeParamSet(
-    makeIntegerParam("quantiles", 2, 500, default=50),
-    makeDiscreteParam("method", values=c("gp", "linear"), default="linear")
+    makeIntegerParam("quantiles", 2, 500, default = 50),
+    makeDiscreteParam("method", values = c("gp", "linear"), default = "linear")
   ),
-  properties = c(),
-  run_fun = run_matcher,
-  plot_fun = plot_matcher
+  run_fun = "run_matcher",
+  plot_fun = "plot_matcher"
 )
 
 #' @import reticulate
 run_matcher <- function(
   counts,
-  quantiles=50,
-  method="gp",
-  n_cores = 1
+  quantiles = 50,
+  method = "gp",
+  num_cores = 1
 ) {
   requireNamespace("MATCHER")
-  set_cores(n_cores)
+  set_cores(num_cores)
 
   # load matcher
   use_virtualenv(file.path(find.package("MATCHER"), "venv"))
@@ -36,7 +43,7 @@ run_matcher <- function(
 
   # run matcher
   m <- pymatcher$matcher$MATCHER(list(X))
-  m$infer(quantiles=as.integer(quantiles), method=list("gp"))
+  m$infer(quantiles = as.integer(quantiles), method = list(method))
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
@@ -49,10 +56,10 @@ run_matcher <- function(
   # return output
   prediction <- wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>% add_linear_trajectory_to_wrapper(
+  ) %>% add_linear_trajectory(
     pseudotimes = pseudotimes,
     sample_master_time = sample_master_time
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     tl %>% add_timing_checkpoint("method_afterpostproc")
   )
   prediction
@@ -60,13 +67,13 @@ run_matcher <- function(
 
 plot_matcher <- function(prediction) {
   prediction$sample_master_time %>%
-    reshape2::melt(varnames=c("sample_id", "cell_id"), value.name="pseudotime") %>%
+    reshape2::melt(varnames = c("sample_id", "cell_id"), value.name = "pseudotime") %>%
     mutate_if(is.factor, as.character) %>%
     left_join(
       tibble(global_pseudotime = prediction$pseudotimes, cell_id = prediction$cell_id),
       "cell_id"
     ) %>%
     ggplot(aes(global_pseudotime, pseudotime)) +
-    geom_point(shape="x", size=2) +
+    geom_point(shape = "x", size=2) +
     geom_smooth()
 }

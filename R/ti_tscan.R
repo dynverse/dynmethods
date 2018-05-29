@@ -1,6 +1,16 @@
-#' Description for TSCAN
+#' Inferring trajectories with TSCAN
+#'
+#' @inherit ti_angle description
+#'
+#' @inheritParams TSCAN::preprocess
+#' @inheritParams TSCAN::exprmclust
+#' @param clusternum_lower An integer specifying the minimal possible cluster numbers. The best cluster number will be picked using BIC.
+#' @param clusternum_upper An integer specifying the maximal possible cluster numbers. The best cluster number will be picked using BIC.
+#'
 #' @export
-description_tscan <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_tscan <- create_ti_method(
   name = "TSCAN",
   short_name = "tscan",
   package_loaded = c(),
@@ -14,9 +24,8 @@ description_tscan <- function() create_description(
     makeDiscreteParam(id = "modelNames", default = "VVV", values = c("EII", "VII", "EEI", "VEI", "EVI", "VVI", "EEE", "EVE", "VEE", "VVE", "EEV", "VEV", "EVV", "VVV")),
     forbidden = quote(clusternum_lower > clusternum_upper)
   ),
-  properties = c(),
-  run_fun = run_tscan,
-  plot_fun = plot_tscan
+  run_fun = "run_tscan",
+  plot_fun = "plot_tscan"
 )
 
 run_tscan <- function(
@@ -76,19 +85,21 @@ run_tscan <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>% add_dimred_projection_to_wrapper(
+  ) %>% add_dimred_projection(
     milestone_ids = rownames(cluster_space),
     milestone_network = cluster_network,
     dimred_milestones = cluster_space,
     dimred = sample_space,
     milestone_assignment_cells = cds_clus$clusterid,
     num_segments_per_edge = 100
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }
 
 plot_tscan <- function(prediction) {
+  requireNamespace("ggrepel")
+
   space <-
     prediction$dimred %>%
     as.data.frame() %>%

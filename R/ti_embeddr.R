@@ -1,11 +1,23 @@
-#' Description for Embeddr
+#' Inferring trajectories with Embeddr
+#'
+#' @inherit ti_angle description
+#'
+#' @inheritParams embeddr::embeddr
+#' @inheritParams embeddr::fit_pseudotime
+#' @inheritParams princurve::principal.curve
+#' @param ndim Dimension of the embedded space, default is 2
+#' @param nn_pct The percentage of cells to use as tge number of nearest neighbours if kernel == 'nn'.
+#'
 #' @export
-description_embeddr <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_embeddr <- create_ti_method(
   name = "Embeddr",
   short_name = "embeddr",
   package_loaded = c(),
   package_required = c("scaterlegacy", "embeddr"),
   par_set = makeParamSet(
+    makeIntegerParam(id = "ndim", lower = 2L, upper = 10L, default = 2L),
     makeDiscreteParam(id = "kernel", default = "nn", values = c("nn", "dist", "heat")),
     makeDiscreteParam(id = "metric", default = "correlation", values = c("correlation", "euclidean", "cosine")),
     makeNumericParam(id = "nn_pct", lower = -2, upper = log10(10), default = 0, trafo = function(x) 10^x),
@@ -13,31 +25,29 @@ description_embeddr <- function() create_description(
     makeNumericParam(id = "t", lower = -5, upper = 5, default = 0, trafo = function(x) 10^x),
     makeDiscreteParam(id = "symmetrize", default = "mean", values = c("mean", "ceil", "floor")),
     makeDiscreteParam(id = "measure_type", default = "unorm", values = c("unorm", "norm")),
-    makeIntegerParam(id = "p", lower = 2L, upper = 10L, default = 2L),
     makeNumericParam(id = "thresh", lower = -5, upper = 5, default = -3, trafo = function(x) 10^x),
     makeIntegerParam(id = "maxit", lower = 0L, upper = 50L, default = 10L),
     makeNumericParam(id = "stretch", lower = 0, upper = 5, default = 2),
     makeDiscreteParam(id = "smoother", default = "smooth.spline", values = c("smooth.spline", "lowess", "periodic.lowess"))
   ),
-  properties = c(),
-  run_fun = run_embeddr,
-  plot_fun = plot_embeddr
+  run_fun = "run_embeddr",
+  plot_fun = "plot_embeddr"
 )
 
 run_embeddr <- function(
   counts,
-  kernel = "nn",
-  metric = "correlation",
-  nn_pct = 1,
-  eps = 1,
-  t = 1,
-  symmetrize = "mean",
-  measure_type = "unorm",
-  p = 2,
-  thresh = .001,
-  maxit = 10,
-  stretch = 2,
-  smoother = "smooth.spline"
+  ndim,
+  kernel,
+  metric,
+  nn_pct,
+  eps,
+  t,
+  symmetrize,
+  measure_type,
+  thresh,
+  maxit,
+  stretch,
+  smoother
 ) {
   requireNamespace("scaterlegacy")
   requireNamespace("embeddr")
@@ -61,7 +71,7 @@ run_embeddr <- function(
     t = t,
     symmetrize = symmetrize,
     measure_type = measure_type,
-    p = p
+    p = ndim
   )
 
   # fit pseudotime
@@ -100,12 +110,12 @@ run_embeddr <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(counts)
-  ) %>% add_linear_trajectory_to_wrapper(
+  ) %>% add_linear_trajectory(
     pseudotimes = pseudotimes
-  ) %>% add_dimred_to_wrapper(
+  ) %>% add_dimred(
     dimred = dimred_cells,
     dimred_trajectory_segments = dimred_trajectory_segments
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }

@@ -1,6 +1,12 @@
-#' Description for StemID
+#' Inferring trajectories with StemID
+#'
+#' @inherit ti_identity description
+#' @inheritParams ti_stemid2
+#'
 #' @export
-description_stemid <- function() create_description(
+#'
+#' @include wrapper_create_ti_method.R
+ti_stemid <- create_ti_method(
   name = "StemID",
   short_name = "stemid",
   package_loaded = c(),
@@ -28,9 +34,8 @@ description_stemid <- function() create_description(
     makeNumericParam(id = "pethr", lower = -4, default = -2, upper = 0, trafo = function(x) 10^x),
     forbidden = quote(thr_lower > thr_upper)
   ),
-  properties = c(),
-  run_fun = run_stemid,
-  plot_fun = plot_stemid
+  run_fun = "run_stemid",
+  plot_fun = "plot_stemid"
 )
 
 run_stemid <- function(
@@ -139,7 +144,7 @@ run_stemid <- function(
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression)
-  ) %>% add_dimred_projection_to_wrapper(
+  ) %>% add_dimred_projection(
     milestone_ids = rownames(ltr@ldata$cnl %>% as.matrix),
     milestone_network = cluster_network,
     dimred_milestones = ltr@ldata$cnl %>% as.matrix,
@@ -147,7 +152,7 @@ run_stemid <- function(
     milestone_assignment_cells = as.character(ltr@ldata$lp) %>% setNames(rownames(expression)),
     num_segments_per_edge = 100,
     col_ann = ltr@sc@fcol
-  ) %>% add_timings_to_wrapper(
+  ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
 }
