@@ -50,15 +50,17 @@ run_matcher <- function(
 
   # extract results
   pseudotimes <- m$master_time[[1]][, 1] %>% set_names(rownames(counts))
-  sample_master_time <- m$sample_master_time(0L)
-  colnames(sample_master_time) <- names(pseudotimes)
+
+  # returns "ValueError: A value in x_new is above the interpolation range."
+  # sample_master_time <- m$sample_master_time(0L, 1L)
+  # colnames(sample_master_time) <- names(pseudotimes)
 
   # return output
   prediction <- wrap_prediction_model(
     cell_ids = rownames(counts)
   ) %>% add_linear_trajectory(
-    pseudotimes = pseudotimes,
-    sample_master_time = sample_master_time
+    pseudotimes = pseudotimes#,
+    # sample_master_time = sample_master_time
   ) %>% add_timings(
     tl %>% add_timing_checkpoint("method_afterpostproc")
   )
@@ -66,14 +68,16 @@ run_matcher <- function(
 }
 
 plot_matcher <- function(prediction) {
-  prediction$sample_master_time %>%
-    reshape2::melt(varnames = c("sample_id", "cell_id"), value.name = "pseudotime") %>%
-    mutate_if(is.factor, as.character) %>%
-    left_join(
-      tibble(global_pseudotime = prediction$pseudotimes, cell_id = prediction$cell_id),
-      "cell_id"
-    ) %>%
-    ggplot(aes(global_pseudotime, pseudotime)) +
-    geom_point(shape = "x", size=2) +
-    geom_smooth()
+  warning("not implemened because sample_master_time is broken")
+  plot_default(prediction)
+  # prediction$sample_master_time %>%
+  #   reshape2::melt(varnames = c("sample_id", "cell_id"), value.name = "pseudotime") %>%
+  #   mutate_if(is.factor, as.character) %>%
+  #   left_join(
+  #     tibble(global_pseudotime = prediction$pseudotimes, cell_id = prediction$cell_id),
+  #     "cell_id"
+  #   ) %>%
+  #   ggplot(aes(global_pseudotime, pseudotime)) +
+  #   geom_point(shape = "x", size=2) +
+  #   geom_smooth()
 }
