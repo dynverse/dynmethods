@@ -67,7 +67,7 @@ run_recat <- function(
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
-  pseudotimes <- result$ensembleResultLst[dim(result$ensembleResultLst)[1], ]
+  pseudotimes <- result$ensembleResultLst[dim(result$ensembleResultLst)[1], ] %>% set_names(rownames(expression))
 
   # wrap
   wrap_prediction_model(
