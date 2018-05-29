@@ -6,7 +6,7 @@
 \usage{
 ti_merlot(sigma = "local", distance = "euclidean", ndim = 20L,
   density_norm = TRUE, n_local_lower = 5L, n_local_upper = 7L,
-  w_width = 0.1, n_components = 3L, N_yk = 100L,
+  w_width = 0.1, n_components_to_use = 3L, N_yk = 100L,
   lambda_0 = 4.53999297624849e-05, mu_0 = 0.0025, increaseFactor_mu = 20,
   increaseFactor_lambda = 20, FixEndpoints = FALSE)
 }
@@ -35,7 +35,7 @@ ti_merlot(sigma = "local", distance = "euclidean", ndim = 20L,
 
 \item{w_width}{Window width to use for deciding the branch cutoff}
 
-\item{n_components}{Which components to use in downstream analysis}
+\item{n_components_to_use}{Which components to use in downstream analysis}
 
 \item{N_yk}{number of nodes for the elastic principal tree}
 
