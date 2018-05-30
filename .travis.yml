@@ -2,6 +2,8 @@ language: r
 sudo: required
 dist: trusty
 bioc_required: true
+services:
+  - docker
 cache:
   timeout: 2000
   apt: true
