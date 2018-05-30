@@ -9,8 +9,10 @@
 #' @param definition A list containing the name, container, input, output and parameters of a method. Usually used for when these values are loaded from a yaml or json file
 #' @param pull Whether to pull the container first
 #' @param docker_client Optional, a [stevedore::docker_client()]
+#'
 #' @importFrom jsonlite write_json read_json
 #' @importFrom glue glue
+#'
 #' @export
 create_docker_ti_method <- function(
   container,
@@ -60,29 +62,6 @@ create_docker_ti_method <- function(
   testthat::expect_true(is.character(input))
   testthat::expect_true(is.character(output))
 
-  # different methods to save input
-  save_input <- list(
-    expression = function(x, path) {write.csv(x, paste0(path, ".csv"))},
-    start_cells = function(x, path) {write_json(x, paste0(path, ".json"))}
-  )
-
-  # different methods to read output
-  read_output <- list(
-    linear = function(model, dir_output) {
-      pseudotimes <- read_csv(
-        file.path(dir_output, "pseudotimes.csv"),
-        col_types = cols(
-          cell_id = col_character(),
-          pseudotime = col_double()
-        )
-
-      ) %>%
-      {set_names(.$pseudotime, .$cell_id)}
-
-      model %>% add_linear_trajectory(pseudotimes)
-    }
-  )
-
   # parse parameters
   if(is.null(par_set)) {
     if(is.null(parameters)) stop("parameters is required if par_set is not given")
@@ -108,6 +87,14 @@ create_docker_ti_method <- function(
   param_ids <- names(par_set$pars)
   output_ids <- output
 
+  if (!any(input_ids %in% input_processors$id)) {
+    stop("Invalid input_ids: ", setdiff(input_ids, input_processors$id))
+  }
+
+  if (!any(output_ids %in% output_processors$id)) {
+    stop("Invalid output_ids: ", setdiff(input_ids, output_processors$id))
+  }
+
   # define run_fun
   run_fun <- function() {
     # create input directory
@@ -128,7 +115,7 @@ create_docker_ti_method <- function(
 
     # save inputs
     for (input_id in input_ids) {
-      save_input[[input_id]](get(input_id, environment()), file.path(dir_input, input_id))
+      save_input(get(input_id, environment()), input_id, file.path(dir_input, input_id))
     }
 
     # save params
@@ -164,12 +151,10 @@ create_docker_ti_method <- function(
       paste0("output: \n\t", ., "\n") %>%
       cat
 
-    # wrap output files
-    model <- wrap_data(cell_ids = task$cell_ids)
-
-    for (output_id in output_ids) {
-      model <- read_output[[output_id]](model, dir_output)
-    }
+    # wrap output
+    if(exists("counts")) {cell_ids <- rownames(counts)} else {cell_ids <- rownames(expression)}
+    model <- wrap_data(cell_ids = cell_ids) %>%
+      wrap_output(output_ids, dir_output)
 
     model
   }
@@ -187,8 +172,47 @@ create_docker_ti_method <- function(
 
   # create ti_method
   create_ti_method(
-    "dummy",
+    name,
     par_set,
     run_fun
   )
+}
+
+
+
+input_processors <- tribble(
+  ~id, ~processor,
+  "expression", function(x, path) {write.csv(x, paste0(path, ".csv"))},
+  "start_cells", function(x, path) {write_json(x, paste0(path, ".json"))}
+)
+
+save_input <- function(x, input_id, path) {
+  input_processors$processor[[which(input_processors$id == input_id)]](x, path)
+}
+
+
+
+output_processors <- tribble(
+  ~id, ~processor,
+  "linear", function(model, dir_output) {
+    pseudotimes <- read_csv(
+      file.path(dir_output, "pseudotimes.csv"),
+      col_types = cols(
+        cell_id = col_character(),
+        pseudotime = col_double()
+      )
+
+    ) %>%
+    {set_names(.$pseudotime, .$cell_id)}
+
+    model %>% add_linear_trajectory(pseudotimes)
+  }
+)
+
+wrap_output <- function(model, output_ids, dir_output) {
+  for (output_id in output_ids) {
+    model <- output_processors$processor[[which(output_processors$id == output_id)]](model, dir_output)
+  }
+
+  model
 }
