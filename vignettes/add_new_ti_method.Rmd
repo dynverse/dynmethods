@@ -10,6 +10,11 @@ vignette: >
 
 This vignette describes how to include your own method into the dynverse workflow. We'll illustrate this with a very basic method: using one of the components of a PCA as the pseudotimes.
 
+There are two main ways to add a new method:
+
+* **Directly within R**. In this case you create an R function or R packages. The user will have to install all dependencies. This is th use case described here.
+* **Using a docker**. In this case you create a docker which uses some input files (eg. a file containing the expression) and returns some output files. This use case is described in a separate vignette.
+
 The main function to create a new ti method is `create_ti_method`. This wraps:
 
 * The name of the method
@@ -18,7 +23,7 @@ The main function to create a new ti method is `create_ti_method`. This wraps:
 
 ## Input
 
-To test our method, we will use a very simple toy data example:
+To test our method, we will use a very simple toy data example.
 
 ```{r, message=FALSE}
 library(dynwrap)
@@ -86,10 +91,12 @@ priors %>%
   knitr::kable("markdown")
 ```
 
-In this example we will use the `start_cells`:
+In this example we will use the `start_cells`...
 ```{r}
 start_cells <- as.character(which.min(pseudotimes))
 ```
+
+as follows
 
 ```{r}
 if (!is.null(start_cells)) {
@@ -161,7 +168,7 @@ trajectory <-
   )
 ```
 
-In some cases, we already provide functions which do the calculation of milestone_percentages or progressions. For example, when a method returns only a pseudotimes:
+In some cases, we already provide functions which do the calculation of milestone_percentages or progressions. For example, when a method returns only a linear trajectory with pseudotimes:
 
 ```{r}
 trajectory <- 
@@ -178,9 +185,8 @@ Other examples include:
 We can plot this output using the plotting functions provided by the `dynplot` package:
 
 ```{r}
-dynplot::plot_dimred(trajectory, "pseudotimes", expression_source = expression)
+dynplot::plot_dimred(trajectory, "pseudotime", expression_source = expression)
 ```
-
 
 ## Creating the method object
 
@@ -218,7 +224,7 @@ ti_dummy <- create_ti_method(
 )
 ```
 
-This function also has several alternative parameters, among which:
+This function also has several optional parameters, among which:
 
 * R packages which have to be installed, and R packages which have to be installed and loaded
 * The function to plot the output of a method, default is `dynplot::plot_default`
@@ -237,6 +243,6 @@ model <- infer_trajectory(task, ti_dummy())
 
 ```{r}
 library(dynplot)
-dynplot::plot_dimred(model, color_cells = "pseudotimes" , expression_source = task$expression)
+dynplot::plot_dimred(model, color_cells = "pseudotime" , expression_source = task$expression)
 ```
 
