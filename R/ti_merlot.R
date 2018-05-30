@@ -70,7 +70,7 @@ run_merlot <- function(
   if(!is.null(n_end_states)) {
     n_components_to_use <- n_end_states - 1
   }
-  n_components <- max(n_components_to_use, n_components) # always make sure that enough components are extracted, even if the provided n_components is too low
+  ndim <- max(n_components_to_use, ndim) # always make sure that enough components are extracted, even if the provided n_components is too low
 
   # Embed Cells into their manifold, in this case we use Diffusion Maps as calculated by Destiny
   DatasetDM <- destiny::DiffusionMap(
@@ -127,10 +127,12 @@ run_merlot <- function(
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # first add both the milestone network (without lengths) and progressions
-  milestone_network <- ElasticTree$Connectivity %>%
+  milestone_network <- ElasticTree$Edges %>%
     as.data.frame() %>%
     purrr::set_names(c("from", "to")) %>%
+    mutate_all(as.character) %>%
     mutate(edge_id = row_number())
+
   progressions <- tibble(
     cell_id = rownames(expression),
     edge_id = ElasticTree$Cells2Branches,
@@ -146,12 +148,15 @@ run_merlot <- function(
       summarise(length = max(pseudotime) - min(pseudotime)),
     "edge_id"
   ) %>%
-    mutate(length = ifelse(is.na(length), mean(length, na.rm=T), length))
+    mutate(length = ifelse(is.na(length), mean(length, na.rm=T), length)) %>%
+    mutate(directed = TRUE) %>%
+    select(from, to, length, directed)
 
   # now calculate percentages of progression
   progressions <- progressions %>%
     group_by(edge_id) %>%
     mutate(percentage = (pseudotime - min(pseudotime))/(max(pseudotime) - min(pseudotime))) %>%
+    ungroup() %>%
     select(cell_id, from, to, percentage)
 
   # wrap output
@@ -162,7 +167,7 @@ run_merlot <- function(
     milestone_network,
     NULL,
     progressions = progressions,
-    ElasticTree
+    ElasticTree = ElasticTree
   ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )

@@ -14,6 +14,7 @@ RoxygenNote: 6.0.1
 Depends:
   R (>= 3.4.0)
 Imports: 
+  crayon,
   desc,
   devtools,
   dplyr, 
@@ -21,6 +22,7 @@ Imports:
   dynutils,
   dynwrap,
   future,
+  jsonlite,
   ggplot2,
   glue,
   grDevices,
@@ -35,12 +37,14 @@ Imports:
   reticulate,
   readr,
   reshape2,
+  stevedore,
   stringr,
   testthat,
   tibble, 
   tidygraph,
   tidyr,
-  viridis
+  viridis,
+  yaml
 Suggests: 
   paga,
   Biobase,
@@ -96,6 +100,7 @@ Suggests:
   tidyverse
 Remotes:
   berndbischl/ParamHelpers,
+  richfitz/stevedore,
   dynverse/paga,
   dynverse/dynutils,
   dynverse/dynwrap,
@@ -143,6 +148,7 @@ Collate:
     'ti_angle.R'
     'ti_celltree.R'
     'ti_comp1.R'
+    'ti_docker.R'
     'ti_dpt.R'
     'ti_elpi.R'
     'ti_embeddr.R'

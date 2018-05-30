@@ -8,7 +8,12 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-This vignette describes how to include your own method into the dynverse workflow. We'll illustrate this with a very basic method: using one of the components of a PCA as the pseudotime.
+This vignette describes how to include your own method into the dynverse workflow. We'll illustrate this with a very basic method: using one of the components of a PCA as the pseudotimes.
+
+There are two main ways to add a new method:
+
+* **Directly within R**. In this case you create an R function or R packages. The user will have to install all dependencies. This is th use case described here.
+* **Using a docker**. In this case you create a docker which uses some input files (eg. a file containing the expression) and returns some output files. This use case is described in a separate vignette.
 
 The main function to create a new ti method is `create_ti_method`. This wraps:
 
@@ -18,7 +23,7 @@ The main function to create a new ti method is `create_ti_method`. This wraps:
 
 ## Input
 
-To test our method, we will use a very simple toy data example:
+To test our method, we will use a very simple toy data example.
 
 ```{r, message=FALSE}
 library(dynwrap)
@@ -35,13 +40,13 @@ The The raw `counts` or normalised `expression`. This is a matrix with in the co
 
 ```{r}
 ncells <- 1000
-pseudotime <- runif(ncells)
+pseudotimes <- runif(ncells)
 
 expression <- matrix(
   c(
-    (pseudotime - 0.5) ** 2,
-    sqrt(pseudotime + 20),
-    pseudotime
+    (pseudotimes - 0.5) ** 2,
+    sqrt(pseudotimes + 20),
+    pseudotimes
   ),
   ncol = 3,
   dimnames = list(as.character(rep(seq_len(ncells))), as.character(c("A", "B", "C")))
@@ -68,8 +73,8 @@ par_set <- makeParamSet(
 
 ```{r}
 component <- 1
-pseudotime <- pca$x[, component]
-pseudotime <- (pseudotime - min(pseudotime)) / (max(pseudotime) - min(pseudotime))
+pseudotimes <- pca$x[, component]
+pseudotimes <- (pseudotimes - min(pseudotimes)) / (max(pseudotimes) - min(pseudotimes))
 ```
 
 ### Prior information
@@ -86,15 +91,17 @@ priors %>%
   knitr::kable("markdown")
 ```
 
-In this example we will use the `start_cell_id`:
+In this example we will use the `start_cells`...
 ```{r}
-start_cell_ids <- as.character(which.min(pseudotime))
+start_cells <- as.character(which.min(pseudotimes))
 ```
 
+as follows
+
 ```{r}
-if (!is.null(start_cell_ids)) {
-  if(mean(pseudotime[start_cell_ids]) > 0.5) {
-    pseudotime <- 1-pseudotime
+if (!is.null(start_cells)) {
+  if(mean(pseudotimes[start_cells]) > 0.5) {
+    pseudotimes <- 1-pseudotimes
   }
 }
 ```
@@ -126,13 +133,13 @@ Example of `milestone_percentages`:
 milestone_percentages <- bind_rows(
   tibble(
     milestone_id = "A",
-    cell_id = names(pseudotime),
-    percentage = 1-pseudotime
+    cell_id = names(pseudotimes),
+    percentage = 1-pseudotimes
   ),
   tibble(
     milestone_id = "B",
-    cell_id = names(pseudotime),
-    percentage = pseudotime
+    cell_id = names(pseudotimes),
+    percentage = pseudotimes
   )
 )
 ```
@@ -140,10 +147,10 @@ milestone_percentages <- bind_rows(
 Example of `progressions`:
 ```{r}
 progressions <- tibble(
-  cell_id = names(pseudotime),
+  cell_id = names(pseudotimes),
   from = "A",
   to = "B",
-  percentage = pseudotime
+  percentage = pseudotimes
 )
 ```
 
@@ -151,7 +158,7 @@ We can now wrap this information up:
 ```{r}
 trajectory <- 
   wrap_data(
-    cell_id = names(pseudotime)
+    cell_id = names(pseudotimes)
   ) %>% 
   add_trajectory(
     milestone_ids = milestone_ids,
@@ -161,14 +168,14 @@ trajectory <-
   )
 ```
 
-In some cases, we already provide functions which do the calculation of milestone_percentages or progressions. For example, when a method returns only a pseudotime:
+In some cases, we already provide functions which do the calculation of milestone_percentages or progressions. For example, when a method returns only a linear trajectory with pseudotimes:
 
 ```{r}
 trajectory <- 
   wrap_data(
-    cell_id = names(pseudotime)
+    cell_ids = names(pseudotimes)
   ) %>% 
-  add_linear_trajectory(pseudotime)
+  add_linear_trajectory(pseudotimes)
 ```
 
 Other examples include:
@@ -181,38 +188,29 @@ We can plot this output using the plotting functions provided by the `dynplot` p
 dynplot::plot_dimred(trajectory, "pseudotime", expression_source = expression)
 ```
 
-
 ## Creating the method object
 
 Combining everything in a function:
 
 ```{r}
-run_fun <- function(expression, component, start_cell_id = NULL) {
+run_fun <- function(expression, component, start_cells = NULL) {
+  # do pca and extract pseudotimes
   pca <- prcomp(expression)
   
   pseudotimes <- pca$x[, component]
   
-  milestone_ids <- c("A", "B")
-  milestone_network <- tibble(from="A", to="B", length=1, directed=TRUE)
-  divergence_regions <- tibble()
+  # flip pseudotimes using start_cells
+  if (!is.null(start_cells)) {
+    if(mean(pseudotimes[start_cells]) > 0.5) {
+      pseudotimes <- 1-pseudotimes
+    }
+  }
   
-  progressions <- tibble(
-    cell_id = names(pseudotime),
-    from = "A",
-    to = "B",
-    percentage = pseudotime
-  )
-  
-  trajectory <- 
-    wrap_data(
-      cell_id = names(pseudotime)
-    ) %>% 
-    add_trajectory(
-      milestone_ids = milestone_ids,
-      milestone_network = milestone_network,
-      divergence_regions = divergence_regions,
-      progressions = progressions # either milestone_percentages or progressions have to be provided
-    )
+  # convert to common format
+  wrap_data(
+    cell_ids = names(pseudotimes)
+  ) %>% 
+  add_linear_trajectory(pseudotimes)
 }
 ```
 
@@ -226,7 +224,7 @@ ti_dummy <- create_ti_method(
 )
 ```
 
-This function also has several alternative parameters, among which:
+This function also has several optional parameters, among which:
 
 * R packages which have to be installed, and R packages which have to be installed and loaded
 * The function to plot the output of a method, default is `dynplot::plot_default`
