@@ -56,8 +56,8 @@ run_ouija <- function(
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
-  # obtain the pseudotimes
-  pseudotimes <- ouija::map_pseudotime(oui) %>%
+  # obtain the pseudotime
+  pseudotime <- ouija::map_pseudotime(oui) %>%
     setNames(rownames(expression))
 
   # run pca for visualisation purposes
@@ -79,7 +79,7 @@ run_ouija <- function(
   wrap_prediction_model(
     cell_ids = rownames(expression)
   ) %>% add_linear_trajectory(
-    pseudotimes = pseudotimes,
+    pseudotime = pseudotime,
     t0_df = t0_df
   ) %>% add_dimred(
     dimred = space
@@ -92,7 +92,7 @@ plot_ouija <- function(prediction) {
   space <- prediction$dimred %>%
     as.data.frame() %>%
     rownames_to_column("cell_id") %>%
-    mutate(pseudotime = prediction$pseudotimes[cell_id])
+    mutate(pseudotime = prediction$pseudotime[cell_id])
 
   g <- ggplot(space) +
     geom_point(aes(comp_1, comp_2, colour = pseudotime)) +

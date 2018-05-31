@@ -67,7 +67,7 @@ run_topslam <- function(
   wrap_prediction_model(
     cell_ids = rownames(expression)
   ) %>% add_linear_trajectory(
-    pseudotimes = model$time %>% setNames(rownames(expression)),
+    pseudotime = model$time %>% setNames(rownames(expression)),
     model = model,
     wad = wad
   ) %>% add_timings(

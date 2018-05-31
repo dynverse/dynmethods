@@ -25,7 +25,7 @@ run_ouijaflow <- function(
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
   # run ouijaflow
-  pseudotimes <- ouijaflow::ouijaflow(expression, iter = iter)
+  pseudotime <- ouijaflow::ouijaflow(expression, iter = iter)
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
@@ -33,7 +33,7 @@ run_ouijaflow <- function(
   wrap_prediction_model(
     cell_ids = rownames(expression)
   ) %>% add_linear_trajectory(
-    pseudotimes = pseudotimes %>% setNames(rownames(expression))
+    pseudotime = pseudotime %>% setNames(rownames(expression))
   ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )

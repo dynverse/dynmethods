@@ -103,7 +103,7 @@ run_scorpius <- function(
   wrap_prediction_model(
     cell_ids = rownames(expression)
   ) %>% add_linear_trajectory(
-    pseudotimes = traj$time
+    pseudotime = traj$time
   ) %>% add_dimred(
     dimred = space,
     dimred_trajectory_segments = dimred_trajectory_segments
@@ -127,7 +127,7 @@ plot_scorpius <- function(prediction) {
   space_df <- space %>%
     as.data.frame() %>%
     rownames_to_column("cell_id") %>%
-    mutate(time = prediction$pseudotimes[cell_id])
+    mutate(time = prediction$pseudotime[cell_id])
 
   seg_df <- prediction$dimred_trajectory_segments %>%
     as.data.frame

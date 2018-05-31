@@ -29,8 +29,8 @@ run_angle <- function(
   # perform PCA dimred
   space <- dimred(expression, method = dimred, ndim = 2)
 
-  # transform to pseudotimes using atan2
-  pseudotimes <- atan2(space[,2], space[,1]) / 2 / pi + .5
+  # transform to pseudotime using atan2
+  pseudotime <- atan2(space[,2], space[,1]) / 2 / pi + .5
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
@@ -39,7 +39,7 @@ run_angle <- function(
   wrap_prediction_model(
     cell_ids = rownames(expression)
   ) %>% add_cyclic_trajectory(
-    pseudotimes = pseudotimes,
+    pseudotime = pseudotime,
     do_scale_minmax = FALSE
   ) %>% add_dimred(
     dimred = space
@@ -51,7 +51,7 @@ run_angle <- function(
 #' @importFrom viridis scale_colour_viridis
 plot_angle <- function(prediction) {
   dimred_df <-
-    data.frame(prediction$dimred, pseudotime = prediction$pseudotimes * 2 * pi)
+    data.frame(prediction$dimred, pseudotime = prediction$pseudotime * 2 * pi)
   g <- ggplot() +
     geom_point(aes(comp_1, comp_2, colour = pseudotime), dimred_df) +
     viridis::scale_color_viridis()

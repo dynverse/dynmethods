@@ -38,8 +38,8 @@ run_periodpc <- function(
   # apply principal curve with periodic lowess smoother
   fit <- princurve::principal.curve(dimred, smoother = "periodic.lowess", maxit = maxit)
 
-  # get pseudotimes
-  pseudotimes <- fit$lambda %>% magrittr::set_names(rownames(expression))
+  # get pseudotime
+  pseudotime <- fit$lambda %>% magrittr::set_names(rownames(expression))
 
   # construct segments
   path <- fit$s[fit$tag, , drop = FALSE]
@@ -56,7 +56,7 @@ run_periodpc <- function(
   wrap_prediction_model(
     cell_ids = rownames(expression)
   ) %>% add_cyclic_trajectory(
-    pseudotimes = pseudotimes
+    pseudotime = pseudotime
   ) %>% add_dimred(
     dimred = dimred,
     dimred_trajectory_segments = dimred_trajectory_segments

@@ -87,13 +87,13 @@ ti_gpfates <- create_ti_method(
     )
     milestone_ids <- paste0("M", seq(0, n_end_states))
 
-    # convert dimred and pseudotimes to right format
+    # convert dimred and pseudotime to right format
     dimred <- dr %>%
       as.data.frame() %>%
       magrittr::set_rownames(., .$cell_id) %>%
       select(-cell_id) %>%
       as.matrix()
-    pseudotimes <- setNames(pseudotime$time, pseudotime$cell_id)
+    pseudotime <- setNames(pseudotime$time, pseudotime$cell_id)
 
     divergence_regions <-
       data_frame(
@@ -109,7 +109,7 @@ ti_gpfates <- create_ti_method(
       milestone_ids = milestone_ids,
       milestone_network = milestone_network,
       progressions = progressions,
-      pseudotimes = pseudotimes,
+      pseudotime = pseudotime,
       divergence_regions = divergence_regions
     ) %>% add_dimred(
       dimred = dimred
