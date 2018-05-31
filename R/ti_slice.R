@@ -6,8 +6,6 @@
 #' @inheritParams SLICE::getLineageModel
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_slice <- create_ti_method(
   name = "SLICE",
   short_name = "slice",
@@ -25,8 +23,8 @@ ti_slice <- create_ti_method(
     makeIntegerParam(id = "B", lower = 3L, upper = 500L, default = 100L),
     makeDiscreteParam(id = "k.opt.method", default = "firstmax", values = c("firstmax", "globalmax", "Tibs2001SEmax", "firstSEmax", "globalSEmax"))
   ),
-  run_fun = "run_slice",
-  plot_fun = "plot_slice"
+  run_fun = "dynmethods::run_slice",
+  plot_fun = "dynmethods::plot_slice"
 )
 
 run_slice <- function(

@@ -5,8 +5,6 @@
 #' @param num_clusters Number of clusters
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_waterfll <-  create_ti_method(
   name = "Waterfall",
   short_name = "waterfll", # max 8 chars
@@ -15,8 +13,8 @@ ti_waterfll <-  create_ti_method(
   par_set = makeParamSet(
     makeIntegerParam(id = "num_clusters", lower = 2L, default = 10L, upper = 20L)
   ),
-  run_fun = "run_waterfall",
-  plot_fun = "plot_waterfall"
+  run_fun = "dynmethods::run_waterfall",
+  plot_fun = "dynmethods::plot_waterfall"
 )
 
 run_waterfall <- function(expression, num_clusters = 10) {

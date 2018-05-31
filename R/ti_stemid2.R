@@ -24,8 +24,6 @@
 #' @inherit ti_identity description
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_stemid2 <- create_ti_method(
   name = "StemID2",
   short_name = "stemid2",
@@ -54,8 +52,8 @@ ti_stemid2 <- create_ti_method(
     makeNumericParam(id = "pethr", lower = -4, default = -2, upper = 0, trafo = function(x) 10^x),
     forbidden = quote(thr_lower > thr_upper)
   ),
-  run_fun = "run_stemid2",
-  plot_fun = "plot_stemid2"
+  run_fun = "dynmethods::run_stemid2",
+  plot_fun = "dynmethods::plot_stemid2"
 )
 
 run_stemid2 <- function(

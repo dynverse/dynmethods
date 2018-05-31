@@ -6,8 +6,6 @@
 #' @param numcluster_null If TRUE, will automatically select the number of clusters
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_mpath <- create_ti_method(
   name = "Mpath",
   short_name = "mpath",
@@ -21,8 +19,8 @@ ti_mpath <- create_ti_method(
     makeNumericParam(id = "diversity_cut", lower = .1, default = .6, upper = 1),
     makeNumericParam(id = "size_cut", lower = .01, default = .05, upper = 1)
   ),
-  run_fun = "run_mpath",
-  plot_fun = "plot_mpath"
+  run_fun = "dynmethods::run_mpath",
+  plot_fun = "dynmethods::plot_mpath"
 )
 
 #' @importFrom utils write.table

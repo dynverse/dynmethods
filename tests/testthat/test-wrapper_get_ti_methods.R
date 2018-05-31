@@ -1,10 +1,10 @@
 context("Testing get_ti_methods")
 
 test_that("Descriptions can be retrieved", {
-  tib <- get_ti_methods()
+  tib <- dynwrap::get_ti_methods(packages="dynmethods")
   expect_that(tib, is_a("tbl"))
 
-  lis <- get_ti_methods(as_tibble = FALSE)
+  lis <- dynwrap::get_ti_methods(as_tibble=FALSE, packages="dynmethods")
   expect_that(lis, is_a("list"))
 
   for (descr in lis) {
@@ -14,7 +14,7 @@ test_that("Descriptions can be retrieved", {
   }
 })
 
-methods <- get_ti_methods()
+methods <- get_ti_methods(packages="dynmethods")
 
 for (i in seq_len(nrow(methods))) {
   method <- extract_row_to_list(methods, i)

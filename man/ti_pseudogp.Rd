@@ -6,7 +6,8 @@
 \usage{
 ti_pseudogp(smoothing_alpha = 10, smoothing_beta = 3,
   pseudotime_mean = 0.5, pseudotime_var = 1, chains = 3L, iter = 100,
-  dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE), initialise_from = "random")
+  dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
+  initialise_from = "random")
 }
 \arguments{
 \item{smoothing_alpha}{The hyperparameter for the Gamma distribution that controls arc-length}
@@ -22,7 +23,7 @@ ti_pseudogp(smoothing_alpha = 10, smoothing_beta = 3,
 \item{iter}{The number of iterations for the MCMC trace}
 
 \item{dimreds}{A character vector specifying which dimensionality reduction methods to use.
-See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.}
+See \code{\link[dyndimred:dimred]{dyndimred::dimred()}} for the list of available dimensionality reduction methods.}
 
 \item{initialise_from}{How to initialise the MCMC chain. One of "random" (stan decides),
 "principal_curve", or "pca" (the first component of PCA rescaled is taken to be the pseudotimes).

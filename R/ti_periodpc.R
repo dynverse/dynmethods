@@ -2,14 +2,12 @@
 #'
 #' @inherit ti_angle description
 #'
-#' @inheritParams dimred
+#' @inheritParams dyndimred::dimred
 #' @inheritParams princurve::principal.curve
 #'
 #' @seealso [princurve::principal.curve()]
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_periodpc <- create_ti_method(
   name = "Periodic PrinCurve",
   short_name = "periodpc",
@@ -19,8 +17,8 @@ ti_periodpc <- create_ti_method(
     makeIntegerParam(id = "ndim", default = 3L, lower = 2L, upper = 10L),
     makeIntegerParam(id = "maxit", default = 10L, lower = 0L, upper = 100L)
   ),
-  run_fun = "run_periodpc",
-  plot_fun = "plot_periodpc"
+  run_fun = "dynmethods::run_periodpc",
+  plot_fun = "dynmethods::plot_periodpc"
 )
 
 run_periodpc <- function(
@@ -71,7 +69,7 @@ plot_periodpc <- function(prediction) {
   dimred_df <- data.frame(prediction$dimred)
   seg_df <- data.frame(prediction$dimred_trajectory_segments)
   g <- ggplot() +
-    geom_point(aes(Comp1, Comp2), dimred_df) +
-    geom_segment(aes(x = from_Comp1, xend = to_Comp1, y = from_Comp2, yend = to_Comp2), seg_df, colour = "darkgray")
+    geom_point(aes(comp_1, comp_2), dimred_df) +
+    geom_segment(aes(x = from_comp_1, xend = to_comp_1, y = from_comp_2, yend = to_comp_2), seg_df, colour = "darkgray")
   process_dynplot(g, prediction$id)
 }

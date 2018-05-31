@@ -43,8 +43,8 @@ abstract_celltree_description <- function(method) {
     package_loaded = c(),
     package_required = c("cellTree"),
     par_set = par_set,
-    run_fun = "run_celltree",
-    plot_fun = "plot_celltree"
+    run_fun = "dynmethods::run_celltree",
+    plot_fun = "dynmethods::plot_celltree"
   )
 }
 
@@ -72,8 +72,6 @@ abstract_celltree_description <- function(method) {
 #' ‘null’ picks the best method based on the type of grouping and start group information available.
 #'
 #' @rdname celltree
-#'
-#' @include wrapper_create_ti_method.R
 #' @export
 ti_celltree_maptpx <- abstract_celltree_description("maptpx")
 

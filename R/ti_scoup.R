@@ -13,8 +13,6 @@
 #' @param thresh Threshold
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_scoup <- create_ti_method(
   name = "SCOUP",
   short_name = "scoup",
@@ -31,8 +29,8 @@ ti_scoup <- create_ti_method(
     makeNumericParam(id = "sigma_squared_min", lower = log(.001), default = log(.1), upper = log(10), trafo = exp),
     makeNumericParam(id = "thresh", lower = log(.01), default = log(.01), upper = log(10), trafo = exp)
   ),
-  run_fun = "run_scoup",
-  plot_fun = "plot_scoup"
+  run_fun = "dynmethods::run_scoup",
+  plot_fun = "dynmethods::plot_scoup"
 )
 
 #' @importFrom utils read.table write.table
@@ -162,7 +160,7 @@ plot_scoup <- function(prediction, type = "dimred") {
 
   # make plot
   g <- ggplot(space_df) +
-    geom_point(aes(Comp1, Comp2, colour = milestone_id), shape = 1) +
+    geom_point(aes(comp_1, comp_2, colour = milestone_id), shape = 1) +
     scale_colour_manual(values = palette) +
     labs(colour = "Milestone") +
     theme(legend.position = c(.92, .12))

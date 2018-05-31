@@ -7,8 +7,6 @@
 #'
 #' @export
 #' @importFrom dynplot plot_default
-#'
-#' @include wrapper_create_ti_method.R
 ti_shuffle <- create_ti_method(
   name = "Control: shuffle",
   short_name = "shuffle",
@@ -17,7 +15,7 @@ ti_shuffle <- create_ti_method(
   par_set = makeParamSet(
     makeNumericParam(id = "dummy_param", lower = 0, default = 0.5, upper = 1)
   ),
-  run_fun = "run_shuffle",
+  run_fun = "dynmethods::run_shuffle",
   plot_fun = dynplot::plot_default
 )
 

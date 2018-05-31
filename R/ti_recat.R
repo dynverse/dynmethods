@@ -12,8 +12,6 @@
 #' @param clustMethod No documentation provided by authors
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_recat <- create_ti_method(
   name = "reCAT",
   short_name = "recat",
@@ -29,8 +27,8 @@ ti_recat <- create_ti_method(
     makeIntegerParam(id = "max_num", default = 300, lower=100, upper=500),
     makeDiscreteParam(id = "clustMethod", default = "GMM", values = c("GMM", "Pam", "Kmeans"))
   ),
-  run_fun = "run_recat",
-  plot_fun = "plot_recat"
+  run_fun = "dynmethods::run_recat",
+  plot_fun = "dynmethods::plot_recat"
 )
 
 run_recat <- function(

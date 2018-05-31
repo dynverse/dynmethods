@@ -18,6 +18,7 @@ Imports:
   desc,
   devtools,
   dplyr, 
+  dyndimred,
   dynplot,
   dynutils,
   dynwrap,
@@ -37,7 +38,6 @@ Imports:
   reticulate,
   readr,
   reshape2,
-  stevedore,
   stringr,
   testthat,
   tibble, 
@@ -52,10 +52,8 @@ Suggests:
   cellTree,
   coda,
   destiny,
-  diffusionMap,
   dyntoy,
   embeddr,
-  fastICA,
   GNG,
   GPfates,
   lle,
@@ -73,7 +71,6 @@ Suggests:
   princurve,
   pseudogp,
   reCAT,
-  Rtsne,
   rstan,
   roxygen2,
   scaterlegacy,
@@ -100,7 +97,6 @@ Suggests:
   tidyverse
 Remotes:
   berndbischl/ParamHelpers,
-  richfitz/stevedore,
   dynverse/paga,
   dynverse/dynutils,
   dynverse/dynwrap,
@@ -141,14 +137,10 @@ Remotes:
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 Collate: 
-    'helper_dimred_expr.R'
     'helper_set_cores.R'
     'package.R'
-    'wrapper_create_ti_method.R'
     'ti_angle.R'
     'ti_celltree.R'
-    'ti_comp1.R'
-    'ti_docker.R'
     'ti_dpt.R'
     'ti_elpi.R'
     'ti_embeddr.R'
@@ -185,10 +177,6 @@ Collate:
     'ti_tscan.R'
     'ti_waterfall.R'
     'ti_wishbone.R'
-    'wrap_prediction_model.R'
     'wrapper_check_dependencies.R'
     'wrapper_docker.R'
-    'wrapper_get_default_parameters.R'
-    'wrapper_get_ti_methods.R'
-    'wrapper_infer_trajectory.R'
     'wrapper_plot_trajectory.R'

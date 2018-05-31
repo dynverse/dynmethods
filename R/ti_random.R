@@ -5,8 +5,6 @@
 #' @param dummy_param This parameter does not do anything.
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_random <- create_ti_method(
   name = "Control: random",
   short_name = "random",
@@ -15,7 +13,7 @@ ti_random <- create_ti_method(
   par_set = makeParamSet(
     makeNumericParam(id = "dummy_param", lower = 0, default = 0.5, upper = 1)
   ),
-  run_fun = "run_random",
+  run_fun = "dynmethods::run_random",
   plot_fun = dynplot::plot_default
 )
 

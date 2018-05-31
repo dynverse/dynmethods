@@ -2,28 +2,27 @@
 #'
 #' @inherit ti_angle description
 #'
-#' @inheritParams ti_comp1
-#' @inheritParams dimred
+#' @param dimred A character vector specifying which dimensionality reduction method to use.
+#'   See [dyndimred::dimred] for the list of available dimensionality reduction methods.
+#' @inheritParams dyndimred::dimred
 #' @inheritParams GNG::gng
 #' @param apply_mst If true, an MST post-processing of the GNG is performed.
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_gng <- create_ti_method(
   name = "Growing Neural Gas",
   short_name = "gng",
   package_loaded = c(),
   package_required = c("GNG", "igraph"),
   par_set = makeParamSet(
-    makeDiscreteParam(id = "dimred", default = "pca", values = names(list_dimred_methods())),
+    makeDiscreteParam(id = "dimred", default = "pca", values = names(dyndimred::list_dimred_methods())),
     makeIntegerParam(id = "ndim", default = 5L, lower = 2L, upper = 10L),
     makeNumericParam(id = "max_iter", lower = log(1e2), default = log(1e6), upper = log(1e8), trafo = function(x) round(exp(x))),
     makeIntegerParam(id = "max_nodes", default = 8L, lower = 2L, upper = 30L),
     makeLogicalParam(id = "apply_mst", default = TRUE)
   ),
-  run_fun = "run_gng",
-  plot_fun = "plot_gng"
+  run_fun = "dynmethods::run_gng",
+  plot_fun = "dynmethods::plot_gng"
 )
 
 #' @importFrom stats dist
@@ -94,11 +93,11 @@ plot_gng <- function(prediction) {
   segments <- data.frame(prediction$dimred_trajectory_segments)
 
   g <- ggplot() +
-    geom_segment(aes(x = from_Comp1, xend = to_Comp1, y = from_Comp2, yend = to_Comp2), segments, colour = "darkgray") +
-    geom_point(aes(Comp1, Comp2, colour = group_id), dimred) +
-    geom_point(aes(Comp1, Comp2, colour = milestone_id), dimred_milestones, size = 10, shape = 8) +
+    geom_segment(aes(x = from_comp_1, xend = to_comp_1, y = from_comp_2, yend = to_comp_2), segments, colour = "darkgray") +
+    geom_point(aes(comp_1, comp_2, colour = group_id), dimred) +
+    geom_point(aes(comp_1, comp_2, colour = milestone_id), dimred_milestones, size = 10, shape = 8) +
     theme(legend.position = "none") +
-    labs(x = "Comp1", y = "Comp2")
+    labs(x = "comp_1", y = "comp_2")
 
   if (length(prediction$milestone_ids) <= 9) {
     g <- g + scale_colour_brewer(palette = "Dark2")
