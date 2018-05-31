@@ -1,13 +1,11 @@
 #' Inferring trajectories with Angle
 #'
-#' @inherit ti_angle description
+#' @inherit dynwrap::ti_comp1 description
 #'
 #' @param dimred A character vector specifying which dimensionality reduction method to use.
-#'   See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.
+#'   See [dyndimred::dimred()] for the list of available dimensionality reduction methods.
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_angle <-
   create_ti_method(
     name = "Angle",
@@ -15,10 +13,10 @@ ti_angle <-
     package_loaded = c(),
     package_required = c(),
     par_set = makeParamSet(
-      makeDiscreteParam(id = "dimred", default = "pca", values = names(list_dimred_methods()))
+      makeDiscreteParam(id = "dimred", default = "pca", values = names(dyndimred::list_dimred_methods()))
     ),
-    run_fun = "run_angle",
-    plot_fun = "plot_angle"
+    run_fun = "dynmethods::run_angle",
+    plot_fun = "dynmethods::plot_angle"
   )
 
 run_angle <- function(
@@ -55,7 +53,7 @@ plot_angle <- function(prediction) {
   dimred_df <-
     data.frame(prediction$dimred, pseudotime = prediction$pseudotimes * 2 * pi)
   g <- ggplot() +
-    geom_point(aes(Comp1, Comp2, colour = pseudotime), dimred_df) +
+    geom_point(aes(comp_1, comp_2, colour = pseudotime), dimred_df) +
     viridis::scale_color_viridis()
   process_dynplot(g, prediction$id)
 }

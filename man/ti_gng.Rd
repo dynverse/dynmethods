@@ -9,7 +9,7 @@ ti_gng(dimred = "pca", ndim = 5L, max_iter = 1e+06, max_nodes = 8L,
 }
 \arguments{
 \item{dimred}{A character vector specifying which dimensionality reduction method to use.
-See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.}
+See \link[dyndimred:dimred]{dyndimred::dimred} for the list of available dimensionality reduction methods.}
 
 \item{ndim}{The number of dimensions}
 

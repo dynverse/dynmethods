@@ -17,7 +17,7 @@ ti_topslam(n_components = 2L, n_neighbors = 10L, linear_dims = 0L,
 \item{max_iters}{the number of iterations to optimize over}
 
 \item{dimreds}{A character vector specifying which dimensionality reduction methods to use.
-See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.}
+See \code{\link[dyndimred:dimred]{dyndimred::dimred()}} for the list of available dimensionality reduction methods.}
 }
 \description{
 Inferring trajectories with topslam

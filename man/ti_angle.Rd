@@ -8,7 +8,7 @@ ti_angle(dimred = "pca")
 }
 \arguments{
 \item{dimred}{A character vector specifying which dimensionality reduction method to use.
-See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.}
+See \code{\link[dyndimred:dimred]{dyndimred::dimred()}} for the list of available dimensionality reduction methods.}
 }
 \description{
 Inferring trajectories with Angle

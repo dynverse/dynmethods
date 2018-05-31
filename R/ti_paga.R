@@ -7,8 +7,8 @@ abstract_paga_description <- function(method) {
 
   run_fun <- switch(
     method,
-    paga = "run_paga",
-    agapt = "run_agapt"
+    paga = "dynmethods::run_paga",
+    agapt = "dynmethods::run_agapt"
   )
 
   name <- switch(
@@ -24,7 +24,7 @@ abstract_paga_description <- function(method) {
     package_required = c("paga", "igraph"),
     par_set = par_set,
     run_fun = run_fun,
-    plot_fun = "plot_paga"
+    plot_fun = "dynmethods::plot_paga"
   )
 }
 
@@ -37,8 +37,6 @@ abstract_paga_description <- function(method) {
 #' @param resolution Resolution of louvain clustering, which determines the granularity of the clustering. Higher values will result in more clusters.
 #'
 #' @rdname paga
-#'
-#' @include wrapper_create_ti_method.R
 #' @export
 ti_paga <- abstract_paga_description("paga")
 

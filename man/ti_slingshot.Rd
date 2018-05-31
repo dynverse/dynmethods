@@ -14,7 +14,7 @@ ti_slingshot(ndim = 3L, nclus = 5L, dimred = "pca", shrink = 1,
 \item{nclus}{Number of clusters}
 
 \item{dimred}{A character vector specifying which dimensionality reduction method to use.
-See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.}
+See \link[dyndimred:dimred]{dyndimred::dimred} for the list of available dimensionality reduction methods.}
 
 \item{shrink}{logical or numeric between 0 and 1, determines whether and how 
 much to shrink branching lineages toward their average prior to the split.}

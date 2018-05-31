@@ -25,8 +25,8 @@ abstract_monocle_description <- function(short_name) {
     package_loaded = c("monocle"),
     package_required = c("BiocGenerics", "igraph", "Biobase"),
     par_set = par_set,
-    run_fun = "run_monocle",
-    plot_fun = "plot_monocle"
+    run_fun = "dynmethods::run_monocle",
+    plot_fun = "dynmethods::plot_monocle"
   )
 }
 
@@ -40,8 +40,6 @@ abstract_monocle_description <- function(short_name) {
 #' @seealso [monocle::reduceDimension()], [monocle::orderCells()]
 #'
 #' @rdname monocle
-#'
-#' @include wrapper_create_ti_method.R
 #'
 #' @export
 ti_monocle_ddrtree <- abstract_monocle_description("monocle_ddrtree")
