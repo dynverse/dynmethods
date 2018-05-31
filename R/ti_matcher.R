@@ -47,17 +47,17 @@ run_matcher <- function(
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # extract results
-  pseudotimes <- m$master_time[[1]][, 1] %>% set_names(rownames(counts))
+  pseudotime <- m$master_time[[1]][, 1] %>% set_names(rownames(counts))
 
   # returns "ValueError: A value in x_new is above the interpolation range."
   # sample_master_time <- m$sample_master_time(0L, 1L)
-  # colnames(sample_master_time) <- names(pseudotimes)
+  # colnames(sample_master_time) <- names(pseudotime)
 
   # return output
   prediction <- wrap_prediction_model(
     cell_ids = rownames(counts)
   ) %>% add_linear_trajectory(
-    pseudotimes = pseudotimes#,
+    pseudotime = pseudotime#,
     # sample_master_time = sample_master_time
   ) %>% add_timings(
     tl %>% add_timing_checkpoint("method_afterpostproc")
@@ -72,7 +72,7 @@ plot_matcher <- function(prediction) {
   #   reshape2::melt(varnames = c("sample_id", "cell_id"), value.name = "pseudotime") %>%
   #   mutate_if(is.factor, as.character) %>%
   #   left_join(
-  #     tibble(global_pseudotime = prediction$pseudotimes, cell_id = prediction$cell_id),
+  #     tibble(global_pseudotime = prediction$pseudotime, cell_id = prediction$cell_id),
   #     "cell_id"
   #   ) %>%
   #   ggplot(aes(global_pseudotime, pseudotime)) +

@@ -69,7 +69,7 @@ run_pseudogp <- function(
   # extract pseudotime
   pst <- rstan::extract(fit, pars = "t")$t
   tmcmc <- coda::mcmc(pst)
-  pseudotimes <- MCMCglmm::posterior.mode(tmcmc) %>%
+  pseudotime <- MCMCglmm::posterior.mode(tmcmc) %>%
     setNames(rownames(expression))
 
   # collect data for visualisation purposes
@@ -82,7 +82,7 @@ run_pseudogp <- function(
   wrap_prediction_model(
     cell_ids = rownames(expression)
   ) %>% add_linear_trajectory(
-    pseudotimes = pseudotimes,
+    pseudotime = pseudotime,
     spaces = spaces,
     chains = chains,
     pst = pst,

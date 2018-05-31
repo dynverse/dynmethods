@@ -45,7 +45,7 @@ run_phenopath <- function(
     model_mu = model_mu,
     scale_y = scale_y
   )
-  pseudotimes <- phenopath::trajectory(fit) %>%
+  pseudotime <- phenopath::trajectory(fit) %>%
     setNames(rownames(expression))
 
   # TIMING: done with method
@@ -58,7 +58,7 @@ run_phenopath <- function(
   wrap_prediction_model(
     cell_ids = rownames(expression)
   ) %>% add_linear_trajectory(
-    pseudotimes = pseudotimes
+    pseudotime = pseudotime
   ) %>% add_dimred(
     dimred = space
   ) %>% add_timings(
@@ -71,7 +71,7 @@ plot_phenopath <- function(prediction) {
   space <- prediction$dimred %>%
     as.data.frame() %>%
     rownames_to_column("cell_id") %>%
-    mutate(pseudotime = prediction$pseudotimes[cell_id])
+    mutate(pseudotime = prediction$pseudotime[cell_id])
   g <- ggplot(space) +
     geom_point(aes(comp_1, comp_2, colour = pseudotime)) +
     viridis::scale_colour_viridis() +

@@ -85,7 +85,7 @@ run_embeddr <- function(
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # construct milestone network
-  pseudotimes <- as(sce@phenoData, "data.frame")$pseudotime %>%
+  pseudotime <- as(sce@phenoData, "data.frame")$pseudotime %>%
     setNames(rownames(counts))
 
   # creating extra output for visualisation purposes
@@ -109,7 +109,7 @@ run_embeddr <- function(
   wrap_prediction_model(
     cell_ids = rownames(counts)
   ) %>% add_linear_trajectory(
-    pseudotimes = pseudotimes
+    pseudotime = pseudotime
   ) %>% add_dimred(
     dimred = dimred_cells,
     dimred_trajectory_segments = dimred_trajectory_segments
@@ -122,7 +122,7 @@ plot_embeddr <- function(prediction) {
   sample_df <- prediction$dimred %>%
     as.data.frame() %>%
     rownames_to_column("cell_id") %>%
-    mutate(time = prediction$pseudotimes)
+    mutate(time = prediction$pseudotime)
   traj_df <- prediction$dimred_trajectory_segments %>%
     as.data.frame()
   g <- ggplot() +

@@ -122,8 +122,8 @@ run_slice <- function(
     rename(length = weight) %>%
     mutate(directed = TRUE)
 
-  # extract the pseudotimes
-  pseudotimes <- map_df(seq_len(nrow(milestone_network)), function(i) {
+  # extract the pseudotime
+  pseudotime <- map_df(seq_len(nrow(milestone_network)), function(i) {
     from <- milestone_network[i, 1]
     to <- milestone_network[i, 2]
     sc_tmp <- SLICE::getTrajectories(
@@ -147,7 +147,7 @@ run_slice <- function(
     slice(match(rownames(expression), cell_id)) %>%
     mutate(state = paste0("slice.ss.", slice.state)) %>%
     select(cell_id, state) %>%
-    right_join(pseudotimes, by = "cell_id") %>%
+    right_join(pseudotime, by = "cell_id") %>%
     filter((state == from) | (state == to)) %>%
     group_by(cell_id) %>%
     arrange(percentage) %>%
