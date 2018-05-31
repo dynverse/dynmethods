@@ -10,8 +10,6 @@
 #' @param max_iter Maximum number of iterations
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_scimitar <- create_ti_method(
   name = "SCIMITAR",
   short_name = "scimitar",
@@ -25,8 +23,8 @@ ti_scimitar <- create_ti_method(
     makeNumericParam(id = "cov_reg", lower = 0.01, upper = 0.1, default = 0.05),
     makeIntegerParam(id = "max_iter", lower = 1, upper = 20, default = 3)
   ),
-  run_fun = "run_scimitar",
-  plot_fun = "plot_scimitar"
+  run_fun = "dynmethods::run_scimitar",
+  plot_fun = "dynmethods::plot_scimitar"
 )
 
 #' @importFrom readr read_csv

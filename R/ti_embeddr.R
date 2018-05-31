@@ -9,8 +9,6 @@
 #' @param nn_pct The percentage of cells to use as tge number of nearest neighbours if kernel == 'nn'.
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_embeddr <- create_ti_method(
   name = "Embeddr",
   short_name = "embeddr",
@@ -30,8 +28,8 @@ ti_embeddr <- create_ti_method(
     makeNumericParam(id = "stretch", lower = 0, upper = 5, default = 2),
     makeDiscreteParam(id = "smoother", default = "smooth.spline", values = c("smooth.spline", "lowess", "periodic.lowess"))
   ),
-  run_fun = "run_embeddr",
-  plot_fun = "plot_embeddr"
+  run_fun = "dynmethods::run_embeddr",
+  plot_fun = "dynmethods::plot_embeddr"
 )
 
 run_embeddr <- function(

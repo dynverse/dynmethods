@@ -7,8 +7,6 @@
 #' @seealso [mfa::mfa()]
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_mfa <- create_ti_method(
   name = "mfa",
   short_name = "mfa",
@@ -23,8 +21,8 @@ ti_mfa <- create_ti_method(
     makeLogicalParam(id = "scale_input", default = TRUE),
     makeLogicalParam(id = "zero_inflation", default = FALSE)
   ),
-  run_fun = "run_mfa",
-  plot_fun = "plot_mfa"
+  run_fun = "dynmethods::run_mfa",
+  plot_fun = "dynmethods::plot_mfa"
 )
 
 run_mfa <- function(
@@ -104,7 +102,7 @@ plot_mfa <- function(prediction) {
     prediction$cell_info
   )
   g <- ggplot() +
-    geom_point(aes(Comp1, Comp2, colour = branch), df) +
+    geom_point(aes(comp_1, comp_2, colour = branch), df) +
     labs(colour = "Branch") +
     theme(legend.position = c(.92, .1))
   process_dynplot(g, prediction$id)

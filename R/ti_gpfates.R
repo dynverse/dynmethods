@@ -9,8 +9,6 @@
 #'
 #' @importFrom readr read_csv
 #' @importFrom utils write.table
-#'
-#' @include wrapper_create_ti_method.R
 ti_gpfates <- create_ti_method(
   ########################################################
   #                   META INFORMATION                   #
@@ -145,7 +143,7 @@ ti_gpfates <- create_ti_method(
           mutate(trend = gsub("M", "Trend ", milestone_id))
 
         g <- ggplot() +
-          geom_point(aes(Comp1, Comp2, colour = trend), plot_df) +
+          geom_point(aes(comp_1, comp_2, colour = trend), plot_df) +
           scale_color_brewer(palette = "Set2") +
           labs(colour = "Fitted trend") +
           theme(legend.position = c(.92, .12))

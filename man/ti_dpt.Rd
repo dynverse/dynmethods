@@ -12,11 +12,11 @@ ti_dpt(sigma = "local", distance = "euclidean", ndim = 20L,
 \item{sigma}{Diffusion scale parameter of the Gaussian kernel. A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix. Must be one of:
 \itemize{
 \item{A character vector: \code{"local"} (default) or \code{"global"},}
-\item{a numeric global sigma -- a global sigma will be calculated using \code{\link[destiny]{find_sigmas}}}
-\item{or a \code{\link[destiny]{Sigmas-class}} object.}
+\item{a numeric global sigma -- a global sigma will be calculated using \code{\link[destiny:find_sigmas]{destiny::find_sigmas()}}}
+\item{or a \code{\link[destiny:Sigmas-class]{destiny::Sigmas-class()}} object.}
 }}
 
-\item{distance}{A \code{\link[stats]{dist}} object, or a character vector specifying which distance metric to use. Allowed measures:
+\item{distance}{A \code{\link[stats:dist]{stats::dist()}} object, or a character vector specifying which distance metric to use. Allowed measures:
 \itemize{
 \item{Euclidean distance (default),}
 \item{cosine distance (1-corr(c_1, c_2)), or}

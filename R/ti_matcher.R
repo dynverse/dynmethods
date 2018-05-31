@@ -6,8 +6,6 @@
 #' @param method Gaussian process regression or linear interpolation? ("gp" or "linear)
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_matcher <- create_ti_method(
   name = "MATCHER",
   short_name = "matcher",
@@ -17,8 +15,8 @@ ti_matcher <- create_ti_method(
     makeIntegerParam("quantiles", 2, 500, default = 50),
     makeDiscreteParam("method", values = c("gp", "linear"), default = "linear")
   ),
-  run_fun = "run_matcher",
-  plot_fun = "plot_matcher"
+  run_fun = "dynmethods::run_matcher",
+  plot_fun = "dynmethods::plot_matcher"
 )
 
 #' @import reticulate

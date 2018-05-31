@@ -3,15 +3,14 @@
 #' @inherit ti_angle description
 #'
 #' @param nclus Number of clusters
-#' @inheritParams dimred
-#' @inheritParams ti_comp1
+#' @param dimred A character vector specifying which dimensionality reduction method to use.
+#'   See [dyndimred::dimred] for the list of available dimensionality reduction methods.
+#' @inheritParams dyndimred::dimred
 #' @inheritParams slingshot::slingshot
 #'
 #' @seealso [slingshot::slingshot()]
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_slingshot <- create_ti_method(
   name = "Slingshot",
   short_name = "slingshot",
@@ -20,7 +19,7 @@ ti_slingshot <- create_ti_method(
   par_set = makeParamSet(
     makeIntegerParam(id = "ndim", lower = 2L, upper = 20L, default = 3L),
     makeIntegerParam(id = "nclus", lower = 2L, upper = 40L, default = 5L),
-    makeDiscreteParam(id = "dimred", default = "pca", values = names(list_dimred_methods())),
+    makeDiscreteParam(id = "dimred", default = "pca", values = names(dyndimred::list_dimred_methods())),
     makeNumericParam(id = "shrink", lower = 0, upper = 1, default=1),
     makeLogicalParam(id = "reweight", default = TRUE),
     makeLogicalParam(id = "drop.multi", default = TRUE),
@@ -31,8 +30,8 @@ ti_slingshot <- create_ti_method(
     makeDiscreteParam(id = "shrink.method", default = "cosine", values = c("cosine", "tricube", "density"))
 
   ),
-  run_fun = "run_slingshot",
-  plot_fun = "plot_slingshot"
+  run_fun = "dynmethods::run_slingshot",
+  plot_fun = "dynmethods::plot_slingshot"
 )
 
 run_slingshot <- function(
@@ -183,15 +182,15 @@ plot_slingshot <- function(prediction, type = c("curve", "lineage", "both")) {
 
   # create plots for curve if so requested
   if (type %in% c("curve", "both")) {
-    gcurve <- geom_path(aes(Comp1, Comp2, group = curve), prediction$curve %>% arrange(curve, lambda))
+    gcurve <- geom_path(aes(comp_1, comp_2, group = curve), prediction$curve %>% arrange(curve, lambda))
   } else {
     gcurve <- NULL
   }
 
   # create plots for lineage if so requested
   if (type %in% c("lineage", "both")) {
-    gcenter <- geom_point(aes(Comp1, Comp2), prediction$dimred_milestones %>% as.data.frame, size = 3)
-    gsegment <- geom_segment(aes(x = from_Comp1, xend = to_Comp1, y = from_Comp2, yend = to_Comp2), prediction$dimred_trajectory_segments %>% as.data.frame())
+    gcenter <- geom_point(aes(comp_1, comp_2), prediction$dimred_milestones %>% as.data.frame, size = 3)
+    gsegment <- geom_segment(aes(x = from_comp_1, xend = to_comp_1, y = from_comp_2, yend = to_comp_2), prediction$dimred_trajectory_segments %>% as.data.frame())
   } else {
     gcenter <- NULL
     gsegment <- NULL
@@ -204,7 +203,7 @@ plot_slingshot <- function(prediction, type = c("curve", "lineage", "both")) {
 
   # return plot
   g <- ggplot() +
-    geom_point(aes(Comp1, Comp2, colour = label), space) +
+    geom_point(aes(comp_1, comp_2, colour = label), space) +
     gcurve +
     gsegment +
     gcenter +

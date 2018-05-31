@@ -19,8 +19,8 @@ abstract_scorpius_description <- function(short_name) {
       makeDiscreteParam(id = "smoother", default = "smooth.spline", values = c("smooth.spline", "lowess", "periodic.lowess")),
       makeLogicalParam(id = "sparse", default = short_name == "scorpius_sparse")
     ),
-    run_fun = "run_scorpius",
-    plot_fun = "plot_scorpius"
+    run_fun = "dynmethods::run_scorpius",
+    plot_fun = "dynmethods::plot_scorpius"
   )
 }
 
@@ -38,8 +38,6 @@ abstract_scorpius_description <- function(short_name) {
 #'  coefficient (or covariance) is to be computed. One of "pearson", "kendall", or "spearman".
 #'
 #' @rdname scorpius
-#'
-#' @include wrapper_create_ti_method.R
 #'
 #' @export
 ti_scorpius <- abstract_scorpius_description("scorpius")
@@ -135,9 +133,9 @@ plot_scorpius <- function(prediction) {
     as.data.frame
 
   g <- ggplot() +
-    geom_path(aes(Comp1, Comp2), alpha = 0, data.frame(ranges %>% sweep(1, c(-.2, .2) * maxrange, "+"))) +
-    geom_point(aes(Comp1, Comp2, colour = time), space_df) +
-    geom_segment(aes(x = from_Comp1, xend = to_Comp1, y = from_Comp2, yend = to_Comp2), seg_df) +
+    geom_path(aes(comp_1, comp_2), alpha = 0, data.frame(ranges %>% sweep(1, c(-.2, .2) * maxrange, "+"))) +
+    geom_point(aes(comp_1, comp_2, colour = time), space_df) +
+    geom_segment(aes(x = from_comp_1, xend = to_comp_1, y = from_comp_2, yend = to_comp_2), seg_df) +
     scale_colour_gradientn(colours = RColorBrewer::brewer.pal(3, "Dark2")) +
     labs(colour = "Pseudotime") +
     theme(legend.position = c(.92, .12))

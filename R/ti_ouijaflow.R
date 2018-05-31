@@ -5,8 +5,6 @@
 #' @inheritParams ti_ouija
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_ouijaflow <- create_ti_method(
   name = "ouijaflow",
   short_name = "ouijaflow",
@@ -15,8 +13,8 @@ ti_ouijaflow <- create_ti_method(
   par_set = makeParamSet(
     makeNumericParam(id = "iter", lower = log(2), default = log(1000), upper = log(50000), trafo = function(x) round(exp(x)))
   ),
-  run_fun = "run_ouijaflow",
-  plot_fun = "plot_ouijaflow"
+  run_fun = "dynmethods::run_ouijaflow",
+  plot_fun = "dynmethods::plot_ouijaflow"
 )
 
 run_ouijaflow <- function(

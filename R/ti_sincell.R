@@ -12,8 +12,6 @@
 #' @seealso [sincell::sc_distanceObj()], [sincell::sc_DimensionalityReductionObj()], [sincell::sc_clusterObj()]
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_sincell <- create_ti_method(
   name = "Sincell",
   short_name = "sincell",
@@ -32,8 +30,8 @@ ti_sincell <- create_ti_method(
     makeIntegerParam(id = "k_imc", default = 3L, lower=1L, upper=99L), #, requires = quote(graph_method == "IMC")),
     makeNumericParam(id = "pct_leaf_node_cutoff", default = .5, lower = .01, upper = .8) #, requires = quote(!graph_using_cells_clustering)),
   ),
-  run_fun = "run_sincell",
-  plot_fun = "plot_sincell"
+  run_fun = "dynmethods::run_sincell",
+  plot_fun = "dynmethods::plot_sincell"
 )
 
 run_sincell <- function(

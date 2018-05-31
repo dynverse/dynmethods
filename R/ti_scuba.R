@@ -10,8 +10,6 @@
 #' @param min_percentage_split Minimum fraction of cells in the smaller cluster during a bifurcation.
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_scuba <- create_ti_method(
   name = "SCUBA",
   short_name = "scuba",
@@ -25,8 +23,8 @@ ti_scuba <- create_ti_method(
     makeIntegerParam(id = "min_split", lower=1L, upper = 100L, default = 15L),
     makeNumericParam(id = "min_percentage_split", lower = 0, upper = 1, default = 0.25)
   ),
-  run_fun = "run_scuba",
-  plot_fun = "plot_scuba"
+  run_fun = "dynmethods::run_scuba",
+  plot_fun = "dynmethods::plot_scuba"
 )
 
 

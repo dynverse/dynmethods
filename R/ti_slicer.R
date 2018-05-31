@@ -6,8 +6,6 @@
 #' @inheritParams SLICER::select_k
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_slicer <- create_ti_method(
   name = "SLICER",
   short_name = "slicer",
@@ -17,8 +15,8 @@ ti_slicer <- create_ti_method(
     makeIntegerParam(id = "kmin", lower = 2L, upper = 20L, default = 10L),
     makeIntegerParam(id = "m", lower = 2L, upper = 20L, default = 2L)
   ),
-  run_fun = "run_slicer",
-  plot_fun = "plot_slicer"
+  run_fun = "dynmethods::run_slicer",
+  plot_fun = "dynmethods::plot_slicer"
 )
 
 run_slicer <- function(
@@ -58,7 +56,7 @@ run_slicer <- function(
     # perform local linear embedding
     traj_lle <- lle::lle(expr_filt, m = m, k = k)$Y
     rownames(traj_lle) <- rownames(expr_filt)
-    colnames(traj_lle) <- paste0("Comp", seq_len(ncol(traj_lle)))
+    colnames(traj_lle) <- paste0("comp_", seq_len(ncol(traj_lle)))
 
   }, finally = {
     # resume output if not verbose
@@ -126,7 +124,7 @@ plot_slicer <- function(prediction) {
   requireNamespace("SLICER")
   requireNamespace("igraph")
 
-  # based on SLICER::graph_process_distance(traj_graph, dimred_samples[,c("Comp1", "Comp2")], start)
+  # based on SLICER::graph_process_distance(traj_graph, dimred_samples[,c("comp_1", "comp_2")], start)
 
   # calculate the geodesic distances between samples
   dimred_samples <- prediction$dimred %>% as.data.frame() %>% rownames_to_column("cell_id")
@@ -145,11 +143,11 @@ plot_slicer <- function(prediction) {
     mutate(edge_kept = prediction$is_kept[from.cell_id] & prediction$is_kept[to.cell_id])
 
   # make plot
-  aes_segm <- aes(x = from.Comp1, xend = to.Comp1, y = from.Comp2, yend = to.Comp2)
+  aes_segm <- aes(x = from.comp_1, xend = to.comp_1, y = from.comp_2, yend = to.comp_2)
   g <- ggplot() +
     geom_segment(aes_segm, edge_df %>% filter(!edge_kept), colour = "gray", size = .35) +
     geom_segment(aes_segm, edge_df %>% filter(edge_kept), size = .5) +
-    geom_point(aes(Comp1, Comp2, colour = dist), cell_df) +
+    geom_point(aes(comp_1, comp_2, colour = dist), cell_df) +
     scale_colour_gradientn(colours = plotclr) +
     theme(legend.position = c(.92, .12))
 

@@ -1,3 +1,5 @@
+Sys.setenv("R_TESTS" = "")
+
 library(testthat)
 library(dynmethods)
 library(dynutils)
@@ -6,7 +8,4 @@ library(ggplot2)
 library(purrr)
 library(tibble)
 
-Sys.setenv("R_TESTS" = "")
-
 test_check("dynmethods")
-

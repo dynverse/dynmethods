@@ -8,8 +8,6 @@
 #' @param clusternum_upper An integer specifying the maximal possible cluster numbers. The best cluster number will be picked using BIC.
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_tscan <- create_ti_method(
   name = "TSCAN",
   short_name = "tscan",
@@ -24,8 +22,8 @@ ti_tscan <- create_ti_method(
     makeDiscreteParam(id = "modelNames", default = "VVV", values = c("EII", "VII", "EEI", "VEI", "EVI", "VVI", "EEE", "EVE", "VEE", "VVE", "EEV", "VEV", "EVV", "VVV")),
     forbidden = quote(clusternum_lower > clusternum_upper)
   ),
-  run_fun = "run_tscan",
-  plot_fun = "plot_tscan"
+  run_fun = "dynmethods::run_tscan",
+  plot_fun = "dynmethods::plot_tscan"
 )
 
 run_tscan <- function(

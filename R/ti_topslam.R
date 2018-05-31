@@ -4,11 +4,9 @@
 #'
 #' @inheritParams topslam::topslam
 #' @param dimreds A character vector specifying which dimensionality reduction methods to use.
-#'   See \code{\link{list_dimred_methods}} for the list of available dimensionality reduction methods.
+#'   See [dyndimred::dimred()] for the list of available dimensionality reduction methods.
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_topslam <- create_ti_method(
   name = "topslam",
   short_name = "topslam",
@@ -21,8 +19,8 @@ ti_topslam <- create_ti_method(
     makeNumericParam(id = "max_iters", lower = log(10), default = log(1000), upper = log(10000), trafo = function(x) round(exp(x))),
     makeLogicalVectorParam(id = "dimreds", len = 5, default = rep(TRUE, 5))
   ),
-  run_fun = "run_topslam",
-  plot_fun = "plot_topslam"
+  run_fun = "dynmethods::run_topslam",
+  plot_fun = "dynmethods::plot_topslam"
 )
 
 #' @importFrom dplyr bind_cols
@@ -79,12 +77,12 @@ run_topslam <- function(
 
 #' @importFrom viridis scale_colour_viridis
 plot_topslam <- function(prediction) {
-  ranges <- prediction$model %>% select(starts_with("Comp")) %>% apply(2, range)
+  ranges <- prediction$model %>% select(starts_with("comp_")) %>% apply(2, range)
 
   g <- ggplot() +
     # geom_raster(aes(x, y, fill = energy), prediction$wad) +
     # geom_contour(aes(x, y, z = energy, weight = energy), prediction$wad, binwidth = 0.05, color = "black", alpha = 0.4) +
-    geom_point(aes(Comp1, Comp2, color = time), prediction$model) +
+    geom_point(aes(comp_1, comp_2, color = time), prediction$model) +
     scale_fill_gradientn(colors=c("white", "gray20")) +
     viridis::scale_colour_viridis(option = "plasma") +
     labs(colour = "Pseudotime", fill = "Energy") +

@@ -10,8 +10,6 @@
 #' @param increaseFactor_lambda factor by which the mu will be increased for the embedding
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_merlot <- create_ti_method(
   name = "MERLoT",
   short_name = "merlot",
@@ -34,8 +32,8 @@ ti_merlot <- create_ti_method(
     makeLogicalParam(id = "FixEndpoints", default = F),
     forbidden = quote(n_local_lower > n_local_upper)
   ),
-  run_fun = "run_merlot",
-  plot_fun = "plot_merlot"
+  run_fun = "dynmethods::run_merlot",
+  plot_fun = "dynmethods::plot_merlot"
 )
 
 run_merlot <- function(
@@ -179,7 +177,7 @@ plot_merlot <- function(prediction) {
 
   space_elastic_tree <- prediction$ElasticTree$Nodes %>%
     as.data.frame() %>%
-    {colnames(.) <- paste0("Comp", seq_len(ncol(.))); .}
+    {colnames(.) <- paste0("comp_", seq_len(ncol(.))); .}
   colnames(space_elastic_tree)[1:2] <- c("x", "y")
   network_elastic_tree <- prediction$ElasticTree$Branches %>% map(function(branches) {
     tibble(from = lead(as.character(branches), 1), to = as.character(branches)) %>%
@@ -189,13 +187,13 @@ plot_merlot <- function(prediction) {
 
   space_cells <- prediction$ElasticTree$CellCoords %>%
     as.data.frame() %>%
-    {colnames(.) <- paste0("Comp", seq_len(ncol(.))); .} %>%
+    {colnames(.) <- paste0("comp_", seq_len(ncol(.))); .} %>%
     mutate(cell_id = prediction$cell_ids) %>%
     mutate(branch_id = factor(prediction$ElasticTree$Cells2Branches))
 
   plot <- ggraph::ggraph(graph_elastic_tree, layout="manual", node.positions=space_elastic_tree) +
     ggraph::geom_node_point() +
     ggraph::geom_edge_fan() +
-    geom_point(aes(Comp1, Comp2, color=branch_id), space_cells)
+    geom_point(aes(comp_1, comp_2, color=branch_id), space_cells)
   process_dynplot(plot, "")
 }

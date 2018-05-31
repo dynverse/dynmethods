@@ -8,8 +8,6 @@
 #' @seealso [ouija::ouija()]
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_ouija <- create_ti_method(
   name = "ouija",
   short_name = "ouija",
@@ -21,8 +19,8 @@ ti_ouija <- create_ti_method(
     makeDiscreteParam(id = "inference_type", default = "hmc", values = c("hmc", "vb")),
     makeLogicalParam(id = "normalise_expression", default = TRUE)
   ),
-  run_fun = "run_ouija",
-  plot_fun = "plot_ouija"
+  run_fun = "dynmethods::run_ouija",
+  plot_fun = "dynmethods::plot_ouija"
 )
 
 run_ouija <- function(
@@ -97,7 +95,7 @@ plot_ouija <- function(prediction) {
     mutate(pseudotime = prediction$pseudotimes[cell_id])
 
   g <- ggplot(space) +
-    geom_point(aes(Comp1, Comp2, colour = pseudotime)) +
+    geom_point(aes(comp_1, comp_2, colour = pseudotime)) +
     viridis::scale_colour_viridis() +
     labs(colour = "Pseudotime") +
     theme(legend.position = c(.92, .12))

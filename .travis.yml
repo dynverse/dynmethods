@@ -11,9 +11,6 @@ cache:
     - $HOME/.cache/pip
     - $HOME/R/Library
 warnings_are_errors: true
-env:
-  global:
-    - R_MAX_NUM_DLLS=250
 addons:
   apt:
     packages:

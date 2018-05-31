@@ -18,8 +18,8 @@ abstract_wishbone_description <- function(method) {
       makeNumericParam(id = "epsilon", lower = 0.1, default = 1, upper = 10),
       makeDiscreteParam(id = "method_name", values = method, default = method, tunable = FALSE)
     ),
-    run_fun = "run_wishbone",
-    plot_fun = "plot_wishbone"
+    run_fun = "dynmethods::run_wishbone",
+    plot_fun = "dynmethods::plot_wishbone"
   )
 }
 
@@ -38,8 +38,6 @@ abstract_wishbone_description <- function(method) {
 #' @param method_name Whether to use "wishbone" and "wanderlust", will influence the branch parameter
 #'
 #' @rdname wishbone
-#'
-#' @include wrapper_create_ti_method.R
 #'
 #' @export
 ti_wishbone <- abstract_wishbone_description("wishbone")
@@ -157,7 +155,7 @@ run_wishbone <- function(
 #' @importFrom viridis scale_colour_viridis
 plot_wishbone <- function(prediction) {
   g <- ggplot() +
-    geom_point(aes(Comp1, Comp2, color = time), prediction$model %>% mutate_at(c("Comp1", "Comp2"), dynutils::scale_minmax)) +
+    geom_point(aes(comp_1, comp_2, color = time), prediction$model %>% mutate_at(c("comp_1", "comp_2"), dynutils::scale_minmax)) +
     viridis::scale_colour_viridis() +
     labs(colour = "Trajectory") +
     theme(legend.position = c(.92, .12))

@@ -8,8 +8,6 @@
 #' @seealso [phenopath::phenopath()], [phenopath::clvm()]
 #'
 #' @export
-#'
-#' @include wrapper_create_ti_method.R
 ti_phenopath <- create_ti_method(
   name = "PhenoPath",
   short_name = "phenopath",
@@ -21,8 +19,8 @@ ti_phenopath <- create_ti_method(
     makeLogicalParam(id = "model_mu", default = FALSE),
     makeLogicalParam(id = "scale_y", default = TRUE)
   ),
-  run_fun = "run_phenopath",
-  plot_fun = "plot_phenopath"
+  run_fun = "dynmethods::run_phenopath",
+  plot_fun = "dynmethods::plot_phenopath"
 )
 
 run_phenopath <- function(
@@ -75,7 +73,7 @@ plot_phenopath <- function(prediction) {
     rownames_to_column("cell_id") %>%
     mutate(pseudotime = prediction$pseudotimes[cell_id])
   g <- ggplot(space) +
-    geom_point(aes(Comp1, Comp2, colour = pseudotime)) +
+    geom_point(aes(comp_1, comp_2, colour = pseudotime)) +
     viridis::scale_colour_viridis() +
     labs(colour = "Pseudotime") +
     theme(legend.position = c(.92, .12))
