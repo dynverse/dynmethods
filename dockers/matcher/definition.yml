@@ -1,0 +1,23 @@
+name: matcher
+parameters:
+  quantiles:
+    description: quantiles How many quantiles to use when computing warp functions (integer)
+    type: integer
+    default: 50
+    lower: 2
+    upper: 500
+  method:
+    description: Gaussian process regression or linear interpolation? ("gp" or "linear)
+    type: discrete
+    values: [gp, linear]
+    default: linear
+input:
+  format: text
+  required:
+    - expression
+  optional:
+    - time
+output:
+  format: text
+  outputs:
+    - linear_trajectory
