@@ -38,15 +38,29 @@ if grouping_assignment is None:
 sc.tl.paga(adata)
 
 # save output
+
+# grouping
 grouping = pd.DataFrame({"cell_id" : expression.index, "group_id":adata.obs.louvain})
 grouping.reset_index(drop=True).to_feather("/output/grouping.feather")
 
+# milestone network
 milestone_network = pd.DataFrame(
-  adata.uns["paga"]["connectivities_tree"].todense(), 
-  index=adata.obs.louvain.cat.categories, 
+  adata.uns["paga"]["connectivities_tree"].todense(),
+  index=adata.obs.louvain.cat.categories,
   columns = adata.obs.louvain.cat.categories
 ).stack().reset_index()
 milestone_network.columns = ["from", "to", "length"]
 milestone_network = milestone_network.query("length > 0")
 milestone_network["directed"] = False
 milestone_network.reset_index(drop=True).to_feather("/output/milestone_network.feather")
+
+# dimred
+dimred = pd.DataFrame([x[0] for x in adata.obsm])
+dimred.columns = ["comp_" + str(i) for i in range(dimred.shape[1])]
+dimred["cell_id"] = expression.index
+dimred.reset_index(drop=True).to_feather("/output/dimred.feather")
+
+# dimred milestones
+dimred["milestone_id"] = adata.obs.louvain.tolist()
+dimred_milestones = dimred.groupby("milestone_id").mean().reset_index()
+dimred_milestones.to_feather("/output/dimred_milestones.feather")
