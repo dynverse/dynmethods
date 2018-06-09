@@ -1,0 +1,39 @@
+name: scimitar
+parameters:
+  covariance_type:
+    type: discrete
+    values: [diag, spherical, full]
+    default: diag
+  degree:
+    type: integer
+    lower: 1
+    upper: 20
+    default: 3
+  step_size:
+    type: numeric
+    lower: 0.01
+    upper: 0.1
+    default: 0.07
+  cov_estimator:
+    type: discrete
+    values: [identity, diag, sample, global, glasso, corpcor, average]
+    default: corpcor
+  cov_reg:
+    type: numeric
+    lower: 0.01
+    upper: 0.1
+    default: 0.05
+  max_iter:
+    type: integer
+    lower: 1
+    upper: 20
+    default: 3
+input:
+  format: text
+  required:
+    - expression
+output:
+  format: text
+  outputs:
+    - linear_trajectory
+

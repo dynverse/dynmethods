@@ -1,0 +1,28 @@
+name: grandprix
+parameters:
+  n_latent_dims:
+    type: integer
+    default: 2
+    lower: 1
+    upper: 10
+  n_inducing_points:
+    type: integer
+    default: 40
+    lower: 10
+    upper: 500
+  latent_prior_var:
+    type: numeric
+    default: 0.1
+  latent_var:
+    type: numeric
+    default: 0.028
+input:
+  format: text
+  required:
+    - expression
+  optional:
+    - time
+output:
+  format: text
+  outputs:
+    - end_state_probabilities

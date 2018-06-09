@@ -1,0 +1,30 @@
+name: paga
+parameters:
+  n_neighbors:
+    description: Number of neighbours for knn
+    type: integer
+    lower: 1
+    upper: 100
+    default: 30
+  n_comps:
+    description: Number of principal components
+    type: integer
+    lower: 0
+    upper: 100
+    default: 50
+  resolution:
+    description: Resolution of louvain clustering, which determines the granularity of the clustering. Higher values will result in more clusters.
+    type: numeric
+    lower: 0.1
+    upper: 10
+    default: 2.5
+input:
+  format: hdf5
+  required:
+    - expression
+  optional:
+    - grouping_assignment
+output:
+  format: feather
+  outputs:
+    - cluster_graph

@@ -1,0 +1,43 @@
+name: topslam
+parameters:
+  n_components:
+    description: the number of components
+    type: integer
+    lower: 2
+    default: 2
+    upper: 10
+  n_neighbors:
+    description: the number of neighbors
+    type: integer
+    lower: 2
+    default: 10
+    upper: 100
+  linear_dims:
+    type: integer
+    lower: 0
+    default: 0
+    upper: 5
+  max_iters:
+    description: the number of iterations to optimize over
+    type: integer
+    lower: 10
+    upper: 10000
+    default: 1000
+    distribution: exponential
+    rate: 0.001
+  dimreds:
+    descriptions: which dimensionality reductions to use; tSNE, PCA, Spectral, Isomap and/or ICA
+    type: logical_vector
+    length: 5
+    default: [true, true, true, true, true]
+input:
+  format: text
+  required:
+    - expression
+    - start_cells
+output:
+  format: text
+  outputs:
+    - linear_trajectory
+    - dimred
+
