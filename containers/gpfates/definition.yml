@@ -1,0 +1,31 @@
+name: gpfates
+parameters:
+  log_expression_cutoff:
+    description: The log expression cutoff
+    type: numeric
+    lower: 0.5
+    upper: 5
+    default: 0.5
+  min_cells_expression_cutoff:
+    description: The min expression cutoff
+    type: numeric
+    lower: 0
+    upper: 20
+    default: 0
+  ndim:
+    description: Number of dimensions for dimensionality reduction
+    type: integer
+    lower: 1
+    upper: 5
+    default: 2
+input:
+  format: text
+  required:
+    - expression
+    - n_end_states
+output:
+  format: text
+  outputs:
+    - trajectory
+    - pseudotime
+    - dimred
