@@ -1,0 +1,60 @@
+name: wishbone
+parameters:
+  normalise:
+    type: logical
+    default: true
+  knn:
+    description: k-nearest neighbours for diffusion
+    type: integer
+    lower: 2
+    default: 15
+    upper: 100
+  n_diffusion_components:
+    description: number of diffusion components
+    type: integer
+    lower: 2
+    default: 2
+    upper: 20
+  n_pca_components:
+    description: number of pca components
+    type: integer
+    lower: 2
+    default: 15
+    upper: 30
+  k:
+    description: k parameter
+    type: integer
+    lower: 2
+    default: 15
+    upper: 100
+  num_waypoints:
+    description: number of waypoints
+    type: integer
+    lower: 2
+    default: 250
+    upper: 500
+  epsilon:
+    description: epsilon
+    type: numeric
+    lower: 0.1
+    default: 1
+    upper: 10
+  branch:
+    description: whether to allow a single bifurcation within the trajectory (wishbone versus wanderlust)
+    type: logical
+    tunable: false
+    default: true
+input:
+  format: text
+  required:
+    - counts
+    - start_cells
+  optional:
+    - marker_feature_ids
+    - n_end_states
+output:
+  format: text
+  outputs:
+    - trajectory
+    - pseudotime
+
