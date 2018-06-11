@@ -1,44 +1,20 @@
-#' Inferring trajectories with ouijaflow
-#'
-#' @inherit ti_angle description
-#'
-#' @inheritParams ti_ouija
-#'
+#' Inferring a trajectory inference using [ouijaflow](https://doi.org/10.1101/060442)
+#' 
+#' Will generate a trajectory using [ouijaflow](https://doi.org/10.1101/060442). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/ouijaflow).
+#' 
+#' The original code of this method is available [here](https://github.com/kieranrcampbell/ouija).
+#' 
+#' The method is described in: [Campbell, K.R., Yau, C., 2016. A descriptive marker gene approach to single-cell pseudotime inference.](https://doi.org/10.1101/060442)
+#' 
+#' @param iter  \cr 
+#'     integer; default: 1000L; possible values between 2 and 50000
+#' 
+#' @return The trajectory model
 #' @export
-ti_ouijaflow <- create_ti_method(
-  name = "ouijaflow",
-  short_name = "ouijaflow",
-  package_required = c("ouijaflow"),
-  package_loaded = c(),
-  par_set = makeParamSet(
-    makeNumericParam(id = "iter", lower = log(2), default = log(1000), upper = log(50000), trafo = function(x) round(exp(x)))
-  ),
-  run_fun = "dynmethods::run_ouijaflow",
-  plot_fun = "dynmethods::plot_ouijaflow"
-)
-
-run_ouijaflow <- function(
-  expression,
-  iter = 1000
+ti_ouijaflow <- function(
+    iter = 1000L
 ) {
-  # TIMING: done with preproc
-  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
-
-  # run ouijaflow
-  pseudotime <- ouijaflow::ouijaflow(expression, iter = iter)
-
-  # TIMING: done with method
-  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
-
-  wrap_prediction_model(
-    cell_ids = rownames(expression)
-  ) %>% add_linear_trajectory(
-    pseudotime = pseudotime %>% setNames(rownames(expression))
-  ) %>% add_timings(
-    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
-  )
-}
-
-plot_ouijaflow <- function(prediction) {
-  # TODO
+  args <- as.list(environment())
+  method <- create_docker_ti_method('dynverse/ouijaflow')
+  do.call(method, args)
 }

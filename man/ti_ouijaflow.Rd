@@ -2,13 +2,22 @@
 % Please edit documentation in R/ti_ouijaflow.R
 \name{ti_ouijaflow}
 \alias{ti_ouijaflow}
-\title{Inferring trajectories with ouijaflow}
+\title{Inferring a trajectory inference using \href{https://doi.org/10.1101/060442}{ouijaflow}}
 \usage{
-ti_ouijaflow(iter = 1000)
+ti_ouijaflow(iter = 1000L)
 }
 \arguments{
-\item{iter}{Number of iterations}
+\item{iter}{\cr
+integer; default: 1000L; possible values between 2 and 50000}
+}
+\value{
+The trajectory model
 }
 \description{
-Inferring trajectories with ouijaflow
+Will generate a trajectory using \href{https://doi.org/10.1101/060442}{ouijaflow}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/ouijaflow}{container}.
+}
+\details{
+The original code of this method is available \href{https://github.com/kieranrcampbell/ouija}{here}.
+
+The method is described in: \href{https://doi.org/10.1101/060442}{Campbell, K.R., Yau, C., 2016. A descriptive marker gene approach to single-cell pseudotime inference.}
 }

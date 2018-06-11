@@ -2,15 +2,25 @@
 % Please edit documentation in R/ti_matcher.R
 \name{ti_matcher}
 \alias{ti_matcher}
-\title{Inferring trajectories with MATCHER}
+\title{Inferring a trajectory inference using \href{https://doi.org/10.1186/s13059-017-1269-0}{matcher}}
 \usage{
 ti_matcher(quantiles = 50L, method = "linear")
 }
 \arguments{
-\item{quantiles}{How many quantiles to use when computing warp functions (integer)}
+\item{quantiles}{Quantiles How many quantiles to use when computing warp functions (integer) \cr
+integer; default: 50L; possible values between 2 and 500}
 
-\item{method}{Gaussian process regression or linear interpolation? ("gp" or "linear)}
+\item{method}{Gaussian process regression or linear interpolation? ("gp" or "linear) \cr
+discrete; default: "linear"; possible values: gp, linear}
+}
+\value{
+The trajectory model
 }
 \description{
-Inferring trajectories with MATCHER
+Will generate a trajectory using \href{https://doi.org/10.1186/s13059-017-1269-0}{matcher}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/matcher}{container}.
+}
+\details{
+The original code of this method is available \href{https://github.com/jw156605/MATCHER}{here}.
+
+The method is described in: \href{https://doi.org/10.1186/s13059-017-1269-0}{Welch, J.D., Hartemink, A.J., Prins, J.F., 2017. MATCHER: manifold alignment reveals correspondence between single cell transcriptome and epigenome dynamics. Genome Biology 18.}
 }

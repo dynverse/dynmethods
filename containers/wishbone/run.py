@@ -10,7 +10,7 @@ import pandas as pd
 p = json.load(open("/input/params.json", "r"))
 
 # get start cell(s)
-start_cell_id = json.load(open("/input/start_cells.json"))[0]
+start_cell = json.load(open("/input/start_cells.json"))[0]
 
 # get markers if given
 if os.path.exists("/input/marker_feature_ids.json"):
@@ -38,7 +38,7 @@ if p["num_waypoints"] > scdata.data.shape[0]:
 
 # run wishbone
 wb = wishbone.wb.Wishbone(scdata)
-wb.run_wishbone(start_cell=start_cell_id, components_list=list(range(p["n_diffusion_components"])), num_waypoints=int(p["num_waypoints"]), branch=branch, k=p["k"])
+wb.run_wishbone(start_cell=start_cell, components_list=list(range(p["n_diffusion_components"])), num_waypoints=int(p["num_waypoints"]), branch=branch, k=p["k"])
 
 
 #   ____________________________________________________________________________
@@ -67,3 +67,8 @@ milestone_network.to_csv("/output/milestone_network.csv", index=False)
 pseudotime = wb.trajectory.reset_index()
 pseudotime.columns = ["cell_id", "pseudotime"]
 pseudotime.to_csv("/output/pseudotime.csv", index=False)
+
+# dimred
+dimred = wb.scdata.diffusion_eigenvectors
+dimred.index.name = "cell_id"
+dimred.reset_index().to_csv("/output/dimred.csv", index=False)
