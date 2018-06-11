@@ -29,10 +29,7 @@ do not fit them well. If \code{TRUE}, shared cells with a distance to one
 lineage above the 90th percentile and another below the 50th will be
 dropped from the further lineage.}
 
-\item{thresh}{numeric, determines the convergence criterion. Percent change
-in the total distance from cells to their projections along curves must be
-less than \code{thresh}. Default is \code{0.001}, similar to 
-\code{\link{principal.curve}}.}
+\item{thresh}{numeric, determines the convergence criterion. Percent change in the total distance from cells to their projections along curves must be less than thresh. Default is 0.001, similar to principal.curve.}
 
 \item{maxit}{numeric, maximum number of iterations, see principal.curve.}
 
@@ -44,8 +41,6 @@ less than \code{thresh}. Default is \code{0.001}, similar to
 amount of shrinkage for a branching lineage. Accepted values are the same
 as for \code{kernel} in \code{\link{density}} (default is \code{"cosine"}),
 as well as \code{"tricube"} and \code{"density"}. See 'Details' for more.}
-
-\item{tresh}{numeric, determines the convergence criterion. Percent change in the total distance from cells to their projections along curves must be less than thresh. Default is 0.001, similar to principal.curve.}
 }
 \description{
 Inferring trajectories with Slingshot
