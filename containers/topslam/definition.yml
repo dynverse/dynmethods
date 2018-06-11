@@ -40,4 +40,4 @@ output:
   outputs:
     - linear_trajectory
     - dimred
-
+    - timings

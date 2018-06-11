@@ -29,3 +29,4 @@ output:
   outputs:
     - cluster_graph
     - dimred
+    - timings

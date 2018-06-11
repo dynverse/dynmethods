@@ -88,3 +88,4 @@ output:
   outputs:
     - cell_graph
     - dimred
+    - timings

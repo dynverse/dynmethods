@@ -11,11 +11,21 @@ import topslam
 from topslam.optimization import run_methods, create_model, optimize_model
 from topslam import ManifoldCorrectionTree
 
-# load data
+import time
+checkpoints = {}
+
+
+#   ____________________________________________________________________________
+#   Load data                                                               ####
+
 expression = pd.read_csv("/input/expression.csv", index_col=[0])
 p = json.load(open("/input/params.json", "r"))
 start_cells = json.load(open("/input/start_cells.json"))
 
+checkpoints["method_afterpreproc"] = time.time()
+
+#   ____________________________________________________________________________
+#   Infer trajectory                                                        ####
 # run topslam
 from sklearn.manifold import TSNE, LocallyLinearEmbedding, SpectralEmbedding, Isomap
 from sklearn.decomposition import FastICA, PCA
@@ -33,26 +43,25 @@ method_names = sorted(methods.keys())
 method_names_selected = [method_names[i] for i, selected in enumerate(p["dimreds"]) if selected]
 methods = {method_name:method for method_name, method in methods.iteritems() if method_name in method_names_selected}
 
-print("Dimensionality reduction")
-
+# dimensionality reduction
 X_init, dims = run_methods(expression, methods)
 
-print("Modelling")
+# model expression
 m = create_model(expression, X_init, linear_dims=p["linear_dims"])
 m.optimize(messages=1, max_iters=p["max_iters"])
 
-print("Manifold correction")
-
+# manifold correction
 m_topslam = ManifoldCorrectionTree(m)
 start_cell_ix = expression.index.tolist().index(start_cells[0])
 pt_topslam = m_topslam.get_pseudo_time(start=start_cell_ix, estimate_direction=True)
 
-# also export landscape for plotting later
-
-print("Calculating landscape")
+# calculate landscape
 landscape = topslam.landscape.waddington_landscape(m, resolution=100, xmargin=(0.5, 0.5), ymargin=(0.5, 0.5))
 
-print("Saving")
+checkpoints["method_aftermethod"] = time.time()
+
+#   ____________________________________________________________________________
+#   Process & save output                                                   ####
 pseudotime = pd.DataFrame({
   "cell_id": expression.index,
   "pseudotime": pt_topslam
@@ -63,3 +72,6 @@ pd.DataFrame(landscape[1], columns=["energy"]).to_csv("/output/wad_energy.csv", 
 dimred = pd.DataFrame(landscape[2], columns=["comp_" + str(i+1) for i in range(landscape[2].shape[1])])
 dimred["cell_id"] = expression.index
 dimred.to_csv("/output/dimred.csv", index=False)
+
+# timings
+json.dump(checkpoints, open("/output/timings.json", "w"))

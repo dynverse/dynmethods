@@ -26,3 +26,4 @@ output:
   format: text
   outputs:
     - end_state_probabilities
+    - timings

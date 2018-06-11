@@ -3,6 +3,7 @@ library(dplyr)
 library(purrr)
 library(readr)
 
+checkpoints <- list()
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
@@ -12,6 +13,7 @@ expression <- data$expression
 
 params <- jsonlite::read_json("/input/params.json")
 
+checkpoints$method_afterpreproc <- as.numeric(Sys.time())
 
 #   ____________________________________________________________________________
 #   Infer the trajectory                                                    ####
@@ -66,6 +68,8 @@ ProjStruct <- project_point_onto_graph(
   Partition = PartStruct$Partition
 )
 
+checkpoints$method_aftermethod <- as.numeric(Sys.time())
+
 #   ____________________________________________________________________________
 #   Process & save the model                                               ####
 milestone_network <- ProjStruct$Edges %>%
@@ -80,3 +84,5 @@ progressions <- tibble(cell_id = rownames(expression), edge_id = ProjStruct$Edge
 
 write_csv(milestone_network, "/output/milestone_network.csv")
 write_csv(progressions, "/output/progressions.csv")
+
+jsonlite::write_json(checkpoints, "/output/timings.json")

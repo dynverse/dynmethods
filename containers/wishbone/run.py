@@ -4,6 +4,9 @@ import sys
 import json
 import pandas as pd
 
+import time
+checkpoints = {}
+
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
@@ -24,6 +27,7 @@ if os.path.exists("/input/n_end_states.json"):
 else:
   branch = p["branch"]
 
+checkpoints["method_afterpreproc"] = time.time()
 
 #   ____________________________________________________________________________
 #   Create trajectory                                                       ####
@@ -40,6 +44,7 @@ if p["num_waypoints"] > scdata.data.shape[0]:
 wb = wishbone.wb.Wishbone(scdata)
 wb.run_wishbone(start_cell=start_cell, components_list=list(range(p["n_diffusion_components"])), num_waypoints=int(p["num_waypoints"]), branch=branch, k=p["k"])
 
+checkpoints["method_aftermethod"] = time.time()
 
 #   ____________________________________________________________________________
 #   Process output & save                                                   ####
@@ -72,3 +77,6 @@ pseudotime.to_csv("/output/pseudotime.csv", index=False)
 dimred = wb.scdata.diffusion_eigenvectors
 dimred.index.name = "cell_id"
 dimred.reset_index().to_csv("/output/dimred.csv", index=False)
+
+# timings
+json.dump(checkpoints, open("/output/timings.json", "w"))
