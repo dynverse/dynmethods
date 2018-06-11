@@ -148,6 +148,24 @@ for (method_id in method_ids) {
     sep="\n"
   )
 
+  # add extra functions (eg. plot_fun) found in the previous R file to the bottom of the file
+  # only do this if the identifier "#------------------" is found
+  old_file <- read_lines(glue::glue("R/ti_{method_id}.R"))
+  cutoff <- old_file %>%
+    str_detect("#------------------") %>%
+    which %>%
+    first()
+
+  if (!is.na(cutoff)) {
+    file <- paste(
+      file,
+      "\n\n\n",
+      old_file[cutoff:length(old_file)] %>% glue::collapse("\n"),
+      sep = "\n"
+    )
+  }
+
+
   write_file(file, glue::glue("R/ti_{method_id}.R"))
 }
 
