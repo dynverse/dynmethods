@@ -1,0 +1,90 @@
+name: CellRouter
+short_name: cellrouter
+parameters:
+  ndim_pca:
+    description: Number of principlal components to compute
+    type: integer
+    default: 20
+    lower: 2
+    upper: 100
+  ndim_tsne:
+    description: Number of tsne dimensions to compute
+    type: integer
+    default: 11
+    lower: 2
+    upper: 100
+  max_iter:
+    description: Maximal number of tsne iterations
+    type: integer
+    default: 1000
+    lower: 100
+    upper: 100000
+  cluster_method:
+    description: Method to use for clustering
+    type: discrete
+    values: [graph.clustering, model.clustering]
+    default: graph.clustering
+  k_clustering:
+    description: number of nearest neighbors to build a k-nearest neighbors graph for clustering
+    type: integer
+    default: 20
+    lower: 2
+    upper: 1000
+  ndim_pca_clustering:
+    description: number of PCA dimensions used for k-nearest neighbors graph for clustering
+    type: integer
+    default: 20
+    lower: 2
+    upper: 100
+  k_knn:
+    description: number of nearest neighbors to build a k-nearest neighbors graph for knn
+    type: integer
+    default: 10
+    lower: 2
+    upper: 1000
+  ndim_pca_knn:
+    description: number of PCA dimensions used for knn
+    type: integer
+    default: 20
+    lower: 2
+    upper: 100
+  sim_type:
+    description: similarity type for knn
+    type: discrete
+    default: jaccard
+    values: [jaccard]
+    tunable: false
+  distance_method_paths:
+    description: distance method for paths
+    type: discrete
+    default: graph
+    values: [euclidean, maximum, manhattan, canberra, binary, graph]
+  ranks:
+    description: how to rank the paths
+    type: discrete
+    default: rank
+    values: [path_cost, path_flow, rank, length]
+  num_cells:
+    description: trajectories should contain at least num.cells
+    type: integer
+    default: 3
+    lower: 3
+    upper: 100
+  neighs:
+    description: the size of the neighborhood in kNN graph used to smoothen kinetic profiles
+    type: integer
+    lower: 2
+    upper: 100
+    default: 3
+input:
+  format: rds
+  required:
+    - counts
+    - start_cells
+  optional:
+    - grouping_assignment
+output:
+  format: feather
+  outputs:
+    - cell_graph
+    - dimred
