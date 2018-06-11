@@ -5,9 +5,9 @@
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1038/s41467-018-03214-y}{CellRouter}}
 \usage{
 ti_cellrouter(ndim_pca = 20, ndim_tsne = 11, max_iter = 1000,
-  cluster_method = graph.clustering, k_clustering = 20,
+  cluster_method = "graph.clustering", k_clustering = 20,
   ndim_pca_clustering = 20, k_knn = 10, ndim_pca_knn = 20,
-  sim_type = jaccard, distance_method_paths = graph, ranks = rank,
+  sim_type = "jaccard", distance_method_paths = "graph", ranks = "rank",
   num_cells = 3, neighs = 3)
 }
 \arguments{
