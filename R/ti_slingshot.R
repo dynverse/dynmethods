@@ -5,6 +5,10 @@
 #' @param nclus Number of clusters
 #' @param dimred A character vector specifying which dimensionality reduction method to use.
 #'   See [dyndimred::dimred] for the list of available dimensionality reduction methods.
+#' @param tresh numeric, determines the convergence criterion. Percent change in the total distance from cells to their projections along curves must be less than thresh. Default is 0.001, similar to principal.curve.
+#' @param maxit numeric, maximum number of iterations, see principal.curve.
+#' @param stretch numeric factor by which curves can be extrapolated beyond endpoints. Default is 2, see principal.curve.
+#' @param smoother choice of scatter plot smoother. Same as principal.curve, but "lowess" option is replaced with "loess" for additional flexibility.
 #' @inheritParams dyndimred::dimred
 #' @inheritParams slingshot::slingshot
 #'

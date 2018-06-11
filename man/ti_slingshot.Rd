@@ -34,20 +34,18 @@ in the total distance from cells to their projections along curves must be
 less than \code{thresh}. Default is \code{0.001}, similar to 
 \code{\link{principal.curve}}.}
 
-\item{maxit}{numeric, maximum number of iterations, see 
-\code{\link{principal.curve}}.}
+\item{maxit}{numeric, maximum number of iterations, see principal.curve.}
 
-\item{stretch}{numeric factor by which curves can be extrapolated beyond 
-endpoints. Default is \code{2}, see \code{\link{principal.curve}}.}
+\item{stretch}{numeric factor by which curves can be extrapolated beyond endpoints. Default is 2, see principal.curve.}
 
-\item{smoother}{choice of scatter plot smoother. Same as 
-\code{\link{principal.curve}}, but \code{"lowess"} option is replaced with 
-\code{"loess"} for additional flexibility.}
+\item{smoother}{choice of scatter plot smoother. Same as principal.curve, but "lowess" option is replaced with "loess" for additional flexibility.}
 
 \item{shrink.method}{character denoting how to determine the appropriate
 amount of shrinkage for a branching lineage. Accepted values are the same
 as for \code{kernel} in \code{\link{density}} (default is \code{"cosine"}),
 as well as \code{"tricube"} and \code{"density"}. See 'Details' for more.}
+
+\item{tresh}{numeric, determines the convergence criterion. Percent change in the total distance from cells to their projections along curves must be less than thresh. Default is 0.001, similar to principal.curve.}
 }
 \description{
 Inferring trajectories with Slingshot
