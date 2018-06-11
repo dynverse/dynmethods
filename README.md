@@ -5,9 +5,11 @@
 dynmethods
 ==========
 
-This package contains wrappers for all of the trajectory inference methods included in the [dynverse](https://www.github.com/dynverse/dynverse) review. These wrappers contain code to translate the data structures produced by any of the methods to the common trajectory model (Fig. 1b in [manuscript](https://www.biorxiv.org/content/early/2018/03/05/276907)). The output of each method is transformed into a common trajectory model using [dynwrap](https://www.github.com/dynverse/dynwrap).
+This package contains wrappers for all of the trajectory inference methods included in the [dynverse](https://www.github.com/dynverse/dynverse) review. The output of each method is transformed into a common trajectory model using [dynwrap](https://www.github.com/dynverse/dynwrap).
 
-Some methods are directly implemented & wrapped inside of R. Other methods, primarily those implemented in python or other languages are wrapped inside a docker container to avoid dependency issues.
+Some methods are directly implemented & wrapped inside of R. Other methods, primarily those implemented in python or other languages are wrapped inside a docker container.
+
+To include your own method, feel free to send us a [pull request](https://github.com/dynverse/dynmethods/pulls) or create an [issue](https://github.com/dynverse/dynmethods/issues).
 
 Currently implemented are the following wrappers:
 
