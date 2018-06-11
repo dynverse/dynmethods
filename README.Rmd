@@ -11,8 +11,9 @@ editor_options:
 # dynmethods
 This package contains wrappers for all of the trajectory inference methods included in the [dynverse](https://www.github.com/dynverse/dynverse) review. 
 These wrappers contain code to translate the data structures produced by any of the methods to the common trajectory model (Fig. 1b in [manuscript](https://www.biorxiv.org/content/early/2018/03/05/276907)). 
-There are several common post-processing functions provided by the [dynwrap](https://www.github.com/dynverse/dynwrap) package 
-(Supp. Fig. 19b in [manuscript](https://www.biorxiv.org/content/early/2018/03/05/276907)), which the different wrappers are allowed to make use of.
+The output of each method is transformed into a common trajectory model using [dynwrap](https://www.github.com/dynverse/dynwrap).
+
+Some methods are directly implemented & wrapped inside of R. Other methods, primarily those implemented in python or other languages are wrapped inside a docker container to avoid dependency issues.
 
 Currently implemented are the following wrappers:
 
@@ -20,35 +21,18 @@ Currently implemented are the following wrappers:
 library(tidyverse)
 library(dynmethods)
 
-df <- list.files("R", pattern = "ti_", full.names = T) %>% 
-  map_df(function(file) {
-    file_text <- readr::read_lines(file)
-    
-    line_numbers <- which(str_detect(file_text, "^ti_[ a-zA-Z]*<-"))
-    descr_funs <- str_replace(file_text[line_numbers], "(ti_[a-zA-Z]*) <-.*", "\\1")
-    ti_methods <- map(descr_funs, ~ do.call(., args = list(), envir = asNamespace("dynmethods")))
-    long_names <- map_chr(ti_methods, ~ .$name)
-    short_names <- map_chr(ti_methods, ~ .$short_name)
-    
-    data_frame(
-      file, 
-      line_number = line_numbers,
-      fun_name = descr_funs,
-      long_name = long_names,
-      short_name = short_names
-    )
-  }) %>% 
-  arrange(long_name) %>% 
-  mutate(
-    code_label = glue::glue("{file}#L{line_number}"),
-    code_url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{code_label}"),
+data("methods", package = "dynmethods")
+
+df <- methods %>% mutate(
+    code_label = wrapper_location,
+    code_url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{wrapper_location}"),
     Code = glue::glue("[{code_label}]({code_url})"),
-    vignette_label = glue::glue("{short_name}.md"),
+    vignette_label = glue::glue("{method_id}.md"),
     vignette_relpath = glue::glue("inst/doc/{vignette_label}"),
     vignette_url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{vignette_relpath}"),
-    Vignette = ifelse(file.exists(vignette_relpath), glue::glue("[{vignette_label}]({vignette_url})"), "")
+    Vignette = ifelse(file.exists(vignette_relpath), glue::glue("[{vignette_label}]({vignette_url})"), ""),
+    Containerised = ifelse(containerised, glue::glue("[Yes]({dockerhub_location})"), "")
   )
-
-knitr::kable(df %>% select(Name = long_name, Code, Vignette))
+knitr::kable(df %>% select(Name = method_name, Code, Vignette, Containerised))
 
 ```
