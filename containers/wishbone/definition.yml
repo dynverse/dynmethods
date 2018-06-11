@@ -57,4 +57,5 @@ output:
   outputs:
     - trajectory
     - pseudotime
+    - dimred
 
