@@ -4,6 +4,9 @@ import json
 import sys
 from GPfates import GPfates
 
+import time
+checkpoints = {}
+
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 p = json.load(open("/input/params.json", "r"))
@@ -13,6 +16,8 @@ expression = expression[(expression > p["log_expression_cutoff"]).sum(1) >= p["m
 
 if expression.shape[0] == 0:
   raise ValueError("Expression preprocessing filtered out all cells")
+
+checkpoints["method_afterpreproc"] = time.time()
 
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
@@ -28,6 +33,8 @@ m.infer_pseudotime(s_columns=["bgplvm_" + str(i) for i in range(p["ndim"])]) # u
 
 # model different fates
 m.model_fates(C=n_end_states)
+
+checkpoints["method_aftermethod"] = time.time()
 
 #   ____________________________________________________________________________
 #   Process and save output                                                 ####
@@ -65,3 +72,6 @@ divergence_regions = pd.DataFrame({
   "is_start": [True] + [False for i in range(n_end_states)]
 })
 divergence_regions.to_csv("/output/divergence_regions.csv", index=False)
+
+# timings
+json.dump(checkpoints, open("/output/timings.json", "w"))

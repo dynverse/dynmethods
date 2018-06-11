@@ -6,6 +6,8 @@ library(tibble)
 library(igraph)
 source("/cellrouter/CellRouter_Class.R")
 
+checkpoints <- list()
+
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
@@ -16,6 +18,7 @@ start_cells <- data$start_cells
 
 p <- jsonlite::read_json("/input/params.json")
 
+checkpoints$method_afterpreproc <- as.numeric(Sys.time())
 
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
@@ -62,6 +65,7 @@ cellrouter <- processTrajectories(
   column.color = 'colors'
 )
 
+checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
 #   ____________________________________________________________________________
 #   Process cell graph                                                      ####
@@ -106,3 +110,6 @@ dimred <- cellrouter@tsne %>% as.data.frame() %>% rownames_to_column("cell_id")
 write_feather(cell_graph, "/output/cell_graph.feather")
 write_feather(tibble(to_keep=to_keep), "/output/to_keep.feather")
 write_feather(dimred, "/output/dimred.feather")
+
+# timings
+write_feather(enframe(checkpoints, "checkpoint", "time"), "/output/timings.feather")

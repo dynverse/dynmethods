@@ -6,7 +6,12 @@ import json
 import scanpy.api as sc
 import anndata
 
-# load data
+import time
+checkpoints = {}
+
+
+#   ____________________________________________________________________________
+#   Load data                                                               ####
 data = h5py.File("/input/data.h5", "r")
 expression = pd.DataFrame(data['expression'][:].T, index=data['expression'].attrs['rownames'].astype(np.str))
 data.close()
@@ -26,6 +31,10 @@ if grouping_assignment is not None:
 else:
   adata = anndata.AnnData(expression.values)
 
+checkpoints["method_afterpreproc"] = time.time()
+
+#   ____________________________________________________________________________
+#   Infer trajectory                                                        ####
 # do neighbors and pca
 sc.pp.neighbors(adata, n_neighbors = params["n_neighbors"])
 sc.tl.pca(adata, n_comps = params["n_comps"])
@@ -37,8 +46,10 @@ if grouping_assignment is None:
 # run paga
 sc.tl.paga(adata)
 
-# save output
+checkpoints["method_aftermethod"] = time.time()
 
+#   ____________________________________________________________________________
+#   Process & save output                                                   ####
 # grouping
 grouping = pd.DataFrame({"cell_id" : expression.index, "group_id":adata.obs.louvain})
 grouping.reset_index(drop=True).to_feather("/output/grouping.feather")
@@ -64,3 +75,9 @@ dimred.reset_index(drop=True).to_feather("/output/dimred.feather")
 dimred["milestone_id"] = adata.obs.louvain.tolist()
 dimred_milestones = dimred.groupby("milestone_id").mean().reset_index()
 dimred_milestones.to_feather("/output/dimred_milestones.feather")
+
+# timings
+timings = pd.Series(checkpoints)
+timings.index.name = "name"
+timings.name = "timings"
+timings.reset_index().to_feather("/output/timings.feather")

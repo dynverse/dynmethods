@@ -4,11 +4,18 @@ import json
 import scimitar.models
 import scimitar.morphing_mixture as mm
 
-# load data
+import time
+checkpoints = {}
+
+#   ____________________________________________________________________________
+#   Load data                                                               ####
 expression = pd.read_csv("/input/expression.csv", index_col=[0])
 p = json.load(open("/input/params.json", "r"))
 
-# run scimitar
+checkpoints["method_afterpreproc"] = time.time()
+
+#   ____________________________________________________________________________
+#   Infer trajectory                                                        ####
 transition_model, pseudotimes = mm.morphing_gaussian_from_embedding(
   expression.values,
   fit_type='spline',
@@ -26,9 +33,16 @@ refined_transition_model, refined_pseudotimes = transition_model.refine(
   cov_reg=p["cov_reg"]
 )
 
-# extract pseudotime
+checkpoints["method_aftermethod"] = time.time()
+
+#   ____________________________________________________________________________
+#   Save output                                                             ####
+
 pseudotime = pd.DataFrame({
   "cell_id": expression.index,
   "pseudotime": refined_pseudotimes
 })
 pseudotime.to_csv("/output/pseudotime.csv", index=False)
+
+# timings
+json.dump(checkpoints, open("/output/timings.json", "w"))

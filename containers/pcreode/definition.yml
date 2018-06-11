@@ -33,4 +33,5 @@ input:
 output:
   format: text
   outputs:
-    - cell_graph
+    - dimred_projection
+    - timings

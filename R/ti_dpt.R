@@ -19,6 +19,7 @@
 #'     \item{cosine distance (1-corr(c_1, c_2)), or}
 #'     \item{rank correlation distance (1-corr(rank(c_1), rank(c_2)))}
 #'   }
+#' @importFrom reshape2 melt
 #' @export
 ti_dpt <- create_ti_method(
   name = "DPT",
@@ -35,12 +36,7 @@ ti_dpt <- create_ti_method(
     makeNumericParam(id = "w_width", lower = -4, upper = 0, default = log(.1), trafo = exp),
     forbidden = quote(n_local_lower > n_local_upper)
   ),
-  run_fun = run_dpt,
-  plot_fun = plot_dpt
-)
-
-#' @importFrom reshape2 melt
-run_dpt <- function(
+  run_fun = function(
   expression,
   start_cells = NULL,
   marker_feature_ids = NULL,
@@ -125,9 +121,8 @@ run_dpt <- function(
   ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
-}
-
-plot_dpt <- function(prediction) {
+},
+  plot_fun = function(prediction) {
   # based on destiny::plot.DPT(prediction$dpt, col_by = "branch")
 
   palette <- c("#8DD3C7", "#FFED6F", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#BC80BD", "#FCCDE5", "gray85", "#CCEBC5", "#FFFFB3")
@@ -149,4 +144,4 @@ plot_dpt <- function(prediction) {
     theme(legend.position = c(0.9, 0.1))
   process_dynplot(g, prediction$id)
 }
-
+)

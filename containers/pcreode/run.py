@@ -5,10 +5,18 @@ import os
 
 import pcreode
 
-# load data
+import time
+checkpoints = {}
+
+#   ____________________________________________________________________________
+#   Load data                                                               ####
 expression = pd.read_csv("/input/expression.csv", index_col=[0])
 params = json.load(open("/input/params.json", "r"))
 
+checkpoints["method_afterpreproc"] = time.time()
+
+#   ____________________________________________________________________________
+#   Infer trajectory                                                        ####
 # pCreode using https://github.com/KenLauLab/pCreode/blob/master/notebooks/pCreode_tutorial.ipynb
 
 # preprocess using pca
@@ -28,17 +36,17 @@ downed, downed_ind = pcreode.Down_Sample(pca_reduced_data, density, params["nois
 out_graph, out_ids = pcreode.pCreode(
   data = pca_reduced_data,
   density = density,
-  noise = params["noise"], 
-  target = params["target"], 
-  file_path = "/.", 
+  noise = params["noise"],
+  target = params["target"],
+  file_path = "/.",
   num_runs = params["num_runs"]
 )
 
 # score graphs
 # Wrapper's note: There is currently no way of extracting the best graph ordering, even though it is printed. Will select random graph.
 pcreode.pCreode_Scoring(
-  data = pca_reduced_data, 
-  file_path = "/.", 
+  data = pca_reduced_data,
+  file_path = "/.",
   num_graphs = params["num_runs"]
 )
 
@@ -49,13 +57,17 @@ gid = np.random.choice(range(params["num_runs"]), 1)[0]
 # the only thing that is available is a cell graph of only a subset of cells
 # so we use this cell graph as milestone network, and then project all cells onto this
 analysis = pcreode.Analysis(
-  file_path="/.", 
-  graph_id=gid, 
-  data=pca_reduced_data, 
-  density=density, 
+  file_path="/.",
+  graph_id=gid,
+  data=pca_reduced_data,
+  density=density,
   noise=params["noise"]
 )
 
+checkpoints["method_aftermethod"] = time.time()
+
+#   ____________________________________________________________________________
+#   Save output                                                             ####
 # save dimred
 dimred = pd.DataFrame(pca_reduced_data)
 dimred["cell_id"] = expression.index
@@ -89,3 +101,6 @@ dimred_milestones.to_csv("/output/dimred_milestones.csv", index=False)
 milestone_network["from"] = ["MILESTONE_" + cell_id for cell_id in milestone_network["from"]]
 milestone_network["to"] = ["MILESTONE_" + cell_id for cell_id in milestone_network["to"]]
 milestone_network.to_csv("/output/milestone_network.csv", index = False)
+
+# timings
+json.dump(checkpoints, open("/output/timings.json", "w"))

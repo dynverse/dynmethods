@@ -5,7 +5,13 @@ import numpy as np
 import os
 import pandas as pd
 
-# load data
+import time
+checkpoints = {}
+
+
+#   ____________________________________________________________________________
+#   Load data                                                               ####
+
 expression = pd.read_csv("/input/expression.csv", index_col=[0])
 p = json.load(open("/input/params.json", "r"))
 
@@ -17,7 +23,10 @@ else:
 
 expression.T.to_csv("/input/expression.tsv", sep="\t")
 
-# run scuba
+checkpoints["method_afterpreproc"] = time.time()
+
+#   ____________________________________________________________________________
+#   Infer trajectory                                                        ####
 cell_IDs, data, markers, cell_stages, data_tag, output_directory = PySCUBA.Preprocessing.RNASeq_preprocess(
   "/input/expression.tsv",
   pseudotime_mode=True,
@@ -41,7 +50,10 @@ centroid_coordinates, cluster_indices, parent_clusters, new_tree = PySCUBA.refin
   cell_stages,
   output_directory="/tmp")
 
-# process and save
+checkpoints["method_aftermethod"] = time.time()
+
+#   ____________________________________________________________________________
+#   Process & save output                                                   ####
 # grouping
 grouping = pd.DataFrame({
   "cell_id":expression.index,
@@ -58,3 +70,5 @@ milestone_network.to_csv("/output/milestone_network.csv", index=False)
 # extra output
 pd.DataFrame(new_tree[1:], columns = new_tree[0]).to_csv("/output/new_tree.csv")
 
+# timings
+json.dump(checkpoints, open("/output/timings.json", "w"))

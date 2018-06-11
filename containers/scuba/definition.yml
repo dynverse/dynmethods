@@ -43,4 +43,4 @@ output:
   format: text
   outputs:
     - cluster_graph
-
+    - timings

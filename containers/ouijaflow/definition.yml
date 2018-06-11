@@ -16,3 +16,4 @@ output:
   format: text
   outputs:
     - linear_trajectory
+    - timings
