@@ -3,6 +3,9 @@
 library(tidyverse)
 library(googlesheets)
 
+load("data/methods_info.rda")
+load("data/methods_containerised.rda")
+
 # process all method wrappers
 methods_processed <- list.files("R", pattern = "ti_", full.names = T) %>%
   map_df(function(file) {
@@ -21,23 +24,14 @@ methods_processed <- list.files("R", pattern = "ti_", full.names = T) %>%
     )
   })
 
-# load from googlesheets some extra information on the methods
-method_infos <- gs_key("1Mug0yz8BebzWt8cmEW306ie645SBh_tDHwjVw4OFhlE") %>%
-  gs_read(ws = "Methods", skip = 1)
-
-implementation_infos <- gs_key("1Mug0yz8BebzWt8cmEW306ie645SBh_tDHwjVw4OFhlE") %>%
-  gs_read(ws = "Implementations", skip = 1)
-
-method_infos <- left_join(method_infos, implementation_infos, "implementation_id")
-
-if (!all(methods$method_id %in% method_infos$method_id)) {
-  stop("Not all methods found in sheet: \n", setdiff(methods$method_id, method_infos$method_id))
+if (!all(methods_processed$method_id %in% methods_info$method_id)) {
+  stop("Not all methods found in sheet: \n", setdiff(methods_processed$method_id, methods_info$method_id))
 }
 
 methods <-
   left_join(
     methods_processed,
-    method_infos %>% select(method_id, method_name, type, DOI, code_location),
+    methods_info %>% select(method_id, method_name, type, DOI, code_location),
     "method_id"
   ) %>%
   left_join(

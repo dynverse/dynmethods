@@ -4,10 +4,15 @@ library(tidyverse)
 library(dynwrap)
 library(googlesheets)
 
+load("data/methods_info.rda")
 
 #   ____________________________________________________________________________
 #   Run & push dockers                                                      ####
 method_ids <- list.dirs("./containers/", full.names = FALSE)[-1]
+
+if (!all(method_ids %in% methods_info$method_id)) {
+  stop("Some methods not in methods_info! \n", setdiff(metho_ids, methods_info$method_id))
+}
 
 # rebuild & push all containers
 rebuild <- FALSE
@@ -16,21 +21,6 @@ if (rebuild) {
     system(str_glue("docker build containers/{method_id} -t dynverse/{method_id}"))
     system(str_glue("docker push dynverse/{method_id}"))
   })
-}
-
-
-#   ____________________________________________________________________________
-#   Load data from google sheet                                             ####
-method_infos <- gs_key("1Mug0yz8BebzWt8cmEW306ie645SBh_tDHwjVw4OFhlE") %>%
-  gs_read(ws = "Methods", skip = 1)
-
-implementation_infos <- gs_key("1Mug0yz8BebzWt8cmEW306ie645SBh_tDHwjVw4OFhlE") %>%
-  gs_read(ws = "Implementations", skip = 1)
-
-method_infos <- left_join(method_infos, implementation_infos, "implementation_id")
-
-if (!all(method_ids %in% method_infos$method_id)) {
-  stop("Not all methods found in sheet: \n", setdiff(method_ids, method_infos$method_id))
 }
 
 
@@ -134,9 +124,9 @@ ti_{method_id} <- function(
 get_method_definition <- function(method_id) {
   definition <- extract_definition_from_docker_image(paste0("dynverse/", method_id), docker_client = stevedore::docker_client())
 
-  if (!method_id %in% method_infos$method_id) {stop(method_id, " not found in google sheet!")}
+  if (!method_id %in% methods_info$method_id) {stop(method_id, " not found in google sheet!")}
 
-  method_info <- method_infos %>% slice(match(!!method_id, method_id)) %>% dynutils::extract_row_to_list(1)
+  method_info <- methods_info %>% slice(match(!!method_id, method_id)) %>% dynutils::extract_row_to_list(1)
 
   definition <- c(definition, method_info)
 
@@ -160,8 +150,6 @@ for (method_id in method_ids) {
 
   write_file(file, glue::glue("R/ti_{method_id}.R"))
 }
-
-
 
 #   ____________________________________________________________________________
 #   Save information on containerised methods                               ####
