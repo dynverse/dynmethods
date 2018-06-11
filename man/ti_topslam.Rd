@@ -2,23 +2,34 @@
 % Please edit documentation in R/ti_topslam.R
 \name{ti_topslam}
 \alias{ti_topslam}
-\title{Inferring trajectories with topslam}
+\title{Inferring a trajectory inference using \href{https://doi.org/10.1101/057778}{topslam}}
 \usage{
 ti_topslam(n_components = 2L, n_neighbors = 10L, linear_dims = 0L,
-  max_iters = 1000, dimreds = c(TRUE, TRUE, TRUE, TRUE, TRUE))
+  max_iters = 1000L, dimreds = c(TRUE, TRUE, TRUE, TRUE, TRUE))
 }
 \arguments{
-\item{n_components}{the number of components}
+\item{n_components}{The number of components \cr
+integer; default: 2L; possible values between 2 and 10}
 
-\item{n_neighbors}{the number of neighbors}
+\item{n_neighbors}{The number of neighbors \cr
+integer; default: 10L; possible values between 2 and 100}
 
-\item{linear_dims}{?}
+\item{linear_dims}{\cr
+integer; default: 0L; possible values between 0 and 5}
 
-\item{max_iters}{the number of iterations to optimize over}
+\item{max_iters}{The number of iterations to optimize over \cr
+integer; default: 1000L; possible values between 10 and 10000}
 
-\item{dimreds}{A character vector specifying which dimensionality reduction methods to use.
-See \code{\link[dyndimred:dimred]{dyndimred::dimred()}} for the list of available dimensionality reduction methods.}
+\item{dimreds}{Which dimensionality reductions to use; tSNE, PCA, Spectral, Isomap and/or ICA \cr}
+}
+\value{
+The trajectory model
 }
 \description{
-Inferring trajectories with topslam
+Will generate a trajectory using \href{https://doi.org/10.1101/057778}{topslam}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/topslam}{container}.
+}
+\details{
+The original code of this method is available \href{https://github.com/mzwiessele/topslam}{here}.
+
+The method is described in: \href{https://doi.org/10.1101/057778}{Zwiessele, M., Lawrence, N.D., 2016. Topslam: Waddington Landscape Recovery for Single Cell Experiments.}
 }

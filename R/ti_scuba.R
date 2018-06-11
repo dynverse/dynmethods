@@ -1,134 +1,34 @@
-#' Inferring trajectories with SCUBA
-#'
-#' @inherit ti_angle description
-#'
-#' @param rigorous_gap_stats Whether to use rigorous gap statistics to determine number of clusters
-#' @param N_dim Number of TSNE dimensions
-#' @param low_gene_threshold Threshold value for genes of low expression levels
-#' @param low_gene_fraction_max Maximum fraction of lowly-expressed cells allowed for each gene
-#' @param min_split Lower threshold on the number of cells in a cluster for this cluster to be split.
-#' @param min_percentage_split Minimum fraction of cells in the smaller cluster during a bifurcation.
-#'
+#' Inferring a trajectory inference using [scuba](https://doi.org/10.1073/pnas.1408993111)
+#' 
+#' Will generate a trajectory using [scuba](https://doi.org/10.1073/pnas.1408993111). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/scuba).
+#' 
+#' The original code of this method is available [here](https://github.com/gcyuan/SCUBA).
+#' 
+#' The method is described in: [Marco, E., Karp, R.L., Guo, G., Robson, P., Hart, A.H., Trippa, L., Yuan, G.-C., 2014. Bifurcation analysis of single-cell gene expression data reveals epigenetic landscape. Proceedings of the National Academy of Sciences 111, E5643–E5650.](https://doi.org/10.1073/pnas.1408993111)
+#' 
+#' @param rigorous_gap_stats Whether to use rigorous gap statistics to determine number of clusters \cr 
+#' @param N_dim Number of TSNE dimensions \cr 
+#'     integer; default: 2L; possible values between 2 and 3
+#' @param low_gene_threshold Threshold value for genes of low expression levels \cr 
+#'     numeric; default: 1L; possible values between 0 and 5
+#' @param low_gene_fraction_max Maximum fraction of lowly-expressed cells allowed for each gene \cr 
+#'     numeric; default: 0.7; possible values between 0 and 1
+#' @param min_split Lower threshold on the number of cells in a cluster for this cluster to be split. \cr 
+#'     integer; default: 15L; possible values between 1 and 100
+#' @param min_percentage_split Minimum fraction of cells in the smaller cluster during a bifurcation. \cr 
+#'     numeric; default: 0.25; possible values between 0 and 1
+#' 
+#' @return The trajectory model
 #' @export
-ti_scuba <- create_ti_method(
-  name = "SCUBA",
-  short_name = "scuba",
-  package_loaded = c(),
-  package_required = c("SCUBA"),
-  par_set = makeParamSet(
-    makeLogicalParam(id = "rigorous_gap_stats", default = TRUE),
-    makeIntegerParam(id = "N_dim", lower = 2L, upper = 3L, default = 2L), # limit to 3, limitation of sklearn tsne
-    makeNumericParam(id = "low_gene_threshold", lower = 0, upper = 5, default = 1),
-    makeNumericParam(id = "low_gene_fraction_max", lower = 0, upper = 1, default = 0.7),
-    makeIntegerParam(id = "min_split", lower=1L, upper = 100L, default = 15L),
-    makeNumericParam(id = "min_percentage_split", lower = 0, upper = 1, default = 0.25)
-  ),
-  run_fun = "dynmethods::run_scuba",
-  plot_fun = "dynmethods::plot_scuba"
-)
-
-
-run_scuba <- function(counts,
-                      timecourse = NULL,
-                      rigorous_gap_stats = TRUE,
-                      N_dim = 2,
-                      low_gene_threshold = 1,
-                      low_gene_fraction_max = 0.7,
-                      min_split = 15,
-                      min_percentage_split = 0.25) {
-  requireNamespace("SCUBA")
-
-  # TIMING: done with preproc
-  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
-
-  # run scuba
-  out <- SCUBA::SCUBA(
-    counts = counts,
-    rigorous_gap_stats = rigorous_gap_stats,
-    N_dim = N_dim,
-    low_gene_threshold = low_gene_threshold,
-    low_gene_fraction_max = low_gene_fraction_max,
-    min_split = min_split,
-    min_percentage_split = min_percentage_split,
-    timecourse = timecourse
-  )
-
-  # TIMING: done with method
-  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
-
-  # get milestones
-  unique_labs <- sort(unique(out$labels))
-  milestone_fun <- function(x) paste0("milestone_", x)
-  milestone_ids <- milestone_fun(unique_labs)
-
-  # construct network
-  milestone_network <- out$new_tree %>%
-    select(from = `Parent cluster`, to = `Cluster ID`) %>%
-    filter(to %in% unique_labs) %>%
-    mutate(
-      from = milestone_fun(from),
-      to = milestone_fun(to),
-      length = 1,
-      directed = TRUE
-    )
-
-  # put cells on edges
-  grouping <- milestone_fun(out$labels) %>% setNames(rownames(counts))
-
-  # return output
-  wrap_prediction_model(
-    cell_ids = rownames(counts)
-  ) %>% add_grouping(
-    group_ids = milestone_ids,
-    grouping = grouping
-  ) %>% add_cluster_graph(
-    milestone_network = milestone_network
-  ) %>% add_timings(
-    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
-  )
-}
-
-#' @importFrom grid arrow
-plot_scuba <- function(prediction) {
-  requireNamespace("igraph")
-
-  #retrieve data
-  cids <- prediction$cell_ids
-  mids <- prediction$milestone_ids
-  mnet <- prediction$milestone_network
-  progs <- prediction$progressions
-
-  # set colours
-  mid_col <- setNames(seq_along(mids), mids)
-
-  # perform dimred on network
-  gr <- igraph::graph_from_data_frame(mnet, vertices = mids)
-  lay <- igraph::layout_as_tree(gr, root = "milestone_0") %>%
-    dynutils::scale_uniform()
-  rownames(lay) <- mids
-  colnames(lay) <- c("x", "y")
-
-  # get clusters of cells
-  labs <- progs %>% mutate(label = ifelse(percentage == 0, from, to)) %>% .$label
-
-  # make plot of clusters
-  mil_df <- data.frame(id = mids, lay)
-  edge_df <- data.frame(
-    mnet,
-    from = lay[mnet$from,],
-    to = lay[mnet$to,]
-  )
-  cel_df <- data.frame(
-    row.names = NULL,
-    id = cids,
-    lab = labs,
-    lay[labs,]
-  )
-
-  g <- ggplot() +
-    geom_jitter(aes(y, x, colour = lab), cel_df, width = .03, height = .03) +
-    geom_segment(aes(x = from.y, xend = to.y, y = from.x, yend = to.x), edge_df, arrow = grid::arrow()) +
-    scale_colour_manual(values = mid_col) +
-    theme(legend.position = "none")
-  process_dynplot(g, prediction$id)
+ti_scuba <- function(
+    rigorous_gap_stats = TRUE,
+    N_dim = 2L,
+    low_gene_threshold = 1L,
+    low_gene_fraction_max = 0.7,
+    min_split = 15L,
+    min_percentage_split = 0.25
+) {
+  args <- as.list(environment())
+  method <- create_docker_ti_method('dynverse/scuba')
+  do.call(method, args)
 }

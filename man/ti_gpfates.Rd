@@ -2,18 +2,29 @@
 % Please edit documentation in R/ti_gpfates.R
 \name{ti_gpfates}
 \alias{ti_gpfates}
-\title{Inferring trajectories with GPfates}
+\title{Inferring a trajectory inference using \href{https://doi.org/10.1126/sciimmunol.aal2192}{gpfates}}
 \usage{
-ti_gpfates(log_expression_cutoff = 2, min_cells_expression_cutoff = 2,
+ti_gpfates(log_expression_cutoff = 0.5, min_cells_expression_cutoff = 0L,
   ndim = 2L)
 }
 \arguments{
-\item{log_expression_cutoff}{The log expression cutoff}
+\item{log_expression_cutoff}{The log expression cutoff \cr
+numeric; default: 0.5; possible values between 0.5 and 5}
 
-\item{min_cells_expression_cutoff}{The min expression cutoff}
+\item{min_cells_expression_cutoff}{The min expression cutoff \cr
+numeric; default: 0L; possible values between 0 and 20}
 
-\item{ndim}{The number of dimensions}
+\item{ndim}{Number of dimensions for dimensionality reduction \cr
+integer; default: 2L; possible values between 1 and 5}
+}
+\value{
+The trajectory model
 }
 \description{
-Inferring trajectories with GPfates
+Will generate a trajectory using \href{https://doi.org/10.1126/sciimmunol.aal2192}{gpfates}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/gpfates}{container}.
+}
+\details{
+The original code of this method is available \href{https://github.com/Teichlab/GPfates}{here}.
+
+The method is described in: \href{https://doi.org/10.1126/sciimmunol.aal2192}{Lönnberg, T., Svensson, V., James, K.R., Fernandez-Ruiz, D., Sebina, I., Montandon, R., Soon, M.S.F., Fogg, L.G., Nair, A.S., Liligeto, U.N., Stubbington, M.J.T., Ly, L.-H., Bagger, F.O., Zwiessele, M., Lawrence, N.D., Souza-Fonseca-Guimaraes, F., Bunn, P.T., Engwerda, C.R., Heath, W.R., Billker, O., Stegle, O., Haque, A., Teichmann, S.A., 2017. Single-cell RNA-seq and computational analysis using temporal mixture modeling resolves TH1/TFHfate bifurcation in malaria. Science Immunology 2, eaal2192.}
 }
