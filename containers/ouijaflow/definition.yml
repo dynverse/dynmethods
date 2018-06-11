@@ -1,0 +1,18 @@
+name: ouijaflow
+parameters:
+  iter:
+    type: integer
+    lower: 2
+    upper: 50000
+    default: 1000
+    distribution: exponential
+    rate: 0.0001
+input:
+  format: text
+  required:
+    - expression
+    - marker_feature_ids
+output:
+  format: text
+  outputs:
+    - linear_trajectory

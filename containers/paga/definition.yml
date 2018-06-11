@@ -28,3 +28,4 @@ output:
   format: feather
   outputs:
     - cluster_graph
+    - dimred
