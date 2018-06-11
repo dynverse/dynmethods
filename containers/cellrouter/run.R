@@ -40,14 +40,16 @@ cellrouter <- findClusters(cellrouter, method="graph.clustering", num.pcs=p$ndim
 cellrouter <- buildKNN(cellrouter, k = p$k_knn, column.ann = 'population', num.pcs = p$ndim_pca_knn, sim.type = p$sim_type)
 
 # create trajectory using start cells as source
-filename <- "cell_edge_weighted_network.txt"
+outputdir <- "/tmp/output"
+dir.create(outputdir, recursive = TRUE)
+filename <- file.path(outputdir, "cell_edge_weighted_network.txt")
 write.table(cellrouter@graph$edges, file=filename, sep='\t', row.names=FALSE, col.names = FALSE, quote=FALSE)
 
 sources <- unique(cellrouter@sampTab$population[cellrouter@sampTab$sample_id %in% start_cells])
 targets <- setdiff(as.vector(cellrouter@sampTab$population), sources)
 
 libdir <- "/cellrouter/CellRouter"
-cellrouter <- findPaths(cellrouter, column='population', libdir, "/", method=p$distance_method_paths) # this function uses global variables...
+cellrouter <- findPaths(cellrouter, column='population', libdir, outputdir, method=p$distance_method_paths) # this function uses global variables...
 
 #Preprocess trajectories
 cellrouter <- processTrajectories(
