@@ -46,7 +46,6 @@ Imports:
   viridis,
   yaml
 Suggests: 
-  paga,
   Biobase,
   BiocGenerics,
   cellTree,
@@ -55,10 +54,8 @@ Suggests:
   dyntoy,
   embeddr,
   GNG,
-  GPfates,
   lle,
   MASS,
-  MATCHER,
   Matrix,
   MCMCglmm,
   Mpath,
@@ -66,7 +63,6 @@ Suggests:
   merlot,
   monocle,
   ouija,
-  ouijaflow,
   phenopath,
   princurve,
   pseudogp,
@@ -74,20 +70,16 @@ Suggests:
   rstan,
   roxygen2,
   scaterlegacy,
-  SCIMITAR,
   SCORPIUS,
   SCOUP,
-  SCUBA,
   sincell,
   SLICE,
   SLICER,
   slingshot,
   StemID,
   StemID2,
-  topslam,
   TSCAN,
   Waterfall,
-  Wishbone,
   ggforce,
   ggraph,
   ggrepel,
@@ -97,34 +89,25 @@ Suggests:
   tidyverse
 Remotes:
   berndbischl/ParamHelpers,
-  dynverse/paga,
   dynverse/dynutils,
   dynverse/dynwrap,
   dynverse/dynplot,
   dynverse/dyntoy,
   dynverse/cellTree@RELEASE_3_6,
   dynverse/embeddr,
-  dynverse/ElPiGraph.R,
   dynverse/destiny,
-  dynverse/GPfates,
   dynverse/merlot,
   dynverse/monocle-release,
-  dynverse/MATCHER,
   dynverse/Mpath,
-  dynverse/ouijaflow,
   dynverse/princurve,
   dynverse/reCAT,
   dynverse/scaterlegacy,
-  dynverse/SCIMITAR,
   dynverse/SCOUP,
-  dynverse/SCUBA,
   dynverse/SLICE,
   dynverse/SLICER,
   dynverse/StemID,
   dynverse/StemID2,
-  dynverse/topslam,
   dynverse/Waterfall,
-  dynverse/Wishbone,
   igraph/rigraph,
   kieranrcampbell/pseudogp,
   kieranrcampbell/mfa,
@@ -136,47 +119,3 @@ Remotes:
   zji90/TSCAN
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
-Collate: 
-    'helper_set_cores.R'
-    'package.R'
-    'ti_angle.R'
-    'ti_celltree.R'
-    'ti_dpt.R'
-    'ti_elpi.R'
-    'ti_embeddr.R'
-    'ti_error.R'
-    'ti_gng.R'
-    'ti_gpfates.R'
-    'ti_identity.R'
-    'ti_manual.R'
-    'ti_matcher.R'
-    'ti_merlot.R'
-    'ti_mfa.R'
-    'ti_monocle.R'
-    'ti_mpath.R'
-    'ti_ouija.R'
-    'ti_ouijaflow.R'
-    'ti_paga.R'
-    'ti_periodpc.R'
-    'ti_phenopath.R'
-    'ti_pseudogp.R'
-    'ti_random.R'
-    'ti_recat.R'
-    'ti_scimitar.R'
-    'ti_scorpius.R'
-    'ti_scoup.R'
-    'ti_scuba.R'
-    'ti_shuffle.R'
-    'ti_sincell.R'
-    'ti_slice.R'
-    'ti_slicer.R'
-    'ti_slingshot.R'
-    'ti_stemid.R'
-    'ti_stemid2.R'
-    'ti_topslam.R'
-    'ti_tscan.R'
-    'ti_waterfall.R'
-    'ti_wishbone.R'
-    'wrapper_check_dependencies.R'
-    'wrapper_docker.R'
-    'wrapper_plot_trajectory.R'

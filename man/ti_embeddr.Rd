@@ -42,14 +42,14 @@ used is the degree matrix.}
 \item{maxit}{maximum number of iterations.}
 
 \item{stretch}{a factor by which the curve can be extrapolated when
-    points are projected.  Default is 2 (times the last segment
-    length). The default is 0 for \code{smoother} equal to
-    \code{"periodic.lowess"}.}
+points are projected.  Default is 2 (times the last segment
+length). The default is 0 for \code{smoother} equal to
+\code{"periodic_lowess"}.}
 
 \item{smoother}{choice of smoother. The default is
-    \code{"smooth.spline"}, and other choices are \code{"lowess"} and
-    \code{"periodic.lowess"}. The latter allows one to fit closed curves.
-    Beware, you may want to use \code{iter = 0} with \code{lowess()}.}
+\code{"smooth_spline"}, and other choices are \code{"lowess"} and
+\code{"periodic_lowess"}. The latter allows one to fit closed curves.
+Beware, you may want to use \code{iter = 0} with \code{lowess()}.}
 }
 \description{
 Inferring trajectories with Embeddr

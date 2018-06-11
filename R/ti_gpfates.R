@@ -1,170 +1,26 @@
-#' Inferring trajectories with GPfates
-#'
-#' @inherit ti_angle description
-#'
-#' @param ndim The number of dimensions
-#' @inheritParams GPfates::GPfates
-#'
+#' Inferring a trajectory inference using [gpfates](https://doi.org/10.1126/sciimmunol.aal2192)
+#' 
+#' Will generate a trajectory using [gpfates](https://doi.org/10.1126/sciimmunol.aal2192). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/gpfates).
+#' 
+#' The original code of this method is available [here](https://github.com/Teichlab/GPfates).
+#' 
+#' The method is described in: [Lönnberg, T., Svensson, V., James, K.R., Fernandez-Ruiz, D., Sebina, I., Montandon, R., Soon, M.S.F., Fogg, L.G., Nair, A.S., Liligeto, U.N., Stubbington, M.J.T., Ly, L.-H., Bagger, F.O., Zwiessele, M., Lawrence, N.D., Souza-Fonseca-Guimaraes, F., Bunn, P.T., Engwerda, C.R., Heath, W.R., Billker, O., Stegle, O., Haque, A., Teichmann, S.A., 2017. Single-cell RNA-seq and computational analysis using temporal mixture modeling resolves TH1/TFHfate bifurcation in malaria. Science Immunology 2, eaal2192.](https://doi.org/10.1126/sciimmunol.aal2192)
+#' 
+#' @param log_expression_cutoff The log expression cutoff \cr 
+#'     numeric; default: 0.5; possible values between 0.5 and 5
+#' @param min_cells_expression_cutoff The min expression cutoff \cr 
+#'     numeric; default: 0L; possible values between 0 and 20
+#' @param ndim Number of dimensions for dimensionality reduction \cr 
+#'     integer; default: 2L; possible values between 1 and 5
+#' 
+#' @return The trajectory model
 #' @export
-#'
-#' @importFrom readr read_csv
-#' @importFrom utils write.table
-ti_gpfates <- create_ti_method(
-  ########################################################
-  #                   META INFORMATION                   #
-  ########################################################
-
-  name = "GPfates",
-  short_name = "gpfates",
-  package_loaded = c(),
-  package_required = c("GPfates"),
-
-  #########################################################
-  #                   METHOD PARAMETERS                   #
-  #########################################################
-  par_set = makeParamSet(
-    makeNumericParam(id = "log_expression_cutoff", lower = 0.5, upper = 5, default = 2),
-    makeNumericParam(id = "min_cells_expression_cutoff", lower = 0, upper = 20, default = 2),
-    makeIntegerParam(id = "ndim", lower = 1L, upper = 5L, default = 2L)
-  ),
-
-  ####################################################
-  #                   RUN FUNCTION                   #
-  ####################################################
-  run_fun = function(
-    counts,
-    n_end_states,
-    ndim,
-    log_expression_cutoff,
-    min_cells_expression_cutoff,
-    num_cores = 1,
-    verbose = FALSE
-  ) {
-    # documentation was not very detailed, so we had a hard time figuring out what the parameters were
-    requireNamespace("GPfates")
-
-    # TIMING: done with preproc
-    tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
-
-    # if the dataset is cyclic, pretend it isn't
-    if (n_end_states == 0) {
-      n_end_states <- 1
-    }
-
-    gp_out <- GPfates::GPfates(
-      counts = counts,
-      nfates = n_end_states,
-      ndims = ndim,
-      log_expression_cutoff = log_expression_cutoff,
-      min_cells_expression_cutoff = min_cells_expression_cutoff,
-      num_cores = num_cores,
-      verbose = verbose
-    )
-
-    # TIMING: done with method
-    tl <- tl %>% add_timing_checkpoint("method_aftermethod")
-
-    pseudotime <- gp_out$pseudotime %>% mutate(time = dynutils::scale_minmax(time))
-    phi <- gp_out$phi
-    dr <- gp_out$dr
-
-    # get percentages of end milestones by multiplying the phi with the pseudotime
-    progressions <- phi %>%
-      gather(to, percentage, -cell_id) %>%
-      left_join(pseudotime, by = "cell_id") %>%
-      mutate(
-        percentage = percentage*time,
-        from = "M0"
-      ) %>%
-      select(cell_id, from, to, percentage)
-
-    #  create milestone network
-    milestone_network <- data_frame(
-      from = "M0",
-      to = paste0("M", seq_len(n_end_states)),
-      length = 1,
-      directed = TRUE
-    )
-    milestone_ids <- paste0("M", seq(0, n_end_states))
-
-    # convert dimred and pseudotime to right format
-    dimred <- dr %>%
-      as.data.frame() %>%
-      magrittr::set_rownames(., .$cell_id) %>%
-      select(-cell_id) %>%
-      as.matrix()
-    pseudotime <- setNames(pseudotime$time, pseudotime$cell_id)
-
-    divergence_regions <-
-      data_frame(
-        divergence_id = "divergence",
-        milestone_id = paste0("M", seq(0, n_end_states)),
-        is_start = milestone_id == "M0"
-      )
-
-    # return output
-    wrap_prediction_model(
-      cell_ids = rownames(counts)
-    ) %>% add_trajectory(
-      milestone_ids = milestone_ids,
-      milestone_network = milestone_network,
-      progressions = progressions,
-      pseudotime = pseudotime,
-      divergence_regions = divergence_regions
-    ) %>% add_dimred(
-      dimred = dimred
-    ) %>% add_timings(
-      tl %>% add_timing_checkpoint("method_afterpostproc")
-    )
-  },
-
-  #####################################################
-  #                   PLOT FUNCTION                   #
-  #########################3###########################
-  plot_fun = function(prediction, type = c("dimred", "assignment")) {
-    type <- match.arg(type)
-
-    sample_df <- prediction$dimred %>%
-      as.data.frame %>%
-      rownames_to_column("cell_id") %>%
-      mutate(time = prediction$pseudotime[cell_id])
-
-    switch(
-      type,
-      dimred = {
-        max_trend <- prediction$milestone_percentages %>%
-          group_by(cell_id) %>%
-          arrange(desc(percentage)) %>%
-          slice(1) %>%
-          ungroup()
-
-        plot_df <- sample_df %>%
-          left_join(max_trend, by = "cell_id") %>%
-          mutate(trend = gsub("M", "Trend ", milestone_id))
-
-        g <- ggplot() +
-          geom_point(aes(comp_1, comp_2, colour = trend), plot_df) +
-          scale_color_brewer(palette = "Set2") +
-          labs(colour = "Fitted trend") +
-          theme(legend.position = c(.92, .12))
-
-        process_dynplot(g, prediction$id)
-
-        # TODO: Extract OGMP for plotting purposes. See dyneval #21
-      },
-      assignment = {
-        progression_df <- sample_df %>%
-          left_join(prediction$progressions, by = "cell_id") %>%
-          mutate(trend = gsub("M", "Trend ", to))
-
-        g <- ggplot() +
-          geom_point(aes(time, percentage, colour = trend), progression_df) +
-          facet_wrap(~trend, ncol = 1) +
-          labs(x = "Pseudotime", y = "Trend assignment probability") +
-          theme(legend.position = "none")
-
-        process_dynplot(g, prediction$id)
-      }
-    )
-  }
-)
+ti_gpfates <- function(
+    log_expression_cutoff = 0.5,
+    min_cells_expression_cutoff = 0L,
+    ndim = 2L
+) {
+  args <- as.list(environment())
+  method <- create_docker_ti_method('dynverse/gpfates')
+  do.call(method, args)
+}

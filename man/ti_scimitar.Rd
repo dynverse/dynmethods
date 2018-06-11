@@ -2,24 +2,38 @@
 % Please edit documentation in R/ti_scimitar.R
 \name{ti_scimitar}
 \alias{ti_scimitar}
-\title{Inferring trajectories with SCIMITAR}
+\title{Inferring a trajectory inference using \href{https://doi.org/10.1142/9789813207813_0053}{scimitar}}
 \usage{
 ti_scimitar(covariance_type = "diag", degree = 3L, step_size = 0.07,
   cov_estimator = "corpcor", cov_reg = 0.05, max_iter = 3L)
 }
 \arguments{
-\item{covariance_type}{No documentation provided by authors}
+\item{covariance_type}{\cr
+discrete; default: "diag"; possible values: diag, spherical, full}
 
-\item{degree}{No documentation provided by authors}
+\item{degree}{\cr
+integer; default: 3L; possible values between 1 and 20}
 
-\item{step_size}{No documentation provided by authors}
+\item{step_size}{\cr
+numeric; default: 0.07; possible values between 0.01 and 0.1}
 
-\item{cov_estimator}{No documentation provided by authors}
+\item{cov_estimator}{\cr
+discrete; default: "corpcor"; possible values: identity, diag, sample, global, glasso, corpcor, average}
 
-\item{cov_reg}{No documentation provided by authors}
+\item{cov_reg}{\cr
+numeric; default: 0.05; possible values between 0.01 and 0.1}
 
-\item{max_iter}{Maximum number of iterations}
+\item{max_iter}{\cr
+integer; default: 3L; possible values between 1 and 20}
+}
+\value{
+The trajectory model
 }
 \description{
-Inferring trajectories with SCIMITAR
+Will generate a trajectory using \href{https://doi.org/10.1142/9789813207813_0053}{scimitar}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/scimitar}{container}.
+}
+\details{
+The original code of this method is available \href{https://github.com/dimenwarper/scimitar}{here}.
+
+The method is described in: \href{https://doi.org/10.1142/9789813207813_0053}{CORDERO, P., STUART, J.M., 2016. TRACING CO-REGULATORY NETWORK DYNAMICS IN NOISY, SINGLE-CELL TRANSCRIPTOME TRAJECTORIES. Biocomputing 2017.}
 }

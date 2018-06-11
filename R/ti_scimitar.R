@@ -1,97 +1,35 @@
-#' Inferring trajectories with SCIMITAR
-#'
-#' @inherit ti_angle description
-#'
-#' @param covariance_type No documentation provided by authors
-#' @param degree No documentation provided by authors
-#' @param step_size No documentation provided by authors
-#' @param cov_estimator No documentation provided by authors
-#' @param cov_reg No documentation provided by authors
-#' @param max_iter Maximum number of iterations
-#'
+#' Inferring a trajectory inference using [scimitar](https://doi.org/10.1142/9789813207813_0053)
+#' 
+#' Will generate a trajectory using [scimitar](https://doi.org/10.1142/9789813207813_0053). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/scimitar).
+#' 
+#' The original code of this method is available [here](https://github.com/dimenwarper/scimitar).
+#' 
+#' The method is described in: [CORDERO, P., STUART, J.M., 2016. TRACING CO-REGULATORY NETWORK DYNAMICS IN NOISY, SINGLE-CELL TRANSCRIPTOME TRAJECTORIES. Biocomputing 2017.](https://doi.org/10.1142/9789813207813_0053)
+#' 
+#' @param covariance_type  \cr 
+#'     discrete; default: "diag"; possible values: diag, spherical, full
+#' @param degree  \cr 
+#'     integer; default: 3L; possible values between 1 and 20
+#' @param step_size  \cr 
+#'     numeric; default: 0.07; possible values between 0.01 and 0.1
+#' @param cov_estimator  \cr 
+#'     discrete; default: "corpcor"; possible values: identity, diag, sample, global, glasso, corpcor, average
+#' @param cov_reg  \cr 
+#'     numeric; default: 0.05; possible values between 0.01 and 0.1
+#' @param max_iter  \cr 
+#'     integer; default: 3L; possible values between 1 and 20
+#' 
+#' @return The trajectory model
 #' @export
-ti_scimitar <- create_ti_method(
-  name = "SCIMITAR",
-  short_name = "scimitar",
-  package_loaded = c(),
-  package_required = c("SCIMITAR"),
-  par_set = makeParamSet(
-    makeDiscreteParam(id = "covariance_type", values = c('diag', 'spherical', 'full'), default = "diag"),
-    makeIntegerParam(id = "degree", lower = 1, upper = 20, default = 3),
-    makeNumericParam(id = "step_size", lower = 0.01, upper = 0.1, default = 0.07),
-    makeDiscreteParam(id = "cov_estimator", values = c("identity", "diag", "sample", "global", "glasso", "corpcor", "average"), default = "corpcor"),
-    makeNumericParam(id = "cov_reg", lower = 0.01, upper = 0.1, default = 0.05),
-    makeIntegerParam(id = "max_iter", lower = 1, upper = 20, default = 3)
-  ),
-  run_fun = "dynmethods::run_scimitar",
-  plot_fun = "dynmethods::plot_scimitar"
-)
-
-#' @importFrom readr read_csv
-#' @importFrom utils write.table
-run_scimitar <- function(
-  expression,
-  covariance_type = "diag",
-  degree = 3,
-  step_size = 0.07,
-  cov_estimator = "corpcor",
-  cov_reg = 0.05,
-  max_iter = 3,
-  num_cores = 1,
-  verbose = FALSE
+ti_scimitar <- function(
+    covariance_type = "diag",
+    degree = 3L,
+    step_size = 0.07,
+    cov_estimator = "corpcor",
+    cov_reg = 0.05,
+    max_iter = 3L
 ) {
-  requireNamespace("SCIMITAR")
-
-  # TIMING: done with preproc
-  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
-
-  pseudotime <- SCIMITAR::SCIMITAR(
-    expression = expression,
-    covariance_type = covariance_type,
-    degree = degree,
-    step_size = step_size,
-    cov_estimator = cov_estimator,
-    cov_reg = cov_reg,
-    max_iter = max_iter,
-    num_cores = num_cores,
-    verbose = verbose
-  )
-
-  # TIMING: done with method
-  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
-
-  # get percentages of end milestones by multiplying the phi with the pseudotime
-  progressions <- pseudotime %>%
-    mutate(
-      from = "M1",
-      to = "M2",
-      percentage = dynutils::scale_minmax(pseudotime)
-    ) %>%
-    select(-pseudotime)
-
-  #  create milestone network
-  milestone_network <- data_frame(
-    from = "M1",
-    to = "M2",
-    length = 1,
-    directed = TRUE
-  )
-  milestone_ids <- c("M1", "M2")
-
-  # return output
-  wrap_prediction_model(
-    cell_ids = rownames(expression)
-  ) %>% add_trajectory(
-    milestone_ids = milestone_ids,
-    milestone_network = milestone_network,
-    progressions = progressions,
-    divergence_regions = NULL,
-    pseudotime = pseudotime
-  ) %>% add_timings(
-    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
-  )
-}
-
-plot_scimitar <- function(prediction) {
-  stop("TODO...")
+  args <- as.list(environment())
+  method <- create_docker_ti_method('dynverse/scimitar')
+  do.call(method, args)
 }
