@@ -9,25 +9,38 @@ load("data/methods_info.rda")
 
 get_ti_methods()
 
-method_id <- "tscan"
-
-method <- get(paste0("ti_", method_id), asNamespace("dynmethods"))()
+method_id <- "stemid2"
 
 # extract par_set, process to parameters list
-parameters <- map(method$par_set$pars, function(par) {
+file <- paste0("man/ti_", method_id, ".Rd")
+rd <- Rd2roxygen::parse_file(file)
+parameter_descriptions = rd$params %>% {set_names(gsub("[^ ]* (.*)", "\\1", .), gsub("([^ ]*) .*", "\\1", .))}
+
+parameters <- map2(names(method$par_set$pars), method$par_set$pars, function(id, par) {
   list(
     type = par$type,
     default = par$default,
     upper = par$upper,
     lower = par$lower,
-    values = as.character(par$values)
+    values = as.character(par$values),
+    description = parameter_descriptions[[id]]
   ) %>% discard(is.null) %>% discard(~length(.) == 0)
-})
+}) %>% set_names(names(method$par_set$pars))
 if (!is.null(method$par_set$forbidden)) {
   parameters$forbidden <- deparse(method$par_set$forbidden)
 }
 
+# copy parameters
+parameters %>%
+  deparse(width.cutoff=500L) %>%
+  gsub("([A-Za-z_\\.]* = )", "\n\\1", .) %>%
+  clipr::write_clip()
+
 ##
+devtools::load_all()
+
+method <- get(paste0("ti_", method_id), asNamespace("dynmethods"))()
+
 get_definition <- function(method) {
   if (is.null(method$parameters)) {
     stop(method$short_name, " does not have a list of parameters!")
@@ -61,9 +74,9 @@ get_dockerfile <- function(method) {
 
   install_dependencies <- map(dependencies, function(dependency) {
     if(dependency %in% names(remotes)) {
-      glue::glue("devtools::install_github('{remotes[dependency]}')")
+      glue::glue("setRepositories(ind=1:2);devtools::install_github('{remotes[dependency]}')")
     } else {
-      glue::glue("install.packages('{dependency}')")
+      glue::glue("setRepositories(ind=1:2);install.packages('{dependency}')")
     }
   }) %>%
     paste0("RUN R -e \"", ., "\"") %>%
