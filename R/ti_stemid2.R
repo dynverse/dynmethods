@@ -29,7 +29,7 @@ ti_stemid2 <- create_ti_method(
   short_name = "stemid2",
   package_loaded = c(),
   package_required = c("StemID2"),
-  parameters =list(
+  parameters = list(
     clustnr = list(
       type = "integer",
       default = 30L,
@@ -105,22 +105,21 @@ ti_stemid2 <- create_ti_method(
       description = "minimal number of outlier genes required to identify a cell as an outlier. Default is 2."),
     probthr = list(
       type = "numeric",
-      default = -10,
-      upper = -1,
-      lower = -10,
+      default = 1e-3,
+      upper = 1e-1,
+      lower = 1e-10,
       description = "defines the probability threshold for outlier calling. If the probability of observing a given expression level for a gene in a cell is lower than this cutoff (based on the negative binomial distribution for the calibrated noise model), the cell is considered an outlier for this gene. Default is 10-3."),
-
     thr_lower = list(
       type = "numeric",
-      default = -40,
-      upper = -1,
-      lower = -100,
+      default = 1e-40,
+      upper = 1e-1,
+      lower = 1e-10,
       description = "lower probability for which the number of outliers is computed in order to plot the dependence of the number of outliers on the probability threshold"),
     thr_upper = list(
       type = "numeric",
-      default = -1,
-      upper = -1,
-      lower = -100,
+      default = 1e-1,
+      upper = 1e-1,
+      lower = 1e-100,
       description = "upper probability for which the number of outliers is computed in order to plot the dependence of the number of outliers on the probability threshold"),
     outdistquant = list(
 
@@ -137,23 +136,23 @@ ti_stemid2 <- create_ti_method(
       description = "Boolean argument. If nmode is set to TRUE the assignment to inter-cluster links for each cell is not done based on the longest projection, but based on identifying the cluster (other than the cluster the cell belongs to) that contains the nearest neighbor of the cell, i. e. the cell with the most similar transcriptome. The coordinate on the assigned link is still derived based on the projection. Default is FALSE."),
 
     pdishuf = list(
-      type = "numeric",
-      default = 6.21460809842219,
-      upper = 9.21034037197618,
-      lower = 4.60517018598809,
+      type = "integer",
+      default = 2000,
+      upper = 10000,
+      lower = 100,
       description = "positive integer. This is the number of randomizations to be performed. As a rule of thumb this number should be at least one order of magnitude larger than the desired p-value on the significance of the number of cells on a connection. Default is 2000."),
     pthr = list(
       type = "numeric",
-      default = -2,
-      upper = 0,
-      lower = -4,
+      default = 1e-2,
+      upper = 1e-4,
+      lower = 0,
       description = "positive number. This number corresponds to the p-value threshold, which is used to determine, whether the magnitude of an observed trajectory is significantly larger than observed for the randomized background distribution. This criterion is not used to infer significance of a link, but shown in a graphical representation of the tree"),
 
     pethr = list(
       type = "numeric",
-      default = -2,
-      upper = 0,
-      lower = -4,
+      default = 1e-2,
+      upper = 1e-4,
+      lower = 0,
       description = "positive number. This number corresponds to the p-value threshold, which isused to determine for each link if it is populated by a number of cellssignificantly larger than expected for the randomized background distribution. This p-value threshold determines, which connections are considered validdifferentiation trajectories in the derived lineage tree."),
     forbidden = "thr_lower > thr_upper"
   ),
@@ -256,7 +255,7 @@ run_stemid2 <- function(
     outminc = 5,
     outlg = outlg,
     probthr = probthr,
-    thr = 2^(thr_lower:thr_upper),
+    thr = thr_lower:thr_upper,
     outdistquant = outdistquant
   )
 
