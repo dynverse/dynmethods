@@ -5,13 +5,13 @@
 #' @param num_clusters Number of clusters
 #'
 #' @export
-ti_waterfll <-  create_ti_method(
+ti_waterfall <-  create_ti_method(
   name = "Waterfall",
-  short_name = "waterfll", # max 8 chars
+  short_name = "waterfall",
   package_loaded = c(),
   package_required = c("Waterfall"),
-  par_set = makeParamSet(
-    makeIntegerParam(id = "num_clusters", lower = 2L, default = 10L, upper = 20L)
+  parameters = list(
+    num_clusters = list(type = "integer", lower = 2, default = 10, upper = 20)
   ),
   run_fun = "dynmethods::run_waterfall",
   plot_fun = "dynmethods::plot_waterfall"
