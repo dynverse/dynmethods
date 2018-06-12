@@ -3,7 +3,7 @@ library(jsonlite)
 library(readr)
 library(dplyr)
 
-library(StemID2)
+library(StemID)
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
@@ -21,40 +21,27 @@ run_fun <- function (expression, clustnr = 30, bootnr = 50, metric = "pearson",
     thr_lower = -10, thr_upper = -5, outdistquant = 0.95, nmode = FALSE, 
     pdishuf = 2000, pthr = 1e-04, pethr = 1e-04) 
 {
-    requireNamespace("StemID2")
+    requireNamespace("StemID")
     tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
-    sc <- StemID2::SCseq(data.frame(t(expression), check.names = FALSE))
-    sc <- sc %>% StemID2::filterdata(mintotal = 1, minexpr = 0, 
-        minnumber = 0, maxexpr = Inf, downsample = FALSE, sfn = FALSE, 
-        hkn = FALSE, dsn = 1, CGenes = NULL, FGenes = NULL, ccor = 0.4)
+    sc <- StemID::SCseq(data.frame(t(expression), check.names = FALSE))
+    sc <- sc %>% StemID::filterdata(mintotal = 1, minexpr = 0, 
+        minnumber = 0, maxexpr = Inf, downsample = TRUE, dsn = 1)
     do_gap <- num_cluster_method == "gap"
     do_sat <- num_cluster_method == "sat"
-    sc <- tryCatch({
-        sc %>% StemID2::clustexp(clustnr = clustnr, bootnr = bootnr, 
-            metric = metric, do.gap = do_gap, sat = do_sat, SE.method = SE.method, 
-            SE.factor = SE.factor, B.gap = B.gap, cln = cln, 
-            FUNcluster = FUNcluster, FSelect = TRUE)
-    }, error = function(e) {
-        sc %>% StemID2::clustexp(clustnr = clustnr, bootnr = bootnr, 
-            metric = metric, do.gap = do_gap, sat = do_sat, SE.method = SE.method, 
-            SE.factor = SE.factor, B.gap = B.gap, cln = cln, 
-            FUNcluster = FUNcluster, FSelect = FALSE)
-    })
+    sc <- sc %>% StemID::clustexp(clustnr = clustnr, bootnr = bootnr, 
+        metric = metric, do.gap = do_gap, sat = do_sat, SE.method = SE.method, 
+        SE.factor = SE.factor, B.gap = B.gap, cln = cln, FUNcluster = FUNcluster)
     sammonmap <- dimred_method == "sammon"
     initial_cmd <- dimred_method == "tsne_initcmd"
-    sc <- sc %>% StemID2::comptsne(sammonmap = sammonmap, initial_cmd = initial_cmd, 
-        fast = TRUE, perplexity = 30)
-    sc <- sc %>% StemID2::findoutliers(outminc = 5, outlg = outlg, 
+    sc <- sc %>% StemID::comptsne(sammonmap = sammonmap, initial_cmd = initial_cmd)
+    sc <- sc %>% StemID::findoutliers(outminc = outminc, outlg = outlg, 
         probthr = probthr, thr = 10^(thr_lower:thr_upper), outdistquant = outdistquant)
-    sc <- sc %>% StemID2::rfcorrect(final = TRUE, nbfactor = 5)
-    ltr <- StemID2::Ltree(sc)
-    ltr <- ltr %>% StemID2::compentropy()
-    ltr <- ltr %>% StemID2::projcells(cthr = 0, nmode = nmode)
-    ltr <- ltr %>% StemID2::projback(pdishuf = pdishuf, nmode = nmode, 
-        fast = FALSE)
-    ltr <- ltr %>% StemID2::lineagetree(pthr = pthr, nmode = nmode, 
-        fast = FALSE)
-    ltr <- ltr %>% StemID2::compspantree()
+    ltr <- StemID::Ltree(sc)
+    ltr <- ltr %>% StemID::compentropy()
+    ltr <- ltr %>% StemID::projcells(cthr = 0, nmode = nmode)
+    ltr <- ltr %>% StemID::projback(pdishuf = pdishuf, nmode = nmode)
+    ltr <- ltr %>% StemID::lineagetree(pthr = pthr, nmode = nmode)
+    ltr <- ltr %>% StemID::compspantree()
     tl <- tl %>% add_timing_checkpoint("method_aftermethod")
     cluster_network <- data_frame(from = as.character(ltr@ldata$m[-1]), 
         to = as.character(ltr@trl$trl$kid), length = ltr@trl$dc[cbind(from, 

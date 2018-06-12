@@ -110,16 +110,16 @@ ti_stemid2 <- create_ti_method(
       lower = 1e-10,
       description = "defines the probability threshold for outlier calling. If the probability of observing a given expression level for a gene in a cell is lower than this cutoff (based on the negative binomial distribution for the calibrated noise model), the cell is considered an outlier for this gene. Default is 10-3."),
     thr_lower = list(
-      type = "numeric",
-      default = 1e-40,
-      upper = 1e-1,
-      lower = 1e-10,
+      type = "integer",
+      default = -10,
+      upper = -1,
+      lower = -100,
       description = "lower probability for which the number of outliers is computed in order to plot the dependence of the number of outliers on the probability threshold"),
     thr_upper = list(
       type = "numeric",
-      default = 1e-1,
-      upper = 1e-1,
-      lower = 1e-100,
+      default = -5,
+      upper = -1,
+      lower = -100,
       description = "upper probability for which the number of outliers is computed in order to plot the dependence of the number of outliers on the probability threshold"),
     outdistquant = list(
 
@@ -255,7 +255,7 @@ run_stemid2 <- function(
     outminc = 5,
     outlg = outlg,
     probthr = probthr,
-    thr = thr_lower:thr_upper,
+    thr = 10^(thr_lower:thr_upper),
     outdistquant = outdistquant
   )
 

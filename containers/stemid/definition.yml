@@ -1,5 +1,5 @@
-name: StemID2
-short_name: stemid2
+name: StemID
+short_name: stemid
 parameters:
   clustnr:
     type: integer
