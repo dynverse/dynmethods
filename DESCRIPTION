@@ -90,6 +90,7 @@ Suggests:
 Remotes:
   berndbischl/ParamHelpers,
   dynverse/dynutils,
+  dynverse/dyndimred,
   dynverse/dynwrap,
   dynverse/dynplot,
   dynverse/dyntoy,
