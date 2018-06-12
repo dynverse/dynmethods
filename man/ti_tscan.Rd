@@ -5,7 +5,7 @@
 \title{Inferring trajectories with TSCAN}
 \usage{
 ti_tscan(minexpr_percent = 0, minexpr_value = 0, cvcutoff = 0,
-  clusternum_lower = 2L, clusternum_upper = 9L, modelNames = "VVV")
+  clusternum_lower = 2, clusternum_upper = 9, modelNames = "VVV")
 }
 \arguments{
 \item{minexpr_percent}{Numeric value specifying the lowest percentage of highly expressed cells (expression value bigger than minexpr_value) for the genes/features to be retained.}
