@@ -13,17 +13,17 @@ checkpoints = {}
 p = json.load(open("/input/params.json", "r"))
 
 # get start cell(s)
-start_cell = json.load(open("/input/start_cells.json"))[0]
+start_cell = json.load(open("/input/start_id.json"))[0]
 
 # get markers if given
-if os.path.exists("/input/marker_feature_ids.json"):
-  markers = json.load(open("/input/marker_feature_ids.json"))
+if os.path.exists("/input/features_id.json"):
+  markers = json.load(open("/input/features_id.json"))
 else:
   markers = "~"
 
 # get number of end states if given
-if os.path.exists("/input/n_end_states.json"):
-  branch = json.load(open("/input/n_end_states.json"))[0] > 1
+if os.path.exists("/input/end_n.json"):
+  branch = json.load(open("/input/end_n.json"))[0] > 1
 else:
   branch = p["branch"]
 

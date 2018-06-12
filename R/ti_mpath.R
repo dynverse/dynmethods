@@ -28,7 +28,7 @@ ti_mpath <- create_ti_method(
 #' @importFrom reshape2 melt
 run_mpath <- function(
   counts,
-  grouping_assignment,
+  groups_id,
   distMethod = "euclidean",
   method = "kmeans",
   numcluster = 11,
@@ -46,7 +46,7 @@ run_mpath <- function(
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
   # collect sample info
-  sample_info <- grouping_assignment %>% rename(GroupID = group_id) %>% as.data.frame
+  sample_info <- groups_id %>% rename(GroupID = group_id) %>% as.data.frame
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
@@ -100,7 +100,7 @@ run_mpath <- function(
 
   wrap_prediction_model(
     cell_ids = rownames(counts),
-    grouping_assignment = grouping_assignment
+    groups_id = groups_id
   ) %>% add_grouping(
     group_ids = milestone_ids,
     grouping = grouping
@@ -134,7 +134,7 @@ plot_mpath <- function(prediction) {
 
   # collect info on cells
   cell_ids <- prediction$cell_ids
-  labels <- prediction$grouping_assignment %>%
+  labels <- prediction$groups_id %>%
     slice(match(cell_ids, cell_id)) %>%
     .$group_id
   clustering <- prediction$progressions %>%

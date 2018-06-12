@@ -37,9 +37,9 @@ ti_scoup <- create_ti_method(
 #' @importFrom stats var
 run_scoup <- function(
   expression,
-  grouping_assignment,
-  start_cells,
-  n_end_states,
+  groups_id,
+  start_id,
+  end_n,
   ndim = 2,
   max_ite1 = 100,
   max_ite2 = 100,
@@ -54,17 +54,17 @@ run_scoup <- function(
   requireNamespace("SCOUP")
 
   # if the dataset is cyclic, pretend it isn't
-  if (n_end_states == 0) {
-    n_end_states <- 1
+  if (end_n == 0) {
+    end_n <- 1
   }
 
-  start_cell <- sample(start_cells, 1)
+  start_cell <- sample(start_id, 1)
   # figure out indices of starting population
-  # from the grouping_assignment and the start_cell
-  start_ix <- grouping_assignment %>%
+  # from the groups_id and the start_cell
+  start_ix <- groups_id %>%
     filter(cell_id %in% start_cell) %>%
     select(group_id) %>%
-    left_join(grouping_assignment, by = "group_id") %>%
+    left_join(groups_id, by = "group_id") %>%
     .$cell_id
 
   # TIMING: done with preproc
@@ -75,7 +75,7 @@ run_scoup <- function(
     expr = expression,
     start_ix = start_ix,
     ndim = ndim,
-    nbranch = n_end_states,
+    nbranch = end_n,
     max_ite1 = max_ite1,
     max_ite2 = max_ite2,
     alpha_min = alpha_min,
@@ -110,7 +110,7 @@ run_scoup <- function(
     filter(percentage > 0 | milestone_id == "M0")
 
   # create milestone ids
-  milestone_ids <- c("M0", paste0("M", seq_len(n_end_states)))
+  milestone_ids <- c("M0", paste0("M", seq_len(end_n)))
 
   # create milestone network
   milestone_network <- data_frame(

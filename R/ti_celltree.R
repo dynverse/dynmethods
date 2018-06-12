@@ -89,8 +89,8 @@ run_celltree <- function(
   expression,
 
   # prior information
-  start_cells = NULL,
-  grouping_assignment = NULL,
+  start_id = NULL,
+  groups_id = NULL,
 
   # parameters
   method,
@@ -108,8 +108,8 @@ run_celltree <- function(
   requireNamespace("cellTree")
 
   start_cell <-
-    if (!is.null(start_cells)) {
-      sample(start_cells, 1)
+    if (!is.null(start_id)) {
+      sample(start_id, 1)
     } else {
       NULL
     }
@@ -137,7 +137,7 @@ run_celltree <- function(
   )
 
   # put the parameters for the backbones in a list,
-  # for adding optional grouping_assignment and (if grouping is given) start group
+  # for adding optional groups_id and (if grouping is given) start group
   backbone_params <- list(
     lda.results = lda_out,
     absolute.width = absolute_width,
@@ -149,10 +149,10 @@ run_celltree <- function(
   )
 
   # if these parameters are available, add them to the list
-  if(!is.null(grouping_assignment)) {
-    backbone_params$grouping <- grouping_assignment %>% slice(match(cell_id, rownames(expression))) %>% pull(group_id)
+  if(!is.null(groups_id)) {
+    backbone_params$grouping <- groups_id %>% slice(match(cell_id, rownames(expression))) %>% pull(group_id)
     if(!is.null(start_cell)) {
-      backbone_params$start.group.label <- grouping_assignment %>% filter(cell_id == start_cell) %>% pull(group_id)
+      backbone_params$start.group.label <- groups_id %>% filter(cell_id == start_cell) %>% pull(group_id)
     }
   }
 

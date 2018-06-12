@@ -21,9 +21,9 @@ ti_slicer <- create_ti_method(
 
 run_slicer <- function(
   expression,
-  start_cells,
-  marker_feature_ids = NULL,
-  end_cells = NULL,
+  start_id,
+  features_id = NULL,
+  end_id = NULL,
   kmin = 10,
   m = 2,
   verbose = FALSE
@@ -32,13 +32,13 @@ run_slicer <- function(
   requireNamespace("lle")
   requireNamespace("igraph")
 
-  start_cell <- sample(start_cells, 1)
+  start_cell <- sample(start_id, 1)
 
-  if (!is.null(marker_feature_ids)) {
+  if (!is.null(features_id)) {
     # use 'neighbourhood variance' to identify genes that vary smoothly
-    marker_feature_ids <- SLICER::select_genes(expression)
+    features_id <- SLICER::select_genes(expression)
   }
-  expr_filt <- expression[, marker_feature_ids]
+  expr_filt <- expression[, features_id]
 
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
@@ -69,10 +69,10 @@ run_slicer <- function(
   traj_graph <- SLICER::conn_knn_graph(traj_lle, k = k)
 
   # find extreme cells
-  if (is.null(end_cells)) {
+  if (is.null(end_id)) {
     ends <- SLICER::find_extreme_cells(traj_graph, traj_lle, do_plot = FALSE)
   } else {
-    ends <- match(c(start_cell, end_cells), rownames(expression))
+    ends <- match(c(start_cell, end_id), rownames(expression))
   }
 
   # order cells

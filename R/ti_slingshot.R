@@ -40,8 +40,8 @@ ti_slingshot <- create_ti_method(
 
 run_slingshot <- function(
   counts,
-  start_cells = NULL,
-  end_cells = NULL,
+  start_id = NULL,
+  end_id = NULL,
   ndim = 3,
   nclus = 5,
   dimred = "pca",
@@ -57,8 +57,8 @@ run_slingshot <- function(
   requireNamespace("slingshot")
 
   start_cell <-
-    if (!is.null(start_cells)) {
-      sample(start_cells, 1)
+    if (!is.null(start_id)) {
+      sample(start_id, 1)
     } else {
       NULL
     }
@@ -88,8 +88,8 @@ run_slingshot <- function(
   } else {
     start.clus <- NULL
   }
-  if(!is.null(end_cells)) {
-    end.clus <- unique(labels[end_cells])
+  if(!is.null(end_id)) {
+    end.clus <- unique(labels[end_id])
   } else {
     end.clus <- NULL
   }

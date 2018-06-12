@@ -39,7 +39,7 @@ ti_merlot <- create_ti_method(
 run_merlot <- function(
   expression,
   start_cell_ids = NULL,
-  n_end_states = NULL,
+  end_n = NULL,
   sigma,
   distance,
   ndim,
@@ -65,8 +65,8 @@ run_merlot <- function(
   n_local <- seq(n_local_lower, n_local_upper, by = 1)
 
   #### Example fromrom inst/examples/ExampleGuo2010.R
-  if(!is.null(n_end_states)) {
-    n_components_to_use <- n_end_states - 1
+  if(!is.null(end_n)) {
+    n_components_to_use <- end_n - 1
   }
   ndim <- max(n_components_to_use, ndim) # always make sure that enough components are extracted, even if the provided n_components is too low
 
@@ -87,7 +87,7 @@ run_merlot <- function(
   # We calculate the scaffold tree using the first 3 diffusion components from the diffusion map
   ScaffoldTree <- merlot::CalculateScaffoldTree(
     CellCoordinates = CellCoordinates,
-    NEndpoints = n_end_states
+    NEndpoints = end_n
   )
 
   # Set the number of nodes to be used to build the Principal Elastic Tree.

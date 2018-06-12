@@ -51,7 +51,7 @@ ti_monocle_ica <- abstract_monocle_description("monocle_ica")
 
 run_monocle <- function(
   counts,
-  n_branches = NULL,
+  groups_n = NULL,
   reduction_method,
   max_components = 2,
   norm_method = "vstExprs",
@@ -88,7 +88,7 @@ run_monocle <- function(
   )
 
   # order the cells
-  cds <- monocle::orderCells(cds, num_paths = n_branches)
+  cds <- monocle::orderCells(cds, num_paths = groups_n)
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")

@@ -14,7 +14,7 @@ checkpoints <- list()
 data <- read_rds("/input/data.rds")
 counts <- data$counts
 grouping <- data$grouping
-start_cells <- data$start_cells
+start_id <- data$start_id
 
 p <- jsonlite::read_json("/input/params.json")
 
@@ -48,7 +48,7 @@ dir.create(outputdir, recursive = TRUE)
 filename <- file.path(outputdir, "cell_edge_weighted_network.txt")
 write.table(cellrouter@graph$edges, file=filename, sep='\t', row.names=FALSE, col.names = FALSE, quote=FALSE)
 
-sources <- unique(cellrouter@sampTab$population[cellrouter@sampTab$sample_id %in% start_cells])
+sources <- unique(cellrouter@sampTab$population[cellrouter@sampTab$sample_id %in% start_id])
 targets <- setdiff(as.vector(cellrouter@sampTab$population), sources)
 
 libdir <- "/cellrouter/CellRouter"

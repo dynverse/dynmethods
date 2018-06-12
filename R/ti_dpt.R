@@ -38,8 +38,8 @@ ti_dpt <- create_ti_method(
   ),
   run_fun = function(
   expression,
-  start_cells = NULL,
-  marker_feature_ids = NULL,
+  start_id = NULL,
+  features_id = NULL,
   sigma,
   distance,
   ndim,
@@ -51,8 +51,8 @@ ti_dpt <- create_ti_method(
   requireNamespace("destiny")
 
   start_cell <-
-    if (!is.null(start_cells)) {
-      sample(start_cells, 1)
+    if (!is.null(start_id)) {
+      sample(start_id, 1)
     } else {
       NULL
     }
@@ -71,7 +71,7 @@ ti_dpt <- create_ti_method(
     n_eigs = ndim,
     density_norm = density_norm,
     n_local = n_local,
-    vars = marker_feature_ids
+    vars = features_id
   )
 
   # run DPT

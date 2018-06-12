@@ -29,8 +29,8 @@ ti_slice <- create_ti_method(
 
 run_slice <- function(
   expression,
-  grouping_assignment = NULL,
-  marker_feature_ids = NULL,
+  groups_id = NULL,
+  features_id = NULL,
   lm.method = "clustering",
   model.type = "tree",
   ss.method = "all",
@@ -50,9 +50,9 @@ run_slice <- function(
     k <- NULL
   }
 
-  # if grouping_assignment is not given, fill it with 1's
-  if(!is.null(grouping_assignment)) {
-    cellidentity <- grouping_assignment %>%
+  # if groups_id is not given, fill it with 1's
+  if(!is.null(groups_id)) {
+    cellidentity <- groups_id %>%
       slice(match(rownames(expression), cell_id)) %>%
       pull(group_id) %>%
       factor()
@@ -90,7 +90,7 @@ run_slice <- function(
     use.cor = TRUE,
     min.var = 0,
     min.cells = 0,
-    genes.use = marker_feature_ids
+    genes.use = features_id
   )
 
   # infer entropy-directed cell lineage model

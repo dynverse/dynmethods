@@ -20,7 +20,7 @@ checkpoints = {}
 
 expression = pd.read_csv("/input/expression.csv", index_col=[0])
 p = json.load(open("/input/params.json", "r"))
-start_cells = json.load(open("/input/start_cells.json"))
+start_id = json.load(open("/input/start_id.json"))
 
 checkpoints["method_afterpreproc"] = time.time()
 
@@ -52,7 +52,7 @@ m.optimize(messages=1, max_iters=p["max_iters"])
 
 # manifold correction
 m_topslam = ManifoldCorrectionTree(m)
-start_cell_ix = expression.index.tolist().index(start_cells[0])
+start_cell_ix = expression.index.tolist().index(start_id[0])
 pt_topslam = m_topslam.get_pseudo_time(start=start_cell_ix, estimate_direction=True)
 
 # calculate landscape
