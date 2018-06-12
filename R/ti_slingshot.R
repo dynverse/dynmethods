@@ -19,23 +19,71 @@ ti_slingshot <- create_ti_method(
   name = "Slingshot",
   short_name = "slingshot",
   package_loaded = c(),
-  package_required = c("slingshot"),
-  par_set = makeParamSet(
-    makeIntegerParam(id = "ndim", lower = 2L, upper = 20L, default = 3L),
-    makeIntegerParam(id = "nclus", lower = 2L, upper = 40L, default = 5L),
-    makeDiscreteParam(id = "dimred", default = "pca", values = names(dyndimred::list_dimred_methods())),
-    makeNumericParam(id = "shrink", lower = 0, upper = 1, default=1),
-    makeLogicalParam(id = "reweight", default = TRUE),
-    makeLogicalParam(id = "drop.multi", default = TRUE),
-    makeNumericParam(id = "thresh", lower = -5, upper = 5, default = -3, trafo = function(x) 10^x),
-    makeIntegerParam(id = "maxit", lower = 0L, upper = 50L, default = 10L),
-    makeNumericParam(id = "stretch", lower = 0, upper = 5, default = 2),
-    makeDiscreteParam(id = "smoother", default = "smooth.spline", values = c("smooth.spline", "loess", "periodic.lowess")),
-    makeDiscreteParam(id = "shrink.method", default = "cosine", values = c("cosine", "tricube", "density"))
+  package_required = c("slingshot", "dyndimred"),
+  parameters = list(
+    ndim = list(
+      type = "integer",
+      default = 3L,
+      upper = 20L,
+      lower = 2L,
+      description = "The number of dimensions"),
+    nclus = list(
+      type = "integer",
+      default = 5L,
+      upper = 40L,
+      lower = 2L,
+      description = "Number of clusters"),
+    dimred = list(
+      type = "discrete",
+      default = "pca",
+      values = c("pca", "mds", "tsne", "ica", "lle", "mds_sammon", "mds_isomds", "mds_smacof", "umap"),
+      description = "A character vector specifying which dimensionality reduction method to use.\nSee \\link[dyndimred:dimred]{dyndimred::dimred} for the list of available dimensionality reduction methods."),
 
+    shrink = list(
+      type = "numeric",
+      default = 1,
+      upper = 1,
+      lower = 0,
+      description = "logical or numeric between 0 and 1, determines whether and how \nmuch to shrink branching lineages toward their average prior to the split."),
+    reweight = list(
+      type = "logical",
+      default = TRUE,
+      values = c("TRUE", "FALSE"),
+      description = "logical, whether to allow cells shared between lineages to be\nreweighted during curve-fitting. If \\code{TRUE}, cells shared between \nlineages will be weighted by: distance to nearest curve / distance to\ncurve."),
+    thresh = list(
+      type = "numeric",
+      default = -3,
+      upper = 5,
+      lower = -5,
+      description = "numeric, determines the convergence criterion. Percent change in the total distance from cells to their projections along curves must be less than thresh. Default is 0.001, similar to principal.curve."),
+
+    maxit = list(
+      type = "integer",
+      default = 10L,
+      upper = 50L,
+      lower = 0L,
+      description = "numeric, maximum number of iterations, see principal.curve."),
+    stretch = list(
+      type = "numeric",
+      default = 2,
+      upper = 5,
+      lower = 0,
+      description = "numeric factor by which curves can be extrapolated beyond endpoints. Default is 2, see principal.curve."),
+    smoother = list(
+      type = "discrete",
+      default = "smooth.spline",
+      values = c("smooth.spline", "loess", "periodic.lowess"),
+      description = "choice of scatter plot smoother. Same as principal.curve, but \"lowess\" option is replaced with \"loess\" for additional flexibility."),
+
+    shrink.method = list(
+      type = "discrete",
+      default = "cosine",
+      values = c("cosine", "tricube", "density"),
+      description = "character denoting how to determine the appropriate\namount of shrinkage for a branching lineage. Accepted values are the same\nas for \\code{kernel} in \\code{\\link{density}} (default is \\code{\"cosine\"}),\nas well as \\code{\"tricube\"} and \\code{\"density\"}. See 'Details' for more.")
   ),
   run_fun = "dynmethods::run_slingshot",
-  plot_fun = "dynmethods::plot_slingshot"
+  plot_fun = "dynmethods::plot_slingshot",
+  apt_dependencies = c("libcgal-dev", "libglu1-mesa-dev", "libglu1-mesa-dev")
 )
 
 run_slingshot <- function(
@@ -47,7 +95,6 @@ run_slingshot <- function(
   dimred = "pca",
   shrink = 1,
   reweight = TRUE,
-  drop.multi = TRUE,
   thresh = 0.001,
   maxit = 15,
   stretch = 2,
@@ -77,7 +124,7 @@ run_slingshot <- function(
   expr <- t(log1p(FQnorm(t(counts))))
 
   # dimensionality reduction
-  space <- dimred(expr, method = dimred, ndim = ndim)
+  space <- dyndimred::dimred(expr, method = dimred, ndim = ndim)
 
   # clustering
   labels <- stats::kmeans(space, centers = nclus)$cluster
@@ -105,7 +152,6 @@ run_slingshot <- function(
     end.clus = end.clus,
     shrink = shrink,
     reweight = reweight,
-    drop.multi = drop.multi,
     thresh = thresh,
     maxit = maxit,
     stretch = stretch,
