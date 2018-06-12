@@ -4,9 +4,9 @@
 \alias{ti_embeddr}
 \title{Inferring trajectories with Embeddr}
 \usage{
-ti_embeddr(ndim = 2L, kernel = "nn", metric = "correlation", nn_pct = 1,
-  eps = 1, t = 1, symmetrize = "mean", measure_type = "unorm",
-  thresh = 0.001, maxit = 10L, stretch = 2, smoother = "smooth.spline")
+ti_embeddr(ndim = 2, kernel = "nn", metric = "correlation", nn_pct = 0,
+  eps = 0, t = 0, symmetrize = "mean", measure_type = "unorm",
+  thresh = 0.001, maxit = 10, stretch = 2, smoother = "smooth.spline")
 }
 \arguments{
 \item{ndim}{Dimension of the embedded space, default is 2}

@@ -6,7 +6,7 @@
 \usage{
 ti_dpt(sigma = "local", distance = "euclidean", ndim = 20,
   density_norm = TRUE, n_local_lower = 5, n_local_upper = 7,
-  w_width = -2.30258509299405)
+  w_width = 0.1)
 }
 \arguments{
 \item{sigma}{Diffusion scale parameter of the Gaussian kernel. A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix. Must be one of:
