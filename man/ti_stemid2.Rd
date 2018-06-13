@@ -16,7 +16,7 @@ ti_stemid2(clustnr = 30, bootnr = 50, metric = "pearson",
 
 \item{bootnr}{number of booststrapping runs for clusterboot. Default is 50}
 
-\item{metric}{the input data are transformed to a distance object. Distances can be computed based on different metrics. Possible values are "pearson", "spearman", "logpearson", "euclidean", "kendall", "maximum", "manhattan", "canberra", "binary" or "minkowski". Default is "pearson". In case of the correlation based methods, the distance is computed as 1 – correlation. K-medoids clustering is performed on this distance object.}
+\item{metric}{the input data are transformed to a distance object. Distances can be computed based on different metrics. Possible values are "pearson", "spearman", "logpearson", "euclidean", "kendall", "maximum", "manhattan", "canberra", "binary" or "minkowski". Default is "pearson". In case of the correlation based methods, the distance is computed as 1 - correlation. K-medoids clustering is performed on this distance object.}
 
 \item{num_cluster_method}{the type of clustering method, can be sat, gap or manual}
 

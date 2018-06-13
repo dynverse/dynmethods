@@ -2,7 +2,7 @@
 #'
 #' @param clustnr maximum number of clusters for the computation of the gap statistic or derivation of the cluster number by the saturation criterion. Default is 30. If more major cell types are expected a higher number should be chosen.
 #' @param bootnr number of booststrapping runs for clusterboot. Default is 50
-#' @param metric the input data are transformed to a distance object. Distances can be computed based on different metrics. Possible values are "pearson", "spearman", "logpearson", "euclidean", "kendall", "maximum", "manhattan", "canberra", "binary" or "minkowski". Default is "pearson". In case of the correlation based methods, the distance is computed as 1 – correlation. K-medoids clustering is performed on this distance object.
+#' @param metric the input data are transformed to a distance object. Distances can be computed based on different metrics. Possible values are "pearson", "spearman", "logpearson", "euclidean", "kendall", "maximum", "manhattan", "canberra", "binary" or "minkowski". Default is "pearson". In case of the correlation based methods, the distance is computed as 1 - correlation. K-medoids clustering is performed on this distance object.
 #' @param num_cluster_method the type of clustering method, can be sat, gap or manual
 #' @param SE.method the clustering routine calls a modified version of the maxSE function from the cluster package to determine the first local maximum of the gap statistic. By default, we use the method "Tibs2001SEmax" for calling the first local maximum (see specification of maxSE). This method requires that the maximum exceeds the values of its neighbors by a fraction of their standard deviation. This fraction is defined by the parameter SE.factor. All methods defined for the original maxSE function can also be used.
 #' @param SE.factor fraction of the standard deviation by which the local maximum is required to differ from the neighboring points it is compared to. Default is 0.25.
@@ -48,7 +48,7 @@ ti_stemid2 <- create_ti_method(
       type = "discrete",
       default = "pearson",
       values = c("pearson", "spearman", "kendall", "euclidean", "maximum", "manhattan", "canberra", "binary", "minkowski"),
-      description = "the input data are transformed to a distance object. Distances can be computed based on different metrics. Possible values are \"pearson\", \"spearman\", \"logpearson\", \"euclidean\", \"kendall\", \"maximum\", \"manhattan\", \"canberra\", \"binary\" or \"minkowski\". Default is \"pearson\". In case of the correlation based methods, the distance is computed as 1 – correlation. K-medoids clustering is performed on this distance object."),
+      description = "the input data are transformed to a distance object. Distances can be computed based on different metrics. Possible values are \"pearson\", \"spearman\", \"logpearson\", \"euclidean\", \"kendall\", \"maximum\", \"manhattan\", \"canberra\", \"binary\" or \"minkowski\". Default is \"pearson\". In case of the correlation based methods, the distance is computed as 1 - correlation. K-medoids clustering is performed on this distance object."),
 
     num_cluster_method = list(
       type = "discrete",

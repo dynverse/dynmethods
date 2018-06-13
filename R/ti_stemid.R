@@ -27,7 +27,7 @@ ti_stemid <- create_ti_method(
       type = "discrete",
       default = "pearson",
       values = c("pearson", "spearman", "kendall", "euclidean", "maximum", "manhattan", "canberra", "binary", "minkowski"),
-      description = "the input data are transformed to a distance object. Distances can be computed based on different metrics. Possible values are \"pearson\", \"spearman\", \"logpearson\", \"euclidean\", \"kendall\", \"maximum\", \"manhattan\", \"canberra\", \"binary\" or \"minkowski\". Default is \"pearson\". In case of the correlation based methods, the distance is computed as 1 – correlation. K-medoids clustering is performed on this distance object."),
+      description = "the input data are transformed to a distance object. Distances can be computed based on different metrics. Possible values are \"pearson\", \"spearman\", \"logpearson\", \"euclidean\", \"kendall\", \"maximum\", \"manhattan\", \"canberra\", \"binary\" or \"minkowski\". Default is \"pearson\". In case of the correlation based methods, the distance is computed as 1 - correlation. K-medoids clustering is performed on this distance object."),
 
     num_cluster_method = list(
       type = "discrete",

@@ -43,7 +43,7 @@ ti_recat <- create_ti_method(
       lower = 2,
       description = "Determines the number of k to skip in your consensus path, ie if
 step_size = 2, then reCAT would only calculate and merge the paths for
-k = 12, 14, 16, 18, …, n-2, n. We recommend step_size of up to a maximum of 5 while preserving the performance of reCAT. Usually a step_size of 2 (by default) would suffice and bigger steps are recommended for larger datasets (>1000 cells) in order to reduce computational time."),
+k = 12, 14, 16, 18, ..., n-2, n. We recommend step_size of up to a maximum of 5 while preserving the performance of reCAT. Usually a step_size of 2 (by default) would suffice and bigger steps are recommended for larger datasets (>1000 cells) in order to reduce computational time."),
 
     base_cycle_range_start = list(
       type = "integer",

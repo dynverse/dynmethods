@@ -8,17 +8,17 @@
 \usage{
 ti_celltree_maptpx(method = "maptpx", sd_filter = 0.5, absolute_width = 0,
   width_scale_factor = 1.5, outlier_tolerance_factor = 0.1,
-  rooting_method = "null", num_topics_lower = 2L, num_topics_upper = 15L,
+  rooting_method = "null", num_topics_lower = 2, num_topics_upper = 15,
   tot_iter = 1e+06, tolerance = 0.05)
 
 ti_celltree_gibbs(method = "Gibbs", sd_filter = 0.5, absolute_width = 0,
   width_scale_factor = 1.5, outlier_tolerance_factor = 0.1,
-  rooting_method = "null", num_topics = 4L, tot_iter = 200,
+  rooting_method = "null", num_topics = 4, tot_iter = 200,
   tolerance = 1e-05)
 
 ti_celltree_vem(method = "VEM", sd_filter = 0.5, absolute_width = 0,
   width_scale_factor = 1.5, outlier_tolerance_factor = 0.1,
-  rooting_method = "null", num_topics = 4L, tot_iter = 1e+06,
+  rooting_method = "null", num_topics = 4, tot_iter = 1e+06,
   tolerance = 1e-05)
 }
 \arguments{
