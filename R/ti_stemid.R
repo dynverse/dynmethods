@@ -1,6 +1,7 @@
 #' Inferring trajectories with StemID
 #'
 #' @inherit ti_identity description
+#' @inheritParams ti_stemid2
 #'
 #' @export
 ti_stemid <- create_ti_method(

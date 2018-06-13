@@ -4,14 +4,38 @@
 \alias{ti_slice}
 \title{Inferring trajectories with SLICE}
 \usage{
-ti_slice(distance_method = "euclidean", dimred_method = "none",
-  clust.method = "max.distance", mutual = TRUE, max.distance = 0, k = 3,
-  shortest.rank.percent = 10, graph.algorithm = "MST",
-  graph.using.cells.clustering = FALSE, k_imc = 3,
-  pct_leaf_node_cutoff = 0.5)
+ti_slice(lm.method = "clustering", model.type = "tree", ss.method = "all",
+  ss.threshold = 0.25, community.method = "louvain",
+  cluster.method = "kmeans", k = 0, k.max = 10, B = 100,
+  k.opt.method = "firstmax")
 }
 \arguments{
+\item{lm.method}{Select "clustering" based or "graph" based method to infer lineage model}
+
+\item{model.type}{The type of models that will be infered: "tree" - directed minimum spanning tree based, "graph" - directed graph based}
+
+\item{ss.method}{The method for defining core cell set for stable state detection: 
+all - all the cells in a cluster constitute the core cell set; 
+top - cells with scEntropy lower than the ss.threshold quantile of all the values in a cluster constitute the core cell set; 
+pcst - cells with scEntropy lower than the ss.threshold quantile of all the values in a cluster constitute the prize nodes, linear prize-collecting steiner tree algorithm is used to approximate an optimal subnetwork, the cells in the subnetwork constitute the core cell set. Stable states are defined as the centroids of the core cell sets.}
+
+\item{ss.threshold}{The threshold used when ss.method is "top" or "pcst". Default: 0.25.}
+
+\item{community.method}{The method for network community detection. 
+Most of the community detection methods implemented in the igraph package are supported, 
+including "fast_greedy", "edge_betweenness", "label_prop", "leading_eigen","louvain","spinglass", "walktrap". 
+If this parameter is set to "auto", the algorithm will perform all the community detection methods and select the one that generates the communities with best modularity. 
+Only take effect when lm.method is "graph"}
+
+\item{cluster.method}{Use "kmeans" or "pam" to divide cells into clusters. Only take effect when lm.method is "clustering"}
+
 \item{k}{The number of cell clusters. If NULL, Gap statistic will be used to determine an optimal k.}
+
+\item{k.max}{The "k.max" parameter of cluster::clusGap(); used when k is NULL.}
+
+\item{B}{The "B" parameter of cluster::clusGap(); used when k is NULL}
+
+\item{k.opt.method}{The "method" parameter of cluster::maxSE(); used when k is NULL}
 }
 \description{
 Inferring trajectories with SLICE

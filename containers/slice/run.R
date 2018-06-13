@@ -19,10 +19,7 @@ params <- jsonlite::read_json('/input/params.json')
 run_fun <- function (expression, groups_id = NULL, features_id = NULL, lm.method = "clustering", 
     model.type = "tree", ss.method = "all", ss.threshold = 0.25, 
     community.method = "louvain", cluster.method = "kmeans", 
-    k = 3, k.max = 10, B = 100, k.opt.method = "firstmax", distance_method = "euclidean", 
-    dimred_method = "none", clust.method = "max.distance", mutual = TRUE, 
-    max.distance = 0, shortest.rank.percent = 10, graph.algorithm = "MST", 
-    graph.using.cells.clustering = FALSE, k_imc = 3, pct_leaf_node_cutoff = 0.5) 
+    k = 0, k.max = 10, B = 100, k.opt.method = "firstmax") 
 {
     requireNamespace("SLICE")
     requireNamespace("igraph")
