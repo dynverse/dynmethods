@@ -1,0 +1,68 @@
+name: SCOUP
+short_name: scoup
+parameters:
+  ndim:
+    type: integer
+    default: 2
+    upper: 20
+    lower: 2
+    description: Number of pca dimensions
+  max_ite1:
+    type: numeric
+    default: 100.0
+    upper: 5000.0
+    lower: 2.0
+    description: Upper bound of EM iteration (without pseudo-time optimization). The
+      detailed explanation is described in the supplementary text. (default is 1,000)
+  max_ite2:
+    type: numeric
+    default: 100.0
+    upper: 500000.0
+    lower: 2.0
+    description: Upper bound of EM iteration (including pseudo-time optimization)
+      (default is 1,000).
+  alpha_min:
+    type: numeric
+    default: 0.1
+    upper: 10.0
+    lower: 0.001
+    description: Lower bound of alpha (default is 0.1)
+  alpha_max:
+    type: numeric
+    default: 100.0
+    upper: 10000.0
+    lower: 1.0
+    description: Upper bound of alpha (default is 100)
+  t_min:
+    type: numeric
+    default: 0.001
+    upper: 1.0
+    lower: 1.0e-05
+    description: Lower bound of pseudo-time (default is 0.001)
+  t_max:
+    type: numeric
+    default: 2.0
+    upper: 100.0
+    lower: 0.1
+    description: Upper bound of pseudo-time (default is 2.0)
+  sigma_squared_min:
+    type: numeric
+    default: 0.1
+    upper: 10.0
+    lower: 0.001
+    description: Lower bound of sigma squared (default is 0.1)
+  thresh:
+    type: numeric
+    default: 0.01
+    upper: 10.0
+    lower: 0.01
+    description: Threshold
+input:
+  format: rds
+  required:
+  - expression
+  - groups_id
+  - start_id
+  - end_n
+output:
+  format: dynwrap
