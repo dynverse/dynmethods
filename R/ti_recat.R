@@ -5,9 +5,9 @@
 #' @param TSPFold No documentation provided by authors
 #' @param beginNum No documentation provided by authors
 #' @param endNum No documentation provided by authors
-#' @param step_size Determines the number of k to skip in your consensus path, ie if step_size = 2, then reCAT would only calculate and merge the paths for k = 12, 14, 16, 18, …, n-2, n. We recommend step_size of up to a maximum of 5 while preserving the performance of reCAT. Usually a step_size of 2 (by default) would suffice and bigger steps are recommended for larger datasets (>1000 cells) in order to reduce computational time.
-#' @param base_cycle_range_start The minimal number of four k’s for computing the reference cycle mentioned in the manuscript. Can be set to 6 or 7
-#' @param base_cycle_range_end The maximal number of four k’s for computing the reference cycle mentioned in the manuscript. Can be set to 6 or 7
+#' @param step_size Determines the number of k to skip in your consensus path, ie if step_size = 2, then reCAT would only calculate and merge the paths for k = 12, 14, 16, 18, ', n-2, n. We recommend step_size of up to a maximum of 5 while preserving the performance of reCAT. Usually a step_size of 2 (by default) would suffice and bigger steps are recommended for larger datasets (>1000 cells) in order to reduce computational time.
+#' @param base_cycle_range_start The minimal number of four k's for computing the reference cycle mentioned in the manuscript. Can be set to 6 or 7
+#' @param base_cycle_range_end The maximal number of four k's for computing the reference cycle mentioned in the manuscript. Can be set to 6 or 7
 #' @param max_num No documentation provided by authors
 #' @param clustMethod No documentation provided by authors
 #'
@@ -50,13 +50,13 @@ k = 12, 14, 16, 18, ..., n-2, n. We recommend step_size of up to a maximum of 5 
       default = 6,
       upper = 7,
       lower = 6,
-      description = "The minimal number of four k’s for computing the reference cycle mentioned in the manuscript. Can be set to 6 or 7"),
+      description = "The minimal number of four k's for computing the reference cycle mentioned in the manuscript. Can be set to 6 or 7"),
     base_cycle_range_end = list(
       type = "integer",
       default = 9,
       upper = 10,
       lower = 9,
-      description = "The maximal number of four k’s for computing the reference cycle mentioned in the manuscript. Can be set to 6 or 7"),
+      description = "The maximal number of four k's for computing the reference cycle mentioned in the manuscript. Can be set to 6 or 7"),
     max_num = list(
       type = "integer",
       default = 300,
