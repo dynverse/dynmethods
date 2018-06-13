@@ -1,0 +1,60 @@
+name: cellTree with gibbs
+short_name: celltree_gibbs
+parameters:
+  method:
+    type: discrete
+    default: Gibbs
+    values: Gibbs
+  sd_filter:
+    type: numeric
+    lower: 0.01
+    upper: 5.0
+    default: 0.5
+  absolute_width:
+    type: numeric
+    values: 0.0e+00
+    default: 0.0e+00
+    tunable: no
+  width_scale_factor:
+    type: numeric
+    lower: 0.1
+    default: 1.5
+    upper: 100.0
+  outlier_tolerance_factor:
+    type: numeric
+    lower: 0.0001
+    default: 0.1
+    upper: 1000.0
+    distribution: exponential
+    rate: 1.0
+  rooting_method:
+    type: discrete
+    values:
+    - longest.path
+    - center.start.group
+    - average.start.group
+    - 'null'
+    default: 'null'
+  num_topics:
+    type: integer
+    lower: 2.0
+    default: 4.0
+    upper: 15.0
+  tot_iter:
+    type: numeric
+    lower: 50.0
+    upper: 500.0
+    default: 200.0
+  tolerance:
+    type: numeric
+    lower: 1.0e-07
+    upper: 0.001
+    default: 1.0e-05
+input:
+  format: rds
+  optional:
+  - start_id
+  - groups_id
+  required: expression
+output:
+  format: dynwrap

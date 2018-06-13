@@ -1,40 +1,183 @@
+list(
+  method = list(
+    type = "discrete",
+    default = "maptpx",
+    values = "maptpx",
+    description = "LDA inference method to use. Can be any unique prefix of ‘maptpx’, ‘Gibbs’ or ‘VEM’ (defaults to ‘maptpx’)"),
+  sd_filter = list(
+    type = "numeric",
+    default = -0.693147180559945,
+    upper = 1.6094379124341,
+    lower = -4.60517018598809,
+    description = "Standard-deviation threshold below which genes should be removed from the data."),
+  absolute_width = list(
+    type = "discrete",
+    default = 0,
+    values = "0",
+
+    description = "Distance threshold below which a cell vertex is considered to be attached to a backbone vertex (see paper for more details).\nBy default, this threshold is computed dynamically, based on the distance distribution for each branch."),
+  width_scale_factor = list(
+    type = "numeric",
+    default = 0.405465108108164,
+    upper = 4.60517018598809,
+    lower = -2.30258509299405,
+    description = "A scaling factor for the dynamically-computed distance threshold (ignored if absolute_width is provided).\nHigher values will result in less branches in the backbone tree, while lower values might lead to a large number of backbone branches."),
+
+  outlier_tolerance_factor = list(
+    type = "numeric",
+    default = -2.30258509299405,
+    upper = 6.90775527898214,
+    lower = -9.21034037197618,
+    description = "Proportion of vertices, out of the total number of vertices divided by the total number of branches,\nthat can be left at the end of the backbone tree-building algorithm."),
+  rooting_method = list(
+    type = "discrete",
+    default = "null",
+    values = c("longest.path", "center.start.group", "average.start.group", "null"),
+    description = "Method used to root the backbone tree. Must be one of: ‘null’, ‘longest.path’, ‘center.start.group’ or ‘average.start.group’.\n‘longest.path' picks one end of the longest shortest-path between two vertices.\n'center.start.group’ picks the vertex in the starting group with lowest mean-square-distance to the others.\n‘average.start.group’ creates a new artificial vertex, as the average of all cells in the starting group.\n‘null’ picks the best method based on the type of grouping and start group information available."),
+
+  num_topics_lower = list(
+    type = "integer",
+    default = 2L,
+    upper = 15L,
+    lower = 2L,
+    description = "The lower bound of topics to be fitted in the model."),
+  num_topics_upper = list(
+    type = "integer",
+    default = 15L,
+    upper = 15L,
+    lower = 2L,
+    description = "The upper bound of topics to be fitted in the model."),
+  tot_iter = list(
+    type = "numeric",
+    default = 13.8155105579643,
+    upper = 16.1180956509583,
+    lower = 9.21034037197618,
+    description = "Number of iterations of the LDA inference."),
+  tolerance = list(
+
+    type = "numeric",
+    default = -2.99573227355399,
+    upper = -0.693147180559945,
+    lower = -6.90775527898214,
+    description = "Tolerance values of the LDA inference."),
+  forbidden = "num_topics_lower > num_topics_upper")
+
+
+
+
 abstract_celltree_description <- function(method) {
   method_value <- c(maptpx = "maptpx", gibbs = "Gibbs", vem = "VEM")[[method]]
 
   common_params <- list(
-    makeDiscreteParam(id = "method", values = method_value, default = method_value),
-    makeNumericParam(id = "sd_filter", lower = log(.01), upper = log(5.0), default = log(.5), special.vals = list(FALSE), trafo = exp),
-    makeDiscreteParam(id = "absolute_width", values = 0, default = 0, tunable = FALSE),
-    makeNumericParam(id = "width_scale_factor", lower = log(.1), default = log(1.5), upper = log(100), trafo = exp),
-    makeNumericParam(id = "outlier_tolerance_factor", lower = log(.0001), default = log(.1), upper = log(1000), trafo = exp),
-    makeDiscreteParam(id = "rooting_method", values = c("longest.path", "center.start.group", "average.start.group", "null"), default = "null")
+    method = list(
+      type = "discrete",
+      default = method_value,
+      values = method_value
+    ),
+    sd_filter = list(
+      type = "numeric",
+      lower = 0.01,
+      upper = 5,
+      default = 0.5
+    ),
+    absolute_width = list(
+      type = "numeric",
+      values = 0,
+      default = 0,
+      tunable = FALSE
+    ),
+    width_scale_factor = list(
+      type = "numeric",
+      lower = 0.1,
+      default = 1.5,
+      upper = 100
+    ),
+    outlier_tolerance_factor = list(
+      type = "numeric",
+      lower = 0.0001,
+      default = 0.1,
+      upper = 1000,
+      distribution = "exponential",
+      rate = 1
+    ),
+    rooting_method = list(
+      type = "discrete",
+      values = c("longest.path", "center.start.group", "average.start.group", "null"),
+      default = "null"
+    )
   )
 
-  par_set <- switch(
+  parameters <- switch(
     method,
-    maptpx = makeParamSet(
-      params = c(common_params, list(
-        makeIntegerParam(id = "num_topics_lower", lower = 2L, upper = 15L, default = 2L),
-        makeIntegerParam(id = "num_topics_upper", lower = 2L, upper = 15L, default = 15L),
-        makeNumericParam(id = "tot_iter", lower = log(1e4), upper = log(1e7), default = log(1e6), trafo = function(x) round(exp(x))),
-        makeNumericParam(id = "tolerance", lower = log(.001), upper = log(.5), default = log(.05), trafo = exp)
-      )),
-      forbidden = quote(num_topics_lower > num_topics_upper)
+    maptpx = c(common_params, list(
+        num_topics_lower = list(
+          type = "integer",
+          lower = 2,
+          upper = 15,
+          default = 2
+        ),
+        num_topics_upper = list(
+          type = "integer",
+          lower = 2,
+          upper = 15,
+          default = 15
+        ),
+        tot_iter = list(
+          type = "numeric",
+          lower = 1e4,
+          upper = 1e7,
+          default = 1e6
+        ),
+        tolerance = list(
+          type = "numeric",
+          lower = 0.001,
+          upper = 0.5,
+          default = 0.05
+        ),
+        forbidden = "num_topics_lower > num_topics_upper"
+      )
     ),
-    gibbs = makeParamSet(
-      params = c(common_params, list(
-        makeIntegerParam(id = "num_topics", lower = 2L, default = 4L, upper = 15L),
-        makeNumericParam(id = "tot_iter", lower = log(50), upper = log(500), default = log(200), trafo = function(x) round(exp(x))),
-        makeNumericParam(id = "tolerance", lower = log(1e-7), upper = log(1e-3), default = log(1e-5), trafo = exp)
-      ))
+    gibbs = parameters <- c(common_params, list(
+        num_topics = list(
+          type = "integer",
+          lower = 2,
+          default = 4,
+          upper = 15
+        ),
+        tot_iter = list(
+          type = "numeric",
+          lower = 50,
+          upper = 500,
+          default = 200
+        ),
+        tolerance = list(
+          type = "numeric",
+          lower = 1e-7,
+          upper = 1e-3,
+          default = 1e-5
+        )
+      )
     ),
-    vem = makeParamSet(
-      params = c(common_params, list(
-        makeIntegerParam(id = "num_topics", lower = 2L, default = 4L, upper = 15L),
-        makeNumericParam(id = "tot_iter", lower = log(1e4), upper = log(1e7), default = log(1e6), trafo = function(x) round(exp(x))),
-        makeNumericParam(id = "tolerance", lower = log(1e-7), upper = log(1e-3), default = log(1e-5), trafo = exp)
-      ))
-    )
+    vem = parameters <- c(common_params, list(
+      num_topics = list(
+        type = "integer",
+        lower = 2,
+        default = 4,
+        upper = 15
+      ),
+      tot_iter = list(
+        type = "numeric",
+        lower = 1e4,
+        upper = 1e7,
+        default = 1e6
+      ),
+      tolerance = list(
+        type = "numeric",
+        lower = 1e-7,
+        upper = 1e-3,
+        default = 1e-5
+      )
+    ))
   )
 
   create_ti_method(
@@ -42,9 +185,10 @@ abstract_celltree_description <- function(method) {
     short_name = pritt("celltree_{method}"),
     package_loaded = c(),
     package_required = c("cellTree"),
-    par_set = par_set,
+    parameters = parameters,
     run_fun = "dynmethods::run_celltree",
-    plot_fun = "dynmethods::plot_celltree"
+    plot_fun = "dynmethods::plot_celltree",
+    apt_dependencies = "libgsl-dev"
   )
 }
 
@@ -164,7 +308,7 @@ run_celltree <- function(
 
   # simplify sample graph to just its backbone
   cell_graph <- igraph::as_data_frame(mst_tree, "edges") %>%
-    select(from, to, length = weight) %>%
+    dplyr::select(from, to, length = weight) %>%
     mutate(
       from = rownames(expression)[from],
       to = rownames(expression)[to],
@@ -204,7 +348,7 @@ plot_celltree <- function(prediction) {
   pie_df <- map_df(seq_len(nrow(vertices)), function(i) {
     pieval <- vertices$pie[[i]]
     data.frame(
-      vertices[i,] %>% select(-pie),
+      vertices[i,] %>% dplyr::select(-pie),
       topic = paste0("Topic ", seq_along(pieval)),
       stringsAsFactors = FALSE
     ) %>% mutate(

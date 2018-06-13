@@ -1,0 +1,66 @@
+name: cellTree with maptpx
+short_name: celltree_maptpx
+parameters:
+  method:
+    type: discrete
+    default: maptpx
+    values: maptpx
+  sd_filter:
+    type: numeric
+    lower: 0.01
+    upper: 5.0
+    default: 0.5
+  absolute_width:
+    type: numeric
+    values: 0.0e+00
+    default: 0.0e+00
+    tunable: no
+  width_scale_factor:
+    type: numeric
+    lower: 0.1
+    default: 1.5
+    upper: 100.0
+  outlier_tolerance_factor:
+    type: numeric
+    lower: 0.0001
+    default: 0.1
+    upper: 1000.0
+    distribution: exponential
+    rate: 1.0
+  rooting_method:
+    type: discrete
+    values:
+    - longest.path
+    - center.start.group
+    - average.start.group
+    - 'null'
+    default: 'null'
+  num_topics_lower:
+    type: integer
+    lower: 2.0
+    upper: 15.0
+    default: 2.0
+  num_topics_upper:
+    type: integer
+    lower: 2.0
+    upper: 15.0
+    default: 15.0
+  tot_iter:
+    type: numeric
+    lower: 10000.0
+    upper: 1.0e+07
+    default: 1000000.0
+  tolerance:
+    type: numeric
+    lower: 0.001
+    upper: 0.5
+    default: 0.05
+  forbidden: num_topics_lower > num_topics_upper
+input:
+  format: rds
+  optional:
+  - start_id
+  - groups_id
+  required: expression
+output:
+  format: dynwrap
