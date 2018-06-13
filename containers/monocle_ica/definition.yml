@@ -1,0 +1,29 @@
+name: Monocle ICA
+short_name: monocle_ica
+parameters:
+  reduction_method:
+    type: discrete
+    default: ICA
+    values: ICA
+    description: A character string specifying the algorithm to use for dimensionality
+      reduction.
+  max_components:
+    type: integer
+    default: 2
+    upper: 20
+    lower: 2
+    description: the dimensionality of the reduced space
+  norm_method:
+    type: discrete
+    default: vstExprs
+    values:
+    - vstExprs
+    - log
+    - none
+    description: Determines how to transform expression values prior to reducing dimensionality
+input:
+  format: rds
+  optional: groups_n
+  required: counts
+output:
+  format: dynwrap
