@@ -11,13 +11,31 @@
 ti_phenopath <- create_ti_method(
   name = "PhenoPath",
   short_name = "phenopath",
-  package_required = c("phenopath"),
+  package_required = c("phenopath", "dyndimred"),
   package_loaded = c(),
-  par_set = makeParamSet(
-    makeIntegerParam(id = "thin", lower = 2L, upper = 500L, default = 40L),
-    makeDiscreteParam(id = "z_init", default = 1, values = list(1, 2, 3, 4, 5, "random")),
-    makeLogicalParam(id = "model_mu", default = FALSE),
-    makeLogicalParam(id = "scale_y", default = TRUE)
+  parameters = list(
+    thin = list(
+      type = "integer",
+      default = 40L,
+      upper = 500L,
+      lower = 2L,
+      description = "The number of iterations to wait each time before\nre-calculating the elbo"
+    ),
+    z_init = list(
+      type = "discrete",
+      default = "1",
+      values = c("1", "2", "3", "4", "5", "random"),
+      description = "The initialisation of the latent trajectory. Should be one of\n\\enumerate{\n\\item A positive integer describing which principal component of the data should\nbe used for initialisation (default 1), \\emph{or}\n\\item A numeric vector of length number of samples to be used \ndirectly for initialisation, \\emph{or}\n\\item The text character \\code{\"random\"}, for random initialisation \nfrom a standard normal distribution.\n}"
+    ),
+    model_mu = list(
+      type = "logical",
+      default = FALSE,
+      description = "Logical - should a gene-specific intercept term be modelled?"
+    ),
+    scale_y = list(
+      type = "logical",
+      default = TRUE,
+      description = "Logical - should the expression matrix be centre scaled?")
   ),
   run_fun = "dynmethods::run_phenopath",
   plot_fun = "dynmethods::plot_phenopath"
@@ -41,7 +59,7 @@ run_phenopath <- function(
     x = rep(1, nrow(expression)),
     elbo_tol = 1e-6,
     thin = thin,
-    z_init = z_init,
+    z_init = ifelse(z_init == "random", "random", as.numeric(z_init)),
     model_mu = model_mu,
     scale_y = scale_y
   )
@@ -52,7 +70,7 @@ run_phenopath <- function(
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # run pca for visualisation purposes
-  space <- dimred(expression, method = "pca", ndim = 2)
+  space <- dyndimred::dimred(expression, method = "pca", ndim = 2)
 
   # return output
   wrap_prediction_model(
