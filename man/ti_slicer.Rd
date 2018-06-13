@@ -4,7 +4,7 @@
 \alias{ti_slicer}
 \title{Inferring trajectories with SLICER}
 \usage{
-ti_slicer(kmin = 10L, m = 2L)
+ti_slicer(kmin = 10, m = 2)
 }
 \arguments{
 \item{kmin}{Smallest value of k to try}

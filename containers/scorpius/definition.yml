@@ -1,0 +1,67 @@
+name: SCORPIUS
+short_name: scorpius
+parameters:
+  distance_method:
+    type: discrete
+    default: spearman
+    values:
+    - spearman
+    - pearson
+    - kendall
+    description: |-
+      A character string indicating which correlation
+      coefficient (or covariance) is to be computed. One of "pearson", "kendall", or "spearman".
+  ndim:
+    type: integer
+    default: 3
+    upper: 20
+    lower: 2
+    description: The number of dimensions in the new space.
+  k:
+    type: integer
+    default: 4
+    upper: 20
+    lower: 1
+    description: The number of clusters to cluster the data into.
+  thresh:
+    type: numeric
+    default: 0.001
+    upper: 100000.0
+    lower: 1.0e-05
+    distribution: exponential
+    rate: 1.0
+    description: '\code{\link[princurve]{principal.curve}} parameter: convergence
+      threshhold on shortest distances to the curve'
+  maxit:
+    type: integer
+    default: 10
+    upper: 50
+    lower: 0
+    description: '\code{\link[princurve]{principal.curve}} parameter: maximum number
+      of iterations'
+  stretch:
+    type: numeric
+    default: 0.0e+00
+    upper: 5.0
+    lower: 0.0e+00
+    description: '\code{\link[princurve]{principal.curve}} parameter: a factor by
+      which the curve can be extrapolated when points are projected'
+  smoother:
+    type: discrete
+    default: smooth.spline
+    values:
+    - smooth.spline
+    - lowess
+    - periodic.lowess
+    description: '\code{\link[princurve]{principal.curve}} parameter: choice of smoother'
+  sparse:
+    type: logical
+    default: no
+    description: |-
+      Whether or not to use sparse MDS dimensionality reduction,
+      for datasets with large amounts of cells.
+input:
+  format: rds
+  required: expression
+output:
+  format: dynwrap

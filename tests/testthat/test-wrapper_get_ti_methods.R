@@ -7,18 +7,12 @@ if (Sys.getenv("TRAVIS") != "true") {
 
     lis <- dynwrap::get_ti_methods(as_tibble=FALSE, packages="dynmethods")
     expect_that(lis, is_a("list"))
-
-    for (descr in lis) {
-      test_that(paste0("Description ", descr$name), {
-        expect_match(descr$short_name, "^[a-z0-9_]*$")
-      })
-    }
   })
 
   methods <- get_ti_methods(packages="dynmethods")
 
   for (i in seq_len(nrow(methods))) {
-    method <- extract_row_to_list(methods, i)
+    method <- extract_row_to_list(methods, i)$method_func()
 
     test_that(pritt("Checking whether {method$short_name} can generate parameters"), {
       par_set <- method$par_set
@@ -30,7 +24,7 @@ if (Sys.getenv("TRAVIS") != "true") {
       design <- ParamHelpers::generateDesignOfDefaults(par_set)
 
       parset_params <- names(par_set$pars)
-      runfun_params <- setdiff(formalArgs(method$run_fun), c("counts", "start_cells", "start_cell", "end_cells", "grouping_assignment", "task"))
+      runfun_params <- setdiff(formalArgs(method$run_fun), c("counts", "start_id", "start_cell", "end_id", "groups_id", "task"))
 
       expect_equal( parset_params[parset_params %in% runfun_params], parset_params )
     })

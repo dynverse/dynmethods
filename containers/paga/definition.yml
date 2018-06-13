@@ -23,7 +23,7 @@ input:
   required:
     - expression
   optional:
-    - grouping_assignment
+    - groups_id
 output:
   format: feather
   outputs:

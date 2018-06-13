@@ -9,15 +9,60 @@ abstract_scorpius_description <- function(short_name) {
     short_name = short_name,
     package_loaded = c(),
     package_required = c("SCORPIUS"),
-    par_set = makeParamSet(
-      makeDiscreteParam(id = "distance_method", default = "spearman", values = c("spearman", "pearson", "kendall")),
-      makeIntegerParam(id = "ndim", lower = 2L, default = 3L, upper = 20L),
-      makeIntegerParam(id = "k", lower = 1L, default = 4L, upper = 20L),
-      makeNumericParam(id = "thresh", lower = -5, upper = 5, default = -3, trafo = function(x) 10^x),
-      makeIntegerParam(id = "maxit", lower = 0L, upper = 50L, default = 10L),
-      makeNumericParam(id = "stretch", lower = 0, upper = 5, default = 0),
-      makeDiscreteParam(id = "smoother", default = "smooth.spline", values = c("smooth.spline", "lowess", "periodic.lowess")),
-      makeLogicalParam(id = "sparse", default = short_name == "scorpius_sparse")
+    list(
+      distance_method = list(
+        type = "discrete",
+        default = "spearman",
+        values = c("spearman", "pearson", "kendall"),
+        description = "A character string indicating which correlation\ncoefficient (or covariance) is to be computed. One of \"pearson\", \"kendall\", or \"spearman\"."),
+      ndim = list(
+        type = "integer",
+        default = 3L,
+        upper = 20L,
+        lower = 2L,
+        description = "The number of dimensions in the new space."
+      ),
+      k = list(
+        type = "integer",
+        default = 4L,
+        upper = 20L,
+        lower = 1L,
+        description = "The number of clusters to cluster the data into."
+      ),
+      thresh = list(
+        type = "numeric",
+        default = 1e-3,
+        upper = 1e5,
+        lower = 1e-5,
+        distribution = "exponential",
+        rate = 1,
+        description = "\\code{\\link[princurve]{principal.curve}} parameter: convergence threshhold on shortest distances to the curve"
+      ),
+      maxit = list(
+        type = "integer",
+        default = 10L,
+        upper = 50L,
+        lower = 0L,
+        description = "\\code{\\link[princurve]{principal.curve}} parameter: maximum number of iterations"
+      ),
+      stretch = list(
+        type = "numeric",
+        default = 0,
+        upper = 5,
+        lower = 0,
+        description = "\\code{\\link[princurve]{principal.curve}} parameter: a factor by which the curve can be extrapolated when points are projected"
+      ),
+      smoother = list(
+        type = "discrete",
+        default = "smooth.spline",
+        values = c("smooth.spline", "lowess", "periodic.lowess"),
+        description = "\\code{\\link[princurve]{principal.curve}} parameter: choice of smoother"
+      ),
+      sparse = list(
+        type = "logical",
+        default = short_name == "scorpius_sparse",
+        description = "Whether or not to use sparse MDS dimensionality reduction,\nfor datasets with large amounts of cells."
+      )
     ),
     run_fun = "dynmethods::run_scorpius",
     plot_fun = "dynmethods::plot_scorpius"
@@ -37,12 +82,12 @@ abstract_scorpius_description <- function(short_name) {
 #' @param distance_method A character string indicating which correlation
 #'  coefficient (or covariance) is to be computed. One of "pearson", "kendall", or "spearman".
 #'
-#' @rdname scorpius
+#' @rdname ti_scorpius
 #'
 #' @export
 ti_scorpius <- abstract_scorpius_description("scorpius")
 
-#' @rdname scorpius
+#' @rdname ti_scorpius
 #' @export
 ti_scorpius_sparse <- abstract_scorpius_description("scorpius_sparse")
 
@@ -92,8 +137,8 @@ run_scorpius <- function(
   # convert trajectory to segments
   dimred_trajectory_segments <-
     cbind(
-      traj$path[-nrow(traj$path), , drop = FALSE] %>% set_colnames(., paste0("from_", colnames(.))),
-      traj$path[-1, , drop = FALSE] %>% set_colnames(., paste0("to_", colnames(.)))
+      traj$path[-nrow(traj$path), , drop = FALSE] %>% magrittr::set_colnames(., paste0("from_comp_", seq_along(colnames(.)))),
+      traj$path[-1, , drop = FALSE] %>% magrittr::set_colnames(., paste0("to_comp_", seq_along(colnames(.))))
     )
 
   # TIMING: done with method

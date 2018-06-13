@@ -13,14 +13,14 @@ ti_tscan <- create_ti_method(
   short_name = "tscan",
   package_loaded = c(),
   package_required = c("TSCAN", "igraph"),
-  par_set = makeParamSet(
-    makeNumericParam(id = "minexpr_percent", lower=0, upper=1, default=0),
-    makeNumericParam(id = "minexpr_value", lower=0, upper=10, default=0),
-    makeNumericParam(id = "cvcutoff", lower=0, upper=5, default=0),
-    makeIntegerParam(id = "clusternum_lower", lower = 2L, upper = 20L, default = 2L),
-    makeIntegerParam(id = "clusternum_upper", lower = 2L, upper = 20L, default = 9L),
-    makeDiscreteParam(id = "modelNames", default = "VVV", values = c("EII", "VII", "EEI", "VEI", "EVI", "VVI", "EEE", "EVE", "VEE", "VVE", "EEV", "VEV", "EVV", "VVV")),
-    forbidden = quote(clusternum_lower > clusternum_upper)
+  parameters = list(
+    minexpr_percent = list(type = "numeric", default = 0, upper = 1, lower = 0),
+    minexpr_value = list(type = "numeric", default = 0, upper = 10, lower = 0),
+    cvcutoff = list(type = "numeric", default = 0, upper = 5, lower = 0),
+    clusternum_lower = list(type = "integer", default = 2L, upper = 20L, lower = 2L),
+    clusternum_upper = list(type = "integer", default = 9L, upper = 20L, lower = 2L),
+    modelNames = list(type = "discrete", default = "VVV", values = c("EII", "VII", "EEI", "VEI", "EVI", "VVI", "EEE", "EVE", "VEE", "VVE", "EEV", "VEV", "EVV", "VVV")),
+    forbidden = "clusternum_lower > clusternum_upper"
   ),
   run_fun = "dynmethods::run_tscan",
   plot_fun = "dynmethods::plot_tscan"

@@ -4,8 +4,8 @@
 \alias{ti_recat}
 \title{Inferring trajectories with reCAT}
 \usage{
-ti_recat(TSPFold = 2L, beginNum = 10L, endNum = 15L, step_size = 2L,
-  base_cycle_range_start = 6L, base_cycle_range_end = 9L, max_num = 300L,
+ti_recat(TSPFold = 2, beginNum = 10, endNum = 15, step_size = 2,
+  base_cycle_range_start = 6, base_cycle_range_end = 9, max_num = 300,
   clustMethod = "GMM")
 }
 \arguments{
@@ -15,11 +15,11 @@ ti_recat(TSPFold = 2L, beginNum = 10L, endNum = 15L, step_size = 2L,
 
 \item{endNum}{No documentation provided by authors}
 
-\item{step_size}{Determines the number of k to skip in your consensus path, ie if step_size = 2, then reCAT would only calculate and merge the paths for k = 12, 14, 16, 18, …, n-2, n. We recommend step_size of up to a maximum of 5 while preserving the performance of reCAT. Usually a step_size of 2 (by default) would suffice and bigger steps are recommended for larger datasets (>1000 cells) in order to reduce computational time.}
+\item{step_size}{Determines the number of k to skip in your consensus path, ie if step_size = 2, then reCAT would only calculate and merge the paths for k = 12, 14, 16, 18, ', n-2, n. We recommend step_size of up to a maximum of 5 while preserving the performance of reCAT. Usually a step_size of 2 (by default) would suffice and bigger steps are recommended for larger datasets (>1000 cells) in order to reduce computational time.}
 
-\item{base_cycle_range_start}{The minimal number of four k’s for computing the reference cycle mentioned in the manuscript. Can be set to 6 or 7}
+\item{base_cycle_range_start}{The minimal number of four k's for computing the reference cycle mentioned in the manuscript. Can be set to 6 or 7}
 
-\item{base_cycle_range_end}{The maximal number of four k’s for computing the reference cycle mentioned in the manuscript. Can be set to 6 or 7}
+\item{base_cycle_range_end}{The maximal number of four k's for computing the reference cycle mentioned in the manuscript. Can be set to 6 or 7}
 
 \item{max_num}{No documentation provided by authors}
 

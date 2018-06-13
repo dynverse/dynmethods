@@ -6,7 +6,7 @@
 \usage{
 ti_slice(lm.method = "clustering", model.type = "tree", ss.method = "all",
   ss.threshold = 0.25, community.method = "louvain",
-  cluster.method = "kmeans", k = 0, k.max = 10L, B = 100L,
+  cluster.method = "kmeans", k = 0, k.max = 10, B = 100,
   k.opt.method = "firstmax")
 }
 \arguments{

@@ -8,10 +8,11 @@ load("data/methods_info.rda")
 
 #   ____________________________________________________________________________
 #   Run & push dockers                                                      ####
+# get all methods
 method_ids <- list.dirs("./containers/", full.names = FALSE)[-1]
 
 if (!all(method_ids %in% methods_info$method_id)) {
-  stop("Some methods not in methods_info! \n", setdiff(metho_ids, methods_info$method_id))
+  stop("Some methods not in methods_info! \n", setdiff(method_ids, methods_info$method_id))
 }
 
 # rebuild & push all containers
@@ -22,7 +23,6 @@ if (rebuild) {
     system(str_glue("docker push dynverse/{method_id}"))
   })
 }
-
 
 #   ____________________________________________________________________________
 #   Functions to generate documentation and parameters given a definition   ####
@@ -170,7 +170,7 @@ for (method_id in method_ids) {
 }
 
 #   ____________________________________________________________________________
-#   Save information on containerised methods                               ####
+#   Save data on containerised methods                                      ####
 methods_containerised <- tibble(
   method_id = method_ids,
   docker_container = paste0("dynverse/", method_ids),

@@ -80,9 +80,9 @@ input:
   format: rds
   required:
     - counts
-    - start_cells
+    - start_id
   optional:
-    - grouping_assignment
+    - groups_id
 output:
   format: feather
   outputs:

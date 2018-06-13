@@ -1,0 +1,73 @@
+name: pseudogp
+short_name: pseudogp
+parameters:
+  smoothing_alpha:
+    type: numeric
+    default: 10.0
+    upper: 20.0
+    lower: 1.0
+    description: The hyperparameter for the Gamma distribution that controls arc-length
+  smoothing_beta:
+    type: numeric
+    default: 3.0
+    upper: 20.0
+    lower: 1.0
+    description: The hyperparameter for the Gamma distribution that controls arc-length
+  pseudotime_mean:
+    type: numeric
+    default: 0.5
+    upper: 1.0
+    lower: 0.0e+00
+    description: The mean of the constrained normal prior on the pseudotimes
+  pseudotime_var:
+    type: numeric
+    default: 1.0
+    upper: 1.0
+    lower: 0.01
+    description: The variance of the constrained normal prior on the pseudotimes
+  chains:
+    type: integer
+    default: 3
+    upper: 20
+    lower: 1
+    description: The number of chains for the MCMC trace
+  iter:
+    type: numeric
+    default: 100.0
+    upper: 1000.0
+    lower: 100.0
+    description: The number of iterations for the MCMC trace
+  dimreds:
+    type: logical_vector
+    default:
+    - yes
+    - yes
+    - no
+    - no
+    - no
+    - no
+    - no
+    - no
+    - no
+    length: 9.0
+    description: |-
+      A character vector specifying which dimensionality reduction methods to use.
+      See \code{\link[dyndimred:dimred]{dyndimred::dimred()}} for the list of available dimensionality reduction methods.
+  initialise_from:
+    type: discrete
+    default: random
+    values:
+    - random
+    - principal_curve
+    - pca
+    description: |-
+      How to initialise the MCMC chain. One of "random" (stan decides),
+      "principal_curve", or "pca" (the first component of PCA rescaled is taken to be the pseudotimes).
+      Note: if multiple representations are provided, \code{pseudogp} will take the principal curve or
+      pca from the first rather than combining them. If a particular representation is required, it is
+      up to the user to re-order them.
+input:
+  format: rds
+  required: expression
+output:
+  format: dynwrap

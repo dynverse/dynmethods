@@ -13,16 +13,62 @@ ti_pseudogp <- create_ti_method(
   name = "pseudogp",
   short_name = "pseudogp",
   package_loaded = c("pseudogp"),
-  package_required = c("rstan", "coda", "MCMCglmm"),
-  par_set = makeParamSet(
-    makeNumericParam(id = "smoothing_alpha", lower = 1, upper = 20, default = 10),
-    makeNumericParam(id = "smoothing_beta", lower = 1, upper = 20, default = 3),
-    makeNumericParam(id = "pseudotime_mean", lower = 0, upper = 1, default = 0.5),
-    makeNumericParam(id = "pseudotime_var", lower = 0.01, upper = 1, default = 1),
-    makeIntegerParam(id = "chains", lower = 1L, default = 3L, upper = 20L),
-    makeNumericParam(id = "iter", lower = log(100), default = log(100), upper = log(1000), trafo = function(x) round(exp(x))), # default is 1000
-    makeLogicalVectorParam(id = "dimreds", len = length(dyndimred::list_dimred_methods()), default = names(dyndimred::list_dimred_methods()) %in% c("pca", "mds")),
-    makeDiscreteParam(id = "initialise_from", values = c("random", "principal_curve", "pca"), default = "random")
+  package_required = c("rstan", "coda", "MCMCglmm", "dyndimred"),
+  parameters = list(
+    smoothing_alpha = list(
+      type = "numeric",
+      default = 10,
+      upper = 20,
+      lower = 1,
+      description = "The hyperparameter for the Gamma distribution that controls arc-length"
+    ),
+    smoothing_beta = list(
+      type = "numeric",
+      default = 3,
+      upper = 20,
+      lower = 1,
+      description = "The hyperparameter for the Gamma distribution that controls arc-length"
+    ),
+    pseudotime_mean = list(
+      type = "numeric",
+      default = 0.5,
+      upper = 1,
+      lower = 0,
+      description = "The mean of the constrained normal prior on the pseudotimes"
+    ),
+    pseudotime_var = list(
+      type = "numeric",
+      default = 1,
+      upper = 1,
+      lower = 0.01,
+      description = "The variance of the constrained normal prior on the pseudotimes"
+    ),
+    chains = list(
+      type = "integer",
+      default = 3L,
+      upper = 20L,
+      lower = 1L,
+      description = "The number of chains for the MCMC trace"
+    ),
+    iter = list(
+      type = "numeric",
+      default = 100,
+      upper = 1000,
+      lower = 100,
+      description = "The number of iterations for the MCMC trace"
+    ),
+    dimreds = list(
+      type = "logical_vector",
+      default = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
+      length = 9,
+      description = "A character vector specifying which dimensionality reduction methods to use.\nSee \\code{\\link[dyndimred:dimred]{dyndimred::dimred()}} for the list of available dimensionality reduction methods."
+    ),
+    initialise_from = list(
+      type = "discrete",
+      default = "random",
+      values = c("random", "principal_curve", "pca"),
+      description = "How to initialise the MCMC chain. One of \"random\" (stan decides),\n\"principal_curve\", or \"pca\" (the first component of PCA rescaled is taken to be the pseudotimes).\nNote: if multiple representations are provided, \\code{pseudogp} will take the principal curve or\npca from the first rather than combining them. If a particular representation is required, it is\nup to the user to re-order them."
+    )
   ),
   run_fun = "dynmethods::run_pseudogp",
   plot_fun = "dynmethods::plot_pseudogp"
@@ -45,7 +91,7 @@ run_pseudogp <- function(
   requireNamespace("MCMCglmm")
 
   # perform dimreds
-  dimred_names <- names(dyndimred::list_dimred_methods())[dimreds]
+  dimred_names <- names(dyndimred::list_dimred_methods())[as.logical(dimreds)]
   spaces <- map(dimred_names, ~ dimred(expression, method = ., ndim = 2)) # only 2 dimensions per dimred are allowed
 
   # TIMING: done with preproc

@@ -1,0 +1,71 @@
+name: DPT
+short_name: dpt
+parameters:
+  sigma:
+    type: discrete
+    default: local
+    values:
+    - local
+    - global
+    description: |-
+      Diffusion scale parameter of the Gaussian kernel. A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix. Must be one of:
+      \itemize{
+      \itemA character vector: \code{"local"} (default) or \code{"global"},
+      \itema numeric global sigma -- a global sigma will be calculated using \code{\link[destiny:find_sigmas]{destiny::find_sigmas()}}
+      \itemor a \code{\link[destiny:Sigmas-class]{destiny::Sigmas-class()}} object.
+      }
+  distance:
+    type: discrete
+    default: euclidean
+    values:
+    - euclidean
+    - cosine
+    - rankcor
+    description: |-
+      A \code{\link[stats:dist]{stats::dist()}} object, or a character vector specifying which distance metric to use. Allowed measures:
+      \itemize{
+      \itemEuclidean distance (default),
+      \itemcosine distance (1-corr(c_1, c_2)), or
+      \itemrank correlation distance (1-corr(rank(c_1), rank(c_2)))
+      }
+  ndim:
+    type: integer
+    default: 20
+    upper: 100
+    lower: 3
+    description: Number of eigenvectors/dimensions to return
+  density_norm:
+    type: logical
+    default: yes
+    values:
+    - 'TRUE'
+    - 'FALSE'
+    description: logical. If TRUE, use density normalisation
+  n_local_lower:
+    type: integer
+    default: 5
+    upper: 20
+    lower: 2
+    description: If sigma == 'local', the \code{n_local_lower}:\code{n_local_upper}
+      nearest neighbor(s) determine(s) the local sigma
+  n_local_upper:
+    type: integer
+    default: 7
+    upper: 20
+    lower: 2
+    description: See \code{n_local_lower}
+  w_width:
+    type: numeric
+    default: 0.1
+    upper: 1.0
+    lower: 0.0001
+    description: Window width to use for deciding the branch cutoff
+  forbidden: n_local_lower > n_local_upper
+input:
+  format: rds
+  optional:
+  - start_id
+  - features_id
+  required: expression
+output:
+  format: dynwrap

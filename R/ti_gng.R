@@ -13,16 +13,44 @@ ti_gng <- create_ti_method(
   name = "Growing Neural Gas",
   short_name = "gng",
   package_loaded = c(),
-  package_required = c("GNG", "igraph"),
-  par_set = makeParamSet(
-    makeDiscreteParam(id = "dimred", default = "pca", values = names(dyndimred::list_dimred_methods())),
-    makeIntegerParam(id = "ndim", default = 5L, lower = 2L, upper = 10L),
-    makeNumericParam(id = "max_iter", lower = log(1e2), default = log(1e6), upper = log(1e8), trafo = function(x) round(exp(x))),
-    makeIntegerParam(id = "max_nodes", default = 8L, lower = 2L, upper = 30L),
-    makeLogicalParam(id = "apply_mst", default = TRUE)
+  package_required = c("GNG", "igraph", "dyndimred"),
+  parameters = list(
+    dimred = list(
+      type = "discrete",
+      default = "pca",
+      values = c("pca", "mds", "tsne", "ica", "lle", "mds_sammon", "mds_isomds", "mds_smacof", "umap"),
+      description = "A character vector specifying which dimensionality reduction method to use.\nSee \\link[dyndimred:dimred]{dyndimred::dimred} for the list of available dimensionality reduction methods."
+    ),
+    ndim = list(
+      type = "integer",
+      default = 5L,
+      upper = 10L,
+      lower = 2L,
+      description = "The number of dimensions"
+    ),
+    max_iter = list(
+      type = "numeric",
+      default = 13.8155105579643,
+      upper = 18.4206807439524,
+      lower = 4.60517018598809,
+      description = "The max number of iterations"
+    ),
+    max_nodes = list(
+      type = "integer",
+      default = 8L,
+      upper = 30L,
+      lower = 2L,
+      description = "The maximum number of nodes"
+    ),
+    apply_mst = list(
+      type = "logical",
+      default = TRUE,
+      values = c("TRUE", "FALSE"),
+      description = "If true, an MST post-processing of the GNG is performed.")
   ),
   run_fun = "dynmethods::run_gng",
-  plot_fun = "dynmethods::plot_gng"
+  plot_fun = "dynmethods::plot_gng",
+  apt_dependencies = "libudunits2-dev"
 )
 
 #' @importFrom stats dist
@@ -41,7 +69,7 @@ run_gng <- function(
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
   # perform dimensionality reduction
-  space <- dimred(expression, method = dimred, ndim = ndim)
+  space <- dyndimred::dimred(expression, method = dimred, ndim = ndim)
 
   # calculate GNG
   gng_out <- GNG::gng(
@@ -55,8 +83,7 @@ run_gng <- function(
   # transform to milestone network
   node_names <- gng_out$nodes %>% mutate(name = as.character(name))
   milestone_network <- gng_out$edges %>%
-    left_join(node_names %>% select(i = index, from = name), by = "i") %>%
-    left_join(node_names %>% select(j = index, to = name), by = "j") %>%
+    select(from = i, to = j) %>%
     mutate(
       length = node_dist[cbind(from, to)],
       directed = FALSE

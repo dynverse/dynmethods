@@ -34,7 +34,7 @@ input:
   format: text
   required:
     - expression
-    - start_cells
+    - start_id
 output:
   format: text
   outputs:

@@ -1,0 +1,27 @@
+name: SLICER
+short_name: slicer
+parameters:
+  kmin:
+    type: integer
+    default: 10
+    upper: 20
+    lower: 2
+    description: Smallest value of k to try
+  m:
+    type: integer
+    default: 2
+    upper: 20
+    lower: 2
+    description: 'Intrinsic dimension of the data. This parameter mainly influences
+      the visualisation of the results. The real intrinsic dimension will be calculated
+      automaticly. '
+input:
+  format: rds
+  optional:
+  - features_id
+  - end_id
+  required:
+  - expression
+  - start_id
+output:
+  format: dynwrap

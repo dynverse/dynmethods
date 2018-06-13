@@ -1,0 +1,97 @@
+name: Slingshot
+short_name: slingshot
+parameters:
+  ndim:
+    type: integer
+    default: 3
+    upper: 20
+    lower: 2
+    description: The number of dimensions
+  nclus:
+    type: integer
+    default: 5
+    upper: 40
+    lower: 2
+    description: Number of clusters
+  dimred:
+    type: discrete
+    default: pca
+    values:
+    - pca
+    - mds
+    - tsne
+    - ica
+    - lle
+    - mds_sammon
+    - mds_isomds
+    - mds_smacof
+    - umap
+    description: |-
+      A character vector specifying which dimensionality reduction method to use.
+      See \link[dyndimred:dimred]{dyndimred::dimred} for the list of available dimensionality reduction methods.
+  shrink:
+    type: numeric
+    default: 1.0
+    upper: 1.0
+    lower: 0.0e+00
+    description: "logical or numeric between 0 and 1, determines whether and how \nmuch
+      to shrink branching lineages toward their average prior to the split."
+  reweight:
+    type: logical
+    default: yes
+    values:
+    - 'TRUE'
+    - 'FALSE'
+    description: "logical, whether to allow cells shared between lineages to be\nreweighted
+      during curve-fitting. If \\code{TRUE}, cells shared between \nlineages will
+      be weighted by: distance to nearest curve / distance to\ncurve."
+  thresh:
+    type: numeric
+    default: -3.0
+    upper: 5.0
+    lower: -5.0
+    description: numeric, determines the convergence criterion. Percent change in
+      the total distance from cells to their projections along curves must be less
+      than thresh. Default is 0.001, similar to principal.curve.
+  maxit:
+    type: integer
+    default: 10
+    upper: 50
+    lower: 0
+    description: numeric, maximum number of iterations, see principal.curve.
+  stretch:
+    type: numeric
+    default: 2.0
+    upper: 5.0
+    lower: 0.0e+00
+    description: numeric factor by which curves can be extrapolated beyond endpoints.
+      Default is 2, see principal.curve.
+  smoother:
+    type: discrete
+    default: smooth.spline
+    values:
+    - smooth.spline
+    - loess
+    - periodic.lowess
+    description: choice of scatter plot smoother. Same as principal.curve, but "lowess"
+      option is replaced with "loess" for additional flexibility.
+  shrink.method:
+    type: discrete
+    default: cosine
+    values:
+    - cosine
+    - tricube
+    - density
+    description: |-
+      character denoting how to determine the appropriate
+      amount of shrinkage for a branching lineage. Accepted values are the same
+      as for \code{kernel} in \code{\link{density}} (default is \code{"cosine"}),
+      as well as \code{"tricube"} and \code{"density"}. See 'Details' for more.
+input:
+  format: rds
+  optional:
+  - start_id
+  - end_id
+  required: counts
+output:
+  format: dynwrap

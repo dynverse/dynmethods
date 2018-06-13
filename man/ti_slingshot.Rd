@@ -4,9 +4,9 @@
 \alias{ti_slingshot}
 \title{Inferring trajectories with Slingshot}
 \usage{
-ti_slingshot(ndim = 3L, nclus = 5L, dimred = "pca", shrink = 1,
-  reweight = TRUE, drop.multi = TRUE, thresh = 0.001, maxit = 10L,
-  stretch = 2, smoother = "smooth.spline", shrink.method = "cosine")
+ti_slingshot(ndim = 3, nclus = 5, dimred = "pca", shrink = 1,
+  reweight = TRUE, thresh = -3, maxit = 10, stretch = 2,
+  smoother = "smooth.spline", shrink.method = "cosine")
 }
 \arguments{
 \item{ndim}{The number of dimensions}
@@ -23,11 +23,6 @@ much to shrink branching lineages toward their average prior to the split.}
 reweighted during curve-fitting. If \code{TRUE}, cells shared between 
 lineages will be weighted by: distance to nearest curve / distance to
 curve.}
-
-\item{drop.multi}{logical, whether to drop shared cells from lineages which
-do not fit them well. If \code{TRUE}, shared cells with a distance to one 
-lineage above the 90th percentile and another below the 50th will be
-dropped from the further lineage.}
 
 \item{thresh}{numeric, determines the convergence criterion. Percent change in the total distance from cells to their projections along curves must be less than thresh. Default is 0.001, similar to principal.curve.}
 

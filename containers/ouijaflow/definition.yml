@@ -11,7 +11,7 @@ input:
   format: text
   required:
     - expression
-    - marker_feature_ids
+    - features_id
 output:
   format: text
   outputs:

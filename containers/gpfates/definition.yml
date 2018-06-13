@@ -22,7 +22,7 @@ input:
   format: text
   required:
     - expression
-    - n_end_states
+    - end_n
 output:
   format: text
   outputs:

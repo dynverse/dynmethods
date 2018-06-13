@@ -1,0 +1,12 @@
+name: angle
+parameters:
+  dimred:
+    type: discrete
+    default: pca
+    values: [pca]
+input:
+  format: rds
+  required:
+    - expression
+output:
+  format: dynwrap

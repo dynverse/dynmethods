@@ -1,0 +1,13 @@
+name: Waterfall
+short_name: waterfall
+parameters:
+  num_clusters:
+    type: integer
+    lower: 2.0
+    default: 10.0
+    upper: 20.0
+input:
+  format: rds
+  required: expression
+output:
+  format: dynwrap

@@ -2,39 +2,115 @@ abstract_celltree_description <- function(method) {
   method_value <- c(maptpx = "maptpx", gibbs = "Gibbs", vem = "VEM")[[method]]
 
   common_params <- list(
-    makeDiscreteParam(id = "method", values = method_value, default = method_value),
-    makeNumericParam(id = "sd_filter", lower = log(.01), upper = log(5.0), default = log(.5), special.vals = list(FALSE), trafo = exp),
-    makeDiscreteParam(id = "absolute_width", values = 0, default = 0, tunable = FALSE),
-    makeNumericParam(id = "width_scale_factor", lower = log(.1), default = log(1.5), upper = log(100), trafo = exp),
-    makeNumericParam(id = "outlier_tolerance_factor", lower = log(.0001), default = log(.1), upper = log(1000), trafo = exp),
-    makeDiscreteParam(id = "rooting_method", values = c("longest.path", "center.start.group", "average.start.group", "null"), default = "null")
+    method = list(
+      type = "discrete",
+      default = method_value,
+      values = method_value
+    ),
+    sd_filter = list(
+      type = "numeric",
+      lower = 0.01,
+      upper = 5,
+      default = 0.5
+    ),
+    absolute_width = list(
+      type = "numeric",
+      values = 0,
+      default = 0,
+      tunable = FALSE
+    ),
+    width_scale_factor = list(
+      type = "numeric",
+      lower = 0.1,
+      default = 1.5,
+      upper = 100
+    ),
+    outlier_tolerance_factor = list(
+      type = "numeric",
+      lower = 0.0001,
+      default = 0.1,
+      upper = 1000,
+      distribution = "exponential",
+      rate = 1
+    ),
+    rooting_method = list(
+      type = "discrete",
+      values = c("longest.path", "center.start.group", "average.start.group", "null"),
+      default = "null"
+    )
   )
 
-  par_set <- switch(
+  parameters <- switch(
     method,
-    maptpx = makeParamSet(
-      params = c(common_params, list(
-        makeIntegerParam(id = "num_topics_lower", lower = 2L, upper = 15L, default = 2L),
-        makeIntegerParam(id = "num_topics_upper", lower = 2L, upper = 15L, default = 15L),
-        makeNumericParam(id = "tot_iter", lower = log(1e4), upper = log(1e7), default = log(1e6), trafo = function(x) round(exp(x))),
-        makeNumericParam(id = "tolerance", lower = log(.001), upper = log(.5), default = log(.05), trafo = exp)
-      )),
-      forbidden = quote(num_topics_lower > num_topics_upper)
+    maptpx = c(common_params, list(
+        num_topics_lower = list(
+          type = "integer",
+          lower = 2,
+          upper = 15,
+          default = 2
+        ),
+        num_topics_upper = list(
+          type = "integer",
+          lower = 2,
+          upper = 15,
+          default = 15
+        ),
+        tot_iter = list(
+          type = "numeric",
+          lower = 1e4,
+          upper = 1e7,
+          default = 1e6
+        ),
+        tolerance = list(
+          type = "numeric",
+          lower = 0.001,
+          upper = 0.5,
+          default = 0.05
+        ),
+        forbidden = "num_topics_lower > num_topics_upper"
+      )
     ),
-    gibbs = makeParamSet(
-      params = c(common_params, list(
-        makeIntegerParam(id = "num_topics", lower = 2L, default = 4L, upper = 15L),
-        makeNumericParam(id = "tot_iter", lower = log(50), upper = log(500), default = log(200), trafo = function(x) round(exp(x))),
-        makeNumericParam(id = "tolerance", lower = log(1e-7), upper = log(1e-3), default = log(1e-5), trafo = exp)
-      ))
+    gibbs = parameters <- c(common_params, list(
+        num_topics = list(
+          type = "integer",
+          lower = 2,
+          default = 4,
+          upper = 15
+        ),
+        tot_iter = list(
+          type = "numeric",
+          lower = 50,
+          upper = 500,
+          default = 200
+        ),
+        tolerance = list(
+          type = "numeric",
+          lower = 1e-7,
+          upper = 1e-3,
+          default = 1e-5
+        )
+      )
     ),
-    vem = makeParamSet(
-      params = c(common_params, list(
-        makeIntegerParam(id = "num_topics", lower = 2L, default = 4L, upper = 15L),
-        makeNumericParam(id = "tot_iter", lower = log(1e4), upper = log(1e7), default = log(1e6), trafo = function(x) round(exp(x))),
-        makeNumericParam(id = "tolerance", lower = log(1e-7), upper = log(1e-3), default = log(1e-5), trafo = exp)
-      ))
-    )
+    vem = parameters <- c(common_params, list(
+      num_topics = list(
+        type = "integer",
+        lower = 2,
+        default = 4,
+        upper = 15
+      ),
+      tot_iter = list(
+        type = "numeric",
+        lower = 1e4,
+        upper = 1e7,
+        default = 1e6
+      ),
+      tolerance = list(
+        type = "numeric",
+        lower = 1e-7,
+        upper = 1e-3,
+        default = 1e-5
+      )
+    ))
   )
 
   create_ti_method(
@@ -42,9 +118,10 @@ abstract_celltree_description <- function(method) {
     short_name = pritt("celltree_{method}"),
     package_loaded = c(),
     package_required = c("cellTree"),
-    par_set = par_set,
+    parameters = parameters,
     run_fun = "dynmethods::run_celltree",
-    plot_fun = "dynmethods::plot_celltree"
+    plot_fun = "dynmethods::plot_celltree",
+    apt_dependencies = "libgsl-dev"
   )
 }
 
@@ -89,8 +166,8 @@ run_celltree <- function(
   expression,
 
   # prior information
-  start_cells = NULL,
-  grouping_assignment = NULL,
+  start_id = NULL,
+  groups_id = NULL,
 
   # parameters
   method,
@@ -108,8 +185,8 @@ run_celltree <- function(
   requireNamespace("cellTree")
 
   start_cell <-
-    if (!is.null(start_cells)) {
-      sample(start_cells, 1)
+    if (!is.null(start_id)) {
+      sample(start_id, 1)
     } else {
       NULL
     }
@@ -137,7 +214,7 @@ run_celltree <- function(
   )
 
   # put the parameters for the backbones in a list,
-  # for adding optional grouping_assignment and (if grouping is given) start group
+  # for adding optional groups_id and (if grouping is given) start group
   backbone_params <- list(
     lda.results = lda_out,
     absolute.width = absolute_width,
@@ -149,10 +226,10 @@ run_celltree <- function(
   )
 
   # if these parameters are available, add them to the list
-  if(!is.null(grouping_assignment)) {
-    backbone_params$grouping <- grouping_assignment %>% slice(match(cell_id, rownames(expression))) %>% pull(group_id)
+  if(!is.null(groups_id)) {
+    backbone_params$grouping <- groups_id %>% slice(match(cell_id, rownames(expression))) %>% pull(group_id)
     if(!is.null(start_cell)) {
-      backbone_params$start.group.label <- grouping_assignment %>% filter(cell_id == start_cell) %>% pull(group_id)
+      backbone_params$start.group.label <- groups_id %>% filter(cell_id == start_cell) %>% pull(group_id)
     }
   }
 
@@ -164,7 +241,7 @@ run_celltree <- function(
 
   # simplify sample graph to just its backbone
   cell_graph <- igraph::as_data_frame(mst_tree, "edges") %>%
-    select(from, to, length = weight) %>%
+    dplyr::select(from, to, length = weight) %>%
     mutate(
       from = rownames(expression)[from],
       to = rownames(expression)[to],
@@ -204,7 +281,7 @@ plot_celltree <- function(prediction) {
   pie_df <- map_df(seq_len(nrow(vertices)), function(i) {
     pieval <- vertices$pie[[i]]
     data.frame(
-      vertices[i,] %>% select(-pie),
+      vertices[i,] %>% dplyr::select(-pie),
       topic = paste0("Topic ", seq_along(pieval)),
       stringsAsFactors = FALSE
     ) %>% mutate(

@@ -48,10 +48,10 @@ input:
   format: text
   required:
     - counts
-    - start_cells
+    - start_id
   optional:
-    - marker_feature_ids
-    - n_end_states
+    - features_id
+    - end_n
 output:
   format: text
   outputs:

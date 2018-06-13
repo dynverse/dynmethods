@@ -10,7 +10,7 @@ checkpoints = {}
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 p = json.load(open("/input/params.json", "r"))
-n_end_states = json.load(open("/input/n_end_states.json"))[0]
+end_n = json.load(open("/input/end_n.json"))[0]
 expression = pd.read_csv("/input/expression.csv", index_col=0, header=0)
 expression = expression[(expression > p["log_expression_cutoff"]).sum(1) >= p["min_cells_expression_cutoff"]]
 
@@ -32,7 +32,7 @@ m.store_dr(dims=range(p["ndim"])) # store the dr in the sample table (m.s), so i
 m.infer_pseudotime(s_columns=["bgplvm_" + str(i) for i in range(p["ndim"])]) # use the first two components to infer pseudotime
 
 # model different fates
-m.model_fates(C=n_end_states)
+m.model_fates(C=end_n)
 
 checkpoints["method_aftermethod"] = time.time()
 
@@ -46,7 +46,7 @@ pseudotime.to_csv("/output/pseudotime.csv", index=False)
 # milestone network
 milestone_network = pd.DataFrame({
   "from":"M0",
-  "to":["M" + str(i+1) for i in range(n_end_states)],
+  "to":["M" + str(i+1) for i in range(end_n)],
   "length":1,
   "directed":True
 })
@@ -67,9 +67,9 @@ progressions.to_csv("/output/progressions.csv", index=False)
 
 # divergence regions
 divergence_regions = pd.DataFrame({
-  "milestone_id": ["M0"] + ["M" + str(i+1) for i in range(n_end_states)],
+  "milestone_id": ["M0"] + ["M" + str(i+1) for i in range(end_n)],
   "divergence_id": "A",
-  "is_start": [True] + [False for i in range(n_end_states)]
+  "is_start": [True] + [False for i in range(end_n)]
 })
 divergence_regions.to_csv("/output/divergence_regions.csv", index=False)
 

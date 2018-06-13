@@ -1,0 +1,38 @@
+name: Monocle DDRTree
+short_name: monocle_ddrtree
+parameters:
+  reduction_method:
+    type: discrete
+    default: DDRTree
+    values: DDRTree
+    description: A character string specifying the algorithm to use for dimensionality
+      reduction.
+  max_components:
+    type: integer
+    default: 2
+    upper: 20
+    lower: 2
+    description: the dimensionality of the reduced space
+  norm_method:
+    type: discrete
+    default: vstExprs
+    values:
+    - vstExprs
+    - log
+    - none
+    description: Determines how to transform expression values prior to reducing dimensionality
+  auto_param_selection:
+    type: logical
+    default: yes
+    values:
+    - 'TRUE'
+    - 'FALSE'
+    description: when this argument is set to TRUE (default), it will automatically
+      calculate the proper value for the ncenter (number of centroids) parameters
+      which will be passed into DDRTree call.
+input:
+  format: rds
+  optional: groups_n
+  required: counts
+output:
+  format: dynwrap

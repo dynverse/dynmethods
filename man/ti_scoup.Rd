@@ -4,7 +4,7 @@
 \alias{ti_scoup}
 \title{Inferring trajectories with SCOUP}
 \usage{
-ti_scoup(ndim = 2L, max_ite1 = 100, max_ite2 = 100, alpha_min = 0.1,
+ti_scoup(ndim = 2, max_ite1 = 100, max_ite2 = 100, alpha_min = 0.1,
   alpha_max = 100, t_min = 0.001, t_max = 2, sigma_squared_min = 0.1,
   thresh = 0.01)
 }

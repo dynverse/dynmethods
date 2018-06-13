@@ -5,12 +5,12 @@
 \alias{ti_scorpius_sparse}
 \title{Inferring trajectories with SCORPIUS}
 \usage{
-ti_scorpius(distance_method = "spearman", ndim = 3L, k = 4L,
-  thresh = 0.001, maxit = 10L, stretch = 0, smoother = "smooth.spline",
+ti_scorpius(distance_method = "spearman", ndim = 3, k = 4,
+  thresh = 0.001, maxit = 10, stretch = 0, smoother = "smooth.spline",
   sparse = FALSE)
 
-ti_scorpius_sparse(distance_method = "spearman", ndim = 3L, k = 4L,
-  thresh = 0.001, maxit = 10L, stretch = 0, smoother = "smooth.spline",
+ti_scorpius_sparse(distance_method = "spearman", ndim = 3, k = 4,
+  thresh = 0.001, maxit = 10, stretch = 0, smoother = "smooth.spline",
   sparse = TRUE)
 }
 \arguments{

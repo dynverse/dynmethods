@@ -1,0 +1,63 @@
+name: reCAT
+short_name: recat
+parameters:
+  TSPFold:
+    type: integer
+    default: 2.0
+    upper: 10.0
+    lower: 2.0
+    description: No documentation provided by authors
+  beginNum:
+    type: integer
+    default: 10.0
+    upper: 20.0
+    lower: 2.0
+    description: No documentation provided by authors
+  endNum:
+    type: integer
+    default: 15.0
+    upper: 20.0
+    lower: 2.0
+    description: No documentation provided by authors
+  step_size:
+    type: integer
+    default: 2.0
+    upper: 20.0
+    lower: 2.0
+    description: |-
+      Determines the number of k to skip in your consensus path, ie if
+      step_size = 2, then reCAT would only calculate and merge the paths for
+      k = 12, 14, 16, 18, …, n-2, n. We recommend step_size of up to a maximum of 5 while preserving the performance of reCAT. Usually a step_size of 2 (by default) would suffice and bigger steps are recommended for larger datasets (>1000 cells) in order to reduce computational time.
+  base_cycle_range_start:
+    type: integer
+    default: 6.0
+    upper: 7.0
+    lower: 6.0
+    description: The minimal number of four k’s for computing the reference cycle
+      mentioned in the manuscript. Can be set to 6 or 7
+  base_cycle_range_end:
+    type: integer
+    default: 9.0
+    upper: 10.0
+    lower: 9.0
+    description: The maximal number of four k’s for computing the reference cycle
+      mentioned in the manuscript. Can be set to 6 or 7
+  max_num:
+    type: integer
+    default: 300.0
+    upper: 500.0
+    lower: 100.0
+    description: No documentation provided by authors
+  clustMethod:
+    type: discrete
+    default: GMM
+    values:
+    - GMM
+    - Pam
+    - Kmeans
+    description: No documentation provided by authors
+input:
+  format: rds
+  required: expression
+output:
+  format: dynwrap

@@ -1,36 +1,69 @@
 abstract_monocle_description <- function(short_name) {
-  reduction_method <- c(
-    "monocle_ddrtree" = "DDRTree",
-    "monocle_ica" = "ICA"
-  )[short_name] %>% setNames(NULL)
-
-  par_set <- switch(
+  parameters <- switch(
     short_name,
-    monocle_ddrtree = makeParamSet(
-      makeDiscreteParam(id = "reduction_method", values = reduction_method, default = reduction_method),
-      makeIntegerParam(id = "max_components", lower = 2L, default = 2L, upper = 20L),
-      makeDiscreteParam(id = "norm_method", default = "vstExprs", values = c("vstExprs", "log", "none")),
-      makeLogicalParam(id = "auto_param_selection", default = TRUE)
+    monocle_ddrtree = list(
+      reduction_method = list(
+        type = "discrete",
+        default = "DDRTree",
+        values = "DDRTree",
+        description = "A character string specifying the algorithm to use for dimensionality reduction."
+      ),
+      max_components = list(
+        type = "integer",
+        default = 2L,
+        upper = 20L,
+        lower = 2L,
+        description = "the dimensionality of the reduced space"
+      ),
+      norm_method = list(
+        type = "discrete",
+        default = "vstExprs",
+        values = c("vstExprs", "log", "none"),
+        description = "Determines how to transform expression values prior to reducing dimensionality"
+      ),
+      auto_param_selection = list(
+        type = "logical",
+        default = TRUE,
+        values = c("TRUE", "FALSE"),
+        description = "when this argument is set to TRUE (default), it will automatically calculate the proper value for the ncenter (number of centroids) parameters which will be passed into DDRTree call."
+      )
     ),
-    monocle_ica = makeParamSet(
-      makeDiscreteParam(id = "reduction_method", values = reduction_method, default = reduction_method),
-      makeIntegerParam(id = "max_components", lower = 2L, default = 2L, upper = 20L),
-      makeDiscreteParam(id = "norm_method", default = "vstExprs", values = c("vstExprs", "log", "none"))
+
+    monocle_ica = list(
+      reduction_method = list(
+        type = "discrete",
+        default = "ICA",
+        values = "ICA",
+        description = "A character string specifying the algorithm to use for dimensionality reduction."
+      ),
+      max_components = list(
+        type = "integer",
+        default = 2L,
+        upper = 20L,
+        lower = 2L,
+        description = "the dimensionality of the reduced space"
+      ),
+      norm_method = list(
+        type = "discrete",
+        default = "vstExprs",
+        values = c("vstExprs", "log", "none"),
+        description = "Determines how to transform expression values prior to reducing dimensionality"
+      )
     )
   )
 
   create_ti_method(
-    name = pritt("Monocle {reduction_method}"),
+    name = pritt("Monocle {parameters$reduction_method$default}"),
     short_name = short_name,
     package_loaded = c("monocle"),
     package_required = c("BiocGenerics", "igraph", "Biobase"),
-    par_set = par_set,
+    parameters = parameters,
     run_fun = "dynmethods::run_monocle",
     plot_fun = "dynmethods::plot_monocle"
   )
 }
 
-#' Inferring trajectories with Monocle
+#' Inferring trajectories with Monocle v2
 #'
 #' @inherit ti_angle description
 #'
@@ -39,19 +72,25 @@ abstract_monocle_description <- function(short_name) {
 #'
 #' @seealso [monocle::reduceDimension()], [monocle::orderCells()]
 #'
-#' @rdname monocle
-#'
 #' @export
 ti_monocle_ddrtree <- abstract_monocle_description("monocle_ddrtree")
 
-#' @rdname monocle
+#' Inferring trajectories with Monocle v1
+#'
+#' @inherit ti_angle description
+#'
+#' @inheritParams monocle::reduceDimension
+#' @inheritParams monocle::orderCells
+#'
+#' @seealso [monocle::reduceDimension()], [monocle::orderCells()]
+#'
 #' @export
 ti_monocle_ica <- abstract_monocle_description("monocle_ica")
 
 
 run_monocle <- function(
   counts,
-  n_branches = NULL,
+  groups_n = NULL,
   reduction_method,
   max_components = 2,
   norm_method = "vstExprs",
@@ -88,7 +127,7 @@ run_monocle <- function(
   )
 
   # order the cells
-  cds <- monocle::orderCells(cds, num_paths = n_branches)
+  cds <- monocle::orderCells(cds, num_paths = groups_n)
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
@@ -114,7 +153,12 @@ run_monocle <- function(
   cell_graph <- cell_graph %>% select(from, to, length, directed)
 
   # retrieve data for visualisation
-  plot_data <- postprocess_monocle_cds(cds)
+  if (exists("postprocess_monocle_cds")) {
+    plot_data <- postprocess_monocle_cds(cds)
+  } else {
+    plot_data <- NULL
+  }
+
 
   # wrap output
   wrap_prediction_model(

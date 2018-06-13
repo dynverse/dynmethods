@@ -1,0 +1,121 @@
+name: SLICE
+short_name: slice
+parameters:
+  lm.method:
+    type: discrete
+    default: clustering
+    values:
+    - clustering
+    - graph
+    description: Select "clustering" based or "graph" based method to infer lineage
+      model
+  model.type:
+    type: discrete
+    default: tree
+    values:
+    - tree
+    - graph
+    description: 'The type of models that will be infered: "tree" - directed minimum
+      spanning tree based, "graph" - directed graph based'
+  ss.method:
+    type: discrete
+    default: all
+    values:
+    - all
+    - top
+    - pcst
+    description: "The method for defining core cell set for stable state detection:
+      \nall - all the cells in a cluster constitute the core cell set; \ntop - cells
+      with scEntropy lower than the ss.threshold quantile of all the values in a cluster
+      constitute the core cell set; \npcst - cells with scEntropy lower than the ss.threshold
+      quantile of all the values in a cluster constitute the prize nodes, linear prize-collecting
+      steiner tree algorithm is used to approximate an optimal subnetwork, the cells
+      in the subnetwork constitute the core cell set. Stable states are defined as
+      the centroids of the core cell sets."
+  ss.threshold:
+    type: numeric
+    default: 0.25
+    upper: 1.0
+    lower: 0.0e+00
+    description: 'The threshold used when ss.method is "top" or "pcst". Default: 0.25.'
+  community.method:
+    type: discrete
+    default: louvain
+    values:
+    - fast_greedy
+    - edge_betweenness
+    - label_prop
+    - leading_eigen
+    - louvain
+    - spinglass
+    - walktrap
+    - auto
+    description: "The method for network community detection. \nMost of the community
+      detection methods implemented in the igraph package are supported, \nincluding
+      \"fast_greedy\", \"edge_betweenness\", \"label_prop\", \"leading_eigen\",\"louvain\",\"spinglass\",
+      \"walktrap\". \nIf this parameter is set to \"auto\", the algorithm will perform
+      all the community detection methods and select the one that generates the communities
+      with best modularity. \nOnly take effect when lm.method is \"graph\""
+  cluster.method:
+    type: discrete
+    default: kmeans
+    values:
+    - kmeans
+    - pam
+    description: Use "kmeans" or "pam" to divide cells into clusters. Only take effect
+      when lm.method is "clustering"
+  k:
+    type: discrete
+    default: 0.0e+00
+    values:
+    - 0.0e+00
+    - 3.0e+00
+    - 4.0e+00
+    - 5.0e+00
+    - 6.0e+00
+    - 7.0e+00
+    - 8.0e+00
+    - 9.0e+00
+    - 1.0e+01
+    - 1.1e+01
+    - 1.2e+01
+    - 1.3e+01
+    - 1.4e+01
+    - 1.5e+01
+    - 1.6e+01
+    - 1.7e+01
+    - 1.8e+01
+    - 1.9e+01
+    - 2.0e+01
+    description: The number of cell clusters. If NULL, Gap statistic will be used
+      to determine an optimal k.
+  k.max:
+    type: integer
+    default: 10
+    upper: 20
+    lower: 3
+    description: The "k.max" parameter of cluster::clusGap(); used when k is NULL.
+  B:
+    type: integer
+    default: 100
+    upper: 500
+    lower: 3
+    description: The "B" parameter of cluster::clusGap(); used when k is NULL
+  k.opt.method:
+    type: discrete
+    default: firstmax
+    values:
+    - firstmax
+    - globalmax
+    - Tibs2001SEmax
+    - firstSEmax
+    - globalSEmax
+    description: The "method" parameter of cluster::maxSE(); used when k is NULL
+input:
+  format: rds
+  optional:
+  - groups_id
+  - features_id
+  required: expression
+output:
+  format: dynwrap

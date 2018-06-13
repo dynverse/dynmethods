@@ -10,14 +10,47 @@ ti_mpath <- create_ti_method(
   name = "Mpath",
   short_name = "mpath",
   package_loaded = c("Mpath"),
-  package_required = c(),
-  par_set = makeParamSet(
-    makeDiscreteParam(id = "distMethod", default = "euclidean", values = c("pearson", "kendall", "spearman", "euclidean")),
-    makeDiscreteParam(id = "method", default = "kmeans", values = c("kmeans", "diversity", "size", "diversity_size")),
-    makeIntegerParam(id = "numcluster", lower = 3L, default = 11L, upper = 30L),
-    makeLogicalParam(id = "numcluster_null", default = T),
-    makeNumericParam(id = "diversity_cut", lower = .1, default = .6, upper = 1),
-    makeNumericParam(id = "size_cut", lower = .01, default = .05, upper = 1)
+  package_required = c("Mpath"),
+  parameters = list(
+    distMethod = list(
+      type = "discrete",
+      default = "euclidean",
+      values = c("pearson", "kendall", "spearman", "euclidean"),
+      description = "the method for calculating dissimilarity between cells. distMethod can be one of \"pearson\", \"kendall\", \"spearman\" or \"euclidean\". Default is \"euclidean\"."
+    ),
+    method = list(
+      type = "discrete",
+      default = "kmeans",
+      values = c("kmeans", "diversity", "size", "diversity_size"),
+      description = "method for distinguishing landmark clusters from non-landmark clusters.method can be \"kmeans\" or \"diversity\" or \"size\" or \"diversity_size\". When method=\"diversity\", numlm needs to be specified. Default is \"diversity_size\"."
+    ),
+    numcluster = list(
+      type = "integer",
+      default = 11L,
+      upper = 30L,
+      lower = 3L,
+      description = "number of initial clusters"
+    ),
+    numcluster_null = list(
+      type = "logical",
+      default = TRUE,
+      values = c("TRUE", "FALSE"),
+      description = "If TRUE, will automatically select the number of clusters"
+    ),
+    diversity_cut = list(
+      type = "numeric",
+      default = 0.6,
+      upper = 1,
+      lower = 0.1,
+      description = "the cutoff value of diversity for differentiating landmark clusters from non-landmark clusters. The diversity of a landmark cluster must be below this cutoff."
+    ),
+    size_cut = list(
+      type = "numeric",
+      default = 0.05,
+      upper = 1,
+      lower = 0.01,
+      description = "the cutoff value of size i.e. number of cells for differentiating landmark clusters from non-landmark clusters. The number of cells in a landmark cluster must be greater than this cutoff."
+    )
   ),
   run_fun = "dynmethods::run_mpath",
   plot_fun = "dynmethods::plot_mpath"
@@ -28,7 +61,7 @@ ti_mpath <- create_ti_method(
 #' @importFrom reshape2 melt
 run_mpath <- function(
   counts,
-  grouping_assignment,
+  groups_id,
   distMethod = "euclidean",
   method = "kmeans",
   numcluster = 11,
@@ -46,7 +79,7 @@ run_mpath <- function(
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
   # collect sample info
-  sample_info <- grouping_assignment %>% rename(GroupID = group_id) %>% as.data.frame
+  sample_info <- groups_id %>% rename(GroupID = group_id) %>% as.data.frame
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
@@ -100,9 +133,8 @@ run_mpath <- function(
 
   wrap_prediction_model(
     cell_ids = rownames(counts),
-    grouping_assignment = grouping_assignment
+    groups_id = groups_id
   ) %>% add_grouping(
-    group_ids = milestone_ids,
     grouping = grouping
   ) %>% add_cluster_graph(
     milestone_network = milestone_network
@@ -134,7 +166,7 @@ plot_mpath <- function(prediction) {
 
   # collect info on cells
   cell_ids <- prediction$cell_ids
-  labels <- prediction$grouping_assignment %>%
+  labels <- prediction$groups_id %>%
     slice(match(cell_ids, cell_id)) %>%
     .$group_id
   clustering <- prediction$progressions %>%

@@ -4,19 +4,19 @@
 \alias{ti_stemid2}
 \title{Inferring trajectories with StemID2}
 \usage{
-ti_stemid2(clustnr = 30L, bootnr = 50L, metric = "pearson",
+ti_stemid2(clustnr = 30, bootnr = 50, metric = "pearson",
   num_cluster_method = "sat", SE.method = "Tibs2001SEmax",
-  SE.factor = 0.25, B.gap = 50L, cln = 30L, FUNcluster = "kmedoids",
-  dimred_method = "tsne", outminc = 0L, outlg = 2L, probthr = 1e-10,
-  thr_lower = -40, thr_upper = -1, outdistquant = 0.95, nmode = FALSE,
-  pdishuf = 500, pthr = 0.01, pethr = 0.01)
+  SE.factor = 0.25, B.gap = 50, cln = 30, FUNcluster = "kmedoids",
+  dimred_method = "tsne", outminc = 0, outlg = 2, probthr = 0.001,
+  thr_lower = -10, thr_upper = -5, outdistquant = 0.95, nmode = FALSE,
+  pdishuf = 2000, pthr = 1e-04, pethr = 1e-04)
 }
 \arguments{
 \item{clustnr}{maximum number of clusters for the computation of the gap statistic or derivation of the cluster number by the saturation criterion. Default is 30. If more major cell types are expected a higher number should be chosen.}
 
 \item{bootnr}{number of booststrapping runs for clusterboot. Default is 50}
 
-\item{metric}{the input data are transformed to a distance object. Distances can be computed based on different metrics. Possible values are "pearson", "spearman", "logpearson", "euclidean", "kendall", "maximum", "manhattan", "canberra", "binary" or "minkowski". Default is "pearson". In case of the correlation based methods, the distance is computed as 1 – correlation. K-medoids clustering is performed on this distance object.}
+\item{metric}{the input data are transformed to a distance object. Distances can be computed based on different metrics. Possible values are "pearson", "spearman", "logpearson", "euclidean", "kendall", "maximum", "manhattan", "canberra", "binary" or "minkowski". Default is "pearson". In case of the correlation based methods, the distance is computed as 1 - correlation. K-medoids clustering is performed on this distance object.}
 
 \item{num_cluster_method}{the type of clustering method, can be sat, gap or manual}
 

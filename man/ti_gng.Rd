@@ -4,8 +4,8 @@
 \alias{ti_gng}
 \title{Inferring trajectories with Growing Neural Gas}
 \usage{
-ti_gng(dimred = "pca", ndim = 5L, max_iter = 1e+06, max_nodes = 8L,
-  apply_mst = TRUE)
+ti_gng(dimred = "pca", ndim = 5, max_iter = 13.8155105579643,
+  max_nodes = 8, apply_mst = TRUE)
 }
 \arguments{
 \item{dimred}{A character vector specifying which dimensionality reduction method to use.

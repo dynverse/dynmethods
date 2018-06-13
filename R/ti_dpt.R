@@ -26,20 +26,57 @@ ti_dpt <- create_ti_method(
   short_name = "dpt",
   package_loaded = c("destiny"),
   package_required = c("dynutils", "reshape2"),
-  par_set = makeParamSet(
-    makeDiscreteParam(id = "sigma", default = "local", values = c("local", "global")),
-    makeDiscreteParam(id = "distance", default = "euclidean", values = c("euclidean", "cosine", "rankcor")),
-    makeIntegerParam(id = "ndim", lower = 3L, upper = 100L, default = 20L),
-    makeLogicalParam(id = "density_norm", default = TRUE),
-    makeIntegerParam(id = "n_local_lower", lower = 2L, upper = 20L, default = 5L),
-    makeIntegerParam(id = "n_local_upper", lower = 2L, upper = 20L, default = 7L),
-    makeNumericParam(id = "w_width", lower = -4, upper = 0, default = log(.1), trafo = exp),
-    forbidden = quote(n_local_lower > n_local_upper)
+  parameters = list(
+    sigma = list(
+      type = "discrete",
+      default = "local",
+      values = c("local", "global"),
+      description = "Diffusion scale parameter of the Gaussian kernel. A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix. Must be one of:\n\\itemize{\n\\itemA character vector: \\code{\"local\"} (default) or \\code{\"global\"},\n\\itema numeric global sigma -- a global sigma will be calculated using \\code{\\link[destiny:find_sigmas]{destiny::find_sigmas()}}\n\\itemor a \\code{\\link[destiny:Sigmas-class]{destiny::Sigmas-class()}} object.\n}"),
+
+    distance = list(
+      type = "discrete",
+      default = "euclidean",
+      values = c("euclidean", "cosine", "rankcor"),
+      description = "A \\code{\\link[stats:dist]{stats::dist()}} object, or a character vector specifying which distance metric to use. Allowed measures:\n\\itemize{\n\\itemEuclidean distance (default),\n\\itemcosine distance (1-corr(c_1, c_2)), or\n\\itemrank correlation distance (1-corr(rank(c_1), rank(c_2)))\n}"),
+    ndim = list(
+      type = "integer",
+      default = 20L,
+      upper = 100L,
+      lower = 3L,
+      description = "Number of eigenvectors/dimensions to return"),
+
+    density_norm = list(
+      type = "logical",
+      default = TRUE,
+      values = c("TRUE", "FALSE"),
+      description = "logical. If TRUE, use density normalisation"),
+    n_local_lower = list(
+      type = "integer",
+      default = 5L,
+      upper = 20L,
+      lower = 2L,
+      description = "If sigma == 'local', the \\code{n_local_lower}:\\code{n_local_upper} nearest neighbor(s) determine(s) the local sigma"),
+    n_local_upper = list(
+      type = "integer",
+      default = 7L,
+      upper = 20L,
+      lower = 2L,
+      description = "See \\code{n_local_lower}"),
+    w_width = list(
+      type = "numeric",
+
+      default = 0.1,
+      upper = 1,
+      lower = 1e-4,
+      distribution = "exponential",
+      rate = 1,
+      description = "Window width to use for deciding the branch cutoff"),
+    forbidden = "n_local_lower > n_local_upper"
   ),
   run_fun = function(
   expression,
-  start_cells = NULL,
-  marker_feature_ids = NULL,
+  start_id = NULL,
+  features_id = NULL,
   sigma,
   distance,
   ndim,
@@ -51,8 +88,8 @@ ti_dpt <- create_ti_method(
   requireNamespace("destiny")
 
   start_cell <-
-    if (!is.null(start_cells)) {
-      sample(start_cells, 1)
+    if (!is.null(start_id)) {
+      sample(start_id, 1)
     } else {
       NULL
     }
@@ -71,7 +108,7 @@ ti_dpt <- create_ti_method(
     n_eigs = ndim,
     density_norm = density_norm,
     n_local = n_local,
-    vars = marker_feature_ids
+    vars = features_id
   )
 
   # run DPT

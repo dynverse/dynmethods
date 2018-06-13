@@ -1,0 +1,60 @@
+name: Mpath
+short_name: mpath
+parameters:
+  distMethod:
+    type: discrete
+    default: euclidean
+    values:
+    - pearson
+    - kendall
+    - spearman
+    - euclidean
+    description: the method for calculating dissimilarity between cells. distMethod
+      can be one of "pearson", "kendall", "spearman" or "euclidean". Default is "euclidean".
+  method:
+    type: discrete
+    default: kmeans
+    values:
+    - kmeans
+    - diversity
+    - size
+    - diversity_size
+    description: method for distinguishing landmark clusters from non-landmark clusters.method
+      can be "kmeans" or "diversity" or "size" or "diversity_size". When method="diversity",
+      numlm needs to be specified. Default is "diversity_size".
+  numcluster:
+    type: integer
+    default: 11
+    upper: 30
+    lower: 3
+    description: number of initial clusters
+  numcluster_null:
+    type: logical
+    default: yes
+    values:
+    - 'TRUE'
+    - 'FALSE'
+    description: If TRUE, will automatically select the number of clusters
+  diversity_cut:
+    type: numeric
+    default: 0.6
+    upper: 1.0
+    lower: 0.1
+    description: the cutoff value of diversity for differentiating landmark clusters
+      from non-landmark clusters. The diversity of a landmark cluster must be below
+      this cutoff.
+  size_cut:
+    type: numeric
+    default: 0.05
+    upper: 1.0
+    lower: 0.01
+    description: the cutoff value of size i.e. number of cells for differentiating
+      landmark clusters from non-landmark clusters. The number of cells in a landmark
+      cluster must be greater than this cutoff.
+input:
+  format: rds
+  required:
+  - counts
+  - groups_id
+output:
+  format: dynwrap

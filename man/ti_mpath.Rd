@@ -4,7 +4,7 @@
 \alias{ti_mpath}
 \title{Inferring trajectories with Mpath}
 \usage{
-ti_mpath(distMethod = "euclidean", method = "kmeans", numcluster = 11L,
+ti_mpath(distMethod = "euclidean", method = "kmeans", numcluster = 11,
   numcluster_null = TRUE, diversity_cut = 0.6, size_cut = 0.05)
 }
 \arguments{

@@ -13,11 +13,34 @@ ti_ouija <- create_ti_method(
   short_name = "ouija",
   package_required = c("ouija", "rstan"),
   package_loaded = c("coda"),
-  par_set = makeParamSet(
-    makeNumericParam(id = "iter", lower = log(2), default = log(100), upper = log(50000), trafo = function(x) round(exp(x))), # default 10000
-    makeDiscreteParam(id = "response_type", default = "switch", values = c("switch", "transient")),
-    makeDiscreteParam(id = "inference_type", default = "hmc", values = c("hmc", "vb")),
-    makeLogicalParam(id = "normalise_expression", default = TRUE)
+  parameters = list(
+    iter = list(
+      type = "numeric",
+      default = 100,
+      upper = 1000,
+      lower = 10,
+      distribution = "exponential",
+      rate = 0.01,
+      description = "Number of iterations"
+    ),
+    response_type = list(
+      type = "discrete",
+      default = "switch",
+      values = c("switch", "transient"),
+      description = "A vector declaring whether each gene exhibits \"switch\" or \"transient\"\nexpression. Defaults to \"switch\" for all genes"
+    ),
+    inference_type = list(
+      type = "discrete",
+      default = "hmc",
+      values = c("hmc", "vb"),
+      description = "The type of inference to be performed, either \\code{hmc} for Hamiltonian\nMonte Carlo or \\code{vb} for ADVI (Variational Bayes). Note that HMC is typically more accurate\nbut VB will be orders of magnitude faster."
+    ),
+    normalise_expression = list(
+      type = "logical",
+      default = TRUE,
+      values = c("TRUE", "FALSE"),
+      description = "Logical, default TRUE. If TRUE the data is pre-normalised\nso the average peak expression is approximately 1. This makes the strength parameters\napproximately comparable between genes."
+    )
   ),
   run_fun = "dynmethods::run_ouija",
   plot_fun = "dynmethods::plot_ouija"
@@ -25,7 +48,7 @@ ti_ouija <- create_ti_method(
 
 run_ouija <- function(
     expression,
-    marker_feature_ids,
+    features_id,
     iter = 1000, # default is actually 10'000.
     response_type = "switch",
     inference_type = "hmc",
@@ -36,7 +59,7 @@ run_ouija <- function(
   requireNamespace("coda")
 
   # ouija assumes that a small number of marker genes is used, otherwise the method is verrry slow
-  expression <- expression[, marker_feature_ids]
+  expression <- expression[, features_id]
 
   # write compiled instance of the stanmodel to HDD
   rstan::rstan_options(auto_write = TRUE)

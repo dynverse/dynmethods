@@ -18,14 +18,14 @@ data.close()
 
 params = json.load(open("/input/params.json", "r"))
 
-if "grouping_assignment" in data:
-  grouping_assignment = data['grouping_assignment']
+if "groups_id" in data:
+  groups_id = data['groups_id']
 else:
-  grouping_assignment = None
+  groups_id = None
 
 # create dataset
-if grouping_assignment is not None:
-  obs = grouping_assignment
+if groups_id is not None:
+  obs = groups_id
   obs["louvain"] = obs.group_id.astyp("category")
   adata = anndata.AnnData(expression.values, obs)
 else:
@@ -40,7 +40,7 @@ sc.pp.neighbors(adata, n_neighbors = params["n_neighbors"])
 sc.tl.pca(adata, n_comps = params["n_comps"])
 
 # add grouping if not provided
-if grouping_assignment is None:
+if groups_id is None:
   sc.tl.louvain(adata, resolution = params["resolution"])
 
 # run paga
