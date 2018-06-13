@@ -1,0 +1,46 @@
+name: mfa
+short_name: mfa
+parameters:
+  b:
+    type: integer
+    default: 2
+    upper: 10
+    lower: 1
+    description: Number of branches to model
+  iter:
+    type: integer
+    default: 2000
+    upper: 5000
+    lower: 20
+    description: Number of MCMC iterations
+  thin:
+    type: integer
+    default: 1
+    upper: 20
+    lower: 1
+    description: MCMC samples to thin
+  pc_initialise:
+    type: integer
+    default: 1
+    upper: 5
+    lower: 1
+    description: Which principal component to initialise pseudotimes to
+  prop_collapse:
+    type: numeric
+    default: 0.0e+00
+    upper: 1.0
+    lower: 0.0e+00
+    description: Proportion of Gibbs samples which should marginalise over c
+  scale_input:
+    type: logical
+    default: yes
+    description: Logical. If true, input is scaled to have mean 0 variance 1
+  zero_inflation:
+    type: logical
+    default: no
+    description: Logical, should zero inflation be enabled?
+input:
+  format: rds
+  required: expression
+output:
+  format: dynwrap

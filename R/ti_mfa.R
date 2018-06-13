@@ -11,15 +11,53 @@ ti_mfa <- create_ti_method(
   name = "mfa",
   short_name = "mfa",
   package_loaded = c(),
-  package_required = c("mfa"),
-  par_set = makeParamSet(
-    makeIntegerParam(id = "b", lower = 1L, upper = 10L, default = 2L),
-    makeIntegerParam(id = "iter", lower = 20L, upper = 5000L, default = 2000L),
-    makeIntegerParam(id = "thin", lower = 1L, upper = 20L, default = 1L),
-    makeIntegerParam(id = "pc_initialise", lower = 1L, upper = 5L, default = 1L),
-    makeNumericParam(id = "prop_collapse", lower = 0, upper = 1, default = 0),
-    makeLogicalParam(id = "scale_input", default = TRUE),
-    makeLogicalParam(id = "zero_inflation", default = FALSE)
+  package_required = c("mfa", "dyndimred"),
+  parameters = list(
+    b = list(
+      type = "integer",
+      default = 2L,
+      upper = 10L,
+      lower = 1L,
+      description = "Number of branches to model"
+    ),
+    iter = list(
+      type = "integer",
+      default = 2000L,
+      upper = 5000L,
+      lower = 20L,
+      description = "Number of MCMC iterations"
+    ),
+    thin = list(
+      type = "integer",
+      default = 1L,
+      upper = 20L,
+      lower = 1L,
+      description = "MCMC samples to thin"
+    ),
+    pc_initialise = list(
+      type = "integer",
+      default = 1L,
+      upper = 5L,
+      lower = 1L,
+      description = "Which principal component to initialise pseudotimes to"
+    ),
+    prop_collapse = list(
+      type = "numeric",
+      default = 0,
+      upper = 1,
+      lower = 0,
+      description = "Proportion of Gibbs samples which should marginalise over c"
+    ),
+    scale_input = list(
+      type = "logical",
+      default = TRUE,
+      description = "Logical. If true, input is scaled to have mean 0 variance 1"
+    ),
+    zero_inflation = list(
+      type = "logical",
+      default = FALSE,
+      description = "Logical, should zero inflation be enabled?"
+    )
   ),
   run_fun = "dynmethods::run_mfa",
   plot_fun = "dynmethods::plot_mfa"
@@ -78,7 +116,7 @@ run_mfa <- function(
   ))
 
   # pca for visualisation only
-  pca_out <- dimred(expression, method = "pca", ndim = 2)
+  pca_out <- dyndimred::dimred(expression, method = "pca", ndim = 2)
 
   # return output
   wrap_prediction_model(

@@ -4,7 +4,7 @@
 \alias{ti_mfa}
 \title{Inferring trajectories with mfa}
 \usage{
-ti_mfa(b = 2L, iter = 2000L, thin = 1L, pc_initialise = 1L,
+ti_mfa(b = 2, iter = 2000, thin = 1, pc_initialise = 1,
   prop_collapse = 0, scale_input = TRUE, zero_inflation = FALSE)
 }
 \arguments{
