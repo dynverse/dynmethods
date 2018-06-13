@@ -5,7 +5,7 @@
 \title{Inferring trajectories with pseudogp}
 \usage{
 ti_pseudogp(smoothing_alpha = 10, smoothing_beta = 3,
-  pseudotime_mean = 0.5, pseudotime_var = 1, chains = 3L, iter = 100,
+  pseudotime_mean = 0.5, pseudotime_var = 1, chains = 3, iter = 100,
   dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
   initialise_from = "random")
 }

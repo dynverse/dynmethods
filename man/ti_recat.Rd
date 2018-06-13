@@ -4,8 +4,8 @@
 \alias{ti_recat}
 \title{Inferring trajectories with reCAT}
 \usage{
-ti_recat(TSPFold = 2L, beginNum = 10L, endNum = 15L, step_size = 2L,
-  base_cycle_range_start = 6L, base_cycle_range_end = 9L, max_num = 300L,
+ti_recat(TSPFold = 2, beginNum = 10, endNum = 15, step_size = 2,
+  base_cycle_range_start = 6, base_cycle_range_end = 9, max_num = 300,
   clustMethod = "GMM")
 }
 \arguments{
