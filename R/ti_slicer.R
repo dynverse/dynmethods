@@ -11,9 +11,21 @@ ti_slicer <- create_ti_method(
   short_name = "slicer",
   package_loaded = c(),
   package_required = c("SLICER", "lle", "igraph"),
-  par_set = makeParamSet(
-    makeIntegerParam(id = "kmin", lower = 2L, upper = 20L, default = 10L),
-    makeIntegerParam(id = "m", lower = 2L, upper = 20L, default = 2L)
+  parameters = list(
+    kmin = list(
+      type = "integer",
+      default = 10L,
+      upper = 20L,
+      lower = 2L,
+      description = "Smallest value of k to try"
+    ),
+    m = list(
+      type = "integer",
+      default = 2L,
+      upper = 20L,
+      lower = 2L,
+      description = "Intrinsic dimension of the data. This parameter mainly influences the visualisation of the results. The real intrinsic dimension will be calculated automaticly. "
+    )
   ),
   run_fun = "dynmethods::run_slicer",
   plot_fun = "dynmethods::plot_slicer"
@@ -92,7 +104,7 @@ run_slicer <- function(
 
   # prepare sample graph simplification
   cell_graph <- igraph::as_data_frame(subgr, "edges") %>%
-    select(from, to, length = weight) %>%
+    dplyr::select(from, to, length = weight) %>%
     mutate(
       from = rownames(expr_filt)[from],
       to = rownames(expr_filt)[to],
