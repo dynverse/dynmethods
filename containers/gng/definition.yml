@@ -1,0 +1,49 @@
+name: Growing Neural Gas
+short_name: gng
+parameters:
+  dimred:
+    type: discrete
+    default: pca
+    values:
+    - pca
+    - mds
+    - tsne
+    - ica
+    - lle
+    - mds_sammon
+    - mds_isomds
+    - mds_smacof
+    - umap
+    description: |-
+      A character vector specifying which dimensionality reduction method to use.
+      See \link[dyndimred:dimred]{dyndimred::dimred} for the list of available dimensionality reduction methods.
+  ndim:
+    type: integer
+    default: 5
+    upper: 10
+    lower: 2
+    description: The number of dimensions
+  max_iter:
+    type: numeric
+    default: 13.8155106
+    upper: 18.4206807
+    lower: 4.6051702
+    description: The max number of iterations
+  max_nodes:
+    type: integer
+    default: 8
+    upper: 30
+    lower: 2
+    description: The maximum number of nodes
+  apply_mst:
+    type: logical
+    default: yes
+    values:
+    - 'TRUE'
+    - 'FALSE'
+    description: If true, an MST post-processing of the GNG is performed.
+input:
+  format: rds
+  required: expression
+output:
+  format: dynwrap
