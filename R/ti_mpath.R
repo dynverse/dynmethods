@@ -135,7 +135,6 @@ run_mpath <- function(
     cell_ids = rownames(counts),
     groups_id = groups_id
   ) %>% add_grouping(
-    group_ids = milestone_ids,
     grouping = grouping
   ) %>% add_cluster_graph(
     milestone_network = milestone_network
