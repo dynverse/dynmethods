@@ -1,0 +1,122 @@
+name: MERLoT
+short_name: merlot
+parameters:
+  sigma:
+    type: discrete
+    default: local
+    values:
+    - local
+    - global
+    description: |-
+      Diffusion scale parameter of the Gaussian kernel. A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix. Must be one of:
+      \itemize{
+      \itemA character vector: \code{"local"} (default) or \code{"global"},
+      \itema numeric global sigma -- a global sigma will be calculated using \code{\link[destiny:find_sigmas]{destiny::find_sigmas()}}
+      \itemor a \code{\link[destiny:Sigmas-class]{destiny::Sigmas-class()}} object.
+      }
+  distance:
+    type: discrete
+    default: euclidean
+    values:
+    - euclidean
+    - cosine
+    - rankcor
+    description: |-
+      A \code{\link[stats:dist]{stats::dist()}} object, or a character vector specifying which distance metric to use. Allowed measures:
+      \itemize{
+      \itemEuclidean distance (default),
+      \itemcosine distance (1-corr(c_1, c_2)), or
+      \itemrank correlation distance (1-corr(rank(c_1), rank(c_2)))
+      }
+  ndim:
+    type: integer
+    default: 20
+    upper: 20
+    lower: 2
+    description: Number of eigenvectors/dimensions to return
+  density_norm:
+    type: logical
+    default: yes
+    values:
+    - 'TRUE'
+    - 'FALSE'
+    description: logical. If TRUE, use density normalisation
+  n_local_lower:
+    type: integer
+    default: 5
+    upper: 20
+    lower: 2
+    description: If sigma == 'local', the \code{n_local_lower}:\code{n_local_upper}
+      nearest neighbor(s) determine(s) the local sigma
+  n_local_upper:
+    type: integer
+    default: 7
+    upper: 20
+    lower: 2
+    description: See \code{n_local_lower}
+  w_width:
+    type: numeric
+    default: 0.01
+    upper: 1.0
+    lower: 0.0001
+    distribution: exponential
+    rate: 1.0
+    description: Window width to use for deciding the branch cutoff
+  n_components_to_use:
+    type: integer
+    default: 3.0
+    upper: 20.0
+    lower: 2.0
+    description: Which components to use in downstream analysis
+  N_yk:
+    type: integer
+    default: 100.0
+    upper: 1000.0
+    lower: 2.0
+    description: number of nodes for the elastic principal tree
+  lambda_0:
+    type: numeric
+    default: 1.0e-10
+    upper: 0.0001
+    lower: 1.0e-15
+    distribution: exponential
+    rate: 1.0
+    description: principal elastic tree energy function parameter.
+  mu_0:
+    type: numeric
+    default: 0.0025
+    upper: 0.005
+    lower: 0.0005
+    description: principal elastic tree energy function parameter.
+  increaseFactor_mu:
+    type: numeric
+    default: 20.0
+    upper: 50.0
+    lower: 2.0
+    description: factor by which the mu will be increased for the embedding
+  increaseFactor_lambda:
+    type: numeric
+    default: 20.0
+    upper: 50.0
+    lower: 2.0
+    description: factor by which the mu will be increased for the embedding
+  FixEndpoints:
+    type: logical
+    default: no
+    values:
+    - 'TRUE'
+    - 'FALSE'
+    description: Documentation not provided by authors
+  forbidden: n_local_lower > n_local_upper
+input:
+  format: rds
+  required:
+    - expression
+    - end_n
+  optional:
+    - start_id
+output:
+  format: text
+  outputs:
+    - dimred
+    - trajectory
