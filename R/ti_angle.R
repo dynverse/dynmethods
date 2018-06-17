@@ -12,8 +12,8 @@ ti_angle <-
     short_name = "angle",
     package_loaded = c(),
     package_required = c(),
-    par_set = makeParamSet(
-      makeDiscreteParam(id = "dimred", default = "pca", values = names(dyndimred::list_dimred_methods()))
+    parameters = list(
+      dimred = list(type = "discrete", default = "pca", values = names(dyndimred::list_dimred_methods()))
     ),
     run_fun = "dynmethods::run_angle",
     plot_fun = "dynmethods::plot_angle"

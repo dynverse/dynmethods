@@ -1,12 +1,21 @@
-name: angle
+name: Angle
+short_name: angle
 parameters:
   dimred:
     type: discrete
     default: pca
-    values: [pca]
+    values:
+    - pca
+    - mds
+    - tsne
+    - ica
+    - lle
+    - mds_sammon
+    - mds_isomds
+    - mds_smacof
+    - umap
 input:
   format: rds
-  required:
-    - expression
+  required: expression
 output:
   format: dynwrap
