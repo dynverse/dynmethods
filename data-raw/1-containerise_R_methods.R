@@ -8,7 +8,7 @@ library(desc)
 
 load("data/methods_info.rda")
 
-method_id <- "slice"
+method_id <- "angle"
 devtools::load_all()
 method <- get(paste0("ti_", method_id), asNamespace("dynmethods"))()
 
@@ -45,15 +45,19 @@ get_dockerfile <- function(method) {
   remotes <- set_names(remotes, remotes %>% str_replace(".*/(.*)", "\\1"))
   dependencies <- c(method$package_required, method$package_loaded)
 
-  install_dependencies <- map(dependencies, function(dependency) {
-    if(dependency %in% names(remotes)) {
-      glue::glue("devtools::install_github('{remotes[dependency]}')")
-    } else {
-      glue::glue("install.packages('{dependency}')")
-    }
-  }) %>%
-    paste0("RUN R -e \"", ., "\"") %>%
-    glue::collapse("\n")
+  if (length(dependencies) > 0) {
+    install_dependencies <- map(dependencies, function(dependency) {
+      if(dependency %in% names(remotes)) {
+        glue::glue("devtools::install_github('{remotes[dependency]}')")
+      } else {
+        glue::glue("install.packages('{dependency}')")
+      }
+    }) %>%
+      paste0("RUN R -e \"", ., "\"") %>%
+      glue::collapse("\n")
+  } else {
+    install_dependencies <- ""
+  }
 
   install_apt <- if(!is.null(method$apt_dependencies)) {
     glue::glue("RUN apt-get install -y {glue::collapse(method$apt_dependencies, ' ')}")
