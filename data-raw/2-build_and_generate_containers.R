@@ -17,7 +17,7 @@ if (!all(method_ids %in% methods_info$method_id)) {
 }
 
 # rebuild & push all containers
-rebuild <- TRUE
+rebuild <- FALSE
 if (rebuild) {
   future_map(method_ids, function(method_id) {
     system(str_glue("docker build containers/{method_id} -t dynverse/{method_id}"))
