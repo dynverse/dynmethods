@@ -5,10 +5,10 @@
 \alias{ti_monocle_ica}
 \title{Inferring trajectories with Monocle v1}
 \usage{
-ti_monocle_ica(docker = TRUE),
+ti_monocle_ica(docker = TRUE,
   reduction_method = "ICA", max_components = 2, norm_method = "vstExprs")
 
-ti_monocle_ica(docker = TRUE),
+ti_monocle_ica(docker = TRUE,
   reduction_method = "ICA", max_components = 2, norm_method = "vstExprs")
 }
 \arguments{

@@ -5,10 +5,10 @@
 \alias{ti_phenopath}
 \title{Inferring trajectories with PhenoPath}
 \usage{
-ti_phenopath(docker = TRUE),
+ti_phenopath(docker = TRUE,
   thin = 40, z_init = "1", model_mu = FALSE, scale_y = TRUE)
 
-ti_phenopath(docker = TRUE),
+ti_phenopath(docker = TRUE,
   thin = 40, z_init = "1", model_mu = FALSE, scale_y = TRUE)
 }
 \arguments{

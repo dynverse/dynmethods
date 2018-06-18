@@ -5,11 +5,11 @@
 \alias{ti_monocle_ddrtree}
 \title{Inferring trajectories with Monocle v2}
 \usage{
-ti_monocle_ddrtree(docker = TRUE),
+ti_monocle_ddrtree(docker = TRUE,
   reduction_method = "DDRTree", max_components = 2,
   norm_method = "vstExprs", auto_param_selection = TRUE)
 
-ti_monocle_ddrtree(docker = TRUE),
+ti_monocle_ddrtree(docker = TRUE,
   reduction_method = "DDRTree", max_components = 2,
   norm_method = "vstExprs", auto_param_selection = TRUE)
 }

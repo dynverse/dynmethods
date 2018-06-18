@@ -5,10 +5,10 @@
 \alias{ti_angle}
 \title{Inferring trajectories with Angle}
 \usage{
-ti_angle(docker = TRUE),
+ti_angle(docker = TRUE,
   dimred = "pca")
 
-ti_angle(docker = TRUE),
+ti_angle(docker = TRUE,
   dimred = "pca")
 }
 \arguments{

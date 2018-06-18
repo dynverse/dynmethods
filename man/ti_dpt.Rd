@@ -5,12 +5,12 @@
 \alias{ti_dpt}
 \title{Inferring trajectories with DPT}
 \usage{
-ti_dpt(docker = TRUE),
+ti_dpt(docker = TRUE,
   sigma = "local", distance = "euclidean", ndim = 20,
   density_norm = TRUE, n_local_lower = 5, n_local_upper = 7,
   w_width = 0.1)
 
-ti_dpt(docker = TRUE),
+ti_dpt(docker = TRUE,
   sigma = "local", distance = "euclidean", ndim = 20,
   density_norm = TRUE, n_local_lower = 5, n_local_upper = 7,
   w_width = 0.1)

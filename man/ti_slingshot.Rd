@@ -5,12 +5,12 @@
 \alias{ti_slingshot}
 \title{Inferring trajectories with Slingshot}
 \usage{
-ti_slingshot(docker = TRUE),
+ti_slingshot(docker = TRUE,
   ndim = 3, nclus = 5, dimred = "pca", shrink = 1, reweight = TRUE,
   thresh = -3, maxit = 10, stretch = 2, smoother = "smooth.spline",
   shrink.method = "cosine")
 
-ti_slingshot(docker = TRUE),
+ti_slingshot(docker = TRUE,
   ndim = 3, nclus = 5, dimred = "pca", shrink = 1, reweight = TRUE,
   thresh = -3, maxit = 10, stretch = 2, smoother = "smooth.spline",
   shrink.method = "cosine")

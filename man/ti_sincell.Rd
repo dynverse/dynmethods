@@ -5,14 +5,14 @@
 \alias{ti_sincell}
 \title{Inferring trajectories with Sincell}
 \usage{
-ti_sincell(docker = TRUE),
+ti_sincell(docker = TRUE,
   distance_method = "euclidean", dimred_method = "none",
   clust.method = "max.distance", mutual = TRUE, max.distance = 0, k = 3,
   shortest.rank.percent = 10, graph.algorithm = "MST",
   graph.using.cells.clustering = FALSE, k_imc = 3,
   pct_leaf_node_cutoff = 0.5)
 
-ti_sincell(docker = TRUE),
+ti_sincell(docker = TRUE,
   distance_method = "euclidean", dimred_method = "none",
   clust.method = "max.distance", mutual = TRUE, max.distance = 0, k = 3,
   shortest.rank.percent = 10, graph.algorithm = "MST",
