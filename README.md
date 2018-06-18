@@ -5,13 +5,13 @@
 dynmethods
 ==========
 
-This package contains wrappers for all of the trajectory inference (TI) methods included in the [dynverse](https://www.github.com/dynverse/dynverse) review. The output of each method is transformed into a common trajectory model using [dynwrap](https://www.github.com/dynverse/dynwrap).
+This package contains wrappers for all of the trajectory inference (TI) methods included in the [dynverse](https://www.github.com/dynverse/dynverse) review. The output of each method is transformed into a common trajectory model using [dynwrap](https://www.github.com/dynverse/dynwrap). To run any of these methods and interpret and visualise the output, see our [dyno package](https://www.github.com/dynverse/dyno).
 
 Some methods are directly implemented & wrapped inside of R. Other methods, primarily those implemented in python or other languages are wrapped inside a docker container.
 
-To include your own method, feel free to send us a [pull request](https://github.com/dynverse/dynmethods/pulls) or create an [issue](https://github.com/dynverse/dynmethods/issues).
+To include your own method, feel free to send us a [pull request](https://github.com/dynverse/dynmethods/pulls) or create an [issue](https://github.com/dynverse/dynmethods/issues). The easiest way to add a new method is through a [docker container](https://dynverse.github.io/dynwrap/articles/create_ti_method_docker.html), so that dependecies don't pose any issues for other users, but we also welcome methods [directly wrapped inside of R](https://dynverse.github.io/dynwrap/articles/create_ti_method_r.html).
 
-Currently implemented are the following wrappers:
+Currently wrapped are the following methods:
 
 | Name                      | Wrapper                                                                                           | R wrapper                                                                    | Docker container                                                                                                                       |
 |:--------------------------|:--------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------|
