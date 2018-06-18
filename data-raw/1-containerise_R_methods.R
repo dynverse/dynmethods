@@ -8,7 +8,9 @@ library(desc)
 
 load("data/methods_info.rda")
 
-method_id <- "angle"
+write_file("", "R/ti_container.R")
+
+method_id <- "sincell"
 devtools::load_all()
 method <- get(paste0("ti_", method_id), asNamespace("dynmethods"))()
 

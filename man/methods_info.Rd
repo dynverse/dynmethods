@@ -4,7 +4,7 @@
 \name{methods_info}
 \alias{methods_info}
 \title{Metadata on the all TI methods, even those not wrapped within dynmethods}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 81 rows and 46 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 80 rows and 47 columns.}
 \usage{
 methods_info
 }

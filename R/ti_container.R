@@ -4,8 +4,8 @@
 #####################################################################################
 
 
-
-
+#' @include ti_angle.R ti_celltree.R ti_dpt.R ti_embeddr.R ti_error.R ti_gng.R ti_identity.R ti_manual.R ti_mfa.R ti_monocle.R ti_mpath.R ti_ouija.R ti_periodpc.R ti_phenopath.R ti_pseudogp.R ti_random.R ti_recat.R ti_scorpius.R ti_scoup.R ti_shuffle.R ti_sincell.R ti_slice.R ti_slicer.R ti_slingshot.R ti_stemid.R ti_stemid2.R ti_tscan.R ti_waterfall.R ti_wishbone.R
+#' @include wrapper_method_chooser.R
 #' Inferring a trajectory inference using Angle
 #' 
 #' Will generate a trajectory using Angle. This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/angle).
@@ -16,18 +16,11 @@
 #' 
 #' 
 #' 
-#' @param dimred  \cr 
-#'     discrete; default: "pca"; possible values: pca, mds, tsne, ica, lle, mds_sammon, mds_isomds, mds_smacof, umap
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_angle <- function(
-    dimred = "pca"
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/angle')
-  do.call(method, args)
-}
+ti_angle <- create_ti_method_chooser(ti_angle, 'dynverse/angle')
 
 
 
@@ -96,48 +89,17 @@ ti_cellrouter <- function(
 #' 
 #' Will generate a trajectory using [cellTree with gibbs](https://doi.org/10.1186/s12859-016-1175-6). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/celltree_gibbs).
 #' 
-#' 
+#' This methods was first wrapped inside R, see [ti_celltree_gibbs]
 #' 
 #' The original code of this method is available [here](https://github.com/Bioconductor-mirror/cellTree).
 #' 
 #' The method is described in: [duVerle, D.A., Yotsukura, S., Nomura, S., Aburatani, H., Tsuda, K., 2016. CellTree: an R/bioconductor package to infer the hierarchical structure of cell populations from single-cell RNA-seq data. BMC Bioinformatics 17.](https://doi.org/10.1186/s12859-016-1175-6)
 #' 
-#' @param method  \cr 
-#'     discrete; default: "Gibbs"; possible values: Gibbs
-#' @param sd_filter  \cr 
-#'     numeric; default: 0.5; possible values between 0.01 and 5
-#' @param absolute_width  \cr 
-#'     numeric; default: 0; possible values: 0
-#' @param width_scale_factor  \cr 
-#'     numeric; default: 1.5; possible values between 0.1 and 100
-#' @param outlier_tolerance_factor  \cr 
-#'     numeric; default: 0.1; possible values between 1e-04 and 1000
-#' @param rooting_method  \cr 
-#'     discrete; default: "null"; possible values: longest.path, center.start.group, average.start.group, null
-#' @param num_topics  \cr 
-#'     integer; default: 4; possible values between 2 and 15
-#' @param tot_iter  \cr 
-#'     numeric; default: 200; possible values between 50 and 500
-#' @param tolerance  \cr 
-#'     numeric; default: 1e-05; possible values between 1e-07 and 0.001
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_celltree_gibbs <- function(
-    method = "Gibbs",
-    sd_filter = 0.5,
-    absolute_width = 0,
-    width_scale_factor = 1.5,
-    outlier_tolerance_factor = 0.1,
-    rooting_method = "null",
-    num_topics = 4,
-    tot_iter = 200,
-    tolerance = 1e-05
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/celltree_gibbs')
-  do.call(method, args)
-}
+ti_celltree_gibbs <- create_ti_method_chooser(ti_celltree_gibbs, 'dynverse/celltree_gibbs')
 
 
 
@@ -145,52 +107,17 @@ ti_celltree_gibbs <- function(
 #' 
 #' Will generate a trajectory using [cellTree with maptpx](https://doi.org/10.1186/s12859-016-1175-6). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/celltree_maptpx).
 #' 
-#' 
+#' This methods was first wrapped inside R, see [ti_celltree_maptpx]
 #' 
 #' The original code of this method is available [here](https://github.com/Bioconductor-mirror/cellTree).
 #' 
 #' The method is described in: [duVerle, D.A., Yotsukura, S., Nomura, S., Aburatani, H., Tsuda, K., 2016. CellTree: an R/bioconductor package to infer the hierarchical structure of cell populations from single-cell RNA-seq data. BMC Bioinformatics 17.](https://doi.org/10.1186/s12859-016-1175-6)
 #' 
-#' @param method  \cr 
-#'     discrete; default: "maptpx"; possible values: maptpx
-#' @param sd_filter  \cr 
-#'     numeric; default: 0.5; possible values between 0.01 and 5
-#' @param absolute_width  \cr 
-#'     numeric; default: 0; possible values: 0
-#' @param width_scale_factor  \cr 
-#'     numeric; default: 1.5; possible values between 0.1 and 100
-#' @param outlier_tolerance_factor  \cr 
-#'     numeric; default: 0.1; possible values between 1e-04 and 1000
-#' @param rooting_method  \cr 
-#'     discrete; default: "null"; possible values: longest.path, center.start.group, average.start.group, null
-#' @param num_topics_lower  \cr 
-#'     integer; default: 2; possible values between 2 and 15
-#' @param num_topics_upper  \cr 
-#'     integer; default: 15; possible values between 2 and 15
-#' @param tot_iter  \cr 
-#'     numeric; default: 1e+06; possible values between 10000 and 1e+07
-#' @param tolerance  \cr 
-#'     numeric; default: 0.05; possible values between 0.001 and 0.5
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_celltree_maptpx <- function(
-    method = "maptpx",
-    sd_filter = 0.5,
-    absolute_width = 0,
-    width_scale_factor = 1.5,
-    outlier_tolerance_factor = 0.1,
-    rooting_method = "null",
-    num_topics_lower = 2,
-    num_topics_upper = 15,
-    tot_iter = 1e+06,
-    tolerance = 0.05,
-    
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/celltree_maptpx')
-  do.call(method, args)
-}
+ti_celltree_maptpx <- create_ti_method_chooser(ti_celltree_maptpx, 'dynverse/celltree_maptpx')
 
 
 
@@ -198,48 +125,17 @@ ti_celltree_maptpx <- function(
 #' 
 #' Will generate a trajectory using [cellTree with vem](https://doi.org/10.1186/s12859-016-1175-6). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/celltree_vem).
 #' 
-#' 
+#' This methods was first wrapped inside R, see [ti_celltree_vem]
 #' 
 #' The original code of this method is available [here](https://github.com/Bioconductor-mirror/cellTree).
 #' 
 #' The method is described in: [duVerle, D.A., Yotsukura, S., Nomura, S., Aburatani, H., Tsuda, K., 2016. CellTree: an R/bioconductor package to infer the hierarchical structure of cell populations from single-cell RNA-seq data. BMC Bioinformatics 17.](https://doi.org/10.1186/s12859-016-1175-6)
 #' 
-#' @param method  \cr 
-#'     discrete; default: "VEM"; possible values: VEM
-#' @param sd_filter  \cr 
-#'     numeric; default: 0.5; possible values between 0.01 and 5
-#' @param absolute_width  \cr 
-#'     numeric; default: 0; possible values: 0
-#' @param width_scale_factor  \cr 
-#'     numeric; default: 1.5; possible values between 0.1 and 100
-#' @param outlier_tolerance_factor  \cr 
-#'     numeric; default: 0.1; possible values between 1e-04 and 1000
-#' @param rooting_method  \cr 
-#'     discrete; default: "null"; possible values: longest.path, center.start.group, average.start.group, null
-#' @param num_topics  \cr 
-#'     integer; default: 4; possible values between 2 and 15
-#' @param tot_iter  \cr 
-#'     numeric; default: 1e+06; possible values between 10000 and 1e+07
-#' @param tolerance  \cr 
-#'     numeric; default: 1e-05; possible values between 1e-07 and 0.001
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_celltree_vem <- function(
-    method = "VEM",
-    sd_filter = 0.5,
-    absolute_width = 0,
-    width_scale_factor = 1.5,
-    outlier_tolerance_factor = 0.1,
-    rooting_method = "null",
-    num_topics = 4,
-    tot_iter = 1e+06,
-    tolerance = 1e-05
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/celltree_vem')
-  do.call(method, args)
-}
+ti_celltree_vem <- create_ti_method_chooser(ti_celltree_vem, 'dynverse/celltree_vem')
 
 
 
@@ -253,37 +149,11 @@ ti_celltree_vem <- function(
 #' 
 #' The method is described in: [Haghverdi, L., Büttner, M., Wolf, F.A., Buettner, F., Theis, F.J., 2016. Diffusion pseudotime robustly reconstructs lineage branching. Nature Methods 13, 845–848.](https://doi.org/10.1038/nmeth.3971)
 #' 
-#' @param sigma Diffusion scale parameter of the Gaussian kernel. A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix. Must be one of:\itemize{\itemA character vector: \code{"local"} (default) or \code{"global"},\itema numeric global sigma -- a global sigma will be calculated using \code{\link[destiny:find_sigmas]{destiny::find_sigmas()}}\itemor a \code{\link[destiny:Sigmas-class]{destiny::Sigmas-class()}} object.} \cr 
-#'     discrete; default: "local"; possible values: local, global
-#' @param distance A \code{\link[stats:dist]{stats::dist()}} object, or a character vector specifying which distance metric to use. Allowed measures:\itemize{\itemEuclidean distance (default),\itemcosine distance (1-corr(c_1, c_2)), or\itemrank correlation distance (1-corr(rank(c_1), rank(c_2)))} \cr 
-#'     discrete; default: "euclidean"; possible values: euclidean, cosine, rankcor
-#' @param ndim Number of eigenvectors/dimensions to return \cr 
-#'     integer; default: 20L; possible values between 3 and 100
-#' @param density_norm Logical. If TRUE, use density normalisation \cr 
-#'     logical; default: TRUE; possible values: TRUE, FALSE
-#' @param n_local_lower If sigma == 'local', the \code{n_local_lower}:\code{n_local_upper} nearest neighbor(s) determine(s) the local sigma \cr 
-#'     integer; default: 5L; possible values between 2 and 20
-#' @param n_local_upper See \code{n_local_lower} \cr 
-#'     integer; default: 7L; possible values between 2 and 20
-#' @param w_width Window width to use for deciding the branch cutoff \cr 
-#'     numeric; default: 0.1; possible values between 1e-04 and 1
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_dpt <- function(
-    sigma = "local",
-    distance = "euclidean",
-    ndim = 20L,
-    density_norm = TRUE,
-    n_local_lower = 5L,
-    n_local_upper = 7L,
-    w_width = 0.1,
-    
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/dpt')
-  do.call(method, args)
-}
+ti_dpt <- create_ti_method_chooser(ti_dpt, 'dynverse/dpt')
 
 
 
@@ -441,51 +311,11 @@ ti_elpilinear <- function(
 #' 
 #' The method is described in: [Campbell, K., Ponting, C.P., Webber, C., 2015. Laplacian eigenmaps and principal curves for high resolution pseudotemporal ordering of single-cell RNA-seq profiles.](https://doi.org/10.1101/027219)
 #' 
-#' @param ndim Dimension of the embedded space, default is 2 \cr 
-#'     integer; default: 2L; possible values between 2 and 10
-#' @param kernel The choice of kernel. 'nn' will give nearest neighbours, 'dist' gives minimum distance and'heat' gives a heat kernel. Discussed in detail in 'Laplacian Eigenmaps and Spectral Techniques for Embedding and Clustering',Belkin & Niyogi \cr 
-#'     discrete; default: "nn"; possible values: nn, dist, heat
-#' @param metric The metric with which to assess 'closeness' for nearest neighbour selection, one of'correlation' (pearson) or 'euclidean'. Default is 'correlation'. \cr 
-#'     discrete; default: "correlation"; possible values: correlation, euclidean, cosine
-#' @param nn_pct The percentage of cells to use as tge number of nearest neighbours if kernel == 'nn'. \cr 
-#'     numeric; default: 0; possible values between -2 and 1
-#' @param eps Maximum distance parameter if kernel == 'dist' \cr 
-#'     numeric; default: 0; possible values between -5 and 5
-#' @param t 'time' for heat kernel if kernel == 'heat' \cr 
-#'     numeric; default: 0; possible values between -5 and 5
-#' @param symmetrize How to make the adjacency matrix symmetric. Note that slightlycounterintuitively, node i having node j as a nearest neighbour doesn't guarantee nodej has node i. There are several ways to get round this:\itemize{\item \code{mean} If the above case occurs make the link weight 0.5 so the adjacency matrix becomes \eqn{0.5(A + A')}\item \code{ceil} If the above case occurs set the link weight to 1 (ie take the ceiling of the mean case)\item \code{floor} If the above case occurs set the link weight to 0 (ie take the floor of the mean case)} \cr 
-#'     discrete; default: "mean"; possible values: mean, ceil, floor
-#' @param measure_type Type of laplacian eigenmap, which corresponds to the constraint on the eigenvalue problem. Iftype is 'unorm' (default), then the graph measure used is the identity matrix, while if type is 'norm' then the measureused is the degree matrix. \cr 
-#'     discrete; default: "unorm"; possible values: unorm, norm
-#' @param thresh Convergence threshold on shortest distances to the curve. \cr 
-#'     numeric; default: 0.001; possible values between 1e-05 and 1e+05
-#' @param maxit Maximum number of iterations. \cr 
-#'     integer; default: 10L; possible values between 0 and 50
-#' @param stretch A factor by which the curve can be extrapolated whenpoints are projected.  Default is 2 (times the last segmentlength). The default is 0 for \code{smoother} equal to\code{"periodic_lowess"}. \cr 
-#'     numeric; default: 2; possible values between 0 and 5
-#' @param smoother Choice of smoother. The default is\code{"smooth_spline"}, and other choices are \code{"lowess"} and\code{"periodic_lowess"}. The latter allows one to fit closed curves.Beware, you may want to use \code{iter = 0} with \code{lowess()}. \cr 
-#'     discrete; default: "smooth.spline"; possible values: smooth.spline, lowess, periodic.lowess
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_embeddr <- function(
-    ndim = 2L,
-    kernel = "nn",
-    metric = "correlation",
-    nn_pct = 0,
-    eps = 0,
-    t = 0,
-    symmetrize = "mean",
-    measure_type = "unorm",
-    thresh = 0.001,
-    maxit = 10L,
-    stretch = 2,
-    smoother = "smooth.spline"
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/embeddr')
-  do.call(method, args)
-}
+ti_embeddr <- create_ti_method_chooser(ti_embeddr, 'dynverse/embeddr')
 
 
 
@@ -499,30 +329,11 @@ ti_embeddr <- function(
 #' 
 #' 
 #' 
-#' @param dimred A character vector specifying which dimensionality reduction method to use.See \link[dyndimred:dimred]{dyndimred::dimred} for the list of available dimensionality reduction methods. \cr 
-#'     discrete; default: "pca"; possible values: pca, mds, tsne, ica, lle, mds_sammon, mds_isomds, mds_smacof, umap
-#' @param ndim The number of dimensions \cr 
-#'     integer; default: 5L; possible values between 2 and 10
-#' @param max_iter The max number of iterations \cr 
-#'     numeric; default: 13.8155106; possible values between 4.6051702 and 18.4206807
-#' @param max_nodes The maximum number of nodes \cr 
-#'     integer; default: 8L; possible values between 2 and 30
-#' @param apply_mst If true, an MST post-processing of the GNG is performed. \cr 
-#'     logical; default: TRUE; possible values: TRUE, FALSE
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_gng <- function(
-    dimred = "pca",
-    ndim = 5L,
-    max_iter = 13.8155106,
-    max_nodes = 8L,
-    apply_mst = TRUE
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/gng')
-  do.call(method, args)
-}
+ti_gng <- create_ti_method_chooser(ti_gng, 'dynverse/gng')
 
 
 
@@ -627,9 +438,9 @@ ti_matcher <- function(
 #' 
 #' The method is described in: [Parra, R.G., Papadopoulos, N., Ahumada-Arranz, L., El Kholtei, J., Treutlein, B., Soeding, J., 2018. Reconstructing complex lineage trees from scRNA-seq data using MERLoT.](https://doi.org/10.1101/261768)
 #' 
-#' @param sigma Diffusion scale parameter of the Gaussian kernel. A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix. Must be one of:\itemize{\itemA character vector: \code{"local"} (default) or \code{"global"},\itema numeric global sigma -- a global sigma will be calculated using \code{\link[destiny:find_sigmas]{destiny::find_sigmas()}}\itemor a \code{\link[destiny:Sigmas-class]{destiny::Sigmas-class()}} object.} \cr 
+#' @param sigma Diffusion scale parameter of the Gaussian kernel. A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix. Must be one of:\itemize{\item A character vector: \code{"local"} (default) or \code{"global"},\item a numeric global sigma -- a global sigma will be calculated using \code{\link[destiny:find_sigmas]{destiny::find_sigmas()}}\item or a \code{\link[destiny:Sigmas-class]{destiny::Sigmas-class()}} object.} \cr 
 #'     discrete; default: "local"; possible values: local, global
-#' @param distance A \code{\link[stats:dist]{stats::dist()}} object, or a character vector specifying which distance metric to use. Allowed measures:\itemize{\itemEuclidean distance (default),\itemcosine distance (1-corr(c_1, c_2)), or\itemrank correlation distance (1-corr(rank(c_1), rank(c_2)))} \cr 
+#' @param distance A \code{\link[stats:dist]{stats::dist()}} object, or a character vector specifying which distance metric to use. Allowed measures:\itemize{\item Euclidean distance (default),\item cosine distance (1-corr(c_1, c_2)), or\item rank correlation distance (1-corr(rank(c_1), rank(c_2)))} \cr 
 #'     discrete; default: "euclidean"; possible values: euclidean, cosine, rankcor
 #' @param ndim Number of eigenvectors/dimensions to return \cr 
 #'     integer; default: 20L; possible values between 2 and 20
@@ -672,8 +483,7 @@ ti_merlot <- function(
     mu_0 = 0.0025,
     increaseFactor_mu = 20,
     increaseFactor_lambda = 20,
-    FixEndpoints = FALSE,
-    
+    FixEndpoints = FALSE
 ) {
   args <- as.list(environment())
   method <- create_docker_ti_method('dynverse/merlot')
@@ -692,34 +502,11 @@ ti_merlot <- function(
 #' 
 #' The method is described in: [Campbell, K.R., Yau, C., 2017. Probabilistic modeling of bifurcations in single-cell gene expression data using a Bayesian mixture of factor analyzers. Wellcome Open Research 2, 19.](https://doi.org/10.12688/wellcomeopenres.11087.1)
 #' 
-#' @param b Number of branches to model \cr 
-#'     integer; default: 2L; possible values between 1 and 10
-#' @param iter Number of MCMC iterations \cr 
-#'     integer; default: 2000L; possible values between 20 and 5000
-#' @param thin MCMC samples to thin \cr 
-#'     integer; default: 1L; possible values between 1 and 20
-#' @param pc_initialise Which principal component to initialise pseudotimes to \cr 
-#'     integer; default: 1L; possible values between 1 and 5
-#' @param prop_collapse Proportion of Gibbs samples which should marginalise over c \cr 
-#'     numeric; default: 0; possible values between 0 and 1
-#' @param scale_input Logical. If true, input is scaled to have mean 0 variance 1 \cr 
-#' @param zero_inflation Logical, should zero inflation be enabled? \cr 
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_mfa <- function(
-    b = 2L,
-    iter = 2000L,
-    thin = 1L,
-    pc_initialise = 1L,
-    prop_collapse = 0,
-    scale_input = TRUE,
-    zero_inflation = FALSE
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/mfa')
-  do.call(method, args)
-}
+ti_mfa <- create_ti_method_chooser(ti_mfa, 'dynverse/mfa')
 
 
 
@@ -727,33 +514,17 @@ ti_mfa <- function(
 #' 
 #' Will generate a trajectory using [Monocle DDRTree](https://doi.org/10.1038/nmeth.4402). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/monocle_ddrtree).
 #' 
-#' 
+#' This methods was first wrapped inside R, see [ti_monocle_ddrtree]
 #' 
 #' The original code of this method is available [here](https://github.com/cole-trapnell-lab/monocle-release).
 #' 
 #' The method is described in: [Qiu, X., Mao, Q., Tang, Y., Wang, L., Chawla, R., Pliner, H.A., Trapnell, C., 2017. Reversed graph embedding resolves complex single-cell trajectories. Nature Methods 14, 979–982.](https://doi.org/10.1038/nmeth.4402)
 #' 
-#' @param reduction_method A character string specifying the algorithm to use for dimensionality reduction. \cr 
-#'     discrete; default: "DDRTree"; possible values: DDRTree
-#' @param max_components The dimensionality of the reduced space \cr 
-#'     integer; default: 2L; possible values between 2 and 20
-#' @param norm_method Determines how to transform expression values prior to reducing dimensionality \cr 
-#'     discrete; default: "vstExprs"; possible values: vstExprs, log, none
-#' @param auto_param_selection When this argument is set to TRUE (default), it will automatically calculate the proper value for the ncenter (number of centroids) parameters which will be passed into DDRTree call. \cr 
-#'     logical; default: TRUE; possible values: TRUE, FALSE
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_monocle_ddrtree <- function(
-    reduction_method = "DDRTree",
-    max_components = 2L,
-    norm_method = "vstExprs",
-    auto_param_selection = TRUE
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/monocle_ddrtree')
-  do.call(method, args)
-}
+ti_monocle_ddrtree <- create_ti_method_chooser(ti_monocle_ddrtree, 'dynverse/monocle_ddrtree')
 
 
 
@@ -761,30 +532,17 @@ ti_monocle_ddrtree <- function(
 #' 
 #' Will generate a trajectory using [Monocle ICA](https://doi.org/10.1038/nmeth.4402). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/monocle_ica).
 #' 
-#' 
+#' This methods was first wrapped inside R, see [ti_monocle_ica]
 #' 
 #' The original code of this method is available [here](https://github.com/cole-trapnell-lab/monocle-release).
 #' 
 #' The method is described in: [Qiu, X., Mao, Q., Tang, Y., Wang, L., Chawla, R., Pliner, H.A., Trapnell, C., 2017. Reversed graph embedding resolves complex single-cell trajectories. Nature Methods 14, 979–982.](https://doi.org/10.1038/nmeth.4402)
 #' 
-#' @param reduction_method A character string specifying the algorithm to use for dimensionality reduction. \cr 
-#'     discrete; default: "ICA"; possible values: ICA
-#' @param max_components The dimensionality of the reduced space \cr 
-#'     integer; default: 2L; possible values between 2 and 20
-#' @param norm_method Determines how to transform expression values prior to reducing dimensionality \cr 
-#'     discrete; default: "vstExprs"; possible values: vstExprs, log, none
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_monocle_ica <- function(
-    reduction_method = "ICA",
-    max_components = 2L,
-    norm_method = "vstExprs"
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/monocle_ica')
-  do.call(method, args)
-}
+ti_monocle_ica <- create_ti_method_chooser(ti_monocle_ica, 'dynverse/monocle_ica')
 
 
 
@@ -798,33 +556,11 @@ ti_monocle_ica <- function(
 #' 
 #' The method is described in: [Chen, J., Schlitzer, A., Chakarov, S., Ginhoux, F., Poidinger, M., 2016. Mpath maps multi-branching single-cell trajectories revealing progenitor cell progression during development. Nature Communications 7, 11988.](https://doi.org/10.1038/ncomms11988)
 #' 
-#' @param distMethod The method for calculating dissimilarity between cells. distMethod can be one of "pearson", "kendall", "spearman" or "euclidean". Default is "euclidean". \cr 
-#'     discrete; default: "euclidean"; possible values: pearson, kendall, spearman, euclidean
-#' @param method Method for distinguishing landmark clusters from non-landmark clusters.method can be "kmeans" or "diversity" or "size" or "diversity_size". When method="diversity", numlm needs to be specified. Default is "diversity_size". \cr 
-#'     discrete; default: "kmeans"; possible values: kmeans, diversity, size, diversity_size
-#' @param numcluster Number of initial clusters \cr 
-#'     integer; default: 11L; possible values between 3 and 30
-#' @param numcluster_null If TRUE, will automatically select the number of clusters \cr 
-#'     logical; default: TRUE; possible values: TRUE, FALSE
-#' @param diversity_cut The cutoff value of diversity for differentiating landmark clusters from non-landmark clusters. The diversity of a landmark cluster must be below this cutoff. \cr 
-#'     numeric; default: 0.6; possible values between 0.1 and 1
-#' @param size_cut The cutoff value of size i.e. number of cells for differentiating landmark clusters from non-landmark clusters. The number of cells in a landmark cluster must be greater than this cutoff. \cr 
-#'     numeric; default: 0.05; possible values between 0.01 and 1
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_mpath <- function(
-    distMethod = "euclidean",
-    method = "kmeans",
-    numcluster = 11L,
-    numcluster_null = TRUE,
-    diversity_cut = 0.6,
-    size_cut = 0.05
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/mpath')
-  do.call(method, args)
-}
+ti_mpath <- create_ti_method_chooser(ti_mpath, 'dynverse/mpath')
 
 
 
@@ -838,27 +574,11 @@ ti_mpath <- function(
 #' 
 #' The method is described in: [Campbell, K.R., Yau, C., 2016. A descriptive marker gene approach to single-cell pseudotime inference.](https://doi.org/10.1101/060442)
 #' 
-#' @param iter Number of iterations \cr 
-#'     numeric; default: 100; possible values between 10 and 1000
-#' @param response_type A vector declaring whether each gene exhibits "switch" or "transient"expression. Defaults to "switch" for all genes \cr 
-#'     discrete; default: "switch"; possible values: switch, transient
-#' @param inference_type The type of inference to be performed, either \code{hmc} for HamiltonianMonte Carlo or \code{vb} for ADVI (Variational Bayes). Note that HMC is typically more accuratebut VB will be orders of magnitude faster. \cr 
-#'     discrete; default: "hmc"; possible values: hmc, vb
-#' @param normalise_expression Logical, default TRUE. If TRUE the data is pre-normalisedso the average peak expression is approximately 1. This makes the strength parametersapproximately comparable between genes. \cr 
-#'     logical; default: TRUE; possible values: TRUE, FALSE
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_ouija <- function(
-    iter = 100,
-    response_type = "switch",
-    inference_type = "hmc",
-    normalise_expression = TRUE
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/ouija')
-  do.call(method, args)
-}
+ti_ouija <- create_ti_method_chooser(ti_ouija, 'dynverse/ouija')
 
 
 
@@ -965,25 +685,11 @@ ti_pcreode <- function(
 #' 
 #' The method is described in: [Campbell, K., Yau, C., 2017. Uncovering genomic trajectories with heterogeneous genetic and environmental backgrounds across single-cells and populations.](https://doi.org/10.1101/159913)
 #' 
-#' @param thin The number of iterations to wait each time beforere-calculating the elbo \cr 
-#'     integer; default: 40L; possible values between 2 and 500
-#' @param z_init The initialisation of the latent trajectory. Should be one of\enumerate{\item A positive integer describing which principal component of the data shouldbe used for initialisation (default 1), \emph{or}\item A numeric vector of length number of samples to be used directly for initialisation, \emph{or}\item The text character \code{"random"}, for random initialisation from a standard normal distribution.} \cr 
-#'     discrete; default: "1"; possible values: 1, 2, 3, 4, 5, random
-#' @param model_mu Logical - should a gene-specific intercept term be modelled? \cr 
-#' @param scale_y Logical - should the expression matrix be centre scaled? \cr 
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_phenopath <- function(
-    thin = 40L,
-    z_init = "1",
-    model_mu = FALSE,
-    scale_y = TRUE
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/phenopath')
-  do.call(method, args)
-}
+ti_phenopath <- create_ti_method_chooser(ti_phenopath, 'dynverse/phenopath')
 
 
 
@@ -1028,38 +734,11 @@ ti_praga <- function(
 #' 
 #' The method is described in: [Campbell, K.R., Yau, C., 2016. Order Under Uncertainty: Robust Differential Expression Analysis Using Probabilistic Models for Pseudotime Inference. PLOS Computational Biology 12, e1005212.](https://doi.org/10.1371/journal.pcbi.1005212)
 #' 
-#' @param smoothing_alpha The hyperparameter for the Gamma distribution that controls arc-length \cr 
-#'     numeric; default: 10; possible values between 1 and 20
-#' @param smoothing_beta The hyperparameter for the Gamma distribution that controls arc-length \cr 
-#'     numeric; default: 3; possible values between 1 and 20
-#' @param pseudotime_mean The mean of the constrained normal prior on the pseudotimes \cr 
-#'     numeric; default: 0.5; possible values between 0 and 1
-#' @param pseudotime_var The variance of the constrained normal prior on the pseudotimes \cr 
-#'     numeric; default: 1; possible values between 0.01 and 1
-#' @param chains The number of chains for the MCMC trace \cr 
-#'     integer; default: 3L; possible values between 1 and 20
-#' @param iter The number of iterations for the MCMC trace \cr 
-#'     numeric; default: 100; possible values between 100 and 1000
-#' @param dimreds A character vector specifying which dimensionality reduction methods to use.See \code{\link[dyndimred:dimred]{dyndimred::dimred()}} for the list of available dimensionality reduction methods. \cr 
-#' @param initialise_from How to initialise the MCMC chain. One of "random" (stan decides),"principal_curve", or "pca" (the first component of PCA rescaled is taken to be the pseudotimes).Note: if multiple representations are provided, \code{pseudogp} will take the principal curve orpca from the first rather than combining them. If a particular representation is required, it isup to the user to re-order them. \cr 
-#'     discrete; default: "random"; possible values: random, principal_curve, pca
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_pseudogp <- function(
-    smoothing_alpha = 10,
-    smoothing_beta = 3,
-    pseudotime_mean = 0.5,
-    pseudotime_var = 1,
-    chains = 3L,
-    iter = 100,
-    dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
-    initialise_from = "random"
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/pseudogp')
-  do.call(method, args)
-}
+ti_pseudogp <- create_ti_method_chooser(ti_pseudogp, 'dynverse/pseudogp')
 
 
 
@@ -1073,39 +752,11 @@ ti_pseudogp <- function(
 #' 
 #' The method is described in: [Liu, Z., Lou, H., Xie, K., Wang, H., Chen, N., Aparicio, O.M., Zhang, M.Q., Jiang, R., Chen, T., 2017. Reconstructing cell cycle pseudo time-series via single-cell transcriptome data. Nature Communications 8.](https://doi.org/10.1038/s41467-017-00039-z)
 #' 
-#' @param TSPFold No documentation provided by authors \cr 
-#'     integer; default: 2; possible values between 2 and 10
-#' @param beginNum No documentation provided by authors \cr 
-#'     integer; default: 10; possible values between 2 and 20
-#' @param endNum No documentation provided by authors \cr 
-#'     integer; default: 15; possible values between 2 and 20
-#' @param step_size Determines the number of k to skip in your consensus path, ie ifstep_size = 2, then reCAT would only calculate and merge the paths fork = 12, 14, 16, 18, …, n-2, n. We recommend step_size of up to a maximum of 5 while preserving the performance of reCAT. Usually a step_size of 2 (by default) would suffice and bigger steps are recommended for larger datasets (>1000 cells) in order to reduce computational time. \cr 
-#'     integer; default: 2; possible values between 2 and 20
-#' @param base_cycle_range_start The minimal number of four k’s for computing the reference cycle mentioned in the manuscript. Can be set to 6 or 7 \cr 
-#'     integer; default: 6; possible values between 6 and 7
-#' @param base_cycle_range_end The maximal number of four k’s for computing the reference cycle mentioned in the manuscript. Can be set to 6 or 7 \cr 
-#'     integer; default: 9; possible values between 9 and 10
-#' @param max_num No documentation provided by authors \cr 
-#'     integer; default: 300; possible values between 100 and 500
-#' @param clustMethod No documentation provided by authors \cr 
-#'     discrete; default: "GMM"; possible values: GMM, Pam, Kmeans
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_recat <- function(
-    TSPFold = 2,
-    beginNum = 10,
-    endNum = 15,
-    step_size = 2,
-    base_cycle_range_start = 6,
-    base_cycle_range_end = 9,
-    max_num = 300,
-    clustMethod = "GMM"
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/recat')
-  do.call(method, args)
-}
+ti_recat <- create_ti_method_chooser(ti_recat, 'dynverse/recat')
 
 
 
@@ -1159,38 +810,11 @@ ti_scimitar <- function(
 #' 
 #' The method is described in: [Cannoodt, R., Saelens, W., Sichien, D., Tavernier, S., Janssens, S., Guilliams, M., Lambrecht, B.N., De Preter, K., Saeys, Y., 2016. SCORPIUS improves trajectory inference and identifies novel modules in dendritic cell development.](https://doi.org/10.1101/079509)
 #' 
-#' @param distance_method A character string indicating which correlationcoefficient (or covariance) is to be computed. One of "pearson", "kendall", or "spearman". \cr 
-#'     discrete; default: "spearman"; possible values: spearman, pearson, kendall
-#' @param ndim The number of dimensions in the new space. \cr 
-#'     integer; default: 3L; possible values between 2 and 20
-#' @param k The number of clusters to cluster the data into. \cr 
-#'     integer; default: 4L; possible values between 1 and 20
-#' @param thresh \code{\link[princurve]{principal.curve}} parameter: convergence threshhold on shortest distances to the curve \cr 
-#'     numeric; default: 0.001; possible values between 1e-05 and 1e+05
-#' @param maxit \code{\link[princurve]{principal.curve}} parameter: maximum number of iterations \cr 
-#'     integer; default: 10L; possible values between 0 and 50
-#' @param stretch \code{\link[princurve]{principal.curve}} parameter: a factor by which the curve can be extrapolated when points are projected \cr 
-#'     numeric; default: 0; possible values between 0 and 5
-#' @param smoother \code{\link[princurve]{principal.curve}} parameter: choice of smoother \cr 
-#'     discrete; default: "smooth.spline"; possible values: smooth.spline, lowess, periodic.lowess
-#' @param sparse Whether or not to use sparse MDS dimensionality reduction,for datasets with large amounts of cells. \cr 
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_scorpius <- function(
-    distance_method = "spearman",
-    ndim = 3L,
-    k = 4L,
-    thresh = 0.001,
-    maxit = 10L,
-    stretch = 0,
-    smoother = "smooth.spline",
-    sparse = FALSE
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/scorpius')
-  do.call(method, args)
-}
+ti_scorpius <- create_ti_method_chooser(ti_scorpius, 'dynverse/scorpius')
 
 
 
@@ -1204,42 +828,11 @@ ti_scorpius <- function(
 #' 
 #' The method is described in: [Matsumoto, H., Kiryu, H., 2016. SCOUP: a probabilistic model based on the Ornstein–Uhlenbeck process to analyze single-cell expression data during differentiation. BMC Bioinformatics 17.](https://doi.org/10.1186/s12859-016-1109-3)
 #' 
-#' @param ndim Number of pca dimensions \cr 
-#'     integer; default: 2L; possible values between 2 and 20
-#' @param max_ite1 Upper bound of EM iteration (without pseudo-time optimization). The detailed explanation is described in the supplementary text. (default is 1,000) \cr 
-#'     numeric; default: 100; possible values between 2 and 5000
-#' @param max_ite2 Upper bound of EM iteration (including pseudo-time optimization) (default is 1,000). \cr 
-#'     numeric; default: 100; possible values between 2 and 5e+05
-#' @param alpha_min Lower bound of alpha (default is 0.1) \cr 
-#'     numeric; default: 0.1; possible values between 0.001 and 10
-#' @param alpha_max Upper bound of alpha (default is 100) \cr 
-#'     numeric; default: 100; possible values between 1 and 10000
-#' @param t_min Lower bound of pseudo-time (default is 0.001) \cr 
-#'     numeric; default: 0.001; possible values between 1e-05 and 1
-#' @param t_max Upper bound of pseudo-time (default is 2.0) \cr 
-#'     numeric; default: 2; possible values between 0.1 and 100
-#' @param sigma_squared_min Lower bound of sigma squared (default is 0.1) \cr 
-#'     numeric; default: 0.1; possible values between 0.001 and 10
-#' @param thresh Threshold \cr 
-#'     numeric; default: 0.01; possible values between 0.01 and 10
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_scoup <- function(
-    ndim = 2L,
-    max_ite1 = 100,
-    max_ite2 = 100,
-    alpha_min = 0.1,
-    alpha_max = 100,
-    t_min = 0.001,
-    t_max = 2,
-    sigma_squared_min = 0.1,
-    thresh = 0.01
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/scoup')
-  do.call(method, args)
-}
+ti_scoup <- create_ti_method_chooser(ti_scoup, 'dynverse/scoup')
 
 
 
@@ -1292,46 +885,11 @@ ti_scuba <- function(
 #' 
 #' The method is described in: [Juliá, M., Telenti, A., Rausell, A., 2015. Sincell: an R/Bioconductor package for statistical assessment of cell-state hierarchies from single-cell RNA-seq: Fig. 1. Bioinformatics 31, 3380–3382.](https://doi.org/10.1093/bioinformatics/btv368)
 #' 
-#' @param distance_method Distance method to be used. The available distances are the Euclidean distance (method="euclidean"), Manhattan distance (also called L1 distance, method="L1"), cosine distance (method="cosine") , distance based on Pearson (method="pearson") or Spearman (method="spearman") correlation coefficients, and distance based on Mutual Information (method="MI"). Intervals used to assess Mutual Information are indicated in the parameter “bins”. \cr 
-#'     discrete; default: "euclidean"; possible values: euclidean, cosine, pearson, spearman, L1, MI
-#' @param dimred_method Dimensionality reduction algorithm to be used. Options are: Principal Component Analysis (method="PCA"), Independent Component Analysis (method="ICA"; using fastICA() function in fastICA package), t-Distributed Stochastic Neighbor Embedding (method="tSNE"; using Rtsne() function in Rtsne package with parameters tsne.perplexity=1 and tsne.theta=0.25), classical Multidimensional Scaling (method="classical-MDS"; using the cmdscale() function) and non-metric Multidimensional Scaling (method="nonmetric-MDS";using the isoMDS() function in MASS package). if method="PCA" is chosen, the proportion of variance explained by each of the principal axes is plotted. We note that Sincell makes use of the Rtsne implementation of the Barnes-Hut algorithm, which approximates the likelihood. The user should be aware that this is a less accurate version of t-SNE than e.g. the one used as basis of viSNE (Amir,E.D. et al. 2013, Nat Biotechnol 31, 545–552). \cr 
-#'     discrete; default: "none"; possible values: none, PCA, ICA, tSNE, classical-MDS, nonmetric-MDS
-#' @param clust.method If clust.method="max.distance", clusters are defined as subgraphs generated by a maximum pair-wise distance cut-off, that is: from a totally connected graph where all cells are connected to each other, the algorithm only keeps pairs of cells connected by a distance lower than a given threshold.If clust.method="percent", clusters are defined as subgraphs generated by a given rank-percentile of the shortest pair-wise distances, that is; from a totally connected graph where all cells are connected to each other, the algorithm only keeps the top “x” percent of shortest pairwise distances as indicated by "shortest.rank.percent".If clust.method="knn", unsupervised K-Nearest Neighbors (K-NN) clustering is performed: From a totally disconnected graph where none of the cells are connected to each other, the algorithm connects each cell to its “k” nearest neighbors. If parameter "mutual=TRUE", Unsupervised K-Mutual Nearest Neighbours (K-MNN) clustering is performed, that is: only reciprocal k nearest neighbors are connected.If clust.method="k-medoids", clustering around medoids (a more robust version of k-means) is performed with function "pam" from package "cluster" on the distance matrix in mySincellObject[["cell2celldist"]] with a desired number of groups indicated in parameter "num.clusters"Hierarchical agglomerative clustering can be performed by internally calling function "hclust" where the agglomeration method is indicated in parameter "clust.method" as one of "ward.D", "ward.D2", "single", "complete", "average" (= UPGMA), "mcquitty" (= WPGMA), "median" (= WPGMC) or "centroid" (= UPGMC). Clusters are obtained by cutting the tree produced by hclust with function cutree with a desired number of groups indicated in parameter "num.clusters"  \cr 
-#'     discrete; default: "max.distance"; possible values: max.distance, percent, knn, k-medoids, ward.D, ward.D2, single, complete, average, mcquitty, median, centroid
-#' @param mutual If clust.method="knn" and "mutual=TRUE", Unsupervised K-Mutual Nearest Neighbours (K-MNN) clustering is performed, that is: only reciprocal k nearest neighbors are connected. \cr 
-#' @param max.distance In max.distance algorithm, select up to which distance the points will be linked \cr 
-#'     numeric; default: 0; possible values between 0 and 5
-#' @param k If clust.method="knn", k is an integer specifying the number of nearest neighbors to consider in K-NN and K-KNN \cr 
-#'     integer; default: 3L; possible values between 1 and 99
-#' @param shortest.rank.percent In percent algorithm, select the percent of shortest distances will be represented as links \cr 
-#'     numeric; default: 10; possible values between 0 and 100
-#' @param graph.algorithm Graph building algorithm to be used: the Minimum Spanning Tree (graph.algorithm="MST"), the Maximum Similarity Spanning Tree (graph.algorithm="SST") and the Iterative Mutual Clustering Graph (graph.algorithm="IMC"). \cr 
-#'     discrete; default: "MST"; possible values: MST, SST, IMC
-#' @param graph.using.cells.clustering If graph.using.cells.clustering=TRUE and graph.algorithm="MST" or graph.algorithm="MST", a precalculated clustering of cells is used. The clustering of cells is taken from SincellObject[["cellsClustering"]] as calculated by function sc_clusterObj(). \cr 
-#' @param k_imc If IMC algorithm is selected, the number of nearest neighbors used in the underlying K-Mutual Nearest Neighbour (K-MNN) algorithm is set to k. \cr 
-#'     integer; default: 3L; possible values between 1 and 99
-#' @param pct_leaf_node_cutoff Leaf nodes are iteratively removed until the percentage of leaf nodes is below the given cutoff. Removed nodes are projected to their closest neighbour. This is to constrain the number of milestones being created. \cr 
-#'     numeric; default: 0.5; possible values between 0.01 and 0.8
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_sincell <- function(
-    distance_method = "euclidean",
-    dimred_method = "none",
-    clust.method = "max.distance",
-    mutual = TRUE,
-    max.distance = 0,
-    k = 3L,
-    shortest.rank.percent = 10,
-    graph.algorithm = "MST",
-    graph.using.cells.clustering = FALSE,
-    k_imc = 3L,
-    pct_leaf_node_cutoff = 0.5
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/sincell')
-  do.call(method, args)
-}
+ti_sincell <- create_ti_method_chooser(ti_sincell, 'dynverse/sincell')
 
 
 
@@ -1345,45 +903,11 @@ ti_sincell <- function(
 #' 
 #' The method is described in: [Guo, M., Bao, E.L., Wagner, M., Whitsett, J.A., Xu, Y., 2016. SLICE: determining cell differentiation and lineage based on single cell entropy. Nucleic Acids Research gkw1278.](https://doi.org/10.1093/nar/gkw1278)
 #' 
-#' @param lm.method Select "clustering" based or "graph" based method to infer lineage model \cr 
-#'     discrete; default: "clustering"; possible values: clustering, graph
-#' @param model.type The type of models that will be infered: "tree" - directed minimum spanning tree based, "graph" - directed graph based \cr 
-#'     discrete; default: "tree"; possible values: tree, graph
-#' @param ss.method The method for defining core cell set for stable state detection: all - all the cells in a cluster constitute the core cell set; top - cells with scEntropy lower than the ss.threshold quantile of all the values in a cluster constitute the core cell set; pcst - cells with scEntropy lower than the ss.threshold quantile of all the values in a cluster constitute the prize nodes, linear prize-collecting steiner tree algorithm is used to approximate an optimal subnetwork, the cells in the subnetwork constitute the core cell set. Stable states are defined as the centroids of the core cell sets. \cr 
-#'     discrete; default: "all"; possible values: all, top, pcst
-#' @param ss.threshold The threshold used when ss.method is "top" or "pcst". Default: 0.25. \cr 
-#'     numeric; default: 0.25; possible values between 0 and 1
-#' @param community.method The method for network community detection. Most of the community detection methods implemented in the igraph package are supported, including "fast_greedy", "edge_betweenness", "label_prop", "leading_eigen","louvain","spinglass", "walktrap". If this parameter is set to "auto", the algorithm will perform all the community detection methods and select the one that generates the communities with best modularity. Only take effect when lm.method is "graph" \cr 
-#'     discrete; default: "louvain"; possible values: fast_greedy, edge_betweenness, label_prop, leading_eigen, louvain, spinglass, walktrap, auto
-#' @param cluster.method Use "kmeans" or "pam" to divide cells into clusters. Only take effect when lm.method is "clustering" \cr 
-#'     discrete; default: "kmeans"; possible values: kmeans, pam
-#' @param k The number of cell clusters. If NULL, Gap statistic will be used to determine an optimal k. \cr 
-#'     discrete; default: 0; possible values: 0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
-#' @param k.max The "k.max" parameter of cluster::clusGap(); used when k is NULL. \cr 
-#'     integer; default: 10L; possible values between 3 and 20
-#' @param B The "B" parameter of cluster::clusGap(); used when k is NULL \cr 
-#'     integer; default: 100L; possible values between 3 and 500
-#' @param k.opt.method The "method" parameter of cluster::maxSE(); used when k is NULL \cr 
-#'     discrete; default: "firstmax"; possible values: firstmax, globalmax, Tibs2001SEmax, firstSEmax, globalSEmax
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_slice <- function(
-    lm.method = "clustering",
-    model.type = "tree",
-    ss.method = "all",
-    ss.threshold = 0.25,
-    community.method = "louvain",
-    cluster.method = "kmeans",
-    k = 0,
-    k.max = 10L,
-    B = 100L,
-    k.opt.method = "firstmax"
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/slice')
-  do.call(method, args)
-}
+ti_slice <- create_ti_method_chooser(ti_slice, 'dynverse/slice')
 
 
 
@@ -1397,21 +921,11 @@ ti_slice <- function(
 #' 
 #' The method is described in: [Welch, J.D., Hartemink, A.J., Prins, J.F., 2016. SLICER: inferring branched, nonlinear cellular trajectories from single cell RNA-seq data. Genome Biology 17.](https://doi.org/10.1186/s13059-016-0975-3)
 #' 
-#' @param kmin Smallest value of k to try \cr 
-#'     integer; default: 10L; possible values between 2 and 20
-#' @param m Intrinsic dimension of the data. This parameter mainly influences the visualisation of the results. The real intrinsic dimension will be calculated automaticly.  \cr 
-#'     integer; default: 2L; possible values between 2 and 20
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_slicer <- function(
-    kmin = 10L,
-    m = 2L
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/slicer')
-  do.call(method, args)
-}
+ti_slicer <- create_ti_method_chooser(ti_slicer, 'dynverse/slicer')
 
 
 
@@ -1425,45 +939,11 @@ ti_slicer <- function(
 #' 
 #' The method is described in: [Street, K., Risso, D., Fletcher, R.B., Das, D., Ngai, J., Yosef, N., Purdom, E., Dudoit, S., 2017. Slingshot: Cell lineage and pseudotime inference for single-cell transcriptomics.](https://doi.org/10.1101/128843)
 #' 
-#' @param ndim The number of dimensions \cr 
-#'     integer; default: 3L; possible values between 2 and 20
-#' @param nclus Number of clusters \cr 
-#'     integer; default: 5L; possible values between 2 and 40
-#' @param dimred A character vector specifying which dimensionality reduction method to use.See \link[dyndimred:dimred]{dyndimred::dimred} for the list of available dimensionality reduction methods. \cr 
-#'     discrete; default: "pca"; possible values: pca, mds, tsne, ica, lle, mds_sammon, mds_isomds, mds_smacof, umap
-#' @param shrink Logical or numeric between 0 and 1, determines whether and how much to shrink branching lineages toward their average prior to the split. \cr 
-#'     numeric; default: 1; possible values between 0 and 1
-#' @param reweight Logical, whether to allow cells shared between lineages to bereweighted during curve-fitting. If \code{TRUE}, cells shared between lineages will be weighted by: distance to nearest curve / distance tocurve. \cr 
-#'     logical; default: TRUE; possible values: TRUE, FALSE
-#' @param thresh Numeric, determines the convergence criterion. Percent change in the total distance from cells to their projections along curves must be less than thresh. Default is 0.001, similar to principal.curve. \cr 
-#'     numeric; default: -3; possible values between -5 and 5
-#' @param maxit Numeric, maximum number of iterations, see principal.curve. \cr 
-#'     integer; default: 10L; possible values between 0 and 50
-#' @param stretch Numeric factor by which curves can be extrapolated beyond endpoints. Default is 2, see principal.curve. \cr 
-#'     numeric; default: 2; possible values between 0 and 5
-#' @param smoother Choice of scatter plot smoother. Same as principal.curve, but "lowess" option is replaced with "loess" for additional flexibility. \cr 
-#'     discrete; default: "smooth.spline"; possible values: smooth.spline, loess, periodic.lowess
-#' @param shrink.method Character denoting how to determine the appropriateamount of shrinkage for a branching lineage. Accepted values are the sameas for \code{kernel} in \code{\link{density}} (default is \code{"cosine"}),as well as \code{"tricube"} and \code{"density"}. See 'Details' for more. \cr 
-#'     discrete; default: "cosine"; possible values: cosine, tricube, density
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_slingshot <- function(
-    ndim = 3L,
-    nclus = 5L,
-    dimred = "pca",
-    shrink = 1,
-    reweight = TRUE,
-    thresh = -3,
-    maxit = 10L,
-    stretch = 2,
-    smoother = "smooth.spline",
-    shrink.method = "cosine"
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/slingshot')
-  do.call(method, args)
-}
+ti_slingshot <- create_ti_method_chooser(ti_slingshot, 'dynverse/slingshot')
 
 
 
@@ -1477,76 +957,11 @@ ti_slingshot <- function(
 #' 
 #' The method is described in: [Grün, D., Muraro, M.J., Boisset, J.-C., Wiebrands, K., Lyubimova, A., Dharmadhikari, G., van den Born, M., van Es, J., Jansen, E., Clevers, H., de Koning, E.J.P., van Oudenaarden, A., 2016. De Novo Prediction of Stem Cell Identity using Single-Cell Transcriptome Data. Cell Stem Cell 19, 266–277.](https://doi.org/10.1016/j.stem.2016.05.010)
 #' 
-#' @param clustnr Maximum number of clusters for the computation of the gap statistic or derivation of the cluster number by the saturation criterion. Default is 30. If more major cell types are expected a higher number should be chosen. \cr 
-#'     integer; default: 30L; possible values between 10 and 100
-#' @param bootnr Number of booststrapping runs for clusterboot. Default is 50 \cr 
-#'     integer; default: 50L; possible values between 20 and 100
-#' @param metric The input data are transformed to a distance object. Distances can be computed based on different metrics. Possible values are "pearson", "spearman", "logpearson", "euclidean", "kendall", "maximum", "manhattan", "canberra", "binary" or "minkowski". Default is "pearson". In case of the correlation based methods, the distance is computed as 1 – correlation. K-medoids clustering is performed on this distance object. \cr 
-#'     discrete; default: "pearson"; possible values: pearson, spearman, kendall, euclidean, maximum, manhattan, canberra, binary, minkowski
-#' @param num_cluster_method The type of clustering method, can be sat, gap or manual \cr 
-#'     discrete; default: "sat"; possible values: sat, gap, manual
-#' @param SE.method The clustering routine calls a modified version of the maxSE function from the cluster package to determine the first local maximum of the gap statistic. By default, we use the method "Tibs2001SEmax" for calling the first local maximum (see specification of maxSE). This method requires that the maximum exceeds the values of its neighbors by a fraction of their standard deviation. This fraction is defined by the parameter SE.factor. All methods defined for the original maxSE function can also be used. \cr 
-#'     discrete; default: "Tibs2001SEmax"; possible values: firstSEmax, Tibs2001SEmax, globalSEmax, firstmax, globalmax
-#' @param SE.factor Fraction of the standard deviation by which the local maximum is required to differ from the neighboring points it is compared to. Default is 0.25. \cr 
-#'     numeric; default: 0.25; possible values between 0 and 1
-#' @param B.gap Number of bootstrap runs for the calculation of the gap statistic. Default is 50. \cr 
-#'     integer; default: 50L; possible values between 20 and 100
-#' @param cln The number of clusters for k-medoids clustering. Default is 0. In this case, the cluster number is determined based on the gap statistic6 and do.gap has to be TRUE. \cr 
-#'     integer; default: 30L; possible values between 20 and 100
-#' @param FUNcluster The clustering method applied. One of the following methods can be selected: kmedoids, kmeans, hclust. RaceID3 is designed for k-medoids clustering and therefore it is recommended to use only the kmedoids method. Default is kmedoids. \cr 
-#'     discrete; default: "kmedoids"; possible values: kmedoids, kmeans, hclust
-#' @param dimred_method The dimensionality reduction method, can be tsne, sammon or tsne_initcmd \cr 
-#'     discrete; default: "tsne"; possible values: tsne, sammon, tsne_initcmd
-#' @param outminc Expression cutoff for the identification of outlier genes is defined. Default is 5. \cr 
-#'     integer; default: 0L; possible values between 0 and 100
-#' @param outlg Minimal number of outlier genes required to identify a cell as an outlier. Default is 2. \cr 
-#'     integer; default: 2L; possible values between 0 and 100
-#' @param probthr Defines the probability threshold for outlier calling. If the probability of observing a given expression level for a gene in a cell is lower than this cutoff (based on the negative binomial distribution for the calibrated noise model), the cell is considered an outlier for this gene. Default is 10-3. \cr 
-#'     numeric; default: 0.001; possible values between 1e-10 and 0.1
-#' @param thr_lower Lower probability for which the number of outliers is computed in order to plot the dependence of the number of outliers on the probability threshold \cr 
-#'     integer; default: -10; possible values between -100 and -1
-#' @param thr_upper Upper probability for which the number of outliers is computed in order to plot the dependence of the number of outliers on the probability threshold \cr 
-#'     numeric; default: -5; possible values between -100 and -1
-#' @param outdistquant Outlier cells are merged to outlier clusters if their similarity exceeds the outdistquant-quantile of the similarity distribution for all pairs of cells that are together in one of the original clusters. Default is 0.95. \cr 
-#'     numeric; default: 0.95; possible values between 0 and 1
-#' @param nmode Boolean argument. If nmode is set to TRUE the assignment to inter-cluster links for each cell is not done based on the longest projection, but based on identifying the cluster (other than the cluster the cell belongs to) that contains the nearest neighbor of the cell, i. e. the cell with the most similar transcriptome. The coordinate on the assigned link is still derived based on the projection. Default is FALSE. \cr 
-#'     logical; default: FALSE; possible values: TRUE, FALSE
-#' @param pdishuf Positive integer. This is the number of randomizations to be performed. As a rule of thumb this number should be at least one order of magnitude larger than the desired p-value on the significance of the number of cells on a connection. Default is 2000. \cr 
-#'     integer; default: 2000; possible values between 100 and 10000
-#' @param pthr Positive number. This number corresponds to the p-value threshold, which is used to determine, whether the magnitude of an observed trajectory is significantly larger than observed for the randomized background distribution. This criterion is not used to infer significance of a link, but shown in a graphical representation of the tree \cr 
-#'     numeric; default: 0.01; possible values between 0 and 1e-04
-#' @param pethr Positive number. This number corresponds to the p-value threshold, which isused to determine for each link if it is populated by a number of cellssignificantly larger than expected for the randomized background distribution. This p-value threshold determines, which connections are considered validdifferentiation trajectories in the derived lineage tree. \cr 
-#'     numeric; default: 0.01; possible values between 0 and 1e-04
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_stemid <- function(
-    clustnr = 30L,
-    bootnr = 50L,
-    metric = "pearson",
-    num_cluster_method = "sat",
-    SE.method = "Tibs2001SEmax",
-    SE.factor = 0.25,
-    B.gap = 50L,
-    cln = 30L,
-    FUNcluster = "kmedoids",
-    dimred_method = "tsne",
-    outminc = 0L,
-    outlg = 2L,
-    probthr = 0.001,
-    thr_lower = -10,
-    thr_upper = -5,
-    outdistquant = 0.95,
-    nmode = FALSE,
-    pdishuf = 2000,
-    pthr = 0.01,
-    pethr = 0.01,
-    
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/stemid')
-  do.call(method, args)
-}
+ti_stemid <- create_ti_method_chooser(ti_stemid, 'dynverse/stemid')
 
 
 
@@ -1560,76 +975,11 @@ ti_stemid <- function(
 #' 
 #' The method is described in: [Grün, D., Muraro, M.J., Boisset, J.-C., Wiebrands, K., Lyubimova, A., Dharmadhikari, G., van den Born, M., van Es, J., Jansen, E., Clevers, H., de Koning, E.J.P., van Oudenaarden, A., 2016. De Novo Prediction of Stem Cell Identity using Single-Cell Transcriptome Data. Cell Stem Cell 19, 266–277.](https://doi.org/10.1016/j.stem.2016.05.010)
 #' 
-#' @param clustnr Maximum number of clusters for the computation of the gap statistic or derivation of the cluster number by the saturation criterion. Default is 30. If more major cell types are expected a higher number should be chosen. \cr 
-#'     integer; default: 30L; possible values between 10 and 100
-#' @param bootnr Number of booststrapping runs for clusterboot. Default is 50 \cr 
-#'     integer; default: 50L; possible values between 20 and 100
-#' @param metric The input data are transformed to a distance object. Distances can be computed based on different metrics. Possible values are "pearson", "spearman", "logpearson", "euclidean", "kendall", "maximum", "manhattan", "canberra", "binary" or "minkowski". Default is "pearson". In case of the correlation based methods, the distance is computed as 1 – correlation. K-medoids clustering is performed on this distance object. \cr 
-#'     discrete; default: "pearson"; possible values: pearson, spearman, kendall, euclidean, maximum, manhattan, canberra, binary, minkowski
-#' @param num_cluster_method The type of clustering method, can be sat, gap or manual \cr 
-#'     discrete; default: "sat"; possible values: sat, gap, manual
-#' @param SE.method The clustering routine calls a modified version of the maxSE function from the cluster package to determine the first local maximum of the gap statistic. By default, we use the method "Tibs2001SEmax" for calling the first local maximum (see specification of maxSE). This method requires that the maximum exceeds the values of its neighbors by a fraction of their standard deviation. This fraction is defined by the parameter SE.factor. All methods defined for the original maxSE function can also be used. \cr 
-#'     discrete; default: "Tibs2001SEmax"; possible values: firstSEmax, Tibs2001SEmax, globalSEmax, firstmax, globalmax
-#' @param SE.factor Fraction of the standard deviation by which the local maximum is required to differ from the neighboring points it is compared to. Default is 0.25. \cr 
-#'     numeric; default: 0.25; possible values between 0 and 1
-#' @param B.gap Number of bootstrap runs for the calculation of the gap statistic. Default is 50. \cr 
-#'     integer; default: 50L; possible values between 20 and 100
-#' @param cln The number of clusters for k-medoids clustering. Default is 0. In this case, the cluster number is determined based on the gap statistic6 and do.gap has to be TRUE. \cr 
-#'     integer; default: 30L; possible values between 20 and 100
-#' @param FUNcluster The clustering method applied. One of the following methods can be selected: kmedoids, kmeans, hclust. RaceID3 is designed for k-medoids clustering and therefore it is recommended to use only the kmedoids method. Default is kmedoids. \cr 
-#'     discrete; default: "kmedoids"; possible values: kmedoids, kmeans, hclust
-#' @param dimred_method The dimensionality reduction method, can be tsne, sammon or tsne_initcmd \cr 
-#'     discrete; default: "tsne"; possible values: tsne, sammon, tsne_initcmd
-#' @param outminc Expression cutoff for the identification of outlier genes is defined. Default is 5. \cr 
-#'     integer; default: 0L; possible values between 0 and 100
-#' @param outlg Minimal number of outlier genes required to identify a cell as an outlier. Default is 2. \cr 
-#'     integer; default: 2L; possible values between 0 and 100
-#' @param probthr Defines the probability threshold for outlier calling. If the probability of observing a given expression level for a gene in a cell is lower than this cutoff (based on the negative binomial distribution for the calibrated noise model), the cell is considered an outlier for this gene. Default is 10-3. \cr 
-#'     numeric; default: 0.001; possible values between 1e-10 and 0.1
-#' @param thr_lower Lower probability for which the number of outliers is computed in order to plot the dependence of the number of outliers on the probability threshold \cr 
-#'     integer; default: -10; possible values between -100 and -1
-#' @param thr_upper Upper probability for which the number of outliers is computed in order to plot the dependence of the number of outliers on the probability threshold \cr 
-#'     numeric; default: -5; possible values between -100 and -1
-#' @param outdistquant Outlier cells are merged to outlier clusters if their similarity exceeds the outdistquant-quantile of the similarity distribution for all pairs of cells that are together in one of the original clusters. Default is 0.95. \cr 
-#'     numeric; default: 0.95; possible values between 0 and 1
-#' @param nmode Boolean argument. If nmode is set to TRUE the assignment to inter-cluster links for each cell is not done based on the longest projection, but based on identifying the cluster (other than the cluster the cell belongs to) that contains the nearest neighbor of the cell, i. e. the cell with the most similar transcriptome. The coordinate on the assigned link is still derived based on the projection. Default is FALSE. \cr 
-#'     logical; default: FALSE; possible values: TRUE, FALSE
-#' @param pdishuf Positive integer. This is the number of randomizations to be performed. As a rule of thumb this number should be at least one order of magnitude larger than the desired p-value on the significance of the number of cells on a connection. Default is 2000. \cr 
-#'     integer; default: 2000; possible values between 100 and 10000
-#' @param pthr Positive number. This number corresponds to the p-value threshold, which is used to determine, whether the magnitude of an observed trajectory is significantly larger than observed for the randomized background distribution. This criterion is not used to infer significance of a link, but shown in a graphical representation of the tree \cr 
-#'     numeric; default: 0.01; possible values between 0 and 1e-04
-#' @param pethr Positive number. This number corresponds to the p-value threshold, which isused to determine for each link if it is populated by a number of cellssignificantly larger than expected for the randomized background distribution. This p-value threshold determines, which connections are considered validdifferentiation trajectories in the derived lineage tree. \cr 
-#'     numeric; default: 0.01; possible values between 0 and 1e-04
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_stemid2 <- function(
-    clustnr = 30L,
-    bootnr = 50L,
-    metric = "pearson",
-    num_cluster_method = "sat",
-    SE.method = "Tibs2001SEmax",
-    SE.factor = 0.25,
-    B.gap = 50L,
-    cln = 30L,
-    FUNcluster = "kmedoids",
-    dimred_method = "tsne",
-    outminc = 0L,
-    outlg = 2L,
-    probthr = 0.001,
-    thr_lower = -10,
-    thr_upper = -5,
-    outdistquant = 0.95,
-    nmode = FALSE,
-    pdishuf = 2000,
-    pthr = 0.01,
-    pethr = 0.01,
-    
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/stemid2')
-  do.call(method, args)
-}
+ti_stemid2 <- create_ti_method_chooser(ti_stemid2, 'dynverse/stemid2')
 
 
 
@@ -1679,34 +1029,11 @@ ti_topslam <- function(
 #' 
 #' The method is described in: [Ji, Z., Ji, H., 2016. TSCAN: Pseudo-time reconstruction and evaluation in single-cell RNA-seq analysis. Nucleic Acids Research 44, e117–e117.](https://doi.org/10.1093/nar/gkw430)
 #' 
-#' @param minexpr_percent  \cr 
-#'     numeric; default: 0; possible values between 0 and 1
-#' @param minexpr_value  \cr 
-#'     numeric; default: 0; possible values between 0 and 10
-#' @param cvcutoff  \cr 
-#'     numeric; default: 0; possible values between 0 and 5
-#' @param clusternum_lower  \cr 
-#'     integer; default: 2L; possible values between 2 and 20
-#' @param clusternum_upper  \cr 
-#'     integer; default: 9L; possible values between 2 and 20
-#' @param modelNames  \cr 
-#'     discrete; default: "VVV"; possible values: EII, VII, EEI, VEI, EVI, VVI, EEE, EVE, VEE, VVE, EEV, VEV, EVV, VVV
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_tscan <- function(
-    minexpr_percent = 0,
-    minexpr_value = 0,
-    cvcutoff = 0,
-    clusternum_lower = 2L,
-    clusternum_upper = 9L,
-    modelNames = "VVV",
-    
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/tscan')
-  do.call(method, args)
-}
+ti_tscan <- create_ti_method_chooser(ti_tscan, 'dynverse/tscan')
 
 
 
@@ -1764,18 +1091,11 @@ ti_wanderlust <- function(
 #' 
 #' The method is described in: [Shin, J., Berg, D.A., Zhu, Y., Shin, J.Y., Song, J., Bonaguidi, M.A., Enikolopov, G., Nauen, D.W., Christian, K.M., Ming, G., Song, H., 2015. Single-Cell RNA-Seq with Waterfall Reveals Molecular Cascades underlying Adult Neurogenesis. Cell Stem Cell 17, 360–372.](https://doi.org/10.1016/j.stem.2015.07.013)
 #' 
-#' @param num_clusters  \cr 
-#'     integer; default: 10; possible values between 2 and 20
+#' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_waterfall <- function(
-    num_clusters = 10
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/waterfall')
-  do.call(method, args)
-}
+ti_waterfall <- create_ti_method_chooser(ti_waterfall, 'dynverse/waterfall')
 
 
 

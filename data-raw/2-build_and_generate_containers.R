@@ -1,8 +1,7 @@
-# here we do some metaprogramming to generate the ti_{method} functions inside ti_{method}.R
+# here we do some metaprogramming to generate the ti_{method} functions inside ti_containers.R
 
 library(tidyverse)
 library(dynwrap)
-library(googlesheets)
 
 load("data/methods_info.rda")
 
@@ -26,8 +25,16 @@ if (rebuild) {
 
 #   ____________________________________________________________________________
 #   Functions to generate documentation and parameters given a definition   ####
-generate_documentation_from_definition <- function(method_id, definition) {
+generate_documentation_from_definition <- function(method_id, definition, r_wrapped = FALSE) {
   # first generate some more complex parts
+  # r wrapped
+  r_wrapped_text <- if(r_wrapped) {
+    glue::glue('This methods was first wrapped inside R, see [ti_{method_id}]')
+  } else {
+    ""
+  }
+
+
   # code
   code_text <-
     if (!is.na(definition$code_location)) {
@@ -54,33 +61,38 @@ generate_documentation_from_definition <- function(method_id, definition) {
   }
 
   # parameters
-  params_text <- map2(names(definition$parameters), definition$parameters, function(parameter_id, parameter) {
-    if (parameter_id != "forbidden") {
-      values_text <- if (!is.null(parameter$values)) {
-        paste0("possible values: ", glue::collapse(parameter$values, ", "))
-      } else if (!is.null(parameter$lower) && !is.null(parameter$upper)){
-        paste0("possible values between ", parameter$lower, " and ", parameter$upper, "")
+  # do not add parameters documentation if r_wrapped, as the documentation is than already contained at the original function location
+  params_text <- if (!r_wrapped) {
+    map2(names(definition$parameters), definition$parameters, function(parameter_id, parameter) {
+      if (parameter_id != "forbidden") {
+        values_text <- if (!is.null(parameter$values)) {
+          paste0("possible values: ", glue::collapse(parameter$values, ", "))
+        } else if (!is.null(parameter$lower) && !is.null(parameter$upper)){
+          paste0("possible values between ", parameter$lower, " and ", parameter$upper, "")
+        }
+
+        if (is.null(parameter$description)) {
+          parameter$description <- ""
+        }
+
+        # escape {} for glue
+        parameter$description <- parameter$description %>%
+          str_replace_all("\\{", "{{") %>%
+          str_replace_all("\\}", "}}")
+
+        # remove newlines
+        parameter$description <- parameter$description %>%
+          str_replace_all("\n", "")
+
+        c(
+          glue::glue("@param {parameter_id} {Hmisc::capitalize(parameter$description)} \\cr "),
+          glue::glue("    {parameter$type}; default: {deparse(parameter$default)}; {values_text}")
+        )
       }
-
-      if (is.null(parameter$description)) {
-        parameter$description <- ""
-      }
-
-      # escape {} for glue
-      parameter$description <- parameter$description %>%
-        str_replace_all("\\{", "{{") %>%
-        str_replace_all("\\}", "}}")
-
-      # remove newlines
-      parameter$description <- parameter$description %>%
-        str_replace_all("\n", "")
-
-      c(
-        glue::glue("@param {parameter_id} {Hmisc::capitalize(parameter$description)} \\cr "),
-        glue::glue("    {parameter$type}; default: {deparse(parameter$default)}; {values_text}")
-      )
-    }
-  }) %>% unlist()
+    }) %>% unlist()
+  } else {
+    params_text <- "@param docker Whether to use the docker container or the R wrapper"
+  }
 
   # now combine everything
   documentation <- c(
@@ -89,6 +101,8 @@ generate_documentation_from_definition <- function(method_id, definition) {
     "",
     # description, including citations & code link
     "Will generate a trajectory using {url_name}. This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/{method_id}).",
+    "",
+    r_wrapped_text,
     "",
     code_text,
     "",
@@ -111,18 +125,24 @@ generate_parameters <- function(definition) {
     names(definition$parameters),
     definition$parameters,
     function(parameter_id, parameter) {
+      # do not include forbidden
       if (parameter_id != "forbidden") {
         glue::glue("{parameter_id} = {deparse(parameter$default, width.cutoff = 500)}")
       } else {
-        ""
+        NA
       }
     }
-  ) %>% paste0("    ", .) %>% glue::collapse(",\n")
+  ) %>% discard(is.na) %>% paste0("    ", .) %>% glue::collapse(",\n")
 }
 
 
-generate_func <- function(method_id, definition) {
-  func <- "
+generate_func <- function(method_id, definition, r_wrapped) {
+  if (r_wrapped) {
+    func <- "
+ti_{method_id} <- create_ti_method_chooser(ti_{method_id}, 'dynverse/{method_id}')
+" %>% glue::glue()
+  } else {
+    func <- "
 ti_{method_id} <- function(
 {generate_parameters(definition)}
 ) {{
@@ -131,6 +151,8 @@ ti_{method_id} <- function(
   do.call(method, args)
 }}
 " %>% glue::glue()
+  }
+  func
 }
 
 
@@ -148,21 +170,42 @@ get_method_definition <- function(method_id) {
   definition
 }
 
-
+# beginning of the file
 file_location <- "R/ti_container.R"
 write_file("
 ################################### DO NOT EDIT #####################################
 #### This file is automatically generated from 2_build_and_generate_containers.R ####
 #####################################################################################
-\n\n\n
+\n
 ", file_location)
 
+# make sure all other ti_* files are loaded first, so that the ti_* functions can be used for the containers
+write_file(paste0(
+  "#' @include ",
+  list.files("R") %>% str_subset("ti_.*") %>% str_subset("^(?!ti_container.R)") %>% glue::collapse(" "),
+  "\n",
+
+  "#' @include wrapper_method_chooser.R\n"
+), file_location, append = TRUE)
+
+# get methods which were wrapped inside R
+lines <- list.files("R", full.names = TRUE) %>% map(read_lines) %>% unlist()
+method_ids_r <- str_subset(lines, "^ti_[A-Za-z0-9_]* <-.*") %>%
+  str_replace_all("ti_([A-Za-z0-9_]*) <-.*", "\\1")
+
+# now generate the ti_* functions
 for (method_id in method_ids) {
   print(method_id)
 
+  r_wrapped <- method_id %in% method_ids_r
+
   definition <- get_method_definition(method_id)
-  documentation <- generate_documentation_from_definition(method_id, definition)
-  func <- generate_func(method_id, definition)
+  documentation <- generate_documentation_from_definition(
+    method_id,
+    definition,
+    r_wrapped = r_wrapped
+    )
+  func <- generate_func(method_id, definition, r_wrapped)
 
   # now save to file
   file <- paste(

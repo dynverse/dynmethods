@@ -37,8 +37,8 @@ ti_slingshot <- create_ti_method(
       type = "discrete",
       default = "pca",
       values = c("pca", "mds", "tsne", "ica", "lle", "mds_sammon", "mds_isomds", "mds_smacof", "umap"),
-      description = "A character vector specifying which dimensionality reduction method to use.\nSee \\link[dyndimred:dimred]{dyndimred::dimred} for the list of available dimensionality reduction methods."),
-
+      description = "A character vector specifying which dimensionality reduction method to use.\nSee \\code{\\link{dyndimred:dimred}} for the list of available dimensionality reduction methods."
+    ),
     shrink = list(
       type = "numeric",
       default = 1,
@@ -79,7 +79,7 @@ ti_slingshot <- create_ti_method(
       type = "discrete",
       default = "cosine",
       values = c("cosine", "tricube", "density"),
-      description = "character denoting how to determine the appropriate\namount of shrinkage for a branching lineage. Accepted values are the same\nas for \\code{kernel} in \\code{\\link{density}} (default is \\code{\"cosine\"}),\nas well as \\code{\"tricube\"} and \\code{\"density\"}. See 'Details' for more.")
+      description = "character denoting how to determine the appropriate\namount of shrinkage for a branching lineage. Accepted values are the same\nas for \\code{kernel} in [density()] (default is \\code{\"cosine\"}),\nas well as \\code{\"tricube\"} and \\code{\"density\"}. See 'Details' for more.")
   ),
   run_fun = "dynmethods::run_slingshot",
   plot_fun = "dynmethods::plot_slingshot",

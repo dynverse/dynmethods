@@ -16,7 +16,7 @@ parameters:
     - umap
     description: |-
       A character vector specifying which dimensionality reduction method to use.
-      See \link[dyndimred:dimred]{dyndimred::dimred} for the list of available dimensionality reduction methods.
+      See \code{\link{dyndimred:dimred}} for the list of available dimensionality reduction methods.
   ndim:
     type: integer
     default: 5
