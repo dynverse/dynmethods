@@ -10,7 +10,7 @@ load("data/methods_info.rda")
 
 write_file("", "R/ti_container.R")
 
-method_id <- "slingshot"
+method_id <- "monocle_ddrtree"
 devtools::load_all()
 method <- get(paste0("ti_", method_id), asNamespace("dynmethods"))()
 
@@ -123,4 +123,4 @@ get_definition(method) %>% yaml::write_yaml(file.path(folder, "definition.yml"))
 get_dockerfile(method) %>% write_file(file.path(folder, "Dockerfile"))
 get_runr(method) %>% write_file(file.path(folder, "run.R"))
 
-system(glue::glue("docker build containers/{method_id} -t dynverse/{method_id}"))
+# system(glue::glue("docker build containers/{method_id} -t dynverse/{method_id}"))
