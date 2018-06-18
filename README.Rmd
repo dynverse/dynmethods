@@ -9,7 +9,7 @@ editor_options:
 [![Build status](https://travis-ci.org/dynverse/dynmethods.svg?branch=master)](https://travis-ci.org/dynverse/dynmethods)
 
 # dynmethods
-This package contains wrappers for all of the trajectory inference (TI) methods included in the [dynverse](https://www.github.com/dynverse/dynverse) review. The output of each method is transformed into a common trajectory model using [dynwrap](https://www.github.com/dynverse/dynwrap). To run any of these methods and interpret and visualise the output, see our [dyno package](https://www.github.com/dynverse/dyno).
+This package contains wrappers for all of the trajectory inference (TI) methods included in the [dynverse](https://www.github.com/dynverse/dynverse) review. The output of each method is transformed into a common trajectory model using [dynwrap](https://www.github.com/dynverse/dynwrap). To run any of these methods, interpret the results and visualise the trajectory, see the [dyno package](https://www.github.com/dynverse/dyno).
 
 Some methods are directly implemented & wrapped inside of R. Other methods, primarily those implemented in python or other languages are wrapped inside a docker container.
 
@@ -40,10 +40,18 @@ df <- methods %>%
     ),
     `Docker container` = ifelse(
       containerised, 
-      glue::glue("[✓ ![Docker hub](https://img.shields.io/docker/pulls/{docker_container}.svg)]({dockerhub_location})"), 
+      glue::glue("[✓]({dockerhub_location})"), 
       ""
     )
   )
-knitr::kable(df %>% select(Name = method_name, Wrapper, `R wrapper`, `Docker container`))
 
+df2 <- df %>% 
+  select(
+    Method = method_name, 
+    Wrapper, 
+    `<img src='man/img/r_logo.png' style='max-height:40px'>` = `R wrapper`, 
+    `<img src='man/img/docker_logo.png' style='max-height:40px'>` = `Docker container`
+  )
+
+knitr::kable(df2)
 ```
