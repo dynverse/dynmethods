@@ -49,8 +49,8 @@ df2 <- df %>%
   select(
     Method = method_name, 
     Wrapper, 
-    `<img src='man/img/r_logo.png' height='40'>` = `R wrapper`, 
-    `<img src='man/img/docker_logo.png' height='40'>` = `Docker container`
+    `<a href='https://github.com/dynverse/dynmethods/tree/master/R'><img src='man/img/r_logo.png' height='40'></a>` = `R wrapper`, 
+    `<a href='https://hub.docker.com/u/dynverse/'><img src='man/img/docker_logo.png' height='40'></a>` = `Docker container`
   )
 
 knitr::kable(df2)
