@@ -2,6 +2,8 @@
 
 library(tidyverse)
 library(dynwrap)
+library(furrr)
+plan(multiprocess)
 
 load("data/methods_info.rda")
 
@@ -15,9 +17,9 @@ if (!all(method_ids %in% methods_info$method_id)) {
 }
 
 # rebuild & push all containers
-rebuild <- FALSE
+rebuild <- TRUE
 if (rebuild) {
-  walk(method_ids, function(method_id) {
+  future_map(method_ids, function(method_id) {
     system(str_glue("docker build containers/{method_id} -t dynverse/{method_id}"))
     system(str_glue("docker push dynverse/{method_id}"))
   })

@@ -23,16 +23,27 @@ library(dynmethods)
 
 data("methods", package = "dynmethods")
 
-df <- methods %>% mutate(
+df <- methods %>% 
+  arrange(method_name) %>% 
+  mutate(
     code_label = wrapper_location,
     code_url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{wrapper_location}"),
-    Code = glue::glue("[{code_label}]({code_url})"),
+    Wrapper = glue::glue("[{code_label}]({code_url})"),
     vignette_label = glue::glue("{method_id}.md"),
     vignette_relpath = glue::glue("inst/doc/{vignette_label}"),
     vignette_url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{vignette_relpath}"),
     Vignette = ifelse(file.exists(vignette_relpath), glue::glue("[{vignette_label}]({vignette_url})"), ""),
-    Containerised = ifelse(containerised, glue::glue("[Yes]({dockerhub_location})"), "")
+    `R wrapper` = ifelse(
+      r_wrapped,
+      glue::glue("[✓]({code_url})"),
+      ""
+    ),
+    `Docker container` = ifelse(
+      containerised, 
+      glue::glue("[✓ ![Docker hub](https://img.shields.io/docker/pulls/{docker_container}.svg)]({dockerhub_location})"), 
+      ""
+    )
   )
-knitr::kable(df %>% select(Name = method_name, Code, Vignette, Containerised))
+knitr::kable(df %>% select(Name = method_name, Wrapper, `R wrapper`, `Docker container`))
 
 ```

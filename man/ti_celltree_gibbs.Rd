@@ -54,7 +54,5 @@ Will generate a trajectory using \href{https://doi.org/10.1186/s12859-016-1175-6
 \details{
 This methods was first wrapped inside R, see \link{ti_celltree_gibbs}
 
-The original code of this method is available \href{https://github.com/Bioconductor-mirror/cellTree}{here}.
-
 The method is described in: \href{https://doi.org/10.1186/s12859-016-1175-6}{duVerle, D.A., Yotsukura, S., Nomura, S., Aburatani, H., Tsuda, K., 2016. CellTree: an R/bioconductor package to infer the hierarchical structure of cell populations from single-cell RNA-seq data. BMC Bioinformatics 17.}
 }

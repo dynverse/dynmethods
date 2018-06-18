@@ -91,7 +91,7 @@ ti_cellrouter <- function(
 #' 
 #' This methods was first wrapped inside R, see [ti_celltree_gibbs]
 #' 
-#' The original code of this method is available [here](https://github.com/Bioconductor-mirror/cellTree).
+#' 
 #' 
 #' The method is described in: [duVerle, D.A., Yotsukura, S., Nomura, S., Aburatani, H., Tsuda, K., 2016. CellTree: an R/bioconductor package to infer the hierarchical structure of cell populations from single-cell RNA-seq data. BMC Bioinformatics 17.](https://doi.org/10.1186/s12859-016-1175-6)
 #' 
@@ -109,7 +109,7 @@ ti_celltree_gibbs <- create_ti_method_chooser(ti_celltree_gibbs, 'dynverse/cellt
 #' 
 #' This methods was first wrapped inside R, see [ti_celltree_maptpx]
 #' 
-#' The original code of this method is available [here](https://github.com/Bioconductor-mirror/cellTree).
+#' 
 #' 
 #' The method is described in: [duVerle, D.A., Yotsukura, S., Nomura, S., Aburatani, H., Tsuda, K., 2016. CellTree: an R/bioconductor package to infer the hierarchical structure of cell populations from single-cell RNA-seq data. BMC Bioinformatics 17.](https://doi.org/10.1186/s12859-016-1175-6)
 #' 
@@ -127,7 +127,7 @@ ti_celltree_maptpx <- create_ti_method_chooser(ti_celltree_maptpx, 'dynverse/cel
 #' 
 #' This methods was first wrapped inside R, see [ti_celltree_vem]
 #' 
-#' The original code of this method is available [here](https://github.com/Bioconductor-mirror/cellTree).
+#' 
 #' 
 #' The method is described in: [duVerle, D.A., Yotsukura, S., Nomura, S., Aburatani, H., Tsuda, K., 2016. CellTree: an R/bioconductor package to infer the hierarchical structure of cell populations from single-cell RNA-seq data. BMC Bioinformatics 17.](https://doi.org/10.1186/s12859-016-1175-6)
 #' 
