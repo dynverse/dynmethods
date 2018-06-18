@@ -85,7 +85,6 @@ Suggests:
   knitr,
   rmarkdown,
   RColorBrewer,
-  stevedore,
   tidyverse
 Remotes:
   berndbischl/ParamHelpers,
@@ -116,7 +115,6 @@ Remotes:
   kstreet13/slingshot@develop,
   rcannood/GNG,
   rcannood/SCORPIUS,
-  richfitz/stevedore,
   zji90/TSCAN
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)

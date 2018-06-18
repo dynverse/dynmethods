@@ -5,11 +5,11 @@
 \alias{ti_gng}
 \title{Inferring trajectories with Growing Neural Gas}
 \usage{
-ti_gng(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_gng(docker = TRUE),
   dimred = "pca", ndim = 5, max_iter = 13.8155105579643, max_nodes = 8,
   apply_mst = TRUE)
 
-ti_gng(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_gng(docker = TRUE),
   dimred = "pca", ndim = 5, max_iter = 13.8155105579643, max_nodes = 8,
   apply_mst = TRUE)
 }

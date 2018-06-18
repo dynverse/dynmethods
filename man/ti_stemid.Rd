@@ -5,7 +5,7 @@
 \alias{ti_stemid}
 \title{Inferring trajectories with StemID}
 \usage{
-ti_stemid(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_stemid(docker = TRUE),
   clustnr = 30, bootnr = 50, metric = "pearson",
   num_cluster_method = "sat", SE.method = "Tibs2001SEmax",
   SE.factor = 0.25, B.gap = 50, cln = 30, FUNcluster = "kmedoids",
@@ -13,7 +13,7 @@ ti_stemid(docker = "stevedore" \%in\% rownames(installed.packages()),
   thr_lower = -10, thr_upper = -5, outdistquant = 0.95, nmode = FALSE,
   pdishuf = 2000, pthr = 1e-04, pethr = 1e-04)
 
-ti_stemid(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_stemid(docker = TRUE),
   clustnr = 30, bootnr = 50, metric = "pearson",
   num_cluster_method = "sat", SE.method = "Tibs2001SEmax",
   SE.factor = 0.25, B.gap = 50, cln = 30, FUNcluster = "kmedoids",

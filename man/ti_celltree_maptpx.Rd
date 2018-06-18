@@ -5,13 +5,13 @@
 \alias{ti_celltree_maptpx}
 \title{Inferring trajectories with cellTree}
 \usage{
-ti_celltree_maptpx(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_celltree_maptpx(docker = TRUE),
   method = "maptpx", sd_filter = 0.5, absolute_width = 0,
   width_scale_factor = 1.5, outlier_tolerance_factor = 0.1,
   rooting_method = "null", num_topics_lower = 2, num_topics_upper = 15,
   tot_iter = 1e+06, tolerance = 0.05)
 
-ti_celltree_maptpx(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_celltree_maptpx(docker = TRUE),
   method = "maptpx", sd_filter = 0.5, absolute_width = 0,
   width_scale_factor = 1.5, outlier_tolerance_factor = 0.1,
   rooting_method = "null", num_topics_lower = 2, num_topics_upper = 15,

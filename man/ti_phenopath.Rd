@@ -5,10 +5,10 @@
 \alias{ti_phenopath}
 \title{Inferring trajectories with PhenoPath}
 \usage{
-ti_phenopath(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_phenopath(docker = TRUE),
   thin = 40, z_init = "1", model_mu = FALSE, scale_y = TRUE)
 
-ti_phenopath(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_phenopath(docker = TRUE),
   thin = 40, z_init = "1", model_mu = FALSE, scale_y = TRUE)
 }
 \arguments{
@@ -21,9 +21,9 @@ re-calculating the elbo}
 \enumerate{
 \item A positive integer describing which principal component of the data should
 be used for initialisation (default 1), \emph{or}
-\item A numeric vector of length number of samples to be used 
+\item A numeric vector of length number of samples to be used
 directly for initialisation, \emph{or}
-\item The text character \code{"random"}, for random initialisation 
+\item The text character \code{"random"}, for random initialisation
 from a standard normal distribution.
 }}
 

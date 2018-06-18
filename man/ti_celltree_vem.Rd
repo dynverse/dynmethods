@@ -5,13 +5,13 @@
 \alias{ti_celltree_vem}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1186/s12859-016-1175-6}{cellTree with vem}}
 \usage{
-ti_celltree_vem(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_celltree_vem(docker = TRUE),
   method = "VEM", sd_filter = 0.5, absolute_width = 0,
   width_scale_factor = 1.5, outlier_tolerance_factor = 0.1,
   rooting_method = "null", num_topics = 4, tot_iter = 1e+06,
   tolerance = 1e-05)
 
-ti_celltree_vem(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_celltree_vem(docker = TRUE),
   method = "VEM", sd_filter = 0.5, absolute_width = 0,
   width_scale_factor = 1.5, outlier_tolerance_factor = 0.1,
   rooting_method = "null", num_topics = 4, tot_iter = 1e+06,

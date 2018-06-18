@@ -5,11 +5,11 @@
 \alias{ti_mfa}
 \title{Inferring trajectories with mfa}
 \usage{
-ti_mfa(docker = "stevedore" \%in\% rownames(installed.packages()), b = 2,
+ti_mfa(docker = TRUE), b = 2,
   iter = 2000, thin = 1, pc_initialise = 1, prop_collapse = 0,
   scale_input = TRUE, zero_inflation = FALSE)
 
-ti_mfa(docker = "stevedore" \%in\% rownames(installed.packages()), b = 2,
+ti_mfa(docker = TRUE), b = 2,
   iter = 2000, thin = 1, pc_initialise = 1, prop_collapse = 0,
   scale_input = TRUE, zero_inflation = FALSE)
 }
