@@ -9,7 +9,7 @@ This package contains wrappers for all of the trajectory inference (TI) methods 
 
 **To run any of these methods, interpret the results and visualise the trajectory, see the [dyno package](https://www.github.com/dynverse/dyno).**
 
-Some methods are directly implemented & wrapped inside of R. Other methods, primarily those implemented in python or other languages are wrapped inside a docker container.
+Nearly all methods are integrated wrapped within a docker container, avoiding dependency issues. Some methods are also directly wrapped inside of R.
 
 To include your own method, feel free to send us a [pull request](https://github.com/dynverse/dynmethods/pulls) or create an [issue](https://github.com/dynverse/dynmethods/labels/new%20method). The easiest way to add a new method is [through a docker container](https://dynverse.github.io/dynwrap/articles/create_ti_method_docker.html), so that dependecies don't pose any issues for other users, but we also welcome methods [directly wrapped inside of R](https://dynverse.github.io/dynwrap/articles/create_ti_method_r.html). The main benefit of adding your own method is that users can easily compare your method with others and [visualise/interpret the output](https://www.github.com/dynverse/dyno). Moreover, your method will be included within our TI method evaluation.
 
