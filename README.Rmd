@@ -28,6 +28,8 @@ df <- methods %>%
   mutate(
     code_label = wrapper_location,
     code_url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{wrapper_location}"),
+    r_wrapper_url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{r_wrapper_location}"),
+    docker_url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{docker_wrapper_location}"),
     Wrapper = glue::glue("[{code_label}]({code_url})"),
     vignette_label = glue::glue("{method_id}.md"),
     vignette_relpath = glue::glue("inst/doc/{vignette_label}"),
@@ -35,12 +37,12 @@ df <- methods %>%
     Vignette = ifelse(file.exists(vignette_relpath), glue::glue("[{vignette_label}]({vignette_url})"), ""),
     `R wrapper` = ifelse(
       r_wrapped,
-      glue::glue("[✓]({code_url})"),
+      glue::glue("✓ ([code]({r_wrapper_url}))"),
       ""
     ),
     `Docker container` = ifelse(
       containerised, 
-      glue::glue("[✓]({dockerhub_location})"), 
+      glue::glue("✓ ([code]({docker_url}), [dockerhub]({dockerhub_location}))"), 
       ""
     )
   )
