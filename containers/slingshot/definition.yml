@@ -28,7 +28,7 @@ parameters:
     - umap
     description: |-
       A character vector specifying which dimensionality reduction method to use.
-      See \link[dyndimred:dimred]{dyndimred::dimred} for the list of available dimensionality reduction methods.
+      See \code{\link{dyndimred:dimred}} for the list of available dimensionality reduction methods.
   shrink:
     type: numeric
     default: 1.0
@@ -85,7 +85,7 @@ parameters:
     description: |-
       character denoting how to determine the appropriate
       amount of shrinkage for a branching lineage. Accepted values are the same
-      as for \code{kernel} in \code{\link{density}} (default is \code{"cosine"}),
+      as for \code{kernel} in [density()] (default is \code{"cosine"}),
       as well as \code{"tricube"} and \code{"density"}. See 'Details' for more.
 input:
   format: rds

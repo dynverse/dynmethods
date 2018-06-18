@@ -132,7 +132,6 @@ abstract_celltree_description <- function(method) {
 #' @param method LDA inference method to use. Can be any unique prefix of ‘maptpx’, ‘Gibbs’ or ‘VEM’ (defaults to ‘maptpx’)
 #' @param num_topics_lower The lower bound of topics to be fitted in the model.
 #' @param num_topics_upper The upper bound of topics to be fitted in the model.
-#' @param num_topics The number of topics to fit in the model.
 #' @param tot_iter Number of iterations of the LDA inference.
 #' @param tolerance Tolerance values of the LDA inference.
 #' @param sd_filter Standard-deviation threshold below which genes should be removed from the data.
@@ -148,15 +147,16 @@ abstract_celltree_description <- function(method) {
 #' ‘average.start.group’ creates a new artificial vertex, as the average of all cells in the starting group.
 #' ‘null’ picks the best method based on the type of grouping and start group information available.
 #'
-#' @rdname celltree
 #' @export
 ti_celltree_maptpx <- abstract_celltree_description("maptpx")
 
-#' @rdname celltree
+#' @inheritParams ti_celltree_maptpx
+#' @param num_topics The number of topics to fit in the model.
 #' @export
 ti_celltree_gibbs <- abstract_celltree_description("gibbs")
 
-#' @rdname celltree
+#' @inheritParams ti_celltree_maptpx
+#' @param num_topics The number of topics to fit in the model.
 #' @export
 ti_celltree_vem <- abstract_celltree_description("vem")
 

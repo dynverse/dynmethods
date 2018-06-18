@@ -9,7 +9,7 @@ editor_options:
 [![Build status](https://travis-ci.org/dynverse/dynmethods.svg?branch=master)](https://travis-ci.org/dynverse/dynmethods)
 
 # dynmethods
-This package contains wrappers for all of the trajectory inference methods included in the [dynverse](https://www.github.com/dynverse/dynverse) review. The output of each method is transformed into a common trajectory model using [dynwrap](https://www.github.com/dynverse/dynwrap).
+This package contains wrappers for all of the trajectory inference (TI) methods included in the [dynverse](https://www.github.com/dynverse/dynverse) review. The output of each method is transformed into a common trajectory model using [dynwrap](https://www.github.com/dynverse/dynwrap).
 
 Some methods are directly implemented & wrapped inside of R. Other methods, primarily those implemented in python or other languages are wrapped inside a docker container.
 
@@ -23,16 +23,27 @@ library(dynmethods)
 
 data("methods", package = "dynmethods")
 
-df <- methods %>% mutate(
+df <- methods %>% 
+  arrange(method_name) %>% 
+  mutate(
     code_label = wrapper_location,
     code_url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{wrapper_location}"),
-    Code = glue::glue("[{code_label}]({code_url})"),
+    Wrapper = glue::glue("[{code_label}]({code_url})"),
     vignette_label = glue::glue("{method_id}.md"),
     vignette_relpath = glue::glue("inst/doc/{vignette_label}"),
     vignette_url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{vignette_relpath}"),
     Vignette = ifelse(file.exists(vignette_relpath), glue::glue("[{vignette_label}]({vignette_url})"), ""),
-    Containerised = ifelse(containerised, glue::glue("[Yes]({dockerhub_location})"), "")
+    `R wrapper` = ifelse(
+      r_wrapped,
+      glue::glue("[✓]({code_url})"),
+      ""
+    ),
+    `Docker container` = ifelse(
+      containerised, 
+      glue::glue("[✓ ![Docker hub](https://img.shields.io/docker/pulls/{docker_container}.svg)]({dockerhub_location})"), 
+      ""
+    )
   )
-knitr::kable(df %>% select(Name = method_name, Code, Vignette, Containerised))
+knitr::kable(df %>% select(Name = method_name, Wrapper, `R wrapper`, `Docker container`))
 
 ```

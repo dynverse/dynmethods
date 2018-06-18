@@ -10,9 +10,9 @@ parameters:
     description: |-
       Diffusion scale parameter of the Gaussian kernel. A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix. Must be one of:
       \itemize{
-      \itemA character vector: \code{"local"} (default) or \code{"global"},
-      \itema numeric global sigma -- a global sigma will be calculated using \code{\link[destiny:find_sigmas]{destiny::find_sigmas()}}
-      \itemor a \code{\link[destiny:Sigmas-class]{destiny::Sigmas-class()}} object.
+      \item A character vector: \code{"local"} (default) or \code{"global"},
+      \item a numeric global sigma -- a global sigma will be calculated using \code{\link[destiny:find_sigmas]{destiny::find_sigmas()}}
+      \item or a \code{\link[destiny:Sigmas-class]{destiny::Sigmas-class()}} object.
       }
   distance:
     type: discrete
@@ -24,9 +24,9 @@ parameters:
     description: |-
       A \code{\link[stats:dist]{stats::dist()}} object, or a character vector specifying which distance metric to use. Allowed measures:
       \itemize{
-      \itemEuclidean distance (default),
-      \itemcosine distance (1-corr(c_1, c_2)), or
-      \itemrank correlation distance (1-corr(rank(c_1), rank(c_2)))
+      \item Euclidean distance (default),
+      \item cosine distance (1-corr(c_1, c_2)), or
+      \item rank correlation distance (1-corr(rank(c_1), rank(c_2)))
       }
   ndim:
     type: integer
@@ -59,6 +59,8 @@ parameters:
     default: 0.1
     upper: 1.0
     lower: 0.0001
+    distribution: exponential
+    rate: 1.0
     description: Window width to use for deciding the branch cutoff
   forbidden: n_local_lower > n_local_upper
 input:
