@@ -10,7 +10,7 @@ load("data/methods_info.rda")
 
 write_file("", "R/ti_container.R")
 
-method_id <- "sincell"
+method_id <- "slingshot"
 devtools::load_all()
 method <- get(paste0("ti_", method_id), asNamespace("dynmethods"))()
 
@@ -44,7 +44,7 @@ get_definition <- function(method) {
 # generate the docker file
 get_dockerfile <- function(method) {
   remotes <- desc::desc_get_remotes()
-  remotes <- set_names(remotes, remotes %>% str_replace(".*/(.*)", "\\1"))
+  remotes <- set_names(remotes, remotes %>% str_replace(".*/([^@]*).*", "\\1"))
   dependencies <- c(method$package_required, method$package_loaded)
 
   if (length(dependencies) > 0) {
