@@ -21,8 +21,8 @@ much to shrink branching lineages toward their average prior to the split.}
 
 \item{reweight}{logical, whether to allow cells shared between lineages to be
 reweighted during curve-fitting. If \code{TRUE}, cells shared between 
-lineages will be weighted by: distance to nearest curve / distance to
-curve.}
+lineages will be iteratively reweighted based on the quantiles of their 
+projection distances to each curve. See 'Details' for more.}
 
 \item{thresh}{numeric, determines the convergence criterion. Percent change in the total distance from cells to their projections along curves must be less than thresh. Default is 0.001, similar to principal.curve.}
 
@@ -32,8 +32,8 @@ curve.}
 
 \item{smoother}{choice of scatter plot smoother. Same as principal.curve, but "lowess" option is replaced with "loess" for additional flexibility.}
 
-\item{shrink.method}{character denoting how to determine the appropriate
-amount of shrinkage for a branching lineage. Accepted values are the same
+\item{shrink.method}{character denoting how to determine the appropriate 
+amount of shrinkage for a branching lineage. Accepted values are the same 
 as for \code{kernel} in \code{\link{density}} (default is \code{"cosine"}),
 as well as \code{"tricube"} and \code{"density"}. See 'Details' for more.}
 }
