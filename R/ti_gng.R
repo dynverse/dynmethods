@@ -19,7 +19,7 @@ ti_gng <- create_ti_method(
       type = "discrete",
       default = "pca",
       values = c("pca", "mds", "tsne", "ica", "lle", "mds_sammon", "mds_isomds", "mds_smacof", "umap"),
-      description = "A character vector specifying which dimensionality reduction method to use.\nSee \\link[dyndimred:dimred]{dyndimred::dimred} for the list of available dimensionality reduction methods."
+      description = "A character vector specifying which dimensionality reduction method to use.\nSee \\code{\\link{dyndimred:dimred}} for the list of available dimensionality reduction methods."
     ),
     ndim = list(
       type = "integer",

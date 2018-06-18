@@ -9,13 +9,13 @@ editor_options:
 [![Build status](https://travis-ci.org/dynverse/dynmethods.svg?branch=master)](https://travis-ci.org/dynverse/dynmethods)
 
 # dynmethods
-This package contains wrappers for all of the trajectory inference methods included in the [dynverse](https://www.github.com/dynverse/dynverse) review. The output of each method is transformed into a common trajectory model using [dynwrap](https://www.github.com/dynverse/dynwrap).
+This package contains wrappers for all of the trajectory inference (TI) methods included in the [dynverse](https://www.github.com/dynverse/dynverse) review. The output of each method is transformed into a common trajectory model using [dynwrap](https://www.github.com/dynverse/dynwrap). To run any of these methods, interpret the results and visualise the trajectory, see the [dyno package](https://www.github.com/dynverse/dyno).
 
 Some methods are directly implemented & wrapped inside of R. Other methods, primarily those implemented in python or other languages are wrapped inside a docker container.
 
-To include your own method, feel free to send us a [pull request](https://github.com/dynverse/dynmethods/pulls) or create an [issue](https://github.com/dynverse/dynmethods/issues).
+To include your own method, feel free to send us a [pull request](https://github.com/dynverse/dynmethods/pulls) or create an [issue](https://github.com/dynverse/dynmethods/issues). The easiest way to add a new method is through a [docker container](https://dynverse.github.io/dynwrap/articles/create_ti_method_docker.html), so that dependecies don't pose any issues for other users, but we also welcome methods [directly wrapped inside of R](https://dynverse.github.io/dynwrap/articles/create_ti_method_r.html).
 
-Currently implemented are the following wrappers:
+Currently wrapped are the following methods:
 
 ```{r, echo = FALSE, warning = FALSE, error = FALSE, message = FALSE, results='asis'}
 library(tidyverse)
@@ -23,16 +23,35 @@ library(dynmethods)
 
 data("methods", package = "dynmethods")
 
-df <- methods %>% mutate(
+df <- methods %>% 
+  arrange(method_name) %>% 
+  mutate(
     code_label = wrapper_location,
     code_url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{wrapper_location}"),
-    Code = glue::glue("[{code_label}]({code_url})"),
+    Wrapper = glue::glue("[{code_label}]({code_url})"),
     vignette_label = glue::glue("{method_id}.md"),
     vignette_relpath = glue::glue("inst/doc/{vignette_label}"),
     vignette_url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{vignette_relpath}"),
     Vignette = ifelse(file.exists(vignette_relpath), glue::glue("[{vignette_label}]({vignette_url})"), ""),
-    Containerised = ifelse(containerised, glue::glue("[Yes]({dockerhub_location})"), "")
+    `R wrapper` = ifelse(
+      r_wrapped,
+      glue::glue("[✓]({code_url})"),
+      ""
+    ),
+    `Docker container` = ifelse(
+      containerised, 
+      glue::glue("[✓]({dockerhub_location})"), 
+      ""
+    )
   )
-knitr::kable(df %>% select(Name = method_name, Code, Vignette, Containerised))
 
+df2 <- df %>% 
+  select(
+    Method = method_name, 
+    Wrapper, 
+    `<img src='man/img/r_logo.png' style='max-height:40px'>` = `R wrapper`, 
+    `<img src='man/img/docker_logo.png' style='max-height:40px'>` = `Docker container`
+  )
+
+knitr::kable(df2)
 ```

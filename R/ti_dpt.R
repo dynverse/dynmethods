@@ -31,13 +31,13 @@ ti_dpt <- create_ti_method(
       type = "discrete",
       default = "local",
       values = c("local", "global"),
-      description = "Diffusion scale parameter of the Gaussian kernel. A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix. Must be one of:\n\\itemize{\n\\itemA character vector: \\code{\"local\"} (default) or \\code{\"global\"},\n\\itema numeric global sigma -- a global sigma will be calculated using \\code{\\link[destiny:find_sigmas]{destiny::find_sigmas()}}\n\\itemor a \\code{\\link[destiny:Sigmas-class]{destiny::Sigmas-class()}} object.\n}"),
+      description = "Diffusion scale parameter of the Gaussian kernel. A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix. Must be one of:\n\\itemize{\n\\item A character vector: \\code{\"local\"} (default) or \\code{\"global\"},\n\\item a numeric global sigma -- a global sigma will be calculated using \\code{\\link[destiny:find_sigmas]{destiny::find_sigmas()}}\n\\item or a \\code{\\link[destiny:Sigmas-class]{destiny::Sigmas-class()}} object.\n}"),
 
     distance = list(
       type = "discrete",
       default = "euclidean",
       values = c("euclidean", "cosine", "rankcor"),
-      description = "A \\code{\\link[stats:dist]{stats::dist()}} object, or a character vector specifying which distance metric to use. Allowed measures:\n\\itemize{\n\\itemEuclidean distance (default),\n\\itemcosine distance (1-corr(c_1, c_2)), or\n\\itemrank correlation distance (1-corr(rank(c_1), rank(c_2)))\n}"),
+      description = "A \\code{\\link[stats:dist]{stats::dist()}} object, or a character vector specifying which distance metric to use. Allowed measures:\n\\itemize{\n\\item Euclidean distance (default),\n\\item cosine distance (1-corr(c_1, c_2)), or\n\\item rank correlation distance (1-corr(rank(c_1), rank(c_2)))\n}"),
     ndim = list(
       type = "integer",
       default = 20L,
