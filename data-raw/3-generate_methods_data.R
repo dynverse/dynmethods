@@ -2,6 +2,8 @@
 
 library(tidyverse)
 library(googlesheets)
+library(furrr)
+plan(multiprocess)
 devtools::load_all()
 
 load("data/methods_containerised.rda")
@@ -29,7 +31,7 @@ methods_processed <- list.files("R", pattern = "ti_", full.names = T) %>%
   ungroup()
 
 # now create every method and extract information
-methods_info <- map(methods_processed$fun_name, function(fun_name) {
+methods_info <- future_map(methods_processed$fun_name, function(fun_name) {
   method <- get(fun_name, asNamespace("dynmethods"))()
   method %>% discard(is.function)
 }) %>% dynutils::list_as_tibble()
@@ -62,6 +64,5 @@ methods <- methods %>% mutate(
 if (any(is.na(methods$wrapper_location))) {
   stop("Some wrapper locations were not found!")
 }
-
 
 usethis::use_data(methods, overwrite = TRUE)

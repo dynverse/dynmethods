@@ -1,4 +1,5 @@
-name: paga
+name: PAGA
+short_name: paga
 implementation_id: paga
 parameters:
   n_neighbors:
@@ -42,10 +43,11 @@ trajectory_types:
 topology_inference: free
 type: algorithm
 authors:
-- given: Alex
+- given: Alexander
   family: Wolf
   email: alex.wolf@helmholtz-muenchen.de
   github: falexwolf
+  ORCID: 0000-0002-8760-7838
 - given: Fabian
   family: Theis
   email: fabian.theis@helmholtz-muenchen.de

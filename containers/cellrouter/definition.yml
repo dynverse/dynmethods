@@ -103,5 +103,8 @@ authors:
     family: Collins
     email: jimjc@mit.edu
     github: edroaldo
+    ORCID: 0000-0003-0537-4223
+  - given: George Q.
+    family: Daley
 publication_date: '2018-03-01'
 code_url: https://github.com/edroaldo/cellrouter

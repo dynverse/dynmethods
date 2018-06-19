@@ -1,4 +1,5 @@
-name: scuba
+name: SCUBA
+short_name: scuba
 parameters:
   rigorous_gap_stats:
     description: Whether to use rigorous gap statistics to determine number of clusters

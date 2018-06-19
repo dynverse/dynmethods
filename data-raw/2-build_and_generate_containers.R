@@ -15,7 +15,7 @@ rebuild <- TRUE
 if (rebuild) {
   future_map(method_ids, function(method_id) {
     system(str_glue("docker build containers/{method_id} -t dynverse/{method_id}"))
-    system(str_glue("docker push dynverse/{method_id}"))
+    # system(str_glue("docker push dynverse/{method_id}"))
   })
 }
 
@@ -184,7 +184,7 @@ method_ids_r <- str_subset(lines, "^ti_[A-Za-z0-9_]* <-.*") %>%
   str_replace_all("ti_([A-Za-z0-9_]*) <-.*", "\\1")
 
 # now generate the ti_* functions
-for (method_id in method_ids) {
+future_map(method_ids, function(method_id) {
   print(method_id)
 
   r_wrapped <- method_id %in% method_ids_r
@@ -194,7 +194,7 @@ for (method_id in method_ids) {
     method_id,
     definition,
     r_wrapped = r_wrapped
-    )
+  )
   func <- generate_func(method_id, definition, r_wrapped)
 
   # now save to file
@@ -206,7 +206,7 @@ for (method_id in method_ids) {
 
   write_file(file, file_location, append = TRUE)
   write_file("\n\n\n\n", file_location, append = TRUE)
-}
+})
 
 #   ____________________________________________________________________________
 #   Save data on containerised methods                                      ####
