@@ -5,12 +5,12 @@
 \alias{ti_recat}
 \title{Inferring trajectories with reCAT}
 \usage{
-ti_recat(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_recat(docker = TRUE,
   TSPFold = 2, beginNum = 10, endNum = 15, step_size = 2,
   base_cycle_range_start = 6, base_cycle_range_end = 9, max_num = 300,
   clustMethod = "GMM")
 
-ti_recat(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_recat(docker = TRUE,
   TSPFold = 2, beginNum = 10, endNum = 15, step_size = 2,
   base_cycle_range_start = 6, base_cycle_range_end = 9, max_num = 300,
   clustMethod = "GMM")

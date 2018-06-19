@@ -5,10 +5,10 @@
 \alias{ti_slicer}
 \title{Inferring trajectories with SLICER}
 \usage{
-ti_slicer(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_slicer(docker = TRUE,
   kmin = 10, m = 2)
 
-ti_slicer(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_slicer(docker = TRUE,
   kmin = 10, m = 2)
 }
 \arguments{

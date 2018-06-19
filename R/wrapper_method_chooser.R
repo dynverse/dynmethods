@@ -4,7 +4,7 @@ create_ti_method_chooser <- function(method, docker_container) {
   arg_ids <- names(args)
 
   # create function
-  func <- function(docker = "stevedore" %in% rownames(installed.packages())) {
+  func <- function(docker = TRUE) {
     if(docker) {
       invoke(create_docker_ti_method(docker_container), as.list(environment())[arg_ids])
     } else {

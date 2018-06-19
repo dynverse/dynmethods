@@ -5,11 +5,11 @@
 \alias{ti_tscan}
 \title{Inferring trajectories with TSCAN}
 \usage{
-ti_tscan(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_tscan(docker = TRUE,
   minexpr_percent = 0, minexpr_value = 0, cvcutoff = 0,
   clusternum_lower = 2, clusternum_upper = 9, modelNames = "VVV")
 
-ti_tscan(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_tscan(docker = TRUE,
   minexpr_percent = 0, minexpr_value = 0, cvcutoff = 0,
   clusternum_lower = 2, clusternum_upper = 9, modelNames = "VVV")
 }

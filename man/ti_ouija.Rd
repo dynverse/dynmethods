@@ -5,11 +5,11 @@
 \alias{ti_ouija}
 \title{Inferring trajectories with ouija}
 \usage{
-ti_ouija(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_ouija(docker = TRUE,
   iter = 100, response_type = "switch", inference_type = "hmc",
   normalise_expression = TRUE)
 
-ti_ouija(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_ouija(docker = TRUE,
   iter = 100, response_type = "switch", inference_type = "hmc",
   normalise_expression = TRUE)
 }

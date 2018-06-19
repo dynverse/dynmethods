@@ -5,12 +5,12 @@
 \alias{ti_slingshot}
 \title{Inferring trajectories with Slingshot}
 \usage{
-ti_slingshot(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_slingshot(docker = TRUE,
   ndim = 3, nclus = 5, dimred = "pca", shrink = 1, reweight = TRUE,
   thresh = -3, maxit = 10, stretch = 2, smoother = "smooth.spline",
   shrink.method = "cosine")
 
-ti_slingshot(docker = "stevedore" \%in\% rownames(installed.packages()),
+ti_slingshot(docker = TRUE,
   ndim = 3, nclus = 5, dimred = "pca", shrink = 1, reweight = TRUE,
   thresh = -3, maxit = 10, stretch = 2, smoother = "smooth.spline",
   shrink.method = "cosine")
@@ -25,12 +25,12 @@ ti_slingshot(docker = "stevedore" \%in\% rownames(installed.packages()),
 \item{dimred}{A character vector specifying which dimensionality reduction method to use.
 See \link[dyndimred:dimred]{dyndimred::dimred} for the list of available dimensionality reduction methods.}
 
-\item{shrink}{logical or numeric between 0 and 1, determines whether and how 
+\item{shrink}{logical or numeric between 0 and 1, determines whether and how
 much to shrink branching lineages toward their average prior to the split.}
 
 \item{reweight}{logical, whether to allow cells shared between lineages to be
-reweighted during curve-fitting. If \code{TRUE}, cells shared between 
-lineages will be iteratively reweighted based on the quantiles of their 
+reweighted during curve-fitting. If \code{TRUE}, cells shared between
+lineages will be iteratively reweighted based on the quantiles of their
 projection distances to each curve. See 'Details' for more.}
 
 \item{thresh}{numeric, determines the convergence criterion. Percent change in the total distance from cells to their projections along curves must be less than thresh. Default is 0.001, similar to principal.curve.}
@@ -41,8 +41,8 @@ projection distances to each curve. See 'Details' for more.}
 
 \item{smoother}{choice of scatter plot smoother. Same as principal.curve, but "lowess" option is replaced with "loess" for additional flexibility.}
 
-\item{shrink.method}{character denoting how to determine the appropriate 
-amount of shrinkage for a branching lineage. Accepted values are the same 
+\item{shrink.method}{character denoting how to determine the appropriate
+amount of shrinkage for a branching lineage. Accepted values are the same
 as for \code{kernel} in \code{\link{density}} (default is \code{"cosine"}),
 as well as \code{"tricube"} and \code{"density"}. See 'Details' for more.}
 }

@@ -161,7 +161,7 @@ ti_{method_id} <- function(
 #   ____________________________________________________________________________
 #   Generate documentation and function for each method                     ####
 get_method_definition <- function(method_id) {
-  definition <- extract_definition_from_docker_image(paste0("dynverse/", method_id), docker_client = stevedore::docker_client())
+  definition <- extract_definition_from_docker_image(paste0("dynverse/", method_id))
 
   if (!method_id %in% methods_info$method_id) {stop(method_id, " not found in google sheet!")}
 
