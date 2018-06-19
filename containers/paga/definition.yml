@@ -1,4 +1,5 @@
 name: paga
+implementation_id: paga
 parameters:
   n_neighbors:
     description: Number of neighbours for knn

@@ -1,6 +1,7 @@
 name: SCORPIUS sparse
 short_name: scorpius_sparse
 package_required: SCORPIUS
+implementation_id: scorpius
 doi: 10.1101/079509
 trajectory_types:
 - linear

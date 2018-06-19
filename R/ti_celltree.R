@@ -116,6 +116,7 @@ abstract_celltree_description <- function(method) {
   create_ti_method(
     name = pritt("cellTree with {method}"),
     short_name = pritt("celltree_{method}"),
+    implementation_id = "celltree",
     package_loaded = c(),
     package_required = c("cellTree"),
     parameters = parameters,

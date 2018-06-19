@@ -1,4 +1,5 @@
 name: wishbone
+implementation_id: wishbone
 parameters:
   normalise:
     type: logical

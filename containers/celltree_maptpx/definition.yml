@@ -1,7 +1,7 @@
 name: cellTree with maptpx
 short_name: celltree_maptpx
-method_id: celltree_maptpx
 package_required: cellTree
+implementation_id: celltree
 apt_dependencies: libgsl-dev
 doi: 10.1186/s12859-016-1175-6
 trajectory_types:
@@ -16,6 +16,7 @@ type: algorithm
 license: Artistic-2.0
 publication_date: '2016-08-13'
 version: 1.10.0
+method_id: celltree_maptpx
 parameters:
   method:
     type: discrete

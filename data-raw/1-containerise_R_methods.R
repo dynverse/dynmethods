@@ -7,7 +7,7 @@ library(desc)
 
 write_file("", "R/ti_container.R")
 
-method_id <- "slingshot"
+method_id <- "monocle_ica"
 devtools::load_all()
 method <- get(paste0("ti_", method_id), asNamespace("dynmethods"))()
 

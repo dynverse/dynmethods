@@ -55,6 +55,7 @@ abstract_monocle_description <- function(short_name) {
   create_ti_method(
     name = pritt("Monocle {parameters$reduction_method$default}"),
     short_name = short_name,
+    implementation_id = "monocle",
     package_loaded = c("monocle"),
     package_required = c("BiocGenerics", "igraph", "Biobase"),
     doi = "10.1038/nmeth.4402",

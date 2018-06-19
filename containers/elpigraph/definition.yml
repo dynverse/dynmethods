@@ -1,4 +1,5 @@
 name: elpigraph
+implementation_id: elpigraph
 parameters:
   topology:
     description: the kind of topology to detect

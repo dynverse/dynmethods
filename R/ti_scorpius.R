@@ -7,6 +7,7 @@ abstract_scorpius_description <- function(short_name) {
   create_ti_method(
     name = name,
     short_name = short_name,
+    implementation_id = "scorpius",
     package_loaded = c(),
     package_required = c("SCORPIUS"),
     doi = "10.1101/079509",

@@ -1,7 +1,7 @@
 name: SCORPIUS
 short_name: scorpius
-method_id: scorpius
 package_required: SCORPIUS
+implementation_id: scorpius
 doi: 10.1101/079509
 trajectory_types:
 - linear
@@ -14,6 +14,7 @@ license: GPL-3
 preprint_date: '2016-10-07'
 version: '1.0'
 code_url: https://github.com/rcannood/SCORPIUS
+method_id: scorpius
 parameters:
   distance_method:
     type: discrete
