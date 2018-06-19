@@ -5,16 +5,14 @@
 \alias{ti_pseudogp}
 \title{Inferring trajectories with pseudogp}
 \usage{
-ti_pseudogp(docker = TRUE,
-  smoothing_alpha = 10, smoothing_beta = 3, pseudotime_mean = 0.5,
-  pseudotime_var = 1, chains = 3, iter = 100, dimreds = c(TRUE, TRUE,
-  FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
+ti_pseudogp(docker = TRUE, smoothing_alpha = 10, smoothing_beta = 3,
+  pseudotime_mean = 0.5, pseudotime_var = 1, chains = 3, iter = 100,
+  dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
   initialise_from = "random")
 
-ti_pseudogp(docker = TRUE,
-  smoothing_alpha = 10, smoothing_beta = 3, pseudotime_mean = 0.5,
-  pseudotime_var = 1, chains = 3, iter = 100, dimreds = c(TRUE, TRUE,
-  FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
+ti_pseudogp(docker = TRUE, smoothing_alpha = 10, smoothing_beta = 3,
+  pseudotime_mean = 0.5, pseudotime_var = 1, chains = 3, iter = 100,
+  dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
   initialise_from = "random")
 }
 \arguments{

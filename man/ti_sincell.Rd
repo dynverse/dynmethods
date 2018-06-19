@@ -5,19 +5,17 @@
 \alias{ti_sincell}
 \title{Inferring trajectories with Sincell}
 \usage{
-ti_sincell(docker = TRUE,
-  distance_method = "euclidean", dimred_method = "none",
-  clust.method = "max.distance", mutual = TRUE, max.distance = 0, k = 3,
-  shortest.rank.percent = 10, graph.algorithm = "MST",
-  graph.using.cells.clustering = FALSE, k_imc = 3,
-  pct_leaf_node_cutoff = 0.5)
+ti_sincell(docker = TRUE, distance_method = "euclidean",
+  dimred_method = "none", clust.method = "max.distance", mutual = TRUE,
+  max.distance = 0, k = 3, shortest.rank.percent = 10,
+  graph.algorithm = "MST", graph.using.cells.clustering = FALSE,
+  k_imc = 3, pct_leaf_node_cutoff = 0.5)
 
-ti_sincell(docker = TRUE,
-  distance_method = "euclidean", dimred_method = "none",
-  clust.method = "max.distance", mutual = TRUE, max.distance = 0, k = 3,
-  shortest.rank.percent = 10, graph.algorithm = "MST",
-  graph.using.cells.clustering = FALSE, k_imc = 3,
-  pct_leaf_node_cutoff = 0.5)
+ti_sincell(docker = TRUE, distance_method = "euclidean",
+  dimred_method = "none", clust.method = "max.distance", mutual = TRUE,
+  max.distance = 0, k = 3, shortest.rank.percent = 10,
+  graph.algorithm = "MST", graph.using.cells.clustering = FALSE,
+  k_imc = 3, pct_leaf_node_cutoff = 0.5)
 }
 \arguments{
 \item{docker}{Whether to use the docker container or the R wrapper}
@@ -35,7 +33,7 @@ If clust.method="knn", unsupervised K-Nearest Neighbors (K-NN) clustering is per
 
 If clust.method="k-medoids", clustering around medoids (a more robust version of k-means) is performed with function "pam" from package "cluster" on the distance matrix in mySincellObject[["cell2celldist"]] with a desired number of groups indicated in parameter "num.clusters"
 
-Hierarchical agglomerative clustering can be performed by internally calling function "hclust" where the agglomeration method is indicated in parameter "clust.method" as one of "ward.D", "ward.D2", "single", "complete", "average" (= UPGMA), "mcquitty" (= WPGMA), "median" (= WPGMC) or "centroid" (= UPGMC). Clusters are obtained by cutting the tree produced by hclust with function cutree with a desired number of groups indicated in parameter "num.clusters"
+Hierarchical agglomerative clustering can be performed by internally calling function "hclust" where the agglomeration method is indicated in parameter "clust.method" as one of "ward.D", "ward.D2", "single", "complete", "average" (= UPGMA), "mcquitty" (= WPGMA), "median" (= WPGMC) or "centroid" (= UPGMC). Clusters are obtained by cutting the tree produced by hclust with function cutree with a desired number of groups indicated in parameter "num.clusters" 
 
 }
 
@@ -56,9 +54,9 @@ in percent algorithm, select the percent of shortest distances will be represent
 }
 
 \item{graph.algorithm}{
-Graph building algorithm to be used: the Minimum Spanning Tree
-(graph.algorithm="MST"), the Maximum Similarity Spanning Tree
-(graph.algorithm="SST") and the Iterative Mutual Clustering Graph
+Graph building algorithm to be used: the Minimum Spanning Tree 
+(graph.algorithm="MST"), the Maximum Similarity Spanning Tree 
+(graph.algorithm="SST") and the Iterative Mutual Clustering Graph 
 (graph.algorithm="IMC").
 }
 

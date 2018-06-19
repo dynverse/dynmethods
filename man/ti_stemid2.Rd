@@ -5,16 +5,14 @@
 \alias{ti_stemid2}
 \title{Inferring trajectories with StemID2}
 \usage{
-ti_stemid2(docker = TRUE,
-  clustnr = 30, bootnr = 50, metric = "pearson",
+ti_stemid2(docker = TRUE, clustnr = 30, bootnr = 50, metric = "pearson",
   num_cluster_method = "sat", SE.method = "Tibs2001SEmax",
   SE.factor = 0.25, B.gap = 50, cln = 30, FUNcluster = "kmedoids",
   dimred_method = "tsne", outminc = 0, outlg = 2, probthr = 0.001,
   thr_lower = -10, thr_upper = -5, outdistquant = 0.95, nmode = FALSE,
   pdishuf = 2000, pthr = 1e-04, pethr = 1e-04)
 
-ti_stemid2(docker = TRUE,
-  clustnr = 30, bootnr = 50, metric = "pearson",
+ti_stemid2(docker = TRUE, clustnr = 30, bootnr = 50, metric = "pearson",
   num_cluster_method = "sat", SE.method = "Tibs2001SEmax",
   SE.factor = 0.25, B.gap = 50, cln = 30, FUNcluster = "kmedoids",
   dimred_method = "tsne", outminc = 0, outlg = 2, probthr = 0.001,

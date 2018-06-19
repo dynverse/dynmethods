@@ -5,11 +5,9 @@
 \alias{ti_angle}
 \title{Inferring trajectories with Angle}
 \usage{
-ti_angle(docker = TRUE,
-  dimred = "pca")
+ti_angle(docker = TRUE, dimred = "pca")
 
-ti_angle(docker = TRUE,
-  dimred = "pca")
+ti_angle(docker = TRUE, dimred = "pca")
 }
 \arguments{
 \item{docker}{Whether to use the docker container or the R wrapper}

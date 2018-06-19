@@ -5,13 +5,11 @@
 \alias{ti_ouija}
 \title{Inferring trajectories with ouija}
 \usage{
-ti_ouija(docker = TRUE,
-  iter = 100, response_type = "switch", inference_type = "hmc",
-  normalise_expression = TRUE)
+ti_ouija(docker = TRUE, iter = 100, response_type = "switch",
+  inference_type = "hmc", normalise_expression = TRUE)
 
-ti_ouija(docker = TRUE,
-  iter = 100, response_type = "switch", inference_type = "hmc",
-  normalise_expression = TRUE)
+ti_ouija(docker = TRUE, iter = 100, response_type = "switch",
+  inference_type = "hmc", normalise_expression = TRUE)
 }
 \arguments{
 \item{docker}{Whether to use the docker container or the R wrapper}

@@ -6,17 +6,17 @@
 \alias{ti_scorpius}
 \title{Inferring trajectories with SCORPIUS}
 \usage{
-ti_scorpius(docker = TRUE,
-  distance_method = "spearman", ndim = 3, k = 4, thresh = 0.001,
-  maxit = 10, stretch = 0, smoother = "smooth.spline", sparse = FALSE)
+ti_scorpius(docker = TRUE, distance_method = "spearman", ndim = 3,
+  k = 4, thresh = 0.001, maxit = 10, stretch = 0,
+  smoother = "smooth.spline", sparse = FALSE)
 
 ti_scorpius_sparse(distance_method = "spearman", ndim = 3, k = 4,
   thresh = 0.001, maxit = 10, stretch = 0, smoother = "smooth.spline",
   sparse = TRUE)
 
-ti_scorpius(docker = TRUE,
-  distance_method = "spearman", ndim = 3, k = 4, thresh = 0.001,
-  maxit = 10, stretch = 0, smoother = "smooth.spline", sparse = FALSE)
+ti_scorpius(docker = TRUE, distance_method = "spearman", ndim = 3,
+  k = 4, thresh = 0.001, maxit = 10, stretch = 0,
+  smoother = "smooth.spline", sparse = FALSE)
 }
 \arguments{
 \item{docker}{Whether to use the docker container or the R wrapper}

@@ -5,15 +5,15 @@
 \alias{ti_embeddr}
 \title{Inferring trajectories with Embeddr}
 \usage{
-ti_embeddr(docker = TRUE,
-  ndim = 2, kernel = "nn", metric = "correlation", nn_pct = 0,
-  eps = 0, t = 0, symmetrize = "mean", measure_type = "unorm",
-  thresh = 0.001, maxit = 10, stretch = 2, smoother = "smooth.spline")
+ti_embeddr(docker = TRUE, ndim = 2, kernel = "nn",
+  metric = "correlation", nn_pct = 0, eps = 0, t = 0,
+  symmetrize = "mean", measure_type = "unorm", thresh = 0.001,
+  maxit = 10, stretch = 2, smoother = "smooth.spline")
 
-ti_embeddr(docker = TRUE,
-  ndim = 2, kernel = "nn", metric = "correlation", nn_pct = 0,
-  eps = 0, t = 0, symmetrize = "mean", measure_type = "unorm",
-  thresh = 0.001, maxit = 10, stretch = 2, smoother = "smooth.spline")
+ti_embeddr(docker = TRUE, ndim = 2, kernel = "nn",
+  metric = "correlation", nn_pct = 0, eps = 0, t = 0,
+  symmetrize = "mean", measure_type = "unorm", thresh = 0.001,
+  maxit = 10, stretch = 2, smoother = "smooth.spline")
 }
 \arguments{
 \item{docker}{Whether to use the docker container or the R wrapper}
