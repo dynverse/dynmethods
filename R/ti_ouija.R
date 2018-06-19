@@ -13,6 +13,27 @@ ti_ouija <- create_ti_method(
   short_name = "ouija",
   package_required = c("ouija", "rstan"),
   package_loaded = c("coda"),
+  doi = "10.1101/060442",
+  trajectory_types = c("linear", "bifurcation", "convergence", "multifurcation"),
+  topology_inference = "fixed",
+  type = "algorithm",
+  license = "GPL (>=3)",
+  authors = list(
+    list(
+      given = "Kieran",
+      family = "Campbell",
+      email = "kicampbell@bccrc.ca",
+      github = "kieranrcampbell"
+    ),
+    list(
+      given = "Christopher",
+      family = "Yau",
+      email = "cyau@well.ox.ac.uk"
+    )
+  ),
+  preprint_date = "2016-06-23",
+  version = "0.99.0",
+  code_url = "https://github.com/kieranrcampbell/ouija",
   parameters = list(
     iter = list(
       type = "numeric",

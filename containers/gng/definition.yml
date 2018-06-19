@@ -1,5 +1,23 @@
 name: Growing Neural Gas
 short_name: gng
+package_required:
+- GNG
+- igraph
+- dyndimred
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+topology_inference: free
+type: algorithm_test
+license: GPL-3
+version: 0.1.0
+code_url: https://github.com/rcannood/GNG
+apt_dependencies: libudunits2-dev
+method_id: gng
 parameters:
   dimred:
     type: discrete
@@ -47,3 +65,9 @@ input:
   required: expression
 output:
   format: dynwrap
+authors:
+- given: Robrecht
+  family: Cannoodt
+  email: rcannood@gmail.com
+  ORCID: 0000-0003-3641-729X
+  github: rcannood

@@ -10,6 +10,25 @@ ti_random <- create_ti_method(
   short_name = "random",
   package_loaded = c(),
   package_required = c(),
+  trajectory_types = "cycle",
+  topology_inference = "free",
+  type = "control",
+  authors = list(
+    list(
+      given = "Robrecht",
+      family = "Cannoodt",
+      email = "rcannood@gmail.com",
+      ORCID = "0000-0003-3641-729X",
+      github = "rcannood"
+    ),
+    list(
+      given = "Wouter",
+      family = "Saelens",
+      email = "wouter.saelens@ugent.be",
+      ORCID = "0000-0002-7114-6248",
+      github = "zouter"
+    )
+  ),
   par_set = makeParamSet(
     makeNumericParam(id = "dummy_param", lower = 0, default = 0.5, upper = 1)
   ),

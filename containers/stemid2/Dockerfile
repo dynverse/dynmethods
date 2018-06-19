@@ -1,8 +1,12 @@
 FROM rocker/tidyverse
 
+RUN echo 'utils::setRepositories(ind=1:4)' > ~/.Rprofile
+
 RUN R -e 'devtools::install_github("dynverse/dynwrap")'
 
-RUN R -e "setRepositories(ind=1:2);devtools::install_github('dynverse/StemID2')"
+
+
+RUN R -e "devtools::install_github('dynverse/StemID2')"
 
 ADD . /code
 

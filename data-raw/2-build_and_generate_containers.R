@@ -5,19 +5,13 @@ library(dynwrap)
 library(furrr)
 plan(multiprocess)
 
-load("data/methods_info.rda")
-
 #   ____________________________________________________________________________
 #   Run & push dockers                                                      ####
 # get all methods
 method_ids <- list.dirs("./containers/", full.names = FALSE)[-1]
 
-if (!all(method_ids %in% methods_info$method_id)) {
-  stop("Some methods not in methods_info! \n", setdiff(method_ids, methods_info$method_id))
-}
-
 # rebuild & push all containers
-rebuild <- FALSE
+rebuild <- TRUE
 if (rebuild) {
   future_map(method_ids, function(method_id) {
     system(str_glue("docker build containers/{method_id} -t dynverse/{method_id}"))
@@ -39,25 +33,25 @@ generate_documentation_from_definition <- function(method_id, definition, r_wrap
 
   # code
   code_text <-
-    if (!is.na(definition$code_location)) {
-      glue::glue('The original code of this method is available [here]({definition$code_location}).')
+    if (!is.null(definition$code_url)) {
+      glue::glue('The original code of this method is available [here]({definition$code_url}).')
     } else {
       ""
     }
 
   # citation
   citation_text <-
-    if (!is.na(definition$DOI)) {
-      paste0("The method is described in: [", rcrossref::cr_cn(dois = definition$DOI[[1]], format = "text", style="elsevier-harvard"), "](https://doi.org/", definition$DOI, ")")
+    if (!is.null(definition$doi)) {
+      paste0("The method is described in: [", rcrossref::cr_cn(dois = definition$doi[[1]], format = "text", style="elsevier-harvard"), "](https://doi.org/", definition$doi, ")")
     } else {
       ""
     }
 
   # url within name
-  url_name <- if(!is.na(definition$DOI)) {
-    glue::glue("[{definition$name}](https://doi.org/{definition$DOI[[1]]})")
-  } else if (!is.na(definition$code_location)) {
-    glue::glue("[{definition$name}](https://doi.org/{definition$code_location})")
+  url_name <- if(!is.null(definition$doi)) {
+    glue::glue("[{definition$name}](https://doi.org/{definition$doi[[1]]})")
+  } else if (!is.null(definition$code_url)) {
+    glue::glue("[{definition$name}](https://doi.org/{definition$code_url})")
   } else {
     definition$name
   }
@@ -163,12 +157,6 @@ ti_{method_id} <- function(
 get_method_definition <- function(method_id) {
   definition <- extract_definition_from_docker_image(paste0("dynverse/", method_id))
 
-  if (!method_id %in% methods_info$method_id) {stop(method_id, " not found in google sheet!")}
-
-  method_info <- methods_info %>% slice(match(!!method_id, method_id)) %>% dynutils::extract_row_to_list(1)
-
-  definition <- c(definition, method_info)
-
   definition
 }
 
@@ -229,6 +217,6 @@ methods_containerised <- tibble(
 ) %>%
   mutate(
     docker_wrapper_location = paste0("containers/", method_id),
-    dockerhub_location = paste0("https://hub.docker.com/r/", docker_container)
+    dockerhub_url = paste0("https://hub.docker.com/r/", docker_container)
   )
 usethis::use_data(methods_containerised, overwrite = TRUE)

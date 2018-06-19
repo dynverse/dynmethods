@@ -1,5 +1,17 @@
 name: StemID
 short_name: stemid
+method_id: stemid
+package_required: StemID
+doi: 10.1016/j.stem.2016.05.010
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+topology_inference: free
+type: algorithm
+publication_date: '2016-06-21'
+code_url: https://github.com/dgrun/StemID
 parameters:
   clustnr:
     type: integer
@@ -32,7 +44,7 @@ parameters:
       be computed based on different metrics. Possible values are "pearson", "spearman",
       "logpearson", "euclidean", "kendall", "maximum", "manhattan", "canberra", "binary"
       or "minkowski". Default is "pearson". In case of the correlation based methods,
-      the distance is computed as 1 – correlation. K-medoids clustering is performed
+      the distance is computed as 1 - correlation. K-medoids clustering is performed
       on this distance object.
   num_cluster_method:
     type: discrete
@@ -192,3 +204,11 @@ input:
   required: expression
 output:
   format: dynwrap
+authors:
+- given: Dominic
+  family: Grün
+  email: gruen@ie-freibug.mpg.de
+  github: dgrun
+- given: Alexander
+  family: van Oudenaarden
+  email: a.vanoudenaarden@hubrecht.eu

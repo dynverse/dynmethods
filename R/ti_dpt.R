@@ -26,6 +26,30 @@ ti_dpt <- create_ti_method(
   short_name = "dpt",
   package_loaded = c("destiny"),
   package_required = c("dynutils", "reshape2"),
+  doi = "10.1038/nmeth.3971",
+  trajectory_types = c("linear", "bifurcation", "convergence", "multifurcation", "binary_tree", "tree"),
+  topology_inference = "fixed",
+  type = "algorithm",
+  license = "GPL-3",
+  authors = list(
+    list(
+      given = "Laleh",
+      family = "Hagverdi",
+      email = "eh@ebi.ac.uk",
+      github = "flying-sheep"
+    ),
+    list(
+      given = "Fabian",
+      family = "Theis",
+      email = "fabian.theis@helmholtz-muenchen.de",
+      github = "theislab",
+      ORCID = "0000-0002-2419-1943"
+    )
+  ),
+  preprint_date = "2016-02-08",
+  publication_date = "2016-08-29",
+  version = "2.10.2",
+  code_url = "https://bioconductor.org/packages/release/bioc/html/destiny.html",
   parameters = list(
     sigma = list(
       type = "discrete",

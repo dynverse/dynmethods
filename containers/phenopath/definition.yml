@@ -1,5 +1,20 @@
 name: PhenoPath
 short_name: phenopath
+method_id: phenopath
+package_required:
+- phenopath
+- dyndimred
+doi: 10.1101/159913
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+topology_inference: fixed
+type: algorithm
+preprint_date: '2017-07-06'
+version: 1.1.1
+code_url: https://github.com/kieranrcampbell/phenopath
 parameters:
   thin:
     type: integer
@@ -38,3 +53,11 @@ input:
   required: expression
 output:
   format: dynwrap
+authors:
+- given: Kieran
+  family: Campbell
+  email: kicampbell@bccrc.ca
+  github: kieranrcampbell
+- given: Christopher
+  family: Yau
+  email: cyau@well.ox.ac.uk

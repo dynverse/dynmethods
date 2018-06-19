@@ -2,6 +2,7 @@ library(dynwrap)
 library(jsonlite)
 library(readr)
 library(dplyr)
+library(purrr)
 
 library(TSCAN)
 library(igraph)

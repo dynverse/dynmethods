@@ -11,6 +11,26 @@ ti_mpath <- create_ti_method(
   short_name = "mpath",
   package_loaded = c("Mpath"),
   package_required = c("Mpath"),
+  doi = "10.1038/ncomms11988",
+  trajectory_types = "linear",
+  topology_inference = "free",
+  type = "algorithm",
+  authors = list(
+    list(
+      given = "Michael",
+      family = "Poidinger",
+      email = "michael_poidinger@immunol.a-star.edu.sg"
+    ),
+    list(
+      given = "Jinmiao",
+      list = "Chen",
+      email = "chen_jinmiao@immunol.a-star.edu.sg",
+      github = "jinmiaochen"
+    )
+  ),
+  publication_date = "2016-06-30",
+  version = "1.0",
+  code_url = "https://github.com/JinmiaoChenLab/Mpath",
   parameters = list(
     distMethod = list(
       type = "discrete",

@@ -20,6 +20,27 @@ ti_slingshot <- create_ti_method(
   short_name = "slingshot",
   package_loaded = c(),
   package_required = c("slingshot", "dyndimred"),
+  doi = "10.1101/128843",
+  trajectory_types = c("linear", "bifurcation", "convergence", "multifurcation", "binary_tree", "tree"),
+  topology_inference = "free",
+  type = "algorithm",
+  license = "Artistic-2.0",
+  authors = list(
+    list(
+      given = "Kelly",
+      family = "Street",
+      email = "street.kelly@gmail.com",
+      github = "kstreet13"
+    ),
+    list(
+      given = "Sandrine",
+      family = "Dudoit",
+      email = "sandrine@stat.berkeley.edu"
+    )
+  ),
+  preprint_date = "2017-04-19",
+  version = "0.99.8",
+  code_url = "https://github.com/kstreet13/slingshot",
   parameters = list(
     ndim = list(
       type = "integer",

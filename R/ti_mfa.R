@@ -12,6 +12,27 @@ ti_mfa <- create_ti_method(
   short_name = "mfa",
   package_loaded = c(),
   package_required = c("mfa", "dyndimred"),
+  doi = "10.12688/wellcomeopenres.11087.1",
+  trajectory_types = c("linear", "bifurcation", "convergence", "multifurcation", "binary_tree", "tree"),
+  topology_inference = "parameter",
+  type = "algorithm",
+  license = "GPL (>= 2)",
+  authors = list(
+    list(
+      given = "Kieran",
+      family = "Campbell",
+      email = "kicampbell@bccrc.ca",
+      github = "kieranrcampbell"
+    ),
+    list(
+      given = "Christopher",
+      family = "Yau",
+      email = "cyau@well.ox.ac.uk"
+    )
+  ),
+  publication_date = "2017-03-15",
+  version = "0.99.2",
+  code_url = "https://github.com/kieranrcampbell/mfa",
   parameters = list(
     b = list(
       type = "integer",

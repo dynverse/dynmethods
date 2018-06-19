@@ -10,6 +10,24 @@ ti_waterfall <-  create_ti_method(
   short_name = "waterfall",
   package_loaded = c(),
   package_required = c("Waterfall"),
+  doi = "10.1016/j.stem.2015.07.013",
+  trajectory_types = "linear",
+  topology_inference = "fixed",
+  type = "algorithm",
+  authors = list(
+    list(
+      given = "Jaehoon",
+      family = "Shin",
+      email = "shin@jhmi.edu"
+    ),
+    list(
+      given = "Hongjun",
+      family = "Song",
+      email = "shongju1@jhmi.edu"
+    )
+  ),
+  publication_date = "2015-09-03",
+  code_url = "http://www.cell.com/cms/attachment/2038326541/2052521637/mmc9.zip",
   parameters = list(
     num_clusters = list(type = "integer", lower = 2, default = 10, upper = 20)
   ),

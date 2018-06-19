@@ -16,7 +16,26 @@ ti_angle <-
       dimred = list(type = "discrete", default = "pca", values = names(dyndimred::list_dimred_methods()))
     ),
     run_fun = "dynmethods::run_angle",
-    plot_fun = "dynmethods::plot_angle"
+    plot_fun = "dynmethods::plot_angle",
+    trajectory_types = "cycle",
+    topology_inference = "free",
+    type = "control",
+    authors = list(
+      list(
+        given = "Robrecht",
+        family = "Cannoodt",
+        email = "rcannood@gmail.com",
+        ORCID = "0000-0003-3641-729X",
+        github = "rcannood"
+      ),
+      list(
+        given = "Wouter",
+        family = "Saelens",
+        email = "wouter.saelens@ugent.be",
+        ORCID = "0000-0002-7114-6248",
+        github = "zouter"
+      )
+    )
   )
 
 run_angle <- function(

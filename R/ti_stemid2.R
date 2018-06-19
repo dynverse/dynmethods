@@ -29,6 +29,24 @@ ti_stemid2 <- create_ti_method(
   short_name = "stemid2",
   package_loaded = c(),
   package_required = c("StemID2"),
+  doi = "10.1016/j.stem.2016.05.010",
+  trajectory_types = c("linear", "bifurcation", "convergence", "multifurcation", "binary_tree", "tree"),
+  topology_inference = "free",
+  type = "algorithm",
+  authors = list(
+    list(
+      given = "Dominic",
+      family = "Gr\u00fcn",
+      email = "gruen@ie-freibug.mpg.de",
+      github = "dgrun"
+    ),
+    list(
+      given = "Alexander",
+      family = "van Oudenaarden",
+      email = "a.vanoudenaarden@hubrecht.eu"
+    )
+  ),
+  code_url = "https://github.com/dgrun/RaceID3_StemID2",
   parameters = list(
     clustnr = list(
       type = "integer",

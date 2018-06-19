@@ -1,5 +1,20 @@
 name: SCORPIUS
 short_name: scorpius
+package_required: SCORPIUS
+implementation_id: scorpius
+doi: 10.1101/079509
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+topology_inference: fixed
+type: algorithm
+license: GPL-3
+preprint_date: '2016-10-07'
+version: '1.0'
+code_url: https://github.com/rcannood/SCORPIUS
+method_id: scorpius
 parameters:
   distance_method:
     type: discrete
@@ -65,3 +80,17 @@ input:
   required: expression
 output:
   format: dynwrap
+authors:
+- given: Robrecht
+  family: Cannoodt
+  email: rcannood@gmail.com
+  ORCID: 0000-0003-3641-729X
+  github: rcannood
+- given: Wouter
+  family: Saelens
+  email: wouter.saelens@ugent.be
+  ORCID: 0000-0002-7114-6248
+  github: zouter
+- given: Yvan
+  family: Saeys
+  email: yvan.saeys@ugent.be

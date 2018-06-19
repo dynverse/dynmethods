@@ -13,6 +13,26 @@ ti_phenopath <- create_ti_method(
   short_name = "phenopath",
   package_required = c("phenopath", "dyndimred"),
   package_loaded = c(),
+  doi = "10.1101/159913",
+  trajectory_types = c("linear", "bifurcation", "convergence", "multifurcation"),
+  topology_inference = "fixed",
+  type = "algorithm",
+  authors = list(
+    list(
+      given = "Kieran",
+      family = "Campbell",
+      email = "kicampbell@bccrc.ca",
+      github = "kieranrcampbell"
+    ),
+    list(
+      given = "Christopher",
+      family = "Yau",
+      email = "cyau@well.ox.ac.uk"
+    )
+  ),
+  preprint_date = "2017-07-06",
+  version = "1.1.1",
+  code_url = "https://github.com/kieranrcampbell/phenopath",
   parameters = list(
     thin = list(
       type = "integer",

@@ -27,3 +27,15 @@ output:
   outputs:
     - end_state_probabilities
     - timings
+doi: 10.1101/227843
+trajectory_types: linear
+topology_inference: fixed
+type: algorithm
+authors:
+  - given: Sumon
+    family: Ahmed
+    email: sumon.ahmed@postgrad.manchester.ac.uk
+    github: sumonahmedUoM
+preprint_date: '2017-12-03'
+version: '0.1'
+code_url: https://github.com/ManchesterBioinference/GrandPrix

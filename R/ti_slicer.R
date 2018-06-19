@@ -11,6 +11,28 @@ ti_slicer <- create_ti_method(
   short_name = "slicer",
   package_loaded = c(),
   package_required = c("SLICER", "lle", "igraph"),
+  doi = "10.1186/s13059-016-0975-3",
+  trajectory_types = "linear",
+  topology_inference = "free",
+  type = "algorithm",
+  license = "GPL-2",
+  authors = list(
+    list(
+      given = "Joshua",
+      family = "Welch",
+      email = "jwelch@cs.unc.edu",
+      github = "jw156605"
+    ),
+    list(
+      given = "Jan",
+      family = "Prins",
+      email = "prins@cs.unc.edu"
+    )
+  ),
+  preprint_date = "2016-04-09",
+  publication_date = "2016-05-23",
+  version = "0.2.0",
+  code_url = "https://github.com/jw156605/SLICER",
   parameters = list(
     kmin = list(
       type = "integer",

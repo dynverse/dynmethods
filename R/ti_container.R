@@ -4,7 +4,7 @@
 #####################################################################################
 
 
-#' @include ti_angle.R ti_celltree.R ti_dpt.R ti_embeddr.R ti_error.R ti_gng.R ti_identity.R ti_manual.R ti_mfa.R ti_monocle.R ti_mpath.R ti_ouija.R ti_periodpc.R ti_phenopath.R ti_pseudogp.R ti_random.R ti_recat.R ti_scorpius.R ti_scoup.R ti_shuffle.R ti_sincell.R ti_slice.R ti_slicer.R ti_slingshot.R ti_stemid.R ti_stemid2.R ti_tscan.R ti_waterfall.R ti_wishbone.R
+#' @include ti_angle.R ti_celltree.R ti_dpt.R ti_embeddr.R ti_error.R ti_gng.R ti_identity.R ti_mfa.R ti_monocle.R ti_mpath.R ti_ouija.R ti_periodpc.R ti_phenopath.R ti_pseudogp.R ti_random.R ti_recat.R ti_scorpius.R ti_scoup.R ti_shuffle.R ti_sincell.R ti_slice.R ti_slicer.R ti_slingshot.R ti_stemid.R ti_stemid2.R ti_tscan.R ti_waterfall.R ti_wishbone.R
 #' @include wrapper_method_chooser.R
 #' Inferring a trajectory inference using Angle
 #' 
@@ -157,9 +157,9 @@ ti_dpt <- create_ti_method_chooser(ti_dpt, 'dynverse/dpt')
 
 
 
-#' Inferring a trajectory inference using [elpilinear](https://doi.org/https://github.com/Albluca/ElPiGraph.R)
+#' Inferring a trajectory inference using [elpicycle](https://doi.org/https://github.com/Albluca/ElPiGraph.R)
 #' 
-#' Will generate a trajectory using [elpilinear](https://doi.org/https://github.com/Albluca/ElPiGraph.R). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/elpicycle).
+#' Will generate a trajectory using [elpicycle](https://doi.org/https://github.com/Albluca/ElPiGraph.R). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/elpicycle).
 #' 
 #' 
 #' 
@@ -675,6 +675,24 @@ ti_pcreode <- function(
 
 
 
+#' Inferring a trajectory inference using Periodic PrinCurve
+#' 
+#' Will generate a trajectory using Periodic PrinCurve. This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/periodpc).
+#' 
+#' This methods was first wrapped inside R, see [ti_periodpc]
+#' 
+#' 
+#' 
+#' 
+#' 
+#' @param docker Whether to use the docker container or the R wrapper
+#' 
+#' @return The trajectory model
+#' @export
+ti_periodpc <- create_ti_method_chooser(ti_periodpc, 'dynverse/periodpc')
+
+
+
 #' Inferring a trajectory inference using [PhenoPath](https://doi.org/10.1101/159913)
 #' 
 #' Will generate a trajectory using [PhenoPath](https://doi.org/10.1101/159913). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/phenopath).
@@ -818,13 +836,31 @@ ti_scorpius <- create_ti_method_chooser(ti_scorpius, 'dynverse/scorpius')
 
 
 
+#' Inferring a trajectory inference using [SCORPIUS sparse](https://doi.org/10.1101/079509)
+#' 
+#' Will generate a trajectory using [SCORPIUS sparse](https://doi.org/10.1101/079509). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/scorpius_sparse).
+#' 
+#' This methods was first wrapped inside R, see [ti_scorpius_sparse]
+#' 
+#' The original code of this method is available [here](https://github.com/rcannood/SCORPIUS).
+#' 
+#' The method is described in: [Cannoodt, R., Saelens, W., Sichien, D., Tavernier, S., Janssens, S., Guilliams, M., Lambrecht, B.N., De Preter, K., Saeys, Y., 2016. SCORPIUS improves trajectory inference and identifies novel modules in dendritic cell development.](https://doi.org/10.1101/079509)
+#' 
+#' @param docker Whether to use the docker container or the R wrapper
+#' 
+#' @return The trajectory model
+#' @export
+ti_scorpius_sparse <- create_ti_method_chooser(ti_scorpius_sparse, 'dynverse/scorpius_sparse')
+
+
+
 #' Inferring a trajectory inference using [SCOUP](https://doi.org/10.1186/s12859-016-1109-3)
 #' 
 #' Will generate a trajectory using [SCOUP](https://doi.org/10.1186/s12859-016-1109-3). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/scoup).
 #' 
 #' This methods was first wrapped inside R, see [ti_scoup]
 #' 
-#' The original code of this method is available [here](https://github.com/hmatsu1226/SCOUP).
+#' The original code of this method is available [here](https://github.com/gcyuan/PySCUBA).
 #' 
 #' The method is described in: [Matsumoto, H., Kiryu, H., 2016. SCOUP: a probabilistic model based on the Ornstein–Uhlenbeck process to analyze single-cell expression data during differentiation. BMC Bioinformatics 17.](https://doi.org/10.1186/s12859-016-1109-3)
 #' 
@@ -881,7 +917,7 @@ ti_scuba <- function(
 #' 
 #' This methods was first wrapped inside R, see [ti_sincell]
 #' 
-#' The original code of this method is available [here](https://github.com/Bioconductor-mirror/sincell).
+#' The original code of this method is available [here](https://github.com/Cortalak/MCA_Sincell_0).
 #' 
 #' The method is described in: [Juliá, M., Telenti, A., Rausell, A., 2015. Sincell: an R/Bioconductor package for statistical assessment of cell-state hierarchies from single-cell RNA-seq: Fig. 1. Bioinformatics 31, 3380–3382.](https://doi.org/10.1093/bioinformatics/btv368)
 #' 
@@ -1037,15 +1073,15 @@ ti_tscan <- create_ti_method_chooser(ti_tscan, 'dynverse/tscan')
 
 
 
-#' Inferring a trajectory inference using [wanderlust](https://doi.org/10.1016/j.cell.2014.04.005)
+#' Inferring a trajectory inference using [wanderlust](https://doi.org/10.1038/nbt.3569)
 #' 
-#' Will generate a trajectory using [wanderlust](https://doi.org/10.1016/j.cell.2014.04.005). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/wanderlust).
+#' Will generate a trajectory using [wanderlust](https://doi.org/10.1038/nbt.3569). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/wanderlust).
 #' 
 #' 
 #' 
-#' The original code of this method is available [here](https://www.c2b2.columbia.edu/danapeerlab/html/wanderlust.html).
+#' The original code of this method is available [here](https://github.com/ManuSetty/wishbone).
 #' 
-#' The method is described in: [Bendall, S.C., Davis, K.L., Amir, E.D., Tadmor, M.D., Simonds, E.F., Chen, T.J., Shenfeld, D.K., Nolan, G.P., Pe’er, D., 2014. Single-Cell Trajectory Detection Uncovers Progression and Regulatory Coordination in Human B Cell Development. Cell 157, 714–725.](https://doi.org/10.1016/j.cell.2014.04.005)
+#' The method is described in: [Setty, M., Tadmor, M.D., Reich-Zeliger, S., Angel, O., Salame, T.M., Kathail, P., Choi, K., Bendall, S., Friedman, N., Pe’er, D., 2016. Wishbone identifies bifurcating developmental trajectories from single-cell data. Nature Biotechnology 34, 637–645.](https://doi.org/10.1038/nbt.3569)
 #' 
 #' @param branch Whether to allow a single bifurcation within the trajectory (wishbone versus wanderlust) \cr 
 #' @param epsilon Epsilon \cr 

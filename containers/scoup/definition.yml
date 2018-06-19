@@ -1,5 +1,14 @@
 name: SCOUP
 short_name: scoup
+method_id: scoup
+package_required: SCOUP
+doi: 10.1186/s12859-016-1109-3
+trajectory_types: linear
+topology_inference: parameter
+type: algorithm
+license: MIT
+publication_date: '2016-06-08'
+code_url: https://github.com/gcyuan/PySCUBA
 parameters:
   ndim:
     type: integer
@@ -66,3 +75,8 @@ input:
   - end_n
 output:
   format: dynwrap
+authors:
+- given: Hirotaka
+  family: Matsumoto
+  email: hirotaka.matsumoto@riken.jp
+  github: hmatsu1226

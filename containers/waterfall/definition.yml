@@ -1,5 +1,13 @@
 name: Waterfall
 short_name: waterfall
+method_id: waterfall
+package_required: Waterfall
+doi: 10.1016/j.stem.2015.07.013
+trajectory_types: linear
+topology_inference: fixed
+type: algorithm
+publication_date: '2015-09-03'
+code_url: http://www.cell.com/cms/attachment/2038326541/2052521637/mmc9.zip
 parameters:
   num_clusters:
     type: integer
@@ -11,3 +19,10 @@ input:
   required: expression
 output:
   format: dynwrap
+authors:
+- given: Jaehoon
+  family: Shin
+  email: shin@jhmi.edu
+- given: Hongjun
+  family: Song
+  email: shongju1@jhmi.edu

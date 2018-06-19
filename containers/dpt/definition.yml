@@ -1,5 +1,25 @@
 name: DPT
 short_name: dpt
+method_id: dpt
+package_loaded: destiny
+package_required:
+- dynutils
+- reshape2
+doi: 10.1038/nmeth.3971
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+topology_inference: fixed
+type: algorithm
+license: GPL-3
+preprint_date: '2016-02-08'
+publication_date: '2016-08-29'
+version: 2.10.2
+code_url: https://bioconductor.org/packages/release/bioc/html/destiny.html
 parameters:
   sigma:
     type: discrete
@@ -71,3 +91,13 @@ input:
   required: expression
 output:
   format: dynwrap
+authors:
+- given: Laleh
+  family: Hagverdi
+  email: eh@ebi.ac.uk
+  github: flying-sheep
+- given: Fabian
+  family: Theis
+  email: fabian.theis@helmholtz-muenchen.de
+  github: theislab
+  ORCID: 0000-0002-2419-1943

@@ -44,3 +44,15 @@ output:
   outputs:
     - cluster_graph
     - timings
+doi: 10.1073/pnas.1408993111
+trajectory_types: linear
+topology_inference: free
+type: algorithm
+authors:
+  - given: Guo-Cheng
+    family: Yuan
+    email: gcyuan@jimmy.harvard.edu
+    github: gcyuan
+publication_date: '2014-12-30'
+version: 0.1.1
+code_url: https://github.com/gcyuan/SCUBA

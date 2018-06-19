@@ -55,8 +55,32 @@ abstract_monocle_description <- function(short_name) {
   create_ti_method(
     name = pritt("Monocle {parameters$reduction_method$default}"),
     short_name = short_name,
+    implementation_id = "monocle",
     package_loaded = c("monocle"),
     package_required = c("BiocGenerics", "igraph", "Biobase"),
+    doi = "10.1038/nmeth.4402",
+    trajectory_types = "linear",
+    topology_inference = "free",
+    type = "algorithm",
+    license = "Artistic-2.0",
+    authors = list(
+      list(
+        given = "Xiaojie",
+        family = "Qiu",
+        email = "xqiu@uw.edu",
+        github = "Xiaojieqiu"
+      ),
+      list(
+        given = "Cole",
+        family = "Trapnell",
+        email = "coletrap@uw.edu",
+        github = "ctrapnell"
+      )
+    ),
+    preprint_date = "2017-02-21",
+    publication_date = "2017-07-20",
+    version = "2.9.0",
+    code_url = "https://github.com/cole-trapnell-lab/monocle-release",
     parameters = parameters,
     run_fun = "dynmethods::run_monocle",
     plot_fun = "dynmethods::plot_monocle"

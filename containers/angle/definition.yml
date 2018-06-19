@@ -1,5 +1,9 @@
 name: Angle
 short_name: angle
+method_id: angle
+trajectory_types: cycle
+topology_inference: free
+type: control
 parameters:
   dimred:
     type: discrete
@@ -19,3 +23,14 @@ input:
   required: expression
 output:
   format: dynwrap
+authors:
+- given: Robrecht
+  family: Cannoodt
+  email: rcannood@gmail.com
+  ORCID: 0000-0003-3641-729X
+  github: rcannood
+- given: Wouter
+  family: Saelens
+  email: wouter.saelens@ugent.be
+  ORCID: 0000-0002-7114-6248
+  github: zouter

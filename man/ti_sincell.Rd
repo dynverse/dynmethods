@@ -79,7 +79,7 @@ Will generate a trajectory using \href{https://doi.org/10.1093/bioinformatics/bt
 \details{
 This methods was first wrapped inside R, see \link{ti_sincell}
 
-The original code of this method is available \href{https://github.com/Bioconductor-mirror/sincell}{here}.
+The original code of this method is available \href{https://github.com/Cortalak/MCA_Sincell_0}{here}.
 
 The method is described in: \href{https://doi.org/10.1093/bioinformatics/btv368}{Juliá, M., Telenti, A., Rausell, A., 2015. Sincell: an R/Bioconductor package for statistical assessment of cell-state hierarchies from single-cell RNA-seq: Fig. 1. Bioinformatics 31, 3380–3382.}
 }

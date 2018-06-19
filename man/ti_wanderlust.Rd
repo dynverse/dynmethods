@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_container.R
 \name{ti_wanderlust}
 \alias{ti_wanderlust}
-\title{Inferring a trajectory inference using \href{https://doi.org/10.1016/j.cell.2014.04.005}{wanderlust}}
+\title{Inferring a trajectory inference using \href{https://doi.org/10.1038/nbt.3569}{wanderlust}}
 \usage{
 ti_wanderlust(branch = FALSE, epsilon = 1L, k = 15L, knn = 15L,
   n_diffusion_components = 2L, n_pca_components = 15L, normalise = TRUE,
@@ -35,10 +35,10 @@ integer; default: 250L; possible values between 2 and 500}
 The trajectory model
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/10.1016/j.cell.2014.04.005}{wanderlust}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/wanderlust}{container}.
+Will generate a trajectory using \href{https://doi.org/10.1038/nbt.3569}{wanderlust}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/wanderlust}{container}.
 }
 \details{
-The original code of this method is available \href{https://www.c2b2.columbia.edu/danapeerlab/html/wanderlust.html}{here}.
+The original code of this method is available \href{https://github.com/ManuSetty/wishbone}{here}.
 
-The method is described in: \href{https://doi.org/10.1016/j.cell.2014.04.005}{Bendall, S.C., Davis, K.L., Amir, E.D., Tadmor, M.D., Simonds, E.F., Chen, T.J., Shenfeld, D.K., Nolan, G.P., Pe’er, D., 2014. Single-Cell Trajectory Detection Uncovers Progression and Regulatory Coordination in Human B Cell Development. Cell 157, 714–725.}
+The method is described in: \href{https://doi.org/10.1038/nbt.3569}{Setty, M., Tadmor, M.D., Reich-Zeliger, S., Angel, O., Salame, T.M., Kathail, P., Choi, K., Bendall, S., Friedman, N., Pe’er, D., 2016. Wishbone identifies bifurcating developmental trajectories from single-cell data. Nature Biotechnology 34, 637–645.}
 }

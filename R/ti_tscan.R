@@ -13,6 +13,27 @@ ti_tscan <- create_ti_method(
   short_name = "tscan",
   package_loaded = c(),
   package_required = c("TSCAN", "igraph"),
+  doi = "10.1093/nar/gkw430",
+  trajectory_types = c("linear", "bifurcation", "convergence", "multifurcation", "binary_tree", "tree"),
+  topology_inference = "free",
+  type = "algorithm",
+  license = "GPL (>=2)",
+  authors = list(
+    list(
+      given = "Zhicheng",
+      family = "Ji",
+      email = "zji4@jhu.edu",
+      github = "zji90"
+    ),
+    list(
+      given = "Hongkai",
+      family = "Ji",
+      email = "hji@jhu.edu"
+    )
+  ),
+  publication_date = "2016-05-13",
+  version = "1.7.0",
+  code_url = "https://github.com/zji90/TSCAN",
   parameters = list(
     minexpr_percent = list(type = "numeric", default = 0, upper = 1, lower = 0),
     minexpr_value = list(type = "numeric", default = 0, upper = 10, lower = 0),

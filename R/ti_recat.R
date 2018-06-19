@@ -17,6 +17,20 @@ ti_recat <- create_ti_method(
   short_name = "recat",
   package_loaded = c(),
   package_required = c("reCAT"),
+  doi = "10.1038/s41467-017-00039-z",
+  trajectory_types = "linear",
+  topology_inference = "fixed",
+  type = "algorithm",
+  authors = list(
+    list(
+      given = "Riu",
+      family = "Jian",
+      email = "ruijiang@gmail.com",
+      github = "louhzmaki"
+    )
+  ),
+  publication_date = "2017-06-19",
+  code_url = "https://github.com/tinglab/reCAT",
   parameters = list(
     TSPFold = list(
       type = "integer",

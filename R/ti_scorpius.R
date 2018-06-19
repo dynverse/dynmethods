@@ -7,9 +7,39 @@ abstract_scorpius_description <- function(short_name) {
   create_ti_method(
     name = name,
     short_name = short_name,
+    implementation_id = "scorpius",
     package_loaded = c(),
     package_required = c("SCORPIUS"),
-    list(
+    doi = "10.1101/079509",
+    trajectory_types = c("linear", "bifurcation", "convergence", "multifurcation"),
+    topology_inference = "fixed",
+    type = "algorithm",
+    license = "GPL-3",
+    authors = list(
+      list(
+        given = "Robrecht",
+        family = "Cannoodt",
+        email = "rcannood@gmail.com",
+        ORCID = "0000-0003-3641-729X",
+        github = "rcannood"
+      ),
+      list(
+        given = "Wouter",
+        family = "Saelens",
+        email = "wouter.saelens@ugent.be",
+        ORCID = "0000-0002-7114-6248",
+        github = "zouter"
+      ),
+      list(
+        given = "Yvan",
+        family = "Saeys",
+        email = "yvan.saeys@ugent.be"
+      )
+    ),
+    preprint_date = "2016-10-07",
+    version = "1.0",
+    code_url = "https://github.com/rcannood/SCORPIUS",
+    parameters = list(
       distance_method = list(
         type = "discrete",
         default = "spearman",
@@ -82,12 +112,16 @@ abstract_scorpius_description <- function(short_name) {
 #' @param distance_method A character string indicating which correlation
 #'  coefficient (or covariance) is to be computed. One of "pearson", "kendall", or "spearman".
 #'
-#' @rdname ti_scorpius
-#'
 #' @export
 ti_scorpius <- abstract_scorpius_description("scorpius")
 
-#' @rdname ti_scorpius
+#' @inheritParams SCORPIUS::correlation_distance
+#' @inheritParams SCORPIUS::reduce_dimensionality
+#' @inheritParams SCORPIUS::infer_trajectory
+#' @param sparse Whether or not to use sparse MDS dimensionality reduction,
+#'   for datasets with large amounts of cells.
+#' @param distance_method A character string indicating which correlation
+#'  coefficient (or covariance) is to be computed. One of "pearson", "kendall", or "spearman".
 #' @export
 ti_scorpius_sparse <- abstract_scorpius_description("scorpius_sparse")
 

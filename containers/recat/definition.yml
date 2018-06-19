@@ -1,5 +1,13 @@
 name: reCAT
 short_name: recat
+method_id: recat
+package_required: reCAT
+doi: 10.1038/s41467-017-00039-z
+trajectory_types: linear
+topology_inference: fixed
+type: algorithm
+publication_date: '2017-06-19'
+code_url: https://github.com/tinglab/reCAT
 parameters:
   TSPFold:
     type: integer
@@ -27,20 +35,20 @@ parameters:
     description: |-
       Determines the number of k to skip in your consensus path, ie if
       step_size = 2, then reCAT would only calculate and merge the paths for
-      k = 12, 14, 16, 18, …, n-2, n. We recommend step_size of up to a maximum of 5 while preserving the performance of reCAT. Usually a step_size of 2 (by default) would suffice and bigger steps are recommended for larger datasets (>1000 cells) in order to reduce computational time.
+      k = 12, 14, 16, 18, ..., n-2, n. We recommend step_size of up to a maximum of 5 while preserving the performance of reCAT. Usually a step_size of 2 (by default) would suffice and bigger steps are recommended for larger datasets (>1000 cells) in order to reduce computational time.
   base_cycle_range_start:
     type: integer
     default: 6.0
     upper: 7.0
     lower: 6.0
-    description: The minimal number of four k’s for computing the reference cycle
+    description: The minimal number of four k's for computing the reference cycle
       mentioned in the manuscript. Can be set to 6 or 7
   base_cycle_range_end:
     type: integer
     default: 9.0
     upper: 10.0
     lower: 9.0
-    description: The maximal number of four k’s for computing the reference cycle
+    description: The maximal number of four k's for computing the reference cycle
       mentioned in the manuscript. Can be set to 6 or 7
   max_num:
     type: integer
@@ -61,3 +69,8 @@ input:
   required: expression
 output:
   format: dynwrap
+authors:
+- given: Riu
+  family: Jian
+  email: ruijiang@gmail.com
+  github: louhzmaki
