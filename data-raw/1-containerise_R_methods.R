@@ -7,7 +7,7 @@ library(desc)
 
 write_file("", "R/ti_container.R")
 
-method_id <- "pseudogp"
+method_id <- "monocle_ddrtree"
 devtools::load_all()
 method <- get(paste0("ti_", method_id), asNamespace("dynmethods"))()
 
