@@ -1,11 +1,13 @@
 FROM rocker/tidyverse
 
+RUN echo 'utils::setRepositories(ind=1:4)' > ~/.Rprofile
+
 RUN R -e 'devtools::install_github("dynverse/dynwrap")'
 
 
 
-RUN R -e "setRepositories(ind=1:2);devtools::install_github('kieranrcampbell/mfa')"
-RUN R -e "setRepositories(ind=1:2);devtools::install_github('dynverse/dyndimred')"
+RUN R -e "devtools::install_github('kieranrcampbell/mfa')"
+RUN R -e "devtools::install_github('dynverse/dyndimred')"
 
 ADD . /code
 

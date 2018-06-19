@@ -59,3 +59,19 @@ output:
     - pseudotime
     - dimred
     - timings
+doi: 10.1038/nbt.3569
+trajectory_types: linear
+topology_inference: parameter
+type: algorithm
+license: GPL-2
+authors:
+  - given: Manu
+    family: Setty
+    email: ms5034@columbia.edu
+    github: ManuSetty
+  - given: Dana
+    family: Pe'er
+    email: dpeer@biology.columbia.edu
+publication_date: '2016-05-02'
+version: 0.4.2
+code_url: https://github.com/ManuSetty/wishbone

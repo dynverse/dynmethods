@@ -89,3 +89,19 @@ output:
     - cell_graph
     - dimred
     - timings
+doi: 10.1038/s41467-018-03214-y
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+type: algorithm
+authors:
+  - given: James J.
+    family: Collins
+    email: jimjc@mit.edu
+    github: edroaldo
+publication_date: '2018-03-01'
+code_url: https://github.com/edroaldo/cellrouter

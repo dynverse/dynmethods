@@ -9,7 +9,36 @@ abstract_scorpius_description <- function(short_name) {
     short_name = short_name,
     package_loaded = c(),
     package_required = c("SCORPIUS"),
-    list(
+    doi = "10.1101/079509",
+    trajectory_types = c("linear", "bifurcation", "convergence", "multifurcation"),
+    topology_inference = "fixed",
+    type = "algorithm",
+    license = "GPL-3",
+    authors = list(
+      list(
+        given = "Robrecht",
+        family = "Cannoodt",
+        email = "rcannood@gmail.com",
+        ORCID = "0000-0003-3641-729X",
+        github = "rcannood"
+      ),
+      list(
+        given = "Wouter",
+        family = "Saelens",
+        email = "wouter.saelens@ugent.be",
+        ORCID = "0000-0002-7114-6248",
+        github = "zouter"
+      ),
+      list(
+        given = "Yvan",
+        family = "Saeys",
+        email = "yvan.saeys@ugent.be"
+      )
+    ),
+    preprint_date = "2016-10-07",
+    version = "1.0",
+    code_url = "https://github.com/rcannood/SCORPIUS",
+    parameters = list(
       distance_method = list(
         type = "discrete",
         default = "spearman",

@@ -2,11 +2,11 @@
 
 library(tidyverse)
 library(googlesheets)
+devtools::load_all()
 
-load("data/methods_info.rda")
 load("data/methods_containerised.rda")
 
-# process all method wrappers
+# process all code of method wrappers
 methods_processed <- list.files("R", pattern = "ti_", full.names = T) %>%
   map_df(function(file) {
     file_text <- readr::read_lines(file)
@@ -28,9 +28,11 @@ methods_processed <- list.files("R", pattern = "ti_", full.names = T) %>%
   mutate(r_wrapped = r_wrapper_location != "R/ti_container.R") %>%
   ungroup()
 
-if (!all(methods_processed$method_id %in% methods_info$method_id)) {
-  stop("Not all methods found in google sheet: \n", setdiff(methods_processed$method_id, methods_info$method_id))
-}
+# now create every method and extract information
+methods_info <- map(methods_processed$fun_name, function(fun_name) {
+  method <- get(fun_name, asNamespace("dynmethods"))()
+  method %>% discard(is.function)
+}) %>% dynutils::list_as_tibble()
 
 methods <-
   full_join(
@@ -39,7 +41,7 @@ methods <-
     "method_id"
   ) %>%
   left_join(
-    methods_info %>% select(method_id, method_name, type, DOI, code_location),
+    methods_info,
     "method_id"
   )
 

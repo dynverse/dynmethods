@@ -8,9 +8,3 @@
 #'
 #' @docType data
 "methods"
-
-
-#' Metadata on the all TI methods, even those not wrapped within dynmethods
-#'
-#' @docType data
-"methods_info"

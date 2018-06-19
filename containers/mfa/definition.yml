@@ -1,5 +1,23 @@
 name: mfa
 short_name: mfa
+method_id: mfa
+package_required:
+- mfa
+- dyndimred
+doi: 10.12688/wellcomeopenres.11087.1
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+topology_inference: parameter
+type: algorithm
+license: GPL (>= 2)
+publication_date: '2017-03-15'
+version: 0.99.2
+code_url: https://github.com/kieranrcampbell/mfa
 parameters:
   b:
     type: integer
@@ -44,3 +62,13 @@ input:
   required: expression
 output:
   format: dynwrap
+authors:
+- given: Kieran
+  family: Campbell
+  email: kicampbell@bccrc.ca
+  github: kieranrcampbell
+- - given: Christopher
+    family: Yau
+    role: ~
+    email: cyau@well.ox.ac.uk
+    comment: ~

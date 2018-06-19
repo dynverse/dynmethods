@@ -1,5 +1,21 @@
 name: cellTree with maptpx
 short_name: celltree_maptpx
+method_id: celltree_maptpx
+package_required: cellTree
+apt_dependencies: libgsl-dev
+doi: 10.1186/s12859-016-1175-6
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+topology_inference: free
+type: algorithm
+license: Artistic-2.0
+publication_date: '2016-08-13'
+version: 1.10.0
 parameters:
   method:
     type: discrete
@@ -64,3 +80,12 @@ input:
   required: expression
 output:
   format: dynwrap
+authors:
+- given: David
+  family: duVerle
+  email: dave@cb.k.u-tokyo.ac.jp
+  role: aut
+- given: Koji
+  family: Tsuda
+  email: tsuda@k.u-tokyo.ac.jp
+  role: aut

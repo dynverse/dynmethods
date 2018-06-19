@@ -146,7 +146,6 @@ Collate:
     'ti_mpath.R'
     'ti_monocle.R'
     'ti_mfa.R'
-    'ti_manual.R'
     'ti_identity.R'
     'ti_gng.R'
     'ti_error.R'

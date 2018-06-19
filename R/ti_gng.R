@@ -14,6 +14,21 @@ ti_gng <- create_ti_method(
   short_name = "gng",
   package_loaded = c(),
   package_required = c("GNG", "igraph", "dyndimred"),
+  trajectory_types = c("linear", "bifurcation", "convergence", "multifurcation", "binary_tree", "tree"),
+  topology_inference = "free",
+  type = "algorithm_test",
+  license = "GPL-3",
+  authors = c(
+    list(
+      given = "Robrecht",
+      family = "Cannoodt",
+      email = "rcannood@gmail.com",
+      ORCID = "0000-0003-3641-729X",
+      github = "rcannood"
+    )
+  ),
+  version = "0.1.0",
+  code_url = "https://github.com/rcannood/GNG",
   parameters = list(
     dimred = list(
       type = "discrete",

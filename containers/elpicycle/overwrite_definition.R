@@ -1,7 +1,7 @@
 library(yaml)
 
 definition <- read_yaml("/code/definition.yml")
-definition$name = "elpilinear"
+definition$name = "elpicycle"
 definition$parameters$topology$default <- "cycle"
 definition$parameters$topology$values <- "cycle"
 definition$input$optional <- NULL

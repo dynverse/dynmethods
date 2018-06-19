@@ -18,6 +18,21 @@ ti_scoup <- create_ti_method(
   short_name = "scoup",
   package_required = c("SCOUP"),
   package_loaded = c(),
+  doi = "10.1186/s12859-016-1109-3",
+  trajectory_types = "linear",
+  topology_inference = "parameter",
+  type = "algorithm",
+  license = "MIT",
+  authors = list(
+    list(
+      given = "Hirotaka",
+      family = "Matsumoto",
+      email = "hirotaka.matsumoto@riken.jp",
+      github = "hmatsu1226"
+    )
+  ),
+  publication_date = "2016-06-08",
+  code_url = "https://github.com/gcyuan/PySCUBA",
   parameters = list(
     ndim = list(
       type = "integer",

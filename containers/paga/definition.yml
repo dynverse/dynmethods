@@ -30,3 +30,25 @@ output:
     - cluster_graph
     - dimred
     - timings
+doi: 10.1101/208819
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+topology_inference: free
+type: algorithm
+authors:
+- given: Alex
+  family: Wolf
+  email: alex.wolf@helmholtz-muenchen.de
+  github: falexwolf
+- given: Fabian
+  family: Theis
+  email: fabian.theis@helmholtz-muenchen.de
+  github: theislab
+preprint_date: '2017-10-27'
+version: 1.2.1
+code_url: https://github.com/theislab/graph_abstraction

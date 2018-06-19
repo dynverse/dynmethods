@@ -41,3 +41,22 @@ output:
     - linear_trajectory
     - dimred
     - timings
+doi: 10.1101/057778
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+topology_inference: fixed
+type: algorithm
+license: BSD-3-clause
+authors:
+  - given: Max
+    family: Zwiessele
+    email: ibinbei@gmail.com
+    github: mzwiessele
+preprint_date: '2017-02-13'
+version: 1.0.0
+code_url: https://github.com/mzwiessele/topslam

@@ -14,6 +14,27 @@ ti_embeddr <- create_ti_method(
   short_name = "embeddr",
   package_loaded = c(),
   package_required = c("scaterlegacy", "embeddr"),
+  doi = "10.1101/027219",
+  trajectory_types = c("bifurcation", "convergence"),
+  topology_inference = "fixed",
+  type = "algorithm",
+  license = "GPL-3",
+  authors = list(
+    list(
+      given = "Kieran",
+      family = "Campbell",
+      email = "kicampbell@bccrc.ca",
+      github = "kieranrcampbell"
+    ),
+    list(
+      given = "Calb",
+      list = "Webber",
+      email = "caleb.webber@dpag.ox.ac.uk"
+    )
+  ),
+  preprint_date = "2015-09-18",
+  version = "0.99.0",
+  code_url = "https://github.com/kieranrcampbell/embeddr",
   parameters = list(
     ndim = list(
       type = "integer",

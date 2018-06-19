@@ -1,5 +1,25 @@
 name: Sincell
 short_name: sincell
+method_id: sincell
+package_required: sincell
+doi: 10.1093/bioinformatics/btv368
+trajectory_types:
+- cycle
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+- acyclic_graph
+- graph
+- disconnected_graph
+topology_inference: free
+type: algorithm
+license: GPL (>= 2)
+preprint_date: '2015-01-27'
+publication_date: '2015-06-22'
+code_url: https://github.com/Cortalak/MCA_Sincell_0
 parameters:
   distance_method:
     type: discrete
@@ -144,3 +164,11 @@ input:
   required: expression
 output:
   format: dynwrap
+authors:
+- given: Antonio
+  family: Rausell
+  email: antonio.rausell@institutimagine.org
+  github: Cortalak
+- given: Miguel
+  family: Julia
+  email: migueljuliamolina@gmail.com

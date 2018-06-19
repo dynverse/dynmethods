@@ -120,3 +120,30 @@ output:
   outputs:
     - dimred
     - trajectory
+doi: 10.1101/261768
+trajectory_types:
+- cycle
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+- acyclic_graph
+- graph
+- disconnected_graph
+topology_inference: free
+type: algorithm
+license: GPL-3
+authors:
+  - given: Gonzalo
+    family: Parray
+    email: parra.gonzalo@gmail.com
+    github: gonzaparra
+  - given: Johannes
+    family: Soeding
+    email: soeding@mpibpc.mpg.de
+    github: soedinglab
+preprint_date: '2018-02-08'
+version: 0.1.0
+code_url: https://github.com/soedinglab/merlot

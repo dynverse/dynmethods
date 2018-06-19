@@ -1,5 +1,22 @@
 name: ouija
 short_name: ouija
+method_id: ouija
+package_loaded: coda
+package_required:
+- ouija
+- rstan
+doi: 10.1101/060442
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+topology_inference: fixed
+type: algorithm
+license: GPL (>=3)
+preprint_date: '2016-06-23'
+version: 0.99.0
+code_url: https://github.com/kieranrcampbell/ouija
 parameters:
   iter:
     type: numeric
@@ -45,3 +62,11 @@ input:
   - features_id
 output:
   format: dynwrap
+authors:
+- given: Kieran
+  family: Campbell
+  email: kicampbell@bccrc.ca
+  github: kieranrcampbell
+- given: Christopher
+  family: Yau
+  email: cyau@well.ox.ac.uk

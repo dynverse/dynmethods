@@ -1,5 +1,19 @@
 name: Embeddr
 short_name: embeddr
+method_id: embeddr
+package_required:
+- scaterlegacy
+- embeddr
+doi: 10.1101/027219
+trajectory_types:
+- bifurcation
+- convergence
+topology_inference: fixed
+type: algorithm
+license: GPL-3
+preprint_date: '2015-09-18'
+version: 0.99.0
+code_url: https://github.com/kieranrcampbell/embeddr
 parameters:
   ndim:
     type: integer
@@ -115,3 +129,11 @@ input:
   required: counts
 output:
   format: dynwrap
+authors:
+- given: Kieran
+  family: Campbell
+  email: kicampbell@bccrc.ca
+  github: kieranrcampbell
+- given: Calb
+  list: Webber
+  email: caleb.webber@dpag.ox.ac.uk

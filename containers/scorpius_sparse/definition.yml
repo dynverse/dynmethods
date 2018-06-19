@@ -1,6 +1,6 @@
-name: SCORPIUS
-short_name: scorpius
-method_id: scorpius
+name: SCORPIUS sparse
+short_name: scorpius_sparse
+method_id: scorpius_sparse
 package_required: SCORPIUS
 doi: 10.1101/079509
 trajectory_types:
@@ -70,7 +70,7 @@ parameters:
     description: '\code{\link[princurve]{principal.curve}} parameter: choice of smoother'
   sparse:
     type: logical
-    default: no
+    default: yes
     description: |-
       Whether or not to use sparse MDS dimensionality reduction,
       for datasets with large amounts of cells.

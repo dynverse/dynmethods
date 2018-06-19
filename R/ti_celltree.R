@@ -121,7 +121,28 @@ abstract_celltree_description <- function(method) {
     parameters = parameters,
     run_fun = "dynmethods::run_celltree",
     plot_fun = "dynmethods::plot_celltree",
-    apt_dependencies = "libgsl-dev"
+    apt_dependencies = "libgsl-dev",
+    doi = "10.1186/s12859-016-1175-6",
+    trajectory_types = c("linear", "bifurcation", "convergence", "multifurcation", "binary_tree", "tree"),
+    topology_inference = "free",
+    type = "algorithm",
+    license = "Artistic-2.0",
+    authors = list(
+      list(
+        given = "David",
+        family = "duVerle",
+        email = "dave@cb.k.u-tokyo.ac.jp",
+        role = "aut"
+      ),
+      list(
+        given = "Koji",
+        family = "Tsuda",
+        email = "tsuda@k.u-tokyo.ac.jp",
+        role = "aut"
+      )
+    ),
+    publication_date = "2016-08-13",
+    version = "1.10.0"
   )
 }
 

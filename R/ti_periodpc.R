@@ -13,9 +13,38 @@ ti_periodpc <- create_ti_method(
   short_name = "periodpc",
   package_loaded = c("stats", "princurve"),
   package_required = c(),
-  par_set = makeParamSet(
-    makeIntegerParam(id = "ndim", default = 3L, lower = 2L, upper = 10L),
-    makeIntegerParam(id = "maxit", default = 10L, lower = 0L, upper = 100L)
+  trajectory_types = c("cycle", "linear", "bifurcation", "convergence", "multifurcation", "binary_tree", "tree", "acyclic_graph", "graph", "disconnected_graph"),
+  topology_inference = "fixed",
+  type = "algorithm_test",
+  authors = list(
+    list(
+      given = "Robrecht",
+      family = "Cannoodt",
+      email = "rcannood@gmail.com",
+      ORCID = "0000-0003-3641-729X",
+      github = "rcannood"
+    ),
+    list(
+      given = "Wouter",
+      family = "Saelens",
+      email = "wouter.saelens@ugent.be",
+      ORCID = "0000-0002-7114-6248",
+      github = "zouter"
+    )
+  ),
+  parameters = list(
+    ndim = list(
+      type = "integer",
+      default = 3,
+      lower = 2,
+      upper = 10
+    ),
+    maxit = list(
+      type = "integer",
+      default = 10,
+      lower = 0,
+      upper = 100
+    )
   ),
   run_fun = "dynmethods::run_periodpc",
   plot_fun = "dynmethods::plot_periodpc"

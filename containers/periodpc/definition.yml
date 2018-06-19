@@ -1,0 +1,46 @@
+name: Periodic PrinCurve
+short_name: periodpc
+method_id: periodpc
+package_loaded:
+- stats
+- princurve
+trajectory_types:
+- cycle
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+- acyclic_graph
+- graph
+- disconnected_graph
+topology_inference: fixed
+type: algorithm_test
+parameters:
+  ndim:
+    type: integer
+    default: 3.0
+    lower: 2.0
+    upper: 10.0
+  maxit:
+    type: integer
+    default: 10.0
+    lower: 0.0e+00
+    upper: 100.0
+input:
+  format: rds
+  required: expression
+output:
+  format: dynwrap
+authors:
+- given: Robrecht
+  family: Cannoodt
+  email: rcannood@gmail.com
+  ORCID: 0000-0003-3641-729X
+  github: rcannood
+- given: Wouter
+  family: Saelens
+  email: wouter.saelens@ugent.be
+  ORCID: 0000-0002-7114-6248
+  github: zouter

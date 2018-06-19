@@ -17,6 +17,27 @@ ti_sincell <- create_ti_method(
   short_name = "sincell",
   package_loaded = c(),
   package_required = c("sincell"),
+  doi = "10.1093/bioinformatics/btv368",
+  trajectory_types = c("cycle", "linear", "bifurcation", "convergence", "multifurcation", "binary_tree", "tree", "acyclic_graph", "graph", "disconnected_graph"),
+  topology_inference = "free",
+  type = "algorithm",
+  license = "GPL (>= 2)",
+  authors = list(
+    list(
+      given = "Antonio",
+      family = "Rausell",
+      email = "antonio.rausell@institutimagine.org",
+      github = "Cortalak"
+    ),
+    list(
+      given = "Miguel",
+      family = "Julia",
+      email = "migueljuliamolina@gmail.com"
+    )
+  ),
+  preprint_date = "2015-01-27",
+  publication_date = "2015-06-22",
+  code_url = "https://github.com/Cortalak/MCA_Sincell_0",
   parameters = list(
     distance_method = list(
       type = "discrete",

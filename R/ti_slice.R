@@ -11,6 +11,25 @@ ti_slice <- create_ti_method(
   short_name = "slice",
   package_loaded = c(),
   package_required = c("SLICE", "igraph"),
+  doi = "10.1093/nar/gkw1278",
+  trajectory_types = c("linear", "bifurcation", "convergence", "multifurcation", "binary_tree", "tree"),
+  topology_inference = "free",
+  type = "algorithm",
+  license = "GPL-3",
+  authors = list(
+    list(
+      given = "Yan",
+      family = "Xu",
+      email = "yan.xu@cchmc.org"
+    ),
+    list(
+      given = "Minzhe",
+      family = "Guo",
+      email = "minzhe.guo@cchmc.org"
+    )
+  ),
+  publication_date = "2016-12-19",
+  code_url = "https://research.cchmc.org/pbge/slice.html",
   parameters = list(
     lm.method = list(
       type = "discrete",

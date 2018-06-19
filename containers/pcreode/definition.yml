@@ -35,3 +35,19 @@ output:
   outputs:
     - dimred_projection
     - timings
+doi: 10.1016/j.cels.2017.10.012
+trajectory_types: cycle
+topology_inference: free
+type: algorithm
+authors:
+  - given: Charles A.
+    family: Herring
+    email: charles.a.herring@vanderbilt.edu
+    github: herrinca
+  - given: Ken S.
+    family: Lau
+    email: ken.s.lau@vanderbilt.edu
+    github: KenLauLab
+publication_date: '2017-11-15'
+version: 1.5.0
+code_url: https://github.com/KenLauLab/pCreode

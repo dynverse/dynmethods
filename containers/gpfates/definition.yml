@@ -30,3 +30,20 @@ output:
     - pseudotime
     - dimred
     - timings
+doi: 10.1126/sciimmunol.aal2192
+trajectory_types: cycle
+topology_inference: parameter
+type: algorithm
+license: MIT
+authors:
+  - given: Valentine
+    family: Svensson
+    email: valentine@nxn.se
+    github: vals
+  - given: Sarah A.
+    family: Teichmann
+    email: st9@sanger.ac.uk
+    github: Teichlab
+publication_date: '2017-03-03'
+version: 1.0.0
+code_url: https://github.com/Teichlab/GPfates

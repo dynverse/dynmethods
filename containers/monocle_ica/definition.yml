@@ -1,5 +1,20 @@
 name: Monocle ICA
 short_name: monocle_ica
+method_id: monocle_ica
+package_loaded: monocle
+package_required:
+- BiocGenerics
+- igraph
+- Biobase
+doi: 10.1038/nmeth.4402
+trajectory_types: linear
+topology_inference: free
+type: algorithm
+license: Artistic-2.0
+preprint_date: '2017-02-21'
+publication_date: '2017-07-20'
+version: 2.9.0
+code_url: https://github.com/cole-trapnell-lab/monocle-release
 parameters:
   reduction_method:
     type: discrete
@@ -27,3 +42,12 @@ input:
   required: counts
 output:
   format: dynwrap
+authors:
+- given: Xiaojie
+  family: Qiu
+  email: xqiu@uw.edu
+  github: Xiaojieqiu
+- given: Cole
+  family: Trapnell
+  email: coletrap@uw.edu
+  github: ctrapnell

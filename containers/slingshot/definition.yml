@@ -1,5 +1,27 @@
 name: Slingshot
 short_name: slingshot
+method_id: slingshot
+package_required:
+- slingshot
+- dyndimred
+doi: 10.1101/128843
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+topology_inference: free
+type: algorithm
+license: Artistic-2.0
+preprint_date: '2017-04-19'
+version: 0.99.8
+code_url: https://github.com/kstreet13/slingshot
+apt_dependencies:
+- libcgal-dev
+- libglu1-mesa-dev
+- libglu1-mesa-dev
 parameters:
   ndim:
     type: integer
@@ -95,3 +117,13 @@ input:
   required: counts
 output:
   format: dynwrap
+authors:
+- given: Kelly
+  family: Street
+  email: street.kelly@gmail.com
+  github: kstreet13
+- - given: Sandrine
+    family: Dudoit
+    role: ~
+    email: sandrine@stat.berkeley.edu
+    comment: ~

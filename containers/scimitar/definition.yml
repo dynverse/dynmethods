@@ -37,3 +37,22 @@ output:
   outputs:
     - linear_trajectory
     - timings
+doi: 10.1142/9789813207813_0053
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+topology_inference: fixed
+type: algorithm
+authors:
+  - given: Josh
+    family: Stuart
+    email: stuart@soe.ucsc.edu
+    github: dimenwarper
+preprint_date: '2016-10-04'
+publication_date: '2017-01-04'
+version: '0.1'
+code_url: https://github.com/dimenwarper/scimitar

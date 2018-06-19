@@ -9,6 +9,25 @@ ti_stemid <- create_ti_method(
   short_name = "stemid",
   package_loaded = c(),
   package_required = c("StemID"),
+  doi = "10.1016/j.stem.2016.05.010",
+  trajectory_types = c("linear", "bifurcation", "convergence", "multifurcation"),
+  topology_inference = "free",
+  type = "algorithm",
+  authors = list(
+    list(
+      given = "Dominic",
+      family = "Grün",
+      email = "gruen@ie-freibug.mpg.de",
+      github = "dgrun"
+    ),
+    list(
+      given = "Alexander",
+      family = "van Oudenaarden",
+      email = "a.vanoudenaarden@hubrecht.eu"
+    )
+  ),
+  publication_date = "2016-06-21",
+  code_url = "https://github.com/dgrun/StemID",
   parameters = list(
     clustnr = list(
       type = "integer",

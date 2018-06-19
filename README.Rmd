@@ -47,7 +47,7 @@ df <- methods %>%
     ),
     `Docker container` = ifelse(
       containerised, 
-      glue::glue("✓ ([code]({docker_url}), [dockerhub]({dockerhub_location}))"), 
+      glue::glue("✓ ([code]({docker_url}), [dockerhub]({dockerhub_url}))"), 
       ""
     )
   )

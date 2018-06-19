@@ -4,7 +4,7 @@ library(readr)
 library(dplyr)
 library(purrr)
 
-library(Waterfall)
+library()
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
@@ -15,16 +15,24 @@ params <- jsonlite::read_json('/input/params.json')
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
 
-run_fun <- function (expression, num_clusters = 10) 
+run_fun <- function (expression, ndim = 3, maxit = 10) 
 {
-    requireNamespace("Waterfall")
+    requireNamespace("stats")
+    requireNamespace("princurve")
     tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
-    ps <- Waterfall::pseudotimeprog.foo(t(expression), k = num_clusters)
+    dimred <- dimred(expression, method = "pca", ndim = ndim)
+    fit <- princurve::principal.curve(dimred, smoother = "periodic.lowess", 
+        maxit = maxit)
+    pseudotime <- fit$lambda %>% magrittr::set_names(rownames(expression))
+    path <- fit$s[fit$tag, , drop = FALSE]
+    dimred_trajectory_segments <- cbind(path, path[c(seq(2, nrow(path)), 
+        1), , drop = F]) %>% magrittr::set_colnames(c(paste0("from_", 
+        colnames(path)), paste0("to_", colnames(path))))
     tl <- tl %>% add_timing_checkpoint("method_aftermethod")
     wrap_prediction_model(cell_ids = rownames(expression)) %>% 
-        add_linear_trajectory(pseudotime = ps$pseudotime %>% 
-            setNames(rownames(expression)), ps = ps) %>% add_timings(timings = tl %>% 
-        add_timing_checkpoint("method_afterpostproc"))
+        add_cyclic_trajectory(pseudotime = pseudotime) %>% add_dimred(dimred = dimred, 
+        dimred_trajectory_segments = dimred_trajectory_segments) %>% 
+        add_timings(timings = tl %>% add_timing_checkpoint("method_afterpostproc"))
 }
 
 args <- params[intersect(names(params), names(formals(run_fun)))]

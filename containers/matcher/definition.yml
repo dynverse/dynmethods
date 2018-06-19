@@ -22,3 +22,25 @@ output:
   outputs:
     - linear_trajectory
     - timings
+doi: 10.1186/s13059-017-1269-0
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+topology_inference: fixed
+type: algorithm
+license: MIT
+authors:
+  - given: Joshua
+    family: Welch
+    email: jwelch@cs.unc.edu
+    github: jw156605
+  - given: Jan
+    family: Prins
+    email: prins@cs.unc.edu
+publication_date: '2017-06-24'
+version: 0.0.0
+code_url: https://github.com/jw156605/MATCHER

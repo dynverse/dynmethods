@@ -1,5 +1,23 @@
 name: TSCAN
 short_name: tscan
+method_id: tscan
+package_required:
+- TSCAN
+- igraph
+doi: 10.1093/nar/gkw430
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+topology_inference: free
+type: algorithm
+license: GPL (>=2)
+publication_date: '2016-05-13'
+version: 1.7.0
+code_url: https://github.com/zji90/TSCAN
 parameters:
   minexpr_percent:
     type: numeric
@@ -50,3 +68,11 @@ input:
   required: counts
 output:
   format: dynwrap
+authors:
+- given: Zhicheng
+  family: Ji
+  email: zji4@jhu.edu
+  github: zji90
+- given: Hongkai
+  family: Ji
+  email: hji@jhu.edu

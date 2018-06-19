@@ -3,14 +3,11 @@
 
 library(tidyverse)
 library(dynwrap)
-library(googlesheets)
 library(desc)
-
-load("data/methods_info.rda")
 
 write_file("", "R/ti_container.R")
 
-method_id <- "monocle_ddrtree"
+method_id <- "periodpc"
 devtools::load_all()
 method <- get(paste0("ti_", method_id), asNamespace("dynmethods"))()
 
@@ -20,17 +17,24 @@ get_definition <- function(method) {
     stop(method$short_name, " does not have a list of parameters!")
   }
 
-  definition <- list(
-    name = method$name,
-    short_name = method$short_name,
-    parameters = method$parameters,
-    input = list(
-      format = "rds"
-    ),
-    output = list(
-      format = "dynwrap"
+  definition <- method %>% keep(~is.numeric(.) || is.character(.))
+
+  definition <- c(
+    definition,
+    list(
+      parameters = method$parameters,
+      input = list(
+        format = "rds"
+      ),
+      output = list(
+        format = "dynwrap"
+      )
     )
   )
+
+  if (!is.null(method$authors)) {
+    definition$authors <- method$authors
+  }
 
   optional_inputs <- method$inputs %>% filter(!required, type != "parameter") %>% pull(input_id)
   if (length(optional_inputs) > 0) {definition$input$optional <- optional_inputs}
@@ -123,4 +127,4 @@ get_definition(method) %>% yaml::write_yaml(file.path(folder, "definition.yml"))
 get_dockerfile(method) %>% write_file(file.path(folder, "Dockerfile"))
 get_runr(method) %>% write_file(file.path(folder, "run.R"))
 
-# system(glue::glue("docker build containers/{method_id} -t dynverse/{method_id}"))
+system(glue::glue("docker build containers/{method_id} -t dynverse/{method_id}"))

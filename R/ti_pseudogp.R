@@ -14,6 +14,28 @@ ti_pseudogp <- create_ti_method(
   short_name = "pseudogp",
   package_loaded = c("pseudogp"),
   package_required = c("rstan", "coda", "MCMCglmm", "dyndimred"),
+  doi = "10.1371/journal.pcbi.1005212",
+  trajectory_types = "linear",
+  topology_inference = "fixed",
+  type = "algorithm",
+  license = "MIT",
+  authors = list(
+    list(
+      given = "Kieran",
+      family = "Campbell",
+      email = "kicampbell@bccrc.ca",
+      github = "kieranrcampbell"
+    ),
+    list(
+      given = "Christopher",
+      family = "Yau",
+      email = "cyau@well.ox.ac.uk"
+    )
+  ),
+  preprint_date = "2016-04-05",
+  publication_date = "2016-11-21",
+  version = "0.1",
+  code_url = "https://github.com/kieranrcampbell/pseudogp",
   parameters = list(
     smoothing_alpha = list(
       type = "numeric",
