@@ -1,6 +1,5 @@
 name: mfa
 short_name: mfa
-method_id: mfa
 package_required:
 - mfa
 - dyndimred
@@ -18,6 +17,7 @@ license: GPL (>= 2)
 publication_date: '2017-03-15'
 version: 0.99.2
 code_url: https://github.com/kieranrcampbell/mfa
+method_id: mfa
 parameters:
   b:
     type: integer
@@ -67,8 +67,6 @@ authors:
   family: Campbell
   email: kicampbell@bccrc.ca
   github: kieranrcampbell
-- - given: Christopher
-    family: Yau
-    role: ~
-    email: cyau@well.ox.ac.uk
-    comment: ~
+- given: Christopher
+  family: Yau
+  email: cyau@well.ox.ac.uk

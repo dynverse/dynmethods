@@ -32,7 +32,7 @@ ti_slingshot <- create_ti_method(
       email = "street.kelly@gmail.com",
       github = "kstreet13"
     ),
-    person(
+    list(
       given = "Sandrine",
       family = "Dudoit",
       email = "sandrine@stat.berkeley.edu"

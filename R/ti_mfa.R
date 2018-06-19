@@ -24,7 +24,7 @@ ti_mfa <- create_ti_method(
       email = "kicampbell@bccrc.ca",
       github = "kieranrcampbell"
     ),
-    person(
+    list(
       given = "Christopher",
       family = "Yau",
       email = "cyau@well.ox.ac.uk"

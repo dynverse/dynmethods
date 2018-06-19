@@ -28,7 +28,7 @@ ti_embeddr <- create_ti_method(
     ),
     list(
       given = "Calb",
-      list = "Webber",
+      family = "Webber",
       email = "caleb.webber@dpag.ox.ac.uk"
     )
   ),

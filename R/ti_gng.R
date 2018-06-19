@@ -18,7 +18,7 @@ ti_gng <- create_ti_method(
   topology_inference = "free",
   type = "algorithm_test",
   license = "GPL-3",
-  authors = c(
+  authors = list(
     list(
       given = "Robrecht",
       family = "Cannoodt",

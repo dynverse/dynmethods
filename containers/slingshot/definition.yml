@@ -1,6 +1,5 @@
 name: Slingshot
 short_name: slingshot
-method_id: slingshot
 package_required:
 - slingshot
 - dyndimred
@@ -22,6 +21,7 @@ apt_dependencies:
 - libcgal-dev
 - libglu1-mesa-dev
 - libglu1-mesa-dev
+method_id: slingshot
 parameters:
   ndim:
     type: integer
@@ -122,8 +122,6 @@ authors:
   family: Street
   email: street.kelly@gmail.com
   github: kstreet13
-- - given: Sandrine
-    family: Dudoit
-    role: ~
-    email: sandrine@stat.berkeley.edu
-    comment: ~
+- given: Sandrine
+  family: Dudoit
+  email: sandrine@stat.berkeley.edu

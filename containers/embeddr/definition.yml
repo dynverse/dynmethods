@@ -1,6 +1,5 @@
 name: Embeddr
 short_name: embeddr
-method_id: embeddr
 package_required:
 - scaterlegacy
 - embeddr
@@ -14,6 +13,7 @@ license: GPL-3
 preprint_date: '2015-09-18'
 version: 0.99.0
 code_url: https://github.com/kieranrcampbell/embeddr
+method_id: embeddr
 parameters:
   ndim:
     type: integer
@@ -135,5 +135,5 @@ authors:
   email: kicampbell@bccrc.ca
   github: kieranrcampbell
 - given: Calb
-  list: Webber
+  family: Webber
   email: caleb.webber@dpag.ox.ac.uk
