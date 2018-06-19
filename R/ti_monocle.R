@@ -74,7 +74,8 @@ abstract_monocle_description <- function(short_name) {
         given = "Cole",
         family = "Trapnell",
         email = "coletrap@uw.edu",
-        github = "ctrapnell"
+        github = "ctrapnell",
+        ORCID = "0000-0002-8105-4347"
       )
     ),
     preprint_date = "2017-02-21",

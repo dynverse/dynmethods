@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_container.R
 \name{ti_paga}
 \alias{ti_paga}
-\title{Inferring a trajectory inference using \href{https://doi.org/10.1101/208819}{paga}}
+\title{Inferring a trajectory inference using \href{https://doi.org/10.1101/208819}{PAGA}}
 \usage{
 ti_paga(n_neighbors = 30L, n_comps = 50L, resolution = 2.5)
 }
@@ -20,7 +20,7 @@ numeric; default: 2.5; possible values between 0.1 and 10}
 The trajectory model
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/10.1101/208819}{paga}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/paga}{container}.
+Will generate a trajectory using \href{https://doi.org/10.1101/208819}{PAGA}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/paga}{container}.
 }
 \details{
 The original code of this method is available \href{https://github.com/theislab/graph_abstraction}{here}.

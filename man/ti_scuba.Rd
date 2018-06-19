@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_container.R
 \name{ti_scuba}
 \alias{ti_scuba}
-\title{Inferring a trajectory inference using \href{https://doi.org/10.1073/pnas.1408993111}{scuba}}
+\title{Inferring a trajectory inference using \href{https://doi.org/10.1073/pnas.1408993111}{SCUBA}}
 \usage{
 ti_scuba(rigorous_gap_stats = TRUE, N_dim = 2L, low_gene_threshold = 1L,
   low_gene_fraction_max = 0.7, min_split = 15L,
@@ -30,7 +30,7 @@ numeric; default: 0.25; possible values between 0 and 1}
 The trajectory model
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/10.1073/pnas.1408993111}{scuba}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/scuba}{container}.
+Will generate a trajectory using \href{https://doi.org/10.1073/pnas.1408993111}{SCUBA}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/scuba}{container}.
 }
 \details{
 The original code of this method is available \href{https://github.com/gcyuan/SCUBA}{here}.

@@ -1,6 +1,5 @@
 name: ouija
 short_name: ouija
-method_id: ouija
 package_loaded: coda
 package_required:
 - ouija
@@ -17,6 +16,7 @@ license: GPL (>=3)
 preprint_date: '2016-06-23'
 version: 0.99.0
 code_url: https://github.com/kieranrcampbell/ouija
+method_id: ouija
 parameters:
   iter:
     type: numeric
@@ -70,3 +70,4 @@ authors:
 - given: Christopher
   family: Yau
   email: cyau@well.ox.ac.uk
+  ORCID: 0000-0001-7615-8523

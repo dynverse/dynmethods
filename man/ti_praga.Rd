@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_container.R
 \name{ti_praga}
 \alias{ti_praga}
-\title{Inferring a trajectory inference using \href{https://doi.org/10.1101/208819}{praga}}
+\title{Inferring a trajectory inference using \href{https://doi.org/10.1101/208819}{projected PAGA}}
 \usage{
 ti_praga(n_comps = 50L, n_neighbors = 30L, resolution = 2.5)
 }
@@ -20,7 +20,7 @@ numeric; default: 2.5; possible values between 0.1 and 10}
 The trajectory model
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/10.1101/208819}{praga}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/praga}{container}.
+Will generate a trajectory using \href{https://doi.org/10.1101/208819}{projected PAGA}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/praga}{container}.
 }
 \details{
 The original code of this method is available \href{https://github.com/theislab/graph_abstraction}{here}.

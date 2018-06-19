@@ -1,6 +1,5 @@
 name: pseudogp
 short_name: pseudogp
-method_id: pseudogp
 package_loaded: pseudogp
 package_required:
 - rstan
@@ -16,6 +15,7 @@ preprint_date: '2016-04-05'
 publication_date: '2016-11-21'
 version: '0.1'
 code_url: https://github.com/kieranrcampbell/pseudogp
+method_id: pseudogp
 parameters:
   smoothing_alpha:
     type: numeric
@@ -95,3 +95,4 @@ authors:
 - given: Christopher
   family: Yau
   email: cyau@well.ox.ac.uk
+  ORCID: 0000-0001-7615-8523

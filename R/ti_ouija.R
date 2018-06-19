@@ -28,7 +28,8 @@ ti_ouija <- create_ti_method(
     list(
       given = "Christopher",
       family = "Yau",
-      email = "cyau@well.ox.ac.uk"
+      email = "cyau@well.ox.ac.uk",
+      ORCID = "0000-0001-7615-8523"
     )
   ),
   preprint_date = "2016-06-23",
