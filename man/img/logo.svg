@@ -15,7 +15,10 @@
    version="1.1"
    id="svg2135"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="logo.svg">
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="/home/wouters/thesis/projects/dynverse/dynmethods/man/img/logo.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs2129">
     <marker
@@ -57,8 +60,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
-     inkscape:cx="36.279254"
-     inkscape:cy="18.762287"
+     inkscape:cx="-15.238525"
+     inkscape:cy="17.752134"
      inkscape:document-units="mm"
      inkscape:current-layer="sub_methods-3"
      showgrid="false"
@@ -79,7 +82,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
