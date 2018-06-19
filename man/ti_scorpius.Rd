@@ -2,17 +2,12 @@
 % Please edit documentation in R/ti_scorpius.R, R/ti_container.R
 \name{ti_scorpius}
 \alias{ti_scorpius}
-\alias{ti_scorpius_sparse}
 \alias{ti_scorpius}
 \title{Inferring trajectories with SCORPIUS}
 \usage{
 ti_scorpius(docker = TRUE, distance_method = "spearman", ndim = 3,
   k = 4, thresh = 0.001, maxit = 10, stretch = 0,
   smoother = "smooth.spline", sparse = FALSE)
-
-ti_scorpius_sparse(docker = TRUE, distance_method = "spearman", ndim = 3,
-  k = 4, thresh = 0.001, maxit = 10, stretch = 0,
-  smoother = "smooth.spline", sparse = TRUE)
 
 ti_scorpius(docker = TRUE, distance_method = "spearman", ndim = 3,
   k = 4, thresh = 0.001, maxit = 10, stretch = 0,

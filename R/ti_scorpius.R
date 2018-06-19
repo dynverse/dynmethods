@@ -111,12 +111,16 @@ abstract_scorpius_description <- function(short_name) {
 #' @param distance_method A character string indicating which correlation
 #'  coefficient (or covariance) is to be computed. One of "pearson", "kendall", or "spearman".
 #'
-#' @rdname ti_scorpius
-#'
 #' @export
 ti_scorpius <- abstract_scorpius_description("scorpius")
 
-#' @rdname ti_scorpius
+#' @inheritParams SCORPIUS::correlation_distance
+#' @inheritParams SCORPIUS::reduce_dimensionality
+#' @inheritParams SCORPIUS::infer_trajectory
+#' @param sparse Whether or not to use sparse MDS dimensionality reduction,
+#'   for datasets with large amounts of cells.
+#' @param distance_method A character string indicating which correlation
+#'  coefficient (or covariance) is to be computed. One of "pearson", "kendall", or "spearman".
 #' @export
 ti_scorpius_sparse <- abstract_scorpius_description("scorpius_sparse")
 

@@ -36,7 +36,7 @@ ti_stemid2 <- create_ti_method(
   authors = list(
     list(
       given = "Dominic",
-      family = "Grün",
+      family = "Gr\u00fcn",
       email = "gruen@ie-freibug.mpg.de",
       github = "dgrun"
     ),
