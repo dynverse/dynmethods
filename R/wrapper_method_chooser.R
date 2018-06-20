@@ -6,9 +6,9 @@ create_ti_method_chooser <- function(method, docker_container) {
   # create function
   func <- function(docker = TRUE) {
     if(docker) {
-      invoke(create_docker_ti_method(docker_container), as.list(environment())[arg_ids])
+      purrr::invoke(create_docker_ti_method(docker_container), as.list(environment())[arg_ids])
     } else {
-      invoke(method, as.list(environment())[arg_ids])
+      purrr::invoke(method, as.list(environment())[arg_ids])
     }
   }
   formals(func) <- c(formals(func), args)
