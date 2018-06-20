@@ -24,6 +24,24 @@ ti_angle <- create_ti_method_chooser(ti_angle, 'dynverse/angle')
 
 
 
+#' Inferring a trajectory inference using Control: shuffle
+#' 
+#' Will generate a trajectory using Control: shuffle. This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/shuffle).
+#' 
+#' This methods was first wrapped inside R, see [ti_shuffle]
+#' 
+#' 
+#' 
+#' 
+#' 
+#' @param docker Whether to use the docker container or the R wrapper
+#' 
+#' @return The trajectory model
+#' @export
+ti_shuffle <- create_ti_method_chooser(ti_shuffle, 'dynverse/shuffle')
+
+
+
 #' Inferring a trajectory inference using [elpicycle](https://doi.org/https://github.com/Albluca/ElPiGraph.R)
 #' 
 #' Will generate a trajectory using [elpicycle](https://doi.org/https://github.com/Albluca/ElPiGraph.R). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/elpicycle).
@@ -120,6 +138,24 @@ ti_elpigraph <- function(
 
 
 
+#' Inferring a trajectory inference using [Monocle DDRTree](https://doi.org/10.1038/nmeth.4402)
+#' 
+#' Will generate a trajectory using [Monocle DDRTree](https://doi.org/10.1038/nmeth.4402). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/monocle_ddrtree).
+#' 
+#' This methods was first wrapped inside R, see [ti_monocle_ddrtree]
+#' 
+#' The original code of this method is available [here](https://github.com/cole-trapnell-lab/monocle-release).
+#' 
+#' The method is described in: [Qiu, X., Mao, Q., Tang, Y., Wang, L., Chawla, R., Pliner, H.A., Trapnell, C., 2017. Reversed graph embedding resolves complex single-cell trajectories. Nature Methods 14, 979–982.](https://doi.org/10.1038/nmeth.4402)
+#' 
+#' @param docker Whether to use the docker container or the R wrapper
+#' 
+#' @return The trajectory model
+#' @export
+ti_monocle_ddrtree <- create_ti_method_chooser(ti_monocle_ddrtree, 'dynverse/monocle_ddrtree')
+
+
+
 #' Inferring a trajectory inference using [elpilinear](https://doi.org/https://github.com/Albluca/ElPiGraph.R)
 #' 
 #' Will generate a trajectory using [elpilinear](https://doi.org/https://github.com/Albluca/ElPiGraph.R). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/elpilinear).
@@ -168,24 +204,6 @@ ti_elpilinear <- function(
 
 
 
-#' Inferring a trajectory inference using [StemID2](https://doi.org/10.1016/j.stem.2016.05.010)
-#' 
-#' Will generate a trajectory using [StemID2](https://doi.org/10.1016/j.stem.2016.05.010). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/stemid2).
-#' 
-#' This methods was first wrapped inside R, see [ti_stemid2]
-#' 
-#' The original code of this method is available [here](https://github.com/dgrun/RaceID3_StemID2).
-#' 
-#' The method is described in: [Grün, D., Muraro, M.J., Boisset, J.-C., Wiebrands, K., Lyubimova, A., Dharmadhikari, G., van den Born, M., van Es, J., Jansen, E., Clevers, H., de Koning, E.J.P., van Oudenaarden, A., 2016. De Novo Prediction of Stem Cell Identity using Single-Cell Transcriptome Data. Cell Stem Cell 19, 266–277.](https://doi.org/10.1016/j.stem.2016.05.010)
-#' 
-#' @param docker Whether to use the docker container or the R wrapper
-#' 
-#' @return The trajectory model
-#' @export
-ti_stemid2 <- create_ti_method_chooser(ti_stemid2, 'dynverse/stemid2')
-
-
-
 #' Inferring a trajectory inference using [reCAT](https://doi.org/10.1038/s41467-017-00039-z)
 #' 
 #' Will generate a trajectory using [reCAT](https://doi.org/10.1038/s41467-017-00039-z). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/recat).
@@ -204,6 +222,24 @@ ti_recat <- create_ti_method_chooser(ti_recat, 'dynverse/recat')
 
 
 
+#' Inferring a trajectory inference using [StemID2](https://doi.org/10.1016/j.stem.2016.05.010)
+#' 
+#' Will generate a trajectory using [StemID2](https://doi.org/10.1016/j.stem.2016.05.010). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/stemid2).
+#' 
+#' This methods was first wrapped inside R, see [ti_stemid2]
+#' 
+#' The original code of this method is available [here](https://github.com/dgrun/RaceID3_StemID2).
+#' 
+#' The method is described in: [Grün, D., Muraro, M.J., Boisset, J.-C., Wiebrands, K., Lyubimova, A., Dharmadhikari, G., van den Born, M., van Es, J., Jansen, E., Clevers, H., de Koning, E.J.P., van Oudenaarden, A., 2016. De Novo Prediction of Stem Cell Identity using Single-Cell Transcriptome Data. Cell Stem Cell 19, 266–277.](https://doi.org/10.1016/j.stem.2016.05.010)
+#' 
+#' @param docker Whether to use the docker container or the R wrapper
+#' 
+#' @return The trajectory model
+#' @export
+ti_stemid2 <- create_ti_method_chooser(ti_stemid2, 'dynverse/stemid2')
+
+
+
 #' Inferring a trajectory inference using [Sincell](https://doi.org/10.1093/bioinformatics/btv368)
 #' 
 #' Will generate a trajectory using [Sincell](https://doi.org/10.1093/bioinformatics/btv368). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/sincell).
@@ -219,6 +255,37 @@ ti_recat <- create_ti_method_chooser(ti_recat, 'dynverse/recat')
 #' @return The trajectory model
 #' @export
 ti_sincell <- create_ti_method_chooser(ti_sincell, 'dynverse/sincell')
+
+
+
+#' Inferring a trajectory inference using [gpfates](https://doi.org/10.1126/sciimmunol.aal2192)
+#' 
+#' Will generate a trajectory using [gpfates](https://doi.org/10.1126/sciimmunol.aal2192). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/gpfates).
+#' 
+#' 
+#' 
+#' The original code of this method is available [here](https://github.com/Teichlab/GPfates).
+#' 
+#' The method is described in: [Lönnberg, T., Svensson, V., James, K.R., Fernandez-Ruiz, D., Sebina, I., Montandon, R., Soon, M.S.F., Fogg, L.G., Nair, A.S., Liligeto, U.N., Stubbington, M.J.T., Ly, L.-H., Bagger, F.O., Zwiessele, M., Lawrence, N.D., Souza-Fonseca-Guimaraes, F., Bunn, P.T., Engwerda, C.R., Heath, W.R., Billker, O., Stegle, O., Haque, A., Teichmann, S.A., 2017. Single-cell RNA-seq and computational analysis using temporal mixture modeling resolves TH1/TFHfate bifurcation in malaria. Science Immunology 2, eaal2192.](https://doi.org/10.1126/sciimmunol.aal2192)
+#' 
+#' @param log_expression_cutoff The log expression cutoff \cr 
+#'     numeric; default: 0.5; possible values between 0.5 and 5
+#' @param min_cells_expression_cutoff The min expression cutoff \cr 
+#'     numeric; default: 0L; possible values between 0 and 20
+#' @param ndim Number of dimensions for dimensionality reduction \cr 
+#'     integer; default: 2L; possible values between 1 and 5
+#' 
+#' @return The trajectory model
+#' @export
+ti_gpfates <- function(
+    log_expression_cutoff = 0.5,
+    min_cells_expression_cutoff = 0L,
+    ndim = 2L
+) {
+  args <- as.list(environment())
+  method <- create_docker_ti_method('dynverse/gpfates')
+  do.call(method, args)
+}
 
 
 
@@ -256,55 +323,6 @@ ti_pcreode <- function(
   method <- create_docker_ti_method('dynverse/pcreode')
   do.call(method, args)
 }
-
-
-
-#' Inferring a trajectory inference using [gpfates](https://doi.org/10.1126/sciimmunol.aal2192)
-#' 
-#' Will generate a trajectory using [gpfates](https://doi.org/10.1126/sciimmunol.aal2192). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/gpfates).
-#' 
-#' 
-#' 
-#' The original code of this method is available [here](https://github.com/Teichlab/GPfates).
-#' 
-#' The method is described in: [Lönnberg, T., Svensson, V., James, K.R., Fernandez-Ruiz, D., Sebina, I., Montandon, R., Soon, M.S.F., Fogg, L.G., Nair, A.S., Liligeto, U.N., Stubbington, M.J.T., Ly, L.-H., Bagger, F.O., Zwiessele, M., Lawrence, N.D., Souza-Fonseca-Guimaraes, F., Bunn, P.T., Engwerda, C.R., Heath, W.R., Billker, O., Stegle, O., Haque, A., Teichmann, S.A., 2017. Single-cell RNA-seq and computational analysis using temporal mixture modeling resolves TH1/TFHfate bifurcation in malaria. Science Immunology 2, eaal2192.](https://doi.org/10.1126/sciimmunol.aal2192)
-#' 
-#' @param log_expression_cutoff The log expression cutoff \cr 
-#'     numeric; default: 0.5; possible values between 0.5 and 5
-#' @param min_cells_expression_cutoff The min expression cutoff \cr 
-#'     numeric; default: 0L; possible values between 0 and 20
-#' @param ndim Number of dimensions for dimensionality reduction \cr 
-#'     integer; default: 2L; possible values between 1 and 5
-#' 
-#' @return The trajectory model
-#' @export
-ti_gpfates <- function(
-    log_expression_cutoff = 0.5,
-    min_cells_expression_cutoff = 0L,
-    ndim = 2L
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/gpfates')
-  do.call(method, args)
-}
-
-
-
-#' Inferring a trajectory inference using [Monocle ICA](https://doi.org/10.1038/nmeth.4402)
-#' 
-#' Will generate a trajectory using [Monocle ICA](https://doi.org/10.1038/nmeth.4402). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/monocle_ica).
-#' 
-#' This methods was first wrapped inside R, see [ti_monocle_ica]
-#' 
-#' The original code of this method is available [here](https://github.com/cole-trapnell-lab/monocle-release).
-#' 
-#' The method is described in: [Qiu, X., Mao, Q., Tang, Y., Wang, L., Chawla, R., Pliner, H.A., Trapnell, C., 2017. Reversed graph embedding resolves complex single-cell trajectories. Nature Methods 14, 979–982.](https://doi.org/10.1038/nmeth.4402)
-#' 
-#' @param docker Whether to use the docker container or the R wrapper
-#' 
-#' @return The trajectory model
-#' @export
-ti_monocle_ica <- create_ti_method_chooser(ti_monocle_ica, 'dynverse/monocle_ica')
 
 
 
@@ -387,6 +405,24 @@ ti_periodpc <- create_ti_method_chooser(ti_periodpc, 'dynverse/periodpc')
 
 
 
+#' Inferring a trajectory inference using [Monocle ICA](https://doi.org/10.1038/nmeth.4402)
+#' 
+#' Will generate a trajectory using [Monocle ICA](https://doi.org/10.1038/nmeth.4402). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/monocle_ica).
+#' 
+#' This methods was first wrapped inside R, see [ti_monocle_ica]
+#' 
+#' The original code of this method is available [here](https://github.com/cole-trapnell-lab/monocle-release).
+#' 
+#' The method is described in: [Qiu, X., Mao, Q., Tang, Y., Wang, L., Chawla, R., Pliner, H.A., Trapnell, C., 2017. Reversed graph embedding resolves complex single-cell trajectories. Nature Methods 14, 979–982.](https://doi.org/10.1038/nmeth.4402)
+#' 
+#' @param docker Whether to use the docker container or the R wrapper
+#' 
+#' @return The trajectory model
+#' @export
+ti_monocle_ica <- create_ti_method_chooser(ti_monocle_ica, 'dynverse/monocle_ica')
+
+
+
 #' Inferring a trajectory inference using [Embeddr](https://doi.org/10.1101/027219)
 #' 
 #' Will generate a trajectory using [Embeddr](https://doi.org/10.1101/027219). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/embeddr).
@@ -405,49 +441,13 @@ ti_embeddr <- create_ti_method_chooser(ti_embeddr, 'dynverse/embeddr')
 
 
 
-#' Inferring a trajectory inference using [topslam](https://doi.org/10.1101/057778)
+#' Inferring a trajectory inference using Control: error
 #' 
-#' Will generate a trajectory using [topslam](https://doi.org/10.1101/057778). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/topslam).
+#' Will generate a trajectory using Control: error. This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/error).
+#' 
+#' This methods was first wrapped inside R, see [ti_error]
 #' 
 #' 
-#' 
-#' The original code of this method is available [here](https://github.com/mzwiessele/topslam).
-#' 
-#' The method is described in: [Zwiessele, M., Lawrence, N.D., 2016. Topslam: Waddington Landscape Recovery for Single Cell Experiments.](https://doi.org/10.1101/057778)
-#' 
-#' @param n_components The number of components \cr 
-#'     integer; default: 2L; possible values between 2 and 10
-#' @param n_neighbors The number of neighbors \cr 
-#'     integer; default: 10L; possible values between 2 and 100
-#' @param linear_dims  \cr 
-#'     integer; default: 0L; possible values between 0 and 5
-#' @param max_iters The number of iterations to optimize over \cr 
-#'     integer; default: 1000L; possible values between 10 and 10000
-#' @param dimreds Which dimensionality reductions to use; tSNE, PCA, Spectral, Isomap and/or ICA \cr 
-#' 
-#' @return The trajectory model
-#' @export
-ti_topslam <- function(
-    n_components = 2L,
-    n_neighbors = 10L,
-    linear_dims = 0L,
-    max_iters = 1000L,
-    dimreds = c(TRUE, TRUE, TRUE, TRUE, TRUE)
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/topslam')
-  do.call(method, args)
-}
-
-
-
-#' Inferring a trajectory inference using [Growing Neural Gas](https://doi.org/https://github.com/rcannood/GNG)
-#' 
-#' Will generate a trajectory using [Growing Neural Gas](https://doi.org/https://github.com/rcannood/GNG). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/gng).
-#' 
-#' This methods was first wrapped inside R, see [ti_gng]
-#' 
-#' The original code of this method is available [here](https://github.com/rcannood/GNG).
 #' 
 #' 
 #' 
@@ -455,7 +455,47 @@ ti_topslam <- function(
 #' 
 #' @return The trajectory model
 #' @export
-ti_gng <- create_ti_method_chooser(ti_gng, 'dynverse/gng')
+ti_error <- create_ti_method_chooser(ti_error, 'dynverse/error')
+
+
+
+#' Inferring a trajectory inference using [scimitar](https://doi.org/10.1142/9789813207813_0053)
+#' 
+#' Will generate a trajectory using [scimitar](https://doi.org/10.1142/9789813207813_0053). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/scimitar).
+#' 
+#' 
+#' 
+#' The original code of this method is available [here](https://github.com/dimenwarper/scimitar).
+#' 
+#' The method is described in: [CORDERO, P., STUART, J.M., 2016. TRACING CO-REGULATORY NETWORK DYNAMICS IN NOISY, SINGLE-CELL TRANSCRIPTOME TRAJECTORIES. Biocomputing 2017.](https://doi.org/10.1142/9789813207813_0053)
+#' 
+#' @param covariance_type  \cr 
+#'     discrete; default: "diag"; possible values: diag, spherical, full
+#' @param degree  \cr 
+#'     integer; default: 3L; possible values between 1 and 20
+#' @param step_size  \cr 
+#'     numeric; default: 0.07; possible values between 0.01 and 0.1
+#' @param cov_estimator  \cr 
+#'     discrete; default: "corpcor"; possible values: identity, diag, sample, global, glasso, corpcor, average
+#' @param cov_reg  \cr 
+#'     numeric; default: 0.05; possible values between 0.01 and 0.1
+#' @param max_iter  \cr 
+#'     integer; default: 3L; possible values between 1 and 20
+#' 
+#' @return The trajectory model
+#' @export
+ti_scimitar <- function(
+    covariance_type = "diag",
+    degree = 3L,
+    step_size = 0.07,
+    cov_estimator = "corpcor",
+    cov_reg = 0.05,
+    max_iter = 3L
+) {
+  args <- as.list(environment())
+  method <- create_docker_ti_method('dynverse/scimitar')
+  do.call(method, args)
+}
 
 
 
@@ -509,61 +549,39 @@ ti_grandprix <- function(
 
 
 
-#' Inferring a trajectory inference using [scimitar](https://doi.org/10.1142/9789813207813_0053)
+#' Inferring a trajectory inference using [topslam](https://doi.org/10.1101/057778)
 #' 
-#' Will generate a trajectory using [scimitar](https://doi.org/10.1142/9789813207813_0053). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/scimitar).
+#' Will generate a trajectory using [topslam](https://doi.org/10.1101/057778). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/topslam).
 #' 
 #' 
 #' 
-#' The original code of this method is available [here](https://github.com/dimenwarper/scimitar).
+#' The original code of this method is available [here](https://github.com/mzwiessele/topslam).
 #' 
-#' The method is described in: [CORDERO, P., STUART, J.M., 2016. TRACING CO-REGULATORY NETWORK DYNAMICS IN NOISY, SINGLE-CELL TRANSCRIPTOME TRAJECTORIES. Biocomputing 2017.](https://doi.org/10.1142/9789813207813_0053)
+#' The method is described in: [Zwiessele, M., Lawrence, N.D., 2016. Topslam: Waddington Landscape Recovery for Single Cell Experiments.](https://doi.org/10.1101/057778)
 #' 
-#' @param covariance_type  \cr 
-#'     discrete; default: "diag"; possible values: diag, spherical, full
-#' @param degree  \cr 
-#'     integer; default: 3L; possible values between 1 and 20
-#' @param step_size  \cr 
-#'     numeric; default: 0.07; possible values between 0.01 and 0.1
-#' @param cov_estimator  \cr 
-#'     discrete; default: "corpcor"; possible values: identity, diag, sample, global, glasso, corpcor, average
-#' @param cov_reg  \cr 
-#'     numeric; default: 0.05; possible values between 0.01 and 0.1
-#' @param max_iter  \cr 
-#'     integer; default: 3L; possible values between 1 and 20
+#' @param n_components The number of components \cr 
+#'     integer; default: 2L; possible values between 2 and 10
+#' @param n_neighbors The number of neighbors \cr 
+#'     integer; default: 10L; possible values between 2 and 100
+#' @param linear_dims  \cr 
+#'     integer; default: 0L; possible values between 0 and 5
+#' @param max_iters The number of iterations to optimize over \cr 
+#'     integer; default: 1000L; possible values between 10 and 10000
+#' @param dimreds Which dimensionality reductions to use; tSNE, PCA, Spectral, Isomap and/or ICA \cr 
 #' 
 #' @return The trajectory model
 #' @export
-ti_scimitar <- function(
-    covariance_type = "diag",
-    degree = 3L,
-    step_size = 0.07,
-    cov_estimator = "corpcor",
-    cov_reg = 0.05,
-    max_iter = 3L
+ti_topslam <- function(
+    n_components = 2L,
+    n_neighbors = 10L,
+    linear_dims = 0L,
+    max_iters = 1000L,
+    dimreds = c(TRUE, TRUE, TRUE, TRUE, TRUE)
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/scimitar')
+  method <- create_docker_ti_method('dynverse/topslam')
   do.call(method, args)
 }
-
-
-
-#' Inferring a trajectory inference using [Mpath](https://doi.org/10.1038/ncomms11988)
-#' 
-#' Will generate a trajectory using [Mpath](https://doi.org/10.1038/ncomms11988). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/mpath).
-#' 
-#' This methods was first wrapped inside R, see [ti_mpath]
-#' 
-#' The original code of this method is available [here](https://github.com/JinmiaoChenLab/Mpath).
-#' 
-#' The method is described in: [Chen, J., Schlitzer, A., Chakarov, S., Ginhoux, F., Poidinger, M., 2016. Mpath maps multi-branching single-cell trajectories revealing progenitor cell progression during development. Nature Communications 7, 11988.](https://doi.org/10.1038/ncomms11988)
-#' 
-#' @param docker Whether to use the docker container or the R wrapper
-#' 
-#' @return The trajectory model
-#' @export
-ti_mpath <- create_ti_method_chooser(ti_mpath, 'dynverse/mpath')
 
 
 
@@ -603,6 +621,78 @@ ti_phenopath <- create_ti_method_chooser(ti_phenopath, 'dynverse/phenopath')
 
 
 
+#' Inferring a trajectory inference using [Growing Neural Gas](https://doi.org/https://github.com/rcannood/GNG)
+#' 
+#' Will generate a trajectory using [Growing Neural Gas](https://doi.org/https://github.com/rcannood/GNG). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/gng).
+#' 
+#' This methods was first wrapped inside R, see [ti_gng]
+#' 
+#' The original code of this method is available [here](https://github.com/rcannood/GNG).
+#' 
+#' 
+#' 
+#' @param docker Whether to use the docker container or the R wrapper
+#' 
+#' @return The trajectory model
+#' @export
+ti_gng <- create_ti_method_chooser(ti_gng, 'dynverse/gng')
+
+
+
+#' Inferring a trajectory inference using [Mpath](https://doi.org/10.1038/ncomms11988)
+#' 
+#' Will generate a trajectory using [Mpath](https://doi.org/10.1038/ncomms11988). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/mpath).
+#' 
+#' This methods was first wrapped inside R, see [ti_mpath]
+#' 
+#' The original code of this method is available [here](https://github.com/JinmiaoChenLab/Mpath).
+#' 
+#' The method is described in: [Chen, J., Schlitzer, A., Chakarov, S., Ginhoux, F., Poidinger, M., 2016. Mpath maps multi-branching single-cell trajectories revealing progenitor cell progression during development. Nature Communications 7, 11988.](https://doi.org/10.1038/ncomms11988)
+#' 
+#' @param docker Whether to use the docker container or the R wrapper
+#' 
+#' @return The trajectory model
+#' @export
+ti_mpath <- create_ti_method_chooser(ti_mpath, 'dynverse/mpath')
+
+
+
+#' Inferring a trajectory inference using Control: identity
+#' 
+#' Will generate a trajectory using Control: identity. This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/identity).
+#' 
+#' This methods was first wrapped inside R, see [ti_identity]
+#' 
+#' 
+#' 
+#' 
+#' 
+#' @param docker Whether to use the docker container or the R wrapper
+#' 
+#' @return The trajectory model
+#' @export
+ti_identity <- create_ti_method_chooser(ti_identity, 'dynverse/identity')
+
+
+
+#' Inferring a trajectory inference using [SCORPIUS](https://doi.org/10.1101/079509)
+#' 
+#' Will generate a trajectory using [SCORPIUS](https://doi.org/10.1101/079509). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/scorpius).
+#' 
+#' This methods was first wrapped inside R, see [ti_scorpius]
+#' 
+#' The original code of this method is available [here](https://github.com/rcannood/SCORPIUS).
+#' 
+#' The method is described in: [Cannoodt, R., Saelens, W., Sichien, D., Tavernier, S., Janssens, S., Guilliams, M., Lambrecht, B.N., De Preter, K., Saeys, Y., 2016. SCORPIUS improves trajectory inference and identifies novel modules in dendritic cell development.](https://doi.org/10.1101/079509)
+#' 
+#' @param docker Whether to use the docker container or the R wrapper
+#' 
+#' @return The trajectory model
+#' @export
+ti_scorpius <- create_ti_method_chooser(ti_scorpius, 'dynverse/scorpius')
+
+
+
 #' Inferring a trajectory inference using [TSCAN](https://doi.org/10.1093/nar/gkw430)
 #' 
 #' Will generate a trajectory using [TSCAN](https://doi.org/10.1093/nar/gkw430). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/tscan).
@@ -636,34 +726,6 @@ ti_tscan <- create_ti_method_chooser(ti_tscan, 'dynverse/tscan')
 #' @return The trajectory model
 #' @export
 ti_slicer <- create_ti_method_chooser(ti_slicer, 'dynverse/slicer')
-
-
-
-#' Inferring a trajectory inference using [matcher](https://doi.org/10.1186/s13059-017-1269-0)
-#' 
-#' Will generate a trajectory using [matcher](https://doi.org/10.1186/s13059-017-1269-0). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/matcher).
-#' 
-#' 
-#' 
-#' The original code of this method is available [here](https://github.com/jw156605/MATCHER).
-#' 
-#' The method is described in: [Welch, J.D., Hartemink, A.J., Prins, J.F., 2017. MATCHER: manifold alignment reveals correspondence between single cell transcriptome and epigenome dynamics. Genome Biology 18.](https://doi.org/10.1186/s13059-017-1269-0)
-#' 
-#' @param quantiles Quantiles How many quantiles to use when computing warp functions (integer) \cr 
-#'     integer; default: 50L; possible values between 2 and 500
-#' @param method Gaussian process regression or linear interpolation? ("gp" or "linear) \cr 
-#'     discrete; default: "linear"; possible values: gp, linear
-#' 
-#' @return The trajectory model
-#' @export
-ti_matcher <- function(
-    quantiles = 50L,
-    method = "linear"
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/matcher')
-  do.call(method, args)
-}
 
 
 
@@ -716,24 +778,6 @@ ti_praga <- function(
 
 
 
-#' Inferring a trajectory inference using [SCORPIUS](https://doi.org/10.1101/079509)
-#' 
-#' Will generate a trajectory using [SCORPIUS](https://doi.org/10.1101/079509). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/scorpius).
-#' 
-#' This methods was first wrapped inside R, see [ti_scorpius]
-#' 
-#' The original code of this method is available [here](https://github.com/rcannood/SCORPIUS).
-#' 
-#' The method is described in: [Cannoodt, R., Saelens, W., Sichien, D., Tavernier, S., Janssens, S., Guilliams, M., Lambrecht, B.N., De Preter, K., Saeys, Y., 2016. SCORPIUS improves trajectory inference and identifies novel modules in dendritic cell development.](https://doi.org/10.1101/079509)
-#' 
-#' @param docker Whether to use the docker container or the R wrapper
-#' 
-#' @return The trajectory model
-#' @export
-ti_scorpius <- create_ti_method_chooser(ti_scorpius, 'dynverse/scorpius')
-
-
-
 #' Inferring a trajectory inference using [ouija](https://doi.org/10.1101/060442)
 #' 
 #' Will generate a trajectory using [ouija](https://doi.org/10.1101/060442). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/ouija).
@@ -749,6 +793,70 @@ ti_scorpius <- create_ti_method_chooser(ti_scorpius, 'dynverse/scorpius')
 #' @return The trajectory model
 #' @export
 ti_ouija <- create_ti_method_chooser(ti_ouija, 'dynverse/ouija')
+
+
+
+#' Inferring a trajectory inference using [matcher](https://doi.org/10.1186/s13059-017-1269-0)
+#' 
+#' Will generate a trajectory using [matcher](https://doi.org/10.1186/s13059-017-1269-0). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/matcher).
+#' 
+#' 
+#' 
+#' The original code of this method is available [here](https://github.com/jw156605/MATCHER).
+#' 
+#' The method is described in: [Welch, J.D., Hartemink, A.J., Prins, J.F., 2017. MATCHER: manifold alignment reveals correspondence between single cell transcriptome and epigenome dynamics. Genome Biology 18.](https://doi.org/10.1186/s13059-017-1269-0)
+#' 
+#' @param quantiles Quantiles How many quantiles to use when computing warp functions (integer) \cr 
+#'     integer; default: 50L; possible values between 2 and 500
+#' @param method Gaussian process regression or linear interpolation? ("gp" or "linear) \cr 
+#'     discrete; default: "linear"; possible values: gp, linear
+#' 
+#' @return The trajectory model
+#' @export
+ti_matcher <- function(
+    quantiles = 50L,
+    method = "linear"
+) {
+  args <- as.list(environment())
+  method <- create_docker_ti_method('dynverse/matcher')
+  do.call(method, args)
+}
+
+
+
+#' Inferring a trajectory inference using [SCORPIUS sparse](https://doi.org/10.1101/079509)
+#' 
+#' Will generate a trajectory using [SCORPIUS sparse](https://doi.org/10.1101/079509). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/scorpius_sparse).
+#' 
+#' This methods was first wrapped inside R, see [ti_scorpius_sparse]
+#' 
+#' The original code of this method is available [here](https://github.com/rcannood/SCORPIUS).
+#' 
+#' The method is described in: [Cannoodt, R., Saelens, W., Sichien, D., Tavernier, S., Janssens, S., Guilliams, M., Lambrecht, B.N., De Preter, K., Saeys, Y., 2016. SCORPIUS improves trajectory inference and identifies novel modules in dendritic cell development.](https://doi.org/10.1101/079509)
+#' 
+#' @param docker Whether to use the docker container or the R wrapper
+#' 
+#' @return The trajectory model
+#' @export
+ti_scorpius_sparse <- create_ti_method_chooser(ti_scorpius_sparse, 'dynverse/scorpius_sparse')
+
+
+
+#' Inferring a trajectory inference using [Slingshot](https://doi.org/10.1101/128843)
+#' 
+#' Will generate a trajectory using [Slingshot](https://doi.org/10.1101/128843). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/slingshot).
+#' 
+#' This methods was first wrapped inside R, see [ti_slingshot]
+#' 
+#' The original code of this method is available [here](https://github.com/kstreet13/slingshot).
+#' 
+#' The method is described in: [Street, K., Risso, D., Fletcher, R.B., Das, D., Ngai, J., Yosef, N., Purdom, E., Dudoit, S., 2017. Slingshot: Cell lineage and pseudotime inference for single-cell transcriptomics.](https://doi.org/10.1101/128843)
+#' 
+#' @param docker Whether to use the docker container or the R wrapper
+#' 
+#' @return The trajectory model
+#' @export
+ti_slingshot <- create_ti_method_chooser(ti_slingshot, 'dynverse/slingshot')
 
 
 
@@ -796,21 +904,39 @@ ti_wanderlust <- function(
 
 
 
-#' Inferring a trajectory inference using [Slingshot](https://doi.org/10.1101/128843)
+#' Inferring a trajectory inference using [cellTree with vem](https://doi.org/10.1186/s12859-016-1175-6)
 #' 
-#' Will generate a trajectory using [Slingshot](https://doi.org/10.1101/128843). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/slingshot).
+#' Will generate a trajectory using [cellTree with vem](https://doi.org/10.1186/s12859-016-1175-6). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/celltree_vem).
 #' 
-#' This methods was first wrapped inside R, see [ti_slingshot]
+#' This methods was first wrapped inside R, see [ti_celltree_vem]
 #' 
-#' The original code of this method is available [here](https://github.com/kstreet13/slingshot).
 #' 
-#' The method is described in: [Street, K., Risso, D., Fletcher, R.B., Das, D., Ngai, J., Yosef, N., Purdom, E., Dudoit, S., 2017. Slingshot: Cell lineage and pseudotime inference for single-cell transcriptomics.](https://doi.org/10.1101/128843)
+#' 
+#' The method is described in: [duVerle, D.A., Yotsukura, S., Nomura, S., Aburatani, H., Tsuda, K., 2016. CellTree: an R/bioconductor package to infer the hierarchical structure of cell populations from single-cell RNA-seq data. BMC Bioinformatics 17.](https://doi.org/10.1186/s12859-016-1175-6)
 #' 
 #' @param docker Whether to use the docker container or the R wrapper
 #' 
 #' @return The trajectory model
 #' @export
-ti_slingshot <- create_ti_method_chooser(ti_slingshot, 'dynverse/slingshot')
+ti_celltree_vem <- create_ti_method_chooser(ti_celltree_vem, 'dynverse/celltree_vem')
+
+
+
+#' Inferring a trajectory inference using [pseudogp](https://doi.org/10.1371/journal.pcbi.1005212)
+#' 
+#' Will generate a trajectory using [pseudogp](https://doi.org/10.1371/journal.pcbi.1005212). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/pseudogp).
+#' 
+#' This methods was first wrapped inside R, see [ti_pseudogp]
+#' 
+#' The original code of this method is available [here](https://github.com/kieranrcampbell/pseudogp).
+#' 
+#' The method is described in: [Campbell, K.R., Yau, C., 2016. Order Under Uncertainty: Robust Differential Expression Analysis Using Probabilistic Models for Pseudotime Inference. PLOS Computational Biology 12, e1005212.](https://doi.org/10.1371/journal.pcbi.1005212)
+#' 
+#' @param docker Whether to use the docker container or the R wrapper
+#' 
+#' @return The trajectory model
+#' @export
+ti_pseudogp <- create_ti_method_chooser(ti_pseudogp, 'dynverse/pseudogp')
 
 
 
@@ -878,60 +1004,6 @@ ti_merlot <- function(
 
 
 
-#' Inferring a trajectory inference using [cellTree with vem](https://doi.org/10.1186/s12859-016-1175-6)
-#' 
-#' Will generate a trajectory using [cellTree with vem](https://doi.org/10.1186/s12859-016-1175-6). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/celltree_vem).
-#' 
-#' This methods was first wrapped inside R, see [ti_celltree_vem]
-#' 
-#' 
-#' 
-#' The method is described in: [duVerle, D.A., Yotsukura, S., Nomura, S., Aburatani, H., Tsuda, K., 2016. CellTree: an R/bioconductor package to infer the hierarchical structure of cell populations from single-cell RNA-seq data. BMC Bioinformatics 17.](https://doi.org/10.1186/s12859-016-1175-6)
-#' 
-#' @param docker Whether to use the docker container or the R wrapper
-#' 
-#' @return The trajectory model
-#' @export
-ti_celltree_vem <- create_ti_method_chooser(ti_celltree_vem, 'dynverse/celltree_vem')
-
-
-
-#' Inferring a trajectory inference using [SCORPIUS sparse](https://doi.org/10.1101/079509)
-#' 
-#' Will generate a trajectory using [SCORPIUS sparse](https://doi.org/10.1101/079509). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/scorpius_sparse).
-#' 
-#' This methods was first wrapped inside R, see [ti_scorpius_sparse]
-#' 
-#' The original code of this method is available [here](https://github.com/rcannood/SCORPIUS).
-#' 
-#' The method is described in: [Cannoodt, R., Saelens, W., Sichien, D., Tavernier, S., Janssens, S., Guilliams, M., Lambrecht, B.N., De Preter, K., Saeys, Y., 2016. SCORPIUS improves trajectory inference and identifies novel modules in dendritic cell development.](https://doi.org/10.1101/079509)
-#' 
-#' @param docker Whether to use the docker container or the R wrapper
-#' 
-#' @return The trajectory model
-#' @export
-ti_scorpius_sparse <- create_ti_method_chooser(ti_scorpius_sparse, 'dynverse/scorpius_sparse')
-
-
-
-#' Inferring a trajectory inference using [pseudogp](https://doi.org/10.1371/journal.pcbi.1005212)
-#' 
-#' Will generate a trajectory using [pseudogp](https://doi.org/10.1371/journal.pcbi.1005212). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/pseudogp).
-#' 
-#' This methods was first wrapped inside R, see [ti_pseudogp]
-#' 
-#' The original code of this method is available [here](https://github.com/kieranrcampbell/pseudogp).
-#' 
-#' The method is described in: [Campbell, K.R., Yau, C., 2016. Order Under Uncertainty: Robust Differential Expression Analysis Using Probabilistic Models for Pseudotime Inference. PLOS Computational Biology 12, e1005212.](https://doi.org/10.1371/journal.pcbi.1005212)
-#' 
-#' @param docker Whether to use the docker container or the R wrapper
-#' 
-#' @return The trajectory model
-#' @export
-ti_pseudogp <- create_ti_method_chooser(ti_pseudogp, 'dynverse/pseudogp')
-
-
-
 #' Inferring a trajectory inference using [ouijaflow](https://doi.org/10.1101/060442)
 #' 
 #' Will generate a trajectory using [ouijaflow](https://doi.org/10.1101/060442). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/ouijaflow).
@@ -957,6 +1029,42 @@ ti_ouijaflow <- function(
 
 
 
+#' Inferring a trajectory inference using Control: random
+#' 
+#' Will generate a trajectory using Control: random. This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/random).
+#' 
+#' This methods was first wrapped inside R, see [ti_random]
+#' 
+#' 
+#' 
+#' 
+#' 
+#' @param docker Whether to use the docker container or the R wrapper
+#' 
+#' @return The trajectory model
+#' @export
+ti_random <- create_ti_method_chooser(ti_random, 'dynverse/random')
+
+
+
+#' Inferring a trajectory inference using [SCOUP](https://doi.org/10.1186/s12859-016-1109-3)
+#' 
+#' Will generate a trajectory using [SCOUP](https://doi.org/10.1186/s12859-016-1109-3). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/scoup).
+#' 
+#' This methods was first wrapped inside R, see [ti_scoup]
+#' 
+#' The original code of this method is available [here](https://github.com/gcyuan/PySCUBA).
+#' 
+#' The method is described in: [Matsumoto, H., Kiryu, H., 2016. SCOUP: a probabilistic model based on the Ornstein–Uhlenbeck process to analyze single-cell expression data during differentiation. BMC Bioinformatics 17.](https://doi.org/10.1186/s12859-016-1109-3)
+#' 
+#' @param docker Whether to use the docker container or the R wrapper
+#' 
+#' @return The trajectory model
+#' @export
+ti_scoup <- create_ti_method_chooser(ti_scoup, 'dynverse/scoup')
+
+
+
 #' Inferring a trajectory inference using [Waterfall](https://doi.org/10.1016/j.stem.2015.07.013)
 #' 
 #' Will generate a trajectory using [Waterfall](https://doi.org/10.1016/j.stem.2015.07.013). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/waterfall).
@@ -972,6 +1080,24 @@ ti_ouijaflow <- function(
 #' @return The trajectory model
 #' @export
 ti_waterfall <- create_ti_method_chooser(ti_waterfall, 'dynverse/waterfall')
+
+
+
+#' Inferring a trajectory inference using [DPT](https://doi.org/10.1038/nmeth.3971)
+#' 
+#' Will generate a trajectory using [DPT](https://doi.org/10.1038/nmeth.3971). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/dpt).
+#' 
+#' This methods was first wrapped inside R, see [ti_dpt]
+#' 
+#' The original code of this method is available [here](https://bioconductor.org/packages/release/bioc/html/destiny.html).
+#' 
+#' The method is described in: [Haghverdi, L., Büttner, M., Wolf, F.A., Buettner, F., Theis, F.J., 2016. Diffusion pseudotime robustly reconstructs lineage branching. Nature Methods 13, 845–848.](https://doi.org/10.1038/nmeth.3971)
+#' 
+#' @param docker Whether to use the docker container or the R wrapper
+#' 
+#' @return The trajectory model
+#' @export
+ti_dpt <- create_ti_method_chooser(ti_dpt, 'dynverse/dpt')
 
 
 
@@ -1011,42 +1137,6 @@ ti_mfa <- create_ti_method_chooser(ti_mfa, 'dynverse/mfa')
 
 
 
-#' Inferring a trajectory inference using [DPT](https://doi.org/10.1038/nmeth.3971)
-#' 
-#' Will generate a trajectory using [DPT](https://doi.org/10.1038/nmeth.3971). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/dpt).
-#' 
-#' This methods was first wrapped inside R, see [ti_dpt]
-#' 
-#' The original code of this method is available [here](https://bioconductor.org/packages/release/bioc/html/destiny.html).
-#' 
-#' The method is described in: [Haghverdi, L., Büttner, M., Wolf, F.A., Buettner, F., Theis, F.J., 2016. Diffusion pseudotime robustly reconstructs lineage branching. Nature Methods 13, 845–848.](https://doi.org/10.1038/nmeth.3971)
-#' 
-#' @param docker Whether to use the docker container or the R wrapper
-#' 
-#' @return The trajectory model
-#' @export
-ti_dpt <- create_ti_method_chooser(ti_dpt, 'dynverse/dpt')
-
-
-
-#' Inferring a trajectory inference using [SCOUP](https://doi.org/10.1186/s12859-016-1109-3)
-#' 
-#' Will generate a trajectory using [SCOUP](https://doi.org/10.1186/s12859-016-1109-3). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/scoup).
-#' 
-#' This methods was first wrapped inside R, see [ti_scoup]
-#' 
-#' The original code of this method is available [here](https://github.com/gcyuan/PySCUBA).
-#' 
-#' The method is described in: [Matsumoto, H., Kiryu, H., 2016. SCOUP: a probabilistic model based on the Ornstein–Uhlenbeck process to analyze single-cell expression data during differentiation. BMC Bioinformatics 17.](https://doi.org/10.1186/s12859-016-1109-3)
-#' 
-#' @param docker Whether to use the docker container or the R wrapper
-#' 
-#' @return The trajectory model
-#' @export
-ti_scoup <- create_ti_method_chooser(ti_scoup, 'dynverse/scoup')
-
-
-
 #' Inferring a trajectory inference using [PAGA](https://doi.org/10.1101/208819)
 #' 
 #' Will generate a trajectory using [PAGA](https://doi.org/10.1101/208819). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/paga).
@@ -1073,6 +1163,45 @@ ti_paga <- function(
 ) {
   args <- as.list(environment())
   method <- create_docker_ti_method('dynverse/paga')
+  do.call(method, args)
+}
+
+
+
+#' Inferring a trajectory inference using [SCUBA](https://doi.org/10.1073/pnas.1408993111)
+#' 
+#' Will generate a trajectory using [SCUBA](https://doi.org/10.1073/pnas.1408993111). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/scuba).
+#' 
+#' 
+#' 
+#' The original code of this method is available [here](https://github.com/gcyuan/SCUBA).
+#' 
+#' The method is described in: [Marco, E., Karp, R.L., Guo, G., Robson, P., Hart, A.H., Trippa, L., Yuan, G.-C., 2014. Bifurcation analysis of single-cell gene expression data reveals epigenetic landscape. Proceedings of the National Academy of Sciences 111, E5643–E5650.](https://doi.org/10.1073/pnas.1408993111)
+#' 
+#' @param rigorous_gap_stats Whether to use rigorous gap statistics to determine number of clusters \cr 
+#' @param N_dim Number of TSNE dimensions \cr 
+#'     integer; default: 2L; possible values between 2 and 3
+#' @param low_gene_threshold Threshold value for genes of low expression levels \cr 
+#'     numeric; default: 1L; possible values between 0 and 5
+#' @param low_gene_fraction_max Maximum fraction of lowly-expressed cells allowed for each gene \cr 
+#'     numeric; default: 0.7; possible values between 0 and 1
+#' @param min_split Lower threshold on the number of cells in a cluster for this cluster to be split. \cr 
+#'     integer; default: 15L; possible values between 1 and 100
+#' @param min_percentage_split Minimum fraction of cells in the smaller cluster during a bifurcation. \cr 
+#'     numeric; default: 0.25; possible values between 0 and 1
+#' 
+#' @return The trajectory model
+#' @export
+ti_scuba <- function(
+    rigorous_gap_stats = TRUE,
+    N_dim = 2L,
+    low_gene_threshold = 1L,
+    low_gene_fraction_max = 0.7,
+    min_split = 15L,
+    min_percentage_split = 0.25
+) {
+  args <- as.list(environment())
+  method <- create_docker_ti_method('dynverse/scuba')
   do.call(method, args)
 }
 
@@ -1117,63 +1246,6 @@ ti_wishbone <- function(
 ) {
   args <- as.list(environment())
   method <- create_docker_ti_method('dynverse/wishbone')
-  do.call(method, args)
-}
-
-
-
-#' Inferring a trajectory inference using [Monocle DDRTree](https://doi.org/10.1038/nmeth.4402)
-#' 
-#' Will generate a trajectory using [Monocle DDRTree](https://doi.org/10.1038/nmeth.4402). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/monocle_ddrtree).
-#' 
-#' This methods was first wrapped inside R, see [ti_monocle_ddrtree]
-#' 
-#' The original code of this method is available [here](https://github.com/cole-trapnell-lab/monocle-release).
-#' 
-#' The method is described in: [Qiu, X., Mao, Q., Tang, Y., Wang, L., Chawla, R., Pliner, H.A., Trapnell, C., 2017. Reversed graph embedding resolves complex single-cell trajectories. Nature Methods 14, 979–982.](https://doi.org/10.1038/nmeth.4402)
-#' 
-#' @param docker Whether to use the docker container or the R wrapper
-#' 
-#' @return The trajectory model
-#' @export
-ti_monocle_ddrtree <- create_ti_method_chooser(ti_monocle_ddrtree, 'dynverse/monocle_ddrtree')
-
-
-
-#' Inferring a trajectory inference using [SCUBA](https://doi.org/10.1073/pnas.1408993111)
-#' 
-#' Will generate a trajectory using [SCUBA](https://doi.org/10.1073/pnas.1408993111). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/scuba).
-#' 
-#' 
-#' 
-#' The original code of this method is available [here](https://github.com/gcyuan/SCUBA).
-#' 
-#' The method is described in: [Marco, E., Karp, R.L., Guo, G., Robson, P., Hart, A.H., Trippa, L., Yuan, G.-C., 2014. Bifurcation analysis of single-cell gene expression data reveals epigenetic landscape. Proceedings of the National Academy of Sciences 111, E5643–E5650.](https://doi.org/10.1073/pnas.1408993111)
-#' 
-#' @param rigorous_gap_stats Whether to use rigorous gap statistics to determine number of clusters \cr 
-#' @param N_dim Number of TSNE dimensions \cr 
-#'     integer; default: 2L; possible values between 2 and 3
-#' @param low_gene_threshold Threshold value for genes of low expression levels \cr 
-#'     numeric; default: 1L; possible values between 0 and 5
-#' @param low_gene_fraction_max Maximum fraction of lowly-expressed cells allowed for each gene \cr 
-#'     numeric; default: 0.7; possible values between 0 and 1
-#' @param min_split Lower threshold on the number of cells in a cluster for this cluster to be split. \cr 
-#'     integer; default: 15L; possible values between 1 and 100
-#' @param min_percentage_split Minimum fraction of cells in the smaller cluster during a bifurcation. \cr 
-#'     numeric; default: 0.25; possible values between 0 and 1
-#' 
-#' @return The trajectory model
-#' @export
-ti_scuba <- function(
-    rigorous_gap_stats = TRUE,
-    N_dim = 2L,
-    low_gene_threshold = 1L,
-    low_gene_fraction_max = 0.7,
-    min_split = 15L,
-    min_percentage_split = 0.25
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/scuba')
   do.call(method, args)
 }
 
