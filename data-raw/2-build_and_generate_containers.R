@@ -11,7 +11,7 @@ plan(multiprocess)
 method_ids <- list.dirs("./containers/", full.names = FALSE)[-1]
 
 # rebuild & push all containers
-rebuild <- TRUE
+rebuild <- FALSE
 if (rebuild) {
   future_map(method_ids, function(method_id) {
     system(str_glue("docker build containers/{method_id} -t dynverse/{method_id}"))
@@ -217,6 +217,26 @@ methods_containerised <- tibble(
 ) %>%
   mutate(
     docker_wrapper_location = paste0("containers/", method_id),
+    docker_entrypoint_location = map_chr(method_id, function(method_id) {
+      files <- list.files(paste0("containers/", method_id), full.names = TRUE) %>%
+        str_subset(".*/run\\..*")
+
+      if (length(files) >= 1) {
+        files[[1]]
+      } else {
+        NA
+      }
+    }),
+    docker_definition_location = map_chr(method_id, function(method_id) {
+      files <- list.files(paste0("containers/", method_id), full.names = TRUE) %>%
+        str_subset(".*/definition\\.yml")
+
+      if (length(files) >= 1) {
+        files[[1]]
+      } else {
+        NA
+      }
+    }),
     dockerhub_url = paste0("https://hub.docker.com/r/", docker_container)
   )
 usethis::use_data(methods_containerised, overwrite = TRUE)
