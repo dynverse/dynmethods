@@ -30,6 +30,7 @@ Currently wrapped are the following methods:
 ```{r, echo = FALSE, warning = FALSE, error = FALSE, message = FALSE, results='asis'}
 df <- methods %>% 
   arrange(name) %>% 
+  arrange(fct_infreq(type)) %>% 
   mutate(
     code_label = wrapper_location,
     code_url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{wrapper_location}"),
