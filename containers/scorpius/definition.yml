@@ -44,30 +44,30 @@ parameters:
     lower: 1.0e-05
     distribution: exponential
     rate: 1.0
-    description: '\code{\link[princurve]{principal.curve}} parameter: convergence
+    description: '\code{\link[princurve]{principal_curve}} parameter: convergence
       threshhold on shortest distances to the curve'
   maxit:
     type: integer
     default: 10
     upper: 50
     lower: 0
-    description: '\code{\link[princurve]{principal.curve}} parameter: maximum number
+    description: '\code{\link[princurve]{principal_curve}} parameter: maximum number
       of iterations'
   stretch:
     type: numeric
     default: 0.0e+00
     upper: 5.0
     lower: 0.0e+00
-    description: '\code{\link[princurve]{principal.curve}} parameter: a factor by
+    description: '\code{\link[princurve]{principal_curve}} parameter: a factor by
       which the curve can be extrapolated when points are projected'
   smoother:
     type: discrete
-    default: smooth.spline
+    default: smooth_spline
     values:
-    - smooth.spline
+    - smooth_spline
     - lowess
-    - periodic.lowess
-    description: '\code{\link[princurve]{principal.curve}} parameter: choice of smoother'
+    - periodic_lowess
+    description: '\code{\link[princurve]{principal_curve}} parameter: choice of smoother'
   sparse:
     type: logical
     default: no
