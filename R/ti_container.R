@@ -1126,6 +1126,37 @@ ti_stemid2 <- create_ti_method_chooser(ti_stemid2, 'dynverse/stemid2')
 
 
 
+#' Inferring a trajectory inference using [STEMNET](https://doi.org/10.1038/ncb3493)
+#' 
+#' Will generate a trajectory using [STEMNET](https://doi.org/10.1038/ncb3493). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/stemnet).
+#' 
+#' 
+#' 
+#' The original code of this method is available [here](https://git.embl.de/velten/STEMNET).
+#' 
+#' The method is described in: [Velten, L., Haas, S.F., Raffel, S., Blaszkiewicz, S., Islam, S., Hennig, B.P., Hirche, C., Lutz, C., Buss, E.C., Nowak, D., Boch, T., Hofmann, W.-K., Ho, A.D., Huber, W., Trumpp, A., Essers, M.A.G., Steinmetz, L.M., 2017. Human haematopoietic stem cell lineage commitment is a continuous process. Nature Cell Biology 19, 271–281.](https://doi.org/10.1038/ncb3493)
+#' 
+#' @param alpha The elastic net mixing parameter of the ‘glmnet’ classifier. \cr 
+#'     numeric; default: 0.1; possible values between 0.001 and 10
+#' @param lambda_auto Whether to select the lambda by cross-validation \cr 
+#' @param lambda The lambda penalty of GLM. \cr 
+#'     numeric; default: 0.1; possible values between 0.05 and 1
+#' 
+#' @return The trajectory model
+#' @export
+ti_stemnet <- function(
+    alpha = 0.1,
+    lambda_auto = TRUE,
+    lambda = 0.1
+) {
+  args <- as.list(environment())
+  method <- create_docker_ti_method('dynverse/stemnet')
+  do.call(method, args)
+}
+
+
+
+
 #' Inferring a trajectory inference using [topslam](https://doi.org/10.1101/057778)
 #' 
 #' Will generate a trajectory using [topslam](https://doi.org/10.1101/057778). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/topslam).
