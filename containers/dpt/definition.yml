@@ -94,9 +94,10 @@ authors:
 - given: Laleh
   family: Hagverdi
   email: eh@ebi.ac.uk
+  ORCID: 0000-0001-9280-9170
 - given: Philipp
   family: Angerer
-  email: 'philipp.angerer@helmholtz-muenchen.de, '
+  email: philipp.angerer@helmholtz-muenchen.de
   ORCID: 0000-0002-0369-2888
   github: flying-sheep
 - given: Fabian
