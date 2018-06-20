@@ -184,7 +184,7 @@ method_ids_r <- str_subset(lines, "^ti_[A-Za-z0-9_]* <-.*") %>%
   str_replace_all("ti_([A-Za-z0-9_]*) <-.*", "\\1")
 
 # now generate the ti_* functions
-future_map(method_ids, function(method_id) {
+lines <- future_map(method_ids, function(method_id) {
   print(method_id)
 
   r_wrapped <- method_id %in% method_ids_r
@@ -204,9 +204,17 @@ future_map(method_ids, function(method_id) {
     sep="\n"
   )
 
-  write_file(file, file_location, append = TRUE)
-  write_file("\n\n\n\n", file_location, append = TRUE)
+  file <- c(file, "\n\n\n")
+
+  file
 })
+
+write_file(
+  lines %>%
+    unlist() %>%
+    glue::collapse("\n"),
+  file_location
+)
 
 #   ____________________________________________________________________________
 #   Save data on containerised methods                                      ####
