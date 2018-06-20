@@ -14,7 +14,6 @@ license: GPL-3
 preprint_date: '2016-10-07'
 version: '1.0'
 code_url: https://github.com/rcannood/SCORPIUS
-method_id: scorpius_sparse
 parameters:
   distance_method:
     type: discrete

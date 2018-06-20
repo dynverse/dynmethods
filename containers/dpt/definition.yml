@@ -1,6 +1,5 @@
 name: DPT
 short_name: dpt
-method_id: dpt
 package_loaded: destiny
 package_required:
 - dynutils

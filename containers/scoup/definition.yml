@@ -1,6 +1,5 @@
 name: SCOUP
 short_name: scoup
-method_id: scoup
 package_required: SCOUP
 doi: 10.1186/s12859-016-1109-3
 trajectory_types: linear

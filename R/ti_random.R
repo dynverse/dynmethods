@@ -29,14 +29,22 @@ ti_random <- create_ti_method(
       github = "zouter"
     )
   ),
-  par_set = makeParamSet(
-    makeNumericParam(id = "dummy_param", lower = 0, default = 0.5, upper = 1)
+  parameters = list(
+    dummy_param = list(
+      type = "numeric",
+      default = 0.5,
+      upper = 1,
+      lower = 0,
+      description = "Dummy parameter")
   ),
   run_fun = "dynmethods::run_random",
   plot_fun = dynplot::plot_default
 )
 
-run_random <- function(counts, dummy_param = .5) {
+run_random <- function(
+  counts,
+  dummy_param = .5
+) {
   num_milestones <- 50
 
   # generate network

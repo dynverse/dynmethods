@@ -1,0 +1,33 @@
+name: 'Control: shuffle'
+short_name: shuffle
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+topology_inference: free
+type: control_test
+parameters:
+  dummy_param:
+    type: numeric
+    default: 0.5
+    upper: 1.0
+    lower: 0.0e+00
+    description: Dummy parameter
+input:
+  format: rds
+  required:
+  - counts
+  - task
+output:
+  format: dynwrap
+authors:
+- given: Robrecht
+  family: Cannoodt
+  email: rcannood@gmail.com
+  ORCID: 0000-0003-3641-729X
+  github: rcannood
+- given: Wouter
+  family: Saelens
+  email: wouter.saelens@ugent.be
+  ORCID: 0000-0002-7114-6248
+  github: zouter

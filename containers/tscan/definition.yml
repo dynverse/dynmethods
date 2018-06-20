@@ -1,6 +1,5 @@
 name: TSCAN
 short_name: tscan
-method_id: tscan
 package_required:
 - TSCAN
 - igraph

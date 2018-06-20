@@ -97,7 +97,11 @@ ti_dpt <- create_ti_method(
       description = "Window width to use for deciding the branch cutoff"),
     forbidden = "n_local_lower > n_local_upper"
   ),
-  run_fun = function(
+  run_fun = "dynmethods::run_dpt",
+  plot_fun = "dynmethods::plot_dpt"
+)
+
+run_dpt <- function(
   expression,
   start_id = NULL,
   features_id = NULL,
@@ -182,8 +186,9 @@ ti_dpt <- create_ti_method(
   ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
-},
-  plot_fun = function(prediction) {
+}
+
+plot_dpt <- function(prediction) {
   # based on destiny::plot.DPT(prediction$dpt, col_by = "branch")
 
   palette <- c("#8DD3C7", "#FFED6F", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#BC80BD", "#FCCDE5", "gray85", "#CCEBC5", "#FFFFB3")
@@ -205,4 +210,3 @@ ti_dpt <- create_ti_method(
     theme(legend.position = c(0.9, 0.1))
   process_dynplot(g, prediction$id)
 }
-)
