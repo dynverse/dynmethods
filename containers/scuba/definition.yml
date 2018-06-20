@@ -50,10 +50,17 @@ trajectory_types: linear
 topology_inference: free
 type: algorithm
 authors:
+  - given: Eugenio
+    family: Marco
+    github: eugeniomarco
+  - given: Gregory
+    family: Giecold
+    github: GGiecold
   - given: Guo-Cheng
     family: Yuan
     email: gcyuan@jimmy.harvard.edu
     github: gcyuan
+    ORCID: 0000-0002-2283-4714
 publication_date: '2014-12-30'
 version: 0.1.1
 code_url: https://github.com/gcyuan/SCUBA
