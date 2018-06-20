@@ -75,7 +75,7 @@ run_ouija <- function(
     response_type = "switch",
     inference_type = "hmc",
     normalise_expression = TRUE
-  ) {
+) {
   requireNamespace("ouija")
   requireNamespace("rstan")
   requireNamespace("coda")

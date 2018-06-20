@@ -1,6 +1,5 @@
 name: Periodic PrinCurve
 short_name: periodpc
-method_id: periodpc
 package_loaded:
 - stats
 - princurve

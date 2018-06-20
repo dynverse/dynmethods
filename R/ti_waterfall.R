@@ -35,7 +35,10 @@ ti_waterfall <-  create_ti_method(
   plot_fun = "dynmethods::plot_waterfall"
 )
 
-run_waterfall <- function(expression, num_clusters = 10) {
+run_waterfall <- function(
+  expression,
+  num_clusters = 10
+) {
   requireNamespace("Waterfall")
 
   # TIMING: done with preproc

@@ -1,6 +1,5 @@
 name: Angle
 short_name: angle
-method_id: angle
 trajectory_types: cycle
 topology_inference: free
 type: control

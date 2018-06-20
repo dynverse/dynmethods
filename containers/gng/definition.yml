@@ -17,7 +17,6 @@ license: GPL-3
 version: 0.1.0
 code_url: https://github.com/rcannood/GNG
 apt_dependencies: libudunits2-dev
-method_id: gng
 parameters:
   dimred:
     type: discrete

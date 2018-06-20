@@ -1,6 +1,5 @@
 name: SLICER
 short_name: slicer
-method_id: slicer
 package_required:
 - SLICER
 - lle

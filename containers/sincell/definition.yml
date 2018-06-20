@@ -1,6 +1,5 @@
 name: Sincell
 short_name: sincell
-method_id: sincell
 package_required: sincell
 doi: 10.1093/bioinformatics/btv368
 trajectory_types:
