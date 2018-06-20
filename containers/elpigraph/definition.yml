@@ -1,5 +1,5 @@
-name: elpigraph
-short_name: ElPiGraph
+name: ElPiGraph
+short_name: elpigraph
 implementation_id: elpigraph
 parameters:
   topology:

@@ -204,9 +204,9 @@ ti_elpicycle <- function(
 
 
 
-#' Inferring a trajectory inference using [elpigraph](https://doi.org/https://github.com/Albluca/ElPiGraph.R)
+#' Inferring a trajectory inference using [ElPiGraph](https://doi.org/https://github.com/Albluca/ElPiGraph.R)
 #' 
-#' Will generate a trajectory using [elpigraph](https://doi.org/https://github.com/Albluca/ElPiGraph.R). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/elpigraph).
+#' Will generate a trajectory using [ElPiGraph](https://doi.org/https://github.com/Albluca/ElPiGraph.R). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/elpigraph).
 #' 
 #' 
 #' 
