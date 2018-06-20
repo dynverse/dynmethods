@@ -66,27 +66,27 @@ abstract_scorpius_description <- function(short_name) {
         lower = 1e-5,
         distribution = "exponential",
         rate = 1,
-        description = "\\code{\\link[princurve]{principal.curve}} parameter: convergence threshhold on shortest distances to the curve"
+        description = "\\code{\\link[princurve]{principal_curve}} parameter: convergence threshhold on shortest distances to the curve"
       ),
       maxit = list(
         type = "integer",
         default = 10L,
         upper = 50L,
         lower = 0L,
-        description = "\\code{\\link[princurve]{principal.curve}} parameter: maximum number of iterations"
+        description = "\\code{\\link[princurve]{principal_curve}} parameter: maximum number of iterations"
       ),
       stretch = list(
         type = "numeric",
         default = 0,
         upper = 5,
         lower = 0,
-        description = "\\code{\\link[princurve]{principal.curve}} parameter: a factor by which the curve can be extrapolated when points are projected"
+        description = "\\code{\\link[princurve]{principal_curve}} parameter: a factor by which the curve can be extrapolated when points are projected"
       ),
       smoother = list(
         type = "discrete",
-        default = "smooth.spline",
-        values = c("smooth.spline", "lowess", "periodic.lowess"),
-        description = "\\code{\\link[princurve]{principal.curve}} parameter: choice of smoother"
+        default = "smooth_spline",
+        values = c("smooth_spline", "lowess", "periodic_lowess"),
+        description = "\\code{\\link[princurve]{principal_curve}} parameter: choice of smoother"
       ),
       sparse = list(
         type = "logical",
