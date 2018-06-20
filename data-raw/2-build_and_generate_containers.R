@@ -11,7 +11,7 @@ plan(multiprocess)
 method_ids <- list.dirs("./containers/", full.names = FALSE)[-1]
 
 # rebuild & push all containers
-rebuild <- FALSE
+rebuild <- TRUE
 if (rebuild) {
   future_map(method_ids, function(method_id) {
     system(str_glue("docker build containers/{method_id} -t dynverse/{method_id}"))

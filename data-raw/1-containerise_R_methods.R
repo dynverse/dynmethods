@@ -10,10 +10,11 @@ write_file("", "R/ti_container.R")
 devtools::load_all()
 
 method_ids <- dynwrap::get_ti_methods(packages = "dynmethods")$method_id
+method_ids <- "scorpius"
 
 walk(method_ids, function(method_id) {
   cat("Running ", method_id, "\n", sep = "")
-  method <- get(paste0("ti_", method_id), asNamespace("dynmethods"))()
+  method <- get(paste0("ti_", method_id))()
 
   if (is.null(method$run_fun_name) || !grepl("dynmethods::", method$run_fun_name)) {
     return(NULL)

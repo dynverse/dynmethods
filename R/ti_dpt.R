@@ -35,7 +35,13 @@ ti_dpt <- create_ti_method(
     list(
       given = "Laleh",
       family = "Hagverdi",
-      email = "eh@ebi.ac.uk",
+      email = "eh@ebi.ac.uk"
+    ),
+    list(
+      given = "Philipp",
+      family = "Angerer",
+      email = "philipp.angerer@helmholtz-muenchen.de, ",
+      ORCID = "0000-0002-0369-2888",
       github = "flying-sheep"
     ),
     list(

@@ -7,11 +7,11 @@
 \usage{
 ti_scorpius_sparse(docker = TRUE, distance_method = "spearman", ndim = 3,
   k = 4, thresh = 0.001, maxit = 10, stretch = 0,
-  smoother = "smooth.spline", sparse = TRUE)
+  smoother = "smooth_spline", sparse = TRUE)
 
 ti_scorpius_sparse(docker = TRUE, distance_method = "spearman", ndim = 3,
   k = 4, thresh = 0.001, maxit = 10, stretch = 0,
-  smoother = "smooth.spline", sparse = TRUE)
+  smoother = "smooth_spline", sparse = TRUE)
 }
 \arguments{
 \item{docker}{Whether to use the docker container or the R wrapper}
