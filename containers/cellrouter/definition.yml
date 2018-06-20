@@ -99,10 +99,13 @@ trajectory_types:
 - tree
 type: algorithm
 authors:
+  - given: Edroaldo
+    family: Lummertz da Rocha
+    github: edroaldo
+    ORCID: 0000-0003-0537-4223
   - given: James J.
     family: Collins
     email: jimjc@mit.edu
-    github: edroaldo
     ORCID: 0000-0003-0537-4223
   - given: George Q.
     family: Daley
