@@ -80,8 +80,8 @@ df2 <- df %>%
   select(
     `Method`,
     Wrapper, 
-    `<a href='https://github.com/dynverse/dynmethods/tree/master/R'><img src='man/figures/r_logo.png' height='40'></a>` = `R wrapper`, 
-    `<a href='https://hub.docker.com/u/dynverse/'><img src='man/figures/docker_logo.png' height='40'></a>` = `Docker container`,
+    `<a href='https://github.com/dynverse/dynmethods/tree/master/R'><img src='man/figures/r_logo.png' height='30'></a>` = `R wrapper`, 
+    `<a href='https://hub.docker.com/u/dynverse/'><img src='man/figures/docker_logo.png' height='30'></a>` = `Docker container`,
     `Authors`
   )
 
