@@ -35,7 +35,9 @@ ti_slingshot <- create_ti_method(
     list(
       given = "Sandrine",
       family = "Dudoit",
-      email = "sandrine@stat.berkeley.edu"
+      email = "sandrine@stat.berkeley.edu",
+      ORCID = "0000-0002-6069-8629",
+      github = "sandrinedudoit"
     )
   ),
   preprint_date = "2017-04-19",

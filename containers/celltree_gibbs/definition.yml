@@ -12,7 +12,6 @@ trajectory_types:
 - binary_tree
 - tree
 topology_inference: free
-type: algorithm
 license: Artistic-2.0
 publication_date: '2016-08-13'
 version: 1.10.0
@@ -78,10 +77,10 @@ authors:
 - given: David
   family: duVerle
   email: dave@cb.k.u-tokyo.ac.jp
-  role: aut
   ORCID: 0000-0003-2836-0502
+  github: david-duverle
 - given: Koji
   family: Tsuda
   email: tsuda@k.u-tokyo.ac.jp
-  role: aut
   ORCID: 0000-0002-4288-1606
+  github: tsudalab

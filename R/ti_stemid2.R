@@ -43,7 +43,8 @@ ti_stemid2 <- create_ti_method(
     list(
       given = "Alexander",
       family = "van Oudenaarden",
-      email = "a.vanoudenaarden@hubrecht.eu"
+      email = "a.vanoudenaarden@hubrecht.eu",
+      github = "avolab"
     )
   ),
   code_url = "https://github.com/dgrun/RaceID3_StemID2",

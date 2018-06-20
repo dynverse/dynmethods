@@ -133,15 +133,15 @@ abstract_celltree_description <- function(method) {
         given = "David",
         family = "duVerle",
         email = "dave@cb.k.u-tokyo.ac.jp",
-        role = "aut",
-        ORCID = "0000-0003-2836-0502"
+        ORCID = "0000-0003-2836-0502",
+        github = "david-duverle"
       ),
       list(
         given = "Koji",
         family = "Tsuda",
         email = "tsuda@k.u-tokyo.ac.jp",
-        role = "aut",
-        ORCID = "0000-0002-4288-1606"
+        ORCID = "0000-0002-4288-1606",
+        github = "tsudalab"
       )
     ),
     publication_date = "2016-08-13",

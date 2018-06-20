@@ -1,6 +1,7 @@
 name: StemID
 short_name: stemid
 package_required: StemID
+type: algorithm
 doi: 10.1016/j.stem.2016.05.010
 trajectory_types:
 - linear
@@ -8,7 +9,6 @@ trajectory_types:
 - convergence
 - multifurcation
 topology_inference: free
-type: algorithm
 publication_date: '2016-06-21'
 code_url: https://github.com/dgrun/StemID
 parameters:
@@ -211,3 +211,4 @@ authors:
 - given: Alexander
   family: van Oudenaarden
   email: a.vanoudenaarden@hubrecht.eu
+  github: avolab

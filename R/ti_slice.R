@@ -20,12 +20,14 @@ ti_slice <- create_ti_method(
     list(
       given = "Yan",
       family = "Xu",
-      email = "yan.xu@cchmc.org"
+      email = "yan.xu@cchmc.org",
+      github = "xu-lab"
     ),
     list(
       given = "Minzhe",
       family = "Guo",
-      email = "minzhe.guo@cchmc.org"
+      email = "minzhe.guo@cchmc.org",
+      github = "minzheguo"
     )
   ),
   publication_date = "2016-12-19",

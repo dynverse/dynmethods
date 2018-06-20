@@ -140,10 +140,12 @@ authors:
     family: Parra
     email: parra.gonzalo@gmail.com
     github: gonzaparra
+    ORCID: 0000-0003-2446-016X
   - given: Johannes
-    family: Soeding
+    family: Söding
     email: soeding@mpibpc.mpg.de
     github: soedinglab
+    ORCID: 0000-0001-9642-8244
 preprint_date: '2018-02-08'
 version: 0.1.0
 code_url: https://github.com/soedinglab/merlot

@@ -12,7 +12,6 @@ trajectory_types:
 - binary_tree
 - tree
 topology_inference: free
-type: algorithm
 license: Artistic-2.0
 preprint_date: '2017-04-19'
 version: 0.99.8
@@ -124,3 +123,5 @@ authors:
 - given: Sandrine
   family: Dudoit
   email: sandrine@stat.berkeley.edu
+  ORCID: 0000-0002-6069-8629
+  github: sandrinedudoit

@@ -1,6 +1,7 @@
 name: StemID2
 short_name: stemid2
 package_required: StemID2
+type: algorithm
 doi: 10.1016/j.stem.2016.05.010
 trajectory_types:
 - linear
@@ -10,7 +11,6 @@ trajectory_types:
 - binary_tree
 - tree
 topology_inference: free
-type: algorithm
 code_url: https://github.com/dgrun/RaceID3_StemID2
 parameters:
   clustnr:
@@ -212,3 +212,4 @@ authors:
 - given: Alexander
   family: van Oudenaarden
   email: a.vanoudenaarden@hubrecht.eu
+  github: avolab

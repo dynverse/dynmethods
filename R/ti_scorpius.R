@@ -33,7 +33,8 @@ abstract_scorpius_description <- function(short_name) {
       list(
         given = "Yvan",
         family = "Saeys",
-        email = "yvan.saeys@ugent.be"
+        email = "yvan.saeys@ugent.be",
+        github = "saeyslab"
       )
     ),
     preprint_date = "2016-10-07",

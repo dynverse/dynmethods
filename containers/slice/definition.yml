@@ -12,7 +12,6 @@ trajectory_types:
 - binary_tree
 - tree
 topology_inference: free
-type: algorithm
 license: GPL-3
 publication_date: '2016-12-19'
 code_url: https://research.cchmc.org/pbge/slice.html
@@ -139,6 +138,8 @@ authors:
 - given: Yan
   family: Xu
   email: yan.xu@cchmc.org
+  github: xu-lab
 - given: Minzhe
   family: Guo
   email: minzhe.guo@cchmc.org
+  github: minzheguo

@@ -23,7 +23,8 @@ ti_stemid <- create_ti_method(
     list(
       given = "Alexander",
       family = "van Oudenaarden",
-      email = "a.vanoudenaarden@hubrecht.eu"
+      email = "a.vanoudenaarden@hubrecht.eu",
+      github = "avolab"
     )
   ),
   publication_date = "2016-06-21",
