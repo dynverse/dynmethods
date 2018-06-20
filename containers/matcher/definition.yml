@@ -1,4 +1,5 @@
-name: matcher
+name: MATCHER
+short_name: matcher
 parameters:
   quantiles:
     description: quantiles How many quantiles to use when computing warp functions (integer)

@@ -1,4 +1,5 @@
-name: wishbone
+name: Wishbone
+short_name: wishbone
 implementation_id: wishbone
 parameters:
   normalise:
@@ -73,6 +74,7 @@ authors:
   - given: Dana
     family: Pe'er
     email: dpeer@biology.columbia.edu
+    ORCID: 0000-0002-9259-8817
 publication_date: '2016-05-02'
 version: 0.4.2
 code_url: https://github.com/ManuSetty/wishbone

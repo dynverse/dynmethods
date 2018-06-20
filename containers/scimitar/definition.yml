@@ -1,4 +1,5 @@
-name: scimitar
+name: SCIMITAR
+short_name: scimitar
 parameters:
   covariance_type:
     type: discrete

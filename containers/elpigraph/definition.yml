@@ -1,4 +1,5 @@
 name: elpigraph
+short_name: ElPiGraph
 implementation_id: elpigraph
 parameters:
   topology:

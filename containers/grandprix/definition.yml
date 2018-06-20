@@ -1,4 +1,5 @@
-name: grandprix
+name: GrandPrix
+short_name: grandprix
 parameters:
   n_latent_dims:
     type: integer
