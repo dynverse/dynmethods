@@ -34,7 +34,7 @@ ti_dpt <- create_ti_method(
   authors = list(
     list(
       given = "Laleh",
-      family = "Hagverdi",
+      family = "Haghverdi",
       email = "eh@ebi.ac.uk"
     ),
     list(

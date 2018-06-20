@@ -8,6 +8,9 @@ devtools::load_all()
 
 load("data/methods_containerised.rda")
 
+# pull all containers
+# walk(methods_containerised$docker_container, pull_docker_ti_method)
+
 # process all code of method wrappers
 methods_processed <- list.files("R", pattern = "ti_", full.names = T) %>%
   map_df(function(file) {
