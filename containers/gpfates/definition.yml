@@ -1,4 +1,5 @@
-name: gpfates
+name: GPfates
+short_name: gpfates
 parameters:
   log_expression_cutoff:
     description: The log expression cutoff
@@ -40,10 +41,12 @@ authors:
     family: Svensson
     email: valentine@nxn.se
     github: vals
+    ORCID: 0000-0002-9217-2330
   - given: Sarah A.
     family: Teichmann
     email: st9@sanger.ac.uk
     github: Teichlab
+    ORCID: 0000-0002-6294-6366
 publication_date: '2017-03-03'
 version: 1.0.0
 code_url: https://github.com/Teichlab/GPfates

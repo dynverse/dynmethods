@@ -19,13 +19,15 @@ ti_mpath <- create_ti_method(
     list(
       given = "Michael",
       family = "Poidinger",
-      email = "michael_poidinger@immunol.a-star.edu.sg"
+      email = "michael_poidinger@immunol.a-star.edu.sg",
+      ORCID = "0000-0002-1047-2277"
     ),
     list(
       given = "Jinmiao",
       family = "Chen",
       email = "chen_jinmiao@immunol.a-star.edu.sg",
-      github = "jinmiaochen"
+      github = "jinmiaochen",
+      ORCID = "0000-0001-7547-6423"
     )
   ),
   publication_date = "2016-06-30",

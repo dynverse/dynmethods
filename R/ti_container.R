@@ -359,9 +359,9 @@ ti_gng <- create_ti_method_chooser(ti_gng, 'dynverse/gng')
 
 
 
-#' Inferring a trajectory inference using [gpfates](https://doi.org/10.1126/sciimmunol.aal2192)
+#' Inferring a trajectory inference using [GPfates](https://doi.org/10.1126/sciimmunol.aal2192)
 #' 
-#' Will generate a trajectory using [gpfates](https://doi.org/10.1126/sciimmunol.aal2192). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/gpfates).
+#' Will generate a trajectory using [GPfates](https://doi.org/10.1126/sciimmunol.aal2192). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/gpfates).
 #' 
 #' 
 #' 

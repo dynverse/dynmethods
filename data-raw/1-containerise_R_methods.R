@@ -10,7 +10,7 @@ write_file("", "R/ti_container.R")
 devtools::load_all()
 
 method_ids <- dynwrap::get_ti_methods(packages = "dynmethods")$method_id
-method_ids <- "dpt"
+method_ids <- "mpath"
 
 walk(method_ids, function(method_id) {
   cat("Running ", method_id, "\n", sep = "")

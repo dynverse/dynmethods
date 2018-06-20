@@ -1,7 +1,6 @@
 # here we generate an overview of all methods
 
 library(tidyverse)
-library(googlesheets)
 library(furrr)
 plan(multiprocess)
 devtools::load_all()
@@ -51,7 +50,7 @@ methods <-
   )
 
 if (any(is.na(methods$fun_name))) {
-  stop("Some methods were containerised but the code location was not found!")
+  stop("Some methods were containerised but the code location (ie. ti_...) was not found!")
 }
 
 # determine wrapper location depending on docker

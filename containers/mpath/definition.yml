@@ -9,7 +9,6 @@ type: algorithm
 publication_date: '2016-06-30'
 version: '1.0'
 code_url: https://github.com/JinmiaoChenLab/Mpath
-method_id: mpath
 parameters:
   distMethod:
     type: discrete
@@ -72,7 +71,9 @@ authors:
 - given: Michael
   family: Poidinger
   email: michael_poidinger@immunol.a-star.edu.sg
+  ORCID: 0000-0002-1047-2277
 - given: Jinmiao
   family: Chen
   email: chen_jinmiao@immunol.a-star.edu.sg
   github: jinmiaochen
+  ORCID: 0000-0001-7547-6423
