@@ -5,9 +5,9 @@
 \alias{ti_error}
 \title{Inferring trajectories with Control: error}
 \usage{
-ti_error(docker = TRUE, dummy_param = 0.5)
+ti_error(docker = dynwrap::test_docker_installation(), dummy_param = 0.5)
 
-ti_error(docker = TRUE, dummy_param = 0.5)
+ti_error(docker = dynwrap::test_docker_installation(), dummy_param = 0.5)
 }
 \arguments{
 \item{docker}{Whether to use the docker container or the R wrapper}

@@ -5,9 +5,11 @@
 \alias{ti_periodpc}
 \title{Inferring trajectories with Periodic PrinCurvee}
 \usage{
-ti_periodpc(docker = TRUE, ndim = 3, maxit = 10)
+ti_periodpc(docker = dynwrap::test_docker_installation(), ndim = 3,
+  maxit = 10)
 
-ti_periodpc(docker = TRUE, ndim = 3, maxit = 10)
+ti_periodpc(docker = dynwrap::test_docker_installation(), ndim = 3,
+  maxit = 10)
 }
 \arguments{
 \item{docker}{Whether to use the docker container or the R wrapper}

@@ -5,13 +5,13 @@
 \alias{ti_mpath}
 \title{Inferring trajectories with Mpath}
 \usage{
-ti_mpath(docker = TRUE, distMethod = "euclidean", method = "kmeans",
-  numcluster = 11, numcluster_null = TRUE, diversity_cut = 0.6,
-  size_cut = 0.05)
+ti_mpath(docker = dynwrap::test_docker_installation(),
+  distMethod = "euclidean", method = "kmeans", numcluster = 11,
+  numcluster_null = TRUE, diversity_cut = 0.6, size_cut = 0.05)
 
-ti_mpath(docker = TRUE, distMethod = "euclidean", method = "kmeans",
-  numcluster = 11, numcluster_null = TRUE, diversity_cut = 0.6,
-  size_cut = 0.05)
+ti_mpath(docker = dynwrap::test_docker_installation(),
+  distMethod = "euclidean", method = "kmeans", numcluster = 11,
+  numcluster_null = TRUE, diversity_cut = 0.6, size_cut = 0.05)
 }
 \arguments{
 \item{docker}{Whether to use the docker container or the R wrapper}

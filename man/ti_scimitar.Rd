@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_container.R
 \name{ti_scimitar}
 \alias{ti_scimitar}
-\title{Inferring a trajectory inference using \href{https://doi.org/10.1142/9789813207813_0053}{scimitar}}
+\title{Inferring a trajectory inference using \href{https://doi.org/10.1142/9789813207813_0053}{SCIMITAR}}
 \usage{
 ti_scimitar(covariance_type = "diag", degree = 3L, step_size = 0.07,
   cov_estimator = "corpcor", cov_reg = 0.05, max_iter = 3L)
@@ -30,7 +30,7 @@ integer; default: 3L; possible values between 1 and 20}
 The trajectory model
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/10.1142/9789813207813_0053}{scimitar}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/scimitar}{container}.
+Will generate a trajectory using \href{https://doi.org/10.1142/9789813207813_0053}{SCIMITAR}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/scimitar}{container}.
 }
 \details{
 The original code of this method is available \href{https://github.com/dimenwarper/scimitar}{here}.

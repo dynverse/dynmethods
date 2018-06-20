@@ -5,11 +5,13 @@
 \alias{ti_gng}
 \title{Inferring trajectories with Growing Neural Gas}
 \usage{
-ti_gng(docker = TRUE, dimred = "pca", ndim = 5,
-  max_iter = 13.8155105579643, max_nodes = 8, apply_mst = TRUE)
+ti_gng(docker = dynwrap::test_docker_installation(), dimred = "pca",
+  ndim = 5, max_iter = 13.8155105579643, max_nodes = 8,
+  apply_mst = TRUE)
 
-ti_gng(docker = TRUE, dimred = "pca", ndim = 5,
-  max_iter = 13.8155105579643, max_nodes = 8, apply_mst = TRUE)
+ti_gng(docker = dynwrap::test_docker_installation(), dimred = "pca",
+  ndim = 5, max_iter = 13.8155105579643, max_nodes = 8,
+  apply_mst = TRUE)
 }
 \arguments{
 \item{docker}{Whether to use the docker container or the R wrapper}

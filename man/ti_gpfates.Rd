@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_container.R
 \name{ti_gpfates}
 \alias{ti_gpfates}
-\title{Inferring a trajectory inference using \href{https://doi.org/10.1126/sciimmunol.aal2192}{gpfates}}
+\title{Inferring a trajectory inference using \href{https://doi.org/10.1126/sciimmunol.aal2192}{GPfates}}
 \usage{
 ti_gpfates(log_expression_cutoff = 0.5, min_cells_expression_cutoff = 0L,
   ndim = 2L)
@@ -21,7 +21,7 @@ integer; default: 2L; possible values between 1 and 5}
 The trajectory model
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/10.1126/sciimmunol.aal2192}{gpfates}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/gpfates}{container}.
+Will generate a trajectory using \href{https://doi.org/10.1126/sciimmunol.aal2192}{GPfates}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/gpfates}{container}.
 }
 \details{
 The original code of this method is available \href{https://github.com/Teichlab/GPfates}{here}.

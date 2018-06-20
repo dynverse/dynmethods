@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_container.R
 \name{ti_elpicycle}
 \alias{ti_elpicycle}
-\title{Inferring a trajectory inference using \href{https://doi.org/https://github.com/Albluca/ElPiGraph.R}{elpicycle}}
+\title{Inferring a trajectory inference using \href{https://doi.org/https://github.com/Albluca/ElPiGraph.R}{ElPiGraph cyclic}}
 \usage{
 ti_elpicycle(topology = "cycle", NumNodes = 50L, NumEdges = 100000L,
   InitNodes = 2L, Mu = 0.1, Lambda = 0.01, MaxNumberOfIterations = 10L,
@@ -39,7 +39,7 @@ numeric; default: 0.01; possible values between 0.001 and 1}
 The trajectory model
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/https://github.com/Albluca/ElPiGraph.R}{elpicycle}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/elpicycle}{container}.
+Will generate a trajectory using \href{https://doi.org/https://github.com/Albluca/ElPiGraph.R}{ElPiGraph cyclic}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/elpicycle}{container}.
 }
 \details{
 The original code of this method is available \href{https://github.com/Albluca/ElPiGraph.R}{here}.

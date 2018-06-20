@@ -5,9 +5,9 @@
 \alias{ti_random}
 \title{Inferring trajectories with Control: random}
 \usage{
-ti_random(docker = TRUE, dummy_param = 0.5)
+ti_random(docker = dynwrap::test_docker_installation(), dummy_param = 0.5)
 
-ti_random(docker = TRUE, dummy_param = 0.5)
+ti_random(docker = dynwrap::test_docker_installation(), dummy_param = 0.5)
 }
 \arguments{
 \item{docker}{Whether to use the docker container or the R wrapper}

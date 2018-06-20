@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_container.R
 \name{ti_wishbone}
 \alias{ti_wishbone}
-\title{Inferring a trajectory inference using \href{https://doi.org/10.1038/nbt.3569}{wishbone}}
+\title{Inferring a trajectory inference using \href{https://doi.org/10.1038/nbt.3569}{Wishbone}}
 \usage{
 ti_wishbone(normalise = TRUE, knn = 15L, n_diffusion_components = 2L,
   n_pca_components = 15L, k = 15L, num_waypoints = 250L, epsilon = 1L,
@@ -35,7 +35,7 @@ numeric; default: 1L; possible values between 0.1 and 10}
 The trajectory model
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/10.1038/nbt.3569}{wishbone}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/wishbone}{container}.
+Will generate a trajectory using \href{https://doi.org/10.1038/nbt.3569}{Wishbone}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/wishbone}{container}.
 }
 \details{
 The original code of this method is available \href{https://github.com/ManuSetty/wishbone}{here}.

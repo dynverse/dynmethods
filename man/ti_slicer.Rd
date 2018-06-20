@@ -5,9 +5,9 @@
 \alias{ti_slicer}
 \title{Inferring trajectories with SLICER}
 \usage{
-ti_slicer(docker = TRUE, kmin = 10, m = 2)
+ti_slicer(docker = dynwrap::test_docker_installation(), kmin = 10, m = 2)
 
-ti_slicer(docker = TRUE, kmin = 10, m = 2)
+ti_slicer(docker = dynwrap::test_docker_installation(), kmin = 10, m = 2)
 }
 \arguments{
 \item{docker}{Whether to use the docker container or the R wrapper}

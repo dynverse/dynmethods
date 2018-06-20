@@ -5,9 +5,9 @@
 \alias{ti_angle}
 \title{Inferring trajectories with Angle}
 \usage{
-ti_angle(docker = TRUE, dimred = "pca")
+ti_angle(docker = dynwrap::test_docker_installation(), dimred = "pca")
 
-ti_angle(docker = TRUE, dimred = "pca")
+ti_angle(docker = dynwrap::test_docker_installation(), dimred = "pca")
 }
 \arguments{
 \item{docker}{Whether to use the docker container or the R wrapper}
@@ -20,4 +20,9 @@ The trajectory model
 }
 \description{
 Inferring trajectories with Angle
+
+Will generate a trajectory using Angle. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/angle}{container}.
+}
+\details{
+This methods was first wrapped inside R, see \link{ti_angle}
 }

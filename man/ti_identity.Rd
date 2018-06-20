@@ -5,9 +5,9 @@
 \alias{ti_identity}
 \title{Inferring trajectories with Control: identity}
 \usage{
-ti_identity(docker = TRUE, dummy_param = 0.5)
+ti_identity(docker = dynwrap::test_docker_installation(), dummy_param = 0.5)
 
-ti_identity(docker = TRUE, dummy_param = 0.5)
+ti_identity(docker = dynwrap::test_docker_installation(), dummy_param = 0.5)
 }
 \arguments{
 \item{docker}{Whether to use the docker container or the R wrapper}

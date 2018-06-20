@@ -5,9 +5,11 @@
 \alias{ti_waterfall}
 \title{Inferring trajectories with Waterfall}
 \usage{
-ti_waterfall(docker = TRUE, num_clusters = 10)
+ti_waterfall(docker = dynwrap::test_docker_installation(),
+  num_clusters = 10)
 
-ti_waterfall(docker = TRUE, num_clusters = 10)
+ti_waterfall(docker = dynwrap::test_docker_installation(),
+  num_clusters = 10)
 }
 \arguments{
 \item{docker}{Whether to use the docker container or the R wrapper}

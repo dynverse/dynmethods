@@ -5,9 +5,9 @@
 \alias{ti_shuffle}
 \title{Inferring trajectories with Control: shuffle}
 \usage{
-ti_shuffle(docker = TRUE, dummy_param = 0.5)
+ti_shuffle(docker = dynwrap::test_docker_installation(), dummy_param = 0.5)
 
-ti_shuffle(docker = TRUE, dummy_param = 0.5)
+ti_shuffle(docker = dynwrap::test_docker_installation(), dummy_param = 0.5)
 }
 \arguments{
 \item{docker}{Whether to use the docker container or the R wrapper}

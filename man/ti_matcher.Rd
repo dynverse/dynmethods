@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_container.R
 \name{ti_matcher}
 \alias{ti_matcher}
-\title{Inferring a trajectory inference using \href{https://doi.org/10.1186/s13059-017-1269-0}{matcher}}
+\title{Inferring a trajectory inference using \href{https://doi.org/10.1186/s13059-017-1269-0}{MATCHER}}
 \usage{
 ti_matcher(quantiles = 50L, method = "linear")
 }
@@ -17,7 +17,7 @@ discrete; default: "linear"; possible values: gp, linear}
 The trajectory model
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/10.1186/s13059-017-1269-0}{matcher}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/matcher}{container}.
+Will generate a trajectory using \href{https://doi.org/10.1186/s13059-017-1269-0}{MATCHER}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/matcher}{container}.
 }
 \details{
 The original code of this method is available \href{https://github.com/jw156605/MATCHER}{here}.

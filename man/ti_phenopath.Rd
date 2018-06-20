@@ -5,11 +5,11 @@
 \alias{ti_phenopath}
 \title{Inferring trajectories with PhenoPath}
 \usage{
-ti_phenopath(docker = TRUE, thin = 40, z_init = "1", model_mu = FALSE,
-  scale_y = TRUE)
+ti_phenopath(docker = dynwrap::test_docker_installation(), thin = 40,
+  z_init = "1", model_mu = FALSE, scale_y = TRUE)
 
-ti_phenopath(docker = TRUE, thin = 40, z_init = "1", model_mu = FALSE,
-  scale_y = TRUE)
+ti_phenopath(docker = dynwrap::test_docker_installation(), thin = 40,
+  z_init = "1", model_mu = FALSE, scale_y = TRUE)
 }
 \arguments{
 \item{docker}{Whether to use the docker container or the R wrapper}

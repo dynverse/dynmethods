@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_container.R
 \name{ti_grandprix}
 \alias{ti_grandprix}
-\title{Inferring a trajectory inference using \href{https://doi.org/10.1101/227843}{grandprix}}
+\title{Inferring a trajectory inference using \href{https://doi.org/10.1101/227843}{GrandPrix}}
 \usage{
 ti_grandprix(n_latent_dims = 2L, n_inducing_points = 40L,
   latent_prior_var = 0.1, latent_var = 0.028)
@@ -22,7 +22,7 @@ integer; default: 40L; possible values between 10 and 500}
 The trajectory model
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/10.1101/227843}{grandprix}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/grandprix}{container}.
+Will generate a trajectory using \href{https://doi.org/10.1101/227843}{GrandPrix}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/grandprix}{container}.
 }
 \details{
 The original code of this method is available \href{https://github.com/ManchesterBioinference/GrandPrix}{here}.
