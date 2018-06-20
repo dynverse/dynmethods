@@ -23,7 +23,7 @@ ti_mpath <- create_ti_method(
     ),
     list(
       given = "Jinmiao",
-      list = "Chen",
+      family = "Chen",
       email = "chen_jinmiao@immunol.a-star.edu.sg",
       github = "jinmiaochen"
     )

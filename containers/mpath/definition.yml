@@ -1,6 +1,5 @@
 name: Mpath
 short_name: mpath
-method_id: mpath
 package_loaded: Mpath
 package_required: Mpath
 doi: 10.1038/ncomms11988
@@ -10,6 +9,7 @@ type: algorithm
 publication_date: '2016-06-30'
 version: '1.0'
 code_url: https://github.com/JinmiaoChenLab/Mpath
+method_id: mpath
 parameters:
   distMethod:
     type: discrete
@@ -73,6 +73,6 @@ authors:
   family: Poidinger
   email: michael_poidinger@immunol.a-star.edu.sg
 - given: Jinmiao
-  list: Chen
+  family: Chen
   email: chen_jinmiao@immunol.a-star.edu.sg
   github: jinmiaochen
