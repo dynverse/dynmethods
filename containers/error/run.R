@@ -4,7 +4,7 @@ library(readr)
 library(dplyr)
 library(purrr)
 
-library(Waterfall)
+library()
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
@@ -16,29 +16,10 @@ params <- jsonlite::read_json('/input/params.json')
 #   Infer trajectory                                                        ####
 
 run_fun <- function(
-  expression,
-  num_clusters = 10
+  counts,
+  dummy_param = 0.5
 ) {
-  requireNamespace("Waterfall")
-
-  # TIMING: done with preproc
-  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
-
-  # run waterfall
-  ps <- Waterfall::pseudotimeprog.foo(t(expression), k = num_clusters)
-
-  # TIMING: done with method
-  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
-
-  # return output
-  wrap_prediction_model(
-    cell_ids = rownames(expression)
-  ) %>% add_linear_trajectory(
-    pseudotime = ps$pseudotime %>% setNames(rownames(expression)),
-    ps = ps
-  ) %>% add_timings(
-    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
-  )
+  stop("This control method always errors.")
 }
 
 args <- params[intersect(names(params), names(formals(run_fun)))]

@@ -18,34 +18,69 @@ params <- jsonlite::read_json('/input/params.json')
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
 
-run_fun <- function (expression, dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, 
-FALSE, FALSE, FALSE, FALSE), chains = 3, iter = 100, smoothing_alpha = 10, 
-    smoothing_beta = 3, pseudotime_mean = 0.5, pseudotime_var = 1, 
-    initialise_from = "random") 
-{
-    requireNamespace("pseudogp")
-    requireNamespace("rstan")
-    requireNamespace("coda")
-    requireNamespace("MCMCglmm")
-    dimred_names <- names(dyndimred::list_dimred_methods())[as.logical(dimreds)]
-    spaces <- map(dimred_names, ~dimred(expression, method = ., 
-        ndim = 2))
-    tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
-    fit <- pseudogp::fitPseudotime(X = spaces, smoothing_alpha = smoothing_alpha, 
-        smoothing_beta = smoothing_beta, iter = iter, chains = chains, 
-        initialise_from = initialise_from, pseudotime_var = pseudotime_var, 
-        pseudotime_mean = pseudotime_mean)
-    tl <- tl %>% add_timing_checkpoint("method_aftermethod")
-    pst <- rstan::extract(fit, pars = "t")$t
-    tmcmc <- coda::mcmc(pst)
-    pseudotime <- MCMCglmm::posterior.mode(tmcmc) %>% setNames(rownames(expression))
-    pst <- rstan::extract(fit, pars = "t", permute = FALSE)
-    lambda <- rstan::extract(fit, pars = "lambda", permute = FALSE)
-    sigma <- rstan::extract(fit, pars = "sigma", permute = FALSE)
-    wrap_prediction_model(cell_ids = rownames(expression)) %>% 
-        add_linear_trajectory(pseudotime = pseudotime, spaces = spaces, 
-            chains = chains, pst = pst, lambda = lambda, sigma = sigma) %>% 
-        add_timings(timings = tl %>% add_timing_checkpoint("method_afterpostproc"))
+run_fun <- function(
+  expression,
+  c("dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE", "dimreds = )"),
+  chains = 3,
+  iter = 100,
+  smoothing_alpha = 10,
+  smoothing_beta = 3,
+  pseudotime_mean = 0.5,
+  pseudotime_var = 1,
+  initialise_from = "random"
+) {
+  requireNamespace("pseudogp")
+  requireNamespace("rstan")
+  requireNamespace("coda")
+  requireNamespace("MCMCglmm")
+
+  # perform dimreds
+  dimred_names <- names(dyndimred::list_dimred_methods())[as.logical(dimreds)]
+  spaces <- map(dimred_names, ~ dimred(expression, method = ., ndim = 2)) # only 2 dimensions per dimred are allowed
+
+  # TIMING: done with preproc
+  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
+  # fit probabilistic pseudotime model
+  fit <- pseudogp::fitPseudotime(
+    X = spaces,
+    smoothing_alpha = smoothing_alpha,
+    smoothing_beta = smoothing_beta,
+    iter = iter,
+    chains = chains,
+    initialise_from = initialise_from,
+    pseudotime_var = pseudotime_var,
+    pseudotime_mean = pseudotime_mean
+  )
+
+  # TIMING: done with method
+  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+
+  # extract pseudotime
+  pst <- rstan::extract(fit, pars = "t")$t
+  tmcmc <- coda::mcmc(pst)
+  pseudotime <- MCMCglmm::posterior.mode(tmcmc) %>%
+    setNames(rownames(expression))
+
+  # collect data for visualisation purposes
+  # code is adapted from pseudogp::posteriorCurvePlot
+  pst <- rstan::extract(fit, pars = "t", permute = FALSE)
+  lambda <- rstan::extract(fit, pars = "lambda", permute = FALSE)
+  sigma <- rstan::extract(fit, pars = "sigma", permute = FALSE)
+
+  # return output
+  wrap_prediction_model(
+    cell_ids = rownames(expression)
+  ) %>% add_linear_trajectory(
+    pseudotime = pseudotime,
+    spaces = spaces,
+    chains = chains,
+    pst = pst,
+    lambda = lambda,
+    sigma = sigma
+  ) %>% add_timings(
+    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  )
 }
 
 args <- params[intersect(names(params), names(formals(run_fun)))]

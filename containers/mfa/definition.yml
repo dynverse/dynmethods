@@ -17,7 +17,6 @@ license: GPL (>= 2)
 publication_date: '2017-03-15'
 version: 0.99.2
 code_url: https://github.com/kieranrcampbell/mfa
-method_id: mfa
 parameters:
   b:
     type: integer

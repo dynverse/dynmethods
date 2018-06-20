@@ -1,6 +1,5 @@
 name: Mpath
 short_name: mpath
-method_id: mpath
 package_loaded: Mpath
 package_required: Mpath
 doi: 10.1038/ncomms11988

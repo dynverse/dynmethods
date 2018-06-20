@@ -1,25 +1,23 @@
-name: Angle
-short_name: angle
-trajectory_types: cycle
+name: 'Control: shuffle'
+short_name: shuffle
+trajectory_types:
+- linear
+- bifurcation
+- convergence
 topology_inference: free
-type: control
+type: control_test
 parameters:
-  dimred:
-    type: discrete
-    default: pca
-    values:
-    - pca
-    - mds
-    - tsne
-    - ica
-    - lle
-    - mds_sammon
-    - mds_isomds
-    - mds_smacof
-    - umap
+  dummy_param:
+    type: numeric
+    default: 0.5
+    upper: 1.0
+    lower: 0.0e+00
+    description: Dummy parameter
 input:
   format: rds
-  required: expression
+  required:
+  - counts
+  - task
 output:
   format: dynwrap
 authors:

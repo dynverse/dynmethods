@@ -1,6 +1,5 @@
 name: SLICE
 short_name: slice
-method_id: slice
 package_required:
 - SLICE
 - igraph

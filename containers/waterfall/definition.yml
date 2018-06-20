@@ -1,6 +1,5 @@
 name: Waterfall
 short_name: waterfall
-method_id: waterfall
 package_required: Waterfall
 doi: 10.1016/j.stem.2015.07.013
 trajectory_types: linear

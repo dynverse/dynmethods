@@ -1,25 +1,20 @@
-name: Angle
-short_name: angle
-trajectory_types: cycle
-topology_inference: free
+name: 'Control: error'
+short_name: error
+trajectory_types:
+- linear
+- bifurcation
+- convergence
 type: control
 parameters:
-  dimred:
-    type: discrete
-    default: pca
-    values:
-    - pca
-    - mds
-    - tsne
-    - ica
-    - lle
-    - mds_sammon
-    - mds_isomds
-    - mds_smacof
-    - umap
+  dummy_param:
+    type: numeric
+    default: 0.5
+    upper: 1.0
+    lower: 0.0e+00
+    description: Dummy parameter
 input:
   format: rds
-  required: expression
+  required: counts
 output:
   format: dynwrap
 authors:

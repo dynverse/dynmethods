@@ -1,10 +1,6 @@
-name: Periodic PrinCurve
-short_name: periodpc
-package_loaded:
-- stats
-- princurve
+name: 'Control: identity'
+short_name: identity
 trajectory_types:
-- cycle
 - linear
 - bifurcation
 - convergence
@@ -12,24 +8,20 @@ trajectory_types:
 - binary_tree
 - tree
 - acyclic_graph
-- graph
-- disconnected_graph
-topology_inference: fixed
-type: algorithm_test
+topology_inference: free
+type: control_test
 parameters:
-  ndim:
-    type: integer
-    default: 3.0
-    lower: 2.0
-    upper: 10.0
-  maxit:
-    type: integer
-    default: 10.0
+  dummy_param:
+    type: numeric
+    default: 0.5
+    upper: 1.0
     lower: 0.0e+00
-    upper: 100.0
+    description: Dummy parameter
 input:
   format: rds
-  required: expression
+  required:
+  - counts
+  - task
 output:
   format: dynwrap
 authors:

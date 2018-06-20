@@ -1,6 +1,5 @@
 name: reCAT
 short_name: recat
-method_id: recat
 package_required: reCAT
 doi: 10.1038/s41467-017-00039-z
 trajectory_types: linear

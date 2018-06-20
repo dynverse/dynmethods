@@ -1,25 +1,18 @@
-name: Angle
-short_name: angle
+name: 'Control: random'
+short_name: random
 trajectory_types: cycle
 topology_inference: free
 type: control
 parameters:
-  dimred:
-    type: discrete
-    default: pca
-    values:
-    - pca
-    - mds
-    - tsne
-    - ica
-    - lle
-    - mds_sammon
-    - mds_isomds
-    - mds_smacof
-    - umap
+  dummy_param:
+    type: numeric
+    default: 0.5
+    upper: 1.0
+    lower: 0.0e+00
+    description: Dummy parameter
 input:
   format: rds
-  required: expression
+  required: counts
 output:
   format: dynwrap
 authors:

@@ -4,8 +4,7 @@ library(readr)
 library(dplyr)
 library(purrr)
 
-library(phenopath)
-library(dyndimred)
+library()
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
@@ -17,43 +16,47 @@ params <- jsonlite::read_json('/input/params.json')
 #   Infer trajectory                                                        ####
 
 run_fun <- function(
-  expression,
-  thin = 40,
-  z_init = "1",
-  model_mu = FALSE,
-  scale_y = TRUE
+  counts,
+  dummy_param = 0.5
 ) {
-  requireNamespace("phenopath")
+  num_milestones <- 50
+
+  # generate network
+  milestone_ids <- paste0("milestone_", seq_len(num_milestones))
 
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
-  # run phenopath
-  fit <- phenopath::phenopath(
-    exprs_obj = expression,
-    x = rep(1, nrow(expression)),
-    elbo_tol = 1e-6,
-    thin = thin,
-    z_init = ifelse(z_init == "random", "random", as.numeric(z_init)),
-    model_mu = model_mu,
-    scale_y = scale_y
+  gr <- igraph::ba.game(num_milestones)
+  milestone_network <- igraph::as_data_frame(gr) %>%
+    mutate(
+      from = paste0("milestone_", from),
+      to = paste0("milestone_", to),
+      length = 1,
+      directed = FALSE
+    )
+
+  # put cells on random edges of network
+  cell_ids <- rownames(counts)
+
+  progressions <- data.frame(
+    cell_id = cell_ids,
+    milestone_network[sample.int(nrow(milestone_network), length(cell_ids), replace = TRUE), 1:2],
+    percentage = runif(length(cell_ids)),
+    stringsAsFactors = FALSE
   )
-  pseudotime <- phenopath::trajectory(fit) %>%
-    setNames(rownames(expression))
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
-  # run pca for visualisation purposes
-  space <- dyndimred::dimred(expression, method = "pca", ndim = 2)
-
   # return output
   wrap_prediction_model(
-    cell_ids = rownames(expression)
-  ) %>% add_linear_trajectory(
-    pseudotime = pseudotime
-  ) %>% add_dimred(
-    dimred = space
+    cell_ids = cell_ids
+  ) %>% add_trajectory(
+    milestone_ids = milestone_ids,
+    milestone_network = milestone_network,
+    progressions = progressions,
+    divergence_regions = NULL
   ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )

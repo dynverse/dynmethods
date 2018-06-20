@@ -16,7 +16,6 @@ type: algorithm
 license: Artistic-2.0
 publication_date: '2016-08-13'
 version: 1.10.0
-method_id: celltree_gibbs
 parameters:
   method:
     type: discrete
