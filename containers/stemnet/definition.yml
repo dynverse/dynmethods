@@ -1,0 +1,45 @@
+name: STEMNET
+short_name: stemnet
+parameters:
+  alpha:
+    description: The elastic net mixing parameter of the ‘glmnet’ classifier.
+    type: numeric
+    default: 0.1
+    lower: 0.001
+    upper: 10
+  lambda_auto:
+    description: Whether to select the lambda by cross-validation
+    type: logical
+    default: TRUE
+  lambda:
+    description: The lambda penalty of GLM.
+    type: numeric
+    default: 0.1
+    lower: 0.05
+    upper: 1
+input:
+  format: rds
+  required:
+    - expression
+    - end_id
+    - groups_id
+output:
+  format: text
+  outputs:
+    - pseudotime
+    - end_state_probabilities
+    - dimred
+doi: 10.1038/ncb3493
+trajectory_types:
+- bifurcation
+- multifurcation
+topology_inference: param
+type: algorithm
+license: GPL-3
+authors:
+  - given: Lars
+    family: Velten
+    email: velten@embl.de
+publication_date: '2016-08-25'
+version: 0.1
+code_url: https://git.embl.de/velten/STEMNET
