@@ -29,6 +29,11 @@ end_groups <- grouping[end_id] %>% unique()
 # remove end groups with only one cell
 end_groups <- intersect(end_groups, names(table(grouping) %>% keep(~.>2)))
 
+# check if there are two or more end groups
+if (length(end_groups) < 1) {
+  stop("STEMNET requires at least two end cell populations, but according to the prior information there are only ", length(end_groups), " groups with two or more cells!")
+}
+
 # create stemnet end populations
 stemnet_pop <- rep(NA, nrow(expression))
 stemnet_pop[which(grouping %in% end_groups)] <- grouping[which(grouping %in% end_groups)]
