@@ -1,8 +1,6 @@
 name: SLICE
 short_name: slice
-package_required:
-- SLICE
-- igraph
+type: algorithm
 doi: 10.1093/nar/gkw1278
 trajectory_types:
 - linear

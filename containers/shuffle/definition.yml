@@ -1,11 +1,11 @@
 name: 'Control: shuffle'
 short_name: shuffle
+type: control_test
 trajectory_types:
 - linear
 - bifurcation
 - convergence
 topology_inference: free
-type: control_test
 parameters:
   dummy_param:
     type: numeric

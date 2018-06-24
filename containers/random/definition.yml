@@ -1,8 +1,8 @@
 name: 'Control: random'
 short_name: random
+type: control
 trajectory_types: cycle
 topology_inference: free
-type: control
 parameters:
   dummy_param:
     type: numeric

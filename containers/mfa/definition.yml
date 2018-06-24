@@ -1,8 +1,6 @@
 name: mfa
 short_name: mfa
-package_required:
-- mfa
-- dyndimred
+type: algorithm
 doi: 10.12688/wellcomeopenres.11087.1
 trajectory_types:
 - linear
@@ -12,7 +10,6 @@ trajectory_types:
 - binary_tree
 - tree
 topology_inference: parameter
-type: algorithm
 license: GPL (>= 2)
 publication_date: '2017-03-15'
 version: 0.99.2

@@ -1,9 +1,6 @@
 name: DPT
 short_name: dpt
-package_loaded: destiny
-package_required:
-- dynutils
-- reshape2
+type: algorithm
 doi: 10.1038/nmeth.3971
 trajectory_types:
 - linear
@@ -13,7 +10,6 @@ trajectory_types:
 - binary_tree
 - tree
 topology_inference: fixed
-type: algorithm
 license: GPL-3
 preprint_date: '2016-02-08'
 publication_date: '2016-08-29'
@@ -94,10 +90,9 @@ authors:
 - given: Laleh
   family: Haghverdi
   email: eh@ebi.ac.uk
-  ORCID: 0000-0001-9280-9170
 - given: Philipp
   family: Angerer
-  email: philipp.angerer@helmholtz-muenchen.de
+  email: 'philipp.angerer@helmholtz-muenchen.de, '
   ORCID: 0000-0002-0369-2888
   github: flying-sheep
 - given: Fabian

@@ -1,13 +1,9 @@
 name: SLICER
 short_name: slicer
-package_required:
-- SLICER
-- lle
-- igraph
+type: algorithm
 doi: 10.1186/s13059-016-0975-3
 trajectory_types: linear
 topology_inference: free
-type: algorithm
 license: GPL-2
 preprint_date: '2016-04-09'
 publication_date: '2016-05-23'

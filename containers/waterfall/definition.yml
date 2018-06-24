@@ -1,10 +1,9 @@
 name: Waterfall
 short_name: waterfall
-package_required: Waterfall
+type: algorithm
 doi: 10.1016/j.stem.2015.07.013
 trajectory_types: linear
 topology_inference: fixed
-type: algorithm
 publication_date: '2015-09-03'
 code_url: http://www.cell.com/cms/attachment/2038326541/2052521637/mmc9.zip
 parameters:

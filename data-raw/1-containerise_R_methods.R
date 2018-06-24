@@ -10,7 +10,7 @@ write_file("", "R/ti_container.R")
 devtools::load_all()
 
 method_ids <- dynwrap::get_ti_methods(packages = "dynmethods")$method_id
-method_ids <- c("stemid", "stemid2")
+# method_ids <- c("stemid", "stemid2")
 
 walk(method_ids, function(method_id) {
   cat("Running ", method_id, "\n", sep = "")
@@ -50,6 +50,9 @@ walk(method_ids, function(method_id) {
 
     required_inputs <- method$inputs %>% filter(required, type != "parameter") %>% pull(input_id)
     if (length(required_inputs) > 0) {definition$input$required <- required_inputs}
+
+    definition$package_required <- NULL
+    definition$package_loaded <- NULL
 
     definition[!names(definition) %in% c("method_id", "run_fun_name")]
   }

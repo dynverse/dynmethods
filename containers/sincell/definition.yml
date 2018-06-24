@@ -1,6 +1,6 @@
 name: Sincell
 short_name: sincell
-package_required: sincell
+type: algorithm
 doi: 10.1093/bioinformatics/btv368
 trajectory_types:
 - cycle
@@ -14,7 +14,6 @@ trajectory_types:
 - graph
 - disconnected_graph
 topology_inference: free
-type: algorithm
 license: GPL (>= 2)
 preprint_date: '2015-01-27'
 publication_date: '2015-06-22'

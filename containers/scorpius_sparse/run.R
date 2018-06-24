@@ -23,7 +23,7 @@ run_fun <- function(
   thresh = 0.001,
   maxit = 10,
   stretch = 0,
-  smoother = "smooth.spline",
+  smoother = "smooth_spline",
   sparse = TRUE
 ) {
   requireNamespace("SCORPIUS")

@@ -1,15 +1,10 @@
 name: Monocle DDRTree
 short_name: monocle_ddrtree
-package_loaded: monocle
-package_required:
-- BiocGenerics
-- igraph
-- Biobase
+type: algorithm
 implementation_id: monocle
 doi: 10.1038/nmeth.4402
 trajectory_types: linear
 topology_inference: free
-type: algorithm
 license: Artistic-2.0
 preprint_date: '2017-02-21'
 publication_date: '2017-07-20'
