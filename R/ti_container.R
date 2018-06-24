@@ -340,6 +340,37 @@ ti_error <- create_ti_method_chooser(ti_error, 'dynverse/error')
 
 
 
+#' Inferring a trajectory inference using [FateID](https://doi.org/10.1038/nmeth.4662)
+#' 
+#' Will generate a trajectory using [FateID](https://doi.org/10.1038/nmeth.4662). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/fateid).
+#' 
+#' 
+#' 
+#' The original code of this method is available [here](https://git.embl.de/velten/STEMNET).
+#' 
+#' The method is described in: [Herman, J.S., Sagar, Grün, D., 2018. FateID infers cell fate bias in multipotent progenitors from single-cell RNA-seq data. Nature Methods 15, 379–386.](https://doi.org/10.1038/nmeth.4662)
+#' 
+#' @param alpha The elastic net mixing parameter of the ‘glmnet’ classifier. \cr 
+#'     numeric; default: 0.1; possible values between 0.001 and 10
+#' @param lambda_auto Whether to select the lambda by cross-validation \cr 
+#' @param lambda The lambda penalty of GLM. \cr 
+#'     numeric; default: 0.1; possible values between 0.05 and 1
+#' 
+#' @return The trajectory model
+#' @export
+ti_fateid <- function(
+    alpha = 0.1,
+    lambda_auto = TRUE,
+    lambda = 0.1
+) {
+  args <- as.list(environment())
+  method <- create_docker_ti_method('dynverse/fateid')
+  do.call(method, args)
+}
+
+
+
+
 #' Inferring a trajectory inference using [Growing Neural Gas](https://doi.org/https://github.com/rcannood/GNG)
 #' 
 #' Will generate a trajectory using [Growing Neural Gas](https://doi.org/https://github.com/rcannood/GNG). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/gng).
