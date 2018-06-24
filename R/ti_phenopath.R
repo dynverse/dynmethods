@@ -32,6 +32,7 @@ ti_phenopath <- create_ti_method(
     )
   ),
   preprint_date = "2017-07-06",
+  publication_data = "2018-06-23",
   version = "1.1.1",
   code_url = "https://github.com/kieranrcampbell/phenopath",
   parameters = list(
