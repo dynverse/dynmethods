@@ -1,6 +1,5 @@
 name: StemID
 short_name: stemid
-package_required: StemID
 type: algorithm
 doi: 10.1016/j.stem.2016.05.010
 trajectory_types:

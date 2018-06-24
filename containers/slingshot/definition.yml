@@ -1,8 +1,6 @@
 name: Slingshot
 short_name: slingshot
-package_required:
-- slingshot
-- dyndimred
+type: algorithm
 doi: 10.1101/128843
 trajectory_types:
 - linear

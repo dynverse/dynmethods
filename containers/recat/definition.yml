@@ -1,10 +1,9 @@
 name: reCAT
 short_name: recat
-package_required: reCAT
+type: algorithm
 doi: 10.1038/s41467-017-00039-z
 trajectory_types: linear
 topology_inference: fixed
-type: algorithm
 publication_date: '2017-06-19'
 code_url: https://github.com/tinglab/reCAT
 parameters:

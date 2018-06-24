@@ -1,14 +1,11 @@
 name: Embeddr
 short_name: embeddr
-package_required:
-- scaterlegacy
-- embeddr
+type: algorithm
 doi: 10.1101/027219
 trajectory_types:
 - bifurcation
 - convergence
 topology_inference: fixed
-type: algorithm
 license: GPL-3
 preprint_date: '2015-09-18'
 version: 0.99.0

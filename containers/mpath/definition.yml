@@ -1,11 +1,9 @@
 name: Mpath
 short_name: mpath
-package_loaded: Mpath
-package_required: Mpath
+type: algorithm
 doi: 10.1038/ncomms11988
 trajectory_types: linear
 topology_inference: free
-type: algorithm
 publication_date: '2016-06-30'
 version: '1.0'
 code_url: https://github.com/JinmiaoChenLab/Mpath

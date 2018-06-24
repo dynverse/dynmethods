@@ -340,6 +340,55 @@ ti_error <- create_ti_method_chooser(ti_error, 'dynverse/error')
 
 
 
+#' Inferring a trajectory inference using [FateID](https://doi.org/10.1038/nmeth.4662)
+#' 
+#' Will generate a trajectory using [FateID](https://doi.org/10.1038/nmeth.4662). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/fateid).
+#' 
+#' 
+#' 
+#' The original code of this method is available [here](https://git.embl.de/velten/STEMNET).
+#' 
+#' The method is described in: [Herman, J.S., Sagar, Grün, D., 2018. FateID infers cell fate bias in multipotent progenitors from single-cell RNA-seq data. Nature Methods 15, 379–386.](https://doi.org/10.1038/nmeth.4662)
+#' 
+#' @param reclassify Whether to reclassify the cell grouping \cr 
+#' @param clthr Real number between zero and one. This is the threshold for the fraction of random forest votes required to assign a cell not contained within the target clusters to one of these clusters. The value of this parameter should be sufficiently high to only reclassify cells with a high-confidence assignment. Default value is 0.9. \cr 
+#'     numeric; default: 0.9; possible values between 0.1 and 1
+#' @param nbfactor Positive integer number. Determines the number of trees grown for each random forest. The number of trees is given by the number of columns of th training set multiplied by \code{nbfactor}. Default value is 5. \cr 
+#'     integer; default: 5L; possible values between 2 and 100
+#' @param q Q real value between zero and one. This number specifies a threshold used for feature selection based on importance sampling. A reduced expression table is generated containing only features with an importance larger than the q-quantile for at least one of the classes (i. e. target clusters). Default value is 0.75. \cr 
+#'     numeric; default: 0.75; possible values between 0 and 1
+#' @param k Number of dimensions \cr 
+#'     integer; default: 3L; possible values between 2 and 100
+#' @param m Dimensionality reduction method to use. Can be tsne, cmd, dm or lle \cr 
+#'     discrete; default: "tsne"; possible values: tsne, cmd, dm, lle
+#' @param minnr Integer number of cells per target cluster to be selected for classification (test set) in each round of training. For each target cluster, the \code{minnr} cells with the highest similarity to a cell in the training set are selected for classification. If \code{z} is not \code{NULL} it is used as the similarity matrix for this step. Otherwise, \code{1-cor(x)} is used. Default value is 5. \cr 
+#'     integer; default: 5L; possible values between 2 and 100
+#' @param minnrh Integer number of cells from the training set used for classification. From each training set, the \code{minnrh} cells with the highest similarity to the training set are selected. If \code{z} is not \code{NULL} it is used as the similarity matrix for this step. Default value is 10. \cr 
+#'     integer; default: 10L; possible values between 2 and 100
+#' @param trthr Real value representing the threshold of the fraction of random forest votes required for the inclusion of a given cell for the computation of the principal curve. If \code{NULL} then only cells with a significant bias >1 are included for each trajectory. The bias is computed as the ratio of the number of votes for a trajectory and the number of votes for the trajectory with the second largest number of votes. By this means only the trajectory with the largest number of votes will receive a bias >1. The siginifcance is computed based on counting statistics on the difference in the number of votes. A significant bias requires a p-value < 0.05. \cr 
+#'     numeric; default: 0.4; possible values between 0 and 1
+#' 
+#' @return The trajectory model
+#' @export
+ti_fateid <- function(
+    reclassify = TRUE,
+    clthr = 0.9,
+    nbfactor = 5L,
+    q = 0.75,
+    k = 3L,
+    m = "tsne",
+    minnr = 5L,
+    minnrh = 10L,
+    trthr = 0.4
+) {
+  args <- as.list(environment())
+  method <- create_docker_ti_method('dynverse/fateid')
+  do.call(method, args)
+}
+
+
+
+
 #' Inferring a trajectory inference using [Growing Neural Gas](https://doi.org/https://github.com/rcannood/GNG)
 #' 
 #' Will generate a trajectory using [Growing Neural Gas](https://doi.org/https://github.com/rcannood/GNG). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/gng).

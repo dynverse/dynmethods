@@ -1,5 +1,6 @@
 name: 'Control: identity'
 short_name: identity
+type: control_test
 trajectory_types:
 - linear
 - bifurcation
@@ -9,7 +10,6 @@ trajectory_types:
 - tree
 - acyclic_graph
 topology_inference: free
-type: control_test
 parameters:
   dummy_param:
     type: numeric

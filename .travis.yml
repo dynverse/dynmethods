@@ -22,8 +22,7 @@ addons:
       - libudunits2-dev
       - libblas-dev
       - liblapack-dev
-      - libglu1-mesa-dev                    # dynmethods > merlot > rgl
-      - libx11-dev                          # dynmethods > merlot > rgl
+      - libssh-dev                          # PRISM > ssh > libssh-dev
 install:
  - if [ `git branch | grep '* master' | wc -l` == 0 ]; then sed -i 's#\(dynverse/[^, ]*\)#\1@devel#' DESCRIPTION; fi
  - sudo ldconfig                                                              # for merlot > rgl

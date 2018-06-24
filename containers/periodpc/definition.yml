@@ -1,8 +1,6 @@
 name: Periodic PrinCurve
 short_name: periodpc
-package_loaded:
-- stats
-- princurve
+type: algorithm_test
 trajectory_types:
 - cycle
 - linear
@@ -15,7 +13,6 @@ trajectory_types:
 - graph
 - disconnected_graph
 topology_inference: fixed
-type: algorithm_test
 parameters:
   ndim:
     type: integer

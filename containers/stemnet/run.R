@@ -31,7 +31,7 @@ end_groups <- intersect(end_groups, names(table(grouping) %>% keep(~.>2)))
 
 # check if there are two or more end groups
 if (length(end_groups) < 2) {
-  stop("STEMNET requires at least two end cell populations, but according to the prior information there are only ", length(end_groups), " groups with two or more cells!")
+  stop("STEMNET requires at least two end cell populations, but according to the prior information there are only ", length(end_groups), " end populations with two or more cells!")
 }
 
 # create stemnet end populations

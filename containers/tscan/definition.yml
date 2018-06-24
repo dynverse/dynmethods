@@ -1,8 +1,6 @@
 name: TSCAN
 short_name: tscan
-package_required:
-- TSCAN
-- igraph
+type: algorithm
 doi: 10.1093/nar/gkw430
 trajectory_types:
 - linear
@@ -12,7 +10,6 @@ trajectory_types:
 - binary_tree
 - tree
 topology_inference: free
-type: algorithm
 license: GPL (>=2)
 publication_date: '2016-05-13'
 version: 1.7.0

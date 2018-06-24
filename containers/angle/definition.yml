@@ -1,8 +1,8 @@
 name: Angle
 short_name: angle
+type: control
 trajectory_types: cycle
 topology_inference: free
-type: control
 parameters:
   dimred:
     type: discrete

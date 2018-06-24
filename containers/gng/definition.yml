@@ -1,9 +1,6 @@
 name: Growing Neural Gas
 short_name: gng
-package_required:
-- GNG
-- igraph
-- dyndimred
+type: algorithm_test
 trajectory_types:
 - linear
 - bifurcation
@@ -12,7 +9,6 @@ trajectory_types:
 - binary_tree
 - tree
 topology_inference: free
-type: algorithm_test
 license: GPL-3
 version: 0.1.0
 code_url: https://github.com/rcannood/GNG
