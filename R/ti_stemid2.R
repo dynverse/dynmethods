@@ -20,6 +20,8 @@
 #' @param pdishuf positive integer. This is the number of randomizations to be performed. As a rule of thumb this number should be at least one order of magnitude larger than the desired p-value on the significance of the number of cells on a connection. Default is 2000.
 #' @param pthr positive number. This number corresponds to the p-value threshold, which is used to determine, whether the magnitude of an observed trajectory is significantly larger than observed for the randomized background distribution. This criterion is not used to infer significance of a link, but shown in a graphical representation of the tree
 #' @param pethr positive number. This number corresponds to the p-value threshold, which isused to determine for each link if it is populated by a number of cellssignificantly larger than expected for the randomized background distribution. This p-value threshold determines, which connections are considered validdifferentiation trajectories in the derived lineage tree.
+#' @param pvalue_cutoff Upper cutoff of p-value for determining significant edges
+#' @param linkscore_cutoff Lower cutoff of the linkscore for determining significant edges
 #'
 #' @inherit ti_identity description
 #'

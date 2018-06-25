@@ -11,7 +11,7 @@ ti_stemid(docker = dynwrap::test_docker_installation(), clustnr = 30,
   FUNcluster = "kmedoids", dimred_method = "tsne", outminc = 0,
   outlg = 2, probthr = 0.001, thr_lower = -10, thr_upper = -5,
   outdistquant = 0.95, nmode = FALSE, pdishuf = 2000, pthr = 1e-04,
-  pethr = 1e-04)
+  pethr = 1e-04, pvalue_cutoff = 0.05, linkscore_cutoff = 0.2)
 
 ti_stemid(docker = dynwrap::test_docker_installation(), clustnr = 30,
   bootnr = 50, metric = "pearson", num_cluster_method = "sat",
@@ -19,7 +19,7 @@ ti_stemid(docker = dynwrap::test_docker_installation(), clustnr = 30,
   FUNcluster = "kmedoids", dimred_method = "tsne", outminc = 0,
   outlg = 2, probthr = 0.001, thr_lower = -10, thr_upper = -5,
   outdistquant = 0.95, nmode = FALSE, pdishuf = 2000, pthr = 1e-04,
-  pethr = 1e-04)
+  pethr = 1e-04, pvalue_cutoff = 0.05, linkscore_cutoff = 0.2)
 }
 \arguments{
 \item{docker}{Whether to use the docker container or the R wrapper}
@@ -63,6 +63,10 @@ ti_stemid(docker = dynwrap::test_docker_installation(), clustnr = 30,
 \item{pthr}{positive number. This number corresponds to the p-value threshold, which is used to determine, whether the magnitude of an observed trajectory is significantly larger than observed for the randomized background distribution. This criterion is not used to infer significance of a link, but shown in a graphical representation of the tree}
 
 \item{pethr}{positive number. This number corresponds to the p-value threshold, which isused to determine for each link if it is populated by a number of cellssignificantly larger than expected for the randomized background distribution. This p-value threshold determines, which connections are considered validdifferentiation trajectories in the derived lineage tree.}
+
+\item{pvalue_cutoff}{Upper cutoff of p-value for determining significant edges}
+
+\item{linkscore_cutoff}{Lower cutoff of the linkscore for determining significant edges}
 }
 \value{
 The trajectory model
