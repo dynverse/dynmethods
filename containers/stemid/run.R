@@ -16,7 +16,7 @@ params <- jsonlite::read_json('/input/params.json')
 #   Infer trajectory                                                        ####
 
 run_fun <- function(
-  expression,
+  counts,
   clustnr = 30,
   bootnr = 50,
   metric = "pearson",
@@ -44,7 +44,7 @@ run_fun <- function(
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
   # initialize SCseq object with transcript expression
-  sc <- StemID::SCseq(data.frame(t(expression), check.names = FALSE))
+  sc <- StemID::SCseq(data.frame(t(counts), check.names = FALSE))
 
   # filtering of expression data
   sc <- sc %>% StemID::filterdata(
@@ -120,13 +120,13 @@ run_fun <- function(
 
   # return output
   wrap_prediction_model(
-    cell_ids = rownames(expression)
+    cell_ids = rownames(counts)
   ) %>% add_dimred_projection(
     milestone_ids = rownames(ltr@ldata$cnl %>% as.matrix),
     milestone_network = cluster_network,
     dimred_milestones = ltr@ldata$cnl %>% as.matrix,
     dimred = ltr@ltcoord,
-    milestone_assignment_cells = as.character(ltr@ldata$lp) %>% setNames(rownames(expression)),
+    milestone_assignment_cells = as.character(ltr@ldata$lp) %>% setNames(rownames(counts)),
     num_segments_per_edge = 100,
     col_ann = ltr@sc@fcol
   ) %>% add_timings(

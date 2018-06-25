@@ -200,7 +200,7 @@ parameters:
   forbidden: thr_lower > thr_upper
 input:
   format: rds
-  required: expression
+  required: counts
 output:
   format: dynwrap
 authors:
