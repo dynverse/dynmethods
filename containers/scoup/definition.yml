@@ -6,7 +6,7 @@ trajectory_types: linear
 topology_inference: parameter
 license: MIT
 publication_date: '2016-06-08'
-code_url: https://github.com/gcyuan/PySCUBA
+code_url: https://github.com/hmatsu1226/SCOUP
 parameters:
   ndim:
     type: integer
