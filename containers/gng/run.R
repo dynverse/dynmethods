@@ -4,7 +4,7 @@ library(readr)
 library(dplyr)
 library(purrr)
 
-library(GNG)
+library(gng)
 library(igraph)
 library(dyndimred)
 
@@ -21,11 +21,11 @@ run_fun <- function(
   expression,
   dimred = "pca",
   ndim = 5,
-  max_iter = 13.8155105579643,
+  max_iter = 15000,
   max_nodes = 8,
   apply_mst = TRUE
 ) {
-  requireNamespace("GNG")
+  requireNamespace("gng")
   requireNamespace("igraph")
 
   # TIMING: done with preproc
@@ -35,7 +35,7 @@ run_fun <- function(
   space <- dyndimred::dimred(expression, method = dimred, ndim = ndim)
 
   # calculate GNG
-  gng_out <- GNG::gng(
+  gng_out <- gng::gng(
     space,
     max_iter = max_iter,
     max_nodes = max_nodes,

@@ -196,10 +196,22 @@ parameters:
       larger than expected for the randomized background distribution. This p-value
       threshold determines, which connections are considered validdifferentiation
       trajectories in the derived lineage tree.
+  pvalue_cutoff:
+    type: numeric
+    default: 0.05
+    lower: 0.0e+00
+    upper: 1.0
+    description: Upper cutoff of p-value for determining significant edges
+  linkscore_cutoff:
+    type: numeric
+    default: 0.2
+    lower: 0.0e+00
+    upper: 1.0
+    description: Lower cutoff of the linkscore for determining significant edges
   forbidden: thr_lower > thr_upper
 input:
   format: rds
-  required: expression
+  required: counts
 output:
   format: dynwrap
 authors:

@@ -4,32 +4,32 @@
 \alias{ti_wanderlust}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1038/nbt.3569}{wanderlust}}
 \usage{
-ti_wanderlust(branch = FALSE, epsilon = 1L, k = 15L, knn = 15L,
-  n_diffusion_components = 2L, n_pca_components = 15L, normalise = TRUE,
+ti_wanderlust(branch = FALSE, epsilon = 1L, k = 25L, knn = 25L,
+  n_diffusion_components = 3L, n_pca_components = 30L, normalise = TRUE,
   num_waypoints = 250L)
 }
 \arguments{
 \item{branch}{Whether to allow a single bifurcation within the trajectory (wishbone versus wanderlust) \cr}
 
 \item{epsilon}{Epsilon \cr
-numeric; default: 1L; possible values between 0.1 and 10}
+numeric; default: 1L; possible values between 0.1 and 5}
 
 \item{k}{K parameter \cr
-integer; default: 15L; possible values between 2 and 100}
+integer; default: 25L; possible values between 15 and 100}
 
 \item{knn}{K-nearest neighbours for diffusion \cr
-integer; default: 15L; possible values between 2 and 100}
+integer; default: 25L; possible values between 15 and 100}
 
 \item{n_diffusion_components}{Number of diffusion components \cr
-integer; default: 2L; possible values between 2 and 20}
+integer; default: 3L; possible values between 3 and 20}
 
 \item{n_pca_components}{Number of pca components \cr
-integer; default: 15L; possible values between 2 and 30}
+integer; default: 30L; possible values between 15 and 100}
 
 \item{normalise}{\cr}
 
 \item{num_waypoints}{Number of waypoints \cr
-integer; default: 250L; possible values between 2 and 500}
+integer; default: 250L; possible values between 100 and 500}
 }
 \value{
 The trajectory model

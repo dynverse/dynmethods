@@ -20,6 +20,8 @@
 #' @param pdishuf positive integer. This is the number of randomizations to be performed. As a rule of thumb this number should be at least one order of magnitude larger than the desired p-value on the significance of the number of cells on a connection. Default is 2000.
 #' @param pthr positive number. This number corresponds to the p-value threshold, which is used to determine, whether the magnitude of an observed trajectory is significantly larger than observed for the randomized background distribution. This criterion is not used to infer significance of a link, but shown in a graphical representation of the tree
 #' @param pethr positive number. This number corresponds to the p-value threshold, which isused to determine for each link if it is populated by a number of cellssignificantly larger than expected for the randomized background distribution. This p-value threshold determines, which connections are considered validdifferentiation trajectories in the derived lineage tree.
+#' @param pvalue_cutoff Upper cutoff of p-value for determining significant edges
+#' @param linkscore_cutoff Lower cutoff of the linkscore for determining significant edges
 #'
 #' @inherit ti_identity description
 #'
@@ -173,6 +175,23 @@ ti_stemid2 <- create_ti_method(
       upper = 1e-4,
       lower = 0,
       description = "positive number. This number corresponds to the p-value threshold, which isused to determine for each link if it is populated by a number of cellssignificantly larger than expected for the randomized background distribution. This p-value threshold determines, which connections are considered validdifferentiation trajectories in the derived lineage tree."),
+
+    pvalue_cutoff = list(
+      type = "numeric",
+      default = 0.05,
+      lower = 0,
+      upper = 1,
+      description = "Upper cutoff of p-value for determining significant edges"
+    ),
+
+    linkscore_cutoff = list(
+      type = "numeric",
+      default = 0.2,
+      lower = 0,
+      upper = 1,
+      description = "Lower cutoff of the linkscore for determining significant edges"
+    ),
+
     forbidden = "thr_lower > thr_upper"
   ),
   run_fun = "dynmethods::run_stemid2",
@@ -180,7 +199,7 @@ ti_stemid2 <- create_ti_method(
 )
 
 run_stemid2 <- function(
-  expression,
+  counts,
   clustnr = 30,
   bootnr = 50,
   metric = "pearson",
@@ -200,7 +219,9 @@ run_stemid2 <- function(
   nmode = FALSE,
   pdishuf = 2000,
   pthr = .01,
-  pethr = .01
+  pethr = .01,
+  pvalue_cutoff,
+  linkscore_cutoff
 ) {
   requireNamespace("StemID2")
 
@@ -208,7 +229,7 @@ run_stemid2 <- function(
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
   # initialize SCseq object with transcript expression
-  sc <- StemID2::SCseq(data.frame(t(expression), check.names = FALSE))
+  sc <- StemID2::SCseq(data.frame(t(counts), check.names = FALSE))
 
   # filtering of expression data
   sc <- sc %>% StemID2::filterdata(
@@ -312,26 +333,53 @@ run_stemid2 <- function(
   # compute a spanning tree
   ltr <- ltr %>% StemID2::compspantree()
 
+  # compute p value
+  ltr <- ltr %>% StemID2:::comppvalue()
+
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
-  # get network info
-  cluster_network <- data_frame(
-    from = as.character(ltr@ldata$m[-1]),
-    to = as.character(ltr@trl$trl$kid),
-    length = ltr@trl$dc[cbind(from, to)],
-    directed = FALSE
-  )
+  # get linkscores and pvalues
+  cluster_network_linkscore <- ltr@cdata$linkscore %>%
+    tibble::rownames_to_column("from") %>%
+    tidyr::gather("to", "linkscore", -from)
+
+  cluster_network_pvalue <- ltr@cdata$pvn.e %>%
+    tibble::rownames_to_column("from") %>%
+    tidyr::gather("to", "pvalue", -from)
+
+  # combine into one cluster network
+  cluster_network <- left_join(
+    cluster_network_linkscore,
+    cluster_network_pvalue,
+    c("from", "to")
+  ) %>%
+    mutate_at(c("from", "to"), ~gsub("cl\\.(.*)", "\\1", .))
+
+  # filter the cluster network
+  cluster_network <- cluster_network %>%
+    filter(
+      pvalue <= pvalue_cutoff,
+      linkscore >= linkscore_cutoff
+    )
+
+  # get distances between clusters
+  cluster_network <- cluster_network %>%
+    mutate(
+      length =  ltr@trl$dc[cbind(from, to)],
+      directed = FALSE
+    ) %>%
+    select(from, to, length, directed)
 
   # return output
   wrap_prediction_model(
-    cell_ids = rownames(expression)
+    cell_ids = rownames(counts)
   ) %>% add_dimred_projection(
     milestone_ids = rownames(ltr@ldata$cnl %>% as.matrix),
     milestone_network = cluster_network,
     dimred_milestones = ltr@ldata$cnl %>% as.matrix,
     dimred = ltr@ltcoord,
-    milestone_assignment_cells = as.character(ltr@ldata$lp) %>% setNames(rownames(expression)),
+    milestone_assignment_cells = as.character(ltr@ldata$lp) %>% setNames(rownames(counts)),
     num_segments_per_edge = 100,
     col_ann = ltr@sc@fcol
   ) %>% add_timings(

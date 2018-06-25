@@ -4,30 +4,30 @@
 \alias{ti_wishbone}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1038/nbt.3569}{Wishbone}}
 \usage{
-ti_wishbone(normalise = TRUE, knn = 15L, n_diffusion_components = 2L,
-  n_pca_components = 15L, k = 15L, num_waypoints = 250L, epsilon = 1L,
+ti_wishbone(normalise = TRUE, knn = 25L, n_diffusion_components = 3L,
+  n_pca_components = 30L, k = 25L, num_waypoints = 250L, epsilon = 1L,
   branch = TRUE)
 }
 \arguments{
 \item{normalise}{\cr}
 
 \item{knn}{K-nearest neighbours for diffusion \cr
-integer; default: 15L; possible values between 2 and 100}
+integer; default: 25L; possible values between 15 and 100}
 
 \item{n_diffusion_components}{Number of diffusion components \cr
-integer; default: 2L; possible values between 2 and 20}
+integer; default: 3L; possible values between 3 and 20}
 
 \item{n_pca_components}{Number of pca components \cr
-integer; default: 15L; possible values between 2 and 30}
+integer; default: 30L; possible values between 15 and 100}
 
 \item{k}{K parameter \cr
-integer; default: 15L; possible values between 2 and 100}
+integer; default: 25L; possible values between 15 and 100}
 
 \item{num_waypoints}{Number of waypoints \cr
-integer; default: 250L; possible values between 2 and 500}
+integer; default: 250L; possible values between 100 and 500}
 
 \item{epsilon}{Epsilon \cr
-numeric; default: 1L; possible values between 0.1 and 10}
+numeric; default: 1L; possible values between 0.1 and 5}
 
 \item{branch}{Whether to allow a single bifurcation within the trajectory (wishbone versus wanderlust) \cr}
 }

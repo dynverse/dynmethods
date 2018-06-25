@@ -45,7 +45,7 @@ Will generate a trajectory using \href{https://doi.org/10.1186/s12859-016-1109-3
 \details{
 This methods was first wrapped inside R, see \link{ti_scoup}
 
-The original code of this method is available \href{https://github.com/gcyuan/PySCUBA}{here}.
+The original code of this method is available \href{https://github.com/hmatsu1226/SCOUP}{here}.
 
 The method is described in: \href{https://doi.org/10.1186/s12859-016-1109-3}{Matsumoto, H., Kiryu, H., 2016. SCOUP: a probabilistic model based on the Ornstein–Uhlenbeck process to analyze single-cell expression data during differentiation. BMC Bioinformatics 17.}
 }
