@@ -2,6 +2,7 @@
 ^\.Rproj\.user$
 ^\.httr-oauth$
 ^\.travis
+^\appveyor
 ^scripts$
 ^.git$
 ^README.Rmd$
