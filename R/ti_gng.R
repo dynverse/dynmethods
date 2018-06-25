@@ -5,7 +5,7 @@
 #' @param dimred A character vector specifying which dimensionality reduction method to use.
 #'   See [dyndimred::dimred] for the list of available dimensionality reduction methods.
 #' @inheritParams dyndimred::dimred
-#' @inheritParams GNG::gng
+#' @inheritParams gng::gng
 #' @param apply_mst If true, an MST post-processing of the GNG is performed.
 #'
 #' @export
@@ -13,7 +13,7 @@ ti_gng <- create_ti_method(
   name = "Growing Neural Gas",
   short_name = "gng",
   package_loaded = c(),
-  package_required = c("GNG", "igraph", "dyndimred"),
+  package_required = c("gng", "igraph", "dyndimred"),
   trajectory_types = c("linear", "bifurcation", "convergence", "multifurcation", "binary_tree", "tree"),
   topology_inference = "free",
   type = "algorithm_test",
@@ -28,7 +28,7 @@ ti_gng <- create_ti_method(
     )
   ),
   version = "0.1.0",
-  code_url = "https://github.com/rcannood/GNG",
+  code_url = "https://github.com/rcannood/gng",
   parameters = list(
     dimred = list(
       type = "discrete",
@@ -45,9 +45,9 @@ ti_gng <- create_ti_method(
     ),
     max_iter = list(
       type = "numeric",
-      default = 13.8155105579643,
-      upper = 18.4206807439524,
-      lower = 4.60517018598809,
+      default = 15000,
+      upper = 1000000,
+      lower = 25,
       description = "The max number of iterations"
     ),
     max_nodes = list(
@@ -77,7 +77,7 @@ run_gng <- function(
   max_nodes,
   apply_mst
 ) {
-  requireNamespace("GNG")
+  requireNamespace("gng")
   requireNamespace("igraph")
 
   # TIMING: done with preproc
@@ -87,7 +87,7 @@ run_gng <- function(
   space <- dyndimred::dimred(expression, method = dimred, ndim = ndim)
 
   # calculate GNG
-  gng_out <- GNG::gng(
+  gng_out <- gng::gng(
     space,
     max_iter = max_iter,
     max_nodes = max_nodes,
