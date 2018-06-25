@@ -8,31 +8,31 @@ parameters:
   knn:
     description: k-nearest neighbours for diffusion
     type: integer
-    lower: 2
-    default: 15
+    lower: 15
+    default: 25
     upper: 100
   n_diffusion_components:
     description: number of diffusion components
     type: integer
-    lower: 2
-    default: 2
+    lower: 3
+    default: 3
     upper: 20
   n_pca_components:
     description: number of pca components
     type: integer
-    lower: 2
-    default: 15
-    upper: 30
+    lower: 15
+    default: 30
+    upper: 100
   k:
     description: k parameter
     type: integer
-    lower: 2
-    default: 15
+    lower: 15
+    default: 25
     upper: 100
   num_waypoints:
     description: number of waypoints
     type: integer
-    lower: 2
+    lower: 100
     default: 250
     upper: 500
   epsilon:
@@ -40,7 +40,7 @@ parameters:
     type: numeric
     lower: 0.1
     default: 1
-    upper: 10
+    upper: 5
   branch:
     description: whether to allow a single bifurcation within the trajectory (wishbone versus wanderlust)
     type: logical
@@ -69,11 +69,11 @@ license: GPL-2
 authors:
   - given: Manu
     family: Setty
-    email: ms5034@columbia.edu
+    email: manu.talanki@gmail.com
     github: ManuSetty
   - given: Dana
     family: Pe'er
-    email: dpeer@biology.columbia.edu
+    email: peerster@gmail.com
     ORCID: 0000-0002-9259-8817
 publication_date: '2016-05-02'
 version: 0.4.2
