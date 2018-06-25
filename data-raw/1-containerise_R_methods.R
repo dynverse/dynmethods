@@ -186,5 +186,5 @@ write_rds(model, '/output/output.rds')
   get_dockerfile(method) %>% write_file(file.path(folder, "Dockerfile"))
   get_runr(method) %>% write_file(file.path(folder, "run.R"))
 
-  # system(glue::glue("docker build containers/{method_id} -t dynverse/{method_id}"))
+  system(glue::glue("docker build containers/{method_id} -t dynverse/{method_id}"))
 })

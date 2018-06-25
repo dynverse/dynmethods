@@ -173,6 +173,23 @@ ti_stemid2 <- create_ti_method(
       upper = 1e-4,
       lower = 0,
       description = "positive number. This number corresponds to the p-value threshold, which isused to determine for each link if it is populated by a number of cellssignificantly larger than expected for the randomized background distribution. This p-value threshold determines, which connections are considered validdifferentiation trajectories in the derived lineage tree."),
+
+    pvalue_cutoff = list(
+      type = "numeric",
+      default = 0.05,
+      lower = 0,
+      upper = 1,
+      description = "Upper cutoff of p-value for determining significant edges"
+    ),
+
+    linkscore_cutoff = list(
+      type = "numeric",
+      default = 0.2,
+      lower = 0,
+      upper = 1,
+      description = "Lower cutoff of the linkscore for determining significant edges"
+    ),
+
     forbidden = "thr_lower > thr_upper"
   ),
   run_fun = "dynmethods::run_stemid2",
@@ -200,7 +217,9 @@ run_stemid2 <- function(
   nmode = FALSE,
   pdishuf = 2000,
   pthr = .01,
-  pethr = .01
+  pethr = .01,
+  pvalue_cutoff,
+  linkscore_cutoff
 ) {
   requireNamespace("StemID2")
 
@@ -312,16 +331,43 @@ run_stemid2 <- function(
   # compute a spanning tree
   ltr <- ltr %>% StemID2::compspantree()
 
+  # compute p value
+  ltr <- ltr %>% StemID2:::comppvalue()
+
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
-  # get network info
-  cluster_network <- data_frame(
-    from = as.character(ltr@ldata$m[-1]),
-    to = as.character(ltr@trl$trl$kid),
-    length = ltr@trl$dc[cbind(from, to)],
-    directed = FALSE
-  )
+  # get linkscores and pvalues
+  cluster_network_linkscore <- ltr@cdata$linkscore %>%
+    tibble::rownames_to_column("from") %>%
+    tidyr::gather("to", "linkscore", -from)
+
+  cluster_network_pvalue <- ltr@cdata$pvn.e %>%
+    tibble::rownames_to_column("from") %>%
+    tidyr::gather("to", "pvalue", -from)
+
+  # combine into one cluster network
+  cluster_network <- left_join(
+    cluster_network_linkscore,
+    cluster_network_pvalue,
+    c("from", "to")
+  ) %>%
+    mutate_at(c("from", "to"), ~gsub("cl\\.(.*)", "\\1", .))
+
+  # filter the cluster network
+  cluster_network <- cluster_network %>%
+    filter(
+      pvalue <= pvalue_cutoff,
+      linkscore >= linkscore_cutoff
+    )
+
+  # get distances between clusters
+  cluster_network <- cluster_network %>%
+    mutate(
+      length =  ltr@trl$dc[cbind(from, to)],
+      directed = FALSE
+    ) %>%
+    select(from, to, length, directed)
 
   # return output
   wrap_prediction_model(
