@@ -23,13 +23,13 @@ coefficient (or covariance) is to be computed. One of "pearson", "kendall", or "
 
 \item{k}{The number of clusters to cluster the data into.}
 
-\item{thresh}{\code{\link[princurve]{principal_curve}} parameter: convergence threshhold on shortest distances to the curve}
+\item{thresh}{\code{\link[princurve]{principal.curve}} parameter: convergence threshhold on shortest distances to the curve}
 
-\item{maxit}{\code{\link[princurve]{principal_curve}} parameter: maximum number of iterations}
+\item{maxit}{\code{\link[princurve]{principal.curve}} parameter: maximum number of iterations}
 
-\item{stretch}{\code{\link[princurve]{principal_curve}} parameter: a factor by which the curve can be extrapolated when points are projected}
+\item{stretch}{\code{\link[princurve]{principal.curve}} parameter: a factor by which the curve can be extrapolated when points are projected}
 
-\item{smoother}{\code{\link[princurve]{principal_curve}} parameter: choice of smoother}
+\item{smoother}{\code{\link[princurve]{principal.curve}} parameter: choice of smoother}
 
 \item{sparse}{Whether or not to use sparse MDS dimensionality reduction,
 for datasets with large amounts of cells.}

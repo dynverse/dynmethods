@@ -389,13 +389,13 @@ ti_fateid <- function(
 
 
 
-#' Inferring a trajectory inference using [Growing Neural Gas](https://doi.org/https://github.com/rcannood/GNG)
+#' Inferring a trajectory inference using [Growing Neural Gas](https://doi.org/https://github.com/rcannood/gng)
 #' 
-#' Will generate a trajectory using [Growing Neural Gas](https://doi.org/https://github.com/rcannood/GNG). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/gng).
+#' Will generate a trajectory using [Growing Neural Gas](https://doi.org/https://github.com/rcannood/gng). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/gng).
 #' 
 #' This methods was first wrapped inside R, see [ti_gng]
 #' 
-#' The original code of this method is available [here](https://github.com/rcannood/GNG).
+#' The original code of this method is available [here](https://github.com/rcannood/gng).
 #' 
 #' 
 #' 
@@ -1274,28 +1274,28 @@ ti_tscan <- create_ti_method_chooser(ti_tscan, 'dynverse/tscan')
 #' 
 #' @param branch Whether to allow a single bifurcation within the trajectory (wishbone versus wanderlust) \cr 
 #' @param epsilon Epsilon \cr 
-#'     numeric; default: 1L; possible values between 0.1 and 10
+#'     numeric; default: 1L; possible values between 0.1 and 5
 #' @param k K parameter \cr 
-#'     integer; default: 15L; possible values between 2 and 100
+#'     integer; default: 25L; possible values between 15 and 100
 #' @param knn K-nearest neighbours for diffusion \cr 
-#'     integer; default: 15L; possible values between 2 and 100
+#'     integer; default: 25L; possible values between 15 and 100
 #' @param n_diffusion_components Number of diffusion components \cr 
-#'     integer; default: 2L; possible values between 2 and 20
+#'     integer; default: 3L; possible values between 3 and 20
 #' @param n_pca_components Number of pca components \cr 
-#'     integer; default: 15L; possible values between 2 and 30
+#'     integer; default: 30L; possible values between 15 and 100
 #' @param normalise  \cr 
 #' @param num_waypoints Number of waypoints \cr 
-#'     integer; default: 250L; possible values between 2 and 500
+#'     integer; default: 250L; possible values between 100 and 500
 #' 
 #' @return The trajectory model
 #' @export
 ti_wanderlust <- function(
     branch = FALSE,
     epsilon = 1L,
-    k = 15L,
-    knn = 15L,
-    n_diffusion_components = 2L,
-    n_pca_components = 15L,
+    k = 25L,
+    knn = 25L,
+    n_diffusion_components = 3L,
+    n_pca_components = 30L,
     normalise = TRUE,
     num_waypoints = 250L
 ) {

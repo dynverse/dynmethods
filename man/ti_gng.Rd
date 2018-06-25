@@ -31,10 +31,10 @@ The trajectory model
 \description{
 Inferring trajectories with Growing Neural Gas
 
-Will generate a trajectory using \href{https://doi.org/https://github.com/rcannood/gng}{Growing Neural Gas}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/gng}{container}.
+Will generate a trajectory using \href{https://doi.org/https://github.com/rcannood/GNG}{Growing Neural Gas}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/gng}{container}.
 }
 \details{
 This methods was first wrapped inside R, see \link{ti_gng}
 
-The original code of this method is available \href{https://github.com/rcannood/gng}{here}.
+The original code of this method is available \href{https://github.com/rcannood/GNG}{here}.
 }
