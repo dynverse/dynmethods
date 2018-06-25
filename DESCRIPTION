@@ -53,7 +53,7 @@ Suggests:
   destiny,
   dyntoy,
   embeddr,
-  GNG,
+  gng,
   lle,
   MASS,
   Matrix,
@@ -113,7 +113,7 @@ Remotes:
   kieranrcampbell/ouija,
   kieranrcampbell/phenopath,
   kstreet13/slingshot@develop,
-  rcannood/GNG,
+  rcannood/gng,
   rcannood/SCORPIUS,
   zji90/TSCAN
 VignetteBuilder: knitr
