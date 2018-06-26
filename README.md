@@ -20,8 +20,8 @@ devtools::install_github("dynverse/dynmethods")
 
 On linux, udunits2 has to be installed:
 
--   Debian / Ubuntu / Linux mint: sudo apt-get install libudunits2-dev imagemagick -y
--   Fedora / CentOS: sudo dnf install udunits2-devel ImageMagick-c++-devel
+-   Debian / Ubuntu / Linux mint: `sudo apt-get install libudunits2-dev`
+-   Fedora / CentOS: `sudo dnf install udunits2-devel`
 
 List of included methods
 ------------------------
