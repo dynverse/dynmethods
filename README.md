@@ -5,13 +5,23 @@
 A collection of 50 trajectory inference methods
 ===============================================
 
-This package contains wrappers for all of the trajectory inference (TI) methods included in the [dynverse](https://www.github.com/dynverse/dynverse) review. The output of each method is transformed into a common trajectory model using [dynwrap](https://www.github.com/dynverse/dynwrap). Nearly all methods are integrated within a docker container, avoiding dependency issues. Some methods are also directly wrapped inside of R.
+This package contains wrappers for all of the trajectory inference (TI) methods included in the [dynverse](https://www.github.com/dynverse/dynverse) review. The output of each method is transformed into a common trajectory model using [dynwrap](https://www.github.com/dynverse/dynwrap), which allows easy [visualisation and comparison](https://www.github.com/dynverse/dynplot). Nearly all methods are integrated within a docker container, avoiding dependency issues. Some methods are also directly wrapped inside of R.
 
 **To run any of these methods, interpret the results and visualise the trajectory, see the [dyno package](https://www.github.com/dynverse/dyno).**
 
 To include your own method, feel free to send us a [pull request](https://github.com/dynverse/dynmethods/pulls) or create an [issue](https://github.com/dynverse/dynmethods/labels/new%20method). The easiest way to add a new method is [through a docker container](https://dynverse.github.io/dynwrap/articles/create_ti_method_docker.html), so that dependencies don't pose any issues for other users, but we also welcome methods [directly wrapped inside of R](https://dynverse.github.io/dynwrap/articles/create_ti_method_r.html). The main benefit of adding your own method is that users can easily compare your method with others and [visualise/interpret the output](https://www.github.com/dynverse/dyno). Moreover, your method will be compared to other methods within [the TI method evaluation](https://doi.org/10.1101/276907).
 
-Currently wrapped are the following methods:
+Installation
+------------
+
+``` r
+devtools::install_github("dynverse/dynmethods")
+```
+
+On linux, udunits2 has to be installed (debian/ubuntu: `sudo apt install libudunits2-dev`, rhel/fedora/centos: `sudo dnf install udunits2 udunits2-devel`)
+
+List of included methods
+------------------------
 
 | Method                                                                                                                        | Wrapper                                                                                           | <a href='https://github.com/dynverse/dynmethods/tree/master/R'><img src='man/figures/r_logo.png' height='30'></a> | <a href='https://hub.docker.com/u/dynverse/'><img src='man/figures/docker_logo.png' height='30'></a>                                                      | Authors                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 |:------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
