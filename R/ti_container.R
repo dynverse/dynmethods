@@ -721,15 +721,20 @@ ti_ouijaflow <- function(
 #'     integer; default: 30L; possible values between 1 and 100
 #' @param n_comps Number of principal components \cr 
 #'     integer; default: 50L; possible values between 0 and 100
+#' @param n_dcs Number of diffusion components for denoising graph, 0 means no denoising. \cr 
+#'     integer; default: 15L; possible values between 0 and 40
 #' @param resolution Resolution of louvain clustering, which determines the granularity of the clustering. Higher values will result in more clusters. \cr 
 #'     numeric; default: 2.5; possible values between 0.1 and 10
+#' @param embedding_type Either 'umap' (scales very well, recommended for very large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for small datasets). \cr 
 #' 
 #' @return The trajectory model
 #' @export
 ti_paga <- function(
     n_neighbors = 30L,
     n_comps = 50L,
-    resolution = 2.5
+    n_dcs = 15L,
+    resolution = 2.5,
+    embedding_type = "fa"
 ) {
   args <- as.list(environment())
   method <- create_docker_ti_method('dynverse/paga')
@@ -825,8 +830,11 @@ ti_phenopath <- create_ti_method_chooser(ti_phenopath, 'dynverse/phenopath')
 #' 
 #' The method is described in: [Wolf, F.A., Hamey, F., Plass, M., Solana, J., Dahlin, J.S., Gottgens, B., Rajewsky, N., Simon, L., Theis, F.J., 2017. Graph abstraction reconciles clustering with trajectory inference through a topology preserving map of single cells.](https://doi.org/10.1101/208819)
 #' 
+#' @param embedding_type Either 'umap' (scales very well, recommended for very large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for small datasets). \cr 
 #' @param n_comps Number of principal components \cr 
 #'     integer; default: 50L; possible values between 0 and 100
+#' @param n_dcs Number of diffusion components for denoising graph, 0 means no denoising. \cr 
+#'     integer; default: 15L; possible values between 0 and 40
 #' @param n_neighbors Number of neighbours for knn \cr 
 #'     integer; default: 30L; possible values between 1 and 100
 #' @param resolution Resolution of louvain clustering, which determines the granularity of the clustering. Higher values will result in more clusters. \cr 
@@ -835,7 +843,9 @@ ti_phenopath <- create_ti_method_chooser(ti_phenopath, 'dynverse/phenopath')
 #' @return The trajectory model
 #' @export
 ti_praga <- function(
+    embedding_type = "fa",
     n_comps = 50L,
+    n_dcs = 15L,
     n_neighbors = 30L,
     resolution = 2.5
 ) {
