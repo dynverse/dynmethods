@@ -1,3 +1,7 @@
+# avoid errors due to no $DISPLAY environment variable available when running sc.pl.paga
+import matplotlib
+matplotlib.use('Agg')
+
 import pandas as pd
 import numpy as np
 import h5py
@@ -9,11 +13,11 @@ import anndata
 import time
 checkpoints = {}
 
-
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 data = h5py.File("/input/data.h5", "r")
-expression = pd.DataFrame(data['expression'][:].T, index=data['expression'].attrs['rownames'].astype(np.str))
+counts = pd.DataFrame(data['counts'][:].T, index=data['counts'].attrs['rownames'].astype(np.str))
+start_id = data['start_id'][:].astype(np.str)
 data.close()
 
 params = json.load(open("/input/params.json", "r"))
@@ -27,14 +31,14 @@ else:
 if groups_id is not None:
   obs = groups_id
   obs["louvain"] = obs.group_id.astyp("category")
-  adata = anndata.AnnData(expression.values, obs)
+  adata = anndata.AnnData(counts.values, obs)
 else:
-  adata = anndata.AnnData(expression.values)
+  adata = anndata.AnnData(counts.values)
 
 #   ____________________________________________________________________________
 #   Basic preprocessing                                                     ####
 
-n_top_genes = min(2000, expression.shape[1])
+n_top_genes = min(2000, counts.shape[1])
 sc.pp.recipe_zheng17(adata, n_top_genes=n_top_genes)
 sc.tl.pca(adata, n_comps=params["n_comps"])
 sc.pp.neighbors(adata, n_neighbors=params["n_neighbors"])
@@ -63,6 +67,7 @@ sc.tl.paga(adata)
 sc.pl.paga(adata, threshold=0.01, layout='fr', show=False)
 
 # run dpt for pseudotime information that is overlayed with paga
+adata.uns['iroot'] = np.where(counts.index == start_id[0])[0][0]
 sc.tl.dpt(adata)
 
 # run umap for a dimension-reduced embedding, use the positions of the paga
@@ -76,8 +81,9 @@ checkpoints["method_aftermethod"] = time.time()
 
 #   ____________________________________________________________________________
 #   Process & save output                                                   ####
+
 # grouping
-grouping = pd.DataFrame({"cell_id": expression.index, "group_id": adata.obs.louvain})
+grouping = pd.DataFrame({"cell_id": counts.index, "group_id": adata.obs.louvain})
 grouping.reset_index(drop=True).to_feather("/output/grouping.feather")
 
 # milestone network
@@ -87,20 +93,51 @@ milestone_network = pd.DataFrame(
   columns=adata.obs.louvain.cat.categories
 ).stack().reset_index()
 milestone_network.columns = ["from", "to", "length"]
-milestone_network = milestone_network.query("length > 0")
+milestone_network = milestone_network.query("length > 0").reset_index(drop=True)
 milestone_network["directed"] = False
-milestone_network.reset_index(drop=True).to_feather("/output/milestone_network.feather")
+milestone_network.to_feather("/output/milestone_network.feather")
 
 # dimred
-dimred = pd.DataFrame([x for x in adata.obsm['X_umap'].T])
+dimred = pd.DataFrame([x for x in adata.obsm['X_umap'].T]).T
 dimred.columns = ["comp_" + str(i) for i in range(dimred.shape[1])]
-dimred["cell_id"] = expression.index
+dimred["cell_id"] = counts.index
 dimred.reset_index(drop=True).to_feather("/output/dimred.feather")
 
-# dimred milestones
-dimred["milestone_id"] = adata.obs.louvain.tolist()
-dimred_milestones = dimred.groupby("milestone_id").mean().reset_index()
-dimred_milestones.to_feather("/output/dimred_milestones.feather")
+if "dimred_projection" in params["output_ids"]:
+  # dimred milestones
+  dimred["milestone_id"] = adata.obs.louvain.tolist()
+  dimred_milestones = dimred.groupby("milestone_id").mean().reset_index()
+  dimred_milestones.to_feather("/output/dimred_milestones.feather")
+
+if "branch_trajectory" in params["output_ids"]:
+  # branch progressions: the scaled dpt_pseudotime within every cluster
+  branch_progressions = adata.obs
+  branch_progressions["dpt_pseudotime"] = branch_progressions["dpt_pseudotime"].replace([np.inf, -np.inf], 1) # replace unreachable pseudotime with maximal pseudotime
+  branch_progressions["percentage"] = branch_progressions.groupby("louvain")["dpt_pseudotime"].apply(lambda x: (x-x.min())/(x.max() - x.min())).fillna(0.5)
+  branch_progressions["cell_id"] = counts.index
+  branch_progressions["branch_id"] = branch_progressions["louvain"].astype(np.str)
+  branch_progressions = branch_progressions[["cell_id", "branch_id", "percentage"]]
+  branch_progressions.reset_index(drop=True).to_feather("/output/branch_progressions.feather")
+
+  # branches:
+  # - length = difference between max and min dpt_pseudotime within every cluster
+  # - directed = not yet correctly inferred
+  branches = adata.obs.groupby("louvain").apply(lambda x: x["dpt_pseudotime"].max() - x["dpt_pseudotime"].min()).reset_index()
+  branches.columns = ["branch_id", "length"]
+  branches["branch_id"] = branches["branch_id"].astype(np.str)
+  branches["directed"] = True
+  branches.to_feather("/output/branches.feather")
+
+  # branch network: determine order of from and to based on difference in average pseudotime
+  branch_network = milestone_network[["from", "to"]]
+  average_pseudotime = adata.obs.groupby("louvain")["dpt_pseudotime"].mean()
+  for i, (branch_from, branch_to) in enumerate(zip(branch_network["from"], branch_network["to"])):
+    if average_pseudotime[branch_from] > average_pseudotime[branch_to]:
+      branch_network.at[i, "to"] = branch_from
+      branch_network.at[i, "from"] = branch_to
+
+
+  branch_network.to_feather("/output/branch_network.feather")
 
 # timings
 timings = pd.Series(checkpoints)
