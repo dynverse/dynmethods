@@ -29,7 +29,7 @@ start_dynmethods_docker <- function() {
 #' @importFrom stringr str_glue
 #' @rdname start_dynmethods_docker
 stop_dynmethods_docker <- function() {
-  to_stop <- system("docker ps -a | grep dynmethods | awk '{print $1}'", intern=T)
+  to_stop <- check_dynmethods_docker_running()
 
   if (length(to_stop)) {
     system(str_glue("docker stop {to_stop}"))
@@ -38,14 +38,15 @@ stop_dynmethods_docker <- function() {
 }
 
 check_dynmethods_docker_running <- function() {
-  system("docker ps -a | grep dynmethods | awk '{print $1}'", intern=T)
+  system("docker ps -a -f name=dynmethods --format \"{{.ID}}\"", intern = T)
 }
 
 #' @rdname start_dynmethods_docker
 start_dynmethods_docker <- function() {
-  if(length(check_dynmethods_docker_running())) {
+  if (length(check_dynmethods_docker_running())) {
     stop_dynmethods_docker()
   }
+
   cl <- future::makeClusterPSOCK(
     "localhost",
     rscript = c(
@@ -56,8 +57,9 @@ start_dynmethods_docker <- function() {
       "-e",
       shQuote("library(dynmethods)")
     ),
-    connectTimeout=10
+    connectTimeout = 10
   )
+
   future::plan(future::cluster, workers = cl)
 }
 
