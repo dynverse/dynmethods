@@ -28,7 +28,7 @@ parameters:
     default: 2.5
   embedding_type:
     description: Either 'umap' (scales very well, recommended for very large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for small datasets).
-    type: string
+    type: discrete
     default: 'fa'
 input:
   format: hdf5
