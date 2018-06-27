@@ -34,7 +34,8 @@ else:
 #   ____________________________________________________________________________
 #   Basic preprocessing                                                     ####
 
-sc.pp.recipe_zheng17(adata, n_top_genes=2000)
+n_top_genes = min(2000, expression.shape[1])
+sc.pp.recipe_zheng17(adata, n_top_genes=n_top_genes)
 sc.tl.pca(adata, n_comps=params["n_comps"])
 sc.pp.neighbors(adata, n_neighbors=params["n_neighbors"])
 
