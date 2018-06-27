@@ -43,9 +43,10 @@ check_dynmethods_docker_running <- function() {
 
 #' @rdname start_dynmethods_docker
 start_dynmethods_docker <- function() {
-  if(length(check_dynmethods_docker_running())) {
+  if (length(check_dynmethods_docker_running())) {
     stop_dynmethods_docker()
   }
+
   cl <- future::makeClusterPSOCK(
     "localhost",
     rscript = c(
@@ -56,8 +57,9 @@ start_dynmethods_docker <- function() {
       "-e",
       shQuote("library(dynmethods)")
     ),
-    connectTimeout=10
+    connectTimeout = 10
   )
+
   future::plan(future::cluster, workers = cl)
 }
 
