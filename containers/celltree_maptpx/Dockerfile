@@ -10,4 +10,4 @@ RUN R -e "devtools::install_github('dynverse/cellTree@RELEASE_3_6')"
 
 ADD . /code
 
-ENTRYPOINT Rscript code/run.R
+ENTRYPOINT Rscript /code/run.R

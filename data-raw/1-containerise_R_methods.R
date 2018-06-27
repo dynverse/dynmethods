@@ -96,7 +96,7 @@ RUN R -e 'devtools::install_github(\"dynverse/dynwrap\")'
 
 ADD . /code
 
-ENTRYPOINT Rscript code/run.R
+ENTRYPOINT Rscript /code/run.R
 ")
   }
 

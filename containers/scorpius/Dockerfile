@@ -10,4 +10,4 @@ RUN R -e "devtools::install_github('rcannood/SCORPIUS')"
 
 ADD . /code
 
-ENTRYPOINT Rscript code/run.R
+ENTRYPOINT Rscript /code/run.R

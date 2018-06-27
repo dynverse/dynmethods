@@ -11,4 +11,4 @@ RUN R -e "install.packages('igraph')"
 
 ADD . /code
 
-ENTRYPOINT Rscript code/run.R
+ENTRYPOINT Rscript /code/run.R

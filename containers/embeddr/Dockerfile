@@ -11,4 +11,4 @@ RUN R -e "devtools::install_github('dynverse/embeddr')"
 
 ADD . /code
 
-ENTRYPOINT Rscript code/run.R
+ENTRYPOINT Rscript /code/run.R

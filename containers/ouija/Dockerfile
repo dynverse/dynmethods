@@ -12,4 +12,4 @@ RUN R -e "install.packages('coda')"
 
 ADD . /code
 
-ENTRYPOINT Rscript code/run.R
+ENTRYPOINT Rscript /code/run.R
