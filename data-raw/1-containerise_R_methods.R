@@ -156,7 +156,7 @@ library(readr)
 library(dplyr)
 library(purrr)
 
-{glue::collapse(paste0('library(', method$package_required, ')'), '\\n')}
+{if(!is.null(method$package_required)) {glue::collapse(paste0('library(', method$package_required, ')'), '\\n')} else {''}}
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
