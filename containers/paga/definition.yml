@@ -33,13 +33,14 @@ parameters:
 input:
   format: hdf5
   required:
-    - expression
+    - counts
+    - start_id
   optional:
     - groups_id
 output:
   format: feather
   outputs:
-    - cluster_graph
+    - branch_trajectory
     - dimred
     - timings
 doi: 10.1101/208819
