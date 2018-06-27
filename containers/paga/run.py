@@ -31,34 +31,59 @@ if groups_id is not None:
 else:
   adata = anndata.AnnData(expression.values)
 
+#   ____________________________________________________________________________
+#   Basic preprocessing                                                     ####
+
+sc.pp.recipe_zheng17(adata, n_top_genes=2000)
+sc.tl.pca(adata, n_comps=params["n_comps"])
+sc.pp.neighbors(adata, n_neighbors=params["n_neighbors"])
+
+# denoise the graph by recomputing it in the first few diffusion components
+if params["n_dcs"] != 0:
+  sc.tl.diffmap(adata, n_comps=params["n_dcs"])
+
 checkpoints["method_afterpreproc"] = time.time()
 
 #   ____________________________________________________________________________
-#   Infer trajectory                                                        ####
-# do neighbors and pca
-sc.pp.neighbors(adata, n_neighbors = params["n_neighbors"])
-sc.tl.pca(adata, n_comps = params["n_comps"])
+#   Cluster, infer trajectory, infer pseudotime, compute dimension reduction ###
 
 # add grouping if not provided
 if groups_id is None:
-  sc.tl.louvain(adata, resolution = params["resolution"])
+  sc.tl.louvain(adata, resolution=params["resolution"])
 
 # run paga
 sc.tl.paga(adata)
+
+# compute a layout for the paga graph
+# - this simply uses a Fruchterman-Reingold layout, a tree layout or any other
+#   popular graph layout is also possible
+# - to obtain a clean visual representation, one can discard low-confidence edges
+#   using the parameter threshold
+sc.pl.paga(adata, threshold=0.01, layout='fr', show=False)
+
+# run dpt for pseudotime information that is overlayed with paga
+sc.tl.dpt(adata)
+
+# run umap for a dimension-reduced embedding, use the positions of the paga
+# graph to initialize this embedding
+if params["embedding_type"] != 'fa':
+  sc.tl.draw_graph(adata, init_pos='paga')
+else:
+  sc.tl.umap(adata, init_pos='paga')
 
 checkpoints["method_aftermethod"] = time.time()
 
 #   ____________________________________________________________________________
 #   Process & save output                                                   ####
 # grouping
-grouping = pd.DataFrame({"cell_id" : expression.index, "group_id":adata.obs.louvain})
+grouping = pd.DataFrame({"cell_id": expression.index, "group_id": adata.obs.louvain})
 grouping.reset_index(drop=True).to_feather("/output/grouping.feather")
 
 # milestone network
 milestone_network = pd.DataFrame(
   adata.uns["paga"]["connectivities_tree"].todense(),
   index=adata.obs.louvain.cat.categories,
-  columns = adata.obs.louvain.cat.categories
+  columns=adata.obs.louvain.cat.categories
 ).stack().reset_index()
 milestone_network.columns = ["from", "to", "length"]
 milestone_network = milestone_network.query("length > 0")
@@ -66,7 +91,7 @@ milestone_network["directed"] = False
 milestone_network.reset_index(drop=True).to_feather("/output/milestone_network.feather")
 
 # dimred
-dimred = pd.DataFrame([x[0] for x in adata.obsm])
+dimred = pd.DataFrame([x for x in adata.obsm['X_umap'].T])
 dimred.columns = ["comp_" + str(i) for i in range(dimred.shape[1])]
 dimred["cell_id"] = expression.index
 dimred.reset_index(drop=True).to_feather("/output/dimred.feather")

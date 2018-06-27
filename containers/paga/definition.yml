@@ -14,12 +14,22 @@ parameters:
     lower: 0
     upper: 100
     default: 50
+  n_dcs:
+    description: Number of diffusion components for denoising graph, 0 means no denoising.
+    type: integer
+    lower: 0
+    upper: 40
+    default: 15
   resolution:
     description: Resolution of louvain clustering, which determines the granularity of the clustering. Higher values will result in more clusters.
     type: numeric
     lower: 0.1
     upper: 10
     default: 2.5
+  embedding_type:
+    description: Either 'umap' (scales very well, recommended for very large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for small datasets).
+    type: string
+    default: 'fa'
 input:
   format: hdf5
   required:
