@@ -4,17 +4,11 @@
 \alias{ti_praga}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1101/208819}{projected PAGA}}
 \usage{
-ti_praga(embedding_type = "fa", n_comps = 50L, n_dcs = 15L,
-  n_neighbors = 30L, resolution = 2.5)
+ti_praga(n_comps = 50L, n_neighbors = 30L, resolution = 2.5)
 }
 \arguments{
-\item{embedding_type}{Either 'umap' (scales very well, recommended for very large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for small datasets). \cr}
-
 \item{n_comps}{Number of principal components \cr
 integer; default: 50L; possible values between 0 and 100}
-
-\item{n_dcs}{Number of diffusion components for denoising graph, 0 means no denoising. \cr
-integer; default: 15L; possible values between 0 and 40}
 
 \item{n_neighbors}{Number of neighbours for knn \cr
 integer; default: 30L; possible values between 1 and 100}
