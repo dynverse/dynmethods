@@ -1,0 +1,127 @@
+---
+output: github_document
+params:
+  method_id: identity
+---
+
+```{r setup, echo=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(dynwrap)
+library(dynutils)
+
+# get method
+data(methods, package = "dynmethods")
+
+method_id <- params$method_id
+method <- methods %>% filter(method_id == !!method_id) %>% extract_row_to_list(1)
+
+# make sure system output of dynwrap is diverted towards R stdout, see https://gist.github.com/wch/3280369
+system <- function(command, ..., intern = NULL) {
+  if (is.null(intern)) {intern <- TRUE}
+  
+  if (intern) {
+    out <- base::system(paste0(command, " 2>&1"), ..., intern = intern)
+    cat(out, sep = "\n")
+    
+    if (!is.null(attr(out, "status"))) {
+      attr(out, "status")
+    } else {
+      0
+    }
+  } else {
+    base::system(command, ..., intern = intern)
+  }
+}
+
+inc <- '
+/* This is taken from envir.c in the R 2.15.1 source 
+   https://github.com/SurajGupta/r-source/blob/master/src/main/envir.c
+*/
+#define FRAME_LOCK_MASK (1<<14)
+#define FRAME_IS_LOCKED(e) (ENVFLAGS(e) & FRAME_LOCK_MASK)
+#define UNLOCK_FRAME(e) SET_ENVFLAGS(e, ENVFLAGS(e) & (~ FRAME_LOCK_MASK))
+'
+
+src <- '
+  UNLOCK_FRAME(env);
+  SEXP result = PROTECT( Rf_allocVector(LGLSXP, 1) );
+  LOGICAL(result)[0] = FRAME_IS_LOCKED(env) == 0;
+  UNPROTECT(1);
+  return result;
+'
+
+unlockEnvironment <- inline::cfunction(signature(env = "environment"),
+                        includes = inc,
+                        body = src)
+unlockEnvironment(asNamespace("dynwrap"))
+
+assign("system", system, asNamespace("dynwrap"))
+```
+
+# Automated test of __`r method$name`__
+
+**`r Sys.Date()`**
+
+```{r}
+# method <- dynwrap::pull_singularity_ti_method(paste0("dynverse/", method_id), singularity_images_folder = "../singularity_images/")
+method <- dynwrap::create_singularity_ti_method(paste0("../singularity_images/", method_id, ".simg"))
+```
+
+## Toy linear dataset
+
+```{r, error = TRUE}
+task <- dyntoy::toy_tasks %>% filter(trajectory_type == "directed_linear") %>% extract_row_to_list(1)
+
+if(exists("model")) {rm(model)}
+
+model <- infer_trajectory(task, method())
+```
+
+```{r, results = "asis"}
+if (exists("model")) {
+  dynplot::plot_dimred(model, expression_source = task) %>% print()
+  
+  model <- model %>% add_cell_waypoints()
+  scores <- dyneval::calculate_metrics(task, model, metrics = c("correlation", "edge_flip"))
+  scores %>% select(-starts_with("time")) %>% knitr::kable(format = "markdown")
+}
+```
+
+## Toy tree dataset
+
+```{r, error = TRUE}
+task <- dyntoy::toy_tasks %>% filter(trajectory_type == "rooted_tree") %>% extract_row_to_list(1)
+
+if(exists("model")) {rm(model)}
+
+model <- infer_trajectory(task, method())
+```
+
+```{r, results = "asis"}
+if (exists("model")) {
+  dynplot::plot_dimred(model, expression_source = task) %>% print()
+  
+  model <- model %>% add_cell_waypoints()
+  scores <- dyneval::calculate_metrics(task, model, metrics = c("correlation", "edge_flip"))
+  scores %>% select(-starts_with("time")) %>% knitr::kable(format = "markdown")
+}
+```
+
+## Real dataset
+
+```{r, error = TRUE}
+# dyno::fibroblast_reprogramming_treutlein %>% write_rds("automated_checks/fibroblast_reprogramming_treutlein.rds")
+task <- read_rds("fibroblast_reprogramming_treutlein.rds")
+
+if(exists("model")) {rm(model)}
+
+model <- infer_trajectory(task, method())
+```
+
+```{r, results = "asis"}
+if (exists("model")) {
+  dynplot::plot_dimred(model, color_cells = "grouping", expression_source = task, grouping = task$grouping) %>% print()
+}
+```
