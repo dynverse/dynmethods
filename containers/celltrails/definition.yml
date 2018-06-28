@@ -1,0 +1,32 @@
+name: CellTrails
+short_name: celltrails
+parameters:
+input:
+  format: rds
+  required:
+    - expression
+output:
+  format: rds
+  outputs:
+    - grouping
+    - dimred
+    - cell_graph
+    - timings
+doi: 10.1016/j.celrep.2018.05.002
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+- disconnected_tree
+type: algorithm
+authors:
+  - given: Daniel
+    family: Ellwanger
+    email: dc.ellwanger.dev@gmail.com
+    github: dcellwanger
+publication_date: '2018-06-05'
+version: 0.99.12
+code_url: https://github.com/dcellwanger/CellTrails
