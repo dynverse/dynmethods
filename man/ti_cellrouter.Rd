@@ -8,7 +8,7 @@ ti_cellrouter(ndim_pca = 20L, ndim_tsne = 11L, max_iter = 1000L,
   cluster_method = "graph.clustering", k_clustering = 20L,
   ndim_pca_clustering = 20L, k_knn = 10L, ndim_pca_knn = 20L,
   sim_type = "jaccard", distance_method_paths = "graph", ranks = "rank",
-  num_cells = 3L, neighs = 3L)
+  num_cells = 3L, neighs = 3L, perplexity = 30L)
 }
 \arguments{
 \item{ndim_pca}{Number of principlal components to compute \cr
@@ -49,6 +49,9 @@ integer; default: 3L; possible values between 3 and 100}
 
 \item{neighs}{The size of the neighborhood in kNN graph used to smoothen kinetic profiles \cr
 integer; default: 3L; possible values between 2 and 100}
+
+\item{perplexity}{Perplexity parameter for tsne \cr
+numeric; default: 30L; possible values between 5 and 100}
 }
 \value{
 The trajectory model
