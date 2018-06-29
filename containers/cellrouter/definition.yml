@@ -19,6 +19,8 @@ parameters:
     default: 1000
     lower: 100
     upper: 100000
+    distribution: exponential
+    rate: 1.0
   cluster_method:
     description: Method to use for clustering
     type: discrete
@@ -76,6 +78,12 @@ parameters:
     lower: 2
     upper: 100
     default: 3
+  perplexity:
+    description: perplexity parameter for tsne
+    type: numeric
+    lower: 5
+    default: 30
+    upper: 100
 input:
   format: rds
   required:

@@ -30,14 +30,14 @@ cellrouter <- Normalize(cellrouter)
 cellrouter <- scaleData(cellrouter)
 
 # do pca
-cellrouter <- computePCA(cellrouter, num.pcs = p$ndim_pca, seed=42) # alarm, seed setting...!
+cellrouter <- computePCA(cellrouter, num.pcs = p$ndim_pca, seed = 42) # alarm, seed setting...!
 
 # do tsne
-cellrouter <- computeTSNE(cellrouter, num.pcs = p$ndim_tsne, seed=42, max_iter = p$max_iter)
+cellrouter <- computeTSNE(cellrouter, num.pcs = p$ndim_tsne, seed = 42, max_iter = p$max_iter, perplexity = p$perplexity)
 
 # louvain clustering
 # cellrouter <- findClusters(cellrouter, method='model.clustering', num.pcs = 15) # this gives errors of rgba values
-cellrouter <- findClusters(cellrouter, method="graph.clustering", num.pcs=p$ndim_pca_clustering, k=p$k_clustering)
+cellrouter <- findClusters(cellrouter, method = "graph.clustering", num.pcs = p$ndim_pca_clustering, k = p$k_clustering) # alarm, seed setting...!
 
 # do knn
 cellrouter <- buildKNN(cellrouter, k = p$k_knn, column.ann = 'population', num.pcs = p$ndim_pca_knn, sim.type = p$sim_type)
@@ -46,19 +46,19 @@ cellrouter <- buildKNN(cellrouter, k = p$k_knn, column.ann = 'population', num.p
 outputdir <- "/tmp/output"
 dir.create(outputdir, recursive = TRUE)
 filename <- file.path(outputdir, "cell_edge_weighted_network.txt")
-write.table(cellrouter@graph$edges, file=filename, sep='\t', row.names=FALSE, col.names = FALSE, quote=FALSE)
+write.table(cellrouter@graph$edges, file = filename, sep='\t', row.names = FALSE, col.names = FALSE, quote = FALSE)
 
 sources <- unique(cellrouter@sampTab$population[cellrouter@sampTab$sample_id %in% start_id])
 targets <- setdiff(as.vector(cellrouter@sampTab$population), sources)
 
 libdir <- "/cellrouter/CellRouter"
-cellrouter <- findPaths(cellrouter, column='population', libdir, outputdir, method=p$distance_method_paths) # this function uses global variables...
+cellrouter <- findPaths(cellrouter, column='population', libdir, outputdir, method = p$distance_method_paths) # this function uses global variables...
 
 #Preprocess trajectories
 cellrouter <- processTrajectories(
   cellrouter,
   rownames(cellrouter@ndata),
-  path.rank=p$ranks,
+  path.rank = p$ranks,
   num.cells = p$num_cells,
   neighs = p$neighs,
   column.ann = 'population',
