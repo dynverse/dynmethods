@@ -53,6 +53,8 @@ ti_angle <- create_ti_method_chooser(ti_angle, 'dynverse/angle')
 #'     integer; default: 3L; possible values between 3 and 100
 #' @param neighs The size of the neighborhood in kNN graph used to smoothen kinetic profiles \cr 
 #'     integer; default: 3L; possible values between 2 and 100
+#' @param perplexity Perplexity parameter for tsne \cr 
+#'     numeric; default: 30L; possible values between 5 and 100
 #' 
 #' @return The trajectory model
 #' @export
@@ -69,10 +71,61 @@ ti_cellrouter <- function(
     distance_method_paths = "graph",
     ranks = "rank",
     num_cells = 3L,
-    neighs = 3L
+    neighs = 3L,
+    perplexity = 30L
 ) {
   args <- as.list(environment())
   method <- create_docker_ti_method('dynverse/cellrouter')
+  do.call(method, args)
+}
+
+
+
+
+#' Inferring a trajectory inference using [CellTrails](https://doi.org/10.1016/j.celrep.2018.05.002)
+#' 
+#' Will generate a trajectory using [CellTrails](https://doi.org/10.1016/j.celrep.2018.05.002). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/celltrails).
+#' 
+#' 
+#' 
+#' The original code of this method is available [here](https://github.com/dcellwanger/CellTrails).
+#' 
+#' The method is described in: [Ellwanger, D.C., Scheibinger, M., Dumont, R.A., Barr-Gillespie, P.G., Heller, S., 2018. Transcriptional Dynamics of Hair-Bundle Morphogenesis Revealed with CellTrails. Cell Reports 23, 2901–2914.e14.](https://doi.org/10.1016/j.celrep.2018.05.002)
+#' 
+#' @param threshold_dl Minimum number of samples; if value < 1 it is interpreted as fraction, otherwise as absolute sample count \cr 
+#'     integer; default: 2L; possible values between 0 and 100
+#' @param threshold_cov Minimum coefficient of variation; numeric value between 0 and 1 \cr 
+#'     numeric; default: 0.05; possible values between 0 and 1
+#' @param threshold_ff A Z-score cutoff \cr 
+#'     numeric; default: 1L; possible values between 0 and 5
+#' @param frac Fraction or number (if frac > 1) of eigengaps used to perform linear fit. \cr 
+#'     numeric; default: 100L; possible values between 1 and 1000
+#' @param min_size The initial cluster dedrogram is cut at an height such that the minimum cluster size is at least min_size; if min_size < 1 than the fraction of total samples is used, otherwise it is used as absoulte count \cr 
+#'     numeric; default: 0.01; possible values between 0.001 and 1
+#' @param min_feat Minimum number of differentially expressed features between siblings. If this number is not reached, two neighboring clusters (siblings) in the pruned dendrogram get joined. \cr 
+#'     integer; default: 5L; possible values between 1 and 100
+#' @param max_pval Maximum P-value for differential expression computation. \cr 
+#'     numeric; default: 1e-04; possible values between 1e-07 and 1
+#' @param min_fc Mimimum fold-change for differential expression computation \cr 
+#'     numeric; default: 2L; possible values between 1 and 5
+#' @param l Neighborhood size \cr 
+#'     integer; default: 10L; possible values between 1 and 20
+#' 
+#' @return The trajectory model
+#' @export
+ti_celltrails <- function(
+    threshold_dl = 2L,
+    threshold_cov = 0.05,
+    threshold_ff = 1L,
+    frac = 100L,
+    min_size = 0.01,
+    min_feat = 5L,
+    max_pval = 1e-04,
+    min_fc = 2L,
+    l = 10L
+) {
+  args <- as.list(environment())
+  method <- create_docker_ti_method('dynverse/celltrails')
   do.call(method, args)
 }
 
