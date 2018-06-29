@@ -22,12 +22,12 @@ checkpoints$method_afterpreproc <- as.numeric(Sys.time())
 #   Infer trajectory                                                        ####
 # steps from the vignette https://dcellwanger.github.io/CellTrails/
 
-sce <- SingleCellExperiment(assays=list(logcounts=t(expression)))
+sce <- SingleCellExperiment(assays=list(logcounts = t(expression)))
 
 # filter features
-tfeat1 <- filterTrajFeaturesByDL(sce, threshold=params$threshold_dl, show_plot = FALSE)
-tfeat2 <- filterTrajFeaturesByCOV(sce, threshold=params$threshold_cov, show_plot = FALSE)
-tfeat3 <- filterTrajFeaturesByFF(sce, threshold=params$threshold_ff, show_plot = FALSE)
+tfeat1 <- filterTrajFeaturesByDL(sce, threshold = params$threshold_dl, show_plot = FALSE)
+tfeat2 <- filterTrajFeaturesByCOV(sce, threshold = params$threshold_cov, show_plot = FALSE)
+tfeat3 <- filterTrajFeaturesByFF(sce, threshold = params$threshold_ff, show_plot = FALSE)
 
 trajFeatureNames(sce) <- Reduce(intersect, list(tfeat1, tfeat2, tfeat3))
 
@@ -37,11 +37,11 @@ d <- findSpectrum(se$eigenvalues, frac=params$frac)
 latentSpace(sce) <- se$components[, d]
 
 # find states
-cl <- findStates(sce, min_size=params$min_size, min_feat=params$min_feat, max_pval=params$max_pval, min_fc=params$min_fc)
+cl <- findStates(sce, min_size = params$min_size, min_feat = params$min_feat, max_pval = params$max_pval, min_fc = params$min_fc)
 states(sce) <- cl
 
 # construct tree
-sce <- connectStates(sce, l=params$l)
+sce <- connectStates(sce, l = params$l)
 
 # fit trajectory
 # this object can contain multiple trajectories (= "components"), so we have to extract information for every one of them and combine afterwards
