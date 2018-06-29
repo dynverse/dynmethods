@@ -3,6 +3,8 @@
 library(tidyverse)
 library(dynwrap)
 library(furrr)
+library(rcrossref)
+
 plan(multiprocess)
 
 #   ____________________________________________________________________________
