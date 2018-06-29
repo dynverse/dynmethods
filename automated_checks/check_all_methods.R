@@ -5,8 +5,7 @@ data(methods, package = "dynmethods")
 methods <- methods %>% filter(containerised)
 
 walk(
-  methods$method_id[1:3], function(method_id) {
-    method_id <- "identity"
+  methods$method_id, function(method_id) {
     model <- NULL
     file.remove(list.files("automated_checks/", pattern = paste0(method_id, "\\..*"), full.names = TRUE))
 

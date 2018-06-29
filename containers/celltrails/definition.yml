@@ -1,6 +1,62 @@
 name: CellTrails
 short_name: celltrails
 parameters:
+  threshold_dl:
+    description: Minimum number of samples; if value < 1 it is interpreted as fraction, otherwise as absolute sample count
+    type: integer
+    default: 2
+    lower: 0
+    upper: 100
+  threshold_cov:
+    description: Minimum coefficient of variation; numeric value between 0 and 1
+    type: numeric
+    default: 0.05
+    lower: 0
+    upper: 1
+  threshold_ff:
+    description: A Z-score cutoff
+    type: numeric
+    default: 1
+    lower: 0
+    upper: 5
+  frac:
+    description: Fraction or number (if frac > 1) of eigengaps used to perform linear fit.
+    type: numeric
+    default: 100
+    lower: 1
+    upper: 1000
+  min_size:
+    description: The initial cluster dedrogram is cut at an height such that the minimum cluster size is at least min_size; if min_size < 1 than the fraction of total samples is used, otherwise it is used as absoulte count
+    type: numeric
+    default: 0.01
+    lower: 0.001
+    upper: 1
+  min_feat:
+    description: Minimum number of differentially expressed features between siblings. If this number is not reached, two neighboring clusters (siblings) in the pruned dendrogram get joined.
+    type: integer
+    default: 5
+    lower: 1
+    upper: 100
+  max_pval:
+    description: Maximum P-value for differential expression computation.
+    type: numeric
+    default: 0.0001
+    lower: 0.0000001
+    upper: 1
+    distribution: exponential
+    rate: 0.1
+  min_fc:
+    description: Mimimum fold-change for differential expression computation
+    type: numeric
+    default: 2
+    lower: 1
+    upper: 5
+  l:
+    description: Neighborhood size
+    type: integer
+    default: 10
+    lower: 1
+    upper: 20
 input:
   format: rds
   required:

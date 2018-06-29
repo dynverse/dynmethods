@@ -64,9 +64,19 @@ assign("system", system, asNamespace("dynwrap"))
 
 **`r Sys.Date()`**
 
+```{r, echo = FALSE}
+assign("system", base::system, asNamespace("dynwrap"))
+dir.create("../singularity_images/")
+```
+
+
 ```{r}
-# method <- dynwrap::pull_singularity_ti_method(paste0("dynverse/", method_id), singularity_images_folder = "../singularity_images/")
-method <- dynwrap::create_singularity_ti_method(paste0("../singularity_images/", method_id, ".simg"))
+method <- dynwrap::pull_singularity_ti_method(paste0("dynverse/", method_id), singularity_images_folder = "../singularity_images/")
+# method <- dynwrap::create_singularity_ti_method(paste0("../singularity_images/", method_id, ".simg"))
+```
+
+```{r, echo = FALSE}
+assign("system", system, asNamespace("dynwrap"))
 ```
 
 ## Toy linear dataset
