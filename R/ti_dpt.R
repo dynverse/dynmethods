@@ -78,7 +78,6 @@ ti_dpt <- create_ti_method(
     density_norm = list(
       type = "logical",
       default = TRUE,
-      values = c("TRUE", "FALSE"),
       description = "logical. If TRUE, use density normalisation"),
     n_local_lower = list(
       type = "integer",

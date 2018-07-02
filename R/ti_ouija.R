@@ -60,7 +60,6 @@ ti_ouija <- create_ti_method(
     normalise_expression = list(
       type = "logical",
       default = TRUE,
-      values = c("TRUE", "FALSE"),
       description = "Logical, default TRUE. If TRUE the data is pre-normalised\nso the average peak expression is approximately 1. This makes the strength parameters\napproximately comparable between genes."
     )
   ),
