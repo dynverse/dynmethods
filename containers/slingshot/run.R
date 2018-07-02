@@ -10,8 +10,8 @@ library(dyndimred)
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
-data <- read_rds('/input/data.rds')
-params <- jsonlite::read_json('/input/params.json')
+data <- read_rds("/input/data.rds")
+params <- jsonlite::read_json("/input/params.json")
 
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
@@ -25,7 +25,8 @@ run_fun <- function(
   dimred = "pca",
   shrink = 1,
   reweight = TRUE,
-  thresh = -3,
+  reassign = TRUE,
+  thresh = 0.001,
   maxit = 10,
   stretch = 2,
   smoother = "smooth.spline",
@@ -82,6 +83,7 @@ run_fun <- function(
     end.clus = end.clus,
     shrink = shrink,
     reweight = reweight,
+    reassign = reassign,
     thresh = thresh,
     maxit = maxit,
     stretch = stretch,
@@ -151,4 +153,4 @@ model <- do.call(run_fun, c(args, data))
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-write_rds(model, '/output/output.rds')
+write_rds(model, "/output/output.rds")
