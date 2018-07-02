@@ -3,8 +3,8 @@
 #' @inherit ti_angle description
 #'
 #' @inheritParams pseudogp::fitPseudotime
-#' @param dimreds A character vector specifying which dimensionality reduction methods to use.
-#'   See [dyndimred::dimred()] for the list of available dimensionality reduction methods.
+#' @param dimreds A character vector specifying which dimensionality reduction method to use.
+#'   See [dyndimred::dimred] for the list of available dimensionality reduction methods.
 #'
 #' @seealso [pseudogp::fitPseudotime()]
 #'
@@ -84,7 +84,7 @@ ti_pseudogp <- create_ti_method(
       type = "logical_vector",
       default = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
       length = 9,
-      description = "A character vector specifying which dimensionality reduction methods to use.\nSee \\code{\\link[dyndimred:dimred]{dyndimred::dimred()}} for the list of available dimensionality reduction methods."
+      description = "A character vector specifying which dimensionality reduction methods to use.\nSee \\code{\\link[dyndimred:dimred]{dyndimred::dimred}} for the list of available dimensionality reduction methods."
     ),
     initialise_from = list(
       type = "discrete",
