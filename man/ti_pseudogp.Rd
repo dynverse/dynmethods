@@ -32,8 +32,8 @@ ti_pseudogp(docker = dynwrap::test_docker_installation(),
 
 \item{iter}{The number of iterations for the MCMC trace}
 
-\item{dimreds}{A character vector specifying which dimensionality reduction methods to use.
-See \code{\link[dyndimred:dimred]{dyndimred::dimred()}} for the list of available dimensionality reduction methods.}
+\item{dimreds}{A character vector specifying which dimensionality reduction method to use.
+See \link[dyndimred:dimred]{dyndimred::dimred} for the list of available dimensionality reduction methods.}
 
 \item{initialise_from}{How to initialise the MCMC chain. One of "random" (stan decides),
 "principal_curve", or "pca" (the first component of PCA rescaled is taken to be the pseudotimes).

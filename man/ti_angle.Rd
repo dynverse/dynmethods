@@ -13,7 +13,7 @@ ti_angle(docker = dynwrap::test_docker_installation(), dimred = "pca")
 \item{docker}{Whether to use the docker container or the R wrapper}
 
 \item{dimred}{A character vector specifying which dimensionality reduction method to use.
-See \code{\link[dyndimred:dimred]{dyndimred::dimred()}} for the list of available dimensionality reduction methods.}
+See \link[dyndimred:dimred]{dyndimred::dimred} for the list of available dimensionality reduction methods.}
 }
 \value{
 The trajectory model
