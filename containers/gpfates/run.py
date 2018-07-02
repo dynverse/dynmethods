@@ -43,35 +43,15 @@ pseudotime = m.s.pseudotime.reset_index()
 pseudotime.columns = ["cell_id", "pseudotime"]
 pseudotime.to_csv("/output/pseudotime.csv", index=False)
 
-# milestone network
-milestone_network = pd.DataFrame({
-  "from":"M0",
-  "to":["M" + str(i+1) for i in range(end_n)],
-  "length":1,
-  "directed":True
-})
-milestone_network.to_csv("/output/milestone_network.csv", index=False)
-
 # dimred
 dimred = pd.DataFrame(m.dr_models["bgplvm"].X.mean[:,:].tolist())
 dimred["cell_id"] = m.s.pseudotime.index.tolist()
 dimred.to_csv("/output/dimred.csv", index=False)
 
 # progressions
-progressions = pd.DataFrame(m.fate_model.phi)
-progressions["cell_id"] = m.s.pseudotime.index.tolist()
-progressions = progressions.melt(id_vars = ["cell_id"], var_name = "to", value_name = "percentage")
-progressions["to"] = ["M" + str(i+1) for i in progressions["to"]]
-progressions["from"] = "M0"
-progressions.to_csv("/output/progressions.csv", index=False)
-
-# divergence regions
-divergence_regions = pd.DataFrame({
-  "milestone_id": ["M0"] + ["M" + str(i+1) for i in range(end_n)],
-  "divergence_id": "A",
-  "is_start": [True] + [False for i in range(end_n)]
-})
-divergence_regions.to_csv("/output/divergence_regions.csv", index=False)
+end_state_probabilities = pd.DataFrame(m.fate_model.phi)
+end_state_probabilities["cell_id"] = m.s.pseudotime.index.tolist()
+end_state_probabilities.to_csv("/output/end_state_probabilities.csv", index=False)
 
 # timings
 json.dump(checkpoints, open("/output/timings.json", "w"))
