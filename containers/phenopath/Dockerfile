@@ -6,8 +6,8 @@ RUN R -e 'devtools::install_github("dynverse/dynwrap")'
 
 
 
-RUN R -e "devtools::install_github('kieranrcampbell/phenopath')"
-RUN R -e "devtools::install_github('dynverse/dyndimred')"
+RUN R -e 'devtools::install_github("kieranrcampbell/phenopath")'
+RUN R -e 'devtools::install_github("dynverse/dyndimred")'
 
 ADD . /code
 

@@ -98,13 +98,6 @@ run_fun <- function(
   # extract information on clusters
   lineages <- slingshot::slingLineages(sds)
   lineage_ctrl <- slingshot::slingParams(sds)
-  connectivity <- slingshot::slingAdjacency(sds)
-  clusterLabels <- slingshot::clusterLabels(sds) %>% setNames(rownames(counts))
-
-  # calculate cluster centers
-  centers <- t(sapply(rownames(connectivity), function(cli){
-    colMeans(space[clusterLabels[, cli] == 1,,drop=T])
-  }))
 
   # collect milestone network
   cluster_network <- lineages %>%
@@ -114,6 +107,15 @@ run_fun <- function(
       length = lineage_ctrl$dist[cbind(from, to)],
       directed = TRUE # TODO: should be true
     )
+
+  # collect cluster assignment
+  cluster_assignment <- slingshot::clusterLabels(sds)
+  cluster_labels <- apply(cluster_assignment, 1, function(r) colnames(cluster_assignment)[which(r == 1)])
+
+  # calculate cluster centers
+  centers <- t(sapply(colnames(cluster_assignment), function(cli){
+    colMeans(space[cluster_assignment[, cli] == 1,,drop=T])
+  }))
 
   # collect curve data for visualisation purposes
   curves <- slingshot::slingCurves(sds)
@@ -137,8 +139,8 @@ run_fun <- function(
     milestone_ids = rownames(centers),
     milestone_network = cluster_network,
     dimred_milestones = centers,
-    dimred = sds@reducedDim,
-    milestone_assignment_cells = clusterLabels,
+    dimred = space,
+    milestone_assignment_cells = cluster_labels,
     num_segments_per_edge = 100,
     curve = curve_df
   ) %>% add_timings(

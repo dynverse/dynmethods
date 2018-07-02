@@ -67,7 +67,7 @@ Suggests:
   rstan,
   roxygen2,
   scaterlegacy,
-  SCORPIUS,
+  SCORPIUS (>= 1.0.2),
   SCOUP,
   sincell,
   SLICE,

@@ -6,9 +6,9 @@ RUN R -e 'devtools::install_github("dynverse/dynwrap")'
 
 
 
-RUN R -e "devtools::install_github('dynverse/dynutils')"
-RUN R -e "install.packages('reshape2')"
-RUN R -e "devtools::install_github('dynverse/destiny')"
+RUN R -e 'devtools::install_github("dynverse/dynutils")'
+RUN R -e 'install.packages("reshape2")'
+RUN R -e 'devtools::install_github("dynverse/destiny")'
 
 ADD . /code
 

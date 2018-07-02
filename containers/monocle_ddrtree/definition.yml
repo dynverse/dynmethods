@@ -34,9 +34,6 @@ parameters:
   auto_param_selection:
     type: logical
     default: yes
-    values:
-    - 'TRUE'
-    - 'FALSE'
     description: when this argument is set to TRUE (default), it will automatically
       calculate the proper value for the ncenter (number of centroids) parameters
       which will be passed into DDRTree call.

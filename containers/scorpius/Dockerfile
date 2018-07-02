@@ -6,7 +6,7 @@ RUN R -e 'devtools::install_github("dynverse/dynwrap")'
 
 
 
-RUN R -e "devtools::install_github('rcannood/SCORPIUS')"
+RUN R -e 'devtools::install_github("rcannood/SCORPIUS")'
 
 ADD . /code
 

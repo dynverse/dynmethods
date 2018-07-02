@@ -174,11 +174,15 @@ abstract_celltree_description <- function(method) {
 #' @export
 ti_celltree_maptpx <- abstract_celltree_description("maptpx")
 
+#' Inferring trajectories with cellTree
+#'
 #' @inheritParams ti_celltree_maptpx
 #' @param num_topics The number of topics to fit in the model.
 #' @export
 ti_celltree_gibbs <- abstract_celltree_description("gibbs")
 
+#' Inferring trajectories with cellTree
+#'
 #' @inheritParams ti_celltree_maptpx
 #' @param num_topics The number of topics to fit in the model.
 #' @export

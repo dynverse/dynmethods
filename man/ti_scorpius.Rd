@@ -19,7 +19,7 @@ ti_scorpius(docker = dynwrap::test_docker_installation(),
 \item{distance_method}{A character string indicating which correlation
 coefficient (or covariance) is to be computed. One of "pearson", "kendall", or "spearman".}
 
-\item{ndim}{The number of dimensions in the new space.}
+\item{ndim}{the maximum dimension of the space which the data are to be represented in; must be in {1, 2, \ldots, n-1}.}
 
 \item{k}{The number of clusters to cluster the data into.}
 

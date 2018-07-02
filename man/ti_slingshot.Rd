@@ -6,14 +6,14 @@
 \title{Inferring trajectories with Slingshot}
 \usage{
 ti_slingshot(docker = dynwrap::test_docker_installation(), ndim = 3,
-  nclus = 5, dimred = "pca", shrink = 1, reweight = TRUE, thresh = -3,
-  maxit = 10, stretch = 2, smoother = "smooth.spline",
-  shrink.method = "cosine")
+  nclus = 5, dimred = "pca", shrink = 1, reweight = TRUE,
+  reassign = TRUE, thresh = 0.001, maxit = 10, stretch = 2,
+  smoother = "smooth.spline", shrink.method = "cosine")
 
 ti_slingshot(docker = dynwrap::test_docker_installation(), ndim = 3,
-  nclus = 5, dimred = "pca", shrink = 1, reweight = TRUE, thresh = -3,
-  maxit = 10, stretch = 2, smoother = "smooth.spline",
-  shrink.method = "cosine")
+  nclus = 5, dimred = "pca", shrink = 1, reweight = TRUE,
+  reassign = TRUE, thresh = 0.001, maxit = 10, stretch = 2,
+  smoother = "smooth.spline", shrink.method = "cosine")
 }
 \arguments{
 \item{docker}{Whether to use the docker container or the R wrapper}
@@ -32,6 +32,14 @@ much to shrink branching lineages toward their average prior to the split.}
 reweighted during curve-fitting. If \code{TRUE}, cells shared between 
 lineages will be iteratively reweighted based on the quantiles of their 
 projection distances to each curve. See 'Details' for more.}
+
+\item{reassign}{logical, whether to reassign cells to lineages at each 
+iteration. If \code{TRUE}, cells will be added to a lineage when their 
+projection distance to the curve is less than the median distance for all 
+cells currently assigned to the lineage. Additionally, shared cells will be
+removed from a lineage if their projection distance to the curve is above 
+the 90th percentile and their weight along the curve is less than 
+\code{0.1}.}
 
 \item{thresh}{numeric, determines the convergence criterion. Percent change in the total distance from cells to their projections along curves must be less than thresh. Default is 0.001, similar to principal.curve.}
 
