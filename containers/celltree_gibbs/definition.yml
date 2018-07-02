@@ -65,8 +65,6 @@ parameters:
     lower: 1.0e-07
     upper: 0.001
     default: 1.0e-05
-    distribution: exponential
-    rate: 1.0
 input:
   format: rds
   optional:

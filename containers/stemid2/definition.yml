@@ -159,9 +159,6 @@ parameters:
   nmode:
     type: logical
     default: no
-    values:
-    - 'TRUE'
-    - 'FALSE'
     description: Boolean argument. If nmode is set to TRUE the assignment to inter-cluster
       links for each cell is not done based on the longest projection, but based on
       identifying the cluster (other than the cluster the cell belongs to) that contains

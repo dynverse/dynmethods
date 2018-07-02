@@ -6,10 +6,10 @@ RUN R -e 'devtools::install_github("dynverse/dynwrap")'
 
 
 
-RUN R -e "install.packages('BiocGenerics')"
-RUN R -e "install.packages('igraph')"
-RUN R -e "install.packages('Biobase')"
-RUN R -e "install.packages('monocle')"
+RUN R -e 'install.packages("BiocGenerics")'
+RUN R -e 'install.packages("igraph")'
+RUN R -e 'install.packages("Biobase")'
+RUN R -e 'install.packages("monocle")'
 
 ADD . /code
 

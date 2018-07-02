@@ -51,9 +51,6 @@ parameters:
   apply_mst:
     type: logical
     default: yes
-    values:
-    - 'TRUE'
-    - 'FALSE'
     description: If true, an MST post-processing of the GNG is performed.
 input:
   format: rds

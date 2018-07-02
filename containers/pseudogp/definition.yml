@@ -61,7 +61,7 @@ parameters:
     length: 9.0
     description: |-
       A character vector specifying which dimensionality reduction methods to use.
-      See \code{\link[dyndimred:dimred]{dyndimred::dimred()}} for the list of available dimensionality reduction methods.
+      See \code{\link[dyndimred:dimred]{dyndimred::dimred}} for the list of available dimensionality reduction methods.
   initialise_from:
     type: discrete
     default: random
