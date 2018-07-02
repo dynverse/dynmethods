@@ -16,6 +16,7 @@ method_ids <- list.dirs("./containers/", full.names = FALSE)[-1]
 rebuild <- TRUE
 if (rebuild) {
   future_map(method_ids, function(method_id) {
+    # system(str_glue("docker pull dynverse/{method_id}"))
     system(str_glue("docker build containers/{method_id} -t dynverse/{method_id}"))
     # system(str_glue("docker push dynverse/{method_id}"))
   })
