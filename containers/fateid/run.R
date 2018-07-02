@@ -62,7 +62,6 @@ pr  <- prcurve(y, fb, dr, k=params$k, m=params$m, trthr=params$trthr, start=star
 
 # end_state_probabilities
 end_state_probabilities <- fb$probs %>% as.data.frame() %>% rownames_to_column("cell_id")
-write_csv(end_state_probabilities, "/output/end_state_probabilities.csv")
 
 # pseudotime
 pseudotimes <- map2_dfr(names(pr$trc), pr$trc, function(curve_id, trc) {
