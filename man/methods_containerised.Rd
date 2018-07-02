@@ -4,7 +4,7 @@
 \name{methods_containerised}
 \alias{methods_containerised}
 \title{Metadata on the different containerised TI methods}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 51 rows and 7 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 50 rows and 7 columns.}
 \usage{
 methods_containerised
 }

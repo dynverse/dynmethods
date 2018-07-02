@@ -41,7 +41,7 @@ The trajectory model
 Will generate a trajectory using \href{https://doi.org/10.1038/nmeth.4662}{FateID}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/fateid}{container}.
 }
 \details{
-The original code of this method is available \href{https://git.embl.de/velten/STEMNET}{here}.
+The original code of this method is available \href{https://github.com/dgrun/FateID/}{here}.
 
 The method is described in: \href{https://doi.org/10.1038/nmeth.4662}{Herman, J.S., Sagar, Grün, D., 2018. FateID infers cell fate bias in multipotent progenitors from single-cell RNA-seq data. Nature Methods 15, 379–386.}
 }
