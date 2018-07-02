@@ -12,7 +12,7 @@
 #' 
 #' @return The trajectory model
 #' @export
-ti_angle <- create_ti_method_chooser(ti_angle, 'dynverse/angle')
+ti_angle <- create_ti_method_chooser(ti_angle, "dynverse/angle")
 
 
 
@@ -75,7 +75,7 @@ ti_cellrouter <- function(
     perplexity = 30L
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/cellrouter')
+  method <- create_docker_ti_method("dynverse/cellrouter")
   do.call(method, args)
 }
 
@@ -125,7 +125,7 @@ ti_celltrails <- function(
     l = 10L
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/celltrails')
+  method <- create_docker_ti_method("dynverse/celltrails")
   do.call(method, args)
 }
 
@@ -146,7 +146,7 @@ ti_celltrails <- function(
 #' 
 #' @return The trajectory model
 #' @export
-ti_celltree_gibbs <- create_ti_method_chooser(ti_celltree_gibbs, 'dynverse/celltree_gibbs')
+ti_celltree_gibbs <- create_ti_method_chooser(ti_celltree_gibbs, "dynverse/celltree_gibbs")
 
 
 
@@ -165,7 +165,7 @@ ti_celltree_gibbs <- create_ti_method_chooser(ti_celltree_gibbs, 'dynverse/cellt
 #' 
 #' @return The trajectory model
 #' @export
-ti_celltree_maptpx <- create_ti_method_chooser(ti_celltree_maptpx, 'dynverse/celltree_maptpx')
+ti_celltree_maptpx <- create_ti_method_chooser(ti_celltree_maptpx, "dynverse/celltree_maptpx")
 
 
 
@@ -184,7 +184,7 @@ ti_celltree_maptpx <- create_ti_method_chooser(ti_celltree_maptpx, 'dynverse/cel
 #' 
 #' @return The trajectory model
 #' @export
-ti_celltree_vem <- create_ti_method_chooser(ti_celltree_vem, 'dynverse/celltree_vem')
+ti_celltree_vem <- create_ti_method_chooser(ti_celltree_vem, "dynverse/celltree_vem")
 
 
 
@@ -203,7 +203,7 @@ ti_celltree_vem <- create_ti_method_chooser(ti_celltree_vem, 'dynverse/celltree_
 #' 
 #' @return The trajectory model
 #' @export
-ti_dpt <- create_ti_method_chooser(ti_dpt, 'dynverse/dpt')
+ti_dpt <- create_ti_method_chooser(ti_dpt, "dynverse/dpt")
 
 
 
@@ -250,7 +250,7 @@ ti_elpicycle <- function(
     CenterData = FALSE
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/elpicycle')
+  method <- create_docker_ti_method("dynverse/elpicycle")
   do.call(method, args)
 }
 
@@ -299,7 +299,7 @@ ti_elpigraph <- function(
     CenterData = FALSE
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/elpigraph')
+  method <- create_docker_ti_method("dynverse/elpigraph")
   do.call(method, args)
 }
 
@@ -348,7 +348,7 @@ ti_elpilinear <- function(
     CenterData = FALSE
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/elpilinear')
+  method <- create_docker_ti_method("dynverse/elpilinear")
   do.call(method, args)
 }
 
@@ -369,7 +369,7 @@ ti_elpilinear <- function(
 #' 
 #' @return The trajectory model
 #' @export
-ti_embeddr <- create_ti_method_chooser(ti_embeddr, 'dynverse/embeddr')
+ti_embeddr <- create_ti_method_chooser(ti_embeddr, "dynverse/embeddr")
 
 
 
@@ -388,7 +388,7 @@ ti_embeddr <- create_ti_method_chooser(ti_embeddr, 'dynverse/embeddr')
 #' 
 #' @return The trajectory model
 #' @export
-ti_error <- create_ti_method_chooser(ti_error, 'dynverse/error')
+ti_error <- create_ti_method_chooser(ti_error, "dynverse/error")
 
 
 
@@ -435,7 +435,7 @@ ti_fateid <- function(
     trthr = 0.4
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/fateid')
+  method <- create_docker_ti_method("dynverse/fateid")
   do.call(method, args)
 }
 
@@ -456,7 +456,7 @@ ti_fateid <- function(
 #' 
 #' @return The trajectory model
 #' @export
-ti_gng <- create_ti_method_chooser(ti_gng, 'dynverse/gng')
+ti_gng <- create_ti_method_chooser(ti_gng, "dynverse/gng")
 
 
 
@@ -486,7 +486,7 @@ ti_gpfates <- function(
     ndim = 2L
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/gpfates')
+  method <- create_docker_ti_method("dynverse/gpfates")
   do.call(method, args)
 }
 
@@ -519,7 +519,7 @@ ti_grandprix <- function(
     latent_var = 0.028
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/grandprix')
+  method <- create_docker_ti_method("dynverse/grandprix")
   do.call(method, args)
 }
 
@@ -540,7 +540,7 @@ ti_grandprix <- function(
 #' 
 #' @return The trajectory model
 #' @export
-ti_identity <- create_ti_method_chooser(ti_identity, 'dynverse/identity')
+ti_identity <- create_ti_method_chooser(ti_identity, "dynverse/identity")
 
 
 
@@ -567,7 +567,7 @@ ti_matcher <- function(
     method = "linear"
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/matcher')
+  method <- create_docker_ti_method("dynverse/matcher")
   do.call(method, args)
 }
 
@@ -632,7 +632,7 @@ ti_merlot <- function(
     FixEndpoints = FALSE
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/merlot')
+  method <- create_docker_ti_method("dynverse/merlot")
   do.call(method, args)
 }
 
@@ -653,7 +653,7 @@ ti_merlot <- function(
 #' 
 #' @return The trajectory model
 #' @export
-ti_mfa <- create_ti_method_chooser(ti_mfa, 'dynverse/mfa')
+ti_mfa <- create_ti_method_chooser(ti_mfa, "dynverse/mfa")
 
 
 
@@ -672,7 +672,7 @@ ti_mfa <- create_ti_method_chooser(ti_mfa, 'dynverse/mfa')
 #' 
 #' @return The trajectory model
 #' @export
-ti_monocle_ddrtree <- create_ti_method_chooser(ti_monocle_ddrtree, 'dynverse/monocle_ddrtree')
+ti_monocle_ddrtree <- create_ti_method_chooser(ti_monocle_ddrtree, "dynverse/monocle_ddrtree")
 
 
 
@@ -691,7 +691,7 @@ ti_monocle_ddrtree <- create_ti_method_chooser(ti_monocle_ddrtree, 'dynverse/mon
 #' 
 #' @return The trajectory model
 #' @export
-ti_monocle_ica <- create_ti_method_chooser(ti_monocle_ica, 'dynverse/monocle_ica')
+ti_monocle_ica <- create_ti_method_chooser(ti_monocle_ica, "dynverse/monocle_ica")
 
 
 
@@ -710,7 +710,7 @@ ti_monocle_ica <- create_ti_method_chooser(ti_monocle_ica, 'dynverse/monocle_ica
 #' 
 #' @return The trajectory model
 #' @export
-ti_mpath <- create_ti_method_chooser(ti_mpath, 'dynverse/mpath')
+ti_mpath <- create_ti_method_chooser(ti_mpath, "dynverse/mpath")
 
 
 
@@ -729,7 +729,7 @@ ti_mpath <- create_ti_method_chooser(ti_mpath, 'dynverse/mpath')
 #' 
 #' @return The trajectory model
 #' @export
-ti_ouija <- create_ti_method_chooser(ti_ouija, 'dynverse/ouija')
+ti_ouija <- create_ti_method_chooser(ti_ouija, "dynverse/ouija")
 
 
 
@@ -753,7 +753,7 @@ ti_ouijaflow <- function(
     iter = 1000L
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/ouijaflow')
+  method <- create_docker_ti_method("dynverse/ouijaflow")
   do.call(method, args)
 }
 
@@ -790,7 +790,7 @@ ti_paga <- function(
     embedding_type = "fa"
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/paga')
+  method <- create_docker_ti_method("dynverse/paga")
   do.call(method, args)
 }
 
@@ -828,7 +828,7 @@ ti_pcreode <- function(
     num_runs = 10L
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/pcreode')
+  method <- create_docker_ti_method("dynverse/pcreode")
   do.call(method, args)
 }
 
@@ -849,7 +849,7 @@ ti_pcreode <- function(
 #' 
 #' @return The trajectory model
 #' @export
-ti_periodpc <- create_ti_method_chooser(ti_periodpc, 'dynverse/periodpc')
+ti_periodpc <- create_ti_method_chooser(ti_periodpc, "dynverse/periodpc")
 
 
 
@@ -868,7 +868,7 @@ ti_periodpc <- create_ti_method_chooser(ti_periodpc, 'dynverse/periodpc')
 #' 
 #' @return The trajectory model
 #' @export
-ti_phenopath <- create_ti_method_chooser(ti_phenopath, 'dynverse/phenopath')
+ti_phenopath <- create_ti_method_chooser(ti_phenopath, "dynverse/phenopath")
 
 
 
@@ -903,7 +903,7 @@ ti_praga <- function(
     resolution = 2.5
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/praga')
+  method <- create_docker_ti_method("dynverse/praga")
   do.call(method, args)
 }
 
@@ -924,7 +924,7 @@ ti_praga <- function(
 #' 
 #' @return The trajectory model
 #' @export
-ti_pseudogp <- create_ti_method_chooser(ti_pseudogp, 'dynverse/pseudogp')
+ti_pseudogp <- create_ti_method_chooser(ti_pseudogp, "dynverse/pseudogp")
 
 
 
@@ -943,7 +943,7 @@ ti_pseudogp <- create_ti_method_chooser(ti_pseudogp, 'dynverse/pseudogp')
 #' 
 #' @return The trajectory model
 #' @export
-ti_random <- create_ti_method_chooser(ti_random, 'dynverse/random')
+ti_random <- create_ti_method_chooser(ti_random, "dynverse/random")
 
 
 
@@ -962,7 +962,7 @@ ti_random <- create_ti_method_chooser(ti_random, 'dynverse/random')
 #' 
 #' @return The trajectory model
 #' @export
-ti_recat <- create_ti_method_chooser(ti_recat, 'dynverse/recat')
+ti_recat <- create_ti_method_chooser(ti_recat, "dynverse/recat")
 
 
 
@@ -1001,7 +1001,7 @@ ti_scimitar <- function(
     max_iter = 3L
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/scimitar')
+  method <- create_docker_ti_method("dynverse/scimitar")
   do.call(method, args)
 }
 
@@ -1022,7 +1022,7 @@ ti_scimitar <- function(
 #' 
 #' @return The trajectory model
 #' @export
-ti_scorpius <- create_ti_method_chooser(ti_scorpius, 'dynverse/scorpius')
+ti_scorpius <- create_ti_method_chooser(ti_scorpius, "dynverse/scorpius")
 
 
 
@@ -1041,7 +1041,7 @@ ti_scorpius <- create_ti_method_chooser(ti_scorpius, 'dynverse/scorpius')
 #' 
 #' @return The trajectory model
 #' @export
-ti_scoup <- create_ti_method_chooser(ti_scoup, 'dynverse/scoup')
+ti_scoup <- create_ti_method_chooser(ti_scoup, "dynverse/scoup")
 
 
 
@@ -1079,7 +1079,7 @@ ti_scuba <- function(
     min_percentage_split = 0.25
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/scuba')
+  method <- create_docker_ti_method("dynverse/scuba")
   do.call(method, args)
 }
 
@@ -1100,7 +1100,7 @@ ti_scuba <- function(
 #' 
 #' @return The trajectory model
 #' @export
-ti_shuffle <- create_ti_method_chooser(ti_shuffle, 'dynverse/shuffle')
+ti_shuffle <- create_ti_method_chooser(ti_shuffle, "dynverse/shuffle")
 
 
 
@@ -1119,7 +1119,7 @@ ti_shuffle <- create_ti_method_chooser(ti_shuffle, 'dynverse/shuffle')
 #' 
 #' @return The trajectory model
 #' @export
-ti_sincell <- create_ti_method_chooser(ti_sincell, 'dynverse/sincell')
+ti_sincell <- create_ti_method_chooser(ti_sincell, "dynverse/sincell")
 
 
 
@@ -1138,7 +1138,7 @@ ti_sincell <- create_ti_method_chooser(ti_sincell, 'dynverse/sincell')
 #' 
 #' @return The trajectory model
 #' @export
-ti_slice <- create_ti_method_chooser(ti_slice, 'dynverse/slice')
+ti_slice <- create_ti_method_chooser(ti_slice, "dynverse/slice")
 
 
 
@@ -1157,7 +1157,7 @@ ti_slice <- create_ti_method_chooser(ti_slice, 'dynverse/slice')
 #' 
 #' @return The trajectory model
 #' @export
-ti_slicer <- create_ti_method_chooser(ti_slicer, 'dynverse/slicer')
+ti_slicer <- create_ti_method_chooser(ti_slicer, "dynverse/slicer")
 
 
 
@@ -1176,7 +1176,7 @@ ti_slicer <- create_ti_method_chooser(ti_slicer, 'dynverse/slicer')
 #' 
 #' @return The trajectory model
 #' @export
-ti_slingshot <- create_ti_method_chooser(ti_slingshot, 'dynverse/slingshot')
+ti_slingshot <- create_ti_method_chooser(ti_slingshot, "dynverse/slingshot")
 
 
 
@@ -1195,7 +1195,7 @@ ti_slingshot <- create_ti_method_chooser(ti_slingshot, 'dynverse/slingshot')
 #' 
 #' @return The trajectory model
 #' @export
-ti_stemid <- create_ti_method_chooser(ti_stemid, 'dynverse/stemid')
+ti_stemid <- create_ti_method_chooser(ti_stemid, "dynverse/stemid")
 
 
 
@@ -1214,7 +1214,7 @@ ti_stemid <- create_ti_method_chooser(ti_stemid, 'dynverse/stemid')
 #' 
 #' @return The trajectory model
 #' @export
-ti_stemid2 <- create_ti_method_chooser(ti_stemid2, 'dynverse/stemid2')
+ti_stemid2 <- create_ti_method_chooser(ti_stemid2, "dynverse/stemid2")
 
 
 
@@ -1243,7 +1243,7 @@ ti_stemnet <- function(
     lambda = 0.1
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/stemnet')
+  method <- create_docker_ti_method("dynverse/stemnet")
   do.call(method, args)
 }
 
@@ -1280,7 +1280,7 @@ ti_topslam <- function(
     dimreds = c(TRUE, TRUE, TRUE, TRUE, TRUE)
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/topslam')
+  method <- create_docker_ti_method("dynverse/topslam")
   do.call(method, args)
 }
 
@@ -1301,7 +1301,7 @@ ti_topslam <- function(
 #' 
 #' @return The trajectory model
 #' @export
-ti_tscan <- create_ti_method_chooser(ti_tscan, 'dynverse/tscan')
+ti_tscan <- create_ti_method_chooser(ti_tscan, "dynverse/tscan")
 
 
 
@@ -1344,7 +1344,7 @@ ti_wanderlust <- function(
     num_waypoints = 250L
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/wanderlust')
+  method <- create_docker_ti_method("dynverse/wanderlust")
   do.call(method, args)
 }
 
@@ -1365,7 +1365,7 @@ ti_wanderlust <- function(
 #' 
 #' @return The trajectory model
 #' @export
-ti_waterfall <- create_ti_method_chooser(ti_waterfall, 'dynverse/waterfall')
+ti_waterfall <- create_ti_method_chooser(ti_waterfall, "dynverse/waterfall")
 
 
 
@@ -1408,7 +1408,7 @@ ti_wishbone <- function(
     branch = TRUE
 ) {
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/wishbone')
+  method <- create_docker_ti_method("dynverse/wishbone")
   do.call(method, args)
 }
 
