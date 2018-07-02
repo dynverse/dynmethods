@@ -60,34 +60,29 @@ pr  <- prcurve(y, fb, dr, k=params$k, m=params$m, trthr=params$trthr, start=star
 #   ____________________________________________________________________________
 #   Process & save output                                                   ####
 
-# extract trajectory from principal curves
-# we generate one start milestone, and several end milestones for every possible end state
-start_milestone_id <- "start"
+# end_state_probabilities
+end_state_probabilities <- fb$probs %>% as.data.frame() %>% rownames_to_column("cell_id")
+write_csv(end_state_probabilities, "/output/end_state_probabilities.csv")
 
-progressions <- map2_df(names(pr$trc), pr$trc, function(end_milestone_id, cell_order) {
-  tibble(cell_id = cell_order, percentage = seq_along(cell_order)/length(cell_order), from = start_milestone_id, to = end_milestone_id)
-}) %>%
+# pseudotime
+pseudotimes <- map2_dfr(names(pr$trc), pr$trc, function(curve_id, trc) {
+    tibble(
+      cell_id = trc,
+      pseudotime = seq_along(trc)/length(trc),
+      curve_id = curve_id
+    )
+  }) %>%
+  arrange(pseudotime) %>%
   group_by(cell_id) %>%
-  mutate(percentage = percentage / n()) # divide here by number of trajectories to keep sum(percentage) <= 1
-
-milestone_network <- progressions %>%
-  group_by(from, to) %>%
-  summarise(
-    length = n(),
-    directed = TRUE
-  )
-
-divergence_regions <- bind_rows(
-  tibble(milestone_id = start_milestone_id, divergence_id = "divergence", is_start = TRUE),
-  tibble(milestone_id = unique(milestone_network$to), divergence_id = "divergence", is_start = FALSE)
-)
+  filter(pseudotime == max(pseudotime)) %>%
+  filter(row_number() == 1)
 
 # extract dimred
 dimred <- dr[[1]][[1]] %>% as.data.frame() %>% mutate(cell_id = rownames(expression))
 
 # save to files
-write_csv(milestone_network, "/output/milestone_network.csv")
-write_csv(progressions, "/output/progressions.csv")
-write_csv(divergence_regions, "/output/divergence_regions.csv")
-write_json(checkpoints, "/output/timings.json")
+write_csv(pseudotimes, "/output/pseudotime.csv")
+write_csv(end_state_probabilities, "/output/end_state_probabilities.csv")
 write_csv(dimred, "/output/dimred.csv")
+
+write_json(checkpoints, "/output/timings.json")
