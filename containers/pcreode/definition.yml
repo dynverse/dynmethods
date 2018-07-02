@@ -48,6 +48,7 @@ authors:
     family: Lau
     email: ken.s.lau@vanderbilt.edu
     github: KenLauLab
+license: GPL-2
 publication_date: '2017-11-15'
 version: 1.5.0
 code_url: https://github.com/KenLauLab/pCreode
