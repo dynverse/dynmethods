@@ -1,7 +1,7 @@
 name: Slingshot
 short_name: slingshot
 type: algorithm
-doi: 10.1101/128843
+doi: 10.1186/s12864-018-4772-0
 trajectory_types:
 - linear
 - bifurcation
@@ -12,6 +12,7 @@ trajectory_types:
 topology_inference: free
 license: Artistic-2.0
 preprint_date: '2017-04-19'
+publication_date: '2018-06-19'
 version: 0.99.8
 code_url: https://github.com/kstreet13/slingshot
 apt_dependencies:
