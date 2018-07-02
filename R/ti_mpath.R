@@ -56,7 +56,6 @@ ti_mpath <- create_ti_method(
     numcluster_null = list(
       type = "logical",
       default = TRUE,
-      values = c("TRUE", "FALSE"),
       description = "If TRUE, will automatically select the number of clusters"
     ),
     diversity_cut = list(

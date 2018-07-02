@@ -60,7 +60,6 @@ ti_gng <- create_ti_method(
     apply_mst = list(
       type = "logical",
       default = TRUE,
-      values = c("TRUE", "FALSE"),
       description = "If true, an MST post-processing of the GNG is performed.")
   ),
   run_fun = "dynmethods::run_gng",

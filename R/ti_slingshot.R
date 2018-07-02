@@ -74,13 +74,11 @@ ti_slingshot <- create_ti_method(
     reweight = list(
       type = "logical",
       default = TRUE,
-      values = c("TRUE", "FALSE"),
       description = "logical, whether to allow cells shared between lineages to be reweighted during curve-fitting. If \\code{TRUE}, cells shared between  lineages will be weighted by: distance to nearest curve / distance to curve."
     ),
     reassign = list(
       type = "logical",
       default = TRUE,
-      values = c("TRUE", "FALSE"),
       description = "logical, whether to reassign cells to lineages at each iteration. If TRUE, cells will be added to a lineage when their projection distance to the curve is less than the median distance for all cells currently assigned to the lineage. Additionally, shared cells will be removed from a lineage if their projection distance to the curve is above the 90th percentile and their weight along the curve is less than 0.1."
     ),
     thresh = list(
