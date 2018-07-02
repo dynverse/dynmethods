@@ -164,48 +164,17 @@ run_scoup <- function(
     stop("SCOUP returned NaNs", call. = FALSE)
   }
 
-  # create progressions
-  milestone_percentages <- model$cpara %>%
-    as.data.frame() %>%
-    as_data_frame() %>%
-    tibble::rownames_to_column("cell_id") %>%
-    mutate(time = max(time) - time) %>%
-    rename(M0 = time) %>%
-    tidyr::gather(milestone_id, percentage, -cell_id) %>%
-    group_by(milestone_id) %>%
-    mutate(percentage = percentage / max(percentage)) %>%
-    ungroup() %>%
-    group_by(cell_id) %>%
-    mutate(percentage = percentage / sum(percentage)) %>%
-    filter(percentage > 0 | milestone_id == "M0")
-
-  # create milestone ids
-  milestone_ids <- c("M0", paste0("M", seq_len(end_n)))
-
-  # create milestone network
-  milestone_network <- data_frame(
-    from = milestone_ids[[1]],
-    to = milestone_ids[-1],
-    length = 1,
-    directed = TRUE
-  )
-
-  # create divergence_regions
-  divergence_regions <- data_frame(
-    divergence_id = "divergence",
-    milestone_id = milestone_ids,
-    is_start = milestone_id == milestone_ids[[1]]
-  )
+  pseudotime <- model$cpara %>% {set_names(.$time, rownames(.))}
+  esp <- model$cpara %>% select(-time) %>% rownames_to_column("cell_id")
 
   # return output
   wrap_prediction_model(
     cell_ids = rownames(expression),
     cell_info = model$cpara %>% tibble::rownames_to_column("cell_id")
-  ) %>% add_trajectory(
-    milestone_ids = milestone_ids,
-    milestone_network = milestone_network,
-    milestone_percentages = milestone_percentages,
-    divergence_regions = divergence_regions
+  ) %>% add_end_state_probabilities(
+    end_state_probabilities = esp,
+    pseudotime = pseudotime,
+    do_scale_minmax = TRUE
   ) %>% add_dimred(
     dimred = model$dimred %>% as.matrix
   ) %>% add_timings(

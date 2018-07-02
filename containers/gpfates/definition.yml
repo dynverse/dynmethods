@@ -27,12 +27,11 @@ input:
 output:
   format: text
   outputs:
-    - trajectory
-    - pseudotime
+    - end_state_probabilities
     - dimred
     - timings
 doi: 10.1126/sciimmunol.aal2192
-trajectory_types: cycle
+trajectory_types: linear, bifurcation, multifurcation
 topology_inference: parameter
 type: algorithm
 license: MIT

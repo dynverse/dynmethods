@@ -1162,15 +1162,15 @@ ti_slicer <- create_ti_method_chooser(ti_slicer, "dynverse/slicer")
 
 
 
-#' Inferring a trajectory inference using [Slingshot](https://doi.org/10.1101/128843)
+#' Inferring a trajectory inference using [Slingshot](https://doi.org/10.1186/s12864-018-4772-0)
 #' 
-#' Will generate a trajectory using [Slingshot](https://doi.org/10.1101/128843). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/slingshot).
+#' Will generate a trajectory using [Slingshot](https://doi.org/10.1186/s12864-018-4772-0). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/slingshot).
 #' 
 #' This methods was first wrapped inside R, see [ti_slingshot]
 #' 
 #' The original code of this method is available [here](https://github.com/kstreet13/slingshot).
 #' 
-#' The method is described in: [Street, K., Risso, D., Fletcher, R.B., Das, D., Ngai, J., Yosef, N., Purdom, E., Dudoit, S., 2017. Slingshot: Cell lineage and pseudotime inference for single-cell transcriptomics.](https://doi.org/10.1101/128843)
+#' The method is described in: [Street, K., Risso, D., Fletcher, R.B., Das, D., Ngai, J., Yosef, N., Purdom, E., Dudoit, S., 2018. Slingshot: cell lineage and pseudotime inference for single-cell transcriptomics. BMC Genomics 19.](https://doi.org/10.1186/s12864-018-4772-0)
 #' 
 #' @param docker Whether to use the docker container or the R wrapper
 #' 

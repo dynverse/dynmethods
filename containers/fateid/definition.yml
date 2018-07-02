@@ -63,7 +63,7 @@ output:
   format: text
   outputs:
     - dimred
-    - trajectory
+    - end_state_probabilities
     - timings
 doi: 10.1038/nmeth.4662
 trajectory_types:
