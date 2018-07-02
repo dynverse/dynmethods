@@ -49,60 +49,73 @@ ti_slingshot <- create_ti_method(
       default = 3L,
       upper = 20L,
       lower = 2L,
-      description = "The number of dimensions"),
+      description = "The number of dimensions"
+    ),
     nclus = list(
       type = "integer",
       default = 5L,
       upper = 40L,
       lower = 2L,
-      description = "Number of clusters"),
+      description = "Number of clusters"
+    ),
     dimred = list(
       type = "discrete",
       default = "pca",
       values = c("pca", "mds", "tsne", "ica", "lle", "mds_sammon", "mds_isomds", "mds_smacof", "umap"),
-      description = "A character vector specifying which dimensionality reduction method to use.\nSee \\code{\\link{dyndimred:dimred}} for the list of available dimensionality reduction methods."
+      description = "A character vector specifying which dimensionality reduction method to use. See \\code{\\link{dyndimred:dimred}} for the list of available dimensionality reduction methods."
     ),
     shrink = list(
       type = "numeric",
       default = 1,
       upper = 1,
       lower = 0,
-      description = "logical or numeric between 0 and 1, determines whether and how \nmuch to shrink branching lineages toward their average prior to the split."),
+      description = "logical or numeric between 0 and 1, determines whether and how  much to shrink branching lineages toward their average prior to the split."
+    ),
     reweight = list(
       type = "logical",
       default = TRUE,
-      values = c("TRUE", "FALSE"),
-      description = "logical, whether to allow cells shared between lineages to be\nreweighted during curve-fitting. If \\code{TRUE}, cells shared between \nlineages will be weighted by: distance to nearest curve / distance to\ncurve."),
+      description = "logical, whether to allow cells shared between lineages to be reweighted during curve-fitting. If \\code{TRUE}, cells shared between  lineages will be weighted by: distance to nearest curve / distance to curve."
+    ),
+    reassign = list(
+      type = "logical",
+      default = TRUE,
+      description = "logical, whether to reassign cells to lineages at each iteration. If TRUE, cells will be added to a lineage when their projection distance to the curve is less than the median distance for all cells currently assigned to the lineage. Additionally, shared cells will be removed from a lineage if their projection distance to the curve is above the 90th percentile and their weight along the curve is less than 0.1."
+    ),
     thresh = list(
       type = "numeric",
-      default = -3,
-      upper = 5,
-      lower = -5,
-      description = "numeric, determines the convergence criterion. Percent change in the total distance from cells to their projections along curves must be less than thresh. Default is 0.001, similar to principal.curve."),
-
+      default = 10^-3,
+      upper = 10^5,
+      lower = 10^-5,
+      distribution = "exponential",
+      rate = 1.0,
+      description = "numeric, determines the convergence criterion. Percent change in the total distance from cells to their projections along curves must be less than thresh. Default is 0.001, similar to principal.curve."
+    ),
     maxit = list(
       type = "integer",
       default = 10L,
       upper = 50L,
       lower = 0L,
-      description = "numeric, maximum number of iterations, see principal.curve."),
+      description = "numeric, maximum number of iterations, see principal.curve."
+    ),
     stretch = list(
       type = "numeric",
       default = 2,
       upper = 5,
       lower = 0,
-      description = "numeric factor by which curves can be extrapolated beyond endpoints. Default is 2, see principal.curve."),
+      description = "numeric factor by which curves can be extrapolated beyond endpoints. Default is 2, see principal.curve."
+    ),
     smoother = list(
       type = "discrete",
       default = "smooth.spline",
       values = c("smooth.spline", "loess", "periodic.lowess"),
-      description = "choice of scatter plot smoother. Same as principal.curve, but \"lowess\" option is replaced with \"loess\" for additional flexibility."),
-
+      description = "choice of scatter plot smoother. Same as principal.curve, but \"lowess\" option is replaced with \"loess\" for additional flexibility."
+    ),
     shrink.method = list(
       type = "discrete",
       default = "cosine",
       values = c("cosine", "tricube", "density"),
-      description = "character denoting how to determine the appropriate\namount of shrinkage for a branching lineage. Accepted values are the same\nas for \\code{kernel} in [density()] (default is \\code{\"cosine\"}),\nas well as \\code{\"tricube\"} and \\code{\"density\"}. See 'Details' for more.")
+      description = "character denoting how to determine the appropriate amount of shrinkage for a branching lineage. Accepted values are the same as for \\code{kernel} in [density()] (default is \\code{\"cosine\"}), as well as \\code{\"tricube\"} and \\code{\"density\"}. See 'Details' for more."
+    )
   ),
   run_fun = "dynmethods::run_slingshot",
   plot_fun = "dynmethods::plot_slingshot",
@@ -118,6 +131,7 @@ run_slingshot <- function(
   dimred = "pca",
   shrink = 1,
   reweight = TRUE,
+  reassign = TRUE,
   thresh = 0.001,
   maxit = 15,
   stretch = 2,
@@ -175,6 +189,7 @@ run_slingshot <- function(
     end.clus = end.clus,
     shrink = shrink,
     reweight = reweight,
+    reassign = reassign,
     thresh = thresh,
     maxit = maxit,
     stretch = stretch,
@@ -189,13 +204,6 @@ run_slingshot <- function(
   # extract information on clusters
   lineages <- slingshot::slingLineages(sds)
   lineage_ctrl <- slingshot::slingParams(sds)
-  connectivity <- slingshot::slingAdjacency(sds)
-  clusterLabels <- slingshot::clusterLabels(sds) %>% setNames(rownames(counts))
-
-  # calculate cluster centers
-  centers <- t(sapply(rownames(connectivity), function(cli){
-    colMeans(space[clusterLabels[, cli] == 1,,drop=T])
-  }))
 
   # collect milestone network
   cluster_network <- lineages %>%
@@ -205,6 +213,15 @@ run_slingshot <- function(
       length = lineage_ctrl$dist[cbind(from, to)],
       directed = TRUE # TODO: should be true
     )
+
+  # collect cluster assignment
+  cluster_assignment <- slingshot::clusterLabels(sds)
+  cluster_labels <- apply(cluster_assignment, 1, function(r) colnames(cluster_assignment)[which(r == 1)])
+
+  # calculate cluster centers
+  centers <- t(sapply(colnames(cluster_assignment), function(cli){
+    colMeans(space[cluster_assignment[, cli] == 1,,drop=T])
+  }))
 
   # collect curve data for visualisation purposes
   curves <- slingshot::slingCurves(sds)
@@ -228,8 +245,8 @@ run_slingshot <- function(
     milestone_ids = rownames(centers),
     milestone_network = cluster_network,
     dimred_milestones = centers,
-    dimred = sds@reducedDim,
-    milestone_assignment_cells = clusterLabels,
+    dimred = space,
+    milestone_assignment_cells = cluster_labels,
     num_segments_per_edge = 100,
     curve = curve_df
   ) %>% add_timings(

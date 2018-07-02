@@ -6,8 +6,8 @@ RUN R -e 'devtools::install_github("dynverse/dynwrap")'
 
 
 
-RUN R -e "devtools::install_github('dynverse/SCOUP')"
+RUN R -e 'devtools::install_github("dynverse/SCOUP")'
 
 ADD . /code
 
-ENTRYPOINT Rscript code/run.R
+ENTRYPOINT Rscript /code/run.R

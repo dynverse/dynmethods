@@ -3,7 +3,7 @@
 #' @inherit dynwrap::ti_comp1 description
 #'
 #' @param dimred A character vector specifying which dimensionality reduction method to use.
-#'   See [dyndimred::dimred()] for the list of available dimensionality reduction methods.
+#'   See [dyndimred::dimred] for the list of available dimensionality reduction methods.
 #'
 #' @export
 ti_angle <-

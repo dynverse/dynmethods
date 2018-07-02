@@ -3,6 +3,8 @@
 library(tidyverse)
 library(dynwrap)
 library(furrr)
+library(rcrossref)
+
 plan(multiprocess)
 
 #   ____________________________________________________________________________
@@ -15,7 +17,7 @@ rebuild <- TRUE
 if (rebuild) {
   future_map(method_ids, function(method_id) {
     system(str_glue("docker build containers/{method_id} -t dynverse/{method_id}"))
-    system(str_glue("docker push dynverse/{method_id}"))
+    # system(str_glue("docker push dynverse/{method_id}"))
   })
 }
 
@@ -135,7 +137,7 @@ generate_parameters <- function(definition) {
 generate_func <- function(method_id, definition, r_wrapped) {
   if (r_wrapped) {
     func <- "
-ti_{method_id} <- create_ti_method_chooser(ti_{method_id}, 'dynverse/{method_id}')
+ti_{method_id} <- create_ti_method_chooser(ti_{method_id}, \"dynverse/{method_id}\")
 " %>% glue::glue()
   } else {
     func <- "
@@ -143,7 +145,7 @@ ti_{method_id} <- function(
 {generate_parameters(definition)}
 ) {{
   args <- as.list(environment())
-  method <- create_docker_ti_method('dynverse/{method_id}')
+  method <- create_docker_ti_method(\"dynverse/{method_id}\")
   do.call(method, args)
 }}
 " %>% glue::glue()

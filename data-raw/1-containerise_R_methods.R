@@ -4,15 +4,18 @@
 library(tidyverse)
 library(dynwrap)
 library(desc)
+library(furrr)
+
+plan(multiprocess)
 
 write_file("", "R/ti_container.R")
 
 devtools::load_all()
 
 method_ids <- dynwrap::get_ti_methods(packages = "dynmethods")$method_id
-# method_ids <- c("stemid", "stemid2")
+# method_ids <- c("slingshot")
 
-walk(method_ids, function(method_id) {
+future_map(method_ids, function(method_id) {
   cat("Running ", method_id, "\n", sep = "")
   method <- get(paste0("ti_", method_id))()
 
@@ -66,12 +69,12 @@ walk(method_ids, function(method_id) {
     if (length(dependencies) > 0) {
       install_dependencies <- map(dependencies, function(dependency) {
         if(dependency %in% names(remotes)) {
-          glue::glue("devtools::install_github('{remotes[dependency]}')")
+          glue::glue("devtools::install_github(\"{remotes[dependency]}\")")
         } else {
-          glue::glue("install.packages('{dependency}')")
+          glue::glue("install.packages(\"{dependency}\")")
         }
       }) %>%
-        paste0("RUN R -e \"", ., "\"") %>%
+        paste0("RUN R -e '", ., "'") %>%
         glue::collapse("\n")
     } else {
       install_dependencies <- ""
@@ -96,7 +99,7 @@ RUN R -e 'devtools::install_github(\"dynverse/dynwrap\")'
 
 ADD . /code
 
-ENTRYPOINT Rscript code/run.R
+ENTRYPOINT Rscript /code/run.R
 ")
   }
 
@@ -156,13 +159,13 @@ library(readr)
 library(dplyr)
 library(purrr)
 
-{glue::collapse(paste0('library(', method$package_required, ')'), '\\n')}
+{if(!is.null(method$package_required)) {glue::collapse(paste0(\"library(\", method$package_required, \")\"), \"\\n\")} else {\"\"}}
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
-data <- read_rds('/input/data.rds')
-params <- jsonlite::read_json('/input/params.json')
+data <- read_rds(\"/input/data.rds\")
+params <- jsonlite::read_json(\"/input/params.json\")
 
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
@@ -176,7 +179,7 @@ model <- do.call(run_fun, c(args, data))
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-write_rds(model, '/output/output.rds')
+write_rds(model, \"/output/output.rds\")
 ")
   }
 

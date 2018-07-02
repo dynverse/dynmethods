@@ -67,7 +67,7 @@ Suggests:
   rstan,
   roxygen2,
   scaterlegacy,
-  SCORPIUS,
+  SCORPIUS (>= 1.0.2),
   SCOUP,
   sincell,
   SLICE,
@@ -110,7 +110,7 @@ Remotes:
   kieranrcampbell/mfa,
   kieranrcampbell/ouija,
   kieranrcampbell/phenopath,
-  kstreet13/slingshot@develop,
+  kstreet13/slingshot,
   rcannood/gng,
   rcannood/SCORPIUS,
   zji90/TSCAN

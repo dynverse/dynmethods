@@ -9,3 +9,7 @@
 ^_pkgdown\.yml$
 ^docs$
 ^dockers$
+^singularity_images
+^automated_checks$
+^data-raw$
+^containers$

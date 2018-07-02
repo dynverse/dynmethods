@@ -10,8 +10,8 @@ library(dyndimred)
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
-data <- read_rds('/input/data.rds')
-params <- jsonlite::read_json('/input/params.json')
+data <- read_rds("/input/data.rds")
+params <- jsonlite::read_json("/input/params.json")
 
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
@@ -94,4 +94,4 @@ model <- do.call(run_fun, c(args, data))
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-write_rds(model, '/output/output.rds')
+write_rds(model, "/output/output.rds")

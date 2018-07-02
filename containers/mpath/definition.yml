@@ -38,9 +38,6 @@ parameters:
   numcluster_null:
     type: logical
     default: yes
-    values:
-    - 'TRUE'
-    - 'FALSE'
     description: If TRUE, will automatically select the number of clusters
   diversity_cut:
     type: numeric

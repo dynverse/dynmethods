@@ -132,7 +132,6 @@ ti_stemid <- create_ti_method(
     nmode = list(
       type = "logical",
       default = FALSE,
-      values = c("TRUE", "FALSE"),
       description = "Boolean argument. If nmode is set to TRUE the assignment to inter-cluster links for each cell is not done based on the longest projection, but based on identifying the cluster (other than the cluster the cell belongs to) that contains the nearest neighbor of the cell, i. e. the cell with the most similar transcriptome. The coordinate on the assigned link is still derived based on the projection. Default is FALSE."),
 
     pdishuf = list(

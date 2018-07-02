@@ -3,7 +3,7 @@
 \name{ti_celltree_gibbs}
 \alias{ti_celltree_gibbs}
 \alias{ti_celltree_gibbs}
-\title{Inferring a trajectory inference using \href{https://doi.org/10.1186/s12859-016-1175-6}{cellTree with gibbs}}
+\title{Inferring trajectories with cellTree}
 \usage{
 ti_celltree_gibbs(docker = dynwrap::test_docker_installation(),
   method = "Gibbs", sd_filter = 0.5, absolute_width = 0,
@@ -49,6 +49,8 @@ that can be left at the end of the backbone tree-building algorithm.}
 The trajectory model
 }
 \description{
+Inferring trajectories with cellTree
+
 Will generate a trajectory using \href{https://doi.org/10.1186/s12859-016-1175-6}{cellTree with gibbs}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/celltree_gibbs}{container}.
 }
 \details{

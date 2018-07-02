@@ -6,8 +6,8 @@ RUN R -e 'devtools::install_github("dynverse/dynwrap")'
 
 
 
-RUN R -e "devtools::install_github('rcannood/SCORPIUS')"
+RUN R -e 'devtools::install_github("rcannood/SCORPIUS")'
 
 ADD . /code
 
-ENTRYPOINT Rscript code/run.R
+ENTRYPOINT Rscript /code/run.R

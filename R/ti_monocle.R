@@ -24,7 +24,6 @@ abstract_monocle_description <- function(short_name) {
       auto_param_selection = list(
         type = "logical",
         default = TRUE,
-        values = c("TRUE", "FALSE"),
         description = "when this argument is set to TRUE (default), it will automatically calculate the proper value for the ncenter (number of centroids) parameters which will be passed into DDRTree call."
       )
     ),
