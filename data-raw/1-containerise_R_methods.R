@@ -4,6 +4,9 @@
 library(tidyverse)
 library(dynwrap)
 library(desc)
+library(furrr)
+
+plan(multiprocess)
 
 write_file("", "R/ti_container.R")
 
@@ -12,7 +15,7 @@ devtools::load_all()
 method_ids <- dynwrap::get_ti_methods(packages = "dynmethods")$method_id
 # method_ids <- c("slingshot")
 
-walk(method_ids, function(method_id) {
+future_map(method_ids, function(method_id) {
   cat("Running ", method_id, "\n", sep = "")
   method <- get(paste0("ti_", method_id))()
 
