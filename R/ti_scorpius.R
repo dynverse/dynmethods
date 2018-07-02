@@ -2,7 +2,6 @@
 #'
 #' @inherit ti_angle description
 #'
-#' @inheritParams SCORPIUS::correlation_distance
 #' @inheritParams SCORPIUS::reduce_dimensionality
 #' @inheritParams SCORPIUS::infer_trajectory
 #' @param sparse Whether or not to use sparse MDS dimensionality reduction,
@@ -127,17 +126,13 @@ run_scorpius <- function(
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
-  if (!sparse) {
-    # calculate distances between cells
-    dist <- SCORPIUS::correlation_distance(expression, method = distance_method)
-
-    # perform dimensionality reduction
-    space <- SCORPIUS::reduce_dimensionality(dist, ndim = ndim)
-  } else {
-    dist_fun <- function(x, y) SCORPIUS::correlation_distance(x, y, method = distance_method)
-    num_landmarks <- ifelse(nrow(expression) > 1000, 500, nrow(expression))
-    space <- SCORPIUS::reduce_dimensionality_landmarked(expression, dist_fun = dist_fun, ndim = ndim, num_landmarks = num_landmarks)
-  }
+  space <- SCORPIUS::reduce_dimensionality(
+    x = expression,
+    dist_fun = function(x, y) dynutils::calculate_distance(x, y, method = distance_method),
+    landmark_method = ifelse(sparse, "naive", "none"),
+    ndim = ndim,
+    num_landmarks = ifelse(nrow(expression) > 1000, 500, nrow(expression))
+  )
 
   # infer a trajectory through the data
   traj <- SCORPIUS::infer_trajectory(
