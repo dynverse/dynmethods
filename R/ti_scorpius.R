@@ -97,7 +97,7 @@ ti_scorpius <- create_ti_method(
     ),
     sparse = list(
       type = "logical",
-      default = FALSE,
+      default = TRUE,
       description = "Whether or not to use sparse MDS dimensionality reduction,\nfor datasets with large amounts of cells."
     )
   ),
@@ -114,7 +114,7 @@ run_scorpius <- function(
   maxit = 10,
   stretch = 0,
   smoother = "smooth.spline",
-  sparse = FALSE
+  sparse = TRUE
 ) {
   requireNamespace("SCORPIUS")
 
@@ -128,7 +128,7 @@ run_scorpius <- function(
 
   space <- SCORPIUS::reduce_dimensionality(
     x = expression,
-    dist_fun = function(x, y) dynutils::calculate_distance(x, y, method = distance_method),
+    dist_fun = function(x, y = NULL) dynutils::calculate_distance(x = x, y = y, method = distance_method),
     landmark_method = ifelse(sparse, "naive", "none"),
     ndim = ndim,
     num_landmarks = ifelse(nrow(expression) > 1000, 500, nrow(expression))
