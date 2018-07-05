@@ -43,7 +43,7 @@ ti_identity <- create_ti_method(
 
 run_identity <- function(
   counts,
-  task,
+  dataset,
   dummy_param = .5
 ) {
   # TIMING: done with preproc
@@ -54,13 +54,13 @@ run_identity <- function(
 
   # return output
   wrap_prediction_model(
-    cell_ids = task$cell_ids,
-    cell_info = task$cell_info
+    cell_ids = dataset$cell_ids,
+    cell_info = dataset$cell_info
   ) %>% add_trajectory(
-    milestone_ids = task$milestone_ids,
-    milestone_network = task$milestone_network,
-    divergence_regions = task$divergence_regions,
-    progressions = task$progressions
+    milestone_ids = dataset$milestone_ids,
+    milestone_network = dataset$milestone_network,
+    divergence_regions = dataset$divergence_regions,
+    progressions = dataset$progressions
   ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )

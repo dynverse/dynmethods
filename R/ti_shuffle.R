@@ -45,7 +45,7 @@ ti_shuffle <- create_ti_method(
 
 run_shuffle <- function(
   counts,
-  task,
+  dataset,
   dummy_param = .5
 ) {
   # TIMING: done with preproc
@@ -54,7 +54,7 @@ run_shuffle <- function(
   # permute cell labels
   allcells <- rownames(counts)
   mapper <- setNames(sample(allcells), allcells)
-  progressions <- task$progressions %>% mutate(
+  progressions <- dataset$progressions %>% mutate(
     cell_id = mapper[cell_id]
   )
 
@@ -63,12 +63,12 @@ run_shuffle <- function(
 
   # return output
   wrap_prediction_model(
-    cell_ids = task$cell_ids
+    cell_ids = dataset$cell_ids
   ) %>% add_trajectory(
-    milestone_ids = task$milestone_ids,
-    milestone_network = task$milestone_network,
+    milestone_ids = dataset$milestone_ids,
+    milestone_network = dataset$milestone_network,
     progressions = progressions,
-    divergence_regions = task$divergence_regions
+    divergence_regions = dataset$divergence_regions
   ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
