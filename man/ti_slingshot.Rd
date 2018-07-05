@@ -60,14 +60,14 @@ The trajectory model
 \description{
 Inferring trajectories with Slingshot
 
-Will generate a trajectory using \href{https://doi.org/10.1101/128843}{Slingshot}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/slingshot}{container}.
+Will generate a trajectory using \href{https://doi.org/10.1186/s12864-018-4772-0}{Slingshot}. This method was wrapped inside a \href{https://github.com/dynverse/dynmethods/tree/master/containers/slingshot}{container}.
 }
 \details{
 This methods was first wrapped inside R, see \link{ti_slingshot}
 
 The original code of this method is available \href{https://github.com/kstreet13/slingshot}{here}.
 
-The method is described in: \href{https://doi.org/10.1101/128843}{Street, K., Risso, D., Fletcher, R.B., Das, D., Ngai, J., Yosef, N., Purdom, E., Dudoit, S., 2017. Slingshot: Cell lineage and pseudotime inference for single-cell transcriptomics.}
+The method is described in: \href{https://doi.org/10.1186/s12864-018-4772-0}{Street, K., Risso, D., Fletcher, R.B., Das, D., Ngai, J., Yosef, N., Purdom, E., Dudoit, S., 2018. Slingshot: cell lineage and pseudotime inference for single-cell transcriptomics. BMC Genomics 19.}
 }
 \seealso{
 \code{\link[slingshot:slingshot]{slingshot::slingshot()}}
