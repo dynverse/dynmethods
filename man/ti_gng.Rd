@@ -5,14 +5,18 @@
 \alias{ti_gng}
 \title{Inferring trajectories with Growing Neural Gas}
 \usage{
-ti_gng(docker = dynwrap::test_docker_installation(), dimred = "pca",
-  ndim = 5, max_iter = 15000, max_nodes = 8, apply_mst = TRUE)
 
-ti_gng(docker = dynwrap::test_docker_installation(), dimred = "pca",
-  ndim = 5, max_iter = 15000, max_nodes = 8, apply_mst = TRUE)
+  ti_gng(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), dimred = "pca", ndim = 5,
+  max_iter = 15000, max_nodes = 8, apply_mst = TRUE)
+
+
+  ti_gng(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), dimred = "pca", ndim = 5,
+  max_iter = 15000, max_nodes = 8, apply_mst = TRUE)
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{dimred}{A character vector specifying which dimensionality reduction method to use.
 See \link[dyndimred:dimred]{dyndimred::dimred} for the list of available dimensionality reduction methods.}

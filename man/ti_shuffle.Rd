@@ -5,12 +5,16 @@
 \alias{ti_shuffle}
 \title{Inferring trajectories with Control: shuffle}
 \usage{
-ti_shuffle(docker = dynwrap::test_docker_installation(), dummy_param = 0.5)
 
-ti_shuffle(docker = dynwrap::test_docker_installation(), dummy_param = 0.5)
+  ti_shuffle(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), dummy_param = 0.5)
+
+
+  ti_shuffle(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), dummy_param = 0.5)
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{dummy_param}{This parameter does not do anything.}
 }

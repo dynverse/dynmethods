@@ -90,7 +90,7 @@ generate_documentation_from_definition <- function(method_id, definition, r_wrap
       }
     }) %>% unlist()
   } else {
-    params_text <- "@param docker Whether to use the docker container or the R wrapper"
+    params_text <- "@param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'"
   }
 
   # now combine everything

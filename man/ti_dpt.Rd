@@ -5,16 +5,20 @@
 \alias{ti_dpt}
 \title{Inferring trajectories with DPT}
 \usage{
-ti_dpt(docker = dynwrap::test_docker_installation(), sigma = "local",
+
+  ti_dpt(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), sigma = "local",
   distance = "euclidean", ndim = 20, density_norm = TRUE,
   n_local_lower = 5, n_local_upper = 7, w_width = 0.1)
 
-ti_dpt(docker = dynwrap::test_docker_installation(), sigma = "local",
+
+  ti_dpt(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), sigma = "local",
   distance = "euclidean", ndim = 20, density_norm = TRUE,
   n_local_lower = 5, n_local_upper = 7, w_width = 0.1)
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{sigma}{Diffusion scale parameter of the Gaussian kernel. A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix. Must be one of:
 \itemize{

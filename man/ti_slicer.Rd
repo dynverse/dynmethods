@@ -5,12 +5,16 @@
 \alias{ti_slicer}
 \title{Inferring trajectories with SLICER}
 \usage{
-ti_slicer(docker = dynwrap::test_docker_installation(), kmin = 10, m = 2)
 
-ti_slicer(docker = dynwrap::test_docker_installation(), kmin = 10, m = 2)
+  ti_slicer(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), kmin = 10, m = 2)
+
+
+  ti_slicer(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), kmin = 10, m = 2)
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{kmin}{Smallest value of k to try}
 

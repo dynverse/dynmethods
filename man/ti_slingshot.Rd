@@ -5,18 +5,22 @@
 \alias{ti_slingshot}
 \title{Inferring trajectories with Slingshot}
 \usage{
-ti_slingshot(docker = dynwrap::test_docker_installation(), ndim = 3,
-  nclus = 5, dimred = "pca", shrink = 1, reweight = TRUE,
-  reassign = TRUE, thresh = 0.001, maxit = 10, stretch = 2,
-  smoother = "smooth.spline", shrink.method = "cosine")
 
-ti_slingshot(docker = dynwrap::test_docker_installation(), ndim = 3,
-  nclus = 5, dimred = "pca", shrink = 1, reweight = TRUE,
-  reassign = TRUE, thresh = 0.001, maxit = 10, stretch = 2,
-  smoother = "smooth.spline", shrink.method = "cosine")
+  ti_slingshot(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), ndim = 3, nclus = 5,
+  dimred = "pca", shrink = 1, reweight = TRUE, reassign = TRUE,
+  thresh = 0.001, maxit = 10, stretch = 2, smoother = "smooth.spline",
+  shrink.method = "cosine")
+
+
+  ti_slingshot(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), ndim = 3, nclus = 5,
+  dimred = "pca", shrink = 1, reweight = TRUE, reassign = TRUE,
+  thresh = 0.001, maxit = 10, stretch = 2, smoother = "smooth.spline",
+  shrink.method = "cosine")
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{ndim}{The number of dimensions}
 

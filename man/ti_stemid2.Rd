@@ -5,16 +5,20 @@
 \alias{ti_stemid2}
 \title{Inferring trajectories with StemID2}
 \usage{
-ti_stemid2(docker = dynwrap::test_docker_installation(), clustnr = 30,
-  bootnr = 50, metric = "pearson", num_cluster_method = "sat",
+
+  ti_stemid2(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), clustnr = 30, bootnr = 50,
+  metric = "pearson", num_cluster_method = "sat",
   SE.method = "Tibs2001SEmax", SE.factor = 0.25, B.gap = 50, cln = 30,
   FUNcluster = "kmedoids", dimred_method = "tsne", outminc = 0,
   outlg = 2, probthr = 0.001, thr_lower = -10, thr_upper = -5,
   outdistquant = 0.95, nmode = FALSE, pdishuf = 2000, pthr = 1e-04,
   pethr = 1e-04, pvalue_cutoff = 0.05, linkscore_cutoff = 0.2)
 
-ti_stemid2(docker = dynwrap::test_docker_installation(), clustnr = 30,
-  bootnr = 50, metric = "pearson", num_cluster_method = "sat",
+
+  ti_stemid2(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), clustnr = 30, bootnr = 50,
+  metric = "pearson", num_cluster_method = "sat",
   SE.method = "Tibs2001SEmax", SE.factor = 0.25, B.gap = 50, cln = 30,
   FUNcluster = "kmedoids", dimred_method = "tsne", outminc = 0,
   outlg = 2, probthr = 0.001, thr_lower = -10, thr_upper = -5,
@@ -22,7 +26,7 @@ ti_stemid2(docker = dynwrap::test_docker_installation(), clustnr = 30,
   pethr = 1e-04, pvalue_cutoff = 0.05, linkscore_cutoff = 0.2)
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{clustnr}{maximum number of clusters for the computation of the gap statistic or derivation of the cluster number by the saturation criterion. Default is 30. If more major cell types are expected a higher number should be chosen.}
 

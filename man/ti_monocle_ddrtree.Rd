@@ -5,16 +5,20 @@
 \alias{ti_monocle_ddrtree}
 \title{Inferring trajectories with Monocle v2}
 \usage{
-ti_monocle_ddrtree(docker = dynwrap::test_docker_installation(),
+
+  ti_monocle_ddrtree(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")),
   reduction_method = "DDRTree", max_components = 2,
   norm_method = "vstExprs", auto_param_selection = TRUE)
 
-ti_monocle_ddrtree(docker = dynwrap::test_docker_installation(),
+
+  ti_monocle_ddrtree(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")),
   reduction_method = "DDRTree", max_components = 2,
   norm_method = "vstExprs", auto_param_selection = TRUE)
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{reduction_method}{A character string specifying the algorithm to use for dimensionality reduction.}
 

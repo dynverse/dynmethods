@@ -5,16 +5,20 @@
 \alias{ti_mpath}
 \title{Inferring trajectories with Mpath}
 \usage{
-ti_mpath(docker = dynwrap::test_docker_installation(),
-  distMethod = "euclidean", method = "kmeans", numcluster = 11,
-  numcluster_null = TRUE, diversity_cut = 0.6, size_cut = 0.05)
 
-ti_mpath(docker = dynwrap::test_docker_installation(),
-  distMethod = "euclidean", method = "kmeans", numcluster = 11,
-  numcluster_null = TRUE, diversity_cut = 0.6, size_cut = 0.05)
+  ti_mpath(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), distMethod = "euclidean",
+  method = "kmeans", numcluster = 11, numcluster_null = TRUE,
+  diversity_cut = 0.6, size_cut = 0.05)
+
+
+  ti_mpath(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), distMethod = "euclidean",
+  method = "kmeans", numcluster = 11, numcluster_null = TRUE,
+  diversity_cut = 0.6, size_cut = 0.05)
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{distMethod}{the method for calculating dissimilarity between cells. distMethod can be one of "pearson", "kendall", "spearman" or "euclidean". Default is "euclidean".}
 

@@ -5,16 +5,20 @@
 \alias{ti_mfa}
 \title{Inferring trajectories with mfa}
 \usage{
-ti_mfa(docker = dynwrap::test_docker_installation(), b = 2, iter = 2000,
+
+  ti_mfa(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), b = 2, iter = 2000,
   thin = 1, pc_initialise = 1, prop_collapse = 0, scale_input = TRUE,
   zero_inflation = FALSE)
 
-ti_mfa(docker = dynwrap::test_docker_installation(), b = 2, iter = 2000,
+
+  ti_mfa(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), b = 2, iter = 2000,
   thin = 1, pc_initialise = 1, prop_collapse = 0, scale_input = TRUE,
   zero_inflation = FALSE)
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{b}{Number of branches to model}
 

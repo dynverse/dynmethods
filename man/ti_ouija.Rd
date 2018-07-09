@@ -5,16 +5,20 @@
 \alias{ti_ouija}
 \title{Inferring trajectories with ouija}
 \usage{
-ti_ouija(docker = dynwrap::test_docker_installation(), iter = 100,
+
+  ti_ouija(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), iter = 100,
   response_type = "switch", inference_type = "hmc",
   normalise_expression = TRUE)
 
-ti_ouija(docker = dynwrap::test_docker_installation(), iter = 100,
+
+  ti_ouija(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), iter = 100,
   response_type = "switch", inference_type = "hmc",
   normalise_expression = TRUE)
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{iter}{Number of iterations}
 

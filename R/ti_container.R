@@ -8,7 +8,7 @@
 #' 
 #' 
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -142,7 +142,7 @@ ti_celltrails <- function(
 #' 
 #' The method is described in: [duVerle, D.A., Yotsukura, S., Nomura, S., Aburatani, H., Tsuda, K., 2016. CellTree: an R/bioconductor package to infer the hierarchical structure of cell populations from single-cell RNA-seq data. BMC Bioinformatics 17.](https://doi.org/10.1186/s12859-016-1175-6)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -161,7 +161,7 @@ ti_celltree_gibbs <- create_ti_method_chooser(ti_celltree_gibbs, "dynverse/cellt
 #' 
 #' The method is described in: [duVerle, D.A., Yotsukura, S., Nomura, S., Aburatani, H., Tsuda, K., 2016. CellTree: an R/bioconductor package to infer the hierarchical structure of cell populations from single-cell RNA-seq data. BMC Bioinformatics 17.](https://doi.org/10.1186/s12859-016-1175-6)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -180,7 +180,7 @@ ti_celltree_maptpx <- create_ti_method_chooser(ti_celltree_maptpx, "dynverse/cel
 #' 
 #' The method is described in: [duVerle, D.A., Yotsukura, S., Nomura, S., Aburatani, H., Tsuda, K., 2016. CellTree: an R/bioconductor package to infer the hierarchical structure of cell populations from single-cell RNA-seq data. BMC Bioinformatics 17.](https://doi.org/10.1186/s12859-016-1175-6)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -199,7 +199,7 @@ ti_celltree_vem <- create_ti_method_chooser(ti_celltree_vem, "dynverse/celltree_
 #' 
 #' The method is described in: [Haghverdi, L., Büttner, M., Wolf, F.A., Buettner, F., Theis, F.J., 2016. Diffusion pseudotime robustly reconstructs lineage branching. Nature Methods 13, 845–848.](https://doi.org/10.1038/nmeth.3971)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -365,7 +365,7 @@ ti_elpilinear <- function(
 #' 
 #' The method is described in: [Campbell, K., Ponting, C.P., Webber, C., 2015. Laplacian eigenmaps and principal curves for high resolution pseudotemporal ordering of single-cell RNA-seq profiles.](https://doi.org/10.1101/027219)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -384,7 +384,7 @@ ti_embeddr <- create_ti_method_chooser(ti_embeddr, "dynverse/embeddr")
 #' 
 #' 
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -452,7 +452,7 @@ ti_fateid <- function(
 #' 
 #' 
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -536,7 +536,7 @@ ti_grandprix <- function(
 #' 
 #' 
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -649,7 +649,7 @@ ti_merlot <- function(
 #' 
 #' The method is described in: [Campbell, K.R., Yau, C., 2017. Probabilistic modeling of bifurcations in single-cell gene expression data using a Bayesian mixture of factor analyzers. Wellcome Open Research 2, 19.](https://doi.org/10.12688/wellcomeopenres.11087.1)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -668,7 +668,7 @@ ti_mfa <- create_ti_method_chooser(ti_mfa, "dynverse/mfa")
 #' 
 #' The method is described in: [Qiu, X., Mao, Q., Tang, Y., Wang, L., Chawla, R., Pliner, H.A., Trapnell, C., 2017. Reversed graph embedding resolves complex single-cell trajectories. Nature Methods 14, 979–982.](https://doi.org/10.1038/nmeth.4402)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -687,7 +687,7 @@ ti_monocle_ddrtree <- create_ti_method_chooser(ti_monocle_ddrtree, "dynverse/mon
 #' 
 #' The method is described in: [Qiu, X., Mao, Q., Tang, Y., Wang, L., Chawla, R., Pliner, H.A., Trapnell, C., 2017. Reversed graph embedding resolves complex single-cell trajectories. Nature Methods 14, 979–982.](https://doi.org/10.1038/nmeth.4402)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -706,7 +706,7 @@ ti_monocle_ica <- create_ti_method_chooser(ti_monocle_ica, "dynverse/monocle_ica
 #' 
 #' The method is described in: [Chen, J., Schlitzer, A., Chakarov, S., Ginhoux, F., Poidinger, M., 2016. Mpath maps multi-branching single-cell trajectories revealing progenitor cell progression during development. Nature Communications 7, 11988.](https://doi.org/10.1038/ncomms11988)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -725,7 +725,7 @@ ti_mpath <- create_ti_method_chooser(ti_mpath, "dynverse/mpath")
 #' 
 #' The method is described in: [Campbell, K.R., Yau, C., 2016. A descriptive marker gene approach to single-cell pseudotime inference.](https://doi.org/10.1101/060442)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -845,7 +845,7 @@ ti_pcreode <- function(
 #' 
 #' 
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -864,7 +864,7 @@ ti_periodpc <- create_ti_method_chooser(ti_periodpc, "dynverse/periodpc")
 #' 
 #' The method is described in: [Campbell, K., Yau, C., 2017. Uncovering genomic trajectories with heterogeneous genetic and environmental backgrounds across single-cells and populations.](https://doi.org/10.1101/159913)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -920,7 +920,7 @@ ti_praga <- function(
 #' 
 #' The method is described in: [Campbell, K.R., Yau, C., 2016. Order Under Uncertainty: Robust Differential Expression Analysis Using Probabilistic Models for Pseudotime Inference. PLOS Computational Biology 12, e1005212.](https://doi.org/10.1371/journal.pcbi.1005212)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -939,7 +939,7 @@ ti_pseudogp <- create_ti_method_chooser(ti_pseudogp, "dynverse/pseudogp")
 #' 
 #' 
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -958,7 +958,7 @@ ti_random <- create_ti_method_chooser(ti_random, "dynverse/random")
 #' 
 #' The method is described in: [Liu, Z., Lou, H., Xie, K., Wang, H., Chen, N., Aparicio, O.M., Zhang, M.Q., Jiang, R., Chen, T., 2017. Reconstructing cell cycle pseudo time-series via single-cell transcriptome data. Nature Communications 8.](https://doi.org/10.1038/s41467-017-00039-z)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -1018,7 +1018,7 @@ ti_scimitar <- function(
 #' 
 #' The method is described in: [Cannoodt, R., Saelens, W., Sichien, D., Tavernier, S., Janssens, S., Guilliams, M., Lambrecht, B.N., De Preter, K., Saeys, Y., 2016. SCORPIUS improves trajectory inference and identifies novel modules in dendritic cell development.](https://doi.org/10.1101/079509)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -1037,7 +1037,7 @@ ti_scorpius <- create_ti_method_chooser(ti_scorpius, "dynverse/scorpius")
 #' 
 #' The method is described in: [Matsumoto, H., Kiryu, H., 2016. SCOUP: a probabilistic model based on the Ornstein–Uhlenbeck process to analyze single-cell expression data during differentiation. BMC Bioinformatics 17.](https://doi.org/10.1186/s12859-016-1109-3)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -1096,7 +1096,7 @@ ti_scuba <- function(
 #' 
 #' 
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -1115,7 +1115,7 @@ ti_shuffle <- create_ti_method_chooser(ti_shuffle, "dynverse/shuffle")
 #' 
 #' The method is described in: [Juliá, M., Telenti, A., Rausell, A., 2015. Sincell: an R/Bioconductor package for statistical assessment of cell-state hierarchies from single-cell RNA-seq: Fig. 1. Bioinformatics 31, 3380–3382.](https://doi.org/10.1093/bioinformatics/btv368)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -1134,7 +1134,7 @@ ti_sincell <- create_ti_method_chooser(ti_sincell, "dynverse/sincell")
 #' 
 #' The method is described in: [Guo, M., Bao, E.L., Wagner, M., Whitsett, J.A., Xu, Y., 2016. SLICE: determining cell differentiation and lineage based on single cell entropy. Nucleic Acids Research gkw1278.](https://doi.org/10.1093/nar/gkw1278)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -1153,7 +1153,7 @@ ti_slice <- create_ti_method_chooser(ti_slice, "dynverse/slice")
 #' 
 #' The method is described in: [Welch, J.D., Hartemink, A.J., Prins, J.F., 2016. SLICER: inferring branched, nonlinear cellular trajectories from single cell RNA-seq data. Genome Biology 17.](https://doi.org/10.1186/s13059-016-0975-3)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -1172,7 +1172,7 @@ ti_slicer <- create_ti_method_chooser(ti_slicer, "dynverse/slicer")
 #' 
 #' The method is described in: [Street, K., Risso, D., Fletcher, R.B., Das, D., Ngai, J., Yosef, N., Purdom, E., Dudoit, S., 2018. Slingshot: cell lineage and pseudotime inference for single-cell transcriptomics. BMC Genomics 19.](https://doi.org/10.1186/s12864-018-4772-0)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -1191,7 +1191,7 @@ ti_slingshot <- create_ti_method_chooser(ti_slingshot, "dynverse/slingshot")
 #' 
 #' The method is described in: [Grün, D., Muraro, M.J., Boisset, J.-C., Wiebrands, K., Lyubimova, A., Dharmadhikari, G., van den Born, M., van Es, J., Jansen, E., Clevers, H., de Koning, E.J.P., van Oudenaarden, A., 2016. De Novo Prediction of Stem Cell Identity using Single-Cell Transcriptome Data. Cell Stem Cell 19, 266–277.](https://doi.org/10.1016/j.stem.2016.05.010)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -1210,7 +1210,7 @@ ti_stemid <- create_ti_method_chooser(ti_stemid, "dynverse/stemid")
 #' 
 #' The method is described in: [Grün, D., Muraro, M.J., Boisset, J.-C., Wiebrands, K., Lyubimova, A., Dharmadhikari, G., van den Born, M., van Es, J., Jansen, E., Clevers, H., de Koning, E.J.P., van Oudenaarden, A., 2016. De Novo Prediction of Stem Cell Identity using Single-Cell Transcriptome Data. Cell Stem Cell 19, 266–277.](https://doi.org/10.1016/j.stem.2016.05.010)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -1297,7 +1297,7 @@ ti_topslam <- function(
 #' 
 #' The method is described in: [Ji, Z., Ji, H., 2016. TSCAN: Pseudo-time reconstruction and evaluation in single-cell RNA-seq analysis. Nucleic Acids Research 44, e117–e117.](https://doi.org/10.1093/nar/gkw430)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
@@ -1361,7 +1361,7 @@ ti_wanderlust <- function(
 #' 
 #' The method is described in: [Shin, J., Berg, D.A., Zhu, Y., Shin, J.Y., Song, J., Bonaguidi, M.A., Enikolopov, G., Nauen, D.W., Christian, K.M., Ming, G., Song, H., 2015. Single-Cell RNA-Seq with Waterfall Reveals Molecular Cascades underlying Adult Neurogenesis. Cell Stem Cell 17, 360–372.](https://doi.org/10.1016/j.stem.2015.07.013)
 #' 
-#' @param docker Whether to use the docker container or the R wrapper
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
