@@ -374,25 +374,6 @@ ti_embeddr <- create_ti_method_chooser(ti_embeddr, "dynverse/embeddr")
 
 
 
-#' Inferring a trajectory inference using Control: error
-#' 
-#' Will generate a trajectory using Control: error. This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/error).
-#' 
-#' This methods was first wrapped inside R, see [ti_error]
-#' 
-#' 
-#' 
-#' 
-#' 
-#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
-#' 
-#' @return The trajectory model
-#' @export
-ti_error <- create_ti_method_chooser(ti_error, "dynverse/error")
-
-
-
-
 #' Inferring a trajectory inference using [FateID](https://doi.org/10.1038/nmeth.4662)
 #' 
 #' Will generate a trajectory using [FateID](https://doi.org/10.1038/nmeth.4662). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/fateid).
@@ -522,25 +503,6 @@ ti_grandprix <- function(
   method <- create_docker_ti_method("dynverse/grandprix")
   do.call(method, args)
 }
-
-
-
-
-#' Inferring a trajectory inference using Control: identity
-#' 
-#' Will generate a trajectory using Control: identity. This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/identity).
-#' 
-#' This methods was first wrapped inside R, see [ti_identity]
-#' 
-#' 
-#' 
-#' 
-#' 
-#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
-#' 
-#' @return The trajectory model
-#' @export
-ti_identity <- create_ti_method_chooser(ti_identity, "dynverse/identity")
 
 
 
@@ -929,25 +891,6 @@ ti_pseudogp <- create_ti_method_chooser(ti_pseudogp, "dynverse/pseudogp")
 
 
 
-#' Inferring a trajectory inference using Control: random
-#' 
-#' Will generate a trajectory using Control: random. This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/random).
-#' 
-#' This methods was first wrapped inside R, see [ti_random]
-#' 
-#' 
-#' 
-#' 
-#' 
-#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
-#' 
-#' @return The trajectory model
-#' @export
-ti_random <- create_ti_method_chooser(ti_random, "dynverse/random")
-
-
-
-
 #' Inferring a trajectory inference using [reCAT](https://doi.org/10.1038/s41467-017-00039-z)
 #' 
 #' Will generate a trajectory using [reCAT](https://doi.org/10.1038/s41467-017-00039-z). This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/recat).
@@ -1082,25 +1025,6 @@ ti_scuba <- function(
   method <- create_docker_ti_method("dynverse/scuba")
   do.call(method, args)
 }
-
-
-
-
-#' Inferring a trajectory inference using Control: shuffle
-#' 
-#' Will generate a trajectory using Control: shuffle. This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/shuffle).
-#' 
-#' This methods was first wrapped inside R, see [ti_shuffle]
-#' 
-#' 
-#' 
-#' 
-#' 
-#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
-#' 
-#' @return The trajectory model
-#' @export
-ti_shuffle <- create_ti_method_chooser(ti_shuffle, "dynverse/shuffle")
 
 
 
