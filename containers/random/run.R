@@ -19,7 +19,7 @@ run_fun <- function(
   counts,
   dummy_param = 0.5
 ) {
-  num_milestones <- 50
+  num_milestones <- 15
 
   # generate network
   milestone_ids <- paste0("milestone_", seq_len(num_milestones))
