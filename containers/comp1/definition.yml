@@ -1,0 +1,34 @@
+name: Component 1
+short_name: comp1
+type: algorithm
+parameters:
+  dimred:
+    type: discrete
+    default: pca
+    values:
+    - pca
+    - mds
+    - tsne
+    - ica
+    - lle
+    - landmark_mds
+    - mds_sammon
+    - mds_isomds
+    - mds_smacof
+    - umap
+    - dm_diffusionMap
+  ndim:
+    type: integer
+    default: 2.0
+    lower: 2.0
+    upper: 30.0
+  component:
+    type: integer
+    default: 1.0
+    lower: 1.0
+    upper: 10.0
+input:
+  format: rds
+  required: expression
+output:
+  format: dynwrap
