@@ -13,10 +13,12 @@ parameters:
     - tsne
     - ica
     - lle
+    - landmark_mds
     - mds_sammon
     - mds_isomds
     - mds_smacof
     - umap
+    - dm_diffusionMap
 input:
   format: rds
   required: expression

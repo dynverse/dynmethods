@@ -12,14 +12,15 @@ write_file("", "R/ti_container.R")
 
 devtools::load_all()
 
-method_ids <- dynwrap::get_ti_methods(packages = "dynmethods")$method_id
+method_ids <- dynwrap::get_ti_methods(ti_packages = c("dynwrap", "dynmethods"))$method_id
+method_ids <- dynwrap::get_ti_methods(ti_packages = c("dynwrap"))$method_id
 # method_ids <- c("slingshot")
 
 future_map(method_ids, function(method_id) {
   cat("Running ", method_id, "\n", sep = "")
   method <- get(paste0("ti_", method_id))()
 
-  if (is.null(method$run_fun_name) || !grepl("dynmethods::", method$run_fun_name)) {
+  if (is.null(method$run_fun_name) || !grepl("dyn(methods|wrap)::", method$run_fun_name)) {
     return(NULL)
   }
 
@@ -105,13 +106,18 @@ ENTRYPOINT Rscript /code/run.R
 
   # generate the run.R file
   get_runr <- function(method) {
-    if (is.null(method$run_fun_name) || !grepl("dynmethods::", method$run_fun_name)) {
+    if (is.null(method$run_fun_name) || !grepl("dyn(methods|wrap)::", method$run_fun_name)) {
       return(NA)
     }
 
-    run_fun_name <- gsub("dynmethods::", "", method$run_fun_name)
+    run_fun_name <- gsub("dyn(methods|wrap)::", "", method$run_fun_name)
 
-    df <- list.files("R", pattern = "ti_", full.names = T) %>%
+    files <- c(
+      list.files("R", pattern = "ti_", full.names = T),
+      list.files("../dynwrap/R", pattern = "ti_", full.names = T)
+    )
+
+    df <- files %>%
       map_df(function(file) {
         file_text <- readr::read_lines(file)
         line_numbers_start <- which(str_detect(file_text, paste0("^", run_fun_name, " <- function")))
