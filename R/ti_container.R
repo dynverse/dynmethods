@@ -193,30 +193,17 @@ ti_celltree_vem <- create_ti_method_chooser(ti_celltree_vem, "dynverse/celltree_
 #' 
 #' Will generate a trajectory using Component 1. This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/comp1).
 #' 
+#' This methods was first wrapped inside R, see [ti_comp1]
 #' 
 #' 
 #' 
 #' 
 #' 
-#' 
-#' @param dimred  \cr 
-#'     discrete; default: "pca"; possible values: pca, mds, tsne, ica, lle, landmark_mds, mds_sammon, mds_isomds, mds_smacof, umap, dm_diffusionMap
-#' @param ndim  \cr 
-#'     integer; default: 2; possible values between 2 and 30
-#' @param component  \cr 
-#'     integer; default: 1; possible values between 1 and 10
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
-ti_comp1 <- function(
-    dimred = "pca",
-    ndim = 2,
-    component = 1
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method("dynverse/comp1")
-  do.call(method, args)
-}
+ti_comp1 <- create_ti_method_chooser(ti_comp1, "dynverse/comp1")
 
 
 
@@ -410,24 +397,17 @@ ti_embeddr <- create_ti_method_chooser(ti_embeddr, "dynverse/embeddr")
 #' 
 #' Will generate a trajectory using Control: error. This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/error).
 #' 
+#' This methods was first wrapped inside R, see [ti_error]
 #' 
 #' 
 #' 
 #' 
 #' 
-#' 
-#' @param dummy_param Dummy parameter \cr 
-#'     numeric; default: 0.5; possible values between 0 and 1
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
-ti_error <- function(
-    dummy_param = 0.5
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method("dynverse/error")
-  do.call(method, args)
-}
+ti_error <- create_ti_method_chooser(ti_error, "dynverse/error")
 
 
 
@@ -569,24 +549,17 @@ ti_grandprix <- function(
 #' 
 #' Will generate a trajectory using Control: identity. This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/identity).
 #' 
+#' This methods was first wrapped inside R, see [ti_identity]
 #' 
 #' 
 #' 
 #' 
 #' 
-#' 
-#' @param dummy_param Dummy parameter \cr 
-#'     numeric; default: 0.5; possible values between 0 and 1
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
-ti_identity <- function(
-    dummy_param = 0.5
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method("dynverse/identity")
-  do.call(method, args)
-}
+ti_identity <- create_ti_method_chooser(ti_identity, "dynverse/identity")
 
 
 
@@ -979,24 +952,17 @@ ti_pseudogp <- create_ti_method_chooser(ti_pseudogp, "dynverse/pseudogp")
 #' 
 #' Will generate a trajectory using Control: random. This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/random).
 #' 
+#' This methods was first wrapped inside R, see [ti_random]
 #' 
 #' 
 #' 
 #' 
 #' 
-#' 
-#' @param dummy_param Dummy parameter \cr 
-#'     numeric; default: 0.5; possible values between 0 and 1
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
-ti_random <- function(
-    dummy_param = 0.5
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method("dynverse/random")
-  do.call(method, args)
-}
+ti_random <- create_ti_method_chooser(ti_random, "dynverse/random")
 
 
 
@@ -1143,24 +1109,17 @@ ti_scuba <- function(
 #' 
 #' Will generate a trajectory using Control: shuffle. This method was wrapped inside a [container](https://github.com/dynverse/dynmethods/tree/master/containers/shuffle).
 #' 
+#' This methods was first wrapped inside R, see [ti_shuffle]
 #' 
 #' 
 #' 
 #' 
 #' 
-#' 
-#' @param dummy_param Dummy parameter \cr 
-#'     numeric; default: 0.5; possible values between 0 and 1
+#' @param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'
 #' 
 #' @return The trajectory model
 #' @export
-ti_shuffle <- function(
-    dummy_param = 0.5
-) {
-  args <- as.list(environment())
-  method <- create_docker_ti_method("dynverse/shuffle")
-  do.call(method, args)
-}
+ti_shuffle <- create_ti_method_chooser(ti_shuffle, "dynverse/shuffle")
 
 
 

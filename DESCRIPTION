@@ -140,6 +140,7 @@ Collate:
     'ti_gng.R'
     'ti_embeddr.R'
     'ti_dpt.R'
+    'ti_controls.R'
     'ti_container.R'
     'wrapper_check_dependencies.R'
     'wrapper_docker.R'

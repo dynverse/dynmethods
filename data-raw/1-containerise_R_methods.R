@@ -18,10 +18,12 @@ method_ids <- dynwrap::get_ti_methods(ti_packages = c("dynwrap"))$method_id
 
 future_map(method_ids, function(method_id) {
   cat("Running ", method_id, "\n", sep = "")
+
+  # first try to get the method from dynwrap, otherwise get it from dynmethods
   method <- tryCatch(
-    get(paste0("ti_", method_id), asNamespace("dynmethods"))(),
+    get(paste0("ti_", method_id), asNamespace("dynwrap"))(),
     error = function(e) {
-      get(paste0("ti_", method_id), asNamespace("dynwrap"))()
+      get(paste0("ti_", method_id), asNamespace("dynmethods"))()
     })
 
   if (is.null(method$run_fun_name) || !grepl("dyn(methods|wrap)::", method$run_fun_name)) {
