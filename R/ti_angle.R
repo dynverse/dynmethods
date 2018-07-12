@@ -46,7 +46,7 @@ run_angle <- function(
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
   # perform PCA dimred
-  space <- dimred(expression, method = dimred, ndim = 2)
+  space <- dyndimred::dimred(expression, method = dimred, ndim = 2)
 
   # transform to pseudotime using atan2
   pseudotime <- atan2(space[,2], space[,1]) / 2 / pi + .5

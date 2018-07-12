@@ -62,7 +62,7 @@ run_periodpc <- function(
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
   # perform PCA dimred
-  dimred <- dimred(expression, method = "pca", ndim = ndim)
+  dimred <- dyndimred::dimred(expression, method = "pca", ndim = ndim)
 
   # apply principal curve with periodic lowess smoother
   fit <- princurve::principal.curve(dimred, smoother = "periodic.lowess", maxit = maxit)

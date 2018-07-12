@@ -75,7 +75,7 @@ run_fun <- function(
   }
 
   pseudotime <- model$cpara %>% {set_names(.$time, rownames(.))}
-  esp <- model$cpara %>% select(-time) %>% rownames_to_column("cell_id")
+  esp <- model$cpara %>% select(-time) %>% tibble::rownames_to_column("cell_id")
 
   # return output
   wrap_prediction_model(
