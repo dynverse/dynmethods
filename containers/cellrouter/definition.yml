@@ -19,8 +19,6 @@ parameters:
     default: 1000
     lower: 100
     upper: 100000
-    distribution: exponential
-    rate: 1.0
   cluster_method:
     description: Method to use for clustering
     type: discrete

@@ -113,4 +113,4 @@ write_feather(tibble(to_keep=to_keep), "/output/to_keep.feather")
 write_feather(dimred, "/output/dimred.feather")
 
 # timings
-write_feather(enframe(checkpoints, "checkpoint", "time") %>% mutate(time = as.numeric(time)), "/output/timings.feather")
+write_feather(enframe(checkpoints, "name", "timings") %>% mutate(timings = as.numeric(timings)), "/output/timings.feather")
