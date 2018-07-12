@@ -38,7 +38,7 @@ out_graph, out_ids = pcreode.pCreode(
   density = density,
   noise = params["noise"],
   target = params["target"],
-  file_path = "/.",
+  file_path = "/tmp/.",
   num_runs = params["num_runs"]
 )
 
@@ -57,7 +57,7 @@ gid = np.random.choice(range(params["num_runs"]), 1)[0]
 # the only thing that is available is a cell graph of only a subset of cells
 # so we use this cell graph as milestone network, and then project all cells onto this
 analysis = pcreode.Analysis(
-  file_path="/.",
+  file_path="/tmp/.",
   graph_id=gid,
   data=pca_reduced_data,
   density=density,
@@ -76,7 +76,7 @@ dimred.to_csv("/output/dimred.csv", index=False)
 # get milestone network based on cell_graph
 # get the upper triangle of the adjacency, and use it to construct the network
 cell_graph = pd.DataFrame(
-  pcreode.return_weighted_adj(pca_reduced_data, "/.", gid),
+  pcreode.return_weighted_adj(pca_reduced_data, "/tmp/.", gid),
   index = expression.index[analysis.node_data_indices],
   columns = expression.index[analysis.node_data_indices],
 )
