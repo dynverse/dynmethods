@@ -17,7 +17,7 @@ input:
   format: rds
   required:
   - counts
-  - task
+  - dataset
 output:
   format: dynwrap
 authors:

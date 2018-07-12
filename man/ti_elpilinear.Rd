@@ -4,11 +4,13 @@
 \alias{ti_elpilinear}
 \title{Inferring a trajectory inference using \href{https://doi.org/https://github.com/Albluca/ElPiGraph.R}{ElPiGraph linear}}
 \usage{
-ti_elpilinear(topology = "linear", NumNodes = 50L, NumEdges = 100000L,
-  InitNodes = 2L, Mu = 0.1, Lambda = 0.01, MaxNumberOfIterations = 10L,
-  eps = 0.01, CenterData = FALSE)
+ti_elpilinear(run_environment = NULL, topology = "linear", NumNodes = 50L,
+  NumEdges = 100000L, InitNodes = 2L, Mu = 0.1, Lambda = 0.01,
+  MaxNumberOfIterations = 10L, eps = 0.01, CenterData = FALSE)
 }
 \arguments{
+\item{run_environment}{In which environment to run the method, can be 'docker' or 'singularity'}
+
 \item{topology}{The kind of topology to detect \cr
 discrete; default: "linear"; possible values: linear}
 

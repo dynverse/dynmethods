@@ -5,20 +5,22 @@
 \alias{ti_slice}
 \title{Inferring trajectories with SLICE}
 \usage{
-ti_slice(docker = dynwrap::test_docker_installation(),
-  lm.method = "clustering", model.type = "tree", ss.method = "all",
-  ss.threshold = 0.25, community.method = "louvain",
-  cluster.method = "kmeans", k = 0, k.max = 10, B = 100,
-  k.opt.method = "firstmax")
 
-ti_slice(docker = dynwrap::test_docker_installation(),
-  lm.method = "clustering", model.type = "tree", ss.method = "all",
-  ss.threshold = 0.25, community.method = "louvain",
-  cluster.method = "kmeans", k = 0, k.max = 10, B = 100,
-  k.opt.method = "firstmax")
+  ti_slice(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), lm.method = "clustering",
+  model.type = "tree", ss.method = "all", ss.threshold = 0.25,
+  community.method = "louvain", cluster.method = "kmeans", k = 0,
+  k.max = 10, B = 100, k.opt.method = "firstmax")
+
+
+  ti_slice(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), lm.method = "clustering",
+  model.type = "tree", ss.method = "all", ss.threshold = 0.25,
+  community.method = "louvain", cluster.method = "kmeans", k = 0,
+  k.max = 10, B = 100, k.opt.method = "firstmax")
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{lm.method}{Select "clustering" based or "graph" based method to infer lineage model}
 

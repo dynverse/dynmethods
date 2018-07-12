@@ -5,20 +5,22 @@
 \alias{ti_pseudogp}
 \title{Inferring trajectories with pseudogp}
 \usage{
-ti_pseudogp(docker = dynwrap::test_docker_installation(),
-  smoothing_alpha = 10, smoothing_beta = 3, pseudotime_mean = 0.5,
-  pseudotime_var = 1, chains = 3, iter = 100, dimreds = c(TRUE, TRUE,
-  FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
-  initialise_from = "random")
 
-ti_pseudogp(docker = dynwrap::test_docker_installation(),
-  smoothing_alpha = 10, smoothing_beta = 3, pseudotime_mean = 0.5,
-  pseudotime_var = 1, chains = 3, iter = 100, dimreds = c(TRUE, TRUE,
-  FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
-  initialise_from = "random")
+  ti_pseudogp(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), smoothing_alpha = 10,
+  smoothing_beta = 3, pseudotime_mean = 0.5, pseudotime_var = 1,
+  chains = 3, iter = 100, dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE,
+  FALSE, FALSE, FALSE, FALSE), initialise_from = "random")
+
+
+  ti_pseudogp(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), smoothing_alpha = 10,
+  smoothing_beta = 3, pseudotime_mean = 0.5, pseudotime_var = 1,
+  chains = 3, iter = 100, dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE,
+  FALSE, FALSE, FALSE, FALSE), initialise_from = "random")
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{smoothing_alpha}{The hyperparameter for the Gamma distribution that controls arc-length}
 

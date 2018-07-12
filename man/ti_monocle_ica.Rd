@@ -5,14 +5,18 @@
 \alias{ti_monocle_ica}
 \title{Inferring trajectories with Monocle v1}
 \usage{
-ti_monocle_ica(docker = dynwrap::test_docker_installation(),
-  reduction_method = "ICA", max_components = 2, norm_method = "vstExprs")
 
-ti_monocle_ica(docker = dynwrap::test_docker_installation(),
-  reduction_method = "ICA", max_components = 2, norm_method = "vstExprs")
+  ti_monocle_ica(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), reduction_method = "ICA",
+  max_components = 2, norm_method = "vstExprs")
+
+
+  ti_monocle_ica(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), reduction_method = "ICA",
+  max_components = 2, norm_method = "vstExprs")
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{reduction_method}{A character string specifying the algorithm to use for dimensionality reduction.}
 

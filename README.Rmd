@@ -68,20 +68,21 @@ df <- methods %>%
       ""
     ),
     `Authors` = map_chr(authors, function(authors) {
+      if (is.na(authors[[1]])) {return("")}
       map_chr(authors, function(author) {
         if (is.null(author$family)) {
           author$family <- ""
         }
         author_text <- glue::glue("{author$given} {author$family}")
-        
+
         if (!is.null(author$ORCID)) {
           author_text <- glue::glue("{author_text} <a href='https://orcid.org/{author$ORCID}'><img src='man/figures/orcid_logo.svg' height='16'></a>")
         }
-        
+
         if (!is.null(author$github)) {
           author_text <- glue::glue("{author_text} <a href='https://github.com/{author$github}'><img src='man/figures/github_logo.png' height='16'></a>")
         }
-        
+
         author_text %>% paste0("<sub>", ., "</sub>")
       }) %>% glue::collapse("<br>")
     })

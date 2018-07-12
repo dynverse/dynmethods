@@ -4,10 +4,12 @@
 \alias{ti_grandprix}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1101/227843}{GrandPrix}}
 \usage{
-ti_grandprix(n_latent_dims = 2L, n_inducing_points = 40L,
-  latent_prior_var = 0.1, latent_var = 0.028)
+ti_grandprix(run_environment = NULL, n_latent_dims = 2L,
+  n_inducing_points = 40L, latent_prior_var = 0.1, latent_var = 0.028)
 }
 \arguments{
+\item{run_environment}{In which environment to run the method, can be 'docker' or 'singularity'}
+
 \item{n_latent_dims}{\cr
 integer; default: 2L; possible values between 1 and 10}
 

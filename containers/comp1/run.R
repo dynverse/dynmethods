@@ -16,25 +16,26 @@ params <- jsonlite::read_json("/input/params.json")
 #   Infer trajectory                                                        ####
 
 run_fun <- function(
-  counts,
-  dataset,
-  dummy_param = 0.5
+  expression,
+  ndim = 2,
+  dimred = "pca",
+  component = 1
 ) {
   # TIMING: done with preproc
   tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+
+  space <- dyndimred::dimred(expression, method = dimred, ndim = ndim)
 
   # TIMING: done with method
   tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
   # return output
   wrap_prediction_model(
-    cell_ids = dataset$cell_ids,
-    cell_info = dataset$cell_info
-  ) %>% add_trajectory(
-    milestone_ids = dataset$milestone_ids,
-    milestone_network = dataset$milestone_network,
-    divergence_regions = dataset$divergence_regions,
-    progressions = dataset$progressions
+    cell_ids = rownames(expression)
+  ) %>% add_linear_trajectory(
+    pseudotime = space[,component] %>% set_names(rownames(expression))
+  ) %>% add_dimred(
+    dimred = space
   ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )

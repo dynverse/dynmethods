@@ -4,10 +4,12 @@
 \alias{ti_paga}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1101/208819}{PAGA}}
 \usage{
-ti_paga(n_neighbors = 30L, n_comps = 50L, n_dcs = 15L, resolution = 2.5,
-  embedding_type = "fa")
+ti_paga(run_environment = NULL, n_neighbors = 30L, n_comps = 50L,
+  n_dcs = 15L, resolution = 2.5, embedding_type = "fa")
 }
 \arguments{
+\item{run_environment}{In which environment to run the method, can be 'docker' or 'singularity'}
+
 \item{n_neighbors}{Number of neighbours for knn \cr
 integer; default: 30L; possible values between 1 and 100}
 

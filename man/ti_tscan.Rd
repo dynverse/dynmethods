@@ -5,16 +5,20 @@
 \alias{ti_tscan}
 \title{Inferring trajectories with TSCAN}
 \usage{
-ti_tscan(docker = dynwrap::test_docker_installation(), minexpr_percent = 0,
+
+  ti_tscan(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), minexpr_percent = 0,
   minexpr_value = 0, cvcutoff = 0, clusternum_lower = 2,
   clusternum_upper = 9, modelNames = "VVV")
 
-ti_tscan(docker = dynwrap::test_docker_installation(), minexpr_percent = 0,
+
+  ti_tscan(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), minexpr_percent = 0,
   minexpr_value = 0, cvcutoff = 0, clusternum_lower = 2,
   clusternum_upper = 9, modelNames = "VVV")
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{minexpr_percent}{Numeric value specifying the lowest percentage of highly expressed cells (expression value bigger than minexpr_value) for the genes/features to be retained.}
 

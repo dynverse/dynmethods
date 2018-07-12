@@ -5,20 +5,22 @@
 \alias{ti_celltree_gibbs}
 \title{Inferring trajectories with cellTree}
 \usage{
-ti_celltree_gibbs(docker = dynwrap::test_docker_installation(),
-  method = "Gibbs", sd_filter = 0.5, absolute_width = 0,
-  width_scale_factor = 1.5, outlier_tolerance_factor = 0.1,
-  rooting_method = "null", num_topics = 4, tot_iter = 200,
-  tolerance = 1e-05)
 
-ti_celltree_gibbs(docker = dynwrap::test_docker_installation(),
-  method = "Gibbs", sd_filter = 0.5, absolute_width = 0,
-  width_scale_factor = 1.5, outlier_tolerance_factor = 0.1,
-  rooting_method = "null", num_topics = 4, tot_iter = 200,
-  tolerance = 1e-05)
+  ti_celltree_gibbs(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), method = "Gibbs",
+  sd_filter = 0.5, absolute_width = 0, width_scale_factor = 1.5,
+  outlier_tolerance_factor = 0.1, rooting_method = "null", num_topics = 4,
+  tot_iter = 200, tolerance = 1e-05)
+
+
+  ti_celltree_gibbs(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), method = "Gibbs",
+  sd_filter = 0.5, absolute_width = 0, width_scale_factor = 1.5,
+  outlier_tolerance_factor = 0.1, rooting_method = "null", num_topics = 4,
+  tot_iter = 200, tolerance = 1e-05)
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{method}{LDA inference method to use. Can be any unique prefix of ‘maptpx’, ‘Gibbs’ or ‘VEM’ (defaults to ‘maptpx’)}
 

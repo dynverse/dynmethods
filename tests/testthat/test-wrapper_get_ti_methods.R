@@ -24,7 +24,7 @@ if (Sys.getenv("TRAVIS") != "true") {
       design <- ParamHelpers::generateDesignOfDefaults(par_set)
 
       parset_params <- names(par_set$pars)
-      runfun_params <- setdiff(formalArgs(method$run_fun), c("counts", "start_id", "start_cell", "end_id", "groups_id", "task"))
+      runfun_params <- setdiff(formalArgs(method$run_fun), c("counts", "start_id", "start_cell", "end_id", "groups_id", "dataset"))
 
       expect_equal( parset_params[parset_params %in% runfun_params], parset_params )
     })

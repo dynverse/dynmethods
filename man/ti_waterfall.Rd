@@ -5,14 +5,16 @@
 \alias{ti_waterfall}
 \title{Inferring trajectories with Waterfall}
 \usage{
-ti_waterfall(docker = dynwrap::test_docker_installation(),
-  num_clusters = 10)
 
-ti_waterfall(docker = dynwrap::test_docker_installation(),
-  num_clusters = 10)
+  ti_waterfall(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), num_clusters = 10)
+
+
+  ti_waterfall(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), num_clusters = 10)
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{num_clusters}{Number of clusters}
 }

@@ -5,16 +5,20 @@
 \alias{ti_recat}
 \title{Inferring trajectories with reCAT}
 \usage{
-ti_recat(docker = dynwrap::test_docker_installation(), TSPFold = 2,
+
+  ti_recat(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), TSPFold = 2,
   beginNum = 10, endNum = 15, step_size = 2, base_cycle_range_start = 6,
   base_cycle_range_end = 9, max_num = 300, clustMethod = "GMM")
 
-ti_recat(docker = dynwrap::test_docker_installation(), TSPFold = 2,
+
+  ti_recat(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), TSPFold = 2,
   beginNum = 10, endNum = 15, step_size = 2, base_cycle_range_start = 6,
   base_cycle_range_end = 9, max_num = 300, clustMethod = "GMM")
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{TSPFold}{No documentation provided by authors}
 

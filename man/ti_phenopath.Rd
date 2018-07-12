@@ -5,14 +5,18 @@
 \alias{ti_phenopath}
 \title{Inferring trajectories with PhenoPath}
 \usage{
-ti_phenopath(docker = dynwrap::test_docker_installation(), thin = 40,
-  z_init = "1", model_mu = FALSE, scale_y = TRUE)
 
-ti_phenopath(docker = dynwrap::test_docker_installation(), thin = 40,
-  z_init = "1", model_mu = FALSE, scale_y = TRUE)
+  ti_phenopath(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), thin = 40, z_init = "1",
+  model_mu = FALSE, scale_y = TRUE)
+
+
+  ti_phenopath(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), thin = 40, z_init = "1",
+  model_mu = FALSE, scale_y = TRUE)
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{thin}{The number of iterations to wait each time before
 re-calculating the elbo}

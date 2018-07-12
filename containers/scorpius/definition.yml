@@ -69,7 +69,7 @@ parameters:
     description: '\code{\link[princurve]{principal_curve}} parameter: choice of smoother'
   sparse:
     type: logical
-    default: no
+    default: yes
     description: |-
       Whether or not to use sparse MDS dimensionality reduction,
       for datasets with large amounts of cells.

@@ -17,7 +17,7 @@ rebuild <- TRUE
 if (rebuild) {
   future_map(method_ids, function(method_id) {
     # system(str_glue("docker pull dynverse/{method_id}"))
-    system(str_glue("docker build containers/{method_id} -t dynverse/{method_id}"))
+    # system(str_glue("docker build containers/{method_id} -t dynverse/{method_id}"))
     # system(str_glue("docker push dynverse/{method_id}"))
   })
 }
@@ -88,9 +88,10 @@ generate_documentation_from_definition <- function(method_id, definition, r_wrap
           glue::glue("    {parameter$type}; default: {deparse(parameter$default)}; {values_text}")
         )
       }
-    }) %>% unlist()
+    }) %>% unlist() %>%
+      c("@param run_environment In which environment to run the method, can be 'docker' or 'singularity'")
   } else {
-    params_text <- "@param docker Whether to use the docker container or the R wrapper"
+    params_text <- "@param run_environment In which environment to run the method, can be 'local', 'docker' or 'singularity'"
   }
 
   # now combine everything
@@ -131,6 +132,21 @@ generate_parameters <- function(definition) {
         NA
       }
     }
+  ) %>% discard(is.na) %>% c("run_environment = NULL", .) %>% paste0("    ", .) %>% glue::collapse(",\n")
+}
+
+generate_args <- function(definition) {
+  map2_chr(
+    names(definition$parameters),
+    definition$parameters,
+    function(parameter_id, parameter) {
+      # do not include forbidden
+      if (parameter_id != "forbidden") {
+        glue::glue("{parameter_id} = {parameter_id}")
+      } else {
+        NA
+      }
+    }
   ) %>% discard(is.na) %>% paste0("    ", .) %>% glue::collapse(",\n")
 }
 
@@ -145,9 +161,20 @@ ti_{method_id} <- create_ti_method_chooser(ti_{method_id}, \"dynverse/{method_id
 ti_{method_id} <- function(
 {generate_parameters(definition)}
 ) {{
-  args <- as.list(environment())
-  method <- create_docker_ti_method(\"dynverse/{method_id}\")
-  do.call(method, args)
+    if (is.null(run_environment)) {{
+      run_environment <- ifelse(is.null(getOption('dynwrap_run_environment')), 'docker', getOption('dynwrap_run_environment'))
+    }}
+
+    # choose environments
+    if (run_environment == 'docker') {{
+      method <- create_docker_ti_method(\"dynverse/{method_id}\")
+    }} else if (run_environment == 'singularity') {{
+      method <- create_singularity_ti_method(paste0(\"dynverse/{method_id}\", '.simg'))
+    }}
+
+    method(
+      {generate_args(definition)}
+    )
 }}
 " %>% glue::glue()
   }
@@ -162,6 +189,7 @@ get_method_definition <- function(method_id) {
 
   definition
 }
+
 
 # beginning of the file
 file_location <- "R/ti_container.R"

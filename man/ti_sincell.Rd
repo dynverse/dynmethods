@@ -5,14 +5,18 @@
 \alias{ti_sincell}
 \title{Inferring trajectories with Sincell}
 \usage{
-ti_sincell(docker = dynwrap::test_docker_installation(),
+
+  ti_sincell(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")),
   distance_method = "euclidean", dimred_method = "none",
   clust.method = "max.distance", mutual = TRUE, max.distance = 0, k = 3,
   shortest.rank.percent = 10, graph.algorithm = "MST",
   graph.using.cells.clustering = FALSE, k_imc = 3,
   pct_leaf_node_cutoff = 0.5)
 
-ti_sincell(docker = dynwrap::test_docker_installation(),
+
+  ti_sincell(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")),
   distance_method = "euclidean", dimred_method = "none",
   clust.method = "max.distance", mutual = TRUE, max.distance = 0, k = 3,
   shortest.rank.percent = 10, graph.algorithm = "MST",
@@ -20,7 +24,7 @@ ti_sincell(docker = dynwrap::test_docker_installation(),
   pct_leaf_node_cutoff = 0.5)
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{distance_method}{Distance method to be used. The available distances are the Euclidean distance (method="euclidean"), Manhattan distance (also called L1 distance, method="L1"), cosine distance (method="cosine") , distance based on Pearson (method="pearson") or Spearman (method="spearman") correlation coefficients, and distance based on Mutual Information (method="MI"). Intervals used to assess Mutual Information are indicated in the parameter "bins".}
 

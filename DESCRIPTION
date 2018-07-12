@@ -85,27 +85,22 @@ Suggests:
   RColorBrewer,
   tidyverse
 Remotes:
-  berndbischl/ParamHelpers,
   dynverse/dynutils,
   dynverse/dyndimred,
   dynverse/dynwrap,
   dynverse/dynplot,
   dynverse/dyntoy,
-  dynverse/cellTree@RELEASE_3_6,
   dynverse/embeddr,
   dynverse/destiny,
-  dynverse/monocle-release,
   dynverse/Mpath,
   dynverse/princurve,
   dynverse/reCAT,
-  dynverse/scaterlegacy,
   dynverse/SCOUP,
   dynverse/SLICE,
   dynverse/SLICER,
   dynverse/StemID,
   dynverse/StemID2,
   dynverse/Waterfall,
-  igraph/rigraph,
   kieranrcampbell/pseudogp,
   kieranrcampbell/mfa,
   kieranrcampbell/ouija,
@@ -132,11 +127,9 @@ Collate:
     'ti_slicer.R'
     'ti_slice.R'
     'ti_sincell.R'
-    'ti_shuffle.R'
     'ti_scoup.R'
     'ti_scorpius.R'
     'ti_recat.R'
-    'ti_random.R'
     'ti_pseudogp.R'
     'ti_phenopath.R'
     'ti_periodpc.R'
@@ -144,11 +137,10 @@ Collate:
     'ti_mpath.R'
     'ti_monocle.R'
     'ti_mfa.R'
-    'ti_identity.R'
     'ti_gng.R'
-    'ti_error.R'
     'ti_embeddr.R'
     'ti_dpt.R'
+    'ti_controls.R'
     'ti_container.R'
     'wrapper_check_dependencies.R'
     'wrapper_docker.R'

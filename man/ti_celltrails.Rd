@@ -4,11 +4,13 @@
 \alias{ti_celltrails}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1016/j.celrep.2018.05.002}{CellTrails}}
 \usage{
-ti_celltrails(threshold_dl = 2L, threshold_cov = 0.05, threshold_ff = 1L,
-  frac = 100L, min_size = 0.01, min_feat = 5L, max_pval = 1e-04,
-  min_fc = 2L, l = 10L)
+ti_celltrails(run_environment = NULL, threshold_dl = 2L,
+  threshold_cov = 0.05, threshold_ff = 1L, frac = 100L, min_size = 0.01,
+  min_feat = 5L, max_pval = 1e-04, min_fc = 2L, l = 10L)
 }
 \arguments{
+\item{run_environment}{In which environment to run the method, can be 'docker' or 'singularity'}
+
 \item{threshold_dl}{Minimum number of samples; if value < 1 it is interpreted as fraction, otherwise as absolute sample count \cr
 integer; default: 2L; possible values between 0 and 100}
 

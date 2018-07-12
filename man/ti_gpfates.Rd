@@ -4,10 +4,12 @@
 \alias{ti_gpfates}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1126/sciimmunol.aal2192}{GPfates}}
 \usage{
-ti_gpfates(log_expression_cutoff = 0.5, min_cells_expression_cutoff = 0L,
-  ndim = 2L)
+ti_gpfates(run_environment = NULL, log_expression_cutoff = 0.5,
+  min_cells_expression_cutoff = 0L, ndim = 2L)
 }
 \arguments{
+\item{run_environment}{In which environment to run the method, can be 'docker' or 'singularity'}
+
 \item{log_expression_cutoff}{The log expression cutoff \cr
 numeric; default: 0.5; possible values between 0.5 and 5}
 

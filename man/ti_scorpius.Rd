@@ -5,16 +5,20 @@
 \alias{ti_scorpius}
 \title{Inferring trajectories with SCORPIUS}
 \usage{
-ti_scorpius(docker = dynwrap::test_docker_installation(),
+
+  ti_scorpius(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")),
   distance_method = "spearman", ndim = 3, k = 4, thresh = 0.001,
   maxit = 10, stretch = 0, smoother = "smooth_spline", sparse = TRUE)
 
-ti_scorpius(docker = dynwrap::test_docker_installation(),
+
+  ti_scorpius(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")),
   distance_method = "spearman", ndim = 3, k = 4, thresh = 0.001,
   maxit = 10, stretch = 0, smoother = "smooth_spline", sparse = TRUE)
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{distance_method}{A character string indicating which correlation
 coefficient (or covariance) is to be computed. One of "pearson", "kendall", or "spearman".}

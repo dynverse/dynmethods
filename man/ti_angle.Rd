@@ -5,12 +5,16 @@
 \alias{ti_angle}
 \title{Inferring trajectories with Angle}
 \usage{
-ti_angle(docker = dynwrap::test_docker_installation(), dimred = "pca")
 
-ti_angle(docker = dynwrap::test_docker_installation(), dimred = "pca")
+  ti_angle(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), dimred = "pca")
+
+
+  ti_angle(run_environment = ifelse(is.null(getOption("dynwrap_run_environment")),
+  "local", getOption("dynwrap_run_environment")), dimred = "pca")
 }
 \arguments{
-\item{docker}{Whether to use the docker container or the R wrapper}
+\item{run_environment}{In which environment to run the method, can be 'local', 'docker' or 'singularity'}
 
 \item{dimred}{A character vector specifying which dimensionality reduction method to use.
 See \link[dyndimred:dimred]{dyndimred::dimred} for the list of available dimensionality reduction methods.}
