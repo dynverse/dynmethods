@@ -231,7 +231,7 @@ run_slingshot <- function(
     data.frame(
       curve = id,
       curve$s,
-      tag = curve$tag,
+      ord = curve$ord,
       lambda = curve$lambda,
       dist = curve$dist,
       w = curve$w,
