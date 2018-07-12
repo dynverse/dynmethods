@@ -4,9 +4,7 @@ library(readr)
 library(dplyr)
 library(purrr)
 
-library(BiocGenerics)
-library(igraph)
-library(Biobase)
+library(monocle)
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
