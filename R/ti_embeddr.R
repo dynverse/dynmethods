@@ -185,8 +185,8 @@ run_embeddr <- function(
     traj[-1, , drop = F]
   )
   colnames(dimred_trajectory_segments) <- c(
-    paste0("from_", colnames(dimred_cells)),
-    paste0("to_", colnames(dimred_cells))
+    paste0("from_comp_", seq_len(ncol(dimred_cells))),
+    paste0("to_comp_", seq_len(ncol(dimred_cells)))
   )
 
   # return output
