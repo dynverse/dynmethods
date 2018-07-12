@@ -20,7 +20,7 @@ params <- jsonlite::read_json("/input/params.json")
 
 run_fun <- function(
   expression,
-  c("dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE", "dimreds = )"),
+  dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
   chains = 3,
   iter = 100,
   smoothing_alpha = 10,
