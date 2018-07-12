@@ -8,4 +8,4 @@ RUN R -e "setRepositories(ind=1:2);devtools::install_git('https://git.embl.de/ve
 
 ADD . /code
 
-ENTRYPOINT Rscript code/run.R
+ENTRYPOINT Rscript /code/run.R
