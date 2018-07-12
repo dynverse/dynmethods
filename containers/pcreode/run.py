@@ -46,7 +46,7 @@ out_graph, out_ids = pcreode.pCreode(
 # Wrapper's note: There is currently no way of extracting the best graph ordering, even though it is printed. Will select random graph.
 pcreode.pCreode_Scoring(
   data = pca_reduced_data,
-  file_path = "/.",
+  file_path = "/tmp/.",
   num_graphs = params["num_runs"]
 )
 
