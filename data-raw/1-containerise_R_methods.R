@@ -13,7 +13,6 @@ write_file("", "R/ti_container.R")
 devtools::load_all()
 
 method_ids <- dynwrap::get_ti_methods(ti_packages = c("dynwrap", "dynmethods"))$method_id
-method_ids <- dynwrap::get_ti_methods(ti_packages = c("dynwrap"))$method_id
 # method_ids <- c("slingshot")
 
 future_map(method_ids, function(method_id) {
@@ -139,7 +138,7 @@ ENTRYPOINT Rscript /code/run.R
             names(formals),
             formals,
             FUN = function(n, v) {
-              if (is.symbol(v)) n else paste0(n, " = ", deparse(v))
+              if (is.symbol(v)) n else paste0(n, " = ", deparse(v, width.cutoff = 500L))
             }
           ), collapse = ",\n")
 
@@ -171,7 +170,7 @@ library(readr)
 library(dplyr)
 library(purrr)
 
-{if(!is.null(method$package_required)) {glue::collapse(paste0(\"library(\", method$package_required, \")\"), \"\\n\")} else {\"\"}}
+{if(!is.null(method$package_loaded)) {glue::collapse(paste0(\"library(\", method$package_loaded, \")\"), \"\\n\")} else {\"\"}}
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
