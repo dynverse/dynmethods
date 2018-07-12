@@ -4,11 +4,13 @@
 \alias{ti_elpigraph}
 \title{Inferring a trajectory inference using \href{https://doi.org/https://github.com/Albluca/ElPiGraph.R}{ElPiGraph}}
 \usage{
-ti_elpigraph(topology = "tree", NumNodes = 50L, NumEdges = 100000L,
-  InitNodes = 2L, Mu = 0.1, Lambda = 0.01, MaxNumberOfIterations = 10L,
-  eps = 0.01, CenterData = FALSE)
+ti_elpigraph(run_environment = NULL, topology = "tree", NumNodes = 50L,
+  NumEdges = 100000L, InitNodes = 2L, Mu = 0.1, Lambda = 0.01,
+  MaxNumberOfIterations = 10L, eps = 0.01, CenterData = FALSE)
 }
 \arguments{
+\item{run_environment}{In which environment to run the method, can be 'docker' or 'singularity'}
+
 \item{topology}{The kind of topology to detect \cr
 discrete; default: "tree"; possible values: cycle, tree, linear}
 

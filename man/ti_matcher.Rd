@@ -4,9 +4,11 @@
 \alias{ti_matcher}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1186/s13059-017-1269-0}{MATCHER}}
 \usage{
-ti_matcher(quantiles = 50L, method = "linear")
+ti_matcher(run_environment = NULL, quantiles = 50L, method = "linear")
 }
 \arguments{
+\item{run_environment}{In which environment to run the method, can be 'docker' or 'singularity'}
+
 \item{quantiles}{Quantiles How many quantiles to use when computing warp functions (integer) \cr
 integer; default: 50L; possible values between 2 and 500}
 

@@ -4,10 +4,13 @@
 \alias{ti_topslam}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1101/057778}{topslam}}
 \usage{
-ti_topslam(n_components = 2L, n_neighbors = 10L, linear_dims = 0L,
-  max_iters = 1000L, dimreds = c(TRUE, TRUE, TRUE, TRUE, TRUE))
+ti_topslam(run_environment = NULL, n_components = 2L, n_neighbors = 10L,
+  linear_dims = 0L, max_iters = 1000L, dimreds = c(TRUE, TRUE, TRUE, TRUE,
+  TRUE))
 }
 \arguments{
+\item{run_environment}{In which environment to run the method, can be 'docker' or 'singularity'}
+
 \item{n_components}{The number of components \cr
 integer; default: 2L; possible values between 2 and 10}
 

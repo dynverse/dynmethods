@@ -4,13 +4,16 @@
 \alias{ti_cellrouter}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1038/s41467-018-03214-y}{CellRouter}}
 \usage{
-ti_cellrouter(ndim_pca = 20L, ndim_tsne = 11L, max_iter = 1000L,
-  cluster_method = "graph.clustering", k_clustering = 20L,
-  ndim_pca_clustering = 20L, k_knn = 10L, ndim_pca_knn = 20L,
-  sim_type = "jaccard", distance_method_paths = "graph", ranks = "rank",
-  num_cells = 3L, neighs = 3L, perplexity = 30L)
+ti_cellrouter(run_environment = NULL, ndim_pca = 20L, ndim_tsne = 11L,
+  max_iter = 1000L, cluster_method = "graph.clustering",
+  k_clustering = 20L, ndim_pca_clustering = 20L, k_knn = 10L,
+  ndim_pca_knn = 20L, sim_type = "jaccard",
+  distance_method_paths = "graph", ranks = "rank", num_cells = 3L,
+  neighs = 3L, perplexity = 30L)
 }
 \arguments{
+\item{run_environment}{In which environment to run the method, can be 'docker' or 'singularity'}
+
 \item{ndim_pca}{Number of principlal components to compute \cr
 integer; default: 20L; possible values between 2 and 100}
 

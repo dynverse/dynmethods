@@ -4,10 +4,12 @@
 \alias{ti_praga}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1101/208819}{projected PAGA}}
 \usage{
-ti_praga(embedding_type = "fa", n_comps = 50L, n_dcs = 15L,
-  n_neighbors = 30L, resolution = 2.5)
+ti_praga(run_environment = NULL, embedding_type = "fa", n_comps = 50L,
+  n_dcs = 15L, n_neighbors = 30L, resolution = 2.5)
 }
 \arguments{
+\item{run_environment}{In which environment to run the method, can be 'docker' or 'singularity'}
+
 \item{embedding_type}{Either 'umap' (scales very well, recommended for very large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for small datasets). \cr}
 
 \item{n_comps}{Number of principal components \cr

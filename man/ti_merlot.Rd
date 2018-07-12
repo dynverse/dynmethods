@@ -4,13 +4,15 @@
 \alias{ti_merlot}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1101/261768}{MERLoT}}
 \usage{
-ti_merlot(sigma = "local", distance = "euclidean", ndim = 20L,
-  density_norm = TRUE, n_local_lower = 5L, n_local_upper = 7L,
-  w_width = 0.01, n_components_to_use = 3, N_yk = 100, lambda_0 = 1e-10,
-  mu_0 = 0.0025, increaseFactor_mu = 20, increaseFactor_lambda = 20,
-  FixEndpoints = FALSE)
+ti_merlot(run_environment = NULL, sigma = "local", distance = "euclidean",
+  ndim = 20L, density_norm = TRUE, n_local_lower = 5L,
+  n_local_upper = 7L, w_width = 0.01, n_components_to_use = 3,
+  N_yk = 100, lambda_0 = 1e-10, mu_0 = 0.0025, increaseFactor_mu = 20,
+  increaseFactor_lambda = 20, FixEndpoints = FALSE)
 }
 \arguments{
+\item{run_environment}{In which environment to run the method, can be 'docker' or 'singularity'}
+
 \item{sigma}{Diffusion scale parameter of the Gaussian kernel. A larger sigma might be necessary if the eigenvalues can not be found because of a singularity in the matrix. Must be one of:\itemize{\item A character vector: \code{"local"} (default) or \code{"global"},\item a numeric global sigma -- a global sigma will be calculated using \code{\link[destiny:find_sigmas]{destiny::find_sigmas()}}\item or a \code{\link[destiny:Sigmas-class]{destiny::Sigmas-class()}} object.} \cr
 discrete; default: "local"; possible values: local, global}
 

@@ -4,9 +4,11 @@
 \alias{ti_ouijaflow}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1101/060442}{ouijaflow}}
 \usage{
-ti_ouijaflow(iter = 1000L)
+ti_ouijaflow(run_environment = NULL, iter = 1000L)
 }
 \arguments{
+\item{run_environment}{In which environment to run the method, can be 'docker' or 'singularity'}
+
 \item{iter}{\cr
 integer; default: 1000L; possible values between 2 and 50000}
 }

@@ -4,9 +4,12 @@
 \alias{ti_stemnet}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1038/ncb3493}{STEMNET}}
 \usage{
-ti_stemnet(alpha = 0.1, lambda_auto = TRUE, lambda = 0.1)
+ti_stemnet(run_environment = NULL, alpha = 0.1, lambda_auto = TRUE,
+  lambda = 0.1)
 }
 \arguments{
+\item{run_environment}{In which environment to run the method, can be 'docker' or 'singularity'}
+
 \item{alpha}{The elastic net mixing parameter of the ‘glmnet’ classifier. \cr
 numeric; default: 0.1; possible values between 0.001 and 10}
 

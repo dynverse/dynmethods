@@ -16,6 +16,7 @@ create_ti_method_chooser <- function(method_function, docker_container) {
       purrr::invoke(method_function, as.list(environment())[arg_ids])
     }
   }
+
   formals(func) <- c(formals(func), args)
 
   func

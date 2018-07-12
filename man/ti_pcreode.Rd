@@ -4,10 +4,12 @@
 \alias{ti_pcreode}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1016/j.cels.2017.10.012}{pCreode}}
 \usage{
-ti_pcreode(n_pca_components = 3L, radius = 1L, noise = 8L, target = 25L,
-  num_runs = 10L)
+ti_pcreode(run_environment = NULL, n_pca_components = 3L, radius = 1L,
+  noise = 8L, target = 25L, num_runs = 10L)
 }
 \arguments{
+\item{run_environment}{In which environment to run the method, can be 'docker' or 'singularity'}
+
 \item{n_pca_components}{\cr
 integer; default: 3L; possible values between 2 and 10}
 

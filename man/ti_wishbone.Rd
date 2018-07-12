@@ -4,11 +4,13 @@
 \alias{ti_wishbone}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1038/nbt.3569}{Wishbone}}
 \usage{
-ti_wishbone(normalise = TRUE, knn = 25L, n_diffusion_components = 3L,
-  n_pca_components = 30L, k = 25L, num_waypoints = 250L, epsilon = 1L,
-  branch = TRUE)
+ti_wishbone(run_environment = NULL, normalise = TRUE, knn = 25L,
+  n_diffusion_components = 3L, n_pca_components = 30L, k = 25L,
+  num_waypoints = 250L, epsilon = 1L, branch = TRUE)
 }
 \arguments{
+\item{run_environment}{In which environment to run the method, can be 'docker' or 'singularity'}
+
 \item{normalise}{\cr}
 
 \item{knn}{K-nearest neighbours for diffusion \cr

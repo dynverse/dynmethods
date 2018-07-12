@@ -4,10 +4,13 @@
 \alias{ti_scimitar}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1142/9789813207813_0053}{SCIMITAR}}
 \usage{
-ti_scimitar(covariance_type = "diag", degree = 3L, step_size = 0.07,
-  cov_estimator = "corpcor", cov_reg = 0.05, max_iter = 3L)
+ti_scimitar(run_environment = NULL, covariance_type = "diag", degree = 3L,
+  step_size = 0.07, cov_estimator = "corpcor", cov_reg = 0.05,
+  max_iter = 3L)
 }
 \arguments{
+\item{run_environment}{In which environment to run the method, can be 'docker' or 'singularity'}
+
 \item{covariance_type}{\cr
 discrete; default: "diag"; possible values: diag, spherical, full}
 

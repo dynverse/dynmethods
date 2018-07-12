@@ -4,11 +4,13 @@
 \alias{ti_wanderlust}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1038/nbt.3569}{wanderlust}}
 \usage{
-ti_wanderlust(branch = FALSE, epsilon = 1L, k = 25L, knn = 25L,
-  n_diffusion_components = 3L, n_pca_components = 30L, normalise = TRUE,
-  num_waypoints = 250L)
+ti_wanderlust(run_environment = NULL, branch = FALSE, epsilon = 1L,
+  k = 25L, knn = 25L, n_diffusion_components = 3L,
+  n_pca_components = 30L, normalise = TRUE, num_waypoints = 250L)
 }
 \arguments{
+\item{run_environment}{In which environment to run the method, can be 'docker' or 'singularity'}
+
 \item{branch}{Whether to allow a single bifurcation within the trajectory (wishbone versus wanderlust) \cr}
 
 \item{epsilon}{Epsilon \cr

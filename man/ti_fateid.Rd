@@ -4,10 +4,13 @@
 \alias{ti_fateid}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1038/nmeth.4662}{FateID}}
 \usage{
-ti_fateid(reclassify = TRUE, clthr = 0.9, nbfactor = 5L, q = 0.75,
-  k = 3L, m = "tsne", minnr = 5L, minnrh = 10L, trthr = 0.4)
+ti_fateid(run_environment = NULL, reclassify = TRUE, clthr = 0.9,
+  nbfactor = 5L, q = 0.75, k = 3L, m = "tsne", minnr = 5L,
+  minnrh = 10L, trthr = 0.4)
 }
 \arguments{
+\item{run_environment}{In which environment to run the method, can be 'docker' or 'singularity'}
+
 \item{reclassify}{Whether to reclassify the cell grouping \cr}
 
 \item{clthr}{Real number between zero and one. This is the threshold for the fraction of random forest votes required to assign a cell not contained within the target clusters to one of these clusters. The value of this parameter should be sufficiently high to only reclassify cells with a high-confidence assignment. Default value is 0.9. \cr

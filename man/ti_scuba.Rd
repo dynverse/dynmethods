@@ -4,11 +4,13 @@
 \alias{ti_scuba}
 \title{Inferring a trajectory inference using \href{https://doi.org/10.1073/pnas.1408993111}{SCUBA}}
 \usage{
-ti_scuba(rigorous_gap_stats = TRUE, N_dim = 2L, low_gene_threshold = 1L,
-  low_gene_fraction_max = 0.7, min_split = 15L,
+ti_scuba(run_environment = NULL, rigorous_gap_stats = TRUE, N_dim = 2L,
+  low_gene_threshold = 1L, low_gene_fraction_max = 0.7, min_split = 15L,
   min_percentage_split = 0.25)
 }
 \arguments{
+\item{run_environment}{In which environment to run the method, can be 'docker' or 'singularity'}
+
 \item{rigorous_gap_stats}{Whether to use rigorous gap statistics to determine number of clusters \cr}
 
 \item{N_dim}{Number of TSNE dimensions \cr
