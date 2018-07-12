@@ -26,4 +26,4 @@ RUN R -e "setRepositories(ind=1:4);install.packages('destiny')"
 
 ADD . /code
 
-ENTRYPOINT Rscript code/run.R
+ENTRYPOINT Rscript /code/run.R
