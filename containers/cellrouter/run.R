@@ -33,6 +33,7 @@ cellrouter <- scaleData(cellrouter)
 cellrouter <- computePCA(cellrouter, num.pcs = p$ndim_pca, seed = 42) # alarm, seed setting...!
 
 # do tsne
+if (p$max_iter == "Inf") {p$max_iter <- 100000}
 cellrouter <- computeTSNE(cellrouter, num.pcs = p$ndim_tsne, seed = 42, max_iter = p$max_iter, perplexity = p$perplexity)
 
 # louvain clustering
@@ -112,4 +113,4 @@ write_feather(tibble(to_keep=to_keep), "/output/to_keep.feather")
 write_feather(dimred, "/output/dimred.feather")
 
 # timings
-write_feather(enframe(checkpoints, "checkpoint", "time"), "/output/timings.feather")
+write_feather(enframe(checkpoints, "checkpoint", "time") %>% mutate(time = as.numeric(time)), "/output/timings.feather")
