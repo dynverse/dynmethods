@@ -57,6 +57,8 @@ dr  <- compdr(x, z=NULL, m=params$m, k=params$k)
 # principal curves
 pr  <- prcurve(y, fb, dr, k=params$k, m=params$m, trthr=params$trthr, start=start_group)
 
+checkpoints$method_aftermethod <- as.numeric(Sys.time())
+
 #   ____________________________________________________________________________
 #   Process & save output                                                   ####
 
@@ -75,6 +77,13 @@ pseudotimes <- map2_dfr(names(pr$trc), pr$trc, function(curve_id, trc) {
   group_by(cell_id) %>%
   filter(pseudotime == max(pseudotime)) %>%
   filter(row_number() == 1)
+
+pseudotimes <- pseudotimes %>% bind_rows(
+  tibble(
+    cell_id = setdiff(rownames(expression), pseudotimes$cell_id),
+    pseudotime = 0
+  )
+)
 
 # extract dimred
 dimred <- dr[[1]][[1]] %>% as.data.frame() %>% mutate(cell_id = rownames(expression))
