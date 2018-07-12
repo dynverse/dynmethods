@@ -1,3 +1,7 @@
+# to avoid singularity loading in the home directory python libraries
+import sys
+sys.path = ['/usr/local/lib/python2.7', '/usr/local/lib/python2.7/site-packages']
+
 import pandas as pd
 import json
 
@@ -6,6 +10,7 @@ import scimitar.morphing_mixture as mm
 
 import time
 checkpoints = {}
+
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
