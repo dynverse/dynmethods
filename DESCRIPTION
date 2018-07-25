@@ -58,7 +58,6 @@ Remotes:
   dynverse/dyndimred,
   dynverse/dynwrap,
   dynverse/dynplot,
-  dynverse/dyntoy,
-  dynverse/embeddr
+  dynverse/dyntoy
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
