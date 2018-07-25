@@ -19,6 +19,7 @@ parameters:
     - mds_smacof
     - umap
     - dm_diffusionMap
+    description: Which dimensionality reduction method to use.
   ndim:
     type: integer
     default: 2.0

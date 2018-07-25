@@ -47,9 +47,7 @@ parameters:
     - mds_isomds
     - mds_smacof
     - umap
-    description: A character vector specifying which dimensionality reduction method
-      to use. See \code{\link{dyndimred:dimred}} for the list of available dimensionality
-      reduction methods.
+    description: Which dimensionality reduction method to use.
   shrink:
     type: numeric
     default: 1.0
