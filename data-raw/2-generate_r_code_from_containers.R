@@ -34,6 +34,8 @@ future_map(
     path <- paste0("R/ti_", definition$id, ".R")
 
     readr::write_file(file_text, path)
+
+    invisible()
   }
 )
 

@@ -12,7 +12,7 @@ generate_documentation_from_definition <- function(definition) {
     "",
     format_parameter_documentation(definition),
     "",
-    "@return A TI method wrapper to be used together with \\code{\\link[dynwrap]{infer_trajectory}}",
+    "@return A TI method wrapper to be used together with \\code{\\link[dynwrap:infer_trajectories]{infer_trajectory}}",
     "@export"
   ) %>%
     strwrap(width = 80) %>%
