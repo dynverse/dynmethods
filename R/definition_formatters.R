@@ -125,7 +125,7 @@ format_parameter_documentation <- function(definition) {
         case_when(
           parameter$type == "discrete" ~ paste0("; values: {", paste0("`", sapply(parameter$values, deparse), "`", collapse = ", "), "}"),
           parameter$type %in% c("integer", "numeric") ~ paste0("; range: from `", deparse(parameter$lower), "` to `", deparse(parameter$upper), "`"),
-          parameter$type == "logical" ~ ""
+          TRUE ~ ""
         )
 
       paste0("@param ", parameter_id, " ", parameter$type, "; ", description, " (default: `", default_text, "`", values_text, ")")
