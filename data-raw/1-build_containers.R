@@ -5,6 +5,7 @@ plan(multiprocess)
 
 definition_files <- list.files("containers", pattern = "definition.yml", recursive = TRUE, full.names = TRUE)
 
+# rebuild all dockers in the 'containers' folder
 future_map(definition_files, function(file) {
   definition <- yaml::read_yaml(file)
   docker_repo <- definition$docker_repository

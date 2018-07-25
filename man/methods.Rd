@@ -4,7 +4,7 @@
 \name{methods}
 \alias{methods}
 \title{Metadata on the different TI methods}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 51 rows and 36 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 47 rows and 26 columns.}
 \usage{
 methods
 }
