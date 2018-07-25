@@ -3,7 +3,7 @@ generate_documentation_from_definition <- function(definition) {
   c(
     paste0("@title Inferring a trajectory inference using ", definition$name),
     "",
-    format_description(definition),
+    "@description ", format_description(definition),
     "",
     format_container_url(definition),
     format_code_url(definition),
@@ -12,7 +12,7 @@ generate_documentation_from_definition <- function(definition) {
     "",
     format_parameter_documentation(definition),
     "",
-    "@return The trajectory model",
+    "@return A TI method wrapper to be used together with \\code{\\link[dynwrap]{infer_trajectory}}",
     "@export"
   ) %>%
     strwrap(width = 80) %>%
