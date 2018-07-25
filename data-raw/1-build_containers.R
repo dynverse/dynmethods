@@ -1,5 +1,4 @@
 library(tidyverse)
-library(dynwrap)
 library(furrr)
 
 plan(multiprocess)
