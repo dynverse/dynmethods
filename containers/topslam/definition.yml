@@ -1,4 +1,8 @@
+NA: ~
+docker_repository: dynverse/topslam
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/topslam
 name: topslam
+type: algorithm
 parameters:
   n_components:
     description: the number of components
@@ -26,21 +30,27 @@ parameters:
     distribution: exponential
     rate: 0.001
   dimreds:
-    descriptions: which dimensionality reductions to use; tSNE, PCA, Spectral, Isomap and/or ICA
+    descriptions: which dimensionality reductions to use; tSNE, PCA, Spectral, Isomap
+      and/or ICA
     type: logical_vector
     length: 5
-    default: [true, true, true, true, true]
+    default:
+    - yes
+    - yes
+    - yes
+    - yes
+    - yes
 input:
   format: text
   required:
-    - expression
-    - start_id
+  - expression
+  - start_id
 output:
   format: text
   outputs:
-    - linear_trajectory
-    - dimred
-    - timings
+  - linear_trajectory
+  - dimred
+  - timings
 doi: 10.1101/057778
 trajectory_types:
 - linear
@@ -50,13 +60,12 @@ trajectory_types:
 - binary_tree
 - tree
 topology_inference: fixed
-type: algorithm
 license: BSD-3-clause
 authors:
-  - given: Max
-    family: Zwiessele
-    email: ibinbei@gmail.com
-    github: mzwiessele
+- given: Max
+  family: Zwiessele
+  email: ibinbei@gmail.com
+  github: mzwiessele
 preprint_date: '2017-02-13'
 version: 1.0.0
 code_url: https://github.com/mzwiessele/topslam

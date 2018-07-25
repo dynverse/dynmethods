@@ -1,5 +1,7 @@
+id: mpath
+docker_repository: dynverse/mpath
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/mpath
 name: Mpath
-short_name: mpath
 type: algorithm
 doi: 10.1038/ncomms11988
 trajectory_types: linear

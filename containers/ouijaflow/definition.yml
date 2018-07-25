@@ -1,4 +1,8 @@
+NA: ~
+docker_repository: dynverse/ouijaflow
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/ouijaflow
 name: ouijaflow
+type: algorithm
 parameters:
   iter:
     type: integer
@@ -10,13 +14,13 @@ parameters:
 input:
   format: text
   required:
-    - expression
-    - features_id
+  - expression
+  - features_id
 output:
   format: text
   outputs:
-    - linear_trajectory
-    - timings
+  - linear_trajectory
+  - timings
 doi: 10.1101/060442
 trajectory_types:
 - linear
@@ -26,16 +30,15 @@ trajectory_types:
 - binary_tree
 - tree
 topology_inference: fixed
-type: algorithm
 license: GPL (>=3)
 authors:
-  - given: Kieran
-    family: Campbell
-    email: kicampbell@bccrc.ca
-    github: kieranrcampbell
-  - given: Christopher
-    family: Yau
-    email: cyau@well.ox.ac.uk
+- given: Kieran
+  family: Campbell
+  email: kicampbell@bccrc.ca
+  github: kieranrcampbell
+- given: Christopher
+  family: Yau
+  email: cyau@well.ox.ac.uk
 preprint_date: '2016-06-23'
 version: 0.99.0
 code_url: https://github.com/kieranrcampbell/ouija

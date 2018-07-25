@@ -1,5 +1,7 @@
+id: recat
+docker_repository: dynverse/recat
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/recat
 name: reCAT
-short_name: recat
 type: algorithm
 doi: 10.1038/s41467-017-00039-z
 trajectory_types: linear

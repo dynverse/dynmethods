@@ -1,5 +1,7 @@
+id: ouija
+docker_repository: dynverse/ouija
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/ouija
 name: ouija
-short_name: ouija
 type: algorithm
 doi: 10.1101/060442
 trajectory_types:

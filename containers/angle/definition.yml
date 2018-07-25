@@ -1,5 +1,7 @@
+id: angle
+docker_repository: dynverse/angle
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/angle
 name: Angle
-short_name: angle
 type: control
 trajectory_types: cycle
 topology_inference: free

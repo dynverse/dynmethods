@@ -1,5 +1,7 @@
+id: gng
+docker_repository: dynverse/gng
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/gng
 name: Growing Neural Gas
-short_name: gng
 type: algorithm_test
 trajectory_types:
 - linear
