@@ -1,8 +1,10 @@
 library(tidyverse)
 library(dynwrap)
 library(dynmethods)
+library(furrr)
 
 # here we do some metaprogramming to generate the ti_{method} functions
+plan(multiprocess)
 
 # use all the dynmethods containers, but surely containers from other sources could be added as well
 containers <- c(
@@ -10,7 +12,7 @@ containers <- c(
 )
 
 # iterate over the containers and generate R scripts for each of them
-walk(
+future_map(
   containers,
   function(container) {
     definition <- extract_definition_from_docker_image(container)

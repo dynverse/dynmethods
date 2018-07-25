@@ -46,7 +46,7 @@ generate_function_from_definition <- function(definition) {
     parameters, "\n",
     ") {\n",
     "  create_container_ti_method(\n",
-    "    docker_repository = \"", definition$docker_repository, "\"),\n",
+    "    docker_repository = \"", definition$docker_repository, "\",\n",
     "    run_environment = run_environment,\n",
     args, "\n",
     "  )\n",
@@ -119,19 +119,22 @@ format_parameter_documentation <- function(definition) {
         str_replace_all("\n", "") %>%      # remove newlines
         Hmisc::capitalize()                # capitalise sentences
 
-      default_text <- deparse(parameter$default)
-
-      values_text <-
+      range_text <-
         case_when(
           parameter$type == "discrete" ~ paste0("; values: {", paste0("`", sapply(parameter$values, deparse), "`", collapse = ", "), "}"),
           parameter$type %in% c("integer", "numeric") ~ paste0("; range: from `", deparse(parameter$lower), "` to `", deparse(parameter$upper), "`"),
           TRUE ~ ""
         )
 
-      paste0("@param ", parameter_id, " ", parameter$type, "; ", description, " (default: `", default_text, "`", values_text, ")")
+      defaults <-
+        case_when(
+          parameter$type %in% c("integer", "numeric", "discrete") ~ paste0(" (default: `", deparse(parameter$default, width.cutoff = 500), "`", range_text, ")"),
+          TRUE ~ ""
+        )
+
+      paste0("@param ", parameter_id, " ", parameter$type, "; ", description, defaults)
     }
   )
 
-  c(param_texts, "@param run_environment In which environment to run the method, can be `\"docker\"` or `\"singularity\"`")
+  c(param_texts, "@inheritParams create_container_ti_method")
 }
-
