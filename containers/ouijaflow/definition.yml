@@ -1,4 +1,4 @@
-NA: ~
+id: ouijaflow
 docker_repository: dynverse/ouijaflow
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/ouijaflow
 name: ouijaflow

@@ -1,0 +1,83 @@
+id: wanderlust
+docker_repository: dynverse/wishbone
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/wishbone
+name: Wanderlust
+type: algorithm
+implementation_id: wishbone
+parameters:
+  normalise:
+    type: logical
+    default: yes
+  knn:
+    description: k-nearest neighbours for diffusion
+    type: integer
+    lower: 15
+    default: 25
+    upper: 100
+  n_diffusion_components:
+    description: number of diffusion components
+    type: integer
+    lower: 3
+    default: 3
+    upper: 20
+  n_pca_components:
+    description: number of pca components
+    type: integer
+    lower: 15
+    default: 30
+    upper: 100
+  k:
+    description: k parameter
+    type: integer
+    lower: 15
+    default: 25
+    upper: 100
+  num_waypoints:
+    description: number of waypoints
+    type: integer
+    lower: 100
+    default: 250
+    upper: 500
+  epsilon:
+    description: epsilon
+    type: numeric
+    lower: 0.1
+    default: 1
+    upper: 5
+  branch:
+    description: whether to allow a single bifurcation within the trajectory (wishbone
+      versus wanderlust)
+    type: logical
+    tunable: no
+    default: false
+input:
+  format: text
+  required:
+  - counts
+  - start_id
+  optional:
+  - features_id
+  - end_n
+output:
+  format: text
+  outputs:
+  - trajectory
+  - pseudotime
+  - dimred
+  - timings
+doi: 10.1038/nbt.3569
+trajectory_types: linear
+topology_inference: parameter
+license: GPL-2
+authors:
+- given: Manu
+  family: Setty
+  email: manu.talanki@gmail.com
+  github: ManuSetty
+- given: Dana
+  family: Pe'er
+  email: peerster@gmail.com
+  ORCID: 0000-0002-9259-8817
+publication_date: '2016-05-02'
+version: 0.4.2
+code_url: https://github.com/ManuSetty/wishbone

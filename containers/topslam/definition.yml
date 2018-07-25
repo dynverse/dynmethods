@@ -1,4 +1,4 @@
-NA: ~
+id: topslam
 docker_repository: dynverse/topslam
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/topslam
 name: topslam
