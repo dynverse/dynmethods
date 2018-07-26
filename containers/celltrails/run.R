@@ -15,7 +15,7 @@ data <- read_rds("/input/data.rds")
 params <- jsonlite::read_json("/input/params.json")
 
 #' @examples
-#' data <- dyntoy::generate_dataset(model = "cyclic") %>% c(., .$prior_information)
+#' data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 500, num_genes = 300, model = "binary_tree") %>% c(., .$prior_information)
 #' params <- yaml::read_yaml("containers/celltrails/definition.yml")$parameters %>%
 #'   {.[names(.) != "forbidden"]} %>%
 #'   map(~ .$default)
@@ -58,14 +58,15 @@ sce <- connectStates(sce, l = params$l)
 components <- CellTrails::trajComponents(sce)
 
 
-# only retain components with more than 2 states, otherwise the fitTrajectory will error
-components_ix <- seq_along(components)[map_lgl(components, ~length(.) > 1)]
-
 trajectories <- map(
-  components_ix,
-  function(trajectory_ix) {
-    traj <- selectTrajectory(sce, trajectory_ix)
-    fitTrajectory(traj)
+  seq_along(components),
+  function(ix) {
+    if (length(components[[ix]]) > 1) {
+      traj <- selectTrajectory(sce, ix)
+      fitTrajectory(traj)
+    } else {
+      components[[ix]]
+    }
   }
 )
 
@@ -82,18 +83,28 @@ dimred <- sce@reducedDims$CellTrails
 cell_graph <- map_dfr(
   trajectories,
   function(traj) {
-    graph <- CellTrails:::.trajGraph(traj)
-    cell_ids_graph <- igraph::vertex.attributes(graph)$sampleName
-    cell_graph <- graph %>%
-      igraph::as_data_frame() %>%
-      mutate(
-        from = cell_ids_graph[as.numeric(from)],
-        to = cell_ids_graph[as.numeric(to)],
+    if (is.character(traj)) {
+      cell_ids <- colnames(sce)[which(states(sce) == traj)]
+      data_frame(
+        from = cell_ids[-length(cell_ids)],
+        to = cell_ids[-1],
+        length = 0,
         directed = FALSE
-      ) %>%
-      dplyr::rename(
-        length = weight
       )
+    } else {
+      graph <- CellTrails:::.trajGraph(traj)
+      cell_ids_graph <- igraph::vertex.attributes(graph)$sampleName
+      cell_graph <- graph %>%
+        igraph::as_data_frame() %>%
+        mutate(
+          from = cell_ids_graph[as.numeric(from)],
+          to = cell_ids_graph[as.numeric(to)],
+          directed = FALSE
+        ) %>%
+        dplyr::rename(
+          length = weight
+        )
+    }
   }
 )
 
@@ -108,3 +119,6 @@ output <- lst(
 )
 
 write_rds(output, "/output/output.rds")
+
+
+traj <- wrap_data(cell_ids = cell_ids) %>% add_cell_graph(cell_graph, to_keep)

@@ -6,7 +6,7 @@ plan(multiprocess)
 definition_files <- list.files("containers", pattern = "definition.yml", recursive = TRUE, full.names = TRUE)
 
 #' @examples
-#' method <- "angle"
+#' method <- "celltrails"
 #' file <- paste0("containers/", method, "/definition.yml")
 
 # rebuild all dockers in the 'containers' folder
@@ -21,5 +21,6 @@ future_map(definition_files, function(file) {
 })
 
 #' @examples
-#' traj <- dynwrap::infer_trajectory(dyntoy::generate_dataset(), method, verbose = TRUE)
+#' data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 500, num_genes = 300, model = "binary_tree")
+#' traj <- dynwrap::infer_trajectory(data, method, verbose = TRUE)
 #' dynplot::plot_graph(traj)

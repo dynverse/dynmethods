@@ -38,7 +38,7 @@ computation. (default: \code{1e-04}; range: from \code{1e-07} to \code{1L})}
 \item{min_fc}{numeric; Mimimum fold-change for differential expression
 computation (default: \code{2L}; range: from \code{1L} to \code{5L})}
 
-\item{l}{integer; Neighborhood size (default: \code{10L}; range: from \code{1L} to \code{20L})}
+\item{l}{integer; Neighborhood size (default: \code{10L}; range: from \code{1L} to \code{50L})}
 
 \item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
 }

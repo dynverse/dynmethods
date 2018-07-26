@@ -3,6 +3,7 @@ docker_repository: dynverse/celltrails
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/celltrails
 name: CellTrails
 type: algorithm
+platform: R
 parameters:
   threshold_dl:
     description: Minimum number of samples; if value < 1 it is interpreted as fraction,
@@ -65,7 +66,7 @@ parameters:
     type: integer
     default: 10
     lower: 1
-    upper: 20
+    upper: 50
 input:
   format: rds
   required: expression
