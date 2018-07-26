@@ -27,7 +27,7 @@
 #' from `2L` to `30L`)
 #' @param apply_mst logical; If true, an MST post-processing of the GNG is
 #' performed.
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

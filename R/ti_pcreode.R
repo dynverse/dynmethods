@@ -24,7 +24,7 @@
 #' @param noise numeric; (default: `8L`; range: from `1L` to `20L`)
 #' @param target numeric; (default: `25L`; range: from `5L` to `100L`)
 #' @param num_runs integer; (default: `10L`; range: from `10L` to `1000L`)
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

@@ -40,7 +40,7 @@
 #' range: from `100` to `500`)
 #' @param clustMethod discrete; No documentation provided by authors (default:
 #' `"GMM"`; values: {`"GMM"`, `"Pam"`, `"Kmeans"`})
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

@@ -19,7 +19,7 @@
 #' `"dm_diffusionMap"`})
 #' @param ndim integer; (default: `2`; range: from `2` to `30`)
 #' @param component integer; (default: `1`; range: from `1` to `10`)
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

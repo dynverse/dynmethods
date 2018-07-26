@@ -36,7 +36,7 @@
 #' differentiating landmark clusters from non-landmark clusters. The number of
 #' cells in a landmark cluster must be greater than this cutoff. (default: `0.05`;
 #' range: from `0.01` to `1`)
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

@@ -21,7 +21,7 @@
 #' warp functions (integer) (default: `50L`; range: from `2L` to `500L`)
 #' @param method discrete; Gaussian process regression or linear interpolation?
 #' ("gp" or "linear) (default: `"linear"`; values: {`"gp"`, `"linear"`})
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

@@ -40,7 +40,7 @@
 #' rather than combining them. If a particular representation is required, it isup
 #' to the user to re-order them. (default: `"random"`; values: {`"random"`,
 #' `"principal_curve"`, `"pca"`})
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

@@ -27,7 +27,7 @@
 #' `0L`; range: from `0L` to `20L`)
 #' @param ndim integer; Number of dimensions for dimensionality reduction
 #' (default: `2L`; range: from `1L` to `5L`)
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

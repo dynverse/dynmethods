@@ -19,7 +19,7 @@
 #' @param n_inducing_points integer; (default: `40L`; range: from `10L` to `500L`)
 #' @param latent_prior_var numeric; (default: `0.1`; range: from `NULL` to `NULL`)
 #' @param latent_var numeric; (default: `0.028`; range: from `NULL` to `NULL`)
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

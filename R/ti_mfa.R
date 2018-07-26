@@ -30,7 +30,7 @@
 #' @param scale_input logical; Logical. If true, input is scaled to have mean 0
 #' variance 1
 #' @param zero_inflation logical; Logical, should zero inflation be enabled?
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

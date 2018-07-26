@@ -38,7 +38,7 @@
 #' `"lowess"`, `"periodic_lowess"`})
 #' @param sparse logical; Whether or not to use sparse MDS dimensionality
 #' reduction,for datasets with large amounts of cells.
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

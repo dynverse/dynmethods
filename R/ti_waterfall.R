@@ -19,7 +19,7 @@
 #' Neurogenesis. Cell Stem Cell 17, 360–372.
 #' 
 #' @param num_clusters integer; (default: `10`; range: from `2` to `20`)
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

@@ -56,7 +56,7 @@
 #' @param k.opt.method discrete; The "method" parameter of cluster::maxSE(); used
 #' when k is NULL (default: `"firstmax"`; values: {`"firstmax"`, `"globalmax"`,
 #' `"Tibs2001SEmax"`, `"firstSEmax"`, `"globalSEmax"`})
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

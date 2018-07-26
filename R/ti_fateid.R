@@ -57,7 +57,7 @@
 #' siginifcance is computed based on counting statistics on the difference in the
 #' number of votes. A significant bias requires a p-value < 0.05. (default: `0.4`;
 #' range: from `0L` to `1L`)
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

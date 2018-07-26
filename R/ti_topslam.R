@@ -24,7 +24,7 @@
 #' `1000L`; range: from `10L` to `10000L`)
 #' @param dimreds logical_vector; Which dimensionality reductions to use; tSNE,
 #' PCA, Spectral, Isomap and/or ICA
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

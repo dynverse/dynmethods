@@ -27,7 +27,7 @@
 #' @param normalise_expression logical; Logical, default TRUE. If TRUE the data is
 #' pre-normalisedso the average peak expression is approximately 1. This makes the
 #' strength parametersapproximately comparable between genes.
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

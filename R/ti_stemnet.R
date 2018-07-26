@@ -23,7 +23,7 @@
 #' @param lambda_auto logical; Whether to select the lambda by cross-validation
 #' @param lambda numeric; The lambda penalty of GLM. (default: `0.1`; range: from
 #' `0.05` to `1L`)
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

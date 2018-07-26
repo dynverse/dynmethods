@@ -95,7 +95,7 @@
 #' the percentage of leaf nodes is below the given cutoff. Removed nodes are
 #' projected to their closest neighbour. This is to constrain the number of
 #' milestones being created. (default: `0.5`; range: from `0.01` to `0.8`)
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

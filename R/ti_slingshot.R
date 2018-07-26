@@ -55,7 +55,7 @@
 #' the same as for \code{kernel} in [density()] (default is \code{"cosine"}), as
 #' well as \code{"tricube"} and \code{"density"}. See 'Details' for more.
 #' (default: `"cosine"`; values: {`"cosine"`, `"tricube"`, `"density"`})
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

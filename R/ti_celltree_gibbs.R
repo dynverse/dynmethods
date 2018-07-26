@@ -27,7 +27,7 @@
 #' @param num_topics integer; (default: `4`; range: from `2` to `15`)
 #' @param tot_iter numeric; (default: `200`; range: from `50` to `500`)
 #' @param tolerance numeric; (default: `1e-05`; range: from `1e-07` to `0.001`)
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

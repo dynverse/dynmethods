@@ -40,7 +40,7 @@
 #' from `2L` to `20L`)
 #' @param w_width numeric; Window width to use for deciding the branch cutoff
 #' (default: `0.1`; range: from `1e-04` to `1`)
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

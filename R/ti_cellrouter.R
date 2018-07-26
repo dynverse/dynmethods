@@ -47,7 +47,7 @@
 #' smoothen kinetic profiles (default: `3L`; range: from `2L` to `100L`)
 #' @param perplexity numeric; Perplexity parameter for tsne (default: `30L`;
 #' range: from `5L` to `100L`)
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

@@ -105,7 +105,7 @@
 #' significant edges (default: `0.05`; range: from `0` to `1`)
 #' @param linkscore_cutoff numeric; Lower cutoff of the linkscore for determining
 #' significant edges (default: `0.2`; range: from `0` to `1`)
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

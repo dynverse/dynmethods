@@ -30,7 +30,7 @@
 #' for this cluster to be split. (default: `15L`; range: from `1L` to `100L`)
 #' @param min_percentage_split numeric; Minimum fraction of cells in the smaller
 #' cluster during a bifurcation. (default: `0.25`; range: from `0L` to `1L`)
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

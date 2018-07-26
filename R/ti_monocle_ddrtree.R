@@ -28,7 +28,7 @@
 #' @param auto_param_selection logical; When this argument is set to TRUE
 #' (default), it will automatically calculate the proper value for the ncenter
 #' (number of centroids) parameters which will be passed into DDRTree call.
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

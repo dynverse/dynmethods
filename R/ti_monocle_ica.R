@@ -24,7 +24,7 @@
 #' @param norm_method discrete; Determines how to transform expression values
 #' prior to reducing dimensionality (default: `"vstExprs"`; values: {`"vstExprs"`,
 #' `"log"`, `"none"`})
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

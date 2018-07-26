@@ -32,7 +32,7 @@
 #' @param eps numeric; Minimal relative change in the position of the nodes to
 #' stop embedment (default: `0.01`; range: from `0.001` to `1L`)
 #' @param CenterData logical; Should data and initial node positions be centered?
-#' @inheritParams create_container_ti_method
+#' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
