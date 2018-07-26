@@ -5,6 +5,10 @@ plan(multiprocess)
 
 definition_files <- list.files("containers", pattern = "definition.yml", recursive = TRUE, full.names = TRUE)
 
+#' @examples
+#' method <- "dpt"
+#' file <- paste0("containers/", method, "/definition.yml")
+
 # rebuild all dockers in the 'containers' folder
 future_map(definition_files, function(file) {
   definition <- yaml::read_yaml(file)
@@ -15,3 +19,7 @@ future_map(definition_files, function(file) {
   system(paste0("docker build ", folder, " -t ", docker_repo))
   system(paste0("docker push ", docker_repo))
 })
+
+#' @examples
+#' traj <- dynmethods::infer_trajectory(dyntoy::generate_dataset(), method, verbose = TRUE)
+#' dynplot::plot_graph(traj)
