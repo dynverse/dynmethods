@@ -5,8 +5,14 @@ name: Monocle ICA
 type: algorithm
 implementation_id: monocle
 doi: 10.1038/nmeth.4402
-trajectory_types: linear
-topology_inference: free
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+topology_inference: param
 license: Artistic-2.0
 preprint_date: '2017-02-21'
 publication_date: '2017-07-20'
@@ -38,7 +44,11 @@ input:
   optional: groups_n
   required: counts
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - cell_graph
+  - dimred
+  - timings
 authors:
 - given: Xiaojie
   family: Qiu
