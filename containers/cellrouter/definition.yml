@@ -3,6 +3,7 @@ docker_repository: dynverse/cellrouter
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/cellrouter
 name: CellRouter
 type: algorithm
+platform: R
 parameters:
   ndim_pca:
     description: Number of principlal components to compute
