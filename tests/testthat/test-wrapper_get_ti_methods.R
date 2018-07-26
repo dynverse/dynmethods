@@ -2,10 +2,10 @@ context("Testing get_ti_methods")
 
 if (Sys.getenv("TRAVIS") != "true") {
   test_that("Descriptions can be retrieved", {
-    tib <- dynwrap::get_ti_methods(packages="dynmethods")
+    tib <- dynwrap::get_ti_methods(packages = "dynmethods")
     expect_that(tib, is_a("tbl"))
 
-    lis <- dynwrap::get_ti_methods(as_tibble=FALSE, packages="dynmethods")
+    lis <- dynwrap::get_ti_methods(as_tibble = FALSE, packages = "dynmethods")
     expect_that(lis, is_a("list"))
   })
 
