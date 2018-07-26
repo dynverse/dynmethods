@@ -3,6 +3,7 @@ docker_repository: dynverse/fateid
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/fateid
 name: FateID
 type: algorithm
+platform: R
 parameters:
   reclassify:
     description: Whether to reclassify the cell grouping
@@ -92,12 +93,13 @@ input:
   - start_id
   - groups_id
 output:
-  format: text
+  format: rds
   outputs:
   - dimred
   - end_state_probabilities
   - timings
 doi: 10.1038/nmeth.4662
+google_scholar_cluster_id: '4517066636937097660'
 trajectory_types:
 - bifurcation
 - multifurcation
@@ -110,5 +112,4 @@ authors:
   github: dgrun
 preprint_date: '2017-11-11'
 publication_date: '2018-04-09'
-version: 0.1.1
 code_url: https://github.com/dgrun/FateID/

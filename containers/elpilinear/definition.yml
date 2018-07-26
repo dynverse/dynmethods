@@ -70,6 +70,7 @@ output:
   - timings
 trajectory_types:
 - linear
+topology_inference: free
 license: GPL-3
 authors:
 - given: Luca
@@ -78,5 +79,4 @@ authors:
   github: Albluca
   ORCID: 0000-0001-8151-6989
 preprint_date: '2018-04-20'
-version: 1.0.0
 code_url: https://github.com/Albluca/ElPiGraph.R

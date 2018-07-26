@@ -1,11 +1,7 @@
-library(dynwrap)
 library(jsonlite)
 library(readr)
 library(dplyr)
 library(purrr)
-
-library(dynutils)
-library(reshape2)
 
 library(destiny)
 
@@ -37,7 +33,7 @@ start_cell <-
 n_local <- seq(params$n_local_lower, params$n_local_upper, by = 1)
 
 # TIMING: done with preproc
-tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
 # run diffusion maps
 dm <- destiny::DiffusionMap(
@@ -62,7 +58,7 @@ tips <- destiny::tips(dpt)
 tip_names <- rownames(expression)[tips]
 
 # TIMING: done with method
-tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
 # retrieve dimred
 dimred_cells <- dpt@dm@eigenvectors %>% magrittr::set_rownames(rownames(expression)) %>% as.matrix
@@ -84,25 +80,16 @@ milestone_network <- data_frame(
   directed = TRUE
 )
 
-# return output
-model <- wrap_prediction_model(
-  cell_ids = rownames(expression)
-) %>% add_dimred_projection(
-  milestone_ids = rownames(dimred_milestones),
-  milestone_network = milestone_network,
-  dimred_milestones = dimred_milestones,
+output <- lst(
+  milestone_network,
+  dimred_milestones,
   dimred = dimred_cells,
-  milestone_assignment_cells = milestone_assignment_cells,
-  tips = tip_names
-) %>% add_timings(
-  timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  milestone_assignment_cells,
+  tips,
+  timings = checkpoints
 )
-
-#' @examples
-#' dynplot::plot_dimred(model)
-#' dynplot::plot_graph(model)
 
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-write_rds(model, "/output/output.rds")
+write_rds(output, "/output/output.rds")

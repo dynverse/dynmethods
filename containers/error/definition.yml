@@ -5,8 +5,7 @@ name: 'Control: error'
 type: control
 trajectory_types:
 - linear
-- bifurcation
-- convergence
+topology_inference: fixed
 parameters:
   dummy_param:
     type: numeric

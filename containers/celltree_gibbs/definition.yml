@@ -18,7 +18,6 @@ trajectory_types:
 topology_inference: free
 license: Artistic-2.0
 publication_date: '2016-08-13'
-version: 1.10.0
 parameters:
   method:
     type: discrete
@@ -76,7 +75,10 @@ input:
   - groups_id
   required: expression
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - cell_graph
+  - timings
 authors:
 - given: David
   family: duVerle

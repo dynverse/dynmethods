@@ -3,14 +3,14 @@ docker_repository: dynverse/embeddr
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/embeddr
 name: Embeddr
 type: algorithm
-doi: 10.1101/027219
+doi: '10.1101/027219'
+google_scholar_cluster_id: '5302171132481221018'
+platform: R
 trajectory_types:
-- bifurcation
-- convergence
+- linear
 topology_inference: fixed
 license: GPL-3
 preprint_date: '2015-09-18'
-version: 0.99.0
 code_url: https://github.com/kieranrcampbell/embeddr
 parameters:
   ndim:
@@ -126,7 +126,11 @@ input:
   format: rds
   required: counts
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - linear_trajectory
+  - dimred
+  - timings
 authors:
 - given: Kieran
   family: Campbell

@@ -1,4 +1,3 @@
-library(dynwrap)
 library(jsonlite)
 library(readr)
 library(dplyr)
@@ -42,7 +41,7 @@ if (is.null(params$num_topics)) {
 }
 
 # TIMING: done with preproc
-tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
 # infer the LDA model
 lda_out <- cellTree::compute.lda(
@@ -85,7 +84,7 @@ if(!is.null(data$groups_id)) {
 mst_tree <- do.call(cellTree::compute.backbone.tree, backbone_params)
 
 # TIMING: done with method
-tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
 # simplify sample graph to just its backbone
 cell_graph <- igraph::as_data_frame(mst_tree, "edges") %>%
@@ -104,19 +103,16 @@ vertices <- igraph::as_data_frame(tree, "vertices") %>% as_data_frame()
 edges <- igraph::as_data_frame(tree, "edges") %>% as_data_frame()
 
 # wrap output
-model <- wrap_prediction_model(
-  cell_ids = rownames(expression)
-) %>% add_cell_graph(
+output <- lst(
   cell_graph = cell_graph,
   to_keep = to_keep,
   is_directed = FALSE,
   plot_vertices = vertices,
-  plot_edges = edges
-) %>% add_timings(
-  timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  plot_edges = edges,
+  timings = checkpoints
 )
 
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-write_rds(model, "/output/output.rds")
+write_rds(output, "/output/output.rds")

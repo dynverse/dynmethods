@@ -6,7 +6,7 @@ plan(multiprocess)
 definition_files <- list.files("containers", pattern = "definition.yml", recursive = TRUE, full.names = TRUE)
 
 #' @examples
-#' method <- "celltree_vem"
+#' method <- "angle"
 #' file <- paste0("containers/", method, "/definition.yml")
 
 # rebuild all dockers in the 'containers' folder

@@ -119,6 +119,3 @@ output <- lst(
 )
 
 write_rds(output, "/output/output.rds")
-
-
-traj <- wrap_data(cell_ids = cell_ids) %>% add_cell_graph(cell_graph, to_keep)

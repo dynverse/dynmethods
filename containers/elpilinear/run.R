@@ -18,8 +18,7 @@ params <- jsonlite::read_json("/input/params.json")
 
 expression <- data$expression
 
-checkpoints <- list()
-checkpoints$method_afterpreproc <- as.numeric(Sys.time())
+checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
 #   ____________________________________________________________________________
 #   Infer the trajectory                                                    ####
