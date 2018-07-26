@@ -4,6 +4,7 @@ container_url: https://github.com/dynverse/dynmethods/tree/master/containers/dpt
 name: DPT
 type: algorithm
 doi: 10.1038/nmeth.3971
+google_scholar_cluster_id: '13227754795988844195'
 trajectory_types:
 - linear
 - bifurcation
