@@ -1,5 +1,7 @@
+id: celltree_vem
+docker_repository: dynverse/celltree_vem
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/celltree_vem
 name: cellTree with vem
-short_name: celltree_vem
 type: algorithm
 implementation_id: celltree
 apt_dependencies: libgsl-dev

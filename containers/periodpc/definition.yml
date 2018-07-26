@@ -1,5 +1,7 @@
+id: periodpc
+docker_repository: dynverse/periodpc
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/periodpc
 name: Periodic PrinCurve
-short_name: periodpc
 type: algorithm_test
 trajectory_types:
 - cycle

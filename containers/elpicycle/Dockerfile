@@ -1,5 +1,11 @@
-FROM dynverse/elpigraph
+FROM rocker/tidyverse
 
-ADD overwrite_definition.R /code/
+# install udunits
+RUN apt-get -y install libudunits2-dev
+RUN Rscript -e 'install.packages("udunits2", configure.args =  c(udunits2 = "--with-udunits2-include=/usr/include/udunits2"))'
 
-RUN Rscript /code/overwrite_definition.R
+# install elpigraph from github
+RUN R -e "devtools::install_github('Albluca/ElPiGraph.R')"
+
+ADD . /code
+ENTRYPOINT Rscript /code/run.R

@@ -1,5 +1,7 @@
+id: monocle_ddrtree
+docker_repository: dynverse/monocle_ddrtree
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/monocle_ddrtree
 name: Monocle DDRTree
-short_name: monocle_ddrtree
 type: algorithm
 implementation_id: monocle
 doi: 10.1038/nmeth.4402

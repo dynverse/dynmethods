@@ -1,9 +1,15 @@
+id: scimitar
+docker_repository: dynverse/scimitar
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/scimitar
 name: SCIMITAR
-short_name: scimitar
+type: algorithm
 parameters:
   covariance_type:
     type: discrete
-    values: [diag, spherical, full]
+    values:
+    - diag
+    - spherical
+    - full
     default: diag
   degree:
     type: integer
@@ -17,7 +23,14 @@ parameters:
     default: 0.07
   cov_estimator:
     type: discrete
-    values: [identity, diag, sample, global, glasso, corpcor, average]
+    values:
+    - identity
+    - diag
+    - sample
+    - global
+    - glasso
+    - corpcor
+    - average
     default: corpcor
   cov_reg:
     type: numeric
@@ -31,13 +44,12 @@ parameters:
     default: 3
 input:
   format: text
-  required:
-    - expression
+  required: expression
 output:
   format: text
   outputs:
-    - linear_trajectory
-    - timings
+  - linear_trajectory
+  - timings
 doi: 10.1142/9789813207813_0053
 trajectory_types:
 - linear
@@ -47,12 +59,11 @@ trajectory_types:
 - binary_tree
 - tree
 topology_inference: fixed
-type: algorithm
 authors:
-  - given: Josh
-    family: Stuart
-    email: stuart@soe.ucsc.edu
-    github: dimenwarper
+- given: Josh
+  family: Stuart
+  email: stuart@soe.ucsc.edu
+  github: dimenwarper
 preprint_date: '2016-10-04'
 publication_date: '2017-01-04'
 version: '0.1'

@@ -1,7 +1,11 @@
-FROM dynverse/wishbone
+FROM library/python
 
-RUN pip install pyaml
+# install python dependencies
+RUN pip install pandas numpy matplotlib
+RUN pip install Cython
 
-ADD overwrite_definition.py /code/
+# install wishbone
+RUN pip install git+https://github.com/dynverse/pywishbone --upgrade --upgrade-strategy only-if-needed
 
-RUN python /code/overwrite_definition.py
+ADD . /code
+ENTRYPOINT python /code/run.py

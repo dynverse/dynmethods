@@ -1,5 +1,8 @@
+id: paga
+docker_repository: dynverse/paga
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/paga
 name: PAGA
-short_name: paga
+type: algorithm
 implementation_id: paga
 parameters:
   n_neighbors:
@@ -21,28 +24,29 @@ parameters:
     upper: 40
     default: 15
   resolution:
-    description: Resolution of louvain clustering, which determines the granularity of the clustering. Higher values will result in more clusters.
+    description: Resolution of louvain clustering, which determines the granularity
+      of the clustering. Higher values will result in more clusters.
     type: numeric
     lower: 0.1
     upper: 10
     default: 2.5
   embedding_type:
-    description: Either 'umap' (scales very well, recommended for very large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for small datasets).
+    description: Either 'umap' (scales very well, recommended for very large datasets)
+      or 'fa' (ForceAtlas2, often a bit more intuitive for small datasets).
     type: discrete
-    default: 'fa'
+    default: fa
 input:
   format: hdf5
   required:
-    - counts
-    - start_id
-  optional:
-    - groups_id
+  - counts
+  - start_id
+  optional: groups_id
 output:
   format: feather
   outputs:
-    - branch_trajectory
-    - dimred
-    - timings
+  - branch_trajectory
+  - dimred
+  - timings
 doi: 10.1101/208819
 trajectory_types:
 - linear
@@ -52,7 +56,6 @@ trajectory_types:
 - binary_tree
 - tree
 topology_inference: free
-type: algorithm
 authors:
 - given: Alexander
   family: Wolf

@@ -43,15 +43,7 @@ df <- methods %>%
   arrange(name) %>% 
   arrange(fct_infreq(type)) %>% 
   mutate(
-    code_label = wrapper_location,
-    code_url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{wrapper_location}"),
-    r_wrapper_url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{r_wrapper_location}"),
-    docker_url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{docker_wrapper_location}"),
-    Wrapper = glue::glue("[{code_label}]({code_url})"),
-    vignette_label = glue::glue("{method_id}.md"),
-    vignette_relpath = glue::glue("inst/doc/{vignette_label}"),
-    vignette_url = glue::glue("https://github.com/dynverse/dynmethods/blob/master/{vignette_relpath}"),
-    Vignette = ifelse(file.exists(vignette_relpath), glue::glue("[{vignette_label}]({vignette_url})"), ""),
+    docker_url = paste0("https://hub.docker.com/r/", docker_repository),
     `Method` = map2_chr(name, doi, function(name, doi) {
       if (!is.null(doi) && !is.na(doi)) {
         glue::glue("{name} <a href='https://doi.org/{doi}'><img src='man/figures/doi_logo.png' height='16'></a>")
@@ -59,43 +51,35 @@ df <- methods %>%
         name
       }
     }),
-    `R wrapper` = ifelse(
-      r_wrapped,
-      glue::glue("✓ ([code]({r_wrapper_url}))"),
-      ""
-    ),
-    `Docker container` = ifelse(
-      containerised, 
-      glue::glue("✓ ([code]({docker_url}), [dockerhub]({dockerhub_url}))"), 
-      ""
-    ),
+    `Container` = glue::glue("✓ ([code]({container_url}), [dockerhub]({docker_url}))"), 
     `Authors` = map_chr(authors, function(authors) {
-      if (is.na(authors[[1]])) {return("")}
+      first <- authors[[1]]
+      if (length(first) == 1 && is.na(first)) {
+        return("")
+      }
       map_chr(authors, function(author) {
         if (is.null(author$family)) {
           author$family <- ""
         }
-        author_text <- glue::glue("{author$given} {author$family}")
+        author_text <- paste0(author$given, " ", author$family)
 
         if (!is.null(author$ORCID)) {
-          author_text <- glue::glue("{author_text} <a href='https://orcid.org/{author$ORCID}'><img src='man/figures/orcid_logo.svg' height='16'></a>")
+          author_text <- paste0(author_text, " <a href='https://orcid.org/", author$ORCID, "'><img src='man/figures/orcid_logo.svg' height='16'></a>")
         }
 
         if (!is.null(author$github)) {
-          author_text <- glue::glue("{author_text} <a href='https://github.com/{author$github}'><img src='man/figures/github_logo.png' height='16'></a>")
+          author_text <- paste0(author_text, " <a href='https://github.com/", author$github, "'><img src='man/figures/github_logo.png' height='16'></a>")
         }
 
         author_text %>% paste0("<sub>", ., "</sub>")
-      }) %>% glue::collapse("<br>")
+      }) %>% paste0(collapse = "<br>")
     })
   )
 
 df2 <- df %>% 
   select(
     `Method`,
-    Wrapper, 
-    `<a href='https://github.com/dynverse/dynmethods/tree/master/R'><img src='man/figures/r_logo.png' height='30'></a>` = `R wrapper`, 
-    `<a href='https://hub.docker.com/u/dynverse/'><img src='man/figures/docker_logo.png' height='30'></a>` = `Docker container`,
+    `<a href='https://hub.docker.com/u/dynverse/'><img src='man/figures/docker_logo.png' height='30'></a>` = `Container`,
     `Authors`
   )
 

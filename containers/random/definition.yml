@@ -1,5 +1,7 @@
+id: random
+docker_repository: dynverse/random
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/random
 name: 'Control: random'
-short_name: random
 type: control
 trajectory_types: cycle
 topology_inference: free

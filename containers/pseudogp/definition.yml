@@ -1,5 +1,7 @@
+id: pseudogp
+docker_repository: dynverse/pseudogp
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/pseudogp
 name: pseudogp
-short_name: pseudogp
 type: algorithm
 doi: 10.1371/journal.pcbi.1005212
 trajectory_types: linear

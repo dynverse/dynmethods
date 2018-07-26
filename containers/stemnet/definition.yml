@@ -1,5 +1,8 @@
+id: stemnet
+docker_repository: dynverse/stemnet
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/stemnet
 name: STEMNET
-short_name: stemnet
+type: algorithm
 parameters:
   alpha:
     description: The elastic net mixing parameter of the ‘glmnet’ classifier.
@@ -10,7 +13,7 @@ parameters:
   lambda_auto:
     description: Whether to select the lambda by cross-validation
     type: logical
-    default: TRUE
+    default: yes
   lambda:
     description: The lambda penalty of GLM.
     type: numeric
@@ -20,27 +23,26 @@ parameters:
 input:
   format: rds
   required:
-    - expression
-    - end_id
-    - groups_id
+  - expression
+  - end_id
+  - groups_id
 output:
   format: text
   outputs:
-    - pseudotime
-    - end_state_probabilities
-    - dimred
+  - pseudotime
+  - end_state_probabilities
+  - dimred
 doi: 10.1038/ncb3493
 trajectory_types:
 - bifurcation
 - multifurcation
 topology_inference: param
-type: algorithm
 license: GPL-3
 authors:
-  - given: Lars
-    family: Velten
-    email: velten@embl.de
-    ORCID: 0000-0002-1233-5874
+- given: Lars
+  family: Velten
+  email: velten@embl.de
+  ORCID: 0000-0002-1233-5874
 publication_date: '2016-08-25'
 version: 0.1
 code_url: https://git.embl.de/velten/STEMNET

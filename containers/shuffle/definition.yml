@@ -1,5 +1,7 @@
+id: shuffle
+docker_repository: dynverse/shuffle
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/shuffle
 name: 'Control: shuffle'
-short_name: shuffle
 type: control_test
 trajectory_types:
 - linear

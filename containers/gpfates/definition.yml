@@ -1,5 +1,8 @@
+id: gpfates
+docker_repository: dynverse/gpfates
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/gpfates
 name: GPfates
-short_name: gpfates
+type: algorithm
 parameters:
   log_expression_cutoff:
     description: The log expression cutoff
@@ -22,30 +25,29 @@ parameters:
 input:
   format: text
   required:
-    - expression
-    - end_n
+  - expression
+  - end_n
 output:
   format: text
   outputs:
-    - end_state_probabilities
-    - dimred
-    - timings
+  - end_state_probabilities
+  - dimred
+  - timings
 doi: 10.1126/sciimmunol.aal2192
 trajectory_types: linear, bifurcation, multifurcation
 topology_inference: parameter
-type: algorithm
 license: MIT
 authors:
-  - given: Valentine
-    family: Svensson
-    email: valentine@nxn.se
-    github: vals
-    ORCID: 0000-0002-9217-2330
-  - given: Sarah A.
-    family: Teichmann
-    email: st9@sanger.ac.uk
-    github: Teichlab
-    ORCID: 0000-0002-6294-6366
+- given: Valentine
+  family: Svensson
+  email: valentine@nxn.se
+  github: vals
+  ORCID: 0000-0002-9217-2330
+- given: Sarah A.
+  family: Teichmann
+  email: st9@sanger.ac.uk
+  github: Teichlab
+  ORCID: 0000-0002-6294-6366
 publication_date: '2017-03-03'
 version: 1.0.0
 code_url: https://github.com/Teichlab/GPfates

@@ -14,134 +14,17 @@ RoxygenNote: 6.0.1
 Depends:
   R (>= 3.4.0)
 Imports: 
-  crayon,
-  desc,
-  devtools,
-  dplyr, 
-  dyndimred,
-  dynplot,
+  dynwrap
+Suggests:
+  dplyr,
   dynutils,
-  dynwrap,
-  jsonlite,
-  ggplot2,
-  glue,
-  grDevices,
-  grid,
-  igraph,
-  lhs,
-  magrittr, 
-  methods,
-  ParamHelpers (>= 1.11),
-  purrr, 
-  readr,
-  reshape2,
-  stringr,
-  testthat,
-  tibble, 
-  tidygraph,
-  tidyr,
-  viridis,
-  yaml
-Suggests: 
-  Biobase,
-  BiocGenerics,
-  cellTree,
-  coda,
-  destiny,
-  dyntoy,
-  embeddr,
-  future,
-  gng,
-  lle,
-  MASS,
-  Matrix,
-  MCMCglmm,
-  Mpath,
-  mfa,
-  monocle,
-  ouija,
-  phenopath,
-  princurve,
-  pseudogp,
-  reCAT,
-  rstan,
-  roxygen2,
-  scaterlegacy,
-  SCORPIUS (>= 1.0.2),
-  SCOUP,
-  sincell,
-  SLICE,
-  SLICER,
-  slingshot,
-  StemID,
-  StemID2,
-  TSCAN,
-  Waterfall,
-  ggforce,
-  ggraph,
-  ggrepel,
   knitr,
-  rmarkdown,
-  RColorBrewer,
-  tidyverse
+  ParamHelpers (>= 1.11),
+  purrr,
+  testthat,
+  tibble
 Remotes:
   dynverse/dynutils,
-  dynverse/dyndimred,
-  dynverse/dynwrap,
-  dynverse/dynplot,
-  dynverse/dyntoy,
-  dynverse/embeddr,
-  dynverse/destiny,
-  dynverse/Mpath,
-  dynverse/princurve,
-  dynverse/reCAT,
-  dynverse/SCOUP,
-  dynverse/SLICE,
-  dynverse/SLICER,
-  dynverse/StemID,
-  dynverse/StemID2,
-  dynverse/Waterfall,
-  kieranrcampbell/pseudogp,
-  kieranrcampbell/mfa,
-  kieranrcampbell/ouija,
-  kieranrcampbell/phenopath,
-  kstreet13/slingshot,
-  rcannood/gng,
-  rcannood/SCORPIUS,
-  zji90/TSCAN
+  dynverse/dynwrap
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
-Collate: 
-    'data.R'
-    'helper_set_cores.R'
-    'package.R'
-    'ti_angle.R'
-    'ti_celltree.R'
-    'wrapper_method_chooser.R'
-    'ti_wishbone.R'
-    'ti_waterfall.R'
-    'ti_tscan.R'
-    'ti_stemid2.R'
-    'ti_stemid.R'
-    'ti_slingshot.R'
-    'ti_slicer.R'
-    'ti_slice.R'
-    'ti_sincell.R'
-    'ti_scoup.R'
-    'ti_scorpius.R'
-    'ti_recat.R'
-    'ti_pseudogp.R'
-    'ti_phenopath.R'
-    'ti_periodpc.R'
-    'ti_ouija.R'
-    'ti_mpath.R'
-    'ti_monocle.R'
-    'ti_mfa.R'
-    'ti_gng.R'
-    'ti_embeddr.R'
-    'ti_dpt.R'
-    'ti_controls.R'
-    'ti_container.R'
-    'wrapper_check_dependencies.R'
-    'wrapper_docker.R'
-    'wrapper_plot_trajectory.R'

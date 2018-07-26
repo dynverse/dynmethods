@@ -1,11 +1,17 @@
+id: elpigraph
+docker_repository: dynverse/elpigraph
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/elpigraph
 name: ElPiGraph
-short_name: elpigraph
+type: algorithm
 implementation_id: elpigraph
 parameters:
   topology:
     description: the kind of topology to detect
     type: discrete
-    values: [cycle, tree, linear]
+    values:
+    - cycle
+    - tree
+    - linear
     default: tree
   NumNodes:
     description: the number of nodes of the principal graph
@@ -52,18 +58,15 @@ parameters:
   CenterData:
     description: should data and initial node positions be centered?
     type: logical
-    default: false
+    default: no
 input:
   format: rds
-  required:
-    - expression
-#  optional:
-#    - trajectory_type
+  required: expression
 output:
   format: text
   outputs:
-    - trajectory
-    - timings
+  - trajectory
+  - timings
 trajectory_types:
 - linear
 - bifurcation
@@ -71,14 +74,13 @@ trajectory_types:
 - multifurcation
 - binary_tree
 - tree
-type: algorithm
 license: GPL-3
 authors:
-  - given: Luca
-    family: Albergante
-    email: luca.albergante@gmail.com
-    github: Albluca
-    ORCID: 0000-0001-8151-6989
+- given: Luca
+  family: Albergante
+  email: luca.albergante@gmail.com
+  github: Albluca
+  ORCID: 0000-0001-8151-6989
 preprint_date: '2018-04-20'
 version: 1.0.0
 code_url: https://github.com/Albluca/ElPiGraph.R
