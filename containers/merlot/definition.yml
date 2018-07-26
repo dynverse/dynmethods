@@ -3,6 +3,7 @@ docker_repository: dynverse/merlot
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/merlot
 name: MERLoT
 type: algorithm
+platform: R
 parameters:
   sigma:
     type: discrete
@@ -118,11 +119,12 @@ input:
   - end_n
   optional: start_id
 output:
-  format: text
+  format: rds
   outputs:
   - dimred
   - trajectory
 doi: 10.1101/261768
+google_scholar_cluster_id: '9472249178536832849'
 trajectory_types:
 - cycle
 - linear

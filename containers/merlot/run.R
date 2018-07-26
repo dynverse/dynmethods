@@ -6,13 +6,19 @@ library(purrr)
 library(merlot)
 library(destiny)
 
-checkpoints <- list()
-
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
-data <- read_rds('/input/data.rds')
-params <- jsonlite::read_json('/input/params.json')
+data <- read_rds("/input/data.rds")
+params <- jsonlite::read_json("/input/params.json")
+
+#' @examples
+#' data <- dyntoy::generate_dataset(model = "bifurcating") %>% c(., .$prior_information)
+#' params <- yaml::read_yaml("containers/merlot/definition.yml")$parameters %>%
+#'   {.[names(.) != "forbidden"]} %>%
+#'   map(~ .$default)
+
+
 expression <- data$expression
 end_n <- data$end_n
 start_id <- data$start_id
@@ -21,7 +27,7 @@ start_id <- data$start_id
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
 
-checkpoints$method_afterpreproc <- as.numeric(Sys.time())
+checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
 # create n_local vector
 n_local <- seq(params$n_local_lower, params$n_local_upper, by = 1)
@@ -127,6 +133,11 @@ dimred <- CellCoordinates %>%
 dimred$cell_id <- rownames(expression)
 
 # save
-write_csv(milestone_network, '/output/milestone_network.csv')
-write_csv(progressions, '/output/progressions.csv')
-write_csv(dimred, '/output/dimred.csv')
+output <- lst(
+  milestone_network,
+  progressions,
+  dimred,
+  timings = checkpoints
+)
+
+write_rds(output, "/output/output.rds")
