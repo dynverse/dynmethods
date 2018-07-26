@@ -3,6 +3,7 @@ docker_repository: dynverse/pcreode
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/pcreode
 name: pCreode
 type: algorithm
+platform: Python
 parameters:
   n_pca_components:
     type: integer
@@ -38,7 +39,14 @@ output:
   - dimred_projection
   - timings
 doi: 10.1016/j.cels.2017.10.012
-trajectory_types: cycle
+google_scholar_cluster_id: '1665065308896440028'
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
 topology_inference: free
 authors:
 - given: Charles A.
