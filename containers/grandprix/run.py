@@ -1,4 +1,3 @@
-
 from gpflow import settings
 settings.session.intra_op_parallelism_threads = 1
 settings.session.inter_op_parallelism_threads = 1

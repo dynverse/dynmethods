@@ -3,6 +3,7 @@ docker_repository: dynverse/gpfates
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/gpfates
 name: GPfates
 type: algorithm
+platform: Python
 parameters:
   log_expression_cutoff:
     description: The log expression cutoff
@@ -34,7 +35,11 @@ output:
   - dimred
   - timings
 doi: 10.1126/sciimmunol.aal2192
-trajectory_types: linear, bifurcation, multifurcation
+google_scholar_cluster_id: '10596654190750618515'
+trajectory_types:
+- linear
+- bifurcation
+- multifurcation
 topology_inference: parameter
 license: MIT
 authors:
@@ -49,5 +54,4 @@ authors:
   github: Teichlab
   ORCID: 0000-0002-6294-6366
 publication_date: '2017-03-03'
-version: 1.0.0
 code_url: https://github.com/Teichlab/GPfates
