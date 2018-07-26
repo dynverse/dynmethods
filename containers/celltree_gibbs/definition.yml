@@ -6,6 +6,7 @@ type: algorithm
 implementation_id: celltree
 apt_dependencies: libgsl-dev
 doi: 10.1186/s12859-016-1175-6
+google_scholar_cluster_id: '6029217784505101308'
 trajectory_types:
 - linear
 - bifurcation

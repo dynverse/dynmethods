@@ -12,11 +12,17 @@ checkpoints <- list()
 #   Load data                                                               ####
 
 data <- read_rds("/input/data.rds")
+p <- jsonlite::read_json("/input/params.json")
+
+#' @examples
+#' data <- dyntoy::generate_dataset(model = "cyclic") %>% c(., .$prior_information)
+#' p <- yaml::read_yaml("containers/cellrouter/definition.yml")$parameters %>%
+#'   {.[names(.) != "forbidden"]} %>%
+#'   map(~ .$default)
+
 counts <- data$counts
 grouping <- data$grouping
 start_id <- data$start_id
-
-p <- jsonlite::read_json("/input/params.json")
 
 checkpoints$method_afterpreproc <- as.numeric(Sys.time())
 

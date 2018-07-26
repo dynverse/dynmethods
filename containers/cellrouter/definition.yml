@@ -113,6 +113,7 @@ output:
   - dimred
   - timings
 doi: 10.1038/s41467-018-03214-y
+google_scholar_cluster_id: '16330849752690040143'
 trajectory_types:
 - linear
 - bifurcation

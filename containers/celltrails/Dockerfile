@@ -1,9 +1,11 @@
 FROM rocker/tidyverse
 
-RUN R -e "setRepositories(ind=1:2);install.packages('BiocGenerics')"
+RUN echo 'utils::setRepositories(ind=1:4)' > ~/.Rprofile
+
+RUN R -e "install.packages('BiocGenerics')"
 RUN R -e "install.packages('igraph')"
 
-RUN R -e "setRepositories(ind=1:2);devtools::install_github('dcellwanger/CellTrails')"
+RUN R -e 'devtools::install_github("dcellwanger/CellTrails")'
 
 ADD . /code
 ENTRYPOINT Rscript /code/run.R

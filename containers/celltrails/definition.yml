@@ -77,6 +77,7 @@ output:
   - cell_graph
   - timings
 doi: 10.1016/j.celrep.2018.05.002
+google_scholar_cluster_id: '8451775467554180378'
 trajectory_types:
 - linear
 - bifurcation
