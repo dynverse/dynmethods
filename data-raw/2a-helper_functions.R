@@ -136,5 +136,5 @@ format_parameter_documentation <- function(definition) {
     }
   )
 
-  c(param_texts, "@inheritParams create_container_ti_method")
+  c(param_texts, "@inheritParams dynwrap::create_container_ti_method")
 }

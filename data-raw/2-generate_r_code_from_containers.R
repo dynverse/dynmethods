@@ -1,7 +1,8 @@
 library(tidyverse)
 library(dynwrap)
-library(dynmethods)
 library(furrr)
+
+source("data-raw/2a-helper_functions.R")
 
 # here we do some metaprogramming to generate the ti_{method} functions
 plan(multiprocess)
@@ -25,10 +26,10 @@ future_map(
       "\n",
 
       # documentation
-      dynmethods:::generate_documentation_from_definition(definition), "\n",
+      generate_documentation_from_definition(definition), "\n",
 
       # function
-      dynmethods:::generate_function_from_definition(definition), "\n"
+      generate_function_from_definition(definition), "\n"
     )
 
     path <- paste0("R/ti_", definition$id, ".R")
