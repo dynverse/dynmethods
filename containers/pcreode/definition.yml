@@ -1,5 +1,8 @@
+id: pcreode
+docker_repository: dynverse/pcreode
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/pcreode
 name: pCreode
-short_name: pcreode
+type: algorithm
 parameters:
   n_pca_components:
     type: integer
@@ -28,26 +31,24 @@ parameters:
     upper: 1000
 input:
   format: text
-  required:
-    - expression
+  required: expression
 output:
   format: text
   outputs:
-    - dimred_projection
-    - timings
+  - dimred_projection
+  - timings
 doi: 10.1016/j.cels.2017.10.012
 trajectory_types: cycle
 topology_inference: free
-type: algorithm
 authors:
-  - given: Charles A.
-    family: Herring
-    email: charles.a.herring@vanderbilt.edu
-    github: herrinca
-  - given: Ken S.
-    family: Lau
-    email: ken.s.lau@vanderbilt.edu
-    github: KenLauLab
+- given: Charles A.
+  family: Herring
+  email: charles.a.herring@vanderbilt.edu
+  github: herrinca
+- given: Ken S.
+  family: Lau
+  email: ken.s.lau@vanderbilt.edu
+  github: KenLauLab
 license: GPL-2
 publication_date: '2017-11-15'
 version: 1.5.0

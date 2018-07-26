@@ -1,5 +1,7 @@
+id: gng
+docker_repository: dynverse/gng
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/gng
 name: Growing Neural Gas
-short_name: gng
 type: algorithm_test
 trajectory_types:
 - linear
@@ -23,13 +25,13 @@ parameters:
     - tsne
     - ica
     - lle
+    - landmark_mds
     - mds_sammon
     - mds_isomds
     - mds_smacof
     - umap
-    description: |-
-      A character vector specifying which dimensionality reduction method to use.
-      See \code{\link{dyndimred:dimred}} for the list of available dimensionality reduction methods.
+    - dm_diffusionMap
+    description: Which dimensionality reduction method to use.
   ndim:
     type: integer
     default: 5

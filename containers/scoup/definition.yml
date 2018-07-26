@@ -1,5 +1,7 @@
+id: scoup
+docker_repository: dynverse/scoup
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/scoup
 name: SCOUP
-short_name: scoup
 type: algorithm
 doi: 10.1186/s12859-016-1109-3
 trajectory_types: linear

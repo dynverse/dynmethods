@@ -1,5 +1,8 @@
+id: merlot
+docker_repository: dynverse/merlot
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/merlot
 name: MERLoT
-short_name: merlot
+type: algorithm
 parameters:
   sigma:
     type: discrete
@@ -111,15 +114,14 @@ parameters:
 input:
   format: rds
   required:
-    - expression
-    - end_n
-  optional:
-    - start_id
+  - expression
+  - end_n
+  optional: start_id
 output:
   format: text
   outputs:
-    - dimred
-    - trajectory
+  - dimred
+  - trajectory
 doi: 10.1101/261768
 trajectory_types:
 - cycle
@@ -133,19 +135,18 @@ trajectory_types:
 - graph
 - disconnected_graph
 topology_inference: free
-type: algorithm
 license: GPL-3
 authors:
-  - given: Gonzalo
-    family: Parra
-    email: parra.gonzalo@gmail.com
-    github: gonzaparra
-    ORCID: 0000-0003-2446-016X
-  - given: Johannes
-    family: Söding
-    email: soeding@mpibpc.mpg.de
-    github: soedinglab
-    ORCID: 0000-0001-9642-8244
+- given: Gonzalo
+  family: Parra
+  email: parra.gonzalo@gmail.com
+  github: gonzaparra
+  ORCID: 0000-0003-2446-016X
+- given: Johannes
+  family: Söding
+  email: soeding@mpibpc.mpg.de
+  github: soedinglab
+  ORCID: 0000-0001-9642-8244
 preprint_date: '2018-02-08'
 version: 0.1.0
 code_url: https://github.com/soedinglab/merlot

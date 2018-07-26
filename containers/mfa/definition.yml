@@ -1,5 +1,7 @@
+id: mfa
+docker_repository: dynverse/mfa
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/mfa
 name: mfa
-short_name: mfa
 type: algorithm
 doi: 10.12688/wellcomeopenres.11087.1
 trajectory_types:

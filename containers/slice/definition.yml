@@ -1,5 +1,7 @@
+id: slice
+docker_repository: dynverse/slice
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/slice
 name: SLICE
-short_name: slice
 type: algorithm
 doi: 10.1093/nar/gkw1278
 trajectory_types:

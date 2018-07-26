@@ -1,5 +1,7 @@
+id: embeddr
+docker_repository: dynverse/embeddr
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/embeddr
 name: Embeddr
-short_name: embeddr
 type: algorithm
 doi: 10.1101/027219
 trajectory_types:

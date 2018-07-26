@@ -1,5 +1,7 @@
+id: stemid
+docker_repository: dynverse/stemid
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/stemid
 name: StemID
-short_name: stemid
 type: algorithm
 doi: 10.1016/j.stem.2016.05.010
 trajectory_types:

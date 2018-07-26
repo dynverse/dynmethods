@@ -1,10 +1,13 @@
+id: scuba
+docker_repository: dynverse/scuba
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/scuba
 name: SCUBA
-short_name: scuba
+type: algorithm
 parameters:
   rigorous_gap_stats:
     description: Whether to use rigorous gap statistics to determine number of clusters
     type: logical
-    default: true
+    default: yes
   N_dim:
     description: Number of TSNE dimensions
     type: integer
@@ -24,7 +27,8 @@ parameters:
     lower: 0
     default: 0.7
   min_split:
-    description: Lower threshold on the number of cells in a cluster for this cluster to be split.
+    description: Lower threshold on the number of cells in a cluster for this cluster
+      to be split.
     type: integer
     lower: 1
     upper: 100
@@ -38,29 +42,28 @@ parameters:
 input:
   format: text
   required:
-    - expression
-    - time
+  - expression
+  - time
 output:
   format: text
   outputs:
-    - cluster_graph
-    - timings
+  - cluster_graph
+  - timings
 doi: 10.1073/pnas.1408993111
 trajectory_types: linear
 topology_inference: free
-type: algorithm
 authors:
-  - given: Eugenio
-    family: Marco
-    github: eugeniomarco
-  - given: Gregory
-    family: Giecold
-    github: GGiecold
-  - given: Guo-Cheng
-    family: Yuan
-    email: gcyuan@jimmy.harvard.edu
-    github: gcyuan
-    ORCID: 0000-0002-2283-4714
+- given: Eugenio
+  family: Marco
+  github: eugeniomarco
+- given: Gregory
+  family: Giecold
+  github: GGiecold
+- given: Guo-Cheng
+  family: Yuan
+  email: gcyuan@jimmy.harvard.edu
+  github: gcyuan
+  ORCID: 0000-0002-2283-4714
 publication_date: '2014-12-30'
 version: 0.1.1
 code_url: https://github.com/gcyuan/SCUBA

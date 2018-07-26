@@ -1,5 +1,7 @@
+id: phenopath
+docker_repository: dynverse/phenopath
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/phenopath
 name: PhenoPath
-short_name: phenopath
 type: algorithm
 doi: 10.1101/159913
 trajectory_types:

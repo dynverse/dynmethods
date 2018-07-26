@@ -1,5 +1,7 @@
+id: dpt
+docker_repository: dynverse/dpt
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/dpt
 name: DPT
-short_name: dpt
 type: algorithm
 doi: 10.1038/nmeth.3971
 trajectory_types:

@@ -1,5 +1,7 @@
+id: slicer
+docker_repository: dynverse/slicer
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/slicer
 name: SLICER
-short_name: slicer
 type: algorithm
 doi: 10.1186/s13059-016-0975-3
 trajectory_types: linear

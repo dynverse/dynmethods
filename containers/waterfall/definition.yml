@@ -1,5 +1,7 @@
+id: waterfall
+docker_repository: dynverse/waterfall
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/waterfall
 name: Waterfall
-short_name: waterfall
 type: algorithm
 doi: 10.1016/j.stem.2015.07.013
 trajectory_types: linear

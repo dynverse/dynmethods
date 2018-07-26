@@ -1,0 +1,71 @@
+id: praga
+docker_repository: dynverse/praga
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/paga
+name: Projected PAGA
+type: algorithm
+implementation_id: paga
+parameters:
+  n_neighbors:
+    description: Number of neighbours for knn
+    type: integer
+    lower: 1
+    upper: 100
+    default: 30
+  n_comps:
+    description: Number of principal components
+    type: integer
+    lower: 0
+    upper: 100
+    default: 50
+  n_dcs:
+    description: Number of diffusion components for denoising graph, 0 means no denoising.
+    type: integer
+    lower: 0
+    upper: 40
+    default: 15
+  resolution:
+    description: Resolution of louvain clustering, which determines the granularity
+      of the clustering. Higher values will result in more clusters.
+    type: numeric
+    lower: 0.1
+    upper: 10
+    default: 2.5
+  embedding_type:
+    description: Either 'umap' (scales very well, recommended for very large datasets)
+      or 'fa' (ForceAtlas2, often a bit more intuitive for small datasets).
+    type: discrete
+    default: fa
+input:
+  format: hdf5
+  required:
+  - counts
+  - start_id
+  optional: groups_id
+output:
+  format: feather
+  outputs:
+  - dimred_projection
+  - dimred
+  - timings
+doi: 10.1101/208819
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+topology_inference: free
+authors:
+- given: Alexander
+  family: Wolf
+  email: alex.wolf@helmholtz-muenchen.de
+  github: falexwolf
+  ORCID: 0000-0002-8760-7838
+- given: Fabian
+  family: Theis
+  email: fabian.theis@helmholtz-muenchen.de
+  github: theislab
+preprint_date: '2017-10-27'
+version: 1.2.1
+code_url: https://github.com/theislab/graph_abstraction

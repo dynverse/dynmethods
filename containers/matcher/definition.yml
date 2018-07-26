@@ -1,8 +1,12 @@
+id: matcher
+docker_repository: dynverse/matcher
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/matcher
 name: MATCHER
-short_name: matcher
+type: algorithm
 parameters:
   quantiles:
-    description: quantiles How many quantiles to use when computing warp functions (integer)
+    description: quantiles How many quantiles to use when computing warp functions
+      (integer)
     type: integer
     default: 50
     lower: 2
@@ -10,19 +14,19 @@ parameters:
   method:
     description: Gaussian process regression or linear interpolation? ("gp" or "linear)
     type: discrete
-    values: [gp, linear]
+    values:
+    - gp
+    - linear
     default: linear
 input:
   format: text
-  required:
-    - expression
-  optional:
-    - time
+  required: expression
+  optional: time
 output:
   format: text
   outputs:
-    - linear_trajectory
-    - timings
+  - linear_trajectory
+  - timings
 doi: 10.1186/s13059-017-1269-0
 trajectory_types:
 - linear
@@ -32,16 +36,15 @@ trajectory_types:
 - binary_tree
 - tree
 topology_inference: fixed
-type: algorithm
 license: MIT
 authors:
-  - given: Joshua
-    family: Welch
-    email: jwelch@cs.unc.edu
-    github: jw156605
-  - given: Jan
-    family: Prins
-    email: prins@cs.unc.edu
+- given: Joshua
+  family: Welch
+  email: jwelch@cs.unc.edu
+  github: jw156605
+- given: Jan
+  family: Prins
+  email: prins@cs.unc.edu
 publication_date: '2017-06-24'
 version: 0.0.0
 code_url: https://github.com/jw156605/MATCHER

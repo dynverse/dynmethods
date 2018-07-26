@@ -1,5 +1,7 @@
+id: slingshot
+docker_repository: dynverse/slingshot
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/slingshot
 name: Slingshot
-short_name: slingshot
 type: algorithm
 doi: 10.1186/s12864-018-4772-0
 trajectory_types:
@@ -45,9 +47,7 @@ parameters:
     - mds_isomds
     - mds_smacof
     - umap
-    description: A character vector specifying which dimensionality reduction method
-      to use. See \code{\link{dyndimred:dimred}} for the list of available dimensionality
-      reduction methods.
+    description: Which dimensionality reduction method to use.
   shrink:
     type: numeric
     default: 1.0

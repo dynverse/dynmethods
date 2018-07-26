@@ -1,5 +1,7 @@
+id: comp1
+docker_repository: dynverse/comp1
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/comp1
 name: Component 1
-short_name: comp1
 type: algorithm
 parameters:
   dimred:
@@ -17,6 +19,7 @@ parameters:
     - mds_smacof
     - umap
     - dm_diffusionMap
+    description: Which dimensionality reduction method to use.
   ndim:
     type: integer
     default: 2.0

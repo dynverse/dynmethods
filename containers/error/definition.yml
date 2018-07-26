@@ -1,5 +1,7 @@
+id: error
+docker_repository: dynverse/error
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/error
 name: 'Control: error'
-short_name: error
 type: control
 trajectory_types:
 - linear

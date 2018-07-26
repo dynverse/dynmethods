@@ -1,5 +1,7 @@
+id: celltree_maptpx
+docker_repository: dynverse/celltree_maptpx
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/celltree_maptpx
 name: cellTree with maptpx
-short_name: celltree_maptpx
 type: algorithm
 implementation_id: celltree
 apt_dependencies: libgsl-dev

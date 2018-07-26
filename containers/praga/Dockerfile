@@ -1,7 +1,12 @@
-FROM dynverse/paga
+# docker build paga -t dynverse/paga
+# docker push dynverse/paga
+# singularity build paga.simg docker://dynverse/paga
 
-RUN pip install pyaml
+FROM library/python
+RUN pip install pandas numpy matplotlib
 
-ADD overwrite_definition.py /code/
-
-RUN python /code/overwrite_definition.py
+RUN pip install python-igraph louvain # igraph and louvain do not get installed by scanpy
+RUN pip install feather-format
+RUN pip install scanpy
+ADD . /code
+ENTRYPOINT python /code/run.py

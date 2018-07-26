@@ -1,5 +1,7 @@
+id: identity
+docker_repository: dynverse/identity
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/identity
 name: 'Control: identity'
-short_name: identity
 type: control_test
 trajectory_types:
 - linear
