@@ -3,6 +3,7 @@ docker_repository: dynverse/ouijaflow
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/ouijaflow
 name: ouijaflow
 type: algorithm
+platform: Python
 parameters:
   iter:
     type: integer
@@ -22,13 +23,9 @@ output:
   - linear_trajectory
   - timings
 doi: 10.1101/060442
+google_scholar_cluster_id: '5009450964277600738'
 trajectory_types:
 - linear
-- bifurcation
-- convergence
-- multifurcation
-- binary_tree
-- tree
 topology_inference: fixed
 license: GPL (>=3)
 authors:
@@ -40,5 +37,4 @@ authors:
   family: Yau
   email: cyau@well.ox.ac.uk
 preprint_date: '2016-06-23'
-version: 0.99.0
 code_url: https://github.com/kieranrcampbell/ouija
