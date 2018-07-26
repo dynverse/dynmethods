@@ -1,7 +1,7 @@
-id: praga
-docker_repository: dynverse/praga
-container_url: https://github.com/dynverse/dynmethods/tree/master/containers/paga
-name: Projected PAGA
+id: paga_projected
+docker_repository: dynverse/paga_projected
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/paga_projected
+name: PAGA Projected
 type: algorithm
 implementation_id: paga
 parameters:
@@ -67,5 +67,4 @@ authors:
   email: fabian.theis@helmholtz-muenchen.de
   github: theislab
 preprint_date: '2017-10-27'
-version: 1.2.1
 code_url: https://github.com/theislab/graph_abstraction
