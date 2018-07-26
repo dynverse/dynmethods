@@ -5,6 +5,7 @@ name: DPT
 type: algorithm
 doi: 10.1038/nmeth.3971
 google_scholar_cluster_id: '13227754795988844195'
+platform: R
 trajectory_types:
 - linear
 - bifurcation
