@@ -3,17 +3,9 @@ docker_repository: dynverse/periodpc
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/periodpc
 name: Periodic PrinCurve
 type: algorithm_test
+platform: R
 trajectory_types:
 - cycle
-- linear
-- bifurcation
-- convergence
-- multifurcation
-- binary_tree
-- tree
-- acyclic_graph
-- graph
-- disconnected_graph
 topology_inference: fixed
 parameters:
   ndim:

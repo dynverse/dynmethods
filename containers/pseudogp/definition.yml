@@ -3,13 +3,14 @@ docker_repository: dynverse/pseudogp
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/pseudogp
 name: pseudogp
 type: algorithm
+platform: R
 doi: 10.1371/journal.pcbi.1005212
+google_scholar_cluster_id: '5243569616386453833'
 trajectory_types: linear
 topology_inference: fixed
 license: MIT
 preprint_date: '2016-04-05'
 publication_date: '2016-11-21'
-version: '0.1'
 code_url: https://github.com/kieranrcampbell/pseudogp
 parameters:
   smoothing_alpha:
@@ -81,7 +82,10 @@ input:
   format: rds
   required: expression
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - linear_trajectory
+  - timings
 authors:
 - given: Kieran
   family: Campbell

@@ -3,8 +3,10 @@ docker_repository: dynverse/recat
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/recat
 name: reCAT
 type: algorithm
+platform: R
 doi: 10.1038/s41467-017-00039-z
-trajectory_types: linear
+google_scholar_cluster_id: '10600621261210432161'
+trajectory_types: cycle
 topology_inference: fixed
 publication_date: '2017-06-19'
 code_url: https://github.com/tinglab/reCAT
@@ -68,7 +70,10 @@ input:
   format: rds
   required: expression
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - cyclic_trajectory
+  - timings
 authors:
 - given: Riu
   family: Jian

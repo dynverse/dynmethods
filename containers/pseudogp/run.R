@@ -1,4 +1,3 @@
-library(dynwrap)
 library(jsonlite)
 library(readr)
 library(dplyr)
@@ -15,79 +14,52 @@ library(dyndimred)
 data <- read_rds("/input/data.rds")
 params <- jsonlite::read_json("/input/params.json")
 
+#' @examples
+#' data <- data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_genes = 300, model = "linear") %>% c(., .$prior_information)
+#' params <- yaml::read_yaml("containers/embeddr/definition.yml")$parameters %>%
+#'   {.[names(.) != "forbidden"]} %>%
+#'   map(~ .$default)
+
+expression <- data$expression
+
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
 
-run_fun <- function(
-  expression,
-  dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
-  chains = 3,
-  iter = 100,
-  smoothing_alpha = 10,
-  smoothing_beta = 3,
-  pseudotime_mean = 0.5,
-  pseudotime_var = 1,
-  initialise_from = "random"
-) {
-  requireNamespace("pseudogp")
-  requireNamespace("rstan")
-  requireNamespace("coda")
-  requireNamespace("MCMCglmm")
+# perform dimreds
+dimred_names <- names(dyndimred::list_dimred_methods())[as.logical(params$dimreds)]
+spaces <- map(dimred_names, ~ dyndimred::dimred(expression, method = ., ndim = 2)) # only 2 dimensions per dimred are allowed
 
-  # perform dimreds
-  dimred_names <- names(dyndimred::list_dimred_methods())[as.logical(dimreds)]
-  spaces <- map(dimred_names, ~ dimred(expression, method = ., ndim = 2)) # only 2 dimensions per dimred are allowed
+# TIMING: done with preproc
+checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
-  # TIMING: done with preproc
-  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+# fit probabilistic pseudotime model
+fit <- pseudogp::fitPseudotime(
+  X = spaces,
+  smoothing_alpha = params$smoothing_alpha,
+  smoothing_beta = params$smoothing_beta,
+  iter = params$iter,
+  chains = params$chains,
+  initialise_from = params$initialise_from,
+  pseudotime_var = params$pseudotime_var,
+  pseudotime_mean = params$pseudotime_mean
+)
 
-  # fit probabilistic pseudotime model
-  fit <- pseudogp::fitPseudotime(
-    X = spaces,
-    smoothing_alpha = smoothing_alpha,
-    smoothing_beta = smoothing_beta,
-    iter = iter,
-    chains = chains,
-    initialise_from = initialise_from,
-    pseudotime_var = pseudotime_var,
-    pseudotime_mean = pseudotime_mean
-  )
+# TIMING: done with method
+checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
-  # TIMING: done with method
-  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+# extract pseudotime
+pst <- rstan::extract(fit, pars = "t")$t
+tmcmc <- coda::mcmc(pst)
+pseudotime <- MCMCglmm::posterior.mode(tmcmc) %>%
+  setNames(rownames(expression))
 
-  # extract pseudotime
-  pst <- rstan::extract(fit, pars = "t")$t
-  tmcmc <- coda::mcmc(pst)
-  pseudotime <- MCMCglmm::posterior.mode(tmcmc) %>%
-    setNames(rownames(expression))
-
-  # collect data for visualisation purposes
-  # code is adapted from pseudogp::posteriorCurvePlot
-  pst <- rstan::extract(fit, pars = "t", permute = FALSE)
-  lambda <- rstan::extract(fit, pars = "lambda", permute = FALSE)
-  sigma <- rstan::extract(fit, pars = "sigma", permute = FALSE)
-
-  # return output
-  wrap_prediction_model(
-    cell_ids = rownames(expression)
-  ) %>% add_linear_trajectory(
-    pseudotime = pseudotime,
-    spaces = spaces,
-    chains = chains,
-    pst = pst,
-    lambda = lambda,
-    sigma = sigma
-  ) %>% add_timings(
-    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
-  )
-}
-
-args <- params[intersect(names(params), names(formals(run_fun)))]
-
-model <- do.call(run_fun, c(args, data))
+# return output
+output <- model(
+  pseudotime = pseudotime,
+  timings = checkpoints
+)
 
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-write_rds(model, "/output/output.rds")
+write_rds(output, "/output/output.rds")

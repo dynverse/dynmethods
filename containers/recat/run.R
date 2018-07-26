@@ -1,4 +1,3 @@
-library(dynwrap)
 library(jsonlite)
 library(readr)
 library(dplyr)
@@ -12,60 +11,46 @@ library(reCAT)
 data <- read_rds("/input/data.rds")
 params <- jsonlite::read_json("/input/params.json")
 
+#' @examples
+#' data <- data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_genes = 300, model = "linear") %>% c(., .$prior_information)
+#' params <- yaml::read_yaml("containers/embeddr/definition.yml")$parameters %>%
+#'   {.[names(.) != "forbidden"]} %>%
+#'   map(~ .$default)
+
+expression <- data$expression
+
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
 
-run_fun <- function(
-  expression,
-  num_cores = 1,
-  TSPFold = 2,
-  beginNum = 10,
-  endNum = 15,
-  step_size = 2,
-  base_cycle_range_start = 6,
-  base_cycle_range_end = 9,
-  max_num = 300,
-  clustMethod = "GMM"
-) {
-  requireNamespace("reCAT")
+# TIMING: done with preproc
+checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
-  # TIMING: done with preproc
-  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+# run reCAT
+result <- reCAT::bestEnsembleComplexTSP(
+  test_exp = expression,
+  TSPFold = TSPFold,
+  beginNum = beginNum,
+  endNum = endNum,
+  base_cycle_range = base_cycle_range_start:base_cycle_range_end,
+  step_size = step_size,
+  max_num = max_num,
+  clustMethod = clustMethod,
+  threads = num_cores,
+  output = FALSE
+)
 
-  # run reCAT
-  result <- reCAT::bestEnsembleComplexTSP(
-    test_exp = expression,
-    TSPFold = TSPFold,
-    beginNum = beginNum,
-    endNum = endNum,
-    base_cycle_range = base_cycle_range_start:base_cycle_range_end,
-    step_size = step_size,
-    max_num = max_num,
-    clustMethod = clustMethod,
-    threads = num_cores,
-    output = FALSE
-  )
+# TIMING: done with method
+checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
-  # TIMING: done with method
-  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+pseudotime <- result$ensembleResultLst[dim(result$ensembleResultLst)[1], ] %>% set_names(rownames(expression))
 
-  pseudotime <- result$ensembleResultLst[dim(result$ensembleResultLst)[1], ] %>% set_names(rownames(expression))
-
-  # wrap
-  wrap_prediction_model(
-    cell_ids = rownames(expression)
-  ) %>% add_cyclic_trajectory(
-    pseudotime = pseudotime
-  ) %>% add_timings(
-    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
-  )
-}
-
-args <- params[intersect(names(params), names(formals(run_fun)))]
-
-model <- do.call(run_fun, c(args, data))
+# wrap
+output <- lst(
+  pseudotime,
+  timings = checkpoints
+)
 
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-write_rds(model, "/output/output.rds")
+write_rds(output, "/output/output.rds")
