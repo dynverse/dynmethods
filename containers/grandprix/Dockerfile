@@ -2,7 +2,7 @@ FROM library/python
 RUN pip install tensorflow
 
 RUN git clone https://github.com/GPflow/GPflow.git
-RUN cd GPflow; \  
+RUN cd GPflow; \
     pip install .; \
     cd ../;
 
