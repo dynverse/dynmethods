@@ -49,7 +49,7 @@ cds <- monocle::reduceDimension(
 )
 
 # order the cells
-cds <- monocle::orderCells(cds, num_paths = params$groups_n)
+cds <- monocle::orderCells(cds, num_paths = data$groups_n)
 
 # TIMING: done with method
 checkpoints$method_aftermethod <- as.numeric(Sys.time())

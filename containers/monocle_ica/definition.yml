@@ -3,6 +3,7 @@ docker_repository: dynverse/monocle_ica
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/monocle_ica
 name: Monocle ICA
 type: algorithm
+platform: R
 implementation_id: monocle
 doi: 10.1038/nmeth.4402
 trajectory_types:
