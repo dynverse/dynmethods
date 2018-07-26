@@ -4,6 +4,9 @@ container_url: https://github.com/dynverse/dynmethods/tree/master/containers/elp
 name: ElPiGraph linear
 type: algorithm
 implementation_id: elpigraph
+platform: R
+arXiv: '1804.07580'
+google_scholar_cluster_id: '13755708560339919612'
 parameters:
   topology:
     description: the kind of topology to detect
@@ -61,7 +64,7 @@ input:
   format: rds
   required: expression
 output:
-  format: text
+  format: rds
   outputs:
   - trajectory
   - timings

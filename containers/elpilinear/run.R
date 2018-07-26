@@ -3,16 +3,22 @@ library(dplyr)
 library(purrr)
 library(readr)
 
-checkpoints <- list()
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
 data <- read_rds("/input/data.rds")
-expression <- data$expression
-
 params <- jsonlite::read_json("/input/params.json")
 
+#' @examples
+#' data <- data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_genes = 300, model = "binary_tree") %>% c(., .$prior_information)
+#' params <- yaml::read_yaml("containers/elpilinear/definition.yml")$parameters %>%
+#'   {.[names(.) != "forbidden"]} %>%
+#'   map(~ .$default)
+
+expression <- data$expression
+
+checkpoints <- list()
 checkpoints$method_afterpreproc <- as.numeric(Sys.time())
 
 #   ____________________________________________________________________________
@@ -75,14 +81,22 @@ checkpoints$method_aftermethod <- as.numeric(Sys.time())
 milestone_network <- ProjStruct$Edges %>%
   as_data_frame() %>%
   rename(from = row, to = col) %>%
-  mutate(length = ProjStruct$EdgeLen, directed=FALSE)
+  mutate(
+    from = paste0("M", from),
+    to = paste0("M", to),
+    length = ProjStruct$EdgeLen,
+    directed = FALSE
+  )
 
 progressions <- tibble(cell_id = rownames(expression), edge_id = ProjStruct$EdgeID) %>%
   left_join(milestone_network %>% select(from, to) %>% mutate(edge_id = row_number()), "edge_id") %>%
   select(-edge_id) %>%
   mutate(percentage = pmin(1, pmax(0, ProjStruct$ProjectionValues)))
 
-write_csv(milestone_network, "/output/milestone_network.csv")
-write_csv(progressions, "/output/progressions.csv")
+output <- lst(
+  milestone_network,
+  progressions,
+  timings = checkpoints
+)
 
-jsonlite::write_json(checkpoints, "/output/timings.json")
+write_rds(output, "/output/output.rds")
