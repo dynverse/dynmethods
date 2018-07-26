@@ -4,6 +4,8 @@ container_url: https://github.com/dynverse/dynmethods/tree/master/containers/mfa
 name: mfa
 type: algorithm
 doi: 10.12688/wellcomeopenres.11087.1
+platform: R
+google_scholar_cluster_id: '1870082668590545'
 trajectory_types:
 - linear
 - bifurcation
@@ -14,7 +16,6 @@ trajectory_types:
 topology_inference: parameter
 license: GPL (>= 2)
 publication_date: '2017-03-15'
-version: 0.99.2
 code_url: https://github.com/kieranrcampbell/mfa
 parameters:
   b:
@@ -59,7 +60,10 @@ input:
   format: rds
   required: expression
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - trajectory
+  - timings
 authors:
 - given: Kieran
   family: Campbell
