@@ -4,6 +4,7 @@ container_url: https://github.com/dynverse/dynmethods/tree/master/containers/pag
 name: PAGA
 type: algorithm
 implementation_id: paga
+platform: Python
 parameters:
   n_neighbors:
     description: Number of neighbours for knn
@@ -48,6 +49,7 @@ output:
   - dimred
   - timings
 doi: 10.1101/208819
+google_scholar_cluster_id: '10470081259069082868'
 trajectory_types:
 - linear
 - bifurcation
@@ -55,6 +57,7 @@ trajectory_types:
 - multifurcation
 - binary_tree
 - tree
+- disconnected_tree
 topology_inference: free
 authors:
 - given: Alexander
@@ -67,5 +70,4 @@ authors:
   email: fabian.theis@helmholtz-muenchen.de
   github: theislab
 preprint_date: '2017-10-27'
-version: 1.2.1
 code_url: https://github.com/theislab/graph_abstraction
