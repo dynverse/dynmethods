@@ -10,7 +10,7 @@ editor_options:
 library(tidyverse)
 library(dynmethods)
 
-load("data/methods.rda")
+data("methods")
 ```
 
 
