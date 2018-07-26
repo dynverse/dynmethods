@@ -14,52 +14,17 @@ RoxygenNote: 6.0.1
 Depends:
   R (>= 3.4.0)
 Imports: 
-  crayon,
-  desc,
-  devtools,
-  dplyr, 
-  dyndimred,
-  dynplot,
+  dynwrap
+Suggests:
+  dplyr,
   dynutils,
-  dynwrap,
-  jsonlite,
-  ggplot2,
-  glue,
-  grDevices,
-  grid,
-  Hmisc,
-  igraph,
-  lhs,
-  magrittr, 
-  methods,
-  ParamHelpers (>= 1.11),
-  purrr, 
-  rcrossref,
-  readr,
-  reshape2,
-  stringr,
-  testthat,
-  tibble, 
-  tidygraph,
-  tidyr,
-  viridis,
-  yaml
-Suggests: 
-  dyntoy,
-  future,
-  roxygen2,
-  ggforce,
-  ggraph,
-  ggrepel,
   knitr,
-  rmarkdown,
-  RColorBrewer,
-  tidyverse
+  ParamHelpers (>= 1.11),
+  purrr,
+  testthat,
+  tibble
 Remotes:
   dynverse/dynutils,
-  dynverse/dyndimred,
-  dynverse/dynwrap,
-  dynverse/dynplot,
-  dynverse/dyntoy
+  dynverse/dynwrap
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
