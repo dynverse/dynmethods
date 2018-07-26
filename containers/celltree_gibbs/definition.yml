@@ -3,6 +3,7 @@ docker_repository: dynverse/celltree_gibbs
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/celltree_gibbs
 name: cellTree with gibbs
 type: algorithm
+platform: R
 implementation_id: celltree
 apt_dependencies: libgsl-dev
 doi: 10.1186/s12859-016-1175-6
