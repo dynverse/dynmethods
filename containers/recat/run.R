@@ -28,14 +28,14 @@ checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 # run reCAT
 result <- reCAT::bestEnsembleComplexTSP(
   test_exp = expression,
-  TSPFold = TSPFold,
-  beginNum = beginNum,
-  endNum = endNum,
-  base_cycle_range = base_cycle_range_start:base_cycle_range_end,
-  step_size = step_size,
-  max_num = max_num,
-  clustMethod = clustMethod,
-  threads = num_cores,
+  TSPFold = params$TSPFold,
+  beginNum = params$beginNum,
+  endNum = params$endNum,
+  base_cycle_range = seq(params$base_cycle_range_start, params$base_cycle_range_end),
+  step_size = params$step_size,
+  max_num = params$max_num,
+  clustMethod = params$clustMethod,
+  threads = 1,
   output = FALSE
 )
 

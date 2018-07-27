@@ -16,7 +16,7 @@ params <- jsonlite::read_json("/input/params.json")
 
 #' @examples
 #' data <- data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_genes = 300, model = "linear") %>% c(., .$prior_information)
-#' params <- yaml::read_yaml("containers/embeddr/definition.yml")$parameters %>%
+#' params <- yaml::read_yaml("containers/pseudogp/definition.yml")$parameters %>%
 #'   {.[names(.) != "forbidden"]} %>%
 #'   map(~ .$default)
 
@@ -26,7 +26,8 @@ expression <- data$expression
 #   Infer trajectory                                                        ####
 
 # perform dimreds
-dimred_names <- names(dyndimred::list_dimred_methods())[as.logical(params$dimreds)]
+dimred_names <- names(dyndimred::list_dimred_methods())
+dimred_names <- dimred_names[which(as.logical(params$dimreds))] # 'which()' is to ensure when new dimreds are added, they simply get left out
 spaces <- map(dimred_names, ~ dyndimred::dimred(expression, method = ., ndim = 2)) # only 2 dimensions per dimred are allowed
 
 # TIMING: done with preproc
@@ -54,7 +55,7 @@ pseudotime <- MCMCglmm::posterior.mode(tmcmc) %>%
   setNames(rownames(expression))
 
 # return output
-output <- model(
+output <- lst(
   pseudotime = pseudotime,
   timings = checkpoints
 )

@@ -44,10 +44,10 @@ parameters:
     lower: 1
     description: The number of chains for the MCMC trace
   iter:
-    type: numeric
-    default: 100.0
-    upper: 1000.0
-    lower: 100.0
+    type: integer
+    default: 100
+    upper: 1000
+    lower: 100
     description: The number of iterations for the MCMC trace
   dimreds:
     type: logical_vector
@@ -61,7 +61,9 @@ parameters:
     - no
     - no
     - no
-    length: 9.0
+    - no
+    - no
+    length: 11
     description: |-
       A character vector specifying which dimensionality reduction methods to use.
       See \code{\link[dyndimred:dimred]{dyndimred::dimred}} for the list of available dimensionality reduction methods.

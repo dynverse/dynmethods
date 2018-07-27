@@ -5,15 +5,12 @@ name: SCORPIUS
 type: algorithm
 implementation_id: scorpius
 doi: 10.1101/079509
+google_scholar_cluster_id: '7752629025700865018'
 trajectory_types:
 - linear
-- bifurcation
-- convergence
-- multifurcation
 topology_inference: fixed
 license: GPL-3
 preprint_date: '2016-10-07'
-version: '1.0'
 code_url: https://github.com/rcannood/SCORPIUS
 parameters:
   distance_method:
@@ -56,9 +53,9 @@ parameters:
       of iterations'
   stretch:
     type: numeric
-    default: 0.0e+00
+    default: 0.0
     upper: 5.0
-    lower: 0.0e+00
+    lower: 0.0
     description: '\code{\link[princurve]{principal_curve}} parameter: a factor by
       which the curve can be extrapolated when points are projected'
   smoother:
@@ -79,7 +76,11 @@ input:
   format: rds
   required: expression
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - linear_trajectory
+  - dimred
+  - timings
 authors:
 - given: Robrecht
   family: Cannoodt

@@ -50,4 +50,4 @@ output <- lst(
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-write_rds(model, "/output/output.rds")
+write_rds(output, "/output/output.rds")
