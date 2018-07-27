@@ -21,7 +21,6 @@ p <- jsonlite::read_json("/input/params.json")
 #'   map(~ .$default)
 
 counts <- data$counts
-grouping <- data$grouping
 start_id <- data$start_id
 
 checkpoints$method_afterpreproc <- as.numeric(Sys.time())
