@@ -6,13 +6,18 @@ library(tibble)
 
 library(STEMNET)
 
-checkpoints <- list()
-
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
 data <- read_rds('/input/data.rds')
 params <- jsonlite::read_json('/input/params.json')
+
+#' @examples
+#' data <- data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_genes = 300, model = "bifurcating") %>% c(., .$prior_information)
+#' params <- yaml::read_yaml("containers/stemnet/definition.yml")$parameters %>%
+#'   {.[names(.) != "forbidden"]} %>%
+#'   map(~ .$default)
+
 expression <- data$expression
 end_id <- data$end_id
 groups_id <- data$groups_id
@@ -20,7 +25,7 @@ groups_id <- data$groups_id
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
 
-checkpoints$method_afterpreproc <- as.numeric(Sys.time())
+checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
 # determine end groups
 grouping <- groups_id %>% deframe() %>% .[rownames(expression)]
@@ -54,15 +59,11 @@ end_state_probabilities <- output@posteriors %>% as.data.frame() %>% rownames_to
 
 checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
-# extract dimred
-dimred <- plot(output)$PlotData %>%
-  rownames_to_column("cell_id") %>%
-  select(cell_id, x, y) %>%
-  rename(comp_1 = x, comp_2 = y)
-
+output <- lst(
+  end_state_probabilities,
+  pseudotime,
+  timings = checkpoints
+)
 #   ____________________________________________________________________________
 #   Save output & process output                                            ####
-write_csv(end_state_probabilities, "/output/end_state_probabilities.csv")
-write_csv(enframe(pseudotime, "cell_id", "pseudotime"), "/output/pseudotime.csv")
-write_json(checkpoints, "/output/checkpoints.json")
-write_csv(dimred, "/output/dimred.csv")
+write_rds(output, "/output/output.rds")

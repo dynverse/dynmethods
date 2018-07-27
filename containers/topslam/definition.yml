@@ -3,6 +3,7 @@ docker_repository: dynverse/topslam
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/topslam
 name: topslam
 type: algorithm
+platform: Python
 parameters:
   n_components:
     description: the number of components
@@ -52,20 +53,15 @@ output:
   - dimred
   - timings
 doi: 10.1101/057778
+google_scholar_cluster_id: '17023695402130493397'
 trajectory_types:
 - linear
-- bifurcation
-- convergence
-- multifurcation
-- binary_tree
-- tree
 topology_inference: fixed
-license: BSD-3-clause
+license: BSD-3
 authors:
 - given: Max
   family: Zwiessele
   email: ibinbei@gmail.com
   github: mzwiessele
 preprint_date: '2017-02-13'
-version: 1.0.0
 code_url: https://github.com/mzwiessele/topslam

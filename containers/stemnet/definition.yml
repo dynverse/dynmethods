@@ -3,6 +3,7 @@ docker_repository: dynverse/stemnet
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/stemnet
 name: STEMNET
 type: algorithm
+platform: R
 parameters:
   alpha:
     description: The elastic net mixing parameter of the ‘glmnet’ classifier.
@@ -27,12 +28,11 @@ input:
   - end_id
   - groups_id
 output:
-  format: text
+  format: rds
   outputs:
-  - pseudotime
   - end_state_probabilities
-  - dimred
 doi: 10.1038/ncb3493
+google_scholar_cluster_id: '2729547640192717338'
 trajectory_types:
 - bifurcation
 - multifurcation

@@ -1,10 +1,10 @@
 FROM rocker/tidyverse
 
-# install gsl
+RUN echo 'utils::setRepositories(ind=1:4)' > ~/.Rprofile
+
 RUN apt-get install -y libgsl-dev
 
-# install STEMNET
-RUN R -e "setRepositories(ind=1:2);devtools::install_git('https://git.embl.de/velten/STEMNET/')"
+RUN R -e "devtools::install_git('https://git.embl.de/velten/STEMNET/')"
 
 ADD . /code
 

@@ -4,6 +4,7 @@ container_url: https://github.com/dynverse/dynmethods/tree/master/containers/wis
 name: Wanderlust
 type: algorithm
 implementation_id: wishbone
+platform: Python
 parameters:
   normalise:
     type: logical
@@ -65,9 +66,10 @@ output:
   - pseudotime
   - dimred
   - timings
-doi: 10.1038/nbt.3569
+doi: 10.1016/j.cell.2014.04.005
+google_scholar_cluster_id: '10038301430146662437'
 trajectory_types: linear
-topology_inference: parameter
+topology_inference: fixed
 license: GPL-2
 authors:
 - given: Manu
@@ -79,5 +81,4 @@ authors:
   email: peerster@gmail.com
   ORCID: 0000-0002-9259-8817
 publication_date: '2016-05-02'
-version: 0.4.2
 code_url: https://github.com/ManuSetty/wishbone

@@ -3,7 +3,9 @@ docker_repository: dynverse/waterfall
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/waterfall
 name: Waterfall
 type: algorithm
+platform: R
 doi: 10.1016/j.stem.2015.07.013
+google_scholar_cluster_id: '4819957734275746771'
 trajectory_types: linear
 topology_inference: fixed
 publication_date: '2015-09-03'
@@ -18,7 +20,11 @@ input:
   format: rds
   required: expression
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - linear_trajectory
+  - dimred
+  - timings
 authors:
 - given: Jaehoon
   family: Shin
