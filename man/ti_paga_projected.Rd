@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_paga_projected.R
 \name{ti_paga_projected}
 \alias{ti_paga_projected}
-\title{Inferring a trajectory inference using Projected PAGA}
+\title{Inferring a trajectory inference using PAGA Projected}
 \usage{
 ti_paga_projected(n_neighbors = 30L, n_comps = 50L, n_dcs = 15L,
   resolution = 2.5, embedding_type = "fa", run_environment = NULL)
@@ -32,10 +32,10 @@ A TI method wrapper to be used together with
 \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/10.1101/208819}{ProjectedPAGA}.
+Will generate a trajectory using \href{https://doi.org/10.1101/208819}{PAGAProjected}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/paga}{container}.
+\href{https://github.com/dynverse/dynmethods/tree/master/containers/paga_projected}{container}.
 The original code of this method is available
 \href{https://github.com/theislab/graph_abstraction}{here}.
 }

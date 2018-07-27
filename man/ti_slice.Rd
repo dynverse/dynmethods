@@ -6,7 +6,7 @@
 \usage{
 ti_slice(lm.method = "clustering", model.type = "tree", ss.method = "all",
   ss.threshold = 0.25, community.method = "louvain",
-  cluster.method = "kmeans", k = 0, k.max = 10L, B = 100L,
+  cluster.method = "kmeans", k = 0L, k.max = 10L, B = 100L,
   k.opt.method = "firstmax", run_environment = NULL)
 }
 \arguments{
@@ -45,10 +45,8 @@ effect when lm.method is "graph" (default: \code{"louvain"}; values:
 clusters. Only take effect when lm.method is "clustering" (default: \code{"kmeans"};
 values: {\code{"kmeans"}, \code{"pam"}})}
 
-\item{k}{discrete; The number of cell clusters. If NULL, Gap statistic will be
-used to determine an optimal k. (default: \code{0}; values: {\code{0}, \code{3}, \code{4}, \code{5},
-\code{6}, \code{7}, \code{8}, \code{9}, \code{10}, \code{11}, \code{12}, \code{13}, \code{14}, \code{15}, \code{16}, \code{17}, \code{18}, \code{19},
-\code{20}})}
+\item{k}{integer; The number of cell clusters. If NULL, Gap statistic will be
+used to determine an optimal k. (default: \code{0L}; range: from \code{0L} to \code{20L})}
 
 \item{k.max}{integer; The "k.max" parameter of cluster::clusGap(); used when k
 is NULL. (default: \code{10L}; range: from \code{3L} to \code{20L})}

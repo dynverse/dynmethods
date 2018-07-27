@@ -3,20 +3,20 @@
 ################################################################################################
 
 #' @title Inferring a trajectory inference using Slingshot
-#'
+#' 
 #' @description
 #' Will generate a trajectory using
 #' [Slingshot](https://doi.org/10.1186/s12864-018-4772-0).
-#'
+#' 
 #' This method was wrapped inside a
 #' [container](https://github.com/dynverse/dynmethods/tree/master/containers/slingshot).
 #' The original code of this method is available
 #' [here](https://github.com/kstreet13/slingshot).
-#'
+#' 
 #' @references Street, K., Risso, D., Fletcher, R.B., Das, D., Ngai, J., Yosef,
 #' N., Purdom, E., Dudoit, S., 2018. Slingshot: cell lineage and pseudotime
 #' inference for single-cell transcriptomics. BMC Genomics 19.
-#'
+#' 
 #' @param shrink numeric; Logical or numeric between 0 and 1, determines whether
 #' and how much to shrink branching lineages toward their average prior to the
 #' split. (default: `1`; range: from `0` to `1`)
@@ -49,12 +49,11 @@
 #' well as \code{"tricube"} and \code{"density"}. See 'Details' for more.
 #' (default: `"cosine"`; values: {`"cosine"`, `"tricube"`, `"density"`})
 #' @inheritParams dynwrap::create_container_ti_method
-#'
+#' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_slingshot <- function(
-    dimred = "pca",
     shrink = 1,
     reweight = TRUE,
     reassign = TRUE,

@@ -87,8 +87,8 @@
 #' @param pdishuf integer; Positive integer. This is the number of randomizations
 #' to be performed. As a rule of thumb this number should be at least one order of
 #' magnitude larger than the desired p-value on the significance of the number of
-#' cells on a connection. Default is 2000. (default: `2000`; range: from `100` to
-#' `10000`)
+#' cells on a connection. Default is 2000. (default: `2000L`; range: from `100L`
+#' to `10000L`)
 #' @param pthr numeric; Positive number. This number corresponds to the p-value
 #' threshold, which is used to determine, whether the magnitude of an observed
 #' trajectory is significantly larger than observed for the randomized background
@@ -128,7 +128,7 @@ ti_stemid <- function(
     thr_upper = -5,
     outdistquant = 0.95,
     nmode = FALSE,
-    pdishuf = 2000,
+    pdishuf = 2000L,
     pthr = 0.01,
     pethr = 0.01,
     pvalue_cutoff = 0.05,

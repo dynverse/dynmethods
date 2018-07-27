@@ -3,20 +3,20 @@
 ################################################################################################
 
 #' @title Inferring a trajectory inference using CellTrails
-#'
+#' 
 #' @description
 #' Will generate a trajectory using
 #' [CellTrails](https://doi.org/10.1016/j.celrep.2018.05.002).
-#'
+#' 
 #' This method was wrapped inside a
 #' [container](https://github.com/dynverse/dynmethods/tree/master/containers/celltrails).
 #' The original code of this method is available
 #' [here](https://github.com/dcellwanger/CellTrails).
-#'
+#' 
 #' @references Ellwanger, D.C., Scheibinger, M., Dumont, R.A., Barr-Gillespie,
 #' P.G., Heller, S., 2018. Transcriptional Dynamics of Hair-Bundle Morphogenesis
 #' Revealed with CellTrails. Cell Reports 23, 2901–2914.e14.
-#'
+#' 
 #' @param threshold_dl integer; Minimum number of samples; if value < 1 it is
 #' interpreted as fraction, otherwise as absolute sample count (default: `2L`;
 #' range: from `0L` to `100L`)
@@ -40,7 +40,7 @@
 #' computation (default: `2L`; range: from `1L` to `5L`)
 #' @param l integer; Neighborhood size (default: `10L`; range: from `1L` to `50L`)
 #' @inheritParams dynwrap::create_container_ti_method
-#'
+#' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export

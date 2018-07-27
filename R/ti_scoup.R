@@ -11,7 +11,7 @@
 #' This method was wrapped inside a
 #' [container](https://github.com/dynverse/dynmethods/tree/master/containers/scoup).
 #' The original code of this method is available
-#' [here](https://github.com/gcyuan/PySCUBA).
+#' [here](https://github.com/hmatsu1226/SCOUP).
 #' 
 #' @references Matsumoto, H., Kiryu, H., 2016. SCOUP: a probabilistic model based
 #' on the Ornstein–Uhlenbeck process to analyze single-cell expression data during

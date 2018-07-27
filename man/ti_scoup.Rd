@@ -49,7 +49,7 @@ Will generate a trajectory using
 This method was wrapped inside a
 \href{https://github.com/dynverse/dynmethods/tree/master/containers/scoup}{container}.
 The original code of this method is available
-\href{https://github.com/gcyuan/PySCUBA}{here}.
+\href{https://github.com/hmatsu1226/SCOUP}{here}.
 }
 \references{
 Matsumoto, H., Kiryu, H., 2016. SCOUP: a probabilistic model based

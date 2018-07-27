@@ -4,10 +4,9 @@
 \alias{ti_slingshot}
 \title{Inferring a trajectory inference using Slingshot}
 \usage{
-ti_slingshot(dimred = "pca", shrink = 1, reweight = TRUE,
-  reassign = TRUE, thresh = 0.001, maxit = 10L, stretch = 2,
-  smoother = "smooth.spline", shrink.method = "cosine",
-  run_environment = NULL)
+ti_slingshot(shrink = 1, reweight = TRUE, reassign = TRUE,
+  thresh = 0.001, maxit = 10L, stretch = 2, smoother = "smooth.spline",
+  shrink.method = "cosine", run_environment = NULL)
 }
 \arguments{
 \item{shrink}{numeric; Logical or numeric between 0 and 1, determines whether
