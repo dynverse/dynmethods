@@ -3,7 +3,9 @@ docker_repository: dynverse/stemid2
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/stemid2
 name: StemID2
 type: algorithm
+platform: R
 doi: 10.1016/j.stem.2016.05.010
+google_scholar_cluster_id: '169140648120472800360'
 trajectory_types:
 - linear
 - bifurcation
@@ -213,7 +215,10 @@ input:
   format: rds
   required: counts
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - dimred_projection
+  - timings
 authors:
 - given: Dominic
   family: Grün

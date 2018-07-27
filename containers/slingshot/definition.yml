@@ -3,7 +3,9 @@ docker_repository: dynverse/slingshot
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/slingshot
 name: Slingshot
 type: algorithm
+platform: R
 doi: 10.1186/s12864-018-4772-0
+google_scholar_cluster_id: '15798146274231272778'
 trajectory_types:
 - linear
 - bifurcation
@@ -15,39 +17,12 @@ topology_inference: free
 license: Artistic-2.0
 preprint_date: '2017-04-19'
 publication_date: '2018-06-19'
-version: 0.99.8
 code_url: https://github.com/kstreet13/slingshot
 apt_dependencies:
 - libcgal-dev
 - libglu1-mesa-dev
 - libglu1-mesa-dev
 parameters:
-  ndim:
-    type: integer
-    default: 3
-    upper: 20
-    lower: 2
-    description: The number of dimensions
-  nclus:
-    type: integer
-    default: 5
-    upper: 40
-    lower: 2
-    description: Number of clusters
-  dimred:
-    type: discrete
-    default: pca
-    values:
-    - pca
-    - mds
-    - tsne
-    - ica
-    - lle
-    - mds_sammon
-    - mds_isomds
-    - mds_smacof
-    - umap
-    description: Which dimensionality reduction method to use.
   shrink:
     type: numeric
     default: 1.0
@@ -120,7 +95,11 @@ input:
   - end_id
   required: counts
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - trajectory
+  - dimred
+  - timings
 authors:
 - given: Kelly
   family: Street
