@@ -86,7 +86,8 @@ trajectory_types:
 - multifurcation
 - binary_tree
 - tree
-- disconnected_tree
+- graph
+- disconnected_graph
 authors:
 - given: Daniel
   family: Ellwanger

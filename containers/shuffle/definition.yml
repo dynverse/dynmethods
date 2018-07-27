@@ -3,10 +3,16 @@ docker_repository: dynverse/shuffle
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/shuffle
 name: 'Control: shuffle'
 type: control_test
+platform: R
 trajectory_types:
 - linear
 - bifurcation
 - convergence
+- multifurcation
+- binary_tree
+- tree
+- graph
+- disconnected_graph
 topology_inference: free
 parameters:
   dummy_param:
@@ -21,7 +27,10 @@ input:
   - counts
   - dataset
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - trajectory
+  - timings
 authors:
 - given: Robrecht
   family: Cannoodt

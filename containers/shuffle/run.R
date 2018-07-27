@@ -1,10 +1,7 @@
-library(dynwrap)
 library(jsonlite)
 library(readr)
 library(dplyr)
 library(purrr)
-
-
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
@@ -12,45 +9,39 @@ library(purrr)
 data <- read_rds("/input/data.rds")
 params <- jsonlite::read_json("/input/params.json")
 
+#' @examples
+#' data <- data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_genes = 300, model = "linear") %>% c(., .$prior_information)
+#' params <- yaml::read_yaml("containers/embeddr/definition.yml")$parameters %>%
+#'   {.[names(.) != "forbidden"]} %>%
+#'   map(~ .$default)
+
+counts <- data$counts
+dataset <- data$dataset
+
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
 
-run_fun <- function(
-  counts,
-  dataset,
-  dummy_param = 0.5
-) {
-  # TIMING: done with preproc
-  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+# TIMING: done with preproc
+checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
-  # permute cell labels
-  allcells <- rownames(counts)
-  mapper <- setNames(sample(allcells), allcells)
-  progressions <- dataset$progressions %>% mutate(
-    cell_id = mapper[cell_id]
-  )
+# permute cell labels
+allcells <- rownames(counts)
+mapper <- setNames(sample(allcells), allcells)
+progressions <- dataset$progressions %>% mutate(
+  cell_id = mapper[cell_id]
+)
 
-  # TIMING: done with method
-  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+# TIMING: done with method
+checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
-  # return output
-  wrap_prediction_model(
-    cell_ids = dataset$cell_ids
-  ) %>% add_trajectory(
-    milestone_ids = dataset$milestone_ids,
-    milestone_network = dataset$milestone_network,
-    progressions = progressions,
-    divergence_regions = dataset$divergence_regions
-  ) %>% add_timings(
-    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
-  )
-}
-
-args <- params[intersect(names(params), names(formals(run_fun)))]
-
-model <- do.call(run_fun, c(args, data))
+output <- lst(
+  milestone_network = dataset$milestone_network,
+  progressions = progressions,
+  divergence_regions = dataset$divergence_regions,
+  timings = checkpoints
+)
 
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-write_rds(model, "/output/output.rds")
+write_rds(output, "/output/output.rds")

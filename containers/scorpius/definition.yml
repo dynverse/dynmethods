@@ -6,6 +6,7 @@ type: algorithm
 implementation_id: scorpius
 doi: 10.1101/079509
 google_scholar_cluster_id: '7752629025700865018'
+platform: R
 trajectory_types:
 - linear
 topology_inference: fixed

@@ -3,6 +3,7 @@ docker_repository: dynverse/scuba
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/scuba
 name: SCUBA
 type: algorithm
+platform: Python
 parameters:
   rigorous_gap_stats:
     description: Whether to use rigorous gap statistics to determine number of clusters
@@ -50,8 +51,14 @@ output:
   - cluster_graph
   - timings
 doi: 10.1073/pnas.1408993111
-trajectory_types: linear
-topology_inference: free
+google_scholar_cluster_id: '15458763724511636614'
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
 authors:
 - given: Eugenio
   family: Marco
@@ -65,5 +72,4 @@ authors:
   github: gcyuan
   ORCID: 0000-0002-2283-4714
 publication_date: '2014-12-30'
-version: 0.1.1
 code_url: https://github.com/gcyuan/SCUBA
