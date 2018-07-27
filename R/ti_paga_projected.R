@@ -3,21 +3,21 @@
 ################################################################################################
 
 #' @title Inferring a trajectory inference using Projected PAGA
-#' 
+#'
 #' @description
 #' Will generate a trajectory using [Projected
 #' PAGA](https://doi.org/10.1101/208819).
-#' 
+#'
 #' This method was wrapped inside a
 #' [container](https://github.com/dynverse/dynmethods/tree/master/containers/paga).
 #' The original code of this method is available
 #' [here](https://github.com/theislab/graph_abstraction).
-#' 
+#'
 #' @references Wolf, F.A., Hamey, F., Plass, M., Solana, J., Dahlin, J.S.,
 #' Gottgens, B., Rajewsky, N., Simon, L., Theis, F.J., 2017. Graph abstraction
 #' reconciles clustering with trajectory inference through a topology preserving
 #' map of single cells.
-#' 
+#'
 #' @param n_neighbors integer; Number of neighbours for knn (default: `30L`;
 #' range: from `1L` to `100L`)
 #' @param n_comps integer; Number of principal components (default: `50L`; range:
@@ -31,11 +31,11 @@
 #' for very large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for
 #' small datasets). (default: `"fa"`; values: {``})
 #' @inheritParams dynwrap::create_container_ti_method
-#' 
+#'
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
-ti_praga <- function(
+ti_paga_projected <- function(
     n_neighbors = 30L,
     n_comps = 50L,
     n_dcs = 15L,
@@ -44,7 +44,7 @@ ti_praga <- function(
     run_environment = NULL
 ) {
   create_container_ti_method(
-    docker_repository = "dynverse/praga",
+    docker_repository = "dynverse/paga_projected",
     run_environment = run_environment,
     n_neighbors = n_neighbors,
     n_comps = n_comps,
