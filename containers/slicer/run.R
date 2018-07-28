@@ -15,7 +15,7 @@ params <- jsonlite::read_json("/input/params.json")
 
 
 #' @examples
-#' data <- data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_genes = 300, model = "linear") %>% c(., .$prior_information)
+#' data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_genes = 300, model = "linear") %>% c(., .$prior_information)
 #' params <- yaml::read_yaml("containers/slicer/definition.yml")$parameters %>%
 #'   {.[names(.) != "forbidden"]} %>%
 #'   map(~ .$default)
