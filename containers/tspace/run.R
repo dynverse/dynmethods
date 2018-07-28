@@ -30,7 +30,7 @@ params <- list(
   L = 15,
   D = "pearson_correlation",
   graph = 5,
-  trajectories = 2,
+  trajectories = 5,
   wp = 20,
   ground_truth = FALSE,
   weights = "exponential",
@@ -51,8 +51,9 @@ fit <- tSpace::tSpace(
 )
 
 
-qplot(fit$ts_file$PC1, fit$ts_file$PC2) +
-  geom_path(aes(fit$tspace_matrix[,1], fit$tspace_matrix[,2]))
+qplot(fit$ts_file$PC1, fit$ts_file$PC2)
+
+fit$tspace_matrix
 
 fit$pca_embbeding$x
 
