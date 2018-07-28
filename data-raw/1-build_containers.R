@@ -21,6 +21,6 @@ future_map(definition_files, function(file) {
 })
 
 #' @examples
-#' data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_genes = 300, model = "binary_tree")
+#' data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_features = 300, model = "binary_tree")
 #' traj <- dynwrap::infer_trajectory(data, method, verbose = TRUE)
 #' dynplot::plot_graph(traj)

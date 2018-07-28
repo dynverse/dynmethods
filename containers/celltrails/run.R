@@ -15,7 +15,7 @@ data <- read_rds("/input/data.rds")
 params <- jsonlite::read_json("/input/params.json")
 
 #' @examples
-#' data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 500, num_genes = 300, model = "binary_tree") %>% c(., .$prior_information)
+#' data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 500, num_features = 300, model = "binary_tree") %>% c(., .$prior_information)
 #' params <- yaml::read_yaml("containers/celltrails/definition.yml")$parameters %>%
 #'   {.[names(.) != "forbidden"]} %>%
 #'   map(~ .$default)
