@@ -4,46 +4,41 @@ library(readr)
 library(dplyr)
 library(purrr)
 
-
-
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
 data <- read_rds("/input/data.rds")
 params <- jsonlite::read_json("/input/params.json")
 
+#' @examples
+#' data <- data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_genes = 300, model = "binary_tree") %>% c(., .$prior_information)
+#' params <- yaml::read_yaml("containers/comp1/definition.yml")$parameters %>%
+#'   {.[names(.) != "forbidden"]} %>%
+#'   map(~ .$default)
+
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
 
-run_fun <- function(
-  expression,
-  ndim = 2,
-  dimred = "pca",
-  component = 1
-) {
-  # TIMING: done with preproc
-  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+expression <- data$expression
 
-  space <- dyndimred::dimred(expression, method = dimred, ndim = ndim)
+# TIMING: done with preproc
+tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
-  # TIMING: done with method
-  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+space <- dyndimred::dimred(expression, method = params$dimred, ndim = params$ndim)
 
-  # return output
-  wrap_prediction_model(
-    cell_ids = rownames(expression)
-  ) %>% add_linear_trajectory(
-    pseudotime = space[,component] %>% set_names(rownames(expression))
-  ) %>% add_dimred(
-    dimred = space
-  ) %>% add_timings(
-    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
-  )
-}
+# TIMING: done with method
+tl <- tl %>% add_timing_checkpoint("method_aftermethod")
 
-args <- params[intersect(names(params), names(formals(run_fun)))]
-
-model <- do.call(run_fun, c(args, data))
+# return output
+model <- wrap_prediction_model(
+  cell_ids = rownames(expression)
+) %>% add_linear_trajectory(
+  pseudotime = space[,params$component] %>% set_names(rownames(expression))
+) %>% add_dimred(
+  dimred = space
+) %>% add_timings(
+  timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+)
 
 #   ____________________________________________________________________________
 #   Save output                                                             ####

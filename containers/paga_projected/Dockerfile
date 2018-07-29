@@ -1,7 +1,3 @@
-# docker build paga -t dynverse/paga
-# docker push dynverse/paga
-# singularity build paga.simg docker://dynverse/paga
-
 FROM library/python
 RUN pip install pandas numpy matplotlib
 

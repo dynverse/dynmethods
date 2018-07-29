@@ -3,7 +3,9 @@ docker_repository: dynverse/tscan
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/tscan
 name: TSCAN
 type: algorithm
+platform: R
 doi: 10.1093/nar/gkw430
+google_scholar_cluster_id: '7813935256210785588'
 trajectory_types:
 - linear
 - bifurcation
@@ -14,7 +16,6 @@ trajectory_types:
 topology_inference: free
 license: GPL (>=2)
 publication_date: '2016-05-13'
-version: 1.7.0
 code_url: https://github.com/zji90/TSCAN
 parameters:
   minexpr_percent:
@@ -65,7 +66,10 @@ input:
   format: rds
   required: counts
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - dimred_projection
+  - timings
 authors:
 - given: Zhicheng
   family: Ji

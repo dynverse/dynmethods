@@ -3,6 +3,7 @@ docker_repository: dynverse/scimitar
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/scimitar
 name: SCIMITAR
 type: algorithm
+platform: Python
 parameters:
   covariance_type:
     type: discrete
@@ -51,13 +52,9 @@ output:
   - linear_trajectory
   - timings
 doi: 10.1142/9789813207813_0053
+google_scholar_cluster_id: '9521617617243964284'
 trajectory_types:
 - linear
-- bifurcation
-- convergence
-- multifurcation
-- binary_tree
-- tree
 topology_inference: fixed
 authors:
 - given: Josh
@@ -66,5 +63,4 @@ authors:
   github: dimenwarper
 preprint_date: '2016-10-04'
 publication_date: '2017-01-04'
-version: '0.1'
 code_url: https://github.com/dimenwarper/scimitar

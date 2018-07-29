@@ -4,10 +4,11 @@ container_url: https://github.com/dynverse/dynmethods/tree/master/containers/mpa
 name: Mpath
 type: algorithm
 doi: 10.1038/ncomms11988
+google_scholar_cluster_id: '13279740541516941155'
+platform: R
 trajectory_types: linear
 topology_inference: free
 publication_date: '2016-06-30'
-version: '1.0'
 code_url: https://github.com/JinmiaoChenLab/Mpath
 parameters:
   distMethod:
@@ -63,7 +64,11 @@ input:
   - counts
   - groups_id
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - grouping
+  - cluster_graph
+  - timings
 authors:
 - given: Michael
   family: Poidinger

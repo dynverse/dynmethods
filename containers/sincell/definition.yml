@@ -3,7 +3,9 @@ docker_repository: dynverse/sincell
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/sincell
 name: Sincell
 type: algorithm
+platform: R
 doi: 10.1093/bioinformatics/btv368
+google_scholar_cluster_id: '15532374725723489101'
 trajectory_types:
 - cycle
 - linear
@@ -163,7 +165,10 @@ input:
   format: rds
   required: expression
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - cell_graph
+  - timings
 authors:
 - given: Antonio
   family: Rausell

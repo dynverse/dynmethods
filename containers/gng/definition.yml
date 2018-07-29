@@ -3,6 +3,7 @@ docker_repository: dynverse/gng
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/gng
 name: Growing Neural Gas
 type: algorithm_test
+platform: R
 trajectory_types:
 - linear
 - bifurcation
@@ -12,7 +13,6 @@ trajectory_types:
 - tree
 topology_inference: free
 license: GPL-3
-version: 0.1.0
 code_url: https://github.com/rcannood/gng
 apt_dependencies: libudunits2-dev
 parameters:

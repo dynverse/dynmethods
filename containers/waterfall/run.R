@@ -1,10 +1,10 @@
-library(dynwrap)
 library(jsonlite)
 library(readr)
 library(dplyr)
 library(purrr)
 
-library(Waterfall)
+source("SupplementaryMethods/Waterfall.R")
+
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
@@ -12,40 +12,37 @@ library(Waterfall)
 data <- read_rds("/input/data.rds")
 params <- jsonlite::read_json("/input/params.json")
 
+#' @examples
+#' source("~/Downloads/SupplementaryMethods/Waterfall.R")
+#' data <- data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_genes = 300, model = "linear") %>% c(., .$prior_information)
+#' params <- yaml::read_yaml("containers/waterfall/definition.yml")$parameters %>%
+#'   {.[names(.) != "forbidden"]} %>%
+#'   map(~ .$default)
+
+expression <- data$expression
+
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
 
-run_fun <- function(
-  expression,
-  num_clusters = 10
-) {
-  requireNamespace("Waterfall")
+# TIMING: done with preproc
+checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
-  # TIMING: done with preproc
-  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+# run waterfall
+ps <- pseudotimeprog.foo(t(expression), k = params$num_clusters, color = rep("black", nrow(expression)))
 
-  # run waterfall
-  ps <- Waterfall::pseudotimeprog.foo(t(expression), k = num_clusters)
+dimred <- ps[,colnames(ps) != "pseudotime", drop = FALSE]
 
-  # TIMING: done with method
-  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+# TIMING: done with method
+checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
-  # return output
-  wrap_prediction_model(
-    cell_ids = rownames(expression)
-  ) %>% add_linear_trajectory(
-    pseudotime = ps$pseudotime %>% setNames(rownames(expression)),
-    ps = ps
-  ) %>% add_timings(
-    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
-  )
-}
-
-args <- params[intersect(names(params), names(formals(run_fun)))]
-
-model <- do.call(run_fun, c(args, data))
+# return output
+output <- lst(
+  pseudotime = set_names(ps$pseudotime, rownames(ps)),
+  dimred = as.matrix(dimred),
+  timings = checkpoints
+)
 
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-write_rds(model, "/output/output.rds")
+write_rds(output, "/output/output.rds")

@@ -3,12 +3,18 @@ docker_repository: dynverse/stemid
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/stemid
 name: StemID
 type: algorithm
+platform: R
 doi: 10.1016/j.stem.2016.05.010
+google_scholar_cluster_id: '16914064812047280036'
 trajectory_types:
 - linear
 - bifurcation
 - convergence
 - multifurcation
+- binary_tree
+- tree
+- graph
+- disconnected_graph
 topology_inference: free
 publication_date: '2016-06-21'
 code_url: https://github.com/dgrun/StemID
@@ -168,9 +174,9 @@ parameters:
       Default is FALSE.
   pdishuf:
     type: integer
-    default: 2000.0
-    upper: 10000.0
-    lower: 100.0
+    default: 2000
+    upper: 10000
+    lower: 100
     description: positive integer. This is the number of randomizations to be performed.
       As a rule of thumb this number should be at least one order of magnitude larger
       than the desired p-value on the significance of the number of cells on a connection.
@@ -179,7 +185,7 @@ parameters:
     type: numeric
     default: 0.01
     upper: 0.0001
-    lower: 0.0e+00
+    lower: 0.0
     description: positive number. This number corresponds to the p-value threshold,
       which is used to determine, whether the magnitude of an observed trajectory
       is significantly larger than observed for the randomized background distribution.
@@ -189,7 +195,7 @@ parameters:
     type: numeric
     default: 0.01
     upper: 0.0001
-    lower: 0.0e+00
+    lower: 0.0
     description: positive number. This number corresponds to the p-value threshold,
       which isused to determine for each link if it is populated by a number of cellssignificantly
       larger than expected for the randomized background distribution. This p-value
@@ -198,13 +204,13 @@ parameters:
   pvalue_cutoff:
     type: numeric
     default: 0.05
-    lower: 0.0e+00
+    lower: 0.0
     upper: 1.0
     description: Upper cutoff of p-value for determining significant edges
   linkscore_cutoff:
     type: numeric
     default: 0.2
-    lower: 0.0e+00
+    lower: 0.0
     upper: 1.0
     description: Lower cutoff of the linkscore for determining significant edges
   forbidden: thr_lower > thr_upper
@@ -212,7 +218,10 @@ input:
   format: rds
   required: counts
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - dimred_projection
+  - timings
 authors:
 - given: Dominic
   family: Grün

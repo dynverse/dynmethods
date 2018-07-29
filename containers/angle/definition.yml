@@ -4,7 +4,8 @@ container_url: https://github.com/dynverse/dynmethods/tree/master/containers/ang
 name: Angle
 type: control
 trajectory_types: cycle
-topology_inference: free
+topology_inference: fixed
+platform: R
 parameters:
   dimred:
     type: discrete

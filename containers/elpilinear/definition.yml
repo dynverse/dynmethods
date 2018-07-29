@@ -4,6 +4,9 @@ container_url: https://github.com/dynverse/dynmethods/tree/master/containers/elp
 name: ElPiGraph linear
 type: algorithm
 implementation_id: elpigraph
+platform: R
+arXiv: '1804.07580'
+google_scholar_cluster_id: '13755708560339919612'
 parameters:
   topology:
     description: the kind of topology to detect
@@ -61,12 +64,13 @@ input:
   format: rds
   required: expression
 output:
-  format: text
+  format: rds
   outputs:
   - trajectory
   - timings
 trajectory_types:
 - linear
+topology_inference: free
 license: GPL-3
 authors:
 - given: Luca
@@ -75,5 +79,4 @@ authors:
   github: Albluca
   ORCID: 0000-0001-8151-6989
 preprint_date: '2018-04-20'
-version: 1.0.0
 code_url: https://github.com/Albluca/ElPiGraph.R

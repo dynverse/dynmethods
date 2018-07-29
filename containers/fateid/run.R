@@ -6,13 +6,18 @@ library(tibble)
 
 library(FateID)
 
-checkpoints <- list()
-
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
 data <- read_rds('/input/data.rds')
 params <- jsonlite::read_json('/input/params.json')
+
+#' @examples
+#' data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_genes = 300, model = "binary_tree") %>% c(., .$prior_information)
+#' params <- yaml::read_yaml("containers/fateid/definition.yml")$parameters %>%
+#'   {.[names(.) != "forbidden"]} %>%
+#'   map(~ .$default)
+
 expression <- data$expression
 end_id <- data$end_id
 start_id <- data$start_id
@@ -21,7 +26,7 @@ groups_id <- data$groups_id
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
 
-checkpoints$method_afterpreproc <- as.numeric(Sys.time())
+checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
 # determine end groups
 grouping <- groups_id$group_id %>% factor() %>% as.numeric() %>% set_names(groups_id$cell_id)
@@ -43,19 +48,47 @@ tar <- end_groups
 
 # reclassify
 if (params$reclassify) {
-  rc <- reclassify(x, y, tar, clthr = params$clthr, nbfactor = params$nbfactor, q = params$q)
+  rc <- reclassify(
+    x,
+    y,
+    tar,
+    clthr = params$clthr,
+    nbfactor = params$nbfactor,
+    q = params$q
+  )
   y  <- rc$part
   x  <- rc$xf
 }
 
 # fate bias
-fb  <- fateBias(x, y, tar, z=NULL, minnr=params$minnr, minnrh=params$minnrh, nbfactor=params$nbfactor)
+fb  <- fateBias(
+  x,
+  y,
+  tar,
+  z = NULL,
+  minnr = params$minnr,
+  minnrh = params$minnrh,
+  nbfactor = params$nbfactor
+)
 
 # dimensionality reduction
-dr  <- compdr(x, z=NULL, m=params$m, k=params$k)
+dr  <- compdr(
+  x,
+  z = NULL,
+  m = params$m,
+  k = params$k
+)
 
 # principal curves
-pr  <- prcurve(y, fb, dr, k=params$k, m=params$m, trthr=params$trthr, start=start_group)
+pr <- prcurve(
+  y,
+  fb,
+  dr,
+  k = params$k,
+  m = params$m,
+  trthr = params$trthr,
+  start = start_group
+)
 
 checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
@@ -88,9 +121,11 @@ pseudotimes <- pseudotimes %>% bind_rows(
 # extract dimred
 dimred <- dr[[1]][[1]] %>% as.data.frame() %>% mutate(cell_id = rownames(expression))
 
-# save to files
-write_csv(pseudotimes, "/output/pseudotime.csv")
-write_csv(end_state_probabilities, "/output/end_state_probabilities.csv")
-write_csv(dimred, "/output/dimred.csv")
+output <- lst(
+  pseudotime = pseudotimes,
+  end_state_probabilities,
+  dimred,
+  timings = checkpoints
+)
 
-write_json(checkpoints, "/output/timings.json")
+write_rds(output, "/output/output.rds")

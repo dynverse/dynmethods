@@ -45,10 +45,8 @@
 #' @param cluster.method discrete; Use "kmeans" or "pam" to divide cells into
 #' clusters. Only take effect when lm.method is "clustering" (default: `"kmeans"`;
 #' values: {`"kmeans"`, `"pam"`})
-#' @param k discrete; The number of cell clusters. If NULL, Gap statistic will be
-#' used to determine an optimal k. (default: `0`; values: {`0`, `3`, `4`, `5`,
-#' `6`, `7`, `8`, `9`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`, `19`,
-#' `20`})
+#' @param k integer; The number of cell clusters. If NULL, Gap statistic will be
+#' used to determine an optimal k. (default: `0L`; range: from `0L` to `20L`)
 #' @param k.max integer; The "k.max" parameter of cluster::clusGap(); used when k
 #' is NULL. (default: `10L`; range: from `3L` to `20L`)
 #' @param B integer; The "B" parameter of cluster::clusGap(); used when k is NULL
@@ -68,7 +66,7 @@ ti_slice <- function(
     ss.threshold = 0.25,
     community.method = "louvain",
     cluster.method = "kmeans",
-    k = 0,
+    k = 0L,
     k.max = 10L,
     B = 100L,
     k.opt.method = "firstmax",

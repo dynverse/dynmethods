@@ -3,6 +3,7 @@ docker_repository: dynverse/cellrouter
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/cellrouter
 name: CellRouter
 type: algorithm
+platform: R
 parameters:
   ndim_pca:
     description: Number of principlal components to compute
@@ -105,7 +106,6 @@ input:
   required:
   - counts
   - start_id
-  optional: groups_id
 output:
   format: feather
   outputs:
@@ -113,6 +113,7 @@ output:
   - dimred
   - timings
 doi: 10.1038/s41467-018-03214-y
+google_scholar_cluster_id: '16330849752690040143'
 trajectory_types:
 - linear
 - bifurcation

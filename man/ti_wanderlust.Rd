@@ -38,7 +38,7 @@ A TI method wrapper to be used together with
 }
 \description{
 Will generate a trajectory using
-\href{https://doi.org/10.1038/nbt.3569}{Wanderlust}.
+\href{https://doi.org/10.1016/j.cell.2014.04.005}{Wanderlust}.
 
 This method was wrapped inside a
 \href{https://github.com/dynverse/dynmethods/tree/master/containers/wishbone}{container}.
@@ -46,8 +46,8 @@ The original code of this method is available
 \href{https://github.com/ManuSetty/wishbone}{here}.
 }
 \references{
-Setty, M., Tadmor, M.D., Reich-Zeliger, S., Angel, O., Salame,
-T.M., Kathail, P., Choi, K., Bendall, S., Friedman, N., Pe’er, D., 2016.
-Wishbone identifies bifurcating developmental trajectories from single-cell
-data. Nature Biotechnology 34, 637–645.
+Bendall, S.C., Davis, K.L., Amir, E.D., Tadmor, M.D., Simonds,
+E.F., Chen, T.J., Shenfeld, D.K., Nolan, G.P., Pe’er, D., 2014. Single-Cell
+Trajectory Detection Uncovers Progression and Regulatory Coordination in Human
+B Cell Development. Cell 157, 714–725.
 }

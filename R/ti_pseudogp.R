@@ -27,8 +27,8 @@
 #' the pseudotimes (default: `1`; range: from `0.01` to `1`)
 #' @param chains integer; The number of chains for the MCMC trace (default: `3L`;
 #' range: from `1L` to `20L`)
-#' @param iter numeric; The number of iterations for the MCMC trace (default:
-#' `100`; range: from `100` to `1000`)
+#' @param iter integer; The number of iterations for the MCMC trace (default:
+#' `100L`; range: from `100L` to `1000L`)
 #' @param dimreds logical_vector; A character vector specifying which
 #' dimensionality reduction methods to use.See
 #' \code{\link[dyndimred:dimred]{dyndimred::dimred}} for the list of available
@@ -51,8 +51,8 @@ ti_pseudogp <- function(
     pseudotime_mean = 0.5,
     pseudotime_var = 1,
     chains = 3L,
-    iter = 100,
-    dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
+    iter = 100L,
+    dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
     initialise_from = "random",
     run_environment = NULL
 ) {

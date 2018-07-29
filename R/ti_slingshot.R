@@ -17,13 +17,6 @@
 #' N., Purdom, E., Dudoit, S., 2018. Slingshot: cell lineage and pseudotime
 #' inference for single-cell transcriptomics. BMC Genomics 19.
 #' 
-#' @param ndim integer; The number of dimensions (default: `3L`; range: from `2L`
-#' to `20L`)
-#' @param nclus integer; Number of clusters (default: `5L`; range: from `2L` to
-#' `40L`)
-#' @param dimred discrete; Which dimensionality reduction method to use. (default:
-#' `"pca"`; values: {`"pca"`, `"mds"`, `"tsne"`, `"ica"`, `"lle"`, `"mds_sammon"`,
-#' `"mds_isomds"`, `"mds_smacof"`, `"umap"`})
 #' @param shrink numeric; Logical or numeric between 0 and 1, determines whether
 #' and how much to shrink branching lineages toward their average prior to the
 #' split. (default: `1`; range: from `0` to `1`)
@@ -61,9 +54,6 @@
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_slingshot <- function(
-    ndim = 3L,
-    nclus = 5L,
-    dimred = "pca",
     shrink = 1,
     reweight = TRUE,
     reassign = TRUE,
@@ -77,9 +67,6 @@ ti_slingshot <- function(
   create_container_ti_method(
     docker_repository = "dynverse/slingshot",
     run_environment = run_environment,
-    ndim = ndim,
-    nclus = nclus,
-    dimred = dimred,
     shrink = shrink,
     reweight = reweight,
     reassign = reassign,

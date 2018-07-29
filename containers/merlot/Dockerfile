@@ -1,6 +1,11 @@
 FROM rocker/tidyverse
 
+RUN echo 'utils::setRepositories(ind=1:4)' > ~/.Rprofile
+
+RUN R -e 'install.packages("destiny")'
+
 # install rgl
+RUN apt-get update
 RUN apt-get install -y libcgal-dev libglu1-mesa-dev libglu1-mesa-dev
 
 # install python
@@ -14,15 +19,10 @@ RUN apt-get -y install libudunits2-dev
 RUN Rscript -e 'install.packages("udunits2", configure.args =  c(udunits2 = "--with-udunits2-include=/usr/include/udunits2"))'
 
 # install elpigraph
-RUN R -e "setRepositories(ind=1:2);devtools::install_github('Albluca/ElPiGraph.R')"
-
-RUN R -e "print('hi')"
+RUN R -e "devtools::install_github('Albluca/ElPiGraph.R')"
 
 # install merlot
-RUN R -e "setRepositories(ind=1:2);devtools::install_github('dynverse/merlot')"
-
-# install destiny
-RUN R -e "setRepositories(ind=1:4);install.packages('destiny')"
+RUN R -e "devtools::install_github('dynverse/merlot')"
 
 ADD . /code
 

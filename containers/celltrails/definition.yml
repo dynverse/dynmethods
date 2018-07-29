@@ -3,6 +3,7 @@ docker_repository: dynverse/celltrails
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/celltrails
 name: CellTrails
 type: algorithm
+platform: R
 parameters:
   threshold_dl:
     description: Minimum number of samples; if value < 1 it is interpreted as fraction,
@@ -65,7 +66,7 @@ parameters:
     type: integer
     default: 10
     lower: 1
-    upper: 20
+    upper: 50
 input:
   format: rds
   required: expression
@@ -77,6 +78,7 @@ output:
   - cell_graph
   - timings
 doi: 10.1016/j.celrep.2018.05.002
+google_scholar_cluster_id: '8451775467554180378'
 trajectory_types:
 - linear
 - bifurcation
@@ -84,12 +86,12 @@ trajectory_types:
 - multifurcation
 - binary_tree
 - tree
-- disconnected_tree
+- graph
+- disconnected_graph
 authors:
 - given: Daniel
   family: Ellwanger
   email: dc.ellwanger.dev@gmail.com
   github: dcellwanger
 publication_date: '2018-06-05'
-version: 0.99.12
 code_url: https://github.com/dcellwanger/CellTrails

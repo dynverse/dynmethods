@@ -3,9 +3,11 @@ docker_repository: dynverse/celltree_vem
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/celltree_vem
 name: cellTree with vem
 type: algorithm
+platform: R
 implementation_id: celltree
 apt_dependencies: libgsl-dev
 doi: 10.1186/s12859-016-1175-6
+google_scholar_cluster_id: '6029217784505101308'
 trajectory_types:
 - linear
 - bifurcation
@@ -16,7 +18,6 @@ trajectory_types:
 topology_inference: free
 license: Artistic-2.0
 publication_date: '2016-08-13'
-version: 1.10.0
 parameters:
   method:
     type: discrete
@@ -74,7 +75,10 @@ input:
   - groups_id
   required: expression
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - cell_graph
+  - timings
 authors:
 - given: David
   family: duVerle

@@ -1,4 +1,3 @@
-library(dynwrap)
 library(jsonlite)
 library(readr)
 library(dplyr)
@@ -13,79 +12,50 @@ library(rstan)
 data <- read_rds("/input/data.rds")
 params <- jsonlite::read_json("/input/params.json")
 
+#' @examples
+#' data <- data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_genes = 300, model = "linear") %>% c(., .$prior_information)
+#' params <- yaml::read_yaml("containers/embeddr/definition.yml")$parameters %>%
+#'   {.[names(.) != "forbidden"]} %>%
+#'   map(~ .$default)
+
+expression <- data$expression
+
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
 
-run_fun <- function(
-  expression,
-  features_id,
-  iter = 100,
-  response_type = "switch",
-  inference_type = "hmc",
-  normalise_expression = TRUE
-) {
-  requireNamespace("ouija")
-  requireNamespace("rstan")
-  requireNamespace("coda")
 
-  # ouija assumes that a small number of marker genes is used, otherwise the method is verrry slow
-  expression <- expression[, features_id]
+# ouija assumes that a small number of marker genes is used, otherwise the method is too slow
+expression <- expression[, data$features_id]
 
-  # write compiled instance of the stanmodel to HDD
-  rstan::rstan_options(auto_write = TRUE)
+# write compiled instance of the stanmodel to HDD
+rstan::rstan_options(auto_write = TRUE)
 
-  # TIMING: done with preproc
-  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+# TIMING: done with preproc
+checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
-  # run ouija
-  oui <- ouija::ouija(
-    x = expression,
-    iter = iter,
-    response_type = response_type,
-    inference_type = inference_type,
-    normalise_expression = normalise_expression
-  )
+# run ouija
+oui <- ouija::ouija(
+  x = expression,
+  iter = params$iter,
+  response_type = params$response_type,
+  inference_type = params$inference_type,
+  normalise_expression = params$normalise_expression
+)
 
-  # TIMING: done with method
-  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+# TIMING: done with method
+checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
-  # obtain the pseudotime
-  pseudotime <- ouija::map_pseudotime(oui) %>%
-    setNames(rownames(expression))
+# obtain the pseudotime
+pseudotime <- ouija::map_pseudotime(oui) %>%
+  setNames(rownames(expression))
 
-  # run pca for visualisation purposes
-  space <- dimred(expression, method = "pca", ndim = 2)
-
-  # extract data for visualisation
-  # adapted from ouija::plot_switch_times(oui)
-  # to avoid saving the whole oui object
-  k_trace <- rstan::extract(oui$fit, "k")$k
-  kmean <- colMeans(k_trace)
-  t0 <- rstan::extract(oui$fit, "t0")$t0
-  t0_means <- colMeans(t0)
-  t0_interval <- coda::HPDinterval(coda::mcmc(t0))
-  t0_df <- data_frame(t0_mean = t0_means, lower = t0_interval[, 1], upper = t0_interval[, 2], kmean = kmean)
-  t0_df$Gene <- colnames(oui$Y[, oui$response_type == "switch"])
-  t0_df$Gene <- factor(t0_df$Gene, t0_df$Gene[order(t0_means)])
-
-  # return output
-  wrap_prediction_model(
-    cell_ids = rownames(expression)
-  ) %>% add_linear_trajectory(
-    pseudotime = pseudotime,
-    t0_df = t0_df
-  ) %>% add_dimred(
-    dimred = space
-  ) %>% add_timings(
-    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
-  )
-}
-
-args <- params[intersect(names(params), names(formals(run_fun)))]
-
-model <- do.call(run_fun, c(args, data))
+# return output
+output <- lst(
+  pseudotime = pseudotime,
+  timings = checkpoints
+)
 
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-write_rds(model, "/output/output.rds")
+write_rds(output, "/output/output.rds")

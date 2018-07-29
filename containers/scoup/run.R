@@ -1,10 +1,7 @@
-library(dynwrap)
 library(jsonlite)
 library(readr)
 library(dplyr)
 library(purrr)
-
-library(SCOUP)
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
@@ -12,91 +9,105 @@ library(SCOUP)
 data <- read_rds("/input/data.rds")
 params <- jsonlite::read_json("/input/params.json")
 
+#' @examples
+#' data <- data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_genes = 300, model = "linear") %>% c(., .$prior_information)
+#' params <- yaml::read_yaml("containers/scoup/definition.yml")$parameters %>%
+#'   {.[names(.) != "forbidden"]} %>%
+#'   map(~ .$default)
+
+expression <- data$expression
+groups_id <- data$groups_id
+start_id <- data$start_id
+end_n <- data$end_n
+
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
 
-run_fun <- function(
-  expression,
-  groups_id,
-  start_id,
-  end_n,
-  ndim = 2,
-  max_ite1 = 100,
-  max_ite2 = 100,
-  alpha_min = 0.1,
-  alpha_max = 100,
-  t_min = 0.001,
-  t_max = 2,
-  sigma_squared_min = 0.1,
-  thresh = 0.01,
-  verbose = FALSE
-) {
-  requireNamespace("SCOUP")
-
-  # if the dataset is cyclic, pretend it isn't
-  if (end_n == 0) {
-    end_n <- 1
-  }
-
-  start_cell <- sample(start_id, 1)
-  # figure out indices of starting population
-  # from the groups_id and the start_cell
-  start_ix <- groups_id %>%
-    filter(cell_id %in% start_cell) %>%
-    select(group_id) %>%
-    left_join(groups_id, by = "group_id") %>%
-    .$cell_id
-
-  # TIMING: done with preproc
-  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
-
-  # run SP and SCOUP
-  model <- SCOUP::run_SCOUP(
-    expr = expression,
-    start_ix = start_ix,
-    ndim = ndim,
-    nbranch = end_n,
-    max_ite1 = max_ite1,
-    max_ite2 = max_ite2,
-    alpha_min = alpha_min,
-    alpha_max = alpha_max,
-    t_min = t_min,
-    t_max = t_max,
-    sigma_squared_min = sigma_squared_min,
-    thresh = thresh,
-    verbose = verbose
-  )
-
-  # TIMING: done with method
-  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
-
-  if (any(is.na(model$ll))) {
-    stop("SCOUP returned NaNs", call. = FALSE)
-  }
-
-  pseudotime <- model$cpara %>% {set_names(.$time, rownames(.))}
-  esp <- model$cpara %>% select(-time) %>% tibble::rownames_to_column("cell_id")
-
-  # return output
-  wrap_prediction_model(
-    cell_ids = rownames(expression),
-    cell_info = model$cpara %>% tibble::rownames_to_column("cell_id")
-  ) %>% add_end_state_probabilities(
-    end_state_probabilities = esp,
-    pseudotime = pseudotime,
-    do_scale_minmax = TRUE
-  ) %>% add_dimred(
-    dimred = model$dimred %>% as.matrix
-  ) %>% add_timings(
-    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
-  )
+# if the dataset is cyclic, pretend it isn't
+if (end_n == 0) {
+  end_n <- 1
 }
 
-args <- params[intersect(names(params), names(formals(run_fun)))]
+start_cell <- sample(start_id, 1)
 
-model <- do.call(run_fun, c(args, data))
+# figure out indices of starting population
+# from the groups_id and the start_cell
+start_ix <- groups_id %>%
+  filter(cell_id %in% start_cell) %>%
+  select(group_id) %>%
+  left_join(groups_id, by = "group_id") %>%
+  .$cell_id
+
+# create distribution on starting population
+vars <- apply(expression[start_ix,, drop = F], 2, stats::var)
+vars[vars == 0] <- diff(range(expression)) * 1e-3
+means <- apply(expression[start_ix,, drop=F], 2, mean)
+distr_df <- data.frame(i = seq_along(vars) - 1, means, vars)
+
+# write data to files
+utils::write.table(t(expression), file = "data", sep = "\t", row.names = FALSE, col.names = FALSE)
+utils::write.table(distr_df, file = "init", sep = "\t", row.names = FALSE, col.names = FALSE)
+
+# TIMING: done with preproc
+checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
+
+# execute sp
+cmd <- paste0("SCOUP/sp data init time_sp dimred ", ncol(expression), " ", nrow(expression), " ", params$ndim)
+cat(cmd, "\n", sep = "")
+system(cmd)
+
+# execute scoup
+cmd <- paste0(
+  "SCOUP/scoup data init time_sp gpara cpara ll ",
+  ncol(expression), " ", nrow(expression),
+  " -k ", end_n,
+  " -m ", params$max_ite1,
+  " -M ", params$max_ite2,
+  " -a ", params$alpha_min,
+  " -A ", params$alpha_max,
+  " -t ", params$t_min,
+  " -T ", params$t_max,
+  " -s ", params$sigma_squared_min,
+  " -e ", params$thresh
+)
+cat(cmd, "\n", sep = "")
+system(cmd)
+
+# read dimred
+dimred <- utils::read.table("dimred", col.names = c("i", paste0("Comp", seq_len(params$ndim))))
+
+# last line is root node
+root <- dimred[nrow(dimred),-1,drop=F]
+dimred <- dimred[-nrow(dimred),-1]
+rownames(dimred) <- rownames(expression)
+
+# read cell params
+cpara <- utils::read.table("cpara", col.names = c("time", paste0("M", seq_len(end_n))))
+rownames(cpara) <- rownames(expression)
+
+# loglik
+ll <- utils::read.table("ll")[[1]]
+
+# TIMING: done with method
+checkpoints$method_aftermethod <- as.numeric(Sys.time())
+
+if (any(is.na(ll))) {
+  stop("SCOUP returned NaNs", call. = FALSE)
+}
+
+pseudotime <- cpara %>% {set_names(.$time, rownames(.))}
+esp <- cpara %>% select(-time) %>% tibble::rownames_to_column("cell_id")
+
+# return output
+output <- lst(
+  end_state_probabilities = esp,
+  pseudotime,
+  do_scale_minmax = TRUE,
+  dimred = dimred %>% as.matrix,
+  timings = checkpoints
+)
 
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-write_rds(model, "/output/output.rds")
+write_rds(output, "/output/output.rds")

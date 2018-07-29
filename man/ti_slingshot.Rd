@@ -4,22 +4,11 @@
 \alias{ti_slingshot}
 \title{Inferring a trajectory inference using Slingshot}
 \usage{
-ti_slingshot(ndim = 3L, nclus = 5L, dimred = "pca", shrink = 1,
-  reweight = TRUE, reassign = TRUE, thresh = 0.001, maxit = 10L,
-  stretch = 2, smoother = "smooth.spline", shrink.method = "cosine",
-  run_environment = NULL)
+ti_slingshot(shrink = 1, reweight = TRUE, reassign = TRUE,
+  thresh = 0.001, maxit = 10L, stretch = 2, smoother = "smooth.spline",
+  shrink.method = "cosine", run_environment = NULL)
 }
 \arguments{
-\item{ndim}{integer; The number of dimensions (default: \code{3L}; range: from \code{2L}
-to \code{20L})}
-
-\item{nclus}{integer; Number of clusters (default: \code{5L}; range: from \code{2L} to
-\code{40L})}
-
-\item{dimred}{discrete; Which dimensionality reduction method to use. (default:
-\code{"pca"}; values: {\code{"pca"}, \code{"mds"}, \code{"tsne"}, \code{"ica"}, \code{"lle"}, \code{"mds_sammon"},
-\code{"mds_isomds"}, \code{"mds_smacof"}, \code{"umap"}})}
-
 \item{shrink}{numeric; Logical or numeric between 0 and 1, determines whether
 and how much to shrink branching lineages toward their average prior to the
 split. (default: \code{1}; range: from \code{0} to \code{1})}

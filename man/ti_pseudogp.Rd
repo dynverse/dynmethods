@@ -5,9 +5,9 @@
 \title{Inferring a trajectory inference using pseudogp}
 \usage{
 ti_pseudogp(smoothing_alpha = 10, smoothing_beta = 3,
-  pseudotime_mean = 0.5, pseudotime_var = 1, chains = 3L, iter = 100,
-  dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
-  initialise_from = "random", run_environment = NULL)
+  pseudotime_mean = 0.5, pseudotime_var = 1, chains = 3L, iter = 100L,
+  dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
+  FALSE, FALSE), initialise_from = "random", run_environment = NULL)
 }
 \arguments{
 \item{smoothing_alpha}{numeric; The hyperparameter for the Gamma distribution
@@ -25,8 +25,8 @@ the pseudotimes (default: \code{1}; range: from \code{0.01} to \code{1})}
 \item{chains}{integer; The number of chains for the MCMC trace (default: \code{3L};
 range: from \code{1L} to \code{20L})}
 
-\item{iter}{numeric; The number of iterations for the MCMC trace (default:
-\code{100}; range: from \code{100} to \code{1000})}
+\item{iter}{integer; The number of iterations for the MCMC trace (default:
+\code{100L}; range: from \code{100L} to \code{1000L})}
 
 \item{dimreds}{logical_vector; A character vector specifying which
 dimensionality reduction methods to use.See

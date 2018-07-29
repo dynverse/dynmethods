@@ -3,8 +3,16 @@ docker_repository: dynverse/slicer
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/slicer
 name: SLICER
 type: algorithm
+platform: R
 doi: 10.1186/s13059-016-0975-3
-trajectory_types: linear
+google_scholar_cluster_id: '2071780199208319199'
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
 topology_inference: free
 license: GPL-2
 preprint_date: '2016-04-09'
@@ -35,7 +43,11 @@ input:
   - expression
   - start_id
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - dimred
+  - cell_graph
+  - timings
 authors:
 - given: Joshua
   family: Welch

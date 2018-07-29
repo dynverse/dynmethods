@@ -3,6 +3,9 @@ docker_repository: dynverse/comp1
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/comp1
 name: Component 1
 type: algorithm
+trajectory_types: linear
+topology_inference: fixed
+platform: R
 parameters:
   dimred:
     type: discrete

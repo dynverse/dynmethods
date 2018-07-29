@@ -4,6 +4,8 @@ container_url: https://github.com/dynverse/dynmethods/tree/master/containers/oui
 name: ouija
 type: algorithm
 doi: 10.1101/060442
+google_scholar_cluster_id: '5009450964277600738'
+platform: R
 trajectory_types:
 - linear
 - bifurcation
@@ -12,7 +14,6 @@ trajectory_types:
 topology_inference: fixed
 license: GPL (>=3)
 preprint_date: '2016-06-23'
-version: 0.99.0
 code_url: https://github.com/kieranrcampbell/ouija
 parameters:
   iter:
@@ -55,7 +56,10 @@ input:
   - expression
   - features_id
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - linear_trajectory
+  - timings
 authors:
 - given: Kieran
   family: Campbell

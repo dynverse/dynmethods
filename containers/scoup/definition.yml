@@ -3,12 +3,17 @@ docker_repository: dynverse/scoup
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/scoup
 name: SCOUP
 type: algorithm
+platform: C++
 doi: 10.1186/s12859-016-1109-3
-trajectory_types: linear
+google_scholar_cluster_id: '16676054631565429360'
+trajectory_types:
+- linear
+- bifurcation
+- multifurcation
 topology_inference: parameter
 license: MIT
 publication_date: '2016-06-08'
-code_url: https://github.com/gcyuan/PySCUBA
+code_url: https://github.com/hmatsu1226/SCOUP
 parameters:
   ndim:
     type: integer
@@ -74,7 +79,11 @@ input:
   - start_id
   - end_n
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - end_state_probabilities
+  - dimred
+  - timings
 authors:
 - given: Hirotaka
   family: Matsumoto

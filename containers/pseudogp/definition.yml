@@ -3,13 +3,14 @@ docker_repository: dynverse/pseudogp
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/pseudogp
 name: pseudogp
 type: algorithm
+platform: R
 doi: 10.1371/journal.pcbi.1005212
+google_scholar_cluster_id: '5243569616386453833'
 trajectory_types: linear
 topology_inference: fixed
 license: MIT
 preprint_date: '2016-04-05'
 publication_date: '2016-11-21'
-version: '0.1'
 code_url: https://github.com/kieranrcampbell/pseudogp
 parameters:
   smoothing_alpha:
@@ -43,10 +44,10 @@ parameters:
     lower: 1
     description: The number of chains for the MCMC trace
   iter:
-    type: numeric
-    default: 100.0
-    upper: 1000.0
-    lower: 100.0
+    type: integer
+    default: 100
+    upper: 1000
+    lower: 100
     description: The number of iterations for the MCMC trace
   dimreds:
     type: logical_vector
@@ -60,7 +61,9 @@ parameters:
     - no
     - no
     - no
-    length: 9.0
+    - no
+    - no
+    length: 11
     description: |-
       A character vector specifying which dimensionality reduction methods to use.
       See \code{\link[dyndimred:dimred]{dyndimred::dimred}} for the list of available dimensionality reduction methods.
@@ -81,7 +84,10 @@ input:
   format: rds
   required: expression
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - linear_trajectory
+  - timings
 authors:
 - given: Kieran
   family: Campbell

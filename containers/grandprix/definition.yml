@@ -3,6 +3,7 @@ docker_repository: dynverse/grandprix
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/grandprix
 name: GrandPrix
 type: algorithm
+platform: Python
 parameters:
   n_latent_dims:
     type: integer
@@ -30,6 +31,7 @@ output:
   - end_state_probabilities
   - timings
 doi: 10.1101/227843
+google_scholar_cluster_id: '15033203703043818597'
 trajectory_types: linear
 topology_inference: fixed
 authors:
@@ -38,5 +40,4 @@ authors:
   email: sumon.ahmed@postgrad.manchester.ac.uk
   github: sumonahmedUoM
 preprint_date: '2017-12-03'
-version: '0.1'
 code_url: https://github.com/ManchesterBioinference/GrandPrix

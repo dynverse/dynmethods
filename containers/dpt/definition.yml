@@ -4,18 +4,15 @@ container_url: https://github.com/dynverse/dynmethods/tree/master/containers/dpt
 name: DPT
 type: algorithm
 doi: 10.1038/nmeth.3971
+google_scholar_cluster_id: '13227754795988844195'
+platform: R
 trajectory_types:
-- linear
 - bifurcation
 - convergence
-- multifurcation
-- binary_tree
-- tree
 topology_inference: fixed
 license: GPL-3
 preprint_date: '2016-02-08'
 publication_date: '2016-08-29'
-version: 2.10.2
 code_url: https://bioconductor.org/packages/release/bioc/html/destiny.html
 parameters:
   sigma:
@@ -84,14 +81,17 @@ input:
   - features_id
   required: expression
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - dimred_projection
+  - timings
 authors:
 - given: Laleh
   family: Haghverdi
   email: eh@ebi.ac.uk
 - given: Philipp
   family: Angerer
-  email: 'philipp.angerer@helmholtz-muenchen.de, '
+  email: philipp.angerer@helmholtz-muenchen.de
   ORCID: 0000-0002-0369-2888
   github: flying-sheep
 - given: Fabian

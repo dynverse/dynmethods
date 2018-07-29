@@ -38,7 +38,7 @@
 #' computation. (default: `1e-04`; range: from `1e-07` to `1L`)
 #' @param min_fc numeric; Mimimum fold-change for differential expression
 #' computation (default: `2L`; range: from `1L` to `5L`)
-#' @param l integer; Neighborhood size (default: `10L`; range: from `1L` to `20L`)
+#' @param l integer; Neighborhood size (default: `10L`; range: from `1L` to `50L`)
 #' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with

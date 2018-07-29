@@ -9,7 +9,7 @@ ti_stemid(clustnr = 30L, bootnr = 50L, metric = "pearson",
   SE.factor = 0.25, B.gap = 50L, cln = 30L, FUNcluster = "kmedoids",
   dimred_method = "tsne", outminc = 0L, outlg = 2L, probthr = 0.001,
   thr_lower = -10, thr_upper = -5, outdistquant = 0.95, nmode = FALSE,
-  pdishuf = 2000, pthr = 0.01, pethr = 0.01, pvalue_cutoff = 0.05,
+  pdishuf = 2000L, pthr = 0.01, pethr = 0.01, pvalue_cutoff = 0.05,
   linkscore_cutoff = 0.2, run_environment = NULL)
 }
 \arguments{
@@ -99,8 +99,8 @@ still derived based on the projection. Default is FALSE.}
 \item{pdishuf}{integer; Positive integer. This is the number of randomizations
 to be performed. As a rule of thumb this number should be at least one order of
 magnitude larger than the desired p-value on the significance of the number of
-cells on a connection. Default is 2000. (default: \code{2000}; range: from \code{100} to
-\code{10000})}
+cells on a connection. Default is 2000. (default: \code{2000L}; range: from \code{100L}
+to \code{10000L})}
 
 \item{pthr}{numeric; Positive number. This number corresponds to the p-value
 threshold, which is used to determine, whether the magnitude of an observed

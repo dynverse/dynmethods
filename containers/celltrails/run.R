@@ -12,9 +12,15 @@ checkpoints <- list()
 #   Load data                                                               ####
 
 data <- read_rds("/input/data.rds")
-expression <- data$expression
-
 params <- jsonlite::read_json("/input/params.json")
+
+#' @examples
+#' data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 500, num_genes = 300, model = "binary_tree") %>% c(., .$prior_information)
+#' params <- yaml::read_yaml("containers/celltrails/definition.yml")$parameters %>%
+#'   {.[names(.) != "forbidden"]} %>%
+#'   map(~ .$default)
+
+expression <- data$expression
 
 checkpoints$method_afterpreproc <- as.numeric(Sys.time())
 
@@ -22,7 +28,7 @@ checkpoints$method_afterpreproc <- as.numeric(Sys.time())
 #   Infer trajectory                                                        ####
 # steps from the vignette https://dcellwanger.github.io/CellTrails/
 
-sce <- SingleCellExperiment(assays=list(logcounts = t(expression)))
+sce <- SingleCellExperiment(assays = list(logcounts = t(expression)))
 
 # filter features
 tfeat1 <- filterTrajFeaturesByDL(sce, threshold = params$threshold_dl, show_plot = FALSE)
@@ -33,12 +39,16 @@ trajFeatureNames(sce) <- Reduce(intersect, list(tfeat1, tfeat2, tfeat3))
 
 # dimensionality reduction
 se <- embedSamples(sce)
-d <- findSpectrum(se$eigenvalues, frac=params$frac)
+d <- findSpectrum(se$eigenvalues, frac = params$frac)
 latentSpace(sce) <- se$components[, d]
 
 # find states
-cl <- findStates(sce, min_size = params$min_size, min_feat = params$min_feat, max_pval = params$max_pval, min_fc = params$min_fc)
-states(sce) <- cl
+states(sce) <- sce %>% findStates(
+  min_size = params$min_size,
+  min_feat = params$min_feat,
+  max_pval = params$max_pval,
+  min_fc = params$min_fc
+)
 
 # construct tree
 sce <- connectStates(sce, l = params$l)
@@ -47,14 +57,16 @@ sce <- connectStates(sce, l = params$l)
 # this object can contain multiple trajectories (= "components"), so we have to extract information for every one of them and combine afterwards
 components <- CellTrails::trajComponents(sce)
 
-# only retain components with more than 2 states, otherwise the fitTrajectory will error
-components_ix <- seq_along(components)[map_lgl(components, ~length(.) > 1)]
 
 trajectories <- map(
-  components_ix,
-  function(trajectory_ix) {
-    traj <- selectTrajectory(sce, trajectory_ix)
-    fitTrajectory(traj)
+  seq_along(components),
+  function(ix) {
+    if (length(components[[ix]]) > 1) {
+      traj <- selectTrajectory(sce, ix)
+      fitTrajectory(traj)
+    } else {
+      components[[ix]]
+    }
   }
 )
 
@@ -71,27 +83,39 @@ dimred <- sce@reducedDims$CellTrails
 cell_graph <- map_dfr(
   trajectories,
   function(traj) {
-    graph <- CellTrails:::.trajGraph(traj)
-    cell_ids_graph <- igraph::vertex.attributes(graph)$sampleName
-    cell_graph <- graph %>%
-      igraph::as_data_frame() %>%
-      mutate(
-        from = cell_ids_graph[as.numeric(from)],
-        to = cell_ids_graph[as.numeric(to)],
+    if (is.character(traj)) {
+      cell_ids <- colnames(sce)[which(states(sce) == traj)]
+      data_frame(
+        from = cell_ids[-length(cell_ids)],
+        to = cell_ids[-1],
+        length = 0,
         directed = FALSE
-      ) %>%
-      dplyr::rename(
-        length = weight
       )
+    } else {
+      graph <- CellTrails:::.trajGraph(traj)
+      cell_ids_graph <- igraph::vertex.attributes(graph)$sampleName
+      cell_graph <- graph %>%
+        igraph::as_data_frame() %>%
+        mutate(
+          from = cell_ids_graph[as.numeric(from)],
+          to = cell_ids_graph[as.numeric(to)],
+          directed = FALSE
+        ) %>%
+        dplyr::rename(
+          length = weight
+        )
+    }
   }
 )
 
 to_keep <- unique(c(cell_graph$from, cell_graph$to))
 
-lst(
+output <- lst(
   grouping,
   dimred,
   cell_graph,
   to_keep,
   timings = checkpoints
-) %>% write_rds("/output/output.rds")
+)
+
+write_rds(output, "/output/output.rds")

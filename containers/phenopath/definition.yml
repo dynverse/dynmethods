@@ -3,16 +3,14 @@ docker_repository: dynverse/phenopath
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/phenopath
 name: PhenoPath
 type: algorithm
+platform: R
 doi: 10.1101/159913
+google_scholar_cluster_id: '7950138051435859838'
 trajectory_types:
 - linear
-- bifurcation
-- convergence
-- multifurcation
 topology_inference: fixed
 preprint_date: '2017-07-06'
 publication_data: '2018-06-23'
-version: 1.1.1
 code_url: https://github.com/kieranrcampbell/phenopath
 parameters:
   thin:
@@ -51,7 +49,10 @@ input:
   format: rds
   required: expression
 output:
-  format: dynwrap
+  format: rds
+  outputs:
+  - linear_trajectory
+  - timings
 authors:
 - given: Kieran
   family: Campbell
