@@ -24,7 +24,7 @@ parameters:
 input:
   format: text
   required: expression
-  optional: time
+  optional: timecourse_continuous
 output:
   format: text
   outputs:
