@@ -22,7 +22,6 @@ parameters:
 input:
   format: text
   required: expression
-  optional: time
 output:
   format: text
   outputs:
