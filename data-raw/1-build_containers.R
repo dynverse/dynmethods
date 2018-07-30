@@ -15,7 +15,7 @@ future_map(definition_files, function(file) {
   docker_repo <- definition$docker_repository
   folder <- stringr::str_replace(file, "/definition.yml$", "")
 
-  processx::run("docker", args = c("pull", docker_repo), echo = TRUE)
+  # processx::run("docker", args = c("pull", docker_repo), echo = TRUE)
   processx::run("docker", args = c("build", folder, "-t", docker_repo), echo = TRUE)
   processx::run("docker", args = c("push", docker_repo), echo = TRUE)
 })
