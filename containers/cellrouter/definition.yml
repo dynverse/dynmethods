@@ -121,6 +121,7 @@ trajectory_types:
 - multifurcation
 - binary_tree
 - tree
+topology_inference: free
 authors:
 - given: Edroaldo
   family: Lummertz da Rocha

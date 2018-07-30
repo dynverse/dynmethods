@@ -13,7 +13,10 @@ trajectory_types:
 - multifurcation
 - binary_tree
 - tree
+- graph
+- disconnected_graph
 topology_inference: free
+publication_date: '2016-06-21'
 code_url: https://github.com/dgrun/RaceID3_StemID2
 parameters:
   clustnr:

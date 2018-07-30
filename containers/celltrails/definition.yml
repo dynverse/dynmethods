@@ -88,6 +88,7 @@ trajectory_types:
 - tree
 - graph
 - disconnected_graph
+topology_inference: free
 authors:
 - given: Daniel
   family: Ellwanger

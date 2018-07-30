@@ -35,6 +35,7 @@ trajectory_types:
 - multifurcation
 - binary_tree
 - tree
+topology_inference: free
 authors:
 - given: Nan Papili
   family: Gao

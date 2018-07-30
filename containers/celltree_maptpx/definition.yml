@@ -18,6 +18,7 @@ trajectory_types:
 topology_inference: free
 license: Artistic-2.0
 publication_date: '2016-08-13'
+code_url: https://bioconductor.org/packages/release/bioc/html/cellTree.html
 parameters:
   method:
     type: discrete

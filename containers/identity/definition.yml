@@ -3,6 +3,7 @@ docker_repository: dynverse/identity
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/identity
 name: 'Control: identity'
 type: control_test
+platform: R
 trajectory_types:
 - linear
 - bifurcation

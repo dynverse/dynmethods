@@ -5,7 +5,7 @@ name: SLICE
 type: algorithm
 platform: R
 doi: 10.1093/nar/gkw1278
-google_cluster_scholar_id: '9264372425710097325'
+google_scholar_cluster_id: '9264372425710097325'
 trajectory_types:
 - linear
 - bifurcation

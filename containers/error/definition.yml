@@ -3,6 +3,7 @@ docker_repository: dynverse/error
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/error
 name: 'Control: error'
 type: control
+platform: R
 trajectory_types:
 - linear
 topology_inference: fixed
