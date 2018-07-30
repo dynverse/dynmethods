@@ -42,3 +42,4 @@ future_map(
 
 # don't forget to regenerate the documentation
 devtools::document()
+devtools::install(dependencies = FALSE)
