@@ -15,32 +15,58 @@
 #' @references Sharma, M., Li, H., Sengupta, D., Prabhakar, S., Jayadeva, J.,
 #' 2017. FORKS: Finding Orderings Robustly using K-means and Steiner trees.
 #' 
-#' @param param1 integer; Description of param1 (default: `5L`; range: from `1L`
-#' to `10L`)
-#' @param param2 discrete; Description of param2 (default: `"one"`; values:
-#' {`"one"`, `"two"`, `"three"`})
-#' @param param3 numeric; Description of param3 (default: `0.5`; range: from `0`
-#' to `1`)
-#' @param param4 logical; Description of param4
+#' @param norm_function discrete; No description provided by the author. (default:
+#' `"median"`; values: {`"mean"`, `"median"`, `"quantile"`})
+#' @param norm_quantile numeric; No description provided by the author. (default:
+#' `75L`; range: from `0L` to `100L`)
+#' @param cum_sum_exp_var numeric; No description provided by the author.
+#' (default: `0.9`; range: from `0` to `1`)
+#' @param min_cluster integer; No description provided by the author. (default:
+#' `4L`; range: from `3L` to `20L`)
+#' @param max_cluster integer; No description provided by the author. (default:
+#' `10L`; range: from `3L` to `20L`)
+#' @param mapping_type discrete; No description provided by the author. (default:
+#' `"Isomap"`; values: {`"Isomap"`, `"MDS"`, `"PCA"`, `"RandomForest"`,
+#' `"SpectralEmbedding"`, `"LLE_standard"`, `"tSNE"`})
+#' @param initialization discrete; No description provided by the author.
+#' (default: `"kmeans"`; values: {`"kmeans"`, `"kmedoids"`, `"random"`})
+#' @param iterMax integer; No description provided by the author. (default:
+#' `1000L`; range: from `100L` to `100000L`)
+#' @param eta numeric; No description provided by the author. (default: `0.01`;
+#' range: from `1e-04` to `100L`)
+#' @param C numeric; No description provided by the author. (default: `1L`; range:
+#' from `1e-04` to `1000L`)
 #' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_forks <- function(
-    param1 = 5L,
-    param2 = "one",
-    param3 = 0.5,
-    param4 = TRUE,
+    norm_function = "median",
+    norm_quantile = 75L,
+    cum_sum_exp_var = 0.9,
+    min_cluster = 4L,
+    max_cluster = 10L,
+    mapping_type = "Isomap",
+    initialization = "kmeans",
+    iterMax = 1000L,
+    eta = 0.01,
+    C = 1L,
     run_environment = NULL
 ) {
   create_container_ti_method(
     docker_repository = "dynverse/forks",
     run_environment = run_environment,
-    param1 = param1,
-    param2 = param2,
-    param3 = param3,
-    param4 = param4
+    norm_function = norm_function,
+    norm_quantile = norm_quantile,
+    cum_sum_exp_var = cum_sum_exp_var,
+    min_cluster = min_cluster,
+    max_cluster = max_cluster,
+    mapping_type = mapping_type,
+    initialization = initialization,
+    iterMax = iterMax,
+    eta = eta,
+    C = C
   )
 }
 

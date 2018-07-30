@@ -4,20 +4,42 @@
 \alias{ti_forks}
 \title{Inferring a trajectory inference using FORKS}
 \usage{
-ti_forks(param1 = 5L, param2 = "one", param3 = 0.5, param4 = TRUE,
-  run_environment = NULL)
+ti_forks(norm_function = "median", norm_quantile = 75L,
+  cum_sum_exp_var = 0.9, min_cluster = 4L, max_cluster = 10L,
+  mapping_type = "Isomap", initialization = "kmeans", iterMax = 1000L,
+  eta = 0.01, C = 1L, run_environment = NULL)
 }
 \arguments{
-\item{param1}{integer; Description of param1 (default: \code{5L}; range: from \code{1L}
-to \code{10L})}
+\item{norm_function}{discrete; No description provided by the author. (default:
+\code{"median"}; values: {\code{"mean"}, \code{"median"}, \code{"quantile"}})}
 
-\item{param2}{discrete; Description of param2 (default: \code{"one"}; values:
-{\code{"one"}, \code{"two"}, \code{"three"}})}
+\item{norm_quantile}{numeric; No description provided by the author. (default:
+\code{75L}; range: from \code{0L} to \code{100L})}
 
-\item{param3}{numeric; Description of param3 (default: \code{0.5}; range: from \code{0}
-to \code{1})}
+\item{cum_sum_exp_var}{numeric; No description provided by the author.
+(default: \code{0.9}; range: from \code{0} to \code{1})}
 
-\item{param4}{logical; Description of param4}
+\item{min_cluster}{integer; No description provided by the author. (default:
+\code{4L}; range: from \code{3L} to \code{20L})}
+
+\item{max_cluster}{integer; No description provided by the author. (default:
+\code{10L}; range: from \code{3L} to \code{20L})}
+
+\item{mapping_type}{discrete; No description provided by the author. (default:
+\code{"Isomap"}; values: {\code{"Isomap"}, \code{"MDS"}, \code{"PCA"}, \code{"RandomForest"},
+\code{"SpectralEmbedding"}, \code{"LLE_standard"}, \code{"tSNE"}})}
+
+\item{initialization}{discrete; No description provided by the author.
+(default: \code{"kmeans"}; values: {\code{"kmeans"}, \code{"kmedoids"}, \code{"random"}})}
+
+\item{iterMax}{integer; No description provided by the author. (default:
+\code{1000L}; range: from \code{100L} to \code{100000L})}
+
+\item{eta}{numeric; No description provided by the author. (default: \code{0.01};
+range: from \code{1e-04} to \code{100L})}
+
+\item{C}{numeric; No description provided by the author. (default: \code{1L}; range:
+from \code{1e-04} to \code{1000L})}
 
 \item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
 }

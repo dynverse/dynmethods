@@ -11,7 +11,7 @@ if(not os.path.exists("graphs")):
 #%%
 if(not os.path.exists("data")):
   os.mkdir("data")
-  #%%
+#%%
 if(not os.path.exists("results")):
   os.mkdir("results")
 
@@ -38,7 +38,7 @@ p = json.load(open("/input/params.json", "r"))
 
 gene_name = counts.columns
 cell_names = counts.index
-data = counts.as_matrix()
+data = counts.values
 
 checkpoints["method_afterpreproc"] = time()
 
@@ -47,11 +47,7 @@ checkpoints["method_afterpreproc"] = time()
 
 #%%
 #pQ normalization
-use_mean=False
-use_median=True
-use_quantile=False
-quantile=75
-data1,cell_list,gene_list=normalization_pQ(data[:],use_mean,use_median,use_quantile,quantile)
+data1,cell_list,gene_list=normalization_pQ(data[:],p["norm_function"]=="mean",p["norm_function"]=="median",p["norm_function"]=="quantile",p["norm_quantile"])
 
 cell_names1=cell_names.copy()
 cell_names1=cell_names1[cell_list,]
@@ -64,30 +60,29 @@ pca.fit(data1)
 mappedData=pca.fit_transform(data1)
 explained_var_ratio=pca.explained_variance_ratio_
 cum_sum_exp_var=np.cumsum(explained_var_ratio)
-inds = np.where(cum_sum_exp_var > 0.9)
+inds = np.where(cum_sum_exp_var > p["cum_sum_exp_var"])
 red_dim=inds[0][0]
 mappedData=mappedData[0:,0:red_dim]
 
 #%%find number of clusters
-range_clusters=range(4,10,1)
+range_clusters=range(p["min_cluster"],p["max_cluster"],1)
 n_clus,max_sil,sil_scores=find_nclusters(mappedData,range_clusters)
 M=range_clusters[n_clus]
 
 mapping_type='Isomap'
 init_cell=list([])
 
-if(mapping_type=='LLE_modified'):
+if(p["mapping_type"]=='LLE_modified'):
     n_neighbors=red_dim
 else:
     n_neighbors=10
 
 data2=data1
-plot_dimensions=2
 n_components=red_dim
 isplot=False
 gene_preprocessing_type='none'
 mapping_params={}
-mapping_params['mapping_type']=mapping_type
+mapping_params['mapping_type']=p["mapping_type"]
 mapping_params['n_neighbors']=n_neighbors
 mapping_params['n_components']=n_components
 mapping_params['isplot']=isplot
@@ -95,7 +90,7 @@ mapping_params['gene_preprocessing_type']=gene_preprocessing_type
 
 actual_time2=data2[:,0]
 
-if(mapping_type=='tSNE'):
+if(p["mapping_type"]=='tSNE'):
     #we first reduce the initial dimension to 50 then use tSNE on the reduced dataset
     if(data2.shape[1]>50 and red_dim<50):
         pca = PCA()
@@ -118,32 +113,21 @@ print ('2 %d,%d'%X_reduced.shape)
 ##############################################################################
 #Run steiner tree algo
 
-# kmeans, kmedoids, random
-initialization = "kmeans"
-
-if (initialization=="kmeans"):
-    t0=time()
+if (p["initialization"]=="kmeans"):
     kmeans = KMeans(n_clusters=M, random_state=0).fit(X_reduced)
     cluster_centers_init_st=kmeans.cluster_centers_
     cluster_labels_init_st=kmeans.labels_
-elif(initialization=="kmedoids"):
-    # run steiner with k-medoids initialization
-    t0=time()
+elif(p["initialization"]=="kmedoids"):
     kmedoids = KMedoids(n_clusters=M, random_state=0).fit(X_reduced)
     cluster_centers_init_st=kmedoids.cluster_centers_
     cluster_labels_init_st=kmedoids.labels_
 else:
-    #select M random points from the data
-    t0=time()
     np.random.seed(1)
     indices=np.random.choice(actual_time2.shape[0], M, replace=False)
     cluster_centers_init_st=X_reduced[indices,:]
 
 print ('5 %d,%d'%X_reduced.shape)
-iterMax=1000
-eta=1e-02
-C=1.0
-cluster_centers_steiner,w_MST_steiner,MST_steiner,r_steiner,cluster_labels_steiner,cost_steiner,iter_steiner,all_costs_steiner= steiner_map(cluster_centers_init_st,X_reduced,C,eta,iterMax)
+cluster_centers_steiner,w_MST_steiner,MST_steiner,r_steiner,cluster_labels_steiner,cost_steiner,iter_steiner,all_costs_steiner=steiner_map(cluster_centers_init_st,X_reduced,p["C"],p["eta"],p["iterMax"])
 print ('6 %d,%d'%data1.shape)
 num_points_per_cluster_steiner=np.zeros((M,1))
 for i in range(0,M):
@@ -171,10 +155,10 @@ checkpoints["method_aftermethod"] = time()
 #   Process output & save                                                   ####
 # pseudotime
 
-pseudotime = pd.DataFrame({
-  "cell_id": cell_names1
+cell_ids = pd.DataFrame({
+  "cell_ids": cell_names1
 })
-pseudotime.to_csv("/output/cell_ids.csv", index=False)
+cell_ids.to_csv("/output/cell_ids.csv", index=False)
 
 dimred = pd.DataFrame(
   X_reduced,
