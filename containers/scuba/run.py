@@ -21,12 +21,6 @@ checkpoints = {}
 expression = pd.read_csv("/input/expression.csv", index_col=[0])
 p = json.load(open("/input/params.json", "r"))
 
-# timecourse is not yet used
-if os.path.exists("input/timecourse.json"):
-  timecourse = json.load(open("/input/timecourse.json"))
-else:
-  timecourse = None
-
 expression.T.to_csv("/input/expression.tsv", sep="\t")
 
 checkpoints["method_afterpreproc"] = time.time()
