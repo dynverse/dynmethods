@@ -10,7 +10,8 @@
 #' 
 #' This method was wrapped inside a
 #' [container](https://github.com/dynverse/dynmethods/tree/master/containers/celltree_gibbs).
-#' 
+#' The original code of this method is available
+#' [here](https://bioconductor.org/packages/release/bioc/html/cellTree.html).
 #' 
 #' @references duVerle, D.A., Yotsukura, S., Nomura, S., Aburatani, H., Tsuda, K.,
 #' 2016. CellTree: an R/bioconductor package to infer the hierarchical structure
