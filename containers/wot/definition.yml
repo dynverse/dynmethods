@@ -1,0 +1,65 @@
+id: wot
+docker_repository: dynverse/wot
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/wot
+name: Waddington-OT
+type: algorithm
+doi: '101010101/1101010101'
+google_scholar_cluster_id: '1010001010101111211'
+platform: Python
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+- graph
+- disconnected_graph
+topology_inference: fixed
+license: GPL-3
+preprint_date: '1970-01-30'
+publication_date: '1970-01-31'
+code_url: https://github.com/dynverse/template
+parameters:
+  param1:
+    type: integer
+    default: 5
+    lower: 1
+    upper: 10
+    description: Description of param1
+  param2:
+    type: discrete
+    default: one
+    values:
+    - one
+    - two
+    - three
+    description: Description of param2
+  param3:
+    type: numeric
+    default: 0.5
+    lower: 0.0
+    upper: 1.0
+    description: Description of param3
+    distribution: exponential
+    rate: 1.0
+  param4:
+    type: logical
+    default: TRUE
+    description: Description of param4
+input:
+  format: text
+  required:
+  - expression
+  - timecourse_discrete
+output:
+  format: text
+  outputs:
+  - linear_trajectory
+  - dimred
+  - timings
+authors:
+- given: Bob
+  family: Dylan
+  email: bob.dylan@example.com
+  github: bobdylan
