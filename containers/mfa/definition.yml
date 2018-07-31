@@ -62,9 +62,9 @@ input:
 output:
   format: rds
   outputs:
-  - trajectory
+  - end_state_probabilities
   - timings
-wrapper_type: trajectory
+wrapper_type: end_state_probabilities
 authors:
 - given: Kieran
   family: Campbell
