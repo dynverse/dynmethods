@@ -52,6 +52,7 @@ output:
   - linear_trajectory
   - dimred
   - timings
+wrapper_type: linear_trajectory
 doi: 10.1101/057778
 google_scholar_cluster_id: '17023695402130493397'
 trajectory_types:

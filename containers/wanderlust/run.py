@@ -27,12 +27,6 @@ if os.path.exists("/input/features_id.json"):
 else:
   markers = "~"
 
-# get number of end states if given
-if os.path.exists("/input/end_n.json"):
-  branch = json.load(open("/input/end_n.json"))[0] > 1
-else:
-  branch = p["branch"]
-
 checkpoints["method_afterpreproc"] = time.time()
 
 #   ____________________________________________________________________________
@@ -48,31 +42,12 @@ if p["num_waypoints"] > scdata.data.shape[0]:
 
 # run wishbone
 wb = wishbone.wb.Wishbone(scdata)
-wb.run_wishbone(start_cell=start_cell, components_list=list(range(p["n_diffusion_components"])), num_waypoints=int(p["num_waypoints"]), branch=branch, k=p["k"])
+wb.run_wishbone(start_cell=start_cell, components_list=list(range(p["n_diffusion_components"])), num_waypoints=int(p["num_waypoints"]), branch=False, k=p["k"])
 
 checkpoints["method_aftermethod"] = time.time()
 
 #   ____________________________________________________________________________
 #   Process output & save                                                   ####
-# progressions
-progressions = wb.trajectory.reset_index()
-progressions.columns = ["cell_id", "percentage"]
-if branch:
-  progressions["from"] = pd.Series(["M1", "M2", "M2"])[wb.branch - 1].tolist()
-  progressions["to"] = pd.Series(["M2", "M3", "M4"])[wb.branch - 1].tolist()
-else:
-  progressions["from"] = "M1"
-  progressions["to"] = "M2"
-
-progressions.to_csv("/output/progressions.csv", index=False)
-
-# milestone network
-if branch:
-  milestone_network = pd.DataFrame({"from":["M1", "M2", "M2"], "to":["M2", "M3", "M4"], "length":1, "directed":True})
-else:
-  milestone_network = pd.DataFrame({"from":["M1"], "to":["M2"], "length":1, "directed":True})
-
-milestone_network.to_csv("/output/milestone_network.csv", index=False)
 
 # pseudotime
 pseudotime = wb.trajectory.reset_index()

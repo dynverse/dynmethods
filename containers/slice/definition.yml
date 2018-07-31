@@ -122,6 +122,7 @@ output:
   - dimred
   - trajectory
   - timings
+wrapper_type: trajectory
 authors:
 - given: Yan
   family: Xu

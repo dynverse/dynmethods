@@ -70,6 +70,7 @@ output:
   outputs:
   - dimred_projection
   - timings
+wrapper_type: dimred_projection
 authors:
 - given: Zhicheng
   family: Ji

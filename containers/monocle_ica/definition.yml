@@ -49,6 +49,7 @@ output:
   - cell_graph
   - dimred
   - timings
+wrapper_type: cell_graph
 authors:
 - given: Xiaojie
   family: Qiu

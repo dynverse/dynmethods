@@ -48,6 +48,7 @@ output:
   - branch_trajectory
   - dimred
   - timings
+wrapper_type: branch_trajectory
 doi: 10.1101/208819
 google_scholar_cluster_id: '10470081259069082868'
 trajectory_types:

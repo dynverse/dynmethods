@@ -80,6 +80,7 @@ output:
   outputs:
   - cell_graph
   - timings
+wrapper_type: cell_graph
 authors:
 - given: David
   family: duVerle

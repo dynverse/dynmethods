@@ -31,6 +31,8 @@ output:
   format: rds
   outputs:
   - end_state_probabilities
+  - timings
+wrapper_type: end_state_probabilities
 doi: 10.1038/ncb3493
 google_scholar_cluster_id: '2729547640192717338'
 trajectory_types:

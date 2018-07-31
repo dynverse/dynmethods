@@ -98,6 +98,7 @@ output:
   - dimred
   - end_state_probabilities
   - timings
+wrapper_type: end_state_probabilities
 doi: 10.1038/nmeth.4662
 google_scholar_cluster_id: '4517066636937097660'
 trajectory_types:

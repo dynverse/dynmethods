@@ -123,6 +123,7 @@ output:
   outputs:
   - dimred
   - trajectory
+wrapper_type: trajectory
 doi: 10.1101/261768
 google_scholar_cluster_id: '9472249178536832849'
 trajectory_types:

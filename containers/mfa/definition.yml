@@ -64,6 +64,7 @@ output:
   outputs:
   - trajectory
   - timings
+wrapper_type: trajectory
 authors:
 - given: Kieran
   family: Campbell

@@ -47,6 +47,7 @@ output:
   - dimred
   - cell_graph
   - timings
+wrapper_type: cell_graph
 authors:
 - given: Joshua
   family: Welch
