@@ -29,8 +29,6 @@
 #' @param num_waypoints integer; Number of waypoints (default: `250L`; range: from
 #' `100L` to `500L`)
 #' @param epsilon numeric; Epsilon (default: `1L`; range: from `0.1` to `5L`)
-#' @param branch logical; Whether to allow a single bifurcation within the
-#' trajectory (wishbone versus wanderlust)
 #' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
@@ -44,7 +42,6 @@ ti_wanderlust <- function(
     k = 25L,
     num_waypoints = 250L,
     epsilon = 1L,
-    branch = FALSE,
     run_environment = NULL
 ) {
   create_container_ti_method(
@@ -56,8 +53,7 @@ ti_wanderlust <- function(
     n_pca_components = n_pca_components,
     k = k,
     num_waypoints = num_waypoints,
-    epsilon = epsilon,
-    branch = branch
+    epsilon = epsilon
   )
 }
 
