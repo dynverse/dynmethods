@@ -51,10 +51,17 @@ input:
   format: rds
   required:
   - counts
+  - expression
   - start_id
-  optional:
-  - features_id
+  - start_n
+  - end_id
   - end_n
+  - groups_id
+  - groups_n
+  - groups_network
+  - timecourse_continuous
+  - timecourse_discrete
+  - features_id
 output:
   format: rds
   outputs:
