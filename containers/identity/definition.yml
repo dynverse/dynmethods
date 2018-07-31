@@ -27,6 +27,10 @@ input:
   - dataset
 output:
   format: dynwrap
+  outputs:
+  - trajectory
+  - timings
+wrapper_type: trajectory
 authors:
 - given: Robrecht
   family: Cannoodt

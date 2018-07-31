@@ -59,6 +59,10 @@ input:
   required: expression
 output:
   format: dynwrap
+  outputs:
+  - dimred_projection
+  - timings
+wrapper_type: dimred_projection
 authors:
 - given: Robrecht
   family: Cannoodt

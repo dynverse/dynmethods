@@ -23,6 +23,11 @@ input:
   required: expression
 output:
   format: dynwrap
+  outputs:
+  - cyclic_trajectory
+  - dimred
+  - timings
+wrapper_type: cyclic_trajectory
 authors:
 - given: Robrecht
   family: Cannoodt

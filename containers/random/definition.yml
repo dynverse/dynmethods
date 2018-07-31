@@ -24,6 +24,10 @@ input:
   required: counts
 output:
   format: dynwrap
+  outputs: 
+  - trajectory
+  - timings
+wrapper_type: trajectory
 authors:
 - given: Robrecht
   family: Cannoodt
