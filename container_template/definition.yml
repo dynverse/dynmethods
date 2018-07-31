@@ -14,6 +14,7 @@ trajectory_types:
 - binary_tree
 - tree
 - graph
+- acyclic_graph
 - disconnected_graph
 topology_inference: fixed
 license: GPL-3
@@ -65,9 +66,20 @@ input:
 output:
   format: rds
   outputs:
-  - linear_trajectory
+  - branch_trajectory
+  - cell_graph
+  - cluster_graph
+  - cyclic_trajectory
   - dimred
+  - dimred_projection
+  - end_state_probabilities
+  - grouping
+  - linear_trajectory
+  - pseudotime
+  - root
+  - trajectory
   - timings
+wrapper_type: template
 authors:
 - given: Bob
   family: Dylan
