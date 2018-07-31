@@ -49,6 +49,8 @@ parameters:
     upper: 1000
     lower: 100
     description: The number of iterations for the MCMC trace
+    distribution: exponential
+    rate: 1.0
   dimreds:
     type: logical_vector
     default:

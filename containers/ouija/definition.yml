@@ -18,9 +18,9 @@ code_url: https://github.com/kieranrcampbell/ouija
 parameters:
   iter:
     type: numeric
-    default: 100.0
-    upper: 1000.0
-    lower: 10.0
+    default: 100
+    upper: 1000
+    lower: 10
     distribution: exponential
     rate: 0.01
     description: Number of iterations

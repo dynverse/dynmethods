@@ -180,7 +180,8 @@ parameters:
     description: positive integer. This is the number of randomizations to be performed.
       As a rule of thumb this number should be at least one order of magnitude larger
       than the desired p-value on the significance of the number of cells on a connection.
-      Default is 2000.
+    distribution: exponential
+    rate: 1.0
   pthr:
     type: numeric
     default: 0.01
