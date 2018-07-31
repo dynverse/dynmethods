@@ -12,6 +12,7 @@ trajectory_types:
 - binary_tree
 - tree
 - acyclic_graph
+- disconnected_graph
 topology_inference: free
 parameters:
   dummy_param:
@@ -30,7 +31,7 @@ output:
   outputs:
   - trajectory
   - timings
-wrapper_type: trajectory
+wrapper_type: control
 authors:
 - given: Robrecht
   family: Cannoodt

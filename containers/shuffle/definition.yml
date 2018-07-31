@@ -31,7 +31,7 @@ output:
   outputs:
   - trajectory
   - timings
-wrapper_type: trajectory
+wrapper_type: control
 authors:
 - given: Robrecht
   family: Cannoodt
