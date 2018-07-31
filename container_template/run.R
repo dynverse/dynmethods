@@ -3,7 +3,7 @@ library(readr)
 library(dplyr)
 library(purrr)
 
-library(URD)
+library(TEMPLATE)
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
@@ -13,7 +13,7 @@ params <- jsonlite::read_json("/input/params.json")
 
 #' @examples
 #' data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_features = 300, model = "linear") %>% c(., .$prior_information)
-#' params <- yaml::read_yaml("containers/embeddr/definition.yml")$parameters %>%
+#' params <- yaml::read_yaml("containers/TEMPLATE/definition.yml")$parameters %>%
 #'   {.[names(.) != "forbidden"]} %>%
 #'   map(~ .$default)
 
