@@ -68,9 +68,10 @@ input:
 output:
   format: rds
   outputs:
-  - dimred_projection
+  - linear_trajectory
+  - dimred
   - timings
-wrapper_type: dimred_projection
+wrapper_type: linear_trajectory
 authors:
 - given: Zhicheng
   family: Ji
