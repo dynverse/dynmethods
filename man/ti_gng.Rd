@@ -32,7 +32,7 @@ A TI method wrapper to be used together with
 \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 }
 \description{
-Will generate a trajectory using \href{https://github.com/rcannood/gng}{Growing NeuralGas}.
+Will generate a trajectory using \href{https://github.com/rcannood/gng}{Growing Neural Gas}.
 
 This method was wrapped inside a
 \href{https://github.com/dynverse/dynmethods/tree/master/containers/gng}{container}.

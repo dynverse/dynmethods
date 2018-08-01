@@ -4,8 +4,8 @@
 \alias{ti_phenopath}
 \title{Inferring a trajectory inference using PhenoPath}
 \usage{
-ti_phenopath(thin = 40L, z_init = "1", model_mu = FALSE, scale_y = TRUE,
-  run_environment = NULL)
+ti_phenopath(thin = 40L, z_init = "1", model_mu = FALSE,
+  scale_y = TRUE, run_environment = NULL)
 }
 \arguments{
 \item{thin}{integer; The number of iterations to wait each time

@@ -4,14 +4,14 @@
 \alias{ti_urd}
 \title{Inferring a trajectory inference using URD}
 \usage{
-ti_urd(knn = 0L, sigma.use = 0, distance = "euclidean", n_floods = 20L,
-  stability.div = 10L, mp.factor = 1L, perplexity = 30L, theta = 0.5,
-  max_iter = 1000L, num.nn = 30L, do.jaccard = TRUE,
-  optimal.cells.forward = 20L, max.cells.back = 40L, n.per.tip = 25000L,
-  root.visits = 1L, max.steps = 25000L, n.subsample = 10L,
-  divergence.method = "ks", cells.per.pseudotime.bin = 80L,
-  bins.per.pseudotime.window = 5L, p.thresh = 0.01,
-  run_environment = NULL)
+ti_urd(knn = 0L, sigma.use = 0, distance = "euclidean",
+  n_floods = 20L, stability.div = 10L, mp.factor = 1L,
+  perplexity = 30L, theta = 0.5, max_iter = 1000L, num.nn = 30L,
+  do.jaccard = TRUE, optimal.cells.forward = 20L,
+  max.cells.back = 40L, n.per.tip = 25000L, root.visits = 1L,
+  max.steps = 25000L, n.subsample = 10L, divergence.method = "ks",
+  cells.per.pseudotime.bin = 80L, bins.per.pseudotime.window = 5L,
+  p.thresh = 0.01, run_environment = NULL)
 }
 \arguments{
 \item{knn}{integer; Number of nearest neighbors to use. \code{0} takes a guess.

@@ -37,7 +37,7 @@ A TI method wrapper to be used together with
 \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/10.1186/s12859-016-1175-6}{cellTree withvem}.
+Will generate a trajectory using \href{https://doi.org/10.1186/s12859-016-1175-6}{cellTree with vem}.
 
 This method was wrapped inside a
 \href{https://github.com/dynverse/dynmethods/tree/master/containers/celltree_vem}{container}.

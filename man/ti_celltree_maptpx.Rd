@@ -4,10 +4,11 @@
 \alias{ti_celltree_maptpx}
 \title{Inferring a trajectory inference using cellTree with maptpx}
 \usage{
-ti_celltree_maptpx(method = "maptpx", sd_filter = 0.5, absolute_width = 0,
-  width_scale_factor = 1.5, outlier_tolerance_factor = 0.1,
-  rooting_method = "null", num_topics_lower = 2, num_topics_upper = 15,
-  tot_iter = 1e+06, tolerance = 0.05, run_environment = NULL)
+ti_celltree_maptpx(method = "maptpx", sd_filter = 0.5,
+  absolute_width = 0, width_scale_factor = 1.5,
+  outlier_tolerance_factor = 0.1, rooting_method = "null",
+  num_topics_lower = 2, num_topics_upper = 15, tot_iter = 1e+06,
+  tolerance = 0.05, run_environment = NULL)
 }
 \arguments{
 \item{method}{discrete; (default: \code{"maptpx"}; values: {\code{"maptpx"}})}
@@ -39,7 +40,7 @@ A TI method wrapper to be used together with
 \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/10.1186/s12859-016-1175-6}{cellTree withmaptpx}.
+Will generate a trajectory using \href{https://doi.org/10.1186/s12859-016-1175-6}{cellTree with maptpx}.
 
 This method was wrapped inside a
 \href{https://github.com/dynverse/dynmethods/tree/master/containers/celltree_maptpx}{container}.

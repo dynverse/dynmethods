@@ -4,8 +4,9 @@
 \alias{ti_ouija}
 \title{Inferring a trajectory inference using ouija}
 \usage{
-ti_ouija(iter = 100, response_type = "switch", inference_type = "hmc",
-  normalise_expression = TRUE, run_environment = NULL)
+ti_ouija(iter = 100, response_type = "switch",
+  inference_type = "hmc", normalise_expression = TRUE,
+  run_environment = NULL)
 }
 \arguments{
 \item{iter}{numeric; Number of iterations (default: \code{100}; range: from \code{10} to

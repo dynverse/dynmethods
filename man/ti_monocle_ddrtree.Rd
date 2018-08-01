@@ -31,7 +31,7 @@ A TI method wrapper to be used together with
 \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/10.1038/nmeth.4402}{MonocleDDRTree}.
+Will generate a trajectory using \href{https://doi.org/10.1038/nmeth.4402}{Monocle DDRTree}.
 
 This method was wrapped inside a
 \href{https://github.com/dynverse/dynmethods/tree/master/containers/monocle_ddrtree}{container}.

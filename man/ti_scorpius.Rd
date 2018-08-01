@@ -5,8 +5,8 @@
 \title{Inferring a trajectory inference using SCORPIUS}
 \usage{
 ti_scorpius(distance_method = "spearman", ndim = 3L, k = 4L,
-  thresh = 0.001, maxit = 10L, stretch = 0, smoother = "smooth_spline",
-  sparse = TRUE, run_environment = NULL)
+  thresh = 0.001, maxit = 10L, stretch = 0,
+  smoother = "smooth_spline", sparse = TRUE, run_environment = NULL)
 }
 \arguments{
 \item{distance_method}{discrete; A character string indicating which

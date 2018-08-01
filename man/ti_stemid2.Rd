@@ -6,11 +6,12 @@
 \usage{
 ti_stemid2(clustnr = 30L, bootnr = 50L, metric = "pearson",
   num_cluster_method = "sat", SE.method = "Tibs2001SEmax",
-  SE.factor = 0.25, B.gap = 50L, cln = 30L, FUNcluster = "kmedoids",
-  dimred_method = "tsne", outminc = 0L, outlg = 2L, probthr = 0.001,
-  thr_lower = -10, thr_upper = -5, outdistquant = 0.95, nmode = FALSE,
-  pdishuf = 2000, pthr = 0.01, pethr = 0.01, pvalue_cutoff = 0.05,
-  linkscore_cutoff = 0.2, run_environment = NULL)
+  SE.factor = 0.25, B.gap = 50L, cln = 30L,
+  FUNcluster = "kmedoids", dimred_method = "tsne", outminc = 0L,
+  outlg = 2L, probthr = 0.001, thr_lower = -10, thr_upper = -5,
+  outdistquant = 0.95, nmode = FALSE, pdishuf = 2000, pthr = 0.01,
+  pethr = 0.01, pvalue_cutoff = 0.05, linkscore_cutoff = 0.2,
+  run_environment = NULL)
 }
 \arguments{
 \item{clustnr}{integer; Maximum number of clusters for the computation of the

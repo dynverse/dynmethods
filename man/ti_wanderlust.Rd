@@ -4,9 +4,9 @@
 \alias{ti_wanderlust}
 \title{Inferring a trajectory inference using Wanderlust}
 \usage{
-ti_wanderlust(normalise = TRUE, knn = 25L, n_diffusion_components = 3L,
-  n_pca_components = 30L, k = 25L, num_waypoints = 250L, epsilon = 1L,
-  run_environment = NULL)
+ti_wanderlust(normalise = TRUE, knn = 25L,
+  n_diffusion_components = 3L, n_pca_components = 30L, k = 25L,
+  num_waypoints = 250L, epsilon = 1L, run_environment = NULL)
 }
 \arguments{
 \item{normalise}{logical;}

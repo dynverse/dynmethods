@@ -32,7 +32,7 @@ A TI method wrapper to be used together with
 \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/10.1101/208819}{PAGAProjected}.
+Will generate a trajectory using \href{https://doi.org/10.1101/208819}{PAGA Projected}.
 
 This method was wrapped inside a
 \href{https://github.com/dynverse/dynmethods/tree/master/containers/paga_projected}{container}.

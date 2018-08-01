@@ -4,8 +4,8 @@
 \alias{ti_pcreode}
 \title{Inferring a trajectory inference using pCreode}
 \usage{
-ti_pcreode(n_pca_components = 3L, radius = 1L, noise = 8L, target = 25L,
-  num_runs = 10L, run_environment = NULL)
+ti_pcreode(n_pca_components = 3L, radius = 1L, noise = 8L,
+  target = 25L, num_runs = 10L, run_environment = NULL)
 }
 \arguments{
 \item{n_pca_components}{integer; (default: \code{3L}; range: from \code{2L} to \code{10L})}

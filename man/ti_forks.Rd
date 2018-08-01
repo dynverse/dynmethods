@@ -6,8 +6,8 @@
 \usage{
 ti_forks(norm_function = "median", norm_quantile = 75L,
   cum_sum_exp_var = 0.9, min_cluster = 4L, max_cluster = 10L,
-  mapping_type = "Isomap", initialization = "kmeans", iterMax = 1000L,
-  eta = 0.01, C = 1L, run_environment = NULL)
+  mapping_type = "Isomap", initialization = "kmeans",
+  iterMax = 1000L, eta = 0.01, C = 1L, run_environment = NULL)
 }
 \arguments{
 \item{norm_function}{discrete; No description provided by the author. (default:

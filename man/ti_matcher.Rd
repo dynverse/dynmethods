@@ -4,7 +4,8 @@
 \alias{ti_matcher}
 \title{Inferring a trajectory inference using MATCHER}
 \usage{
-ti_matcher(quantiles = 50L, method = "linear", run_environment = NULL)
+ti_matcher(quantiles = 50L, method = "linear",
+  run_environment = NULL)
 }
 \arguments{
 \item{quantiles}{integer; Quantiles How many quantiles to use when computing

@@ -4,8 +4,8 @@
 \alias{ti_paga}
 \title{Inferring a trajectory inference using PAGA}
 \usage{
-ti_paga(n_neighbors = 30L, n_comps = 50L, n_dcs = 15L, resolution = 2.5,
-  embedding_type = "fa", run_environment = NULL)
+ti_paga(n_neighbors = 30L, n_comps = 50L, n_dcs = 15L,
+  resolution = 2.5, embedding_type = "fa", run_environment = NULL)
 }
 \arguments{
 \item{n_neighbors}{integer; Number of neighbours for knn (default: \code{30L};

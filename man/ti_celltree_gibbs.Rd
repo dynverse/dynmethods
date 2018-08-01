@@ -4,10 +4,11 @@
 \alias{ti_celltree_gibbs}
 \title{Inferring a trajectory inference using cellTree with gibbs}
 \usage{
-ti_celltree_gibbs(method = "Gibbs", sd_filter = 0.5, absolute_width = 0,
-  width_scale_factor = 1.5, outlier_tolerance_factor = 0.1,
-  rooting_method = "null", num_topics = 4, tot_iter = 200,
-  tolerance = 1e-05, run_environment = NULL)
+ti_celltree_gibbs(method = "Gibbs", sd_filter = 0.5,
+  absolute_width = 0, width_scale_factor = 1.5,
+  outlier_tolerance_factor = 0.1, rooting_method = "null",
+  num_topics = 4, tot_iter = 200, tolerance = 1e-05,
+  run_environment = NULL)
 }
 \arguments{
 \item{method}{discrete; (default: \code{"Gibbs"}; values: {\code{"Gibbs"}})}
@@ -37,7 +38,7 @@ A TI method wrapper to be used together with
 \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/10.1186/s12859-016-1175-6}{cellTree withgibbs}.
+Will generate a trajectory using \href{https://doi.org/10.1186/s12859-016-1175-6}{cellTree with gibbs}.
 
 This method was wrapped inside a
 \href{https://github.com/dynverse/dynmethods/tree/master/containers/celltree_gibbs}{container}.
