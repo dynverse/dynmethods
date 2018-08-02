@@ -14,7 +14,7 @@ params <- jsonlite::read_json("/input/params.json")
 
 #' @examples
 #' source("~/Downloads/SupplementaryMethods/Waterfall.R")
-#' data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_features = 300, model = "linear") %>% c(., .$prior_information)
+#' data <- dyntoy::generate_dataset(id = "test", num_cells = 300, num_features = 300, model = "linear") %>% c(., .$prior_information)
 #' params <- yaml::read_yaml("containers/waterfall/definition.yml")$parameters %>%
 #'   {.[names(.) != "forbidden"]} %>%
 #'   map(~ .$default)

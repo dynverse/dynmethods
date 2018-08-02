@@ -1,6 +1,6 @@
 set.seed(1)
 data <- dyntoy::generate_dataset(
-  unique_id = "tscan_example",
+  id = "tscan_example",
   num_cells = 99,
   num_features = 101,
   model = "tree"

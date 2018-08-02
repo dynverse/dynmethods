@@ -1,6 +1,6 @@
 set.seed(1)
 data <- dyntoy::generate_dataset(
-  unique_id = "calista_example",
+  id = "calista_example",
   num_cells = 300,
   num_features = 101,
   model = "bifurcating"

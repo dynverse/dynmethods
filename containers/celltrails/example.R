@@ -1,6 +1,6 @@
 set.seed(1)
 data <- dyntoy::generate_dataset(
-  unique_id = "celltrails_example",
+  id = "celltrails_example",
   num_cells = 99,
   num_features = 101,
   model = "tree"

@@ -32,7 +32,7 @@ devtools::install(dep = FALSE)
 zzz <- processx::run("docker", args = c("build", folder, "-t", docker_repo), echo = TRUE)
 
 # try to run the method with a toy dataset
-data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 100, num_features = 101, model = "bifurcating")
+data <- dyntoy::generate_dataset(id = "test", num_cells = 100, num_features = 101, model = "bifurcating")
 traj <- dynwrap::infer_trajectory(data, method, verbose = TRUE, debug = TRUE)
 traj <- dynwrap::infer_trajectory(data, method, verbose = TRUE)
 dynplot::plot_graph(traj)
