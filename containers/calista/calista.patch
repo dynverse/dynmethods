@@ -446,6 +446,30 @@ index cfdd2ba..019145d 100644
        Results$starting_method=as.integer(Results$starting_method)
      }
      switch (Results$starting_method,
+diff --git CALISTA-R/R/import_data.R CALISTA-R/R/import_data.R
+index 7e66152..1f63238 100644
+--- CALISTA-R/R/import_data.R
++++ CALISTA-R/R/import_data.R
+@@ -114,6 +114,7 @@ import_data <-function(INPUTS){
+     # INPUTS$perczeros_cells=100
+     # INPUTS$perc_top_genes=50
+   }
++  data_location=INPUTS$data_location
+   data_type=INPUTS$data_type
+   format_data=INPUTS$format_data
+   data_selection=INPUTS$data_selection
+@@ -127,9 +128,9 @@ import_data <-function(INPUTS){
+   if(data_type>=1){
+     
+     # here normalization == old code.selection.load data at the beging(DATA.timelime,.time,.unm_time,.totDATA,.genes,.singeCELLDATA...)
+-    DATA=normalization(data_type,format_data,perczeros_genes,perczeros_cells,cut_variable_genes,cells_2_cut)
++    DATA=normalization(data_location,data_type,format_data,perczeros_genes,perczeros_cells,cut_variable_genes,cells_2_cut)
+   }else{
+-    DATA=normalization(data_type,format_data,perczeros_genes,perczeros_cells,NULL,cells_2_cut=cells_2_cut)
++    DATA=normalization(data_location,data_type,format_data,perczeros_genes,perczeros_cells,NULL,cells_2_cut=cells_2_cut)
+   }
+   
+   ###check input arguments
 diff --git CALISTA-R/R/jump_transition.R CALISTA-R/R/jump_transition.R
 index bd5a621..6fffbc1 100644
 --- CALISTA-R/R/jump_transition.R
@@ -469,16 +493,56 @@ index bd5a621..6fffbc1 100644
    for(K in 1:length(stages_name)){
      actual_stage=which(Results$cluster_progression==stages_name[K])
 diff --git CALISTA-R/R/normalization.R CALISTA-R/R/normalization.R
-index 9ee3065..785b2c2 100644
+index 9ee3065..6c9b61d 100644
 --- CALISTA-R/R/normalization.R
 +++ CALISTA-R/R/normalization.R
-@@ -1,5 +1,5 @@
- normalization <-function(data_type,format_data,perczeros_genes,perczeros_cells,cut_variable_genes,cells_2_cut){
+@@ -1,36 +1,36 @@
+-normalization <-function(data_type,format_data,perczeros_genes,perczeros_cells,cut_variable_genes,cells_2_cut){
 -  filename=file.choose()
-+  filename="mydata.csv"
++normalization <-function(data_location,data_type,format_data,perczeros_genes,perczeros_cells,cut_variable_genes,cells_2_cut){
++  filename=data_location
    # choose what kind of file? /home/Tao/Pro/AAA-CALISTA/RT-qPCR/6-data_WITH_VPA_0_24_48_72_CT_NORM.xlsx
-   #imported_temp=read.xlsx(filename,1)  # in matlab code, imported_data.data is data, imported_data.text data is first line
-   filetype=file_ext(filename)
+-  #imported_temp=read.xlsx(filename,1)  # in matlab code, imported_data.data is data, imported_data.text data is first line
+-  filetype=file_ext(filename)
++  #imported_temp=read.xlsx(data_location,1)  # in matlab code, imported_data.data is data, imported_data.text data is first line
++  filetype=file_ext(data_location)
+   if(filetype=='xlsx'){
+-    imported_temp=read.xlsx(filename,1,rowNames = FALSE)
++    imported_temp=read.xlsx(data_location,1,rowNames = FALSE)
+     imported_temp=na.omit(imported_temp)
+   }else 
+   {
+     if(format_data!=4){
+-      imported_temp=fread(filename,header = TRUE,
++      imported_temp=fread(data_location,header = TRUE,
+                           stringsAsFactors = TRUE,
+                           data.table = FALSE,blank.lines.skip = TRUE)
+       imported_temp=na.omit(imported_temp)
+     }else{
+-      imported_temp=fread(filename,header = FALSE,
++      imported_temp=fread(data_location,header = FALSE,
+                           stringsAsFactors = TRUE,
+                           data.table = FALSE,blank.lines.skip = TRUE)
+       imported_temp=na.omit(imported_temp)
+     }
+   }
+   #   if(filetype=='csv'){
+-  #   imported_temp=read.csv(filename,header=FALSE,as.is = FALSE,stringsAsFactors = FALSE)
++  #   imported_temp=read.csv(data_location,header=FALSE,as.is = FALSE,stringsAsFactors = FALSE)
+   #   imported_temp=na.omit(imported_temp)
+   # }else{
+-  #   imported_temp=read.table(filename,header = FALSE,stringsAsFactors = FALSE)
++  #   imported_temp=read.table(data_location,header = FALSE,stringsAsFactors = FALSE)
+   #   imported_temp=na.omit(imported_temp)
+   # }
+   writeLines('\nData loading...\n')
+   imported_data=list()
+   DATA=list()
+-  DATA$FileName=filename
++  DATA$FileName=data_location
+   switch (format_data,
+           {
+             #1
 diff --git CALISTA-R/R/visualization.R CALISTA-R/R/visualization.R
 index 0ed5ab5..3ba4f4e 100644
 --- CALISTA-R/R/visualization.R

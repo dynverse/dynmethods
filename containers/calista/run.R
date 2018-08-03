@@ -20,13 +20,14 @@ params <- jsonlite::read_json("/input/params.json")
 #' setwd("~/Downloads/CALISTA/CALISTA-R/")
 
 expression <- data$expression
+file_loc <- "/input/calista_expression.csv"
 
 data_df <- data.frame(
   row.names = NULL,
   expression,
   check.names = FALSE
 )
-write_csv(data_df, "mydata.csv")
+write_csv(data_df, file_loc)
 
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
@@ -35,6 +36,7 @@ write_csv(data_df, "mydata.csv")
 # Prepare CALISTA for work
 INPUTS <- list()
 # Specify data types and settings for pre-processing
+INPUTS$data_location=file_loc
 INPUTS$data_type=1; # Single-cell RT-qPCR CT data
 INPUTS$format_data=3; # Rows= cells and Columns= genes (no time/stage info)
 INPUTS$data_selection= integer(); # Include data from all time points
