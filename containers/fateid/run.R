@@ -38,7 +38,21 @@ start_group <- grouping[start_id %>% sample(1)] %>% unique()
 
 # check if there are two or more end groups
 if (length(end_groups) < 2) {
-  stop("FateID requires at least two end cell populations, but according to the prior information there are only ", length(end_groups), " end populations!")
+  msg <- paste0("FateID requires at least two end cell populations, but according to the prior information there are only ", length(end_groups), " end populations!")
+
+  if (!identical(params$force, TRUE)) {
+    stop(msg)
+  }
+
+  warning(msg, "\nForced to invent some end populations in order to at least generate a trajectory")
+  poss_groups <- unique(grouping) %>% setdiff(start_group)
+  if (length(poss_groups) == 1) {
+    new_end_groups <- stats::kmeans(expression[grouping == poss_groups,], centers = 2)$cluster
+    grouping[grouping == poss_groups] <- c(poss_groups, max(grouping) + 1)[new_end_groups]
+    end_groups <- new_end_groups
+  } else {
+    end_groups <- sample(poss_groups, 2)
+  }
 }
 
 # based on https://github.com/dgrun/FateID/blob/master/vignettes/FateID.Rmd
@@ -61,7 +75,7 @@ if (params$reclassify) {
 }
 
 # fate bias
-fb  <- fateBias(
+fb <- fateBias(
   x,
   y,
   tar,

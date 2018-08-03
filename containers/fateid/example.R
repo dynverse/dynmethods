@@ -5,4 +5,4 @@ data <- dyntoy::generate_dataset(
   num_features = 101,
   model = "multifurcating"
 )
-params <- list()
+params <- list(force = TRUE)
