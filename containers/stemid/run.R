@@ -3,7 +3,7 @@ library(readr)
 library(dplyr)
 library(purrr)
 
-source("StemID/RaceID2_StemID_class.R")
+source("/StemID/RaceID2_StemID_class.R")
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
