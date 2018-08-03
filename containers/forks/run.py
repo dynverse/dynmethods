@@ -6,6 +6,8 @@ os.environ["MKL_NUM_THREADS"] = "1"
 import matplotlib
 matplotlib.use('Agg')
 
+os.chdir("/")
+
 if(not os.path.exists("graphs")):
   os.mkdir("graphs")
 #%%
