@@ -5,3 +5,4 @@ data <- dyntoy::generate_dataset(
   num_features = 51,
   model = "tree"
 )
+params <- list()

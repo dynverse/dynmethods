@@ -5,3 +5,4 @@ data <- dyntoy::generate_dataset(
   num_features = 101,
   model = "cyclic"
 )
+params <- list()
