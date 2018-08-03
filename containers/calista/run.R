@@ -3,7 +3,8 @@ library(purrr)
 library(readr)
 library(feather)
 
-setwd("CALISTA/CALISTA-R/")
+setwd("/CALISTA/CALISTA-R/")
+source("R/initialization.R")
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
@@ -29,8 +30,6 @@ write_csv(data_df, "mydata.csv")
 
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
-
-source("./R/initialization.R")
 
 
 # Prepare CALISTA for work
