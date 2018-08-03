@@ -14,6 +14,7 @@ import pandas as pd
 import time
 checkpoints = {}
 
+os.chdir("/tmp")
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
