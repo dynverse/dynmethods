@@ -103,41 +103,10 @@ dimred.columns = ["comp_" + str(i) for i in range(dimred.shape[1])]
 dimred["cell_id"] = counts.index
 dimred.reset_index(drop=True).to_feather("/output/dimred.feather")
 
-if "dimred_projection" in params["output_ids"]:
-  # dimred milestones
-  dimred["milestone_id"] = adata.obs.louvain.tolist()
-  dimred_milestones = dimred.groupby("milestone_id").mean().reset_index()
-  dimred_milestones.to_feather("/output/dimred_milestones.feather")
-
-if "branch_trajectory" in params["output_ids"]:
-  # branch progressions: the scaled dpt_pseudotime within every cluster
-  branch_progressions = adata.obs
-  branch_progressions["dpt_pseudotime"] = branch_progressions["dpt_pseudotime"].replace([np.inf, -np.inf], 1) # replace unreachable pseudotime with maximal pseudotime
-  branch_progressions["percentage"] = branch_progressions.groupby("louvain")["dpt_pseudotime"].apply(lambda x: (x-x.min())/(x.max() - x.min())).fillna(0.5)
-  branch_progressions["cell_id"] = counts.index
-  branch_progressions["branch_id"] = branch_progressions["louvain"].astype(np.str)
-  branch_progressions = branch_progressions[["cell_id", "branch_id", "percentage"]]
-  branch_progressions.reset_index(drop=True).to_feather("/output/branch_progressions.feather")
-
-  # branches:
-  # - length = difference between max and min dpt_pseudotime within every cluster
-  # - directed = not yet correctly inferred
-  branches = adata.obs.groupby("louvain").apply(lambda x: x["dpt_pseudotime"].max() - x["dpt_pseudotime"].min()).reset_index()
-  branches.columns = ["branch_id", "length"]
-  branches["branch_id"] = branches["branch_id"].astype(np.str)
-  branches["directed"] = True
-  branches.to_feather("/output/branches.feather")
-
-  # branch network: determine order of from and to based on difference in average pseudotime
-  branch_network = milestone_network[["from", "to"]]
-  average_pseudotime = adata.obs.groupby("louvain")["dpt_pseudotime"].mean()
-  for i, (branch_from, branch_to) in enumerate(zip(branch_network["from"], branch_network["to"])):
-    if average_pseudotime[branch_from] > average_pseudotime[branch_to]:
-      branch_network.at[i, "to"] = branch_from
-      branch_network.at[i, "from"] = branch_to
-
-
-  branch_network.to_feather("/output/branch_network.feather")
+# dimred milestones
+dimred["milestone_id"] = adata.obs.louvain.tolist()
+dimred_milestones = dimred.groupby("milestone_id").mean().reset_index()
+dimred_milestones.to_feather("/output/dimred_milestones.feather")
 
 # timings
 timings = pd.Series(checkpoints)
