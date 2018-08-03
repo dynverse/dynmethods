@@ -49,7 +49,7 @@ centroid_coordinates, cluster_indices, parent_clusters, new_tree = PySCUBA.refin
   cluster_indices,
   parent_clusters,
   cell_stages,
-  output_directory="/tmp")
+  output_directory="/dev/null")
 
 checkpoints["method_aftermethod"] = time.time()
 
@@ -57,8 +57,8 @@ checkpoints["method_aftermethod"] = time.time()
 #   Process & save output                                                   ####
 # grouping
 grouping = pd.DataFrame({
-  "cell_id":expression.index,
-  "group_id":cluster_indices.astype(str)
+  "cell_id": expression.index,
+  "group_id": cluster_indices.astype(str)
 })
 grouping.to_csv("/output/grouping.csv", index=False)
 
@@ -67,9 +67,6 @@ milestone_network = pd.DataFrame([{"from":str(i), "to":str(j)} for i, js in pare
 milestone_network["length"] = 1
 milestone_network["directed"] = True
 milestone_network.to_csv("/output/milestone_network.csv", index=False)
-
-# extra output
-pd.DataFrame(new_tree[1:], columns = new_tree[0]).to_csv("/output/new_tree.csv")
 
 # timings
 json.dump(checkpoints, open("/output/timings.json", "w"))
