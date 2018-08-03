@@ -16,7 +16,7 @@ params <- jsonlite::read_json("/input/params.json")
 #' params <- yaml::read_yaml("containers/celltree_gibbs/definition.yml")$parameters %>%
 #'   {.[names(.) != "forbidden"]} %>%
 #'   map(~ .$default)
-#' params$tot_iter <- 30 # oveeride for testing
+#' params$tot_iter <- 30 # override for testing
 
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
@@ -54,10 +54,27 @@ lda_out <- cellTree::compute.lda(
   tol = params$tolerance
 )
 
-# put the parameters for the backbones in a list,
-# for adding optional groups_id and (if grouping is given) start group
-backbone_params <- list(
+# check whether there is prior information available
+start.group.label <- NULL
+grouping <- NULL
+
+if(!is.null(data$groups_id)) {
+  grouping <-
+    data$groups_id %>%
+    dplyr::slice(match(cell_id, rownames(expression))) %>%
+    pull(group_id)
+  if(!is.null(data$start_cell)) {
+    start.group.label <-
+      data$groups_id %>% filter(cell_id == data$start_cell) %>%
+      pull(group_id)
+  }
+}
+
+# construct the backbone tree
+mst_tree <- cellTree::compute.backbone.tree(
   lda.results = lda_out,
+  grouping = grouping,
+  start.group.label = start.group.label,
   absolute.width = params$absolute_width,
   width.scale.factor = params$width_scale_factor,
   outlier.tolerance.factor = params$outlier_tolerance_factor,
@@ -65,23 +82,6 @@ backbone_params <- list(
   only.mst = FALSE,
   merge.sequential.backbone = FALSE
 )
-
-# if these parameters are available, add them to the list
-if(!is.null(data$groups_id)) {
-  backbone_params$grouping <-
-    data$groups_id %>%
-    dplyr::slice(match(cell_id, rownames(expression))) %>%
-    pull(group_id)
-
-  if(!is.null(data$start_cell)) {
-    backbone_params$start.group.label <-
-      data$groups_id %>% filter(cell_id == data$start_cell) %>%
-      pull(group_id)
-  }
-}
-
-# construct the backbone tree
-mst_tree <- do.call(cellTree::compute.backbone.tree, backbone_params)
 
 # TIMING: done with method
 checkpoints$method_aftermethod <- as.numeric(Sys.time())
