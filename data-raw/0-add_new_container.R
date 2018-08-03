@@ -36,3 +36,6 @@ source(paste0(folder, "/example.R"))
 traj <- dynwrap::infer_trajectory(data, method, parameters = params, verbose = TRUE, debug = TRUE)
 traj <- dynwrap::infer_trajectory(data, method, parameters = params, verbose = TRUE)
 dynplot::plot_graph(traj)
+
+# if it works, you can push it
+# processx::run("docker", args = c("push", docker_repo), echo = TRUE)
