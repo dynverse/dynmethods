@@ -45,20 +45,22 @@ means <- apply(expression[start_ix,, drop=F], 2, mean)
 distr_df <- data.frame(i = seq_along(vars) - 1, means, vars)
 
 # write data to files
-utils::write.table(t(expression), file = "data", sep = "\t", row.names = FALSE, col.names = FALSE)
-utils::write.table(distr_df, file = "init", sep = "\t", row.names = FALSE, col.names = FALSE)
+dir <- tempfile(pattern = "scoupfiles")
+dir.create(dir)
+utils::write.table(t(expression), file = paste0(dir, "/data"), sep = "\t", row.names = FALSE, col.names = FALSE)
+utils::write.table(distr_df, file = paste0(dir, "/init"), sep = "\t", row.names = FALSE, col.names = FALSE)
 
 # TIMING: done with preproc
 checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
 # execute sp
-cmd <- paste0("SCOUP/sp data init time_sp dimred ", ncol(expression), " ", nrow(expression), " ", params$ndim)
-cat(cmd, "\n", sep = "")
+cmd <- glue::glue("/SCOUP/sp {dir}/data {dir}/init {dir}/time_sp {dir}/dimred {ncol(expression)} {nrow(expression)} {params$ndim}")
+cat(gsub(paste0(dir, "/"), "", cmd), "\n", sep = "")
 system(cmd)
 
 # execute scoup
 cmd <- paste0(
-  "SCOUP/scoup data init time_sp gpara cpara ll ",
+  glue::glue("/SCOUP/scoup {dir}/data {dir}/init {dir}/time_sp {dir}/gpara {dir}/cpara {dir}/ll "),
   ncol(expression), " ", nrow(expression),
   " -k ", end_n,
   " -m ", params$max_ite1,
@@ -70,11 +72,11 @@ cmd <- paste0(
   " -s ", params$sigma_squared_min,
   " -e ", params$thresh
 )
-cat(cmd, "\n", sep = "")
+cat(gsub(paste0(dir, "/"), "", cmd), "\n", sep = "")
 system(cmd)
 
 # read dimred
-dimred <- utils::read.table("dimred", col.names = c("i", paste0("Comp", seq_len(params$ndim))))
+dimred <- utils::read.table(paste0(dir, "/dimred"), col.names = c("i", paste0("Comp", seq_len(params$ndim))))
 
 # last line is root node
 root <- dimred[nrow(dimred),-1,drop=F]
@@ -82,11 +84,11 @@ dimred <- dimred[-nrow(dimred),-1]
 rownames(dimred) <- rownames(expression)
 
 # read cell params
-cpara <- utils::read.table("cpara", col.names = c("time", paste0("M", seq_len(end_n))))
+cpara <- utils::read.table(paste0(dir, "/cpara"), col.names = c("time", paste0("M", seq_len(end_n))))
 rownames(cpara) <- rownames(expression)
 
 # loglik
-ll <- utils::read.table("ll")[[1]]
+ll <- utils::read.table(paste0(dir, "/ll"))[[1]]
 
 # TIMING: done with method
 checkpoints$method_aftermethod <- as.numeric(Sys.time())
