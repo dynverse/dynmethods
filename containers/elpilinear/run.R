@@ -63,7 +63,8 @@ principal_graph <- principal_graph_function(
 # compute pseudotime, from https://github.com/Albluca/ElPiGraph.R/blob/master/guides/pseudo.md
 PartStruct <- PartitionData(
   X = expression,
-  NodePositions = principal_graph[[1]]$NodePositions
+  NodePositions = principal_graph[[1]]$NodePositions,
+  nCores = 1
 )
 
 ProjStruct <- project_point_onto_graph(
