@@ -1,6 +1,6 @@
 set.seed(1)
 data <- dyntoy::generate_dataset(
-  id = "celltree_maptpx_example",
+  id = "specific_example/celltree_maptpx",
   num_cells = 99,
   num_features = 101,
   model = "tree"
