@@ -15,7 +15,7 @@ params <- jsonlite::read_json("/input/params.json")
 
 #' @examples
 #' data <- dyntoy::generate_dataset(id = "test", num_cells = 300, num_features = 300, model = "linear") %>% c(., .$prior_information)
-#' params <- yaml::read_yaml("containers/slingshot/definition.yml")$parameters %>%
+#' params <- yaml::read_yaml("containers/projected_slingshot/definition.yml")$parameters %>%
 #'   {.[names(.) != "forbidden"]} %>%
 #'   purrr::map(~ .$default)
 
@@ -71,30 +71,29 @@ optpoint2 <- which.max(proj$dist_ind)-1
 
 # we will take more than 3 PCs only if both methods recommend it
 optpoint <- max(c(min(c(optpoint1, optpoint2)), 3))
-rd <- pca$x[, seq_len(optpoint)]
+dimred <- pca$x[, seq_len(optpoint)]
 
 #   ____________________________________________________________________________
 #   Clustering                                                              ####
 clusterings <- lapply(3:10, function(K){
-  pam(rd, K) # we generally prefer PAM as a more robust alternative to k-means
+  pam(dimred, K) # we generally prefer PAM as a more robust alternative to k-means
 })
 
 # take one more than the optimal number of clusters based on average silhouette width
 # (max of 10; the extra cluster improves flexibility when learning the topology,
 # silhouette width tends to pick too few clusters, otherwise)
 wh.cl <- which.max(sapply(clusterings, function(x){ x$silinfo$avg.width })) + 1
-labels <- clusterings[[min(c(wh.cl, 8))]]$clustering
-
+milestone_assignment_cells <- clusterings[[min(c(wh.cl, 8))]]$clustering %>% {set_names(paste0("M", .), names(.))}
 
 start.clus <-
   if(!is.null(start_cell)) {
-    labels[[start_cell]]
+    milestone_assignment_cells[[start_cell]]
   } else {
     NULL
   }
 end.clus <-
   if(!is.null(end_id)) {
-    unique(labels[end_id])
+    unique(milestone_assignment_cells[end_id])
   } else {
     NULL
   }
@@ -102,8 +101,8 @@ end.clus <-
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
 sds <- slingshot(
-  rd,
-  labels,
+  dimred,
+  milestone_assignment_cells,
   start.clus = start.clus,
   end.clus = end.clus,
   shrink = params$shrink,
@@ -136,18 +135,19 @@ milestone_network <- lineages %>%
   )
 
 # calculate cluster dimred_milestones
-dimred_milestones <- t(sapply(colnames(cluster_assignment), function(cli){
-  colMeans(pca[cluster_assignment[, cli] == 1,,drop=T])
+milestone_ids <- unique(milestone_assignment_cells)
+dimred_milestones <- t(sapply(milestone_ids, function(cli){
+  colMeans(dimred[names(which(cli == milestone_assignment_cells)),,drop=T])
 }))
 
 
 # create output object
 output <- lst(
-  milestone_network = milestone_network,
-  progressions,
+  milestone_ids,
+  milestone_network,
   dimred_milestones,
-  dimred = pca,
-  milestone_assignment_cells = labels,
+  dimred,
+  milestone_assignment_cells,
   timings = checkpoints
 )
 
