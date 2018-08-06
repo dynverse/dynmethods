@@ -23,8 +23,14 @@ zzz <- processx::run("docker", args = c("build", folder, "-t", docker_repo), ech
 # try to run the method with a toy dataset
 source(paste0(folder, "/example.R"))
 # traj <- dynwrap::infer_trajectory(data, method, parameters = params, verbose = TRUE, debug = TRUE)
+
+options(dynwrap_run_environment = "docker")
 traj <- dynwrap::infer_trajectory(data, method, parameters = params, verbose = TRUE)
 dynplot::plot_graph(traj)
 
 # if it works, you can push it
 # processx::run("docker", args = c("push", docker_repo), echo = TRUE)
+
+# pull_singularity_ti_method(docker_repo)
+# dynbenchmark::setup_singularity_methods()
+# traj <- dynwrap::infer_trajectory(data, method, parameters = params, verbose = TRUE)
