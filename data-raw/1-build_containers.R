@@ -7,7 +7,7 @@ plan(multiprocess)
 
 definition_files <- list.files("containers", pattern = "definition.yml", recursive = TRUE, full.names = TRUE)
 log_dir <- "logs/"
-unlink(log_dir)
+unlink(log_dir, recursive = TRUE)
 dir.create(log_dir)
 
 # rebuild all dockers in the 'containers' folder
