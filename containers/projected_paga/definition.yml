@@ -2,7 +2,7 @@ id: projected_paga
 docker_repository: dynverse/projected_paga
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/projected_paga
 name: Projected PAGA
-type: algorithm_testing
+type: algorithm_test
 platform: Python
 parameters:
   n_neighbors:
