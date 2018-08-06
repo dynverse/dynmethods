@@ -97,4 +97,4 @@ output:
   outputs:
   - dimred_projection
   - timings
-wrapper_type: trajectory
+wrapper_type: dimred_projection
