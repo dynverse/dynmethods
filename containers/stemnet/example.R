@@ -1,6 +1,6 @@
 set.seed(1)
 data <- dyntoy::generate_dataset(
-  id = "stemnet_example",
+  id = "specific_example/stemnet",
   num_cells = 99,
   num_features = 101,
   model = "tree"

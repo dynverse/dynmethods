@@ -1,6 +1,6 @@
 set.seed(1)
 data <- dyntoy::generate_dataset(
-  id = "elpigraph_example",
+  id = "specific_example/elpigraph",
   num_cells = 99,
   num_features = 101,
   model = "tree"

@@ -1,6 +1,6 @@
 set.seed(1)
 data <- dyntoy::generate_dataset(
-  id = "periodpc_example",
+  id = "specific_example/periodpc",
   num_cells = 99,
   num_features = 101,
   model = "cyclic"

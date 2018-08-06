@@ -1,6 +1,6 @@
 set.seed(1)
 data <- dyntoy::generate_dataset(
-  id = "waterfall_example",
+  id = "specific_example/waterfall",
   num_cells = 99,
   num_features = 101,
   model = "tree"

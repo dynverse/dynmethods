@@ -1,6 +1,6 @@
 set.seed(1)
 data <- dyntoy::generate_dataset(
-  id = "cellrouter_example",
+  id = "specific_example/cellrouter",
   num_cells = 200,
   num_features = 300,
   model = "tree"

@@ -1,6 +1,6 @@
 set.seed(1)
 data <- dyntoy::generate_dataset(
-  id = "fateid_example",
+  id = "specific_example/fateid",
   num_cells = 200,
   num_features = 101,
   model = "multifurcating"
