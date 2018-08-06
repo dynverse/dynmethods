@@ -1,9 +1,8 @@
-id: paga_projected
-docker_repository: dynverse/paga_projected
-container_url: https://github.com/dynverse/dynmethods/tree/master/containers/paga_projected
-name: PAGA Projected
-type: algorithm
-implementation_id: paga
+id: projected_paga
+docker_repository: dynverse/projected_paga
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/projected_paga
+name: Projected PAGA
+type: algorithm_testing
 platform: Python
 parameters:
   n_neighbors:
@@ -49,8 +48,6 @@ output:
   - dimred
   - timings
 wrapper_type: dimred_projection
-doi: 10.1101/208819
-google_scholar_cluster_id: '10470081259069082868'
 trajectory_types:
 - linear
 - bifurcation
@@ -60,15 +57,3 @@ trajectory_types:
 - tree
 - disconnected_tree
 topology_inference: free
-authors:
-- given: Alexander
-  family: Wolf
-  email: alex.wolf@helmholtz-muenchen.de
-  github: falexwolf
-  ORCID: 0000-0002-8760-7838
-- given: Fabian
-  family: Theis
-  email: fabian.theis@helmholtz-muenchen.de
-  github: theislab
-preprint_date: '2017-10-27'
-code_url: https://github.com/theislab/graph_abstraction
