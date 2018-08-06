@@ -1,7 +1,7 @@
-id: gng
-docker_repository: dynverse/gng
-container_url: https://github.com/dynverse/dynmethods/tree/master/containers/gng
-name: Growing Neural Gas
+id: projected_gng
+docker_repository: dynverse/projected_gng
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/projected_gng
+name: Projected GNG
 type: algorithm_test
 platform: R
 trajectory_types:
