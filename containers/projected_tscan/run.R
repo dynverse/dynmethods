@@ -49,9 +49,6 @@ cds_clus <- TSCAN::exprmclust(
   reduce = TRUE
 )
 
-# order the cells
-cds_order <- TSCAN::TSCANorder(cds_clus)
-
 # TIMING: done with method
 checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
