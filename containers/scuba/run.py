@@ -14,8 +14,6 @@ import pandas as pd
 import time
 checkpoints = {}
 
-os.chdir("/tmp")
-
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
@@ -49,7 +47,7 @@ centroid_coordinates, cluster_indices, parent_clusters, new_tree = PySCUBA.refin
   cluster_indices,
   parent_clusters,
   cell_stages,
-  output_directory="/dev/null")
+  output_directory="/workspace")
 
 checkpoints["method_aftermethod"] = time.time()
 
