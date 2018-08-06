@@ -405,19 +405,34 @@ index baf0b9f..f499350 100644
    boxplot.matrix(t(H),main='Boxplot for the entropy',
                   xlab='Cluster',ylab='Entropy')
 diff --git CALISTA-R/R/eigengap.R CALISTA-R/R/eigengap.R
-index fab26ea..ac2c664 100644
+index fab26ea..3bd9769 100644
 --- CALISTA-R/R/eigengap.R
 +++ CALISTA-R/R/eigengap.R
-@@ -10,7 +10,7 @@ eigengap<-function(consensus,max_clust){
+@@ -3,27 +3,28 @@ eigengap<-function(consensus,max_clust){
+   L=D-consensus
+   #Dtemp=expm(-1/2*logm(D))
+   #Dtemp=D%^%(-1/2)
+-  E <- eigen(D) 
+-  V <- E$values 
+-  Q <- E$vectors 
+-  Dtemp <- Q%*%diag(1/sqrt(V))%*%t(Q) 
++  E <- eigen(D)
++  V <- E$values
++  Q <- E$vectors
++  Dtemp <- Q%*%diag(1/sqrt(V))%*%t(Q)
    L=Dtemp%*%L%*%Dtemp
    v=eigen(L)$value
    v=sort(v)
 -  x11()
-+  
-   all_diff=get_diff(v[1:max_clust])
-   ind_maxdiff=which(all_diff==max(all_diff))[1]
-   plot(v[1:max_clust],col="blue",type="p",
-@@ -18,7 +18,7 @@ eigengap<-function(consensus,max_clust){
+-  all_diff=get_diff(v[1:max_clust])
+-  ind_maxdiff=which(all_diff==max(all_diff))[1]
+-  plot(v[1:max_clust],col="blue",type="p",
++
++  min_clust=3
++  all_diff=get_diff(v[min_clust:max_clust])
++  ind_maxdiff=which(all_diff==max(all_diff))[1] + (min_clust-1)
++  plot(min_clust:max_clust, v[min_clust:max_clust],col="blue",type="p",
+        main="Eigengap value",
         xlab="Number of cluster",ylab="")
    points(ind_maxdiff,v[ind_maxdiff],col="red")
    writeLines(paste("Optimal number of cluster according to max. eigenvalue:",ind_maxdiff,"\nif you want to use this value press 0, else provide desired number of cluster:"))
@@ -426,9 +441,10 @@ index fab26ea..ac2c664 100644
    if(input1==0){
      expected_clusters=ind_maxdiff
    }else{
-@@ -26,4 +26,4 @@ eigengap<-function(consensus,max_clust){
+     expected_clusters=input1
    }
-   
+-  
++
    return(expected_clusters)
 -}
 \ No newline at end of file
