@@ -7,7 +7,7 @@
 ti_celltree_gibbs(method = "Gibbs", sd_filter = 0.5,
   absolute_width = 0, width_scale_factor = 1.5,
   outlier_tolerance_factor = 0.1, rooting_method = "null",
-  num_topics = 4, tot_iter = 200, tolerance = 1e-05,
+  num_topics = 4, tot_iter = 200L, tolerance = 1e-05,
   run_environment = NULL)
 }
 \arguments{
@@ -27,7 +27,7 @@ to \code{1000})}
 
 \item{num_topics}{integer; (default: \code{4}; range: from \code{2} to \code{15})}
 
-\item{tot_iter}{numeric; (default: \code{200}; range: from \code{50} to \code{500})}
+\item{tot_iter}{numeric; (default: \code{200L}; range: from \code{10L} to \code{1000L})}
 
 \item{tolerance}{numeric; (default: \code{1e-05}; range: from \code{1e-07} to \code{0.001})}
 

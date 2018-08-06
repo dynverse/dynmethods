@@ -4,13 +4,13 @@
 \alias{ti_ouija}
 \title{Inferring a trajectory inference using ouija}
 \usage{
-ti_ouija(iter = 100, response_type = "switch",
+ti_ouija(iter = 100L, response_type = "switch",
   inference_type = "hmc", normalise_expression = TRUE,
   run_environment = NULL)
 }
 \arguments{
-\item{iter}{numeric; Number of iterations (default: \code{100}; range: from \code{10} to
-\code{1000})}
+\item{iter}{numeric; Number of iterations (default: \code{100L}; range: from \code{10L}
+to \code{1000L})}
 
 \item{response_type}{discrete; A vector declaring whether each gene exhibits
 "switch" or "transient"expression. Defaults to "switch" for all genes (default:

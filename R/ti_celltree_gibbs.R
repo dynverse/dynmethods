@@ -26,7 +26,7 @@
 #' @param rooting_method discrete; (default: `"null"`; values: {`"longest.path"`,
 #' `"center.start.group"`, `"average.start.group"`, `"null"`})
 #' @param num_topics integer; (default: `4`; range: from `2` to `15`)
-#' @param tot_iter numeric; (default: `200`; range: from `50` to `500`)
+#' @param tot_iter numeric; (default: `200L`; range: from `10L` to `1000L`)
 #' @param tolerance numeric; (default: `1e-05`; range: from `1e-07` to `0.001`)
 #' @inheritParams dynwrap::create_container_ti_method
 #' 
@@ -41,7 +41,7 @@ ti_celltree_gibbs <- function(
     outlier_tolerance_factor = 0.1,
     rooting_method = "null",
     num_topics = 4,
-    tot_iter = 200,
+    tot_iter = 200L,
     tolerance = 1e-05,
     run_environment = NULL
 ) {

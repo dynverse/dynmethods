@@ -100,8 +100,7 @@ still derived based on the projection. Default is FALSE.}
 \item{pdishuf}{integer; Positive integer. This is the number of randomizations
 to be performed. As a rule of thumb this number should be at least one order of
 magnitude larger than the desired p-value on the significance of the number of
-cells on a connection. Default is 2000. (default: \code{2000L}; range: from \code{100L}
-to \code{10000L})}
+cells on a connection. (default: \code{2000L}; range: from \code{100L} to \code{10000L})}
 
 \item{pthr}{numeric; Positive number. This number corresponds to the p-value
 threshold, which is used to determine, whether the magnitude of an observed
