@@ -38,7 +38,7 @@ generate_function_from_definition <- function(definition) {
 
   # generate code for passing the default parameters to create_ti_method
   args <- map_chr(parameter_ids, ~ paste0(., " = ", .)) %>%
-    paste0("    ", .) %>% glue::collapse(",\n")
+    paste0("    ", ., collapse = ",\n")
 
   # return code for function
   paste0(
