@@ -22,13 +22,14 @@ zzz <- processx::run("docker", args = c("build", folder, "-t", docker_repo), ech
 
 # try to run the method with a toy dataset
 source(paste0(folder, "/example.R"))
-# traj <- dynwrap::infer_trajectory(data, method, parameters = params, verbose = TRUE, debug = TRUE)
 
 options(dynwrap_run_environment = "docker")
+# traj <- dynwrap::infer_trajectory(data, method, parameters = params, verbose = TRUE, debug = TRUE)
 traj <- dynwrap::infer_trajectory(data, method, parameters = params, verbose = TRUE)
-dynplot::plot_graph(traj)
-
-dyneval::evaluate_ti_method(data, method, parameters = params, metrics = c("correlation", "edge_flip", "rf_mse", "featureimp_cor"))
+eval <- dyneval::evaluate_ti_method(data, method, parameters = params, metrics = c("correlation", "edge_flip", "rf_mse", "featureimp_cor"), verbose = TRUE)
+eval$summary
+dynplot::plot_graph(eval$models[[1]])
+eval$summary$error
 
 # if it works, you can push it
 # processx::run("docker", args = c("push", docker_repo), echo = TRUE)
