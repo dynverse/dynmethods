@@ -44,9 +44,9 @@ input:
 output:
   format: rds
   outputs:
-  - dimred
   - cell_graph
   - timings
+  - dimred
 wrapper_type: cell_graph
 authors:
 - given: Joshua

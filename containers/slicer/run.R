@@ -46,6 +46,7 @@ colnames(traj_lle) <- paste0("comp_", seq_len(ncol(traj_lle)))
 
 # get LLE KNN graph
 traj_graph <- SLICER::conn_knn_graph(traj_lle, k = params$k)
+igraph::V(traj_graph)$name <- rownames(traj_lle)
 
 # find extreme cells
 if (is.null(end_id)) {
@@ -73,14 +74,12 @@ subgr <- igraph::subgraph.edges(traj_graph, eids = unique(unlist(gr)))
 cell_graph <- igraph::as_data_frame(subgr, "edges") %>%
   dplyr::select(from, to, length = weight) %>%
   mutate(
-    from = rownames(expr_filt)[from],
-    to = rownames(expr_filt)[to],
     directed = TRUE
   )
 sh_p_to_ends <- igraph::shortest_paths(subgr, start, ends)
 nodes_to_keep <- unique(sh_p_to_ends$vpath %>% unlist)
-cell_ids <- igraph::V(traj_graph)
-to_keep <- setNames(cell_ids %in% nodes_to_keep, cell_ids)
+cell_ids <- names(igraph::V(traj_graph))
+to_keep <- setNames(seq_along(cell_ids) %in% nodes_to_keep, cell_ids)
 
 # return output
 output <- lst(
