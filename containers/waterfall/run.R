@@ -37,6 +37,7 @@ checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
 # return output
 output <- lst(
+  cell_ids = rownames(ps),
   pseudotime = set_names(ps$pseudotime, rownames(ps)),
   dimred = as.matrix(dimred),
   timings = checkpoints

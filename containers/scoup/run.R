@@ -102,6 +102,7 @@ esp <- cpara %>% select(-time) %>% tibble::rownames_to_column("cell_id")
 
 # return output
 output <- lst(
+  cell_ids = names(pseudotime),
   end_state_probabilities = esp,
   pseudotime,
   do_scale_minmax = TRUE,

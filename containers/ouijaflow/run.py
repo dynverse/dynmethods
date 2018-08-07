@@ -32,6 +32,11 @@ checkpoints["method_aftermethod"] = time.time()
 #   ____________________________________________________________________________
 #   Process output & save                                                   ####
 # pseudotime
+cell_ids = pd.DataFrame({
+  "cell_ids": expression.index
+})
+cell_ids.to_csv("/output/cell_ids.csv", index=False)
+
 pseudotime = pd.DataFrame({
   "pseudotime": z,
   "cell_id": expression.index

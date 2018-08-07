@@ -79,10 +79,12 @@ cell_graph <- igraph::as_data_frame(subgr, "edges") %>%
   )
 sh_p_to_ends <- igraph::shortest_paths(subgr, start, ends)
 nodes_to_keep <- unique(sh_p_to_ends$vpath %>% unlist)
-to_keep <- setNames(igraph::V(traj_graph) %in% nodes_to_keep, rownames(expr_filt))
+cell_ids <- igraph::V(traj_graph)
+to_keep <- setNames(cell_ids %in% nodes_to_keep, cell_ids)
 
 # return output
 output <- lst(
+  cell_ids,
   cell_graph,
   to_keep,
   dimred = traj_lle,

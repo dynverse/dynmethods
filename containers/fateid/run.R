@@ -136,6 +136,7 @@ pseudotimes <- pseudotimes %>% bind_rows(
 dimred <- dr[[1]][[1]] %>% as.data.frame() %>% mutate(cell_id = rownames(expression))
 
 output <- lst(
+  cell_ids = rownames(dimred),
   pseudotime = pseudotimes,
   end_state_probabilities,
   dimred,

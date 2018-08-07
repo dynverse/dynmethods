@@ -56,6 +56,7 @@ pseudotime <- MCMCglmm::posterior.mode(tmcmc) %>%
 
 # return output
 output <- lst(
+  cell_ids = names(pseudotime),
   pseudotime = pseudotime,
   timings = checkpoints
 )

@@ -83,6 +83,7 @@ to_keep <- setNames(rownames(expression) %in% names(igraph::V(gr)), rownames(exp
 
 # return output
 output <- lst(
+  cell_ids = rownames(expression),
   cell_graph,
   to_keep,
   timings = checkpoints

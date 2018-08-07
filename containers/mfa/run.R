@@ -67,6 +67,7 @@ pseudotime <-
 
 # return output
 output <- lst(
+  cell_ids = names(pseudotime),
   end_state_probabilities,
   pseudotime,
   timings = checkpoints

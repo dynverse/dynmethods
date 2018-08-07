@@ -111,6 +111,7 @@ cell_graph <- map_dfr(
 to_keep <- unique(c(cell_graph$from, cell_graph$to))
 
 output <- lst(
+  cell_ids = to_keep,
   grouping,
   dimred,
   cell_graph,

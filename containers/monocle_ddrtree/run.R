@@ -74,6 +74,7 @@ colnames(dimred) <- paste0("Comp", seq_len(ncol(dimred)))
 
 # wrap output
 output <- lst(
+  cell_ids = rownames(dimred),
   cell_graph,
   to_keep,
   dimred,

@@ -94,6 +94,7 @@ progressions <- tibble(cell_id = rownames(expression), edge_id = ProjStruct$Edge
   mutate(percentage = pmin(1, pmax(0, ProjStruct$ProjectionValues)))
 
 output <- lst(
+  cell_ids = rownames(expression),
   milestone_network,
   progressions,
   timings = checkpoints

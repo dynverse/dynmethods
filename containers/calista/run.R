@@ -122,6 +122,7 @@ progressions <- progressions %>%
   mutate(from = paste0("M", from), to = paste0("M", to))
 
 output <- lst(
+  cell_ids = unique(progressions$cell_id),
   progressions,
   milestone_network,
   timings = checkpoints

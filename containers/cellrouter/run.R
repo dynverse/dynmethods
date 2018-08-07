@@ -113,6 +113,7 @@ to_keep <- backbone_cells
 dimred <- cellrouter@tsne %>% as.data.frame() %>% rownames_to_column("cell_id")
 
 # save
+write_feather(tibble(cell_ids = unique(c(cell_graph$from, cell_graph$to))), "/output/cell_ids.feather")
 write_feather(cell_graph, "/output/cell_graph.feather")
 write_feather(tibble(to_keep=to_keep), "/output/to_keep.feather")
 write_feather(dimred, "/output/dimred.feather")

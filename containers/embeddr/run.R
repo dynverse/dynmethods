@@ -79,6 +79,7 @@ colnames(dimred_trajectory_segments) <- c(
 
 # return output
 model <- lst(
+  cell_ids = names(pseudotime),
   pseudotime = pseudotime,
   dimred = dimred_cells,
   dimred_trajectory_segments = dimred_trajectory_segments,

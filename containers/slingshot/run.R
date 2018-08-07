@@ -172,6 +172,7 @@ progressions <- map_df(seq_along(lineages), function(l) {
 
 # create output object
 output <- lst(
+  cell_ids = rownames(dimred),
   milestone_network = cluster_network,
   progressions,
   dimred,

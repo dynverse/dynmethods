@@ -61,6 +61,7 @@ dimred <- cds_clus$pcareducere
 
 # return output
 output <- lst(
+  cell_ids = rownames(dimred),
   pseudotime,
   dimred,
   timings = checkpoints

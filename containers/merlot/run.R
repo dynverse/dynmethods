@@ -134,6 +134,7 @@ dimred$cell_id <- rownames(expression)
 
 # save
 output <- lst(
+  cell_ids = rownames(expression),
   milestone_network,
   progressions,
   dimred,

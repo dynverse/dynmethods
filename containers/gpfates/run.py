@@ -43,6 +43,12 @@ checkpoints["method_aftermethod"] = time.time()
 
 #   ____________________________________________________________________________
 #   Process and save output                                                 ####
+# cell ids
+cell_ids = pd.DataFrame({
+  "cell_ids": m.s.pseudotime.index
+})
+cell_ids.to_csv("/output/cell_ids.csv", index=False)
+
 # pseudotime
 pseudotime = m.s.pseudotime.reset_index()
 pseudotime.columns = ["cell_id", "pseudotime"]

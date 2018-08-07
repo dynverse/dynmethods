@@ -60,6 +60,7 @@ end_state_probabilities <- output@posteriors %>% as.data.frame() %>% rownames_to
 checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
 output <- lst(
+  cell_ids = names(pseudotime),
   end_state_probabilities,
   pseudotime,
   timings = checkpoints

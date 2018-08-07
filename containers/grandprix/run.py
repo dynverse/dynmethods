@@ -53,6 +53,11 @@ checkpoints["method_aftermethod"] = tm.time()
 #   ____________________________________________________________________________
 #   Process output                                                          ####
 # process to end_state_probabilities output format
+cell_ids = pd.DataFrame({
+  "cell_ids": expression.index
+})
+cell_ids.to_csv("/output/cell_ids.csv", index=False)
+
 pseudotime = pd.DataFrame({
   "cell_id": expression.index,
   "pseudotime": pt_np[:, 0]

@@ -195,6 +195,7 @@ milestone_network <- tree_layout %>%
 
 # return output
 output <- lst(
+  cell_ids = urd.tree@tree$cell.layout$cell,
   milestone_network = milestone_network,
   progressions = progressions,
   timings = checkpoints

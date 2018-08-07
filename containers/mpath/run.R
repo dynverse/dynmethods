@@ -82,6 +82,7 @@ grouping <-
   with(landmark_cluster, setNames(landmark_cluster, cell))
 
 output <- lst(
+  cell_ids = names(grouping),
   grouping,
   milestone_network,
   timings = checkpoints

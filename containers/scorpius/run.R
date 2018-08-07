@@ -63,6 +63,7 @@ dimred_trajectory_segments <-
 
 # return output
 output <- lst(
+  cell_ids = names(traj$time),
   pseudotime = traj$time,
   dimred = space,
   dimred_trajectory_segments = dimred_trajectory_segments,

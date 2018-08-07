@@ -46,6 +46,7 @@ pseudotime <- result$ensembleResultLst[dim(result$ensembleResultLst)[1], ] %>% s
 
 # wrap
 output <- lst(
+  cell_ids = names(pseudotime),
   pseudotime,
   timings = checkpoints
 )

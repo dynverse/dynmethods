@@ -81,6 +81,7 @@ milestone_network <- data_frame(
 )
 
 output <- lst(
+  cell_ids = rownames(dimred_cells),
   milestone_network,
   dimred_milestones,
   dimred = dimred_cells,

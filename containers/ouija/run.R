@@ -51,6 +51,7 @@ pseudotime <- ouija::map_pseudotime(oui) %>%
 
 # return output
 output <- lst(
+  cell_ids = names(pseudotime),
   pseudotime = pseudotime,
   timings = checkpoints
 )

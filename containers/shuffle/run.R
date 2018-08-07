@@ -35,6 +35,7 @@ progressions <- dataset$progressions %>% mutate(
 checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
 output <- lst(
+  cell_ids = rownames(counts),
   milestone_network = dataset$milestone_network,
   progressions = progressions,
   divergence_regions = dataset$divergence_regions,

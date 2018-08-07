@@ -163,6 +163,7 @@ dimred_milestones <- cells.df %>%
 
 # return output
 output <- lst(
+  cell_ids = rownames(dimred),
   milestone_network,
   progressions,
   divergence_regions = NULL,

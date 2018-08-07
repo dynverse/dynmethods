@@ -48,7 +48,6 @@ checkpoints["method_aftermethod"] = time.time()
 
 #   ____________________________________________________________________________
 #   Process output & save                                                   ####
-
 # pseudotime
 pseudotime = wb.trajectory.reset_index()
 pseudotime.columns = ["cell_id", "pseudotime"]
@@ -58,6 +57,12 @@ pseudotime.to_csv("/output/pseudotime.csv", index=False)
 dimred = wb.scdata.diffusion_eigenvectors
 dimred.index.name = "cell_id"
 dimred.reset_index().to_csv("/output/dimred.csv", index=False)
+
+# cell ids
+cell_ids = pd.DataFrame({
+  "cell_ids": dimred.index
+})
+cell_ids.to_csv("/output/cell_ids.csv", index=False)
 
 # timings
 json.dump(checkpoints, open("/output/timings.json", "w"))

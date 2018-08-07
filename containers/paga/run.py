@@ -81,6 +81,11 @@ checkpoints["method_aftermethod"] = time.time()
 
 #   ____________________________________________________________________________
 #   Process & save output                                                   ####
+# cell ids
+cell_ids = pd.DataFrame({
+  "cell_ids": counts.index
+})
+cell_ids.to_csv("/output/cell_ids.csv", index=False)
 
 # grouping
 grouping = pd.DataFrame({"cell_id": counts.index, "group_id": adata.obs.louvain})
