@@ -99,7 +99,7 @@ to_keep <- igraph::V(mst_tree)$is.backbone %>%
 
 # wrap output
 output <- lst(
-  cell_ids = to_keep,
+  cell_ids = rownames(expression),
   cell_graph,
   to_keep,
   is_directed = FALSE,
