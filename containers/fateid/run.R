@@ -123,7 +123,8 @@ pseudotimes <- map2_dfr(names(pr$trc), pr$trc, function(curve_id, trc) {
   arrange(pseudotime) %>%
   group_by(cell_id) %>%
   filter(pseudotime == max(pseudotime)) %>%
-  filter(row_number() == 1)
+  filter(row_number() == 1) %>%
+  ungroup()
 
 pseudotimes <- pseudotimes %>% bind_rows(
   tibble(
@@ -133,7 +134,11 @@ pseudotimes <- pseudotimes %>% bind_rows(
 )
 
 # extract dimred
-dimred <- dr[[1]][[1]] %>% as.data.frame() %>% mutate(cell_id = rownames(expression))
+dimred <- dr[[1]][[1]] %>%
+  as.matrix() %>%
+  magrittr::set_rownames(rownames(expression)) %>%
+  magrittr::set_colnames(., paste0("Comp", seq_len(ncol(.))))
+
 
 output <- lst(
   cell_ids = rownames(dimred),
