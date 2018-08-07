@@ -141,46 +141,60 @@ ltr <- ltr %>% comppvalue()
 # TIMING: done with method
 checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
+
 # get linkscores and pvalues
-cluster_network_linkscore <- ltr@cdata$linkscore %>%
+milestone_network_linkscore <- ltr@cdata$linkscore %>%
   tibble::rownames_to_column("from") %>%
   tidyr::gather("to", "linkscore", -from)
 
-cluster_network_pvalue <- ltr@cdata$pvn.e %>%
+milestone_network_pvalue <- ltr@cdata$pvn.e %>%
   tibble::rownames_to_column("from") %>%
   tidyr::gather("to", "pvalue", -from)
 
 # combine into one cluster network
-cluster_network <- left_join(
-  cluster_network_linkscore,
-  cluster_network_pvalue,
+milestone_network <- left_join(
+  milestone_network_linkscore,
+  milestone_network_pvalue,
   c("from", "to")
 ) %>%
-  mutate_at(c("from", "to"), ~gsub("cl\\.(.*)", "\\1", .))
-
-# filter the cluster network
-cluster_network <- cluster_network %>%
+  mutate_at(c("from", "to"), ~gsub("cl\\.(.*)", "\\1", .)) %>%
   filter(
     pvalue <= pvalue_cutoff,
     linkscore >= linkscore_cutoff
-  )
-
-# get distances between clusters
-cluster_network <- cluster_network %>%
+  ) %>%
   mutate(
     length =  dc[cbind(from, to)],
     directed = FALSE
   ) %>%
   dplyr::select(from, to, length, directed)
 
+
+dimred_milestones <- ltr@ldata$cnl %>% as.matrix
+dimred <- ltr@ltcoord %>% na.omit
+cell_ids <- rownames(dimred)
+milestone_ids <- rownames(dimred_milestones)
+grouping <- ltr@ldata$lp[cell_ids]
+
 output <- lst(
-  milestone_ids = rownames(ltr@ldata$cnl %>% as.matrix),
-  milestone_network = cluster_network,
-  dimred_milestones = ltr@ldata$cnl %>% as.matrix,
-  dimred = ltr@ltcoord,
-  milestone_assignment_cells = as.character(ltr@ldata$lp) %>% setNames(rownames(counts)),
+  cell_ids,
+  milestone_ids,
+  milestone_network = milestone_network,
+  dimred_milestones,
+  dimred,
+  grouping,
   timings = checkpoints
 )
+
+#' @examples
+#' dynwrap::wrap_data(
+#'   cell_ids = cell_ids
+#' ) %>% dynwrap::add_dimred_projection(
+#'   milestone_ids = milestone_ids,
+#'   milestone_network = milestone_network,
+#'   dimred_milestones = dimred_milestones,
+#'   dimred = dimred,
+#'   grouping = grouping
+#' )
 
 #   ____________________________________________________________________________
 #   Save output                                                             ####
