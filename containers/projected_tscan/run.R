@@ -53,22 +53,23 @@ cds_clus <- TSCAN::exprmclust(
 checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
 # process output
-cluster_network <- cds_clus$MSTtree %>%
+milestone_network <- cds_clus$MSTtree %>%
   igraph::as_data_frame() %>%
   rename(length = weight) %>%
   mutate(directed = FALSE)
-sample_space <- cds_clus$pcareduceres
-cluster_space <- cds_clus$clucenter
-rownames(cluster_space) <- as.character(seq_len(nrow(cluster_space)))
-colnames(cluster_space) <- colnames(sample_space)
+dimred <- cds_clus$pcareduceres
+dimred_milestones <- cds_clus$clucenter
+rownames(dimred_milestones) <- as.character(seq_len(nrow(dimred_milestones)))
+colnames(dimred_milestones) <- colnames(dimred)
 
 # return output
 output <- lst(
-  milestone_ids = rownames(cluster_space),
-  milestone_network = cluster_network,
-  dimred_milestones = cluster_space,
-  dimred = sample_space,
-  milestone_assignment_cells = cds_clus$clusterid,
+  cell_ids = rownames(dimred),
+  milestone_ids = rownames(dimred_milestones),
+  milestone_network = milestone_network,
+  dimred_milestones,
+  dimred,
+  grouping = cds_clus$clusterid,
   timings = checkpoints
 )
 

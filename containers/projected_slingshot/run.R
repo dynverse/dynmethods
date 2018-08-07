@@ -83,17 +83,17 @@ clusterings <- lapply(3:10, function(K){
 # (max of 10; the extra cluster improves flexibility when learning the topology,
 # silhouette width tends to pick too few clusters, otherwise)
 wh.cl <- which.max(sapply(clusterings, function(x){ x$silinfo$avg.width })) + 1
-milestone_assignment_cells <- clusterings[[min(c(wh.cl, 8))]]$clustering %>% {set_names(paste0("M", .), names(.))}
+grouping <- clusterings[[min(c(wh.cl, 8))]]$clustering %>% {set_names(paste0("M", .), names(.))}
 
 start.clus <-
   if(!is.null(start_cell)) {
-    milestone_assignment_cells[[start_cell]]
+    grouping[[start_cell]]
   } else {
     NULL
   }
 end.clus <-
   if(!is.null(end_id)) {
-    unique(milestone_assignment_cells[end_id])
+    unique(grouping[end_id])
   } else {
     NULL
   }
@@ -102,7 +102,7 @@ end.clus <-
 #   Infer trajectory                                                        ####
 sds <- slingshot(
   dimred,
-  milestone_assignment_cells,
+  grouping,
   start.clus = start.clus,
   end.clus = end.clus,
   shrink = params$shrink,
@@ -135,19 +135,20 @@ milestone_network <- lineages %>%
   )
 
 # calculate cluster dimred_milestones
-milestone_ids <- unique(milestone_assignment_cells)
+milestone_ids <- unique(grouping)
 dimred_milestones <- t(sapply(milestone_ids, function(cli){
-  colMeans(dimred[names(which(cli == milestone_assignment_cells)),,drop=T])
+  colMeans(dimred[names(which(cli == grouping)),,drop=T])
 }))
 
 
 # create output object
 output <- lst(
+  cell_ids = rownames(dimred),
   milestone_ids,
   milestone_network,
   dimred_milestones,
   dimred,
-  milestone_assignment_cells,
+  grouping = grouping,
   timings = checkpoints
 )
 

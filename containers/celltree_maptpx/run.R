@@ -97,18 +97,12 @@ cell_graph <- igraph::as_data_frame(mst_tree, "edges") %>%
 to_keep <- igraph::V(mst_tree)$is.backbone %>%
   setNames(rownames(expression))
 
-# extract data for visualisations
-tree <- cellTree:::.compute.tree.layout(mst_tree, ratio = 1)
-vertices <- igraph::as_data_frame(tree, "vertices") %>% as_data_frame()
-edges <- igraph::as_data_frame(tree, "edges") %>% as_data_frame()
-
 # wrap output
 output <- lst(
-  cell_graph = cell_graph,
-  to_keep = to_keep,
+  cell_ids = to_keep,
+  cell_graph,
+  to_keep,
   is_directed = FALSE,
-  plot_vertices = vertices,
-  plot_edges = edges,
   timings = checkpoints
 )
 

@@ -64,13 +64,13 @@ checkpoints$method_aftermethod <- as.numeric(Sys.time())
 dimred_cells <- dpt@dm@eigenvectors %>% magrittr::set_rownames(rownames(expression)) %>% as.matrix
 
 # get cluster assignment
-milestone_assignment_cells <- dpt@branch[,1] %>%
+grouping <- dpt@branch[,1] %>%
   ifelse(is.na(.), 0, .) %>%
   as.character()
-branches <- sort(unique(milestone_assignment_cells))
+branches <- sort(unique(grouping))
 
 # calculate cluster medians
-dimred_milestones <- t(sapply(branches, function(br) colMeans(dimred_cells[milestone_assignment_cells == br,,drop=F])))
+dimred_milestones <- t(sapply(branches, function(br) colMeans(dimred_cells[grouping == br,,drop=F])))
 
 # create star network
 milestone_network <- data_frame(
@@ -85,7 +85,7 @@ output <- lst(
   milestone_network,
   dimred_milestones,
   dimred = dimred_cells,
-  milestone_assignment_cells,
+  grouping = grouping,
   tips,
   timings = checkpoints
 )
