@@ -3,7 +3,10 @@ library(purrr)
 library(readr)
 library(feather)
 
-setwd("/CALISTA/CALISTA-R/")
+# calista NEEDS to be in the CALISTA-R folder while at the same time
+# requiring to be able to write files there
+file.copy("/CALISTA/CALISTA-R", "/workspace", recursive = TRUE)
+setwd("/workspace/CALISTA-R")
 source("R/initialization.R")
 
 #   ____________________________________________________________________________

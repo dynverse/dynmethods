@@ -49,7 +49,7 @@ cellrouter <- findClusters(cellrouter, method = "graph.clustering", num.pcs = p$
 cellrouter <- buildKNN(cellrouter, k = p$k_knn, column.ann = 'population', num.pcs = p$ndim_pca_knn, sim.type = p$sim_type)
 
 # create trajectory using start cells as source
-outputdir <- "/tmp/output"
+outputdir <- "/workspace"
 dir.create(outputdir, recursive = TRUE)
 filename <- file.path(outputdir, "cell_edge_weighted_network.txt")
 write.table(cellrouter@graph$edges, file = filename, sep='\t', row.names = FALSE, col.names = FALSE, quote = FALSE)
