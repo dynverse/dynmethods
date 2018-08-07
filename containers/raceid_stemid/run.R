@@ -102,16 +102,18 @@ ltr <- ltr %>% comppvalue()
 # TIMING: done with method
 checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
-# compute a spanning tree
+# collect information on dimreds
 dimred_milestones <- ltr@ldata$cnl %>% as.matrix
 rownames(dimred_milestones) <- paste0("M", ltr@ldata$m)
 dimred <- ltr@ltcoord %>% na.omit
 cell_ids <- rownames(dimred)
 milestone_ids <- rownames(dimred_milestones)
 grouping <- paste0("M", ltr@ldata$lp[cell_ids])
+
+# calculate distance between milestones
 dist_milestones <- as.matrix(dist(dimred_milestones))
 
-# get linkscores and pvalues
+# fetch milestone network by filtering the linkscore
 milestone_network <- ltr@cdata$linkscore %>%
   as.matrix() %>%
   reshape2::melt(varnames = c("from", "to"), value.name = "linkscore") %>%
@@ -134,17 +136,6 @@ output <- lst(
   grouping,
   timings = checkpoints
 )
-
-#' @examples
-#' dynwrap::wrap_data(
-#'   cell_ids = cell_ids
-#' ) %>% dynwrap::add_dimred_projection(
-#'   milestone_ids = milestone_ids,
-#'   milestone_network = milestone_network,
-#'   dimred_milestones = dimred_milestones,
-#'   dimred = dimred,
-#'   grouping = grouping
-#' )
 
 #   ____________________________________________________________________________
 #   Save output                                                             ####
