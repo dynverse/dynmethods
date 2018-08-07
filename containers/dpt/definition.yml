@@ -83,9 +83,11 @@ input:
 output:
   format: rds
   outputs:
-  - dimred_projection
+  - trajectory
+  - grouping
+  - dimred
   - timings
-wrapper_type: dimred_projection
+wrapper_type: trajectory
 authors:
 - given: Laleh
   family: Haghverdi
