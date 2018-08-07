@@ -26,10 +26,11 @@ source(paste0(folder, "/example.R"))
 options(dynwrap_run_environment = "docker")
 # traj <- dynwrap::infer_trajectory(data, method, parameters = params, verbose = TRUE, debug = TRUE)
 traj <- dynwrap::infer_trajectory(data, method, parameters = params, verbose = TRUE)
-eval <- dyneval::evaluate_ti_method(data, method, parameters = params, metrics = c("correlation", "edge_flip", "rf_mse", "featureimp_cor"), verbose = TRUE)
-eval$summary
-dynplot::plot_graph(eval$models[[1]])
-eval$summary$error
+dynplot::plot_graph(traj)
+# eval <- dyneval::evaluate_ti_method(data, method, parameters = params, metrics = c("correlation", "edge_flip", "rf_mse", "featureimp_cor"), verbose = TRUE)
+# eval$summary
+# dynplot::plot_graph(eval$models[[1]])
+# eval$summary$error
 
 # if it works, you can push it
 # processx::run("docker", args = c("push", docker_repo), echo = TRUE)
