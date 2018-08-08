@@ -27,14 +27,31 @@ options(dynwrap_run_environment = "docker")
 # traj <- dynwrap::infer_trajectory(data, method, parameters = params, verbose = TRUE, debug = TRUE)
 traj <- dynwrap::infer_trajectory(data, method, parameters = params, verbose = TRUE)
 dynplot::plot_graph(traj)
-# eval <- dyneval::evaluate_ti_method(data, method, parameters = params, metrics = c("correlation", "edge_flip", "rf_mse", "featureimp_cor"), verbose = TRUE)
-# eval$summary
-# dynplot::plot_graph(eval$models[[1]])
-# eval$summary$error
 
-# if it works, you can push it
-# processx::run("docker", args = c("push", docker_repo), echo = TRUE)
 
-# dynbenchmark::setup_singularity_methods()
-# pull_singularity_ti_method(docker_repo)
-# traj <- dynwrap::infer_trajectory(data, method, parameters = params, verbose = TRUE)
+#' @examples
+#' # you can test whether elpigraph can be evaluated
+#' eval <- dyneval::evaluate_ti_method(data, method, parameters = params, metrics = c("correlation", "edge_flip", "rf_mse", "featureimp_cor"), verbose = TRUE)
+#' eval$summary
+#' dynplot::plot_graph(eval$models[[1]])
+#' eval$summary$error
+#'
+#' # if it works, you can push the container to docker hub
+#' processx::run("docker", args = c("push", docker_repo), echo = TRUE)
+#'
+#' # rebuild the singularity image
+#' dynbenchmark::setup_singularity_methods()
+#' dynwrap::pull_singularity_ti_method(docker_repo)
+#'
+#' # test the singularity image
+#' traj <- dynwrap::infer_trajectory(data, method, parameters = params, verbose = TRUE)
+#' dynplot::plot_graph(traj)
+#'
+#' # transfer it to prism
+#' qsub::rsync_remote(
+#'   remote_src = FALSE,
+#'   path_src = dynbenchmark::derived_file(c("dynverse/", method, ".simg"), "04-method_characterisation/singularity_images", remote = FALSE),
+#'   remote_dest = TRUE,
+#'   path_dest = dynbenchmark::derived_file(c("dynverse/", method, ".simg"), "04-method_characterisation/singularity_images", remote = TRUE),
+#'   verbose = TRUE
+#' )
