@@ -118,8 +118,8 @@ milestone_network <- left_join(
     summarise(length = max(pseudotime) - min(pseudotime)),
   "edge_id"
 ) %>%
-  mutate(length = ifelse(is.na(length), mean(length, na.rm=T), length)) %>%
-  mutate(directed = TRUE) %>%
+  mutate(length = ifelse(is.na(length), mean(length, na.rm = T), length)) %>%
+  mutate(directed = FALSE) %>%
   select(from, to, length, directed)
 
 # now calculate percentages of progression
