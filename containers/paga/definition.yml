@@ -36,6 +36,9 @@ parameters:
       or 'fa' (ForceAtlas2, often a bit more intuitive for small datasets).
     type: discrete
     default: fa
+    values:
+    - umap
+    - fa
 input:
   format: hdf5
   required:

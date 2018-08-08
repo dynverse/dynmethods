@@ -23,7 +23,7 @@ the granularity of the clustering. Higher values will result in more clusters.
 
 \item{embedding_type}{discrete; Either 'umap' (scales very well, recommended
 for very large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for
-small datasets). (default: \code{"fa"}; values: {``})}
+small datasets). (default: \code{"fa"}; values: {\code{"umap"}, \code{"fa"}})}
 
 \item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
 }

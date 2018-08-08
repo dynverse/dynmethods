@@ -28,7 +28,7 @@
 #' (default: `2.5`; range: from `0.1` to `10L`)
 #' @param embedding_type discrete; Either 'umap' (scales very well, recommended
 #' for very large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for
-#' small datasets). (default: `"fa"`; values: {``})
+#' small datasets). (default: `"fa"`; values: {`"umap"`, `"fa"`})
 #' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
