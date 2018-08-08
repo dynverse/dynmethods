@@ -6,6 +6,8 @@ library(purrr)
 library(merlot)
 library(destiny)
 
+Sys.setenv(TMP = "/workspace/tmp")
+
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
