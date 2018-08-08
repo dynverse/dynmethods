@@ -21,6 +21,12 @@ parameters:
     default: 0.1
     lower: 0.05
     upper: 1
+  force:
+    description: Do not use! This is a parameter to force FateID to run on benchmark datasets
+      where not enough end groups are present.
+    type: logical
+    default: no
+    tunable: no
 input:
   format: rds
   required:

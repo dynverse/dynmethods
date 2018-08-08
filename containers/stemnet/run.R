@@ -36,7 +36,21 @@ end_groups <- intersect(end_groups, names(table(grouping) %>% keep(~.>2)))
 
 # check if there are two or more end groups
 if (length(end_groups) < 2) {
-  stop("STEMNET requires at least two end cell populations, but according to the prior information there are only ", length(end_groups), " end populations with two or more cells!")
+  msg <- paste0("STEMNET requires at least two end cell populations, but according to the prior information there are only ", length(end_groups), " end populations!")
+
+  if (!identical(params$force, TRUE)) {
+    stop(msg)
+  }
+
+  warning(msg, "\nForced to invent some end populations in order to at least generate a trajectory")
+  poss_groups <- unique(grouping)
+  if (length(poss_groups) == 1) {
+    new_end_groups <- stats::kmeans(expression[grouping == poss_groups,], centers = 2)$cluster
+    grouping[grouping == poss_groups] <- c(poss_groups, max(grouping) + 1)[new_end_groups]
+    end_groups <- new_end_groups
+  } else {
+    end_groups <- sample(poss_groups, 2)
+  }
 }
 
 # create stemnet end populations
