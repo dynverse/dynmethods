@@ -10,7 +10,7 @@ trajectory_types:
 - linear
 topology_inference: fixed
 preprint_date: '2017-07-06'
-publication_data: '2018-06-23'
+publication_date: '2018-06-23'
 code_url: https://github.com/kieranrcampbell/phenopath
 parameters:
   thin:
@@ -53,6 +53,7 @@ output:
   outputs:
   - linear_trajectory
   - timings
+wrapper_type: linear_trajectory
 authors:
 - given: Kieran
   family: Campbell

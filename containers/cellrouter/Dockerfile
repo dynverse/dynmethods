@@ -8,9 +8,10 @@ if(length(new.packages)) install.packages(new.packages, repos=c('http://cran.rst
 "
 
 # get lib
-RUN git clone https://github.com/edroaldo/cellrouter.git
+RUN git clone https://github.com/edroaldo/cellrouter.git && find cellrouter -type f | grep -v '^cellrouter/CellRouter' | xargs rm
 
 # install java
+RUN apt-get update
 RUN apt-get install -y default-jre
 
 # install feather

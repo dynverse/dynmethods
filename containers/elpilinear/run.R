@@ -11,7 +11,7 @@ data <- read_rds("/input/data.rds")
 params <- jsonlite::read_json("/input/params.json")
 
 #' @examples
-#' data <- data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_genes = 300, model = "binary_tree") %>% c(., .$prior_information)
+#' data <- dyntoy::generate_dataset(id = "test", num_cells = 300, num_features = 300, model = "binary_tree") %>% c(., .$prior_information)
 #' params <- yaml::read_yaml("containers/elpilinear/definition.yml")$parameters %>%
 #'   {.[names(.) != "forbidden"]} %>%
 #'   map(~ .$default)
@@ -63,7 +63,8 @@ principal_graph <- principal_graph_function(
 # compute pseudotime, from https://github.com/Albluca/ElPiGraph.R/blob/master/guides/pseudo.md
 PartStruct <- PartitionData(
   X = expression,
-  NodePositions = principal_graph[[1]]$NodePositions
+  NodePositions = principal_graph[[1]]$NodePositions,
+  nCores = 1
 )
 
 ProjStruct <- project_point_onto_graph(
@@ -93,6 +94,7 @@ progressions <- tibble(cell_id = rownames(expression), edge_id = ProjStruct$Edge
   mutate(percentage = pmin(1, pmax(0, ProjStruct$ProjectionValues)))
 
 output <- lst(
+  cell_ids = rownames(expression),
   milestone_network,
   progressions,
   timings = checkpoints

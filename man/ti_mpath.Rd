@@ -4,9 +4,9 @@
 \alias{ti_mpath}
 \title{Inferring a trajectory inference using Mpath}
 \usage{
-ti_mpath(distMethod = "euclidean", method = "kmeans", numcluster = 11L,
-  numcluster_null = TRUE, diversity_cut = 0.6, size_cut = 0.05,
-  run_environment = NULL)
+ti_mpath(distMethod = "euclidean", method = "kmeans",
+  numcluster = 11L, numcluster_null = TRUE, diversity_cut = 0.6,
+  size_cut = 0.05, run_environment = NULL)
 }
 \arguments{
 \item{distMethod}{discrete; The method for calculating dissimilarity between

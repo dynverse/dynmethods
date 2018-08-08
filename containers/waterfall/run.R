@@ -3,7 +3,7 @@ library(readr)
 library(dplyr)
 library(purrr)
 
-source("SupplementaryMethods/Waterfall.R")
+source("/SupplementaryMethods/Waterfall.R")
 
 
 #   ____________________________________________________________________________
@@ -14,7 +14,7 @@ params <- jsonlite::read_json("/input/params.json")
 
 #' @examples
 #' source("~/Downloads/SupplementaryMethods/Waterfall.R")
-#' data <- data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_genes = 300, model = "linear") %>% c(., .$prior_information)
+#' data <- dyntoy::generate_dataset(id = "test", num_cells = 300, num_features = 300, model = "linear") %>% c(., .$prior_information)
 #' params <- yaml::read_yaml("containers/waterfall/definition.yml")$parameters %>%
 #'   {.[names(.) != "forbidden"]} %>%
 #'   map(~ .$default)
@@ -37,6 +37,7 @@ checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
 # return output
 output <- lst(
+  cell_ids = rownames(ps),
   pseudotime = set_names(ps$pseudotime, rownames(ps)),
   dimred = as.matrix(dimred),
   timings = checkpoints

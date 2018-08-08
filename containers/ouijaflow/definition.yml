@@ -22,6 +22,7 @@ output:
   outputs:
   - linear_trajectory
   - timings
+wrapper_type: linear_trajectory
 doi: 10.1101/060442
 google_scholar_cluster_id: '5009450964277600738'
 trajectory_types:

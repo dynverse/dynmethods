@@ -10,7 +10,7 @@ Description: dynmethods provides wrappers for TI methods and their respective pl
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 Depends:
   R (>= 3.4.0)
 Imports: 

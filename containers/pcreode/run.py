@@ -72,6 +72,12 @@ checkpoints["method_aftermethod"] = time.time()
 
 #   ____________________________________________________________________________
 #   Save output                                                             ####
+# save cell_ids
+cell_ids = pd.DataFrame({
+  "cell_ids": expression.index
+})
+cell_ids.to_csv("/output/cell_ids.csv", index=False)
+
 # save dimred
 dimred = pd.DataFrame(pca_reduced_data)
 dimred["cell_id"] = expression.index

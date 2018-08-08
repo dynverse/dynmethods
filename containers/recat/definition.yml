@@ -74,6 +74,7 @@ output:
   outputs:
   - cyclic_trajectory
   - timings
+wrapper_type: cyclic_trajectory
 authors:
 - given: Riu
   family: Jian

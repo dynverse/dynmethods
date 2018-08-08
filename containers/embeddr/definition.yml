@@ -131,11 +131,9 @@ output:
   - linear_trajectory
   - dimred
   - timings
+wrapper_type: linear_trajectory
 authors:
 - given: Kieran
   family: Campbell
   email: kicampbell@bccrc.ca
   github: kieranrcampbell
-- given: Calb
-  family: Webber
-  email: caleb.webber@dpag.ox.ac.uk

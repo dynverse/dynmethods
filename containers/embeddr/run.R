@@ -12,7 +12,7 @@ data <- read_rds("/input/data.rds")
 params <- jsonlite::read_json("/input/params.json")
 
 #' @examples
-#' data <- data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_genes = 300, model = "linear") %>% c(., .$prior_information)
+#' data <- dyntoy::generate_dataset(id = "test", num_cells = 300, num_features = 300, model = "linear") %>% c(., .$prior_information)
 #' params <- yaml::read_yaml("containers/embeddr/definition.yml")$parameters %>%
 #'   {.[names(.) != "forbidden"]} %>%
 #'   map(~ .$default)
@@ -79,6 +79,7 @@ colnames(dimred_trajectory_segments) <- c(
 
 # return output
 model <- lst(
+  cell_ids = names(pseudotime),
   pseudotime = pseudotime,
   dimred = dimred_cells,
   dimred_trajectory_segments = dimred_trajectory_segments,

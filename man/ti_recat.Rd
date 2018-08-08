@@ -5,8 +5,8 @@
 \title{Inferring a trajectory inference using reCAT}
 \usage{
 ti_recat(TSPFold = 2, beginNum = 10, endNum = 15, step_size = 2,
-  base_cycle_range_start = 6, base_cycle_range_end = 9, max_num = 300,
-  clustMethod = "GMM", run_environment = NULL)
+  base_cycle_range_start = 6, base_cycle_range_end = 9,
+  max_num = 300, clustMethod = "GMM", run_environment = NULL)
 }
 \arguments{
 \item{TSPFold}{integer; No documentation provided by authors (default: \code{2};

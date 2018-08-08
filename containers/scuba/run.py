@@ -14,18 +14,11 @@ import pandas as pd
 import time
 checkpoints = {}
 
-
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
 expression = pd.read_csv("/input/expression.csv", index_col=[0])
 p = json.load(open("/input/params.json", "r"))
-
-# timecourse is not yet used
-if os.path.exists("input/timecourse.json"):
-  timecourse = json.load(open("/input/timecourse.json"))
-else:
-  timecourse = None
 
 expression.T.to_csv("/input/expression.tsv", sep="\t")
 
@@ -54,16 +47,21 @@ centroid_coordinates, cluster_indices, parent_clusters, new_tree = PySCUBA.refin
   cluster_indices,
   parent_clusters,
   cell_stages,
-  output_directory="/tmp")
+  output_directory="/workspace")
 
 checkpoints["method_aftermethod"] = time.time()
 
 #   ____________________________________________________________________________
 #   Process & save output                                                   ####
+cell_ids = pd.DataFrame({
+  "cell_ids": expression.index
+})
+cell_ids.to_csv("/output/cell_ids.csv", index=False)
+
 # grouping
 grouping = pd.DataFrame({
-  "cell_id":expression.index,
-  "group_id":cluster_indices.astype(str)
+  "cell_id": expression.index,
+  "group_id": cluster_indices.astype(str)
 })
 grouping.to_csv("/output/grouping.csv", index=False)
 
@@ -72,9 +70,6 @@ milestone_network = pd.DataFrame([{"from":str(i), "to":str(j)} for i, js in pare
 milestone_network["length"] = 1
 milestone_network["directed"] = True
 milestone_network.to_csv("/output/milestone_network.csv", index=False)
-
-# extra output
-pd.DataFrame(new_tree[1:], columns = new_tree[0]).to_csv("/output/new_tree.csv")
 
 # timings
 json.dump(checkpoints, open("/output/timings.json", "w"))

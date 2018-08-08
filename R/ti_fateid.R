@@ -57,6 +57,8 @@
 #' siginifcance is computed based on counting statistics on the difference in the
 #' number of votes. A significant bias requires a p-value < 0.05. (default: `0.4`;
 #' range: from `0L` to `1L`)
+#' @param force logical; Do not use! This is a parameter to force FateID to run on
+#' benchmark datasets where not enough end groups are present.
 #' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
@@ -72,6 +74,7 @@ ti_fateid <- function(
     minnr = 5L,
     minnrh = 10L,
     trthr = 0.4,
+    force = FALSE,
     run_environment = NULL
 ) {
   create_container_ti_method(
@@ -85,7 +88,8 @@ ti_fateid <- function(
     m = m,
     minnr = minnr,
     minnrh = minnrh,
-    trthr = trthr
+    trthr = trthr,
+    force = force
   )
 }
 

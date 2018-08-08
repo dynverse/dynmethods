@@ -1,0 +1,62 @@
+id: projected_paga
+docker_repository: dynverse/projected_paga
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/projected_paga
+name: Projected PAGA
+type: algorithm_test
+platform: Python
+parameters:
+  n_neighbors:
+    description: Number of neighbours for knn
+    type: integer
+    lower: 1
+    upper: 100
+    default: 30
+  n_comps:
+    description: Number of principal components
+    type: integer
+    lower: 0
+    upper: 100
+    default: 50
+  n_dcs:
+    description: Number of diffusion components for denoising graph, 0 means no denoising.
+    type: integer
+    lower: 0
+    upper: 40
+    default: 15
+  resolution:
+    description: Resolution of louvain clustering, which determines the granularity
+      of the clustering. Higher values will result in more clusters.
+    type: numeric
+    lower: 0.1
+    upper: 10
+    default: 2.5
+  embedding_type:
+    description: Either 'umap' (scales very well, recommended for very large datasets)
+      or 'fa' (ForceAtlas2, often a bit more intuitive for small datasets).
+    type: discrete
+    default: fa
+    values:
+    - umap
+    - fa
+input:
+  format: hdf5
+  required:
+  - counts
+  - start_id
+  optional: groups_id
+output:
+  format: feather
+  outputs:
+  - dimred_projection
+  - dimred
+  - timings
+wrapper_type: dimred_projection
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+- disconnected_tree
+topology_inference: free

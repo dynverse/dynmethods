@@ -18,6 +18,7 @@ trajectory_types:
 topology_inference: free
 license: Artistic-2.0
 publication_date: '2016-08-13'
+code_url: https://bioconductor.org/packages/release/bioc/html/cellTree.html
 parameters:
   method:
     type: discrete
@@ -60,9 +61,11 @@ parameters:
     upper: 15.0
   tot_iter:
     type: numeric
-    lower: 50.0
-    upper: 500.0
-    default: 200.0
+    lower: 10
+    upper: 1000
+    default: 200
+    distribution: exponential
+    rate: 1.0
   tolerance:
     type: numeric
     lower: 1.0e-07
@@ -79,6 +82,7 @@ output:
   outputs:
   - cell_graph
   - timings
+wrapper_type: cell_graph
 authors:
 - given: David
   family: duVerle

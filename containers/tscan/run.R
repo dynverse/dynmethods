@@ -4,7 +4,6 @@ library(dplyr)
 library(purrr)
 
 library(TSCAN)
-library(igraph)
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
@@ -13,7 +12,7 @@ data <- read_rds("/input/data.rds")
 params <- jsonlite::read_json("/input/params.json")
 
 #' @examples
-#' data <- data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_genes = 300, model = "linear") %>% c(., .$prior_information)
+#' data <- dyntoy::generate_dataset(id = "test", num_cells = 300, num_features = 300, model = "multifurcating") %>% c(., .$prior_information)
 #' params <- yaml::read_yaml("containers/tscan/definition.yml")$parameters %>%
 #'   {.[names(.) != "forbidden"]} %>%
 #'   map(~ .$default)
@@ -56,22 +55,15 @@ cds_order <- TSCAN::TSCANorder(cds_clus)
 checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
 # process output
-cluster_network <- cds_clus$MSTtree %>%
-  igraph::as_data_frame() %>%
-  rename(length = weight) %>%
-  mutate(directed = FALSE)
-sample_space <- cds_clus$pcareduceres
-cluster_space <- cds_clus$clucenter
-rownames(cluster_space) <- as.character(seq_len(nrow(cluster_space)))
-colnames(cluster_space) <- colnames(sample_space)
+pseudotime <- set_names(seq_along(cds_order), cds_order)
+
+dimred <- cds_clus$pcareducere
 
 # return output
 output <- lst(
-  milestone_ids = rownames(cluster_space),
-  milestone_network = cluster_network,
-  dimred_milestones = cluster_space,
-  dimred = sample_space,
-  milestone_assignment_cells = cds_clus$clusterid,
+  cell_ids = rownames(dimred),
+  pseudotime,
+  dimred,
   timings = checkpoints
 )
 

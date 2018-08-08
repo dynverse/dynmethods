@@ -1,0 +1,187 @@
+id: raceid_stemid
+docker_repository: dynverse/raceid_stemid
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/raceid_stemid
+name: RaceID / StemID
+type: algorithm
+platform: R
+doi: 10.1016/j.stem.2016.05.010
+google_scholar_cluster_id: '169140648120472800360'
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+- graph
+- disconnected_graph
+topology_inference: free
+publication_date: '2016-06-21'
+code_url: https://github.com/dgrun/RaceID3_StemID2_package
+parameters:
+  knn:
+    type: integer
+    default: 10
+    upper: 50
+    lower: 5
+    description: Number of nearest neighbors used to infer corresponding cell types in different batches.
+  ccor:
+    type: numeric
+    default: 0.4
+    upper: 1.0
+    lower: 0.0
+    description: Correlation coefficient used as a treshhold for determining genes correlated to eachother. 
+  metric:
+    type: discrete
+    default: pearson
+    values:
+    - pearson
+    - spearman
+    - logpearson
+    - euclidean
+    description: Distances are computed from the filtered expression matrix after optional feature selection, 
+      dimensional reduction, and/or transformation (batch correction).
+  sat:
+    type: logical
+    default: TRUE
+    description: If \code{TRUE}, then the number of clusters is determined based on finding the saturation point of the mean within-cluster dispersion as a function of the cluster number. If \code{FALSE}, then cluster number needs to be given as \code{cln}.
+  samp:
+    type: integer
+    default: 1000
+    upper: 10000
+    lower: 50
+    description: number of booststrapping runs for clusterboot. Default is 50
+    distribution: exponential
+    rate: 1.0
+  cln:
+    type: integer
+    default: 30
+    upper: 100
+    lower: 10
+    description: Number of clusters to be used. If \code{sat} is \code{TRUE}, this number is inferred by the saturation criterion.
+  clustnr:
+    type: integer
+    default: 30
+    upper: 100
+    lower: 10
+    description: Maximum number of clusters for the derivation of the cluster
+      number by the saturation of mean within-cluster-dispersion. 
+  bootnr:
+    type: integer
+    default: 50
+    upper: 100
+    lower: 20
+    description: Number of booststrapping runs for clusterboot.
+  FUNcluster:
+    type: discrete
+    default: kmedoids
+    values:
+    - kmedoids
+    - kmeans
+    - hclust
+    description: Clustering method used by RaceID3. 
+  probthr:
+    type: numeric
+    default: 0.001
+    upper: 1
+    lower: 0.00001
+    description: Outlier probability threshold for a minimum of outlg genes to be an outlier cell. This probability is computed from a negative binomial background model of expression in a cluster.
+    distribution: exponential
+    rate: 1.0
+  outminc:
+    type: integer
+    default: 5
+    upper: 100
+    lower: 0
+    description: Minimal transcript count of a gene in a clusters to be tested for being an outlier gene.
+    distribution: exponential
+    rate: 1.0
+  outlg:
+    type: integer
+    default: 2
+    upper: 100
+    lower: 0
+    description: Minimum number of outlier genes required for being an outlier cell.
+    distribution: exponential
+    rate: 1.0
+  outdistquant:
+    type: numeric
+    default: 0.95
+    upper: 1.0
+    lower: 0.0
+    description: Real number between zero and one. Outlier cells are merged to outlier clusters if their distance smaller than the outdistquant-quantile of the distance distribution of pairs of cells in the orginal clusters after outlier removal.
+  initial_cmd:
+    type: logical
+    default: TRUE
+    description: If TRUE, then the t-SNE map computation is initialized with a configuration obtained by classical multidimensional scaling. 
+  perplexity:
+    type: integer
+    default: 30
+    upper: 100
+    lower: 5
+    description: Perplexity of the t-SNE map. 
+  cthr:
+    type: integer
+    default: 5
+    upper: 25
+    lower: 1
+    description: Clusters to be included into the StemID2 analysis must contain more than cthr cells. D
+  nmode:
+    type: logical
+    default: TRUE
+    description: If \code{TRUE}, then a cell of given cluster is assigned to the link to the cluster with the smallest average distance of the knn nearest neighbours within this cluster. 
+  projcells_knn:
+    type: integer
+    default: 3
+    upper: 20
+    lower: 3
+    description: See \code{nmode}.
+  fr:
+    type: logical
+    default: FALSE
+    description: Use Fruchterman-Rheingold layout instead of t-SNE for dimensional-reduction representation of the lineage tree. 
+  pdishuf:
+    type: integer
+    default: 500
+    upper: 10000
+    lower: 10
+    description: Number of randomizations of cell positions for which to compute projections of cells on inter-cluster links. 
+    distribution: exponential
+    rate: 1.0
+  fast:
+    type: logical
+    default: FALSE
+    description: If \code{TRUE} and \code{nmode} is \code{FALSE} cells will still be assigned to links based on maximum projections but a fast approximate background model will be used to infer significance. The function will do nothing in this case. 
+  pthr:
+    type: numeric
+    default: 0.01
+    upper: 1
+    lower: 0.00001
+    description: p-value cutoff for link significance. This threshold is applied for the calculation of link scores reflecting how uniformly a link is occupied by cells.
+    distribution: exponential
+    rate: 1.0
+  scthr:
+    type: numeric
+    default: 0.2
+    lower: 0.0
+    upper: 1.0
+    description: Score threshold for links to be shown in the graph. 
+  forbidden: thr_lower > thr_upper
+input:
+  format: rds
+  required: counts
+output:
+  format: rds
+  outputs:
+  - dimred_projection
+  - timings
+wrapper_type: dimred_projection
+authors:
+- given: Dominic
+  family: Grün
+  email: gruen@ie-freibug.mpg.de
+  github: dgrun
+- given: Alexander
+  family: van Oudenaarden
+  email: a.vanoudenaarden@hubrecht.eu
+  github: avolab

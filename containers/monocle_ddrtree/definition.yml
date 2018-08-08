@@ -48,7 +48,6 @@ parameters:
       which will be passed into DDRTree call.
 input:
   format: rds
-  optional: groups_n
   required: counts
 output:
   format: rds
@@ -56,6 +55,7 @@ output:
   - cell_graph
   - dimred
   - timings
+wrapper_type: cell_graph
 authors:
 - given: Xiaojie
   family: Qiu

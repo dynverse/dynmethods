@@ -1,0 +1,181 @@
+id: urd
+docker_repository: dynverse/urd
+container_url: https://github.com/dynverse/dynmethods/tree/master/containers/urd
+name: URD
+type: algorithm
+doi: 10.1126/science.aar3131
+google_scholar_cluster_id: '1243230199939989249'
+platform: R
+trajectory_types:
+- linear
+- bifurcation
+- convergence
+- multifurcation
+- binary_tree
+- tree
+topology_inference: free
+license: GPL-3
+publication_date: '2018-04-26'
+code_url: https://github.com/farrellja/URD
+parameters:
+  knn:
+    type: integer
+    default: 0
+    lower: 0
+    upper: 50
+    description: Number of nearest neighbors to use. `0` takes a guess.
+  sigma.use:
+    type: numeric
+    default: 0.0
+    lower: 0.0
+    upper: 1.0
+    description: Kernel width to use for the diffusion map. `0` uses destiny's global auto-detection procedure.
+  distance:
+    type: discrete
+    default: euclidean
+    values:
+    - euclidean
+    - cosine
+    - rankcor
+    description: Distance metric to use for determining transition probabilities.
+  n_floods:
+    type: integer
+    default: 20
+    lower: 5
+    upper: 50
+    description: Number of simulations to perform and average.
+  stability.div:
+    type: numeric
+    default: 10
+    lower: 2
+    upper: 50
+    description: Number of simulation subsamplings to calculate.
+  mp.factor:
+    type: numeric
+    default: 1
+    lower: 0
+    upper: 10
+    description: Retain PCs than are this factor more than the estimated maximum singular value expected or random data. This is useful in cases when there are many PCs that have standard deviations just above that expected by random, which probably represent noise and should be excluded.
+  perplexity:
+    type: numeric
+    default: 30
+    lower: 0
+    upper: 100
+    description: Perplexity parameter for the tSNE.
+  theta:
+    type: numeric
+    default: 0.5
+    lower: 0
+    upper: 1
+    description: Speed/accuracy trade-off for Barnes-Hut approximation of tSNE. 0 is exact tSNE, higher is less accurate.
+  max_iter:
+    type: integer
+    default: 1000
+    lower: 100
+    upper: 10000
+    description: Number of nearest neighbors to use. `0` takes a guess.
+    distribution: exponential
+    rate: 1.0
+  num.nn:
+    type: integer
+    default: 30
+    lower: 10
+    upper: 100
+    description: How many nearest-neighbors to use in the k-nn graph.
+    distribution: exponential
+    rate: 1.0
+  do.jaccard:
+    type: logical
+    default: TRUE
+    description: Weight edges in the k-nn graph according to their Jaccard overlap?
+  optimal.cells.forward:
+    type: numeric
+    default: 20
+    lower: 5
+    upper: 100
+    description: The number of cells in the direction specified by pseudotime.direction at which the logistic should reach 1-asymptote.
+    distribution: exponential
+    rate: 1.0
+  max.cells.back:
+    type: numeric
+    default: 40
+    lower: 5
+    upper: 200
+    description: The number of cells in the direction opposite from that specified by pseudotime.direction at which the logistic should reach asymptote.
+    distribution: exponential
+    rate: 1.0
+  n.per.tip:
+    type: integer
+    default: 25000
+    lower: 100
+    upper: 1000000
+    description: Number of walks to do per tip.
+    distribution: exponential
+    rate: 1.0
+  root.visits:
+    type: integer
+    default: 1
+    lower: 1
+    upper: 5
+    description: Number of steps to take that visit a root.cell before stopping.
+  max.steps:
+    type: integer
+    default: 25000
+    lower: 100
+    upper: 1000000
+    description: Number of walks to do per tip.
+    distribution: exponential
+    rate: 1.0
+  n.subsample:
+    type: integer
+    default: 10
+    lower: 2
+    upper: 100
+    description: Number of subsamplings to perform for calculating stability.
+    distribution: exponential
+    rate: 1.0
+  divergence.method:
+    type: discrete
+    default: ks
+    values:
+    - ks
+    - preference
+    description: Distance metric to use for determining transition probabilities.
+  cells.per.pseudotime.bin:
+    type: integer
+    default: 80
+    lower: 10
+    upper: 1000
+    description: Approximate number of cells to assign to each pseudotime bin for branchpoint finding.
+    distribution: exponential
+    rate: 1.0
+  bins.per.pseudotime.window:
+    type: integer
+    default: 5
+    lower: 2
+    upper: 20
+    description: Width of moving window in pseudotime used for branchpoint finding, in terms of bins.
+  p.thresh:
+    type: numeric
+    default: 0.01
+    lower: 0.00001
+    upper: 1
+    description: p-value threshold to use in determining whether visitation is significantly different from pairs of tips
+    distribution: exponential
+    rate: 1.0
+input:
+  format: rds
+  required:
+  - counts
+  - start_id
+output:
+  format: rds
+  outputs:
+  - trajectory
+  - timings
+wrapper_type: trajectory
+authors:
+- given: Jeffrey A.
+  family: Farrell
+  email: jfarrell@g.harvard.edu
+  github: farrellja

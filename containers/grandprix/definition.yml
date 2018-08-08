@@ -24,12 +24,13 @@ parameters:
 input:
   format: text
   required: expression
-  optional: time
+  optional: timecourse_continuous
 output:
   format: text
   outputs:
   - end_state_probabilities
   - timings
+wrapper_type: end_state_probabilities
 doi: 10.1101/227843
 google_scholar_cluster_id: '15033203703043818597'
 trajectory_types: linear

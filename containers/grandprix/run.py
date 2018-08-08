@@ -21,8 +21,8 @@ checkpoints = {}
 expression = pd.read_csv("/input/expression.csv", index_col=[0])
 params = json.load(open("/input/params.json", "r"))
 
-if os.path.exists("/input/time.csv"):
-  time = pd.read_csv("/input/time.csv")
+if os.path.exists("/input/timecourse_continuous.csv"):
+  time = pd.read_csv("/input/timecourse_continuous.csv")
 else:
   time = None
 
@@ -53,6 +53,11 @@ checkpoints["method_aftermethod"] = tm.time()
 #   ____________________________________________________________________________
 #   Process output                                                          ####
 # process to end_state_probabilities output format
+cell_ids = pd.DataFrame({
+  "cell_ids": expression.index
+})
+cell_ids.to_csv("/output/cell_ids.csv", index=False)
+
 pseudotime = pd.DataFrame({
   "cell_id": expression.index,
   "pseudotime": pt_np[:, 0]

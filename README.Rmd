@@ -25,6 +25,7 @@ To include your own method, feel free to send us a [pull request](https://github
 
 All methods are automatically tested on our cluster on some small toy and real datasets. [Results of the automated testing](https://dynverse.github.io/dynmethods_automated_testing/index.html)
 
+<!-- Not needed anymore, right?
 ## Installation
 
 ```r
@@ -35,6 +36,7 @@ On linux, udunits2 has to be installed:
 
 * Debian / Ubuntu / Linux mint: `sudo apt-get install libudunits2-dev`
 * Fedora / CentOS: `sudo dnf install udunits2-devel`
+-->
 
 ## List of included methods
 

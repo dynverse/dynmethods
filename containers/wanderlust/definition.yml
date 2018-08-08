@@ -45,12 +45,6 @@ parameters:
     lower: 0.1
     default: 1
     upper: 5
-  branch:
-    description: whether to allow a single bifurcation within the trajectory (wishbone
-      versus wanderlust)
-    type: logical
-    tunable: no
-    default: false
 input:
   format: text
   required:
@@ -58,14 +52,13 @@ input:
   - start_id
   optional:
   - features_id
-  - end_n
 output:
   format: text
   outputs:
-  - trajectory
-  - pseudotime
+  - linear_trajectory
   - dimred
   - timings
+wrapper_type: linear_trajectory
 doi: 10.1016/j.cell.2014.04.005
 google_scholar_cluster_id: '10038301430146662437'
 trajectory_types: linear

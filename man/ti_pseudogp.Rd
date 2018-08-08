@@ -5,9 +5,10 @@
 \title{Inferring a trajectory inference using pseudogp}
 \usage{
 ti_pseudogp(smoothing_alpha = 10, smoothing_beta = 3,
-  pseudotime_mean = 0.5, pseudotime_var = 1, chains = 3L, iter = 100L,
-  dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
-  FALSE, FALSE), initialise_from = "random", run_environment = NULL)
+  pseudotime_mean = 0.5, pseudotime_var = 1, chains = 3L,
+  iter = 100L, dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE,
+  FALSE, FALSE, FALSE, FALSE, FALSE), initialise_from = "random",
+  run_environment = NULL)
 }
 \arguments{
 \item{smoothing_alpha}{numeric; The hyperparameter for the Gamma distribution

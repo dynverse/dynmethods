@@ -21,6 +21,12 @@ parameters:
     default: 0.1
     lower: 0.05
     upper: 1
+  force:
+    description: Do not use! This is a parameter to force FateID to run on benchmark datasets
+      where not enough end groups are present.
+    type: logical
+    default: no
+    tunable: no
 input:
   format: rds
   required:
@@ -31,6 +37,8 @@ output:
   format: rds
   outputs:
   - end_state_probabilities
+  - timings
+wrapper_type: end_state_probabilities
 doi: 10.1038/ncb3493
 google_scholar_cluster_id: '2729547640192717338'
 trajectory_types:
@@ -44,5 +52,4 @@ authors:
   email: velten@embl.de
   ORCID: 0000-0002-1233-5874
 publication_date: '2016-08-25'
-version: 0.1
 code_url: https://git.embl.de/velten/STEMNET
