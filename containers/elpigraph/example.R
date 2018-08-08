@@ -5,4 +5,7 @@ data <- dyntoy::generate_dataset(
   num_features = 101,
   model = "tree"
 )
-params <- list()
+params <- list(
+  NumNodes = 20L,
+  MaxNumberOfIterations = 3
+)
