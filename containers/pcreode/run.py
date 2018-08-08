@@ -42,7 +42,7 @@ out_graph, out_ids = pcreode.pCreode(
   density = density,
   noise = params["noise"],
   target = params["target"],
-  file_path = "/tmp/.",
+  file_path = "/workspace/.",
   num_runs = params["num_runs"]
 )
 
@@ -50,7 +50,7 @@ out_graph, out_ids = pcreode.pCreode(
 # Wrapper's note: There is currently no way of extracting the best graph ordering, even though it is printed. Will select random graph.
 pcreode.pCreode_Scoring(
   data = pca_reduced_data,
-  file_path = "/tmp/.",
+  file_path = "/workspace/.",
   num_graphs = params["num_runs"]
 )
 
@@ -61,11 +61,11 @@ gid = np.random.choice(range(params["num_runs"]), 1)[0]
 # the only thing that is available is a cell graph of only a subset of cells
 # so we use this cell graph as milestone network, and then project all cells onto this
 analysis = pcreode.Analysis(
-  file_path="/tmp/.",
-  graph_id=gid,
-  data=pca_reduced_data,
-  density=density,
-  noise=params["noise"]
+  file_path = "/workspace/.",
+  graph_id = gid,
+  data = pca_reduced_data,
+  density = density,
+  noise = params["noise"]
 )
 
 checkpoints["method_aftermethod"] = time.time()
@@ -86,7 +86,7 @@ dimred.to_csv("/output/dimred.csv", index=False)
 # get milestone network based on cell_graph
 # get the upper triangle of the adjacency, and use it to construct the network
 cell_graph = pd.DataFrame(
-  pcreode.return_weighted_adj(pca_reduced_data, "/tmp/.", gid),
+  pcreode.return_weighted_adj(pca_reduced_data, "/workspace/.", gid),
   index = expression.index[analysis.node_data_indices],
   columns = expression.index[analysis.node_data_indices],
 )
