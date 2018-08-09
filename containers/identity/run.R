@@ -1,4 +1,3 @@
-library(dynwrap)
 library(jsonlite)
 library(readr)
 library(dplyr)
@@ -21,26 +20,23 @@ counts <- data$counts
 dataset <- data$dataset
 
 # TIMING: done with preproc
-tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
 # TIMING: done with method
-tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
 # return output
-model <-
-  wrap_prediction_model(
-    cell_ids = dataset$cell_ids
-  ) %>% add_trajectory(
-    milestone_ids = dataset$milestone_ids,
-    milestone_network = dataset$milestone_network,
-    divergence_regions = dataset$divergence_regions,
-    progressions = dataset$progressions
-  ) %>% add_timings(
-    timings = tl %>% add_timing_checkpoint("method_afterpostproc")
-  )
+output <- lst(
+  cell_ids = dataset$cell_ids,
+  milestone_ids = dataset$milestone_ids,
+  milestone_network = dataset$milestone_network,
+  divergence_regions = dataset$divergence_regions,
+  progressions = dataset$progressions,
+  timings = checkpoints
+)
 
 
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-write_rds(model, "/output/output.rds")
+write_rds(output, "/output/output.rds")

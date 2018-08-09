@@ -1,4 +1,3 @@
-library(dynwrap)
 library(jsonlite)
 library(readr)
 library(dplyr)
@@ -14,72 +13,56 @@ library(dyndimred)
 data <- read_rds("/input/data.rds")
 params <- jsonlite::read_json("/input/params.json")
 
+expression <- data$expression
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
 
-run_fun <- function(
-  expression,
-  dimred = "pca",
-  ndim = 5,
-  max_iter = 15000,
-  max_nodes = 8,
-  apply_mst = TRUE
-) {
-  requireNamespace("gng")
-  requireNamespace("igraph")
 
-  # TIMING: done with preproc
-  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+# TIMING: done with preproc
+checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
-  # perform dimensionality reduction
-  space <- dyndimred::dimred(expression, method = dimred, ndim = ndim)
+# perform dimensionality reduction
+space <- dyndimred::dimred(expression, method = params$dimred, ndim = params$ndim)
 
-  # calculate GNG
-  gng_out <- gng::gng(
-    space,
-    max_iter = max_iter,
-    max_nodes = max_nodes,
-    assign_cluster = FALSE
-  )
-  node_dist <- stats::dist(gng_out$node_space) %>% as.matrix
+# calculate GNG
+gng_out <- gng::gng(
+  space,
+  max_iter = params$max_iter,
+  max_nodes = params$max_nodes,
+  assign_cluster = FALSE
+)
+node_dist <- stats::dist(gng_out$node_space) %>% as.matrix
 
-  # transform to milestone network
-  node_names <- gng_out$nodes %>% mutate(name = as.character(name))
-  milestone_network <- gng_out$edges %>%
-    select(from = i, to = j) %>%
-    mutate(
-      length = node_dist[cbind(from, to)],
-      directed = FALSE
-    ) %>%
-    select(from, to, length, directed)
+# transform to milestone network
+node_names <- gng_out$nodes %>% mutate(name = as.character(name))
+milestone_network <- gng_out$edges %>%
+  select(from = i, to = j) %>%
+  mutate(
+    length = node_dist[cbind(from, to)],
+    directed = FALSE
+  ) %>%
+  select(from, to, length, directed)
 
-  # apply MST, if required
-  if (apply_mst) {
-    gr <- igraph::graph_from_data_frame(milestone_network, directed = F, vertices = node_names$name)
-    milestone_network <- igraph::minimum.spanning.tree(gr, weights = igraph::E(gr)$length) %>% igraph::as_data_frame()
-  }
-
-  # TIMING: done with method
-  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
-
-  # return output
-  wrap_prediction_model(
-    cell_ids = rownames(expression)
-  ) %>% add_dimred_projection(
-    milestone_ids = rownames(gng_out$node_space),
-    milestone_network = milestone_network,
-    dimred_milestones = gng_out$node_space,
-    dimred = space
-  ) %>% add_timings(
-    tl %>% add_timing_checkpoint("method_afterpostproc")
-  )
+# apply MST, if so desired
+if (params$apply_mst) {
+  gr <- igraph::graph_from_data_frame(milestone_network, directed = F, vertices = node_names$name)
+  milestone_network <- igraph::minimum.spanning.tree(gr, weights = igraph::E(gr)$length) %>% igraph::as_data_frame()
 }
 
-args <- params[intersect(names(params), names(formals(run_fun)))]
+# TIMING: done with method
+checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
-model <- do.call(run_fun, c(args, data))
+# return output
+output <- lst(
+  cell_ids = rownames(expression),
+  milestone_ids = rownames(gng_out$node_space),
+  milestone_network,
+  dimred_milestones = gng_out$node_space,
+  dimred = space,
+  timings = checkpoints
+)
 
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-write_rds(model, "/output/output.rds")
+write_rds(output, "/output/output.rds")

@@ -1,4 +1,3 @@
-library(dynwrap)
 library(jsonlite)
 library(readr)
 library(dplyr)
@@ -21,7 +20,7 @@ num_milestones <- 15
 milestone_ids <- paste0("milestone_", seq_len(num_milestones))
 
 # TIMING: done with preproc
-tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
 gr <- igraph::ba.game(num_milestones)
 milestone_network <- igraph::as_data_frame(gr) %>%
@@ -43,21 +42,19 @@ progressions <- data.frame(
 )
 
 # TIMING: done with method
-tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
 # return output
-model <- wrap_prediction_model(
-  cell_ids = cell_ids
-) %>% add_trajectory(
+output <- lst(
+  cell_ids = cell_ids,
   milestone_ids = milestone_ids,
   milestone_network = milestone_network,
   progressions = progressions,
-  divergence_regions = NULL
-) %>% add_timings(
-  timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  divergence_regions = NULL,
+  timings = checkpoints
 )
 
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-write_rds(model, "/output/output.rds")
+write_rds(output, "/output/output.rds")

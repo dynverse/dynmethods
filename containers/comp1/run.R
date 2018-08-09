@@ -1,4 +1,3 @@
-library(dynwrap)
 library(jsonlite)
 library(readr)
 library(dplyr)
@@ -22,25 +21,22 @@ params <- jsonlite::read_json("/input/params.json")
 expression <- data$expression
 
 # TIMING: done with preproc
-tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
 space <- dyndimred::dimred(expression, method = params$dimred, ndim = params$ndim)
 
 # TIMING: done with method
-tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
 # return output
-model <- wrap_prediction_model(
-  cell_ids = rownames(expression)
-) %>% add_linear_trajectory(
-  pseudotime = space[,params$component] %>% set_names(rownames(expression))
-) %>% add_dimred(
-  dimred = space
-) %>% add_timings(
-  timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+output <- lst(
+  cell_ids = rownames(expression),
+  pseudotime = space[,params$component] %>% set_names(rownames(expression)),
+  dimred = space,
+  timings = checkpoints
 )
 
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-write_rds(model, "/output/output.rds")
+write_rds(output, "/output/output.rds")

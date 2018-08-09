@@ -1,9 +1,7 @@
-library(dynwrap)
 library(jsonlite)
 library(readr)
 library(dplyr)
 library(purrr)
-
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
@@ -22,7 +20,7 @@ expression <- data$expression
 #   Infer trajectory                                                        ####
 
 # TIMING: done with preproc
-tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
 # perform PCA dimred
 dimred <- dyndimred::dimred(expression, method = "pca", ndim = params$ndim)
@@ -42,21 +40,18 @@ dimred_trajectory_segments <- cbind(
   magrittr::set_colnames(c(paste0("from_", colnames(path)), paste0("to_", colnames(path))))
 
 # TIMING: done with method
-tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
 # return output
-model <- wrap_prediction_model(
-  cell_ids = rownames(expression)
-) %>% add_cyclic_trajectory(
-  pseudotime = pseudotime
-) %>% add_dimred(
+output <- lst(
+  cell_ids = rownames(expression),
+  pseudotime = pseudotime,
   dimred = dimred,
-  dimred_trajectory_segments = dimred_trajectory_segments
-) %>% add_timings(
-  timings = tl %>% add_timing_checkpoint("method_afterpostproc")
+  dimred_trajectory_segments = dimred_trajectory_segments,
+  timings = checkpoints
 )
 
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-write_rds(model, "/output/output.rds")
+write_rds(output, "/output/output.rds")

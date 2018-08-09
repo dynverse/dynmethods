@@ -181,18 +181,6 @@ milestone_network <- tree_layout %>%
   ) %>%
   select(from, to, length, directed)
 
-
-#' @examples
-#' library(dynwrap)
-#' traj <- wrap_data(
-#'   cell_ids = urd.tree@tree$cell.layout$cell
-#' ) %>% add_trajectory(
-#'   milestone_network = milestone_network,
-#'   progressions = progressions
-#' )
-#' dynplot::plot_graph(traj)
-
-
 # return output
 output <- lst(
   cell_ids = urd.tree@tree$cell.layout$cell,

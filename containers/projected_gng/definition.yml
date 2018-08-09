@@ -58,7 +58,7 @@ input:
   format: rds
   required: expression
 output:
-  format: dynwrap
+  format: rds
   outputs:
   - dimred_projection
   - timings
