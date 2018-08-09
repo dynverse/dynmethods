@@ -23,6 +23,8 @@
 #' @param lambda_auto logical; Whether to select the lambda by cross-validation
 #' @param lambda numeric; The lambda penalty of GLM. (default: `0.1`; range: from
 #' `0.05` to `1L`)
+#' @param force logical; Do not use! This is a parameter to force FateID to run on
+#' benchmark datasets where not enough end groups are present.
 #' @inheritParams dynwrap::create_container_ti_method
 #' 
 #' @return A TI method wrapper to be used together with
@@ -32,6 +34,7 @@ ti_stemnet <- function(
     alpha = 0.1,
     lambda_auto = TRUE,
     lambda = 0.1,
+    force = FALSE,
     run_environment = NULL
 ) {
   create_container_ti_method(
@@ -39,7 +42,8 @@ ti_stemnet <- function(
     run_environment = run_environment,
     alpha = alpha,
     lambda_auto = lambda_auto,
-    lambda = lambda
+    lambda = lambda,
+    force = force
   )
 }
 

@@ -38,6 +38,7 @@ output:
   outputs:
   - dimred_projection
   - timings
+wrapper_type: dimred_projection
 doi: 10.1016/j.cels.2017.10.012
 google_scholar_cluster_id: '1665065308896440028'
 trajectory_types:
@@ -59,5 +60,4 @@ authors:
   github: KenLauLab
 license: GPL-2
 publication_date: '2017-11-15'
-version: 1.5.0
 code_url: https://github.com/KenLauLab/pCreode

@@ -4,9 +4,10 @@
 \alias{ti_scuba}
 \title{Inferring a trajectory inference using SCUBA}
 \usage{
-ti_scuba(rigorous_gap_stats = TRUE, N_dim = 2L, low_gene_threshold = 1L,
-  low_gene_fraction_max = 0.7, min_split = 15L,
-  min_percentage_split = 0.25, run_environment = NULL)
+ti_scuba(rigorous_gap_stats = TRUE, N_dim = 2L,
+  low_gene_threshold = 1L, low_gene_fraction_max = 0.7,
+  min_split = 15L, min_percentage_split = 0.25,
+  run_environment = NULL)
 }
 \arguments{
 \item{rigorous_gap_stats}{logical; Whether to use rigorous gap statistics to

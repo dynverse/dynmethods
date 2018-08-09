@@ -69,6 +69,7 @@ output:
   - grouping
   - cluster_graph
   - timings
+wrapper_type: cluster_graph
 authors:
 - given: Michael
   family: Poidinger

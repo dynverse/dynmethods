@@ -21,7 +21,7 @@ data <- read_rds("/input/data.rds")
 params <- jsonlite::read_json("/input/params.json")
 
 #' @examples
-#' data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_features = 300, model = "bifurcating") %>% c(., .$prior_information)
+#' data <- dyntoy::generate_dataset(id = "test", num_cells = 300, num_features = 300, model = "bifurcating") %>% c(., .$prior_information)
 #' params <- yaml::read_yaml("containers/urd/definition.yml")$parameters %>%
 #'   {.[names(.) != "forbidden"]} %>%
 #'   map(~ .$default)
@@ -195,6 +195,7 @@ milestone_network <- tree_layout %>%
 
 # return output
 output <- lst(
+  cell_ids = urd.tree@tree$cell.layout$cell,
   milestone_network = milestone_network,
   progressions = progressions,
   timings = checkpoints

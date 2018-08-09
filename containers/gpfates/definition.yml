@@ -34,6 +34,7 @@ output:
   - end_state_probabilities
   - dimred
   - timings
+wrapper_type: end_state_probabilities
 doi: 10.1126/sciimmunol.aal2192
 google_scholar_cluster_id: '10596654190750618515'
 trajectory_types:

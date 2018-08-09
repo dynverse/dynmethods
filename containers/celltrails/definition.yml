@@ -77,6 +77,7 @@ output:
   - dimred
   - cell_graph
   - timings
+wrapper_type: cell_graph
 doi: 10.1016/j.celrep.2018.05.002
 google_scholar_cluster_id: '8451775467554180378'
 trajectory_types:
@@ -88,6 +89,7 @@ trajectory_types:
 - tree
 - graph
 - disconnected_graph
+topology_inference: free
 authors:
 - given: Daniel
   family: Ellwanger

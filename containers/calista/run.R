@@ -3,7 +3,11 @@ library(purrr)
 library(readr)
 library(feather)
 
-setwd("CALISTA/CALISTA-R/")
+# calista NEEDS to be in the CALISTA-R folder while at the same time
+# requiring to be able to write files there
+file.copy("/CALISTA/CALISTA-R", "/workspace", recursive = TRUE)
+setwd("/workspace/CALISTA-R")
+source("R/initialization.R")
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
@@ -19,23 +23,23 @@ params <- jsonlite::read_json("/input/params.json")
 #' setwd("~/Downloads/CALISTA/CALISTA-R/")
 
 expression <- data$expression
+file_loc <- "/input/calista_expression.csv"
 
 data_df <- data.frame(
   row.names = NULL,
   expression,
   check.names = FALSE
 )
-write_csv(data_df, "mydata.csv")
+write_csv(data_df, file_loc)
 
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
-
-source("./R/initialization.R")
 
 
 # Prepare CALISTA for work
 INPUTS <- list()
 # Specify data types and settings for pre-processing
+INPUTS$data_location=file_loc
 INPUTS$data_type=1; # Single-cell RT-qPCR CT data
 INPUTS$format_data=3; # Rows= cells and Columns= genes (no time/stage info)
 INPUTS$data_selection= integer(); # Include data from all time points
@@ -121,6 +125,7 @@ progressions <- progressions %>%
   mutate(from = paste0("M", from), to = paste0("M", to))
 
 output <- lst(
+  cell_ids = unique(progressions$cell_id),
   progressions,
   milestone_network,
   timings = checkpoints

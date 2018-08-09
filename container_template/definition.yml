@@ -14,10 +14,12 @@ trajectory_types:
 - binary_tree
 - tree
 - graph
+- acyclic_graph
 - disconnected_graph
 topology_inference: fixed
 license: GPL-3
-preprint_date: '1970-01-31'
+preprint_date: '1970-01-30'
+publication_date: '1970-01-31'
 code_url: https://github.com/dynverse/template
 parameters:
   param1:
@@ -40,15 +42,44 @@ parameters:
     lower: 0.0
     upper: 1.0
     description: Description of param3
+    distribution: exponential
+    rate: 1.0
+  param4:
+    type: logical
+    default: TRUE
+    description: Description of param4
 input:
   format: rds
-  required: counts
+  required:
+  - counts
+  - expression
+  - start_id
+  - start_n
+  - end_id
+  - end_n
+  - groups_id
+  - groups_n
+  - groups_network
+  - timecourse_continuous
+  - timecourse_discrete
+  - features_id
 output:
   format: rds
   outputs:
-  - linear_trajectory
+  - branch_trajectory
+  - cell_graph
+  - cluster_graph
+  - cyclic_trajectory
   - dimred
+  - dimred_projection
+  - end_state_probabilities
+  - grouping
+  - linear_trajectory
+  - pseudotime
+  - root
+  - trajectory
   - timings
+wrapper_type: template
 authors:
 - given: Bob
   family: Dylan

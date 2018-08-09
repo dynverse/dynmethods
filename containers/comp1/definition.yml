@@ -38,3 +38,8 @@ input:
   required: expression
 output:
   format: dynwrap
+  outputs: 
+  - linear_trajectory
+  - dimred
+  - timings
+wrapper_type: linear_trajectory

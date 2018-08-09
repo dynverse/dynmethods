@@ -3,6 +3,7 @@ docker_repository: dynverse/identity
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/identity
 name: 'Control: identity'
 type: control_test
+platform: R
 trajectory_types:
 - linear
 - bifurcation
@@ -11,6 +12,7 @@ trajectory_types:
 - binary_tree
 - tree
 - acyclic_graph
+- disconnected_graph
 topology_inference: free
 parameters:
   dummy_param:
@@ -26,6 +28,10 @@ input:
   - dataset
 output:
   format: dynwrap
+  outputs:
+  - trajectory
+  - timings
+wrapper_type: control
 authors:
 - given: Robrecht
   family: Cannoodt

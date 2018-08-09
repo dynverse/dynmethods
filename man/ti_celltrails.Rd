@@ -4,9 +4,9 @@
 \alias{ti_celltrails}
 \title{Inferring a trajectory inference using CellTrails}
 \usage{
-ti_celltrails(threshold_dl = 2L, threshold_cov = 0.05, threshold_ff = 1L,
-  frac = 100L, min_size = 0.01, min_feat = 5L, max_pval = 1e-04,
-  min_fc = 2L, l = 10L, run_environment = NULL)
+ti_celltrails(threshold_dl = 2L, threshold_cov = 0.05,
+  threshold_ff = 1L, frac = 100L, min_size = 0.01, min_feat = 5L,
+  max_pval = 1e-04, min_fc = 2L, l = 10L, run_environment = NULL)
 }
 \arguments{
 \item{threshold_dl}{integer; Minimum number of samples; if value < 1 it is

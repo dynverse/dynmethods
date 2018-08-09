@@ -12,7 +12,7 @@ data <- read_rds("/input/data.rds")
 params <- jsonlite::read_json("/input/params.json")
 
 #' @examples
-#' data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_features = 300, model = "linear") %>% c(., .$prior_information)
+#' data <- dyntoy::generate_dataset(id = "test", num_cells = 300, num_features = 300, model = "linear") %>% c(., .$prior_information)
 #' params <- yaml::read_yaml("containers/monocle_ddrtree/definition.yml")$parameters %>%
 #'   {.[names(.) != "forbidden"]} %>%
 #'   map(~ .$default)
@@ -49,18 +49,13 @@ cds <- monocle::reduceDimension(
 )
 
 # order the cells
-cds <- monocle::orderCells(cds, num_paths = data$groups_n)
+cds <- monocle::orderCells(cds)
 
 # TIMING: done with method
 checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
 # extract the igraph and which cells are on the trajectory
-gr <-
-  if (params$reduction_method == "DDRTree") {
-    cds@auxOrderingData[[params$reduction_method]]$pr_graph_cell_proj_tree
-  } else if (params$reduction_method == "ICA") {
-    cds@auxOrderingData[[params$reduction_method]]$cell_ordering_tree
-  }
+gr <- cds@auxOrderingData[[params$reduction_method]]$pr_graph_cell_proj_tree
 to_keep <- setNames(rep(TRUE, nrow(counts)), rownames(counts))
 
 # convert to milestone representation
@@ -79,6 +74,7 @@ colnames(dimred) <- paste0("Comp", seq_len(ncol(dimred)))
 
 # wrap output
 output <- lst(
+  cell_ids = rownames(dimred),
   cell_graph,
   to_keep,
   dimred,

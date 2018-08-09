@@ -15,8 +15,8 @@
 #' @references Campbell, K.R., Yau, C., 2016. A descriptive marker gene approach
 #' to single-cell pseudotime inference.
 #' 
-#' @param iter numeric; Number of iterations (default: `100`; range: from `10` to
-#' `1000`)
+#' @param iter numeric; Number of iterations (default: `100L`; range: from `10L`
+#' to `1000L`)
 #' @param response_type discrete; A vector declaring whether each gene exhibits
 #' "switch" or "transient"expression. Defaults to "switch" for all genes (default:
 #' `"switch"`; values: {`"switch"`, `"transient"`})
@@ -33,7 +33,7 @@
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_ouija <- function(
-    iter = 100,
+    iter = 100L,
     response_type = "switch",
     inference_type = "hmc",
     normalise_expression = TRUE,

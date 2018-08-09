@@ -4,8 +4,9 @@
 \alias{ti_gpfates}
 \title{Inferring a trajectory inference using GPfates}
 \usage{
-ti_gpfates(log_expression_cutoff = 0.5, min_cells_expression_cutoff = 0L,
-  ndim = 2L, run_environment = NULL)
+ti_gpfates(log_expression_cutoff = 0.5,
+  min_cells_expression_cutoff = 0L, ndim = 2L,
+  run_environment = NULL)
 }
 \arguments{
 \item{log_expression_cutoff}{numeric; The log expression cutoff (default:

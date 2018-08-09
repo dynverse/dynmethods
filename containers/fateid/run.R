@@ -13,7 +13,7 @@ data <- read_rds('/input/data.rds')
 params <- jsonlite::read_json('/input/params.json')
 
 #' @examples
-#' data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_features = 300, model = "binary_tree") %>% c(., .$prior_information)
+#' data <- dyntoy::generate_dataset(id = "test", num_cells = 300, num_features = 300, model = "binary_tree") %>% c(., .$prior_information)
 #' params <- yaml::read_yaml("containers/fateid/definition.yml")$parameters %>%
 #'   {.[names(.) != "forbidden"]} %>%
 #'   map(~ .$default)
@@ -38,7 +38,21 @@ start_group <- grouping[start_id %>% sample(1)] %>% unique()
 
 # check if there are two or more end groups
 if (length(end_groups) < 2) {
-  stop("FateID requires at least two end cell populations, but according to the prior information there are only ", length(end_groups), " end populations!")
+  msg <- paste0("FateID requires at least two end cell populations, but according to the prior information there are only ", length(end_groups), " end populations!")
+
+  if (!identical(params$force, TRUE)) {
+    stop(msg)
+  }
+
+  warning(msg, "\nForced to invent some end populations in order to at least generate a trajectory")
+  poss_groups <- unique(grouping) %>% setdiff(start_group)
+  if (length(poss_groups) == 1) {
+    new_end_groups <- stats::kmeans(expression[grouping == poss_groups,], centers = 2)$cluster
+    grouping[grouping == poss_groups] <- c(poss_groups, max(grouping) + 1)[new_end_groups]
+    end_groups <- new_end_groups
+  } else {
+    end_groups <- sample(poss_groups, 2)
+  }
 }
 
 # based on https://github.com/dgrun/FateID/blob/master/vignettes/FateID.Rmd
@@ -61,7 +75,7 @@ if (params$reclassify) {
 }
 
 # fate bias
-fb  <- fateBias(
+fb <- fateBias(
   x,
   y,
   tar,
@@ -109,7 +123,8 @@ pseudotimes <- map2_dfr(names(pr$trc), pr$trc, function(curve_id, trc) {
   arrange(pseudotime) %>%
   group_by(cell_id) %>%
   filter(pseudotime == max(pseudotime)) %>%
-  filter(row_number() == 1)
+  filter(row_number() == 1) %>%
+  ungroup()
 
 pseudotimes <- pseudotimes %>% bind_rows(
   tibble(
@@ -119,9 +134,14 @@ pseudotimes <- pseudotimes %>% bind_rows(
 )
 
 # extract dimred
-dimred <- dr[[1]][[1]] %>% as.data.frame() %>% mutate(cell_id = rownames(expression))
+dimred <- dr[[1]][[1]] %>%
+  as.matrix() %>%
+  magrittr::set_rownames(rownames(expression)) %>%
+  magrittr::set_colnames(., paste0("Comp", seq_len(ncol(.))))
+
 
 output <- lst(
+  cell_ids = rownames(dimred),
   pseudotime = pseudotimes,
   end_state_probabilities,
   dimred,

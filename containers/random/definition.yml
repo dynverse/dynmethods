@@ -3,6 +3,7 @@ docker_repository: dynverse/random
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/random
 name: 'Control: random'
 type: control
+platform: R
 trajectory_types:
 - linear
 - bifurcation
@@ -23,6 +24,10 @@ input:
   required: counts
 output:
   format: dynwrap
+  outputs: 
+  - trajectory
+  - timings
+wrapper_type: control
 authors:
 - given: Robrecht
   family: Cannoodt

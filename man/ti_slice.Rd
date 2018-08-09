@@ -4,10 +4,11 @@
 \alias{ti_slice}
 \title{Inferring a trajectory inference using SLICE}
 \usage{
-ti_slice(lm.method = "clustering", model.type = "tree", ss.method = "all",
-  ss.threshold = 0.25, community.method = "louvain",
-  cluster.method = "kmeans", k = 0L, k.max = 10L, B = 100L,
-  k.opt.method = "firstmax", run_environment = NULL)
+ti_slice(lm.method = "clustering", model.type = "tree",
+  ss.method = "all", ss.threshold = 0.25,
+  community.method = "louvain", cluster.method = "kmeans", k = 0L,
+  k.max = 10L, B = 100L, k.opt.method = "firstmax",
+  run_environment = NULL)
 }
 \arguments{
 \item{lm.method}{discrete; Select "clustering" based or "graph" based method to

@@ -25,6 +25,7 @@ output:
   - linear_trajectory
   - dimred
   - timings
+wrapper_type: linear_trajectory
 authors:
 - given: Jaehoon
   family: Shin

@@ -5,8 +5,9 @@
 \title{Inferring a trajectory inference using ElPiGraph}
 \usage{
 ti_elpigraph(topology = "tree", NumNodes = 50L, NumEdges = 100000L,
-  InitNodes = 2L, Mu = 0.1, Lambda = 0.01, MaxNumberOfIterations = 10L,
-  eps = 0.01, CenterData = FALSE, run_environment = NULL)
+  InitNodes = 2L, Mu = 0.1, Lambda = 0.01,
+  MaxNumberOfIterations = 10L, eps = 0.01, CenterData = FALSE,
+  run_environment = NULL)
 }
 \arguments{
 \item{topology}{discrete; The kind of topology to detect (default: \code{"tree"};

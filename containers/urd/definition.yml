@@ -173,6 +173,7 @@ output:
   outputs:
   - trajectory
   - timings
+wrapper_type: trajectory
 authors:
 - given: Jeffrey A.
   family: Farrell

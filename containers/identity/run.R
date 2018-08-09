@@ -5,31 +5,31 @@ library(dplyr)
 library(purrr)
 
 
-
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
 data <- read_rds("/input/data.rds")
 params <- jsonlite::read_json("/input/params.json")
 
-#   ____________________________________________________________________________
-#   Infer trajectory                                                        ####
+#' @examples
+#' data <- dyntoy::generate_dataset(id = "test", num_cells = 300, num_features = 300, model = "linear") %>% c(., .$prior_information)
+#' params <- yaml::read_yaml("containers/identity/definition.yml")$parameters %>%
+#'   {.[names(.) != "forbidden"]} %>%
+#'   map(~ .$default)
 
-run_fun <- function(
-  counts,
-  dataset,
-  dummy_param = 0.5
-) {
-  # TIMING: done with preproc
-  tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
+counts <- data$counts
+dataset <- data$dataset
 
-  # TIMING: done with method
-  tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+# TIMING: done with preproc
+tl <- add_timing_checkpoint(NULL, "method_afterpreproc")
 
-  # return output
+# TIMING: done with method
+tl <- tl %>% add_timing_checkpoint("method_aftermethod")
+
+# return output
+model <-
   wrap_prediction_model(
-    cell_ids = dataset$cell_ids,
-    cell_info = dataset$cell_info
+    cell_ids = dataset$cell_ids
   ) %>% add_trajectory(
     milestone_ids = dataset$milestone_ids,
     milestone_network = dataset$milestone_network,
@@ -38,11 +38,7 @@ run_fun <- function(
   ) %>% add_timings(
     timings = tl %>% add_timing_checkpoint("method_afterpostproc")
   )
-}
 
-args <- params[intersect(names(params), names(formals(run_fun)))]
-
-model <- do.call(run_fun, c(args, data))
 
 #   ____________________________________________________________________________
 #   Save output                                                             ####

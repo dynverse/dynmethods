@@ -6,9 +6,10 @@
 \usage{
 ti_merlot(sigma = "local", distance = "euclidean", ndim = 20L,
   density_norm = TRUE, n_local_lower = 5L, n_local_upper = 7L,
-  w_width = 0.01, n_components_to_use = 3, N_yk = 100, lambda_0 = 1e-10,
-  mu_0 = 0.0025, increaseFactor_mu = 20, increaseFactor_lambda = 20,
-  FixEndpoints = FALSE, run_environment = NULL)
+  w_width = 0.01, n_components_to_use = 3, N_yk = 100,
+  lambda_0 = 1e-10, mu_0 = 0.0025, increaseFactor_mu = 20,
+  increaseFactor_lambda = 20, FixEndpoints = FALSE,
+  run_environment = NULL)
 }
 \arguments{
 \item{sigma}{discrete; Diffusion scale parameter of the Gaussian kernel. A

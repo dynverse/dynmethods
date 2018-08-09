@@ -4,9 +4,9 @@
 \alias{ti_scoup}
 \title{Inferring a trajectory inference using SCOUP}
 \usage{
-ti_scoup(ndim = 2L, max_ite1 = 100, max_ite2 = 100, alpha_min = 0.1,
-  alpha_max = 100, t_min = 0.001, t_max = 2, sigma_squared_min = 0.1,
-  thresh = 0.01, run_environment = NULL)
+ti_scoup(ndim = 2L, max_ite1 = 100, max_ite2 = 100,
+  alpha_min = 0.1, alpha_max = 100, t_min = 0.001, t_max = 2,
+  sigma_squared_min = 0.1, thresh = 0.01, run_environment = NULL)
 }
 \arguments{
 \item{ndim}{integer; Number of pca dimensions (default: \code{2L}; range: from \code{2L}

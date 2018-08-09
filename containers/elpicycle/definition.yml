@@ -68,6 +68,7 @@ output:
   outputs:
   - trajectory
   - timings
+wrapper_type: trajectory
 trajectory_types:
 - cycle
 topology_inference: fixed

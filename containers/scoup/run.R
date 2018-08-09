@@ -10,7 +10,7 @@ data <- read_rds("/input/data.rds")
 params <- jsonlite::read_json("/input/params.json")
 
 #' @examples
-#' data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_features = 300, model = "linear") %>% c(., .$prior_information)
+#' data <- dyntoy::generate_dataset(id = "test", num_cells = 300, num_features = 300, model = "linear") %>% c(., .$prior_information)
 #' params <- yaml::read_yaml("containers/scoup/definition.yml")$parameters %>%
 #'   {.[names(.) != "forbidden"]} %>%
 #'   map(~ .$default)
@@ -52,13 +52,13 @@ utils::write.table(distr_df, file = "init", sep = "\t", row.names = FALSE, col.n
 checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
 # execute sp
-cmd <- paste0("SCOUP/sp data init time_sp dimred ", ncol(expression), " ", nrow(expression), " ", params$ndim)
+cmd <- glue::glue("/SCOUP/sp data init time_sp dimred {ncol(expression)} {nrow(expression)} {params$ndim}")
 cat(cmd, "\n", sep = "")
 system(cmd)
 
 # execute scoup
 cmd <- paste0(
-  "SCOUP/scoup data init time_sp gpara cpara ll ",
+  "/SCOUP/scoup data init time_sp gpara cpara ll ",
   ncol(expression), " ", nrow(expression),
   " -k ", end_n,
   " -m ", params$max_ite1,
@@ -100,6 +100,7 @@ esp <- cpara %>% select(-time) %>% tibble::rownames_to_column("cell_id")
 
 # return output
 output <- lst(
+  cell_ids = names(pseudotime),
   end_state_probabilities = esp,
   pseudotime,
   do_scale_minmax = TRUE,

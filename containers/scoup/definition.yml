@@ -84,6 +84,7 @@ output:
   - end_state_probabilities
   - dimred
   - timings
+wrapper_type: end_state_probabilities
 authors:
 - given: Hirotaka
   family: Matsumoto

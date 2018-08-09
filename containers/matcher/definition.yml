@@ -22,12 +22,12 @@ parameters:
 input:
   format: text
   required: expression
-  optional: time
 output:
   format: text
   outputs:
   - linear_trajectory
   - timings
+wrapper_type: linear_trajectory
 doi: 10.1186/s13059-017-1269-0
 google_scholar_cluster_id: '15188907290164515017'
 trajectory_types:
@@ -48,5 +48,4 @@ authors:
   family: Prins
   email: prins@cs.unc.edu
 publication_date: '2017-06-24'
-version: 0.0.0
 code_url: https://github.com/jw156605/MATCHER

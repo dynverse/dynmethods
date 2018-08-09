@@ -4,9 +4,10 @@
 \alias{ti_elpilinear}
 \title{Inferring a trajectory inference using ElPiGraph linear}
 \usage{
-ti_elpilinear(topology = "linear", NumNodes = 50L, NumEdges = 100000L,
-  InitNodes = 2L, Mu = 0.1, Lambda = 0.01, MaxNumberOfIterations = 10L,
-  eps = 0.01, CenterData = FALSE, run_environment = NULL)
+ti_elpilinear(topology = "linear", NumNodes = 50L,
+  NumEdges = 100000L, InitNodes = 2L, Mu = 0.1, Lambda = 0.01,
+  MaxNumberOfIterations = 10L, eps = 0.01, CenterData = FALSE,
+  run_environment = NULL)
 }
 \arguments{
 \item{topology}{discrete; The kind of topology to detect (default: \code{"linear"};
@@ -42,7 +43,7 @@ A TI method wrapper to be used together with
 \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 }
 \description{
-Will generate a trajectory using \href{https://github.com/Albluca/ElPiGraph.R}{ElPiGraphlinear}.
+Will generate a trajectory using \href{https://github.com/Albluca/ElPiGraph.R}{ElPiGraph linear}.
 
 This method was wrapped inside a
 \href{https://github.com/dynverse/dynmethods/tree/master/containers/elpigraph}{container}.

@@ -2,6 +2,8 @@ library(jsonlite)
 library(readr)
 library(dplyr)
 library(purrr)
+library(tidyr)
+library(tibble)
 
 library(mfa)
 
@@ -12,7 +14,7 @@ data <- read_rds("/input/data.rds")
 params <- jsonlite::read_json("/input/params.json")
 
 #' @examples
-#' data <- dyntoy::generate_dataset(unique_id = "test", num_cells = 300, num_features = 300, model = "linear") %>% c(., .$prior_information)
+#' data <- dyntoy::generate_dataset(id = "test", num_cells = 100, num_features = 101, model = "bifurcating") %>% c(., .$prior_information)
 #' params <- yaml::read_yaml("containers/mfa/definition.yml")$parameters %>%
 #'   {.[names(.) != "forbidden"]} %>%
 #'   map(~ .$default)
@@ -44,28 +46,30 @@ checkpoints$method_aftermethod <- as.numeric(Sys.time())
 # obtain results
 ms <- summary(m) %>%
   mutate(cell_id = rownames(expression)) %>%
-  select(cell_id, everything())
+  select(cell_id, everything()) %>%
+  group_by(cell_id) %>%
+  mutate(
+    branch = paste0("M", branch),
+    branch_certainty = branch_certainty / sum(branch_certainty)
+  ) %>%
+  ungroup()
 
-# create milestone network
-milestone_network <- data_frame(
-  from = "M0",
-  to = paste0("M", seq_len(params$b)),
-  length = 1,
-  directed = TRUE
-)
+end_state_probabilities <- ms %>%
+  select(cell_id, branch, branch_certainty) %>%
+  spread(branch, branch_certainty, fill = 0)
 
-# create progressions
-progressions <- with(ms, data_frame(
-  cell_id = rownames(expression),
-  from = "M0",
-  to = paste0("M", branch),
-  percentage = (pseudotime - min(pseudotime)) / (max(pseudotime) - min(pseudotime))
-))
+pseudotime <-
+  ms %>%
+  group_by(cell_id) %>%
+  summarise(pseudotime = sum(branch_certainty * pseudotime)) %>%
+  deframe()
+
 
 # return output
 output <- lst(
-  milestone_network,
-  progressions,
+  cell_ids = names(pseudotime),
+  end_state_probabilities,
+  pseudotime,
   timings = checkpoints
 )
 

@@ -17,7 +17,6 @@ topology_inference: free
 license: GPL-2
 preprint_date: '2016-04-09'
 publication_date: '2016-05-23'
-version: 0.2.0
 code_url: https://github.com/jw156605/SLICER
 parameters:
   kmin:
@@ -45,9 +44,10 @@ input:
 output:
   format: rds
   outputs:
-  - dimred
   - cell_graph
   - timings
+  - dimred
+wrapper_type: cell_graph
 authors:
 - given: Joshua
   family: Welch
