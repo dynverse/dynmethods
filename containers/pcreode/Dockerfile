@@ -1,6 +1,6 @@
 FROM dynverse/dynwrap:py2.7
 
-RUN git clone git://github.com/KenLauLab/pCreode && pip install pCreode
+RUN git clone https://github.com/KenLauLab/pCreode.git && pip install pCreode
 
 ADD . /code
 
