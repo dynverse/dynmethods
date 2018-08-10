@@ -105,17 +105,21 @@ milestone_network <- inner_join(data.frame(Results$TRANSITION$nodes_connection),
 cluster_probs <- Results$clustering_struct$all$all$clusterprobabilities
 
 progressions <- map_df(seq_len(nrow(cluster_probs)), function(cell_i) {
-  milestone_network %>%
-    mutate(
-      from_prob = cluster_probs[cell_i, from],
-      to_prob = cluster_probs[cell_i, to],
-      sum = from_prob + to_prob,
-      percentage = to_prob / sum,
-      cell_id = rownames(expression)[[cell_i]]
-    ) %>%
-    arrange(desc(sum)) %>%
-    slice(1) %>%
-    dplyr::select(cell_id, from, to, percentage)
+  if (!any(is.finite(cluster_probs[cell_i, , drop = TRUE]))) {
+    NULL
+  } else {
+    milestone_network %>%
+      mutate(
+        from_prob = cluster_probs[cell_i, from, drop = TRUE],
+        to_prob = cluster_probs[cell_i, to, drop = TRUE],
+        sum = from_prob + to_prob,
+        percentage = to_prob / sum,
+        cell_id = rownames(expression)[[cell_i]]
+      ) %>%
+      arrange(desc(sum)) %>%
+      slice(1) %>%
+      dplyr::select(cell_id, from, to, percentage)
+  }
 })
 
 milestone_network <- milestone_network %>%

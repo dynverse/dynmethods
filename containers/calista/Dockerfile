@@ -17,6 +17,6 @@ ADD . /code
 # git diff --no-prefix > ~/Workspace/dynverse/dynmethods/containers/calista/calista.patch
 
 # patch CALISTA so it can work in a docker
-RUN cd CALISTA; patch -p0 < /code/calista.patch
+RUN cd CALISTA; patch -p0 < /code/calista.patch; chmod +w -R .
 
 ENTRYPOINT Rscript /code/run.R
