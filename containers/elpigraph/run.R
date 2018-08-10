@@ -8,8 +8,8 @@ library(ElPiGraph.R)
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
-data <- read_rds("/input/data.rds")
-params <- jsonlite::read_json("/input/params.json")
+data <- read_rds("/ti/input/data.rds")
+params <- jsonlite::read_json("/ti/input/params.json")
 
 #' @examples
 #' data <- dyntoy::generate_dataset(id = "test", num_cells = 400, num_features = 401, model = "tree")
@@ -100,4 +100,4 @@ output <- lst(
   timings = checkpoints
 )
 
-write_rds(output, "/output/output.rds")
+write_rds(output, "/ti/output/output.rds")

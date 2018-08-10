@@ -12,8 +12,8 @@ checkpoints = {}
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
-expression = pd.read_csv("/ti/ti/input/expression.csv", index_col=[0])
-p = json.load(open("/ti/ti/input/params.json", "r"))
+expression = pd.read_csv("/ti/ti/ti/input/expression.csv", index_col=[0])
+p = json.load(open("/ti/ti/ti/input/params.json", "r"))
 
 checkpoints["method_afterpreproc"] = time.time()
 
@@ -32,7 +32,7 @@ pseudotime = pd.DataFrame({
   "cell_id": expression.index,
   "pseudotime": refined_pseudotimes
 })
-pseudotime.to_csv("/ti/ti/output/pseudotime.csv", index=False)
+pseudotime.to_csv("/ti/ti/ti/output/pseudotime.csv", index=False)
 
 # timings
-json.dump(checkpoints, open("/ti/ti/output/timings.json", "w"))
+json.dump(checkpoints, open("/ti/ti/ti/output/timings.json", "w"))

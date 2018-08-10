@@ -5,15 +5,15 @@ library(feather)
 
 # calista NEEDS to be in the CALISTA-R folder while at the same time
 # requiring to be able to write files there
-file.copy("/CALISTA/CALISTA-R", "/workspace", recursive = TRUE)
-setwd("/workspace/CALISTA-R")
+file.copy("/CALISTA/CALISTA-R", "/ti/workspace", recursive = TRUE)
+setwd("/ti/workspace/CALISTA-R")
 source("R/initialization.R")
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
-data <- read_rds("/input/data.rds")
-params <- jsonlite::read_json("/input/params.json")
+data <- read_rds("/ti/input/data.rds")
+params <- jsonlite::read_json("/ti/input/params.json")
 
 #' @examples
 #' data <- dyntoy::generate_dataset(model = "cyclic") %>% c(., .$prior_information)
@@ -23,7 +23,7 @@ params <- jsonlite::read_json("/input/params.json")
 #' setwd("~/Downloads/CALISTA/CALISTA-R/")
 
 expression <- data$expression
-file_loc <- "/input/calista_expression.csv"
+file_loc <- "/ti/input/calista_expression.csv"
 
 data_df <- data.frame(
   row.names = NULL,
@@ -131,4 +131,4 @@ output <- lst(
   timings = checkpoints
 )
 
-write_rds(output, "/output/output.rds")
+write_rds(output, "/ti/output/output.rds")

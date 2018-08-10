@@ -9,8 +9,8 @@ library(STEMNET)
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
-data <- read_rds('/input/data.rds')
-params <- jsonlite::read_json('/input/params.json')
+data <- read_rds('/ti/input/data.rds')
+params <- jsonlite::read_json('/ti/input/params.json')
 
 #' @examples
 #' data <- dyntoy::generate_dataset(id = "test", num_cells = 300, num_features = 300, model = "bifurcating") %>% c(., .$prior_information)
@@ -81,4 +81,4 @@ output <- lst(
 )
 #   ____________________________________________________________________________
 #   Save output & process output                                            ####
-write_rds(output, "/output/output.rds")
+write_rds(output, "/ti/output/output.rds")

@@ -11,8 +11,8 @@ checkpoints <- list()
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
-data <- read_rds("/input/data.rds")
-p <- jsonlite::read_json("/input/params.json")
+data <- read_rds("/ti/input/data.rds")
+p <- jsonlite::read_json("/ti/input/params.json")
 
 #' @examples
 #' data <- dyntoy::generate_dataset(model = "cyclic") %>% c(., .$prior_information)
@@ -49,7 +49,7 @@ cellrouter <- findClusters(cellrouter, method = "graph.clustering", num.pcs = p$
 cellrouter <- buildKNN(cellrouter, k = p$k_knn, column.ann = 'population', num.pcs = p$ndim_pca_knn, sim.type = p$sim_type)
 
 # create trajectory using start cells as source
-outputdir <- "/workspace/"
+outputdir <- "/ti/workspace/"
 dir.create(outputdir, recursive = TRUE)
 filename <- file.path(outputdir, "cell_edge_weighted_network.txt")
 write.table(cellrouter@graph$edges, file = filename, sep='\t', row.names = FALSE, col.names = FALSE, quote = FALSE)
@@ -113,10 +113,10 @@ to_keep <- backbone_cells
 dimred <- cellrouter@tsne %>% as.data.frame() %>% rownames_to_column("cell_id")
 
 # save
-write_feather(tibble(cell_ids = unique(c(cell_graph$from, cell_graph$to))), "/output/cell_ids.feather")
-write_feather(cell_graph, "/output/cell_graph.feather")
-write_feather(tibble(to_keep=to_keep), "/output/to_keep.feather")
-write_feather(dimred, "/output/dimred.feather")
+write_feather(tibble(cell_ids = unique(c(cell_graph$from, cell_graph$to))), "/ti/output/cell_ids.feather")
+write_feather(cell_graph, "/ti/output/cell_graph.feather")
+write_feather(tibble(to_keep=to_keep), "/ti/output/to_keep.feather")
+write_feather(dimred, "/ti/output/dimred.feather")
 
 # timings
-write_feather(enframe(checkpoints, "name", "timings") %>% mutate(timings = as.numeric(timings)), "/output/timings.feather")
+write_feather(enframe(checkpoints, "name", "timings") %>% mutate(timings = as.numeric(timings)), "/ti/output/timings.feather")

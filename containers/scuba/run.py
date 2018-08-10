@@ -17,17 +17,17 @@ checkpoints = {}
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
-expression = pd.read_csv("/input/expression.csv", index_col=[0])
-p = json.load(open("/input/params.json", "r"))
+expression = pd.read_csv("/ti/input/expression.csv", index_col=[0])
+p = json.load(open("/ti/input/params.json", "r"))
 
-expression.T.to_csv("/input/expression.tsv", sep="\t")
+expression.T.to_csv("/ti/input/expression.tsv", sep="\t")
 
 checkpoints["method_afterpreproc"] = time.time()
 
 #   ____________________________________________________________________________
 #   Infer trajectory                                                        ####
 cell_IDs, data, markers, cell_stages, data_tag, output_directory = PySCUBA.Preprocessing.RNASeq_preprocess(
-  "/input/expression.tsv",
+  "/ti/input/expression.tsv",
   pseudotime_mode=True,
   log_mode=False,
   N_dim=p["N_dim"],
@@ -47,7 +47,7 @@ centroid_coordinates, cluster_indices, parent_clusters, new_tree = PySCUBA.refin
   cluster_indices,
   parent_clusters,
   cell_stages,
-  output_directory="/workspace")
+  output_directory="/ti/workspace")
 
 checkpoints["method_aftermethod"] = time.time()
 
@@ -56,20 +56,20 @@ checkpoints["method_aftermethod"] = time.time()
 cell_ids = pd.DataFrame({
   "cell_ids": expression.index
 })
-cell_ids.to_csv("/output/cell_ids.csv", index=False)
+cell_ids.to_csv("/ti/output/cell_ids.csv", index=False)
 
 # grouping
 grouping = pd.DataFrame({
   "cell_id": expression.index,
   "group_id": cluster_indices.astype(str)
 })
-grouping.to_csv("/output/grouping.csv", index=False)
+grouping.to_csv("/ti/output/grouping.csv", index=False)
 
 # milestone_network
 milestone_network = pd.DataFrame([{"from":str(i), "to":str(j)} for i, js in parent_clusters.items() for j in js])
 milestone_network["length"] = 1
 milestone_network["directed"] = True
-milestone_network.to_csv("/output/milestone_network.csv", index=False)
+milestone_network.to_csv("/ti/output/milestone_network.csv", index=False)
 
 # timings
-json.dump(checkpoints, open("/output/timings.json", "w"))
+json.dump(checkpoints, open("/ti/output/timings.json", "w"))
