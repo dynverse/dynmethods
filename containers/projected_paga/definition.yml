@@ -42,7 +42,6 @@ input:
   format: hdf5
   required:
   - counts
-  - start_id
   optional: groups_id
 output:
   format: feather

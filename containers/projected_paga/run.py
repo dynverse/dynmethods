@@ -17,7 +17,6 @@ checkpoints = {}
 #   Load data                                                               ####
 data = h5py.File("/ti/input/data.h5", "r")
 counts = pd.DataFrame(data['counts'][:].T, index=data['counts'].attrs['rownames'].astype(np.str))
-start_id = data['start_id'][:].astype(np.str)
 data.close()
 
 params = json.load(open("/ti/input/params.json", "r"))
@@ -65,10 +64,6 @@ sc.tl.paga(adata)
 # - to obtain a clean visual representation, one can discard low-confidence edges
 #   using the parameter threshold
 sc.pl.paga(adata, threshold=0.01, layout='fr', show=False)
-
-# run dpt for pseudotime information that is overlayed with paga
-adata.uns['iroot'] = np.where(counts.index == start_id[0])[0][0]
-sc.tl.dpt(adata)
 
 # run umap for a dimension-reduced embedding, use the positions of the paga
 # graph to initialize this embedding
