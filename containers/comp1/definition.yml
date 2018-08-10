@@ -37,8 +37,8 @@ input:
   format: rds
   required: expression
 output:
-  format: dynwrap
-  outputs: 
+  format: rds
+  outputs:
   - linear_trajectory
   - dimred
   - timings

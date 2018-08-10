@@ -3,6 +3,7 @@ library(readr)
 library(dplyr)
 library(purrr)
 
+library(dyndimred)
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
