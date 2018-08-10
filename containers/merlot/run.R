@@ -6,7 +6,10 @@ library(purrr)
 library(merlot)
 library(destiny)
 
+dir.create("/ti/workspace/tmp")
 Sys.setenv(TMP = "/ti/workspace/tmp")
+Sys.setenv(TEMP = "/ti/workspace/tmp")
+Sys.setenv(TMPDIR = "/ti/workspace/tmp")
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
