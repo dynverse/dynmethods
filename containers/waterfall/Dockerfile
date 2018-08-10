@@ -1,6 +1,4 @@
-FROM rocker/tidyverse
-
-RUN echo 'utils::setRepositories(ind=1:4)' > ~/.Rprofile
+FROM dynverse/dynwrap:r
 
 RUN wget http://www.cell.com/cms/attachment/2038326541/2052521637/mmc9.zip && unzip mmc9.zip
 

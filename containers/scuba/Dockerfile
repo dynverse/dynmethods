@@ -1,7 +1,4 @@
-FROM library/python
-
-# install python dependencies
-RUN pip install pandas numpy matplotlib
+FROM dynverse/dynwrap:py3.6
 
 # install R before rpy2
 RUN apt-get update

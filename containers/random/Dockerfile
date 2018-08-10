@@ -1,8 +1,4 @@
-FROM rocker/tidyverse
-
-RUN echo 'utils::setRepositories(ind=1:4)' > ~/.Rprofile
-
-RUN R -e 'install.packages("igraph")'
+FROM dynverse/dynwrap:r
 
 ADD . /code
 

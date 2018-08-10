@@ -1,6 +1,4 @@
-FROM rocker/tidyverse
-
-RUN echo 'utils::setRepositories(ind=1:4)' > ~/.Rprofile
+FROM dynverse/dynwrap:r
 
 RUN git clone https://github.com/hmatsu1226/SCOUP.git && cd SCOUP && make all
 

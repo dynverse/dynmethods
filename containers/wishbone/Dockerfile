@@ -1,7 +1,5 @@
-FROM library/python
+FROM dynverse/dynwrap:py3.6
 
-# install python dependencies
-RUN pip install pandas numpy matplotlib
 RUN pip install Cython
 
 # install wishbone

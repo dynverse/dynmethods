@@ -1,6 +1,4 @@
-FROM rocker/tidyverse
-
-RUN echo 'utils::setRepositories(ind=1:4)' > ~/.Rprofile
+FROM dynverse/dynwrap:r
 
 RUN R -e 'devtools::install_github("dynverse/reCAT")'
 

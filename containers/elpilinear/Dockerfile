@@ -1,4 +1,4 @@
-FROM rocker/tidyverse
+FROM dynverse/dynwrap:r
 
 # install udunits
 RUN apt-get -y install libudunits2-dev

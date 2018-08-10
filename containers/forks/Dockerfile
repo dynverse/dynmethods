@@ -1,6 +1,5 @@
-FROM library/python
+FROM dynverse/dynwrap:py3.6
 
-RUN pip install scipy numpy pandas matplotlib
 RUN pip install sklearn seaborn Cython
 RUN pip install hdbscan
 
