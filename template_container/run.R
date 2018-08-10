@@ -8,8 +8,8 @@ library(TEMPLATE)
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
-data <- read_rds("/ti/ti/input/data.rds")
-params <- jsonlite::read_json("/ti/ti/input/params.json")
+data <- read_rds("/ti/input/data.rds")
+params <- jsonlite::read_json("/ti/input/params.json")
 
 #' @examples
 #' data <- dyntoy::generate_dataset(id = "test", num_cells = 300, num_features = 300, model = "linear") %>% c(., .$prior_information)
@@ -44,4 +44,4 @@ model <- lst(
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-write_rds(model, "/ti/ti/output.rds")
+write_rds(model, "/ti/output.rds")

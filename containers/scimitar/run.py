@@ -1,9 +1,3 @@
-import os
-os.environ["OMP_NUM_THREADS"] = "1"
-os.environ["NUMEXPR_NUM_THREADS"] = "1"
-os.environ["MKL_NUM_THREADS"] = "1"
-os.environ["OPENBLAS_NUM_THREADS"] = "1"
-
 # to avoid singularity loading the home directory python libraries
 import sys
 sys.path = ['/usr/local/lib/python2.7', '/usr/local/lib/python2.7/site-packages', '/usr/local/lib/python2.7/lib-old', '/usr/local/lib/python2.7/lib-dynload']
