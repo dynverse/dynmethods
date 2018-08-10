@@ -13,4 +13,4 @@
 ^automated_checks$
 ^data-raw$
 ^containers$
-^container_template$
+^template_container
