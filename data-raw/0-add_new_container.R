@@ -2,7 +2,7 @@ library(tidyverse)
 
 rm(list = ls())
 
-method <- "new_method"
+method <- "comp1"
 file <- paste0("containers/", method, "/definition.yml")
 
 # read definition and build docker
