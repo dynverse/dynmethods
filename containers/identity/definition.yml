@@ -27,7 +27,7 @@ input:
   - counts
   - dataset
 output:
-  format: dynwrap
+  format: rds
   outputs:
   - trajectory
   - timings

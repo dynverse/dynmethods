@@ -23,8 +23,8 @@ input:
   format: rds
   required: counts
 output:
-  format: dynwrap
-  outputs: 
+  format: rds
+  outputs:
   - trajectory
   - timings
 wrapper_type: control

@@ -18,7 +18,7 @@ input:
   format: rds
   required: counts
 output:
-  format: dynwrap
+  format: rds
   outputs:
   - trajectory
   - timings
