@@ -27,7 +27,7 @@ input:
   format: rds
   required: expression
 output:
-  format: dynwrap
+  format: rds
   outputs:
   - cyclic_trajectory
   - dimred
