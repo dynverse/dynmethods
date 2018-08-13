@@ -36,7 +36,7 @@ space <- SCORPIUS::reduce_dimensionality(
   dist_fun = function(x, y = NULL) dynutils::calculate_distance(x = x, y = y, method = params$distance_method),
   landmark_method = ifelse(params$sparse, "naive", "none"),
   ndim = params$ndim,
-  num_landmarks = ifelse(nrow(expression) > 1000, 500, nrow(expression))
+  num_landmarks = ifelse(nrow(expression) > 500, 500, nrow(expression))
 )
 
 # infer a trajectory through the data
