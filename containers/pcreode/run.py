@@ -1,8 +1,3 @@
-import os
-os.environ["OMP_NUM_THREADS"] = "1"
-os.environ["NUMEXPR_NUM_THREADS"] = "1"
-os.environ["MKL_NUM_THREADS"] = "1"
-
 import pandas as pd
 import numpy as np
 import json
@@ -14,8 +9,8 @@ checkpoints = {}
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
-expression = pd.read_csv("/input/expression.csv", index_col=[0])
-params = json.load(open("/input/params.json", "r"))
+expression = pd.read_csv("/ti/input/expression.csv", index_col=[0])
+params = json.load(open("/ti/input/params.json", "r"))
 
 checkpoints["method_afterpreproc"] = time.time()
 
@@ -42,7 +37,7 @@ out_graph, out_ids = pcreode.pCreode(
   density = density,
   noise = params["noise"],
   target = params["target"],
-  file_path = "/workspace/.",
+  file_path = "/ti/workspace/.",
   num_runs = params["num_runs"]
 )
 
@@ -50,7 +45,7 @@ out_graph, out_ids = pcreode.pCreode(
 # Wrapper's note: There is currently no way of extracting the best graph ordering, even though it is printed. Will select random graph.
 pcreode.pCreode_Scoring(
   data = pca_reduced_data,
-  file_path = "/workspace/.",
+  file_path = "/ti/workspace/.",
   num_graphs = params["num_runs"]
 )
 
@@ -61,7 +56,7 @@ gid = np.random.choice(range(params["num_runs"]), 1)[0]
 # the only thing that is available is a cell graph of only a subset of cells
 # so we use this cell graph as milestone network, and then project all cells onto this
 analysis = pcreode.Analysis(
-  file_path = "/workspace/.",
+  file_path = "/ti/workspace/.",
   graph_id = gid,
   data = pca_reduced_data,
   density = density,
@@ -76,17 +71,17 @@ checkpoints["method_aftermethod"] = time.time()
 cell_ids = pd.DataFrame({
   "cell_ids": expression.index
 })
-cell_ids.to_csv("/output/cell_ids.csv", index=False)
+cell_ids.to_csv("/ti/output/cell_ids.csv", index=False)
 
 # save dimred
 dimred = pd.DataFrame(pca_reduced_data)
 dimred["cell_id"] = expression.index
-dimred.to_csv("/output/dimred.csv", index=False)
+dimred.to_csv("/ti/output/dimred.csv", index=False)
 
 # get milestone network based on cell_graph
 # get the upper triangle of the adjacency, and use it to construct the network
 cell_graph = pd.DataFrame(
-  pcreode.return_weighted_adj(pca_reduced_data, "/workspace/.", gid),
+  pcreode.return_weighted_adj(pca_reduced_data, "/ti/workspace/.", gid),
   index = expression.index[analysis.node_data_indices],
   columns = expression.index[analysis.node_data_indices],
 )
@@ -106,11 +101,11 @@ dimred_milestones = dimred_milestones.rename(columns={"cell_id":"milestone_id"})
 
 # rename cells to milestones and save
 dimred_milestones["milestone_id"] = ["MILESTONE_" + cell_id for cell_id in dimred_milestones["milestone_id"]]
-dimred_milestones.to_csv("/output/dimred_milestones.csv", index=False)
+dimred_milestones.to_csv("/ti/output/dimred_milestones.csv", index=False)
 
 milestone_network["from"] = ["MILESTONE_" + cell_id for cell_id in milestone_network["from"]]
 milestone_network["to"] = ["MILESTONE_" + cell_id for cell_id in milestone_network["to"]]
-milestone_network.to_csv("/output/milestone_network.csv", index = False)
+milestone_network.to_csv("/ti/output/milestone_network.csv", index = False)
 
 # timings
-json.dump(checkpoints, open("/output/timings.json", "w"))
+json.dump(checkpoints, open("/ti/output/timings.json", "w"))

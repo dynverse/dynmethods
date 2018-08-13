@@ -1,10 +1,10 @@
-FROM rocker/tidyverse
+FROM dynverse/dynwrap:bioc
 
 # most steps are taken from https://github.com/edroaldo/cellrouter
 RUN R -e " \
 list.of.packages <- c('reshape','reshape2','pheatmap','tsne','igraph','ggplot2','mclust','grid','Rtsne','cccd', 'irlba'); \
 new.packages <- list.of.packages[!(list.of.packages %in% rownames(installed.packages()))]; \
-if(length(new.packages)) install.packages(new.packages, repos=c('http://cran.rstudio.com/', 'https://bioconductor.org/biocLite.R')); \
+if(length(new.packages)) install.packages(new.packages); \
 "
 
 # get lib

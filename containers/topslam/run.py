@@ -1,9 +1,3 @@
-import os
-os.environ["OMP_NUM_THREADS"] = "1"
-os.environ["NUMEXPR_NUM_THREADS"] = "1"
-os.environ["MKL_NUM_THREADS"] = "1"
-os.environ["OPENBLAS_NUM_THREADS"] = "1"
-
 # force matplotlib backend, to avoid tkinter problems (through GPy)
 import matplotlib
 matplotlib.use('PS')
@@ -24,9 +18,9 @@ checkpoints = {}
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
-expression = pd.read_csv("/input/expression.csv", index_col=[0])
-p = json.load(open("/input/params.json", "r"))
-start_id = json.load(open("/input/start_id.json"))
+expression = pd.read_csv("/ti/input/expression.csv", index_col=[0])
+p = json.load(open("/ti/input/params.json", "r"))
+start_id = json.load(open("/ti/input/start_id.json"))
 
 checkpoints["method_afterpreproc"] = time.time()
 
@@ -71,18 +65,18 @@ checkpoints["method_aftermethod"] = time.time()
 cell_ids = pd.DataFrame({
   "cell_ids": expression.index
 })
-cell_ids.to_csv("/output/cell_ids.csv", index=False)
+cell_ids.to_csv("/ti/output/cell_ids.csv", index=False)
 
 pseudotime = pd.DataFrame({
   "cell_id": expression.index,
   "pseudotime": pt_topslam
 })
-pseudotime.to_csv("/output/pseudotime.csv", index=False)
-pd.DataFrame(landscape[0], columns=["x", "y"]).to_csv("/output/wad_grid.csv", index=False)
-pd.DataFrame(landscape[1], columns=["energy"]).to_csv("/output/wad_energy.csv", index=False)
+pseudotime.to_csv("/ti/output/pseudotime.csv", index=False)
+pd.DataFrame(landscape[0], columns=["x", "y"]).to_csv("/ti/output/wad_grid.csv", index=False)
+pd.DataFrame(landscape[1], columns=["energy"]).to_csv("/ti/output/wad_energy.csv", index=False)
 dimred = pd.DataFrame(landscape[2], columns=["comp_" + str(i+1) for i in range(landscape[2].shape[1])])
 dimred["cell_id"] = expression.index
-dimred.to_csv("/output/dimred.csv", index=False)
+dimred.to_csv("/ti/output/dimred.csv", index=False)
 
 # timings
-json.dump(checkpoints, open("/output/timings.json", "w"))
+json.dump(checkpoints, open("/ti/output/timings.json", "w"))

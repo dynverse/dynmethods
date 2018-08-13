@@ -1,11 +1,7 @@
-import os
-os.environ["OMP_NUM_THREADS"] = "1"
-os.environ["NUMEXPR_NUM_THREADS"] = "1"
-os.environ["MKL_NUM_THREADS"] = "1"
-
 import matplotlib
 matplotlib.use('Agg')
 
+import os
 if(not os.path.exists("graphs")):
   os.mkdir("graphs")
 #%%
@@ -32,8 +28,8 @@ checkpoints = {}
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
-counts = pd.read_csv("/input/counts.csv", index_col=[0])
-p = json.load(open("/input/params.json", "r"))
+counts = pd.read_csv("/ti/input/counts.csv", index_col=[0])
+p = json.load(open("/ti/input/params.json", "r"))
 
 
 gene_name = counts.columns
@@ -158,20 +154,20 @@ checkpoints["method_aftermethod"] = time()
 cell_ids = pd.DataFrame({
   "cell_ids": cell_names1
 })
-cell_ids.to_csv("/output/cell_ids.csv", index=False)
+cell_ids.to_csv("/ti/output/cell_ids.csv", index=False)
 
 dimred = pd.DataFrame(
   X_reduced,
   index = cell_names1
 )
 dimred.index.name = "cell_id"
-dimred.to_csv("/output/dimred.csv", index=True)
+dimred.to_csv("/ti/output/dimred.csv", index=True)
 
 pseudotime = pd.DataFrame({
   "pseudotime": ordering_steiner,
   "cell_id": cell_names1
 })
-pseudotime.to_csv("/output/pseudotime.csv", index=False)
+pseudotime.to_csv("/ti/output/pseudotime.csv", index=False)
 
 # timings
-json.dump(checkpoints, open("/output/timings.json", "w"))
+json.dump(checkpoints, open("/ti/output/timings.json", "w"))

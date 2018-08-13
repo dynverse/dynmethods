@@ -1,4 +1,4 @@
-FROM rocker/tidyverse
+FROM dynverse/dynwrap:r
 
 ADD . /code
 

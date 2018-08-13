@@ -7,8 +7,8 @@ library(readr)
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
-data <- read_rds("/input/data.rds")
-params <- jsonlite::read_json("/input/params.json")
+data <- read_rds("/ti/input/data.rds")
+params <- jsonlite::read_json("/ti/input/params.json")
 
 #' @examples
 #' data <- dyntoy::generate_dataset(id = "test", num_cells = 300, num_features = 300, model = "binary_tree") %>% c(., .$prior_information)
@@ -100,4 +100,4 @@ output <- lst(
   timings = checkpoints
 )
 
-write_rds(output, "/output/output.rds")
+write_rds(output, "/ti/output/output.rds")

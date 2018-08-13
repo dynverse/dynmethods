@@ -2,7 +2,7 @@ id: comp1
 docker_repository: dynverse/comp1
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/comp1
 name: Component 1
-type: algorithm
+type: control
 trajectory_types: linear
 topology_inference: fixed
 platform: R
@@ -37,8 +37,8 @@ input:
   format: rds
   required: expression
 output:
-  format: dynwrap
-  outputs: 
+  format: rds
+  outputs:
   - linear_trajectory
   - dimred
   - timings

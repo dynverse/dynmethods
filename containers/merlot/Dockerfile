@@ -1,10 +1,8 @@
-FROM rocker/tidyverse
-
-RUN echo 'utils::setRepositories(ind=1:4)' > ~/.Rprofile
+FROM dynverse/dynwrap:bioc
 
 RUN R -e 'install.packages("destiny")'
 
-# install rgl
+# install rgl dependencies
 RUN apt-get update
 RUN apt-get install -y libcgal-dev libglu1-mesa-dev libglu1-mesa-dev
 
@@ -18,11 +16,8 @@ RUN pip3 install git+https://github.com/soedinglab/csgraph_mod
 RUN apt-get -y install libudunits2-dev
 RUN Rscript -e 'install.packages("udunits2", configure.args =  c(udunits2 = "--with-udunits2-include=/usr/include/udunits2"))'
 
-# install elpigraph
-RUN R -e "devtools::install_github('Albluca/ElPiGraph.R')"
-
 # install merlot
-RUN R -e "devtools::install_github('dynverse/merlot')"
+RUN R -e "devtools::install_github('soedinglab/merlot')"
 
 ADD . /code
 

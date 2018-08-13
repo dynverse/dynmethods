@@ -1,7 +1,4 @@
-FROM library/python
-
-# install python dependencies
-RUN pip install scipy pandas numpy matplotlib
+FROM dynverse/dynwrap:py3.6
 
 # install gpy/gpcluster/gpfates
 RUN pip install GPy

@@ -1,17 +1,18 @@
-library(ElPiGraph.R)
+library(jsonlite)
 library(dplyr)
 library(purrr)
 library(readr)
 
+library(ElPiGraph.R)
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
-data <- read_rds("/input/data.rds")
-params <- jsonlite::read_json("/input/params.json")
+data <- read_rds("/ti/input/data.rds")
+params <- jsonlite::read_json("/ti/input/params.json")
 
 #' @examples
-#' data <- dyntoy::generate_dataset(id = "test", num_cells = 300, num_features = 300, model = "binary_tree") %>% c(., .$prior_information)
+#' data <- dyntoy::generate_dataset(id = "test", num_cells = 400, num_features = 401, model = "tree")
 #' params <- yaml::read_yaml("containers/elpigraph/definition.yml")$parameters %>%
 #'   {.[names(.) != "forbidden"]} %>%
 #'   map(~ .$default)
@@ -57,15 +58,13 @@ principal_graph <- principal_graph_function(
   Mu = params$Mu,
   drawAccuracyComplexity = FALSE,
   drawEnergy = FALSE,
-  drawPCAView = FALSE,
-  n.cores = 1
+  drawPCAView = FALSE
 )
 
 # compute pseudotime, from https://github.com/Albluca/ElPiGraph.R/blob/master/guides/pseudo.md
 PartStruct <- PartitionData(
   X = expression,
-  NodePositions = principal_graph[[1]]$NodePositions,
-  nCores = 1
+  NodePositions = principal_graph[[1]]$NodePositions
 )
 
 ProjStruct <- project_point_onto_graph(
@@ -101,4 +100,4 @@ output <- lst(
   timings = checkpoints
 )
 
-write_rds(output, "/output/output.rds")
+write_rds(output, "/ti/output/output.rds")

@@ -8,8 +8,8 @@ library(SCORPIUS)
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
-data <- read_rds("/input/data.rds")
-params <- jsonlite::read_json("/input/params.json")
+data <- read_rds("/ti/input/data.rds")
+params <- jsonlite::read_json("/ti/input/params.json")
 
 #' @examples
 #' data <- dyntoy::generate_dataset(id = "test", num_cells = 300, num_features = 300, model = "linear") %>% c(., .$prior_information)
@@ -36,7 +36,7 @@ space <- SCORPIUS::reduce_dimensionality(
   dist_fun = function(x, y = NULL) dynutils::calculate_distance(x = x, y = y, method = params$distance_method),
   landmark_method = ifelse(params$sparse, "naive", "none"),
   ndim = params$ndim,
-  num_landmarks = ifelse(nrow(expression) > 1000, 500, nrow(expression))
+  num_landmarks = ifelse(nrow(expression) > 500, 500, nrow(expression))
 )
 
 # infer a trajectory through the data
@@ -73,4 +73,4 @@ output <- lst(
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-write_rds(output, "/output/output.rds")
+write_rds(output, "/ti/output/output.rds")

@@ -15,12 +15,11 @@ checkpoints = {}
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
-data = h5py.File("/input/data.h5", "r")
+data = h5py.File("/ti/input/data.h5", "r")
 counts = pd.DataFrame(data['counts'][:].T, index=data['counts'].attrs['rownames'].astype(np.str))
-start_id = data['start_id'][:].astype(np.str)
 data.close()
 
-params = json.load(open("/input/params.json", "r"))
+params = json.load(open("/ti/input/params.json", "r"))
 
 if "groups_id" in data:
   groups_id = data['groups_id']
@@ -66,10 +65,6 @@ sc.tl.paga(adata)
 #   using the parameter threshold
 sc.pl.paga(adata, threshold=0.01, layout='fr', show=False)
 
-# run dpt for pseudotime information that is overlayed with paga
-adata.uns['iroot'] = np.where(counts.index == start_id[0])[0][0]
-sc.tl.dpt(adata)
-
 # run umap for a dimension-reduced embedding, use the positions of the paga
 # graph to initialize this embedding
 if params["embedding_type"] != 'fa':
@@ -85,11 +80,11 @@ checkpoints["method_aftermethod"] = time.time()
 cell_ids = pd.DataFrame({
   "cell_ids": counts.index
 })
-cell_ids.to_feather("/output/cell_ids.feather")
+cell_ids.to_feather("/ti/output/cell_ids.feather")
 
 # grouping
 grouping = pd.DataFrame({"cell_id": counts.index, "group_id": adata.obs.louvain})
-grouping.reset_index(drop=True).to_feather("/output/grouping.feather")
+grouping.reset_index(drop=True).to_feather("/ti/output/grouping.feather")
 
 # milestone network
 milestone_network = pd.DataFrame(
@@ -100,21 +95,21 @@ milestone_network = pd.DataFrame(
 milestone_network.columns = ["from", "to", "length"]
 milestone_network = milestone_network.query("length > 0").reset_index(drop=True)
 milestone_network["directed"] = False
-milestone_network.to_feather("/output/milestone_network.feather")
+milestone_network.to_feather("/ti/output/milestone_network.feather")
 
 # dimred
 dimred = pd.DataFrame([x for x in adata.obsm['X_umap'].T]).T
 dimred.columns = ["comp_" + str(i) for i in range(dimred.shape[1])]
 dimred["cell_id"] = counts.index
-dimred.reset_index(drop=True).to_feather("/output/dimred.feather")
+dimred.reset_index(drop=True).to_feather("/ti/output/dimred.feather")
 
 # dimred milestones
 dimred["milestone_id"] = adata.obs.louvain.tolist()
 dimred_milestones = dimred.groupby("milestone_id").mean().reset_index()
-dimred_milestones.to_feather("/output/dimred_milestones.feather")
+dimred_milestones.to_feather("/ti/output/dimred_milestones.feather")
 
 # timings
 timings = pd.Series(checkpoints)
 timings.index.name = "name"
 timings.name = "timings"
-timings.reset_index().to_feather("/output/timings.feather")
+timings.reset_index().to_feather("/ti/output/timings.feather")

@@ -1,9 +1,4 @@
 import os
-os.environ["OMP_NUM_THREADS"] = "1"
-os.environ["NUMEXPR_NUM_THREADS"] = "1"
-os.environ["MKL_NUM_THREADS"] = "1"
-os.environ["OPENBLAS_NUM_THREADS"] = "1"
-
 import wishbone
 import os
 import sys
@@ -16,14 +11,14 @@ checkpoints = {}
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
-p = json.load(open("/input/params.json", "r"))
+p = json.load(open("/ti/input/params.json", "r"))
 
 # get start cell(s)
-start_cell = json.load(open("/input/start_id.json"))[0]
+start_cell = json.load(open("/ti/input/start_id.json"))[0]
 
 # get markers if given
-if os.path.exists("/input/features_id.json"):
-  markers = json.load(open("/input/features_id.json"))
+if os.path.exists("/ti/input/features_id.json"):
+  markers = json.load(open("/ti/input/features_id.json"))
 else:
   markers = "~"
 
@@ -32,7 +27,7 @@ checkpoints["method_afterpreproc"] = time.time()
 #   ____________________________________________________________________________
 #   Create trajectory                                                       ####
 # normalise data
-scdata = wishbone.wb.SCData.from_csv("/input/counts.csv", data_type='sc-seq', normalize=p["normalise"])
+scdata = wishbone.wb.SCData.from_csv("/ti/input/counts.csv", data_type='sc-seq', normalize=p["normalise"])
 scdata.run_pca()
 scdata.run_diffusion_map(knn=p["knn"], epsilon=p["epsilon"], n_diffusion_components=p["n_diffusion_components"], n_pca_components=p["n_pca_components"], markers=markers)
 
@@ -51,18 +46,18 @@ checkpoints["method_aftermethod"] = time.time()
 # pseudotime
 pseudotime = wb.trajectory.reset_index()
 pseudotime.columns = ["cell_id", "pseudotime"]
-pseudotime.to_csv("/output/pseudotime.csv", index=False)
+pseudotime.to_csv("/ti/output/pseudotime.csv", index=False)
 
 # dimred
 dimred = wb.scdata.diffusion_eigenvectors
 dimred.index.name = "cell_id"
-dimred.reset_index().to_csv("/output/dimred.csv", index=False)
+dimred.reset_index().to_csv("/ti/output/dimred.csv", index=False)
 
 # cell ids
 cell_ids = pd.DataFrame({
   "cell_ids": dimred.index
 })
-cell_ids.to_csv("/output/cell_ids.csv", index=False)
+cell_ids.to_csv("/ti/output/cell_ids.csv", index=False)
 
 # timings
-json.dump(checkpoints, open("/output/timings.json", "w"))
+json.dump(checkpoints, open("/ti/output/timings.json", "w"))

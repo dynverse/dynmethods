@@ -1,6 +1,4 @@
-FROM rocker/tidyverse
-
-RUN echo 'utils::setRepositories(ind=1:4)' > ~/.Rprofile
+FROM dynverse/dynwrap:bioc
 
 RUN apt-get install -y libgsl-dev
 

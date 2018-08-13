@@ -6,13 +6,16 @@ library(purrr)
 library(merlot)
 library(destiny)
 
-Sys.setenv(TMP = "/workspace/tmp")
+dir.create("/ti/workspace/tmp")
+Sys.setenv(TMP = "/ti/workspace/tmp")
+Sys.setenv(TEMP = "/ti/workspace/tmp")
+Sys.setenv(TMPDIR = "/ti/workspace/tmp")
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
-data <- read_rds("/input/data.rds")
-params <- jsonlite::read_json("/input/params.json")
+data <- read_rds("/ti/input/data.rds")
+params <- jsonlite::read_json("/ti/input/params.json")
 
 #' @examples
 #' data <- dyntoy::generate_dataset(model = "bifurcating") %>% c(., .$prior_information)
@@ -143,4 +146,4 @@ output <- lst(
   timings = checkpoints
 )
 
-write_rds(output, "/output/output.rds")
+write_rds(output, "/ti/output/output.rds")
