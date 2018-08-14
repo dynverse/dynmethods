@@ -21,9 +21,15 @@ parameters:
   threshold_ff:
     description: A Z-score cutoff
     type: numeric
-    default: 1
+    default: 1.7
     lower: 0
     upper: 5
+  min_expr:
+    description: Minimum average feature expression
+    type: numeric
+    default: 0
+    lower: 0
+    upper: 2
   frac:
     description: Fraction or number (if frac > 1) of eigengaps used to perform linear
       fit.
@@ -59,7 +65,7 @@ parameters:
     description: Mimimum fold-change for differential expression computation
     type: numeric
     default: 2
-    lower: 1
+    lower: 0
     upper: 5
   l:
     description: Neighborhood size
