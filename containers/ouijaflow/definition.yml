@@ -16,6 +16,7 @@ input:
   format: text
   required:
   - expression
+  optional:
   - features_id
 output:
   format: text

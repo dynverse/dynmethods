@@ -54,6 +54,7 @@ input:
   format: rds
   required:
   - expression
+  optional:
   - features_id
 output:
   format: rds
