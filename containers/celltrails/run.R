@@ -31,10 +31,6 @@ checkpoints$method_afterpreproc <- as.numeric(Sys.time())
 sce <- SingleCellExperiment(assays = list(logcounts = t(expression)))
 
 # filter features
-#tfeat1 <- filterTrajFeaturesByDL(sce, threshold = params$threshold_dl, show_plot = FALSE)
-#tfeat2 <- filterTrajFeaturesByCOV(sce, threshold = params$threshold_cov, show_plot = FALSE)
-#tfeat3 <- filterTrajFeaturesByFF(sce, threshold = params$threshold_ff, min_expr = params$min_expr, show_plot = FALSE)
-#trajFeatureNames(sce) <- Reduce(intersect, list(tfeat1, tfeat2, tfeat3))
 trajFeatureNames(sce) <- filterTrajFeaturesByDL(sce, threshold = params$threshold_dl, show_plot = FALSE)
 trajFeatureNames(sce) <- filterTrajFeaturesByCOV(sce, threshold = params$threshold_cov, show_plot = FALSE)
 trajFeatureNames(sce) <- filterTrajFeaturesByFF(sce, threshold = params$threshold_ff, min_expr = params$min_expr, show_plot = FALSE)
@@ -80,7 +76,7 @@ checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
 cell_ids <- CellTrails::sampleNames(sce)
 grouping <- CellTrails::states(sce) %>% as.character() %>% set_names(cell_ids)
-dimred <- reducedDim(bundle, type="CellTrails")
+dimred <- SingleCellExperiment::reducedDim(sce, type = "CellTrails")
 
 cell_graph <- map_dfr(
   trajectories,
