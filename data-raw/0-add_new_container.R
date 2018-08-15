@@ -2,7 +2,7 @@ library(tidyverse)
 
 rm(list = ls())
 
-method <- "comp1"
+method <- "method_id"
 file <- paste0("containers/", method, "/definition.yml")
 
 # read definition and build docker
@@ -50,8 +50,8 @@ dynplot::plot_graph(traj)
 #' # transfer it to prism
 #' qsub::rsync_remote(
 #'   remote_src = FALSE,
-#'   path_src = dynbenchmark::derived_file(c("dynverse/", method, ".simg"), "04-method_characterisation/singularity_images", remote = FALSE),
+#'   path_src = dynbenchmark::derived_file(c("dynverse/", method, ".simg"), "03-method_characterisation/singularity_images", remote = FALSE),
 #'   remote_dest = TRUE,
-#'   path_dest = dynbenchmark::derived_file(c("dynverse/", method, ".simg"), "04-method_characterisation/singularity_images", remote = TRUE),
+#'   path_dest = dynbenchmark::derived_file(c("dynverse/", method, ".simg"), "03-method_characterisation/singularity_images", remote = TRUE),
 #'   verbose = TRUE
 #' )
