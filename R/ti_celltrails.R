@@ -22,8 +22,10 @@
 #' range: from `0L` to `100L`)
 #' @param threshold_cov numeric; Minimum coefficient of variation; numeric value
 #' between 0 and 1 (default: `0.05`; range: from `0L` to `1L`)
-#' @param threshold_ff numeric; A Z-score cutoff (default: `1L`; range: from `0L`
+#' @param threshold_ff numeric; A Z-score cutoff (default: `1.7`; range: from `0L`
 #' to `5L`)
+#' @param min_expr numeric; Minimum average feature expression (default: `0L`;
+#' range: from `0L` to `2L`)
 #' @param frac numeric; Fraction or number (if frac > 1) of eigengaps used to
 #' perform linear fit. (default: `100L`; range: from `1L` to `1000L`)
 #' @param min_size numeric; The initial cluster dedrogram is cut at an height such
@@ -37,7 +39,7 @@
 #' @param max_pval numeric; Maximum P-value for differential expression
 #' computation. (default: `1e-04`; range: from `1e-07` to `1L`)
 #' @param min_fc numeric; Mimimum fold-change for differential expression
-#' computation (default: `2L`; range: from `1L` to `5L`)
+#' computation (default: `2L`; range: from `0L` to `5L`)
 #' @param l integer; Neighborhood size (default: `10L`; range: from `1L` to `50L`)
 #' @inheritParams dynwrap::create_container_ti_method
 #' 
@@ -47,7 +49,8 @@
 ti_celltrails <- function(
     threshold_dl = 2L,
     threshold_cov = 0.05,
-    threshold_ff = 1L,
+    threshold_ff = 1.7,
+    min_expr = 0L,
     frac = 100L,
     min_size = 0.01,
     min_feat = 5L,
@@ -62,6 +65,7 @@ ti_celltrails <- function(
     threshold_dl = threshold_dl,
     threshold_cov = threshold_cov,
     threshold_ff = threshold_ff,
+    min_expr = min_expr,
     frac = frac,
     min_size = min_size,
     min_feat = min_feat,
