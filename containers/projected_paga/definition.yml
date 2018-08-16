@@ -10,7 +10,7 @@ parameters:
     type: integer
     lower: 1
     upper: 100
-    default: 30
+    default: 15
   n_comps:
     description: Number of principal components
     type: integer
@@ -29,7 +29,7 @@ parameters:
     type: numeric
     lower: 0.1
     upper: 10
-    default: 2.5
+    default: 1
   embedding_type:
     description: Either 'umap' (scales very well, recommended for very large datasets)
       or 'fa' (ForceAtlas2, often a bit more intuitive for small datasets).

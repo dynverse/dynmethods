@@ -6,6 +6,8 @@ RUN pip install feather-format
 
 RUN pip install scanpy
 
+RUN pip install fa2
+
 ADD . /code
 
 ENTRYPOINT python /code/run.py
