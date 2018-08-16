@@ -2,7 +2,8 @@ FROM dynverse/dynwrap:bioc
 
 RUN R -e 'install.packages("destiny")'
 
-RUN git clone https://github.com/CABSEL/CALISTA.git
+RUN git clone https://github.com/CABSEL/CALISTA.git; rm -rf CALISTA/.git; find CALISTA -type f \( -iname \*.zip -o -iname \*.csv -o -iname \*.txt \) -exec rm {} +
+
 
 RUN apt-get update
 
