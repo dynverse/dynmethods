@@ -31,19 +31,17 @@ checkpoints$method_afterpreproc <- as.numeric(Sys.time())
 sce <- SingleCellExperiment(assays = list(logcounts = t(expression)))
 
 # filter features
-tfeat1 <- filterTrajFeaturesByDL(sce, threshold = params$threshold_dl, show_plot = FALSE)
-tfeat2 <- filterTrajFeaturesByCOV(sce, threshold = params$threshold_cov, show_plot = FALSE)
-tfeat3 <- filterTrajFeaturesByFF(sce, threshold = params$threshold_ff, show_plot = FALSE)
-
-trajFeatureNames(sce) <- Reduce(intersect, list(tfeat1, tfeat2, tfeat3))
+trajFeatureNames(sce) <- filterTrajFeaturesByDL(sce, threshold = params$threshold_dl, show_plot = FALSE)
+trajFeatureNames(sce) <- filterTrajFeaturesByCOV(sce, threshold = params$threshold_cov, show_plot = FALSE)
+trajFeatureNames(sce) <- filterTrajFeaturesByFF(sce, threshold = params$threshold_ff, min_expr = params$min_expr, show_plot = FALSE)
 
 # dimensionality reduction
-se <- embedSamples(sce)
-d <- findSpectrum(se$eigenvalues, frac = params$frac)
-latentSpace(sce) <- se$components[, d]
+se <- CellTrails::embedSamples(sce)
+d <- CellTrails::findSpectrum(se$eigenvalues, frac = params$frac)
+CellTrails::latentSpace(sce) <- se$components[, d]
 
 # find states
-states(sce) <- sce %>% findStates(
+CellTrails::states(sce) <- sce %>% CellTrails::findStates(
   min_size = params$min_size,
   min_feat = params$min_feat,
   max_pval = params$max_pval,
@@ -51,7 +49,7 @@ states(sce) <- sce %>% findStates(
 )
 
 # construct tree
-sce <- connectStates(sce, l = params$l)
+sce <- CellTrails::connectStates(sce, l = params$l)
 
 # fit trajectory
 # this object can contain multiple trajectories (= "components"), so we have to extract information for every one of them and combine afterwards
@@ -62,8 +60,8 @@ trajectories <- map(
   seq_along(components),
   function(ix) {
     if (length(components[[ix]]) > 1) {
-      traj <- selectTrajectory(sce, ix)
-      fitTrajectory(traj)
+      traj <- CellTrails::selectTrajectory(sce, ix)
+      CellTrails::fitTrajectory(traj)
     } else {
       components[[ix]]
     }
@@ -76,9 +74,9 @@ checkpoints$method_aftermethod <- as.numeric(Sys.time())
 #   ____________________________________________________________________________
 #   Process cell graph                                                      ####
 
-cell_ids <- sampleNames(sce)
-grouping <- sce$CellTrails.state %>% as.character() %>% set_names(cell_ids)
-dimred <- sce@reducedDims$CellTrails
+cell_ids <- CellTrails::sampleNames(sce)
+grouping <- CellTrails::states(sce) %>% as.character() %>% set_names(cell_ids)
+dimred <- SingleCellExperiment::reducedDim(sce, type = "CellTrails")
 
 cell_graph <- map_dfr(
   trajectories,

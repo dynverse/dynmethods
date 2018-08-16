@@ -5,8 +5,9 @@
 \title{Inferring a trajectory inference using CellTrails}
 \usage{
 ti_celltrails(threshold_dl = 2L, threshold_cov = 0.05,
-  threshold_ff = 1L, frac = 100L, min_size = 0.01, min_feat = 5L,
-  max_pval = 1e-04, min_fc = 2L, l = 10L, run_environment = NULL)
+  threshold_ff = 1.7, min_expr = 0L, frac = 100L, min_size = 0.01,
+  min_feat = 5L, max_pval = 1e-04, min_fc = 2L, l = 10L,
+  run_environment = NULL)
 }
 \arguments{
 \item{threshold_dl}{integer; Minimum number of samples; if value < 1 it is
@@ -16,8 +17,11 @@ range: from \code{0L} to \code{100L})}
 \item{threshold_cov}{numeric; Minimum coefficient of variation; numeric value
 between 0 and 1 (default: \code{0.05}; range: from \code{0L} to \code{1L})}
 
-\item{threshold_ff}{numeric; A Z-score cutoff (default: \code{1L}; range: from \code{0L}
+\item{threshold_ff}{numeric; A Z-score cutoff (default: \code{1.7}; range: from \code{0L}
 to \code{5L})}
+
+\item{min_expr}{numeric; Minimum average feature expression (default: \code{0L};
+range: from \code{0L} to \code{2L})}
 
 \item{frac}{numeric; Fraction or number (if frac > 1) of eigengaps used to
 perform linear fit. (default: \code{100L}; range: from \code{1L} to \code{1000L})}
@@ -36,7 +40,7 @@ between siblings. If this number is not reached, two neighboring clusters
 computation. (default: \code{1e-04}; range: from \code{1e-07} to \code{1L})}
 
 \item{min_fc}{numeric; Mimimum fold-change for differential expression
-computation (default: \code{2L}; range: from \code{1L} to \code{5L})}
+computation (default: \code{2L}; range: from \code{0L} to \code{5L})}
 
 \item{l}{integer; Neighborhood size (default: \code{10L}; range: from \code{1L} to \code{50L})}
 

@@ -4,11 +4,11 @@
 \alias{ti_paga}
 \title{Inferring a trajectory inference using PAGA}
 \usage{
-ti_paga(n_neighbors = 30L, n_comps = 50L, n_dcs = 15L,
-  resolution = 2.5, embedding_type = "fa", run_environment = NULL)
+ti_paga(n_neighbors = 15L, n_comps = 50L, n_dcs = 15L,
+  resolution = 1L, embedding_type = "fa", run_environment = NULL)
 }
 \arguments{
-\item{n_neighbors}{integer; Number of neighbours for knn (default: \code{30L};
+\item{n_neighbors}{integer; Number of neighbours for knn (default: \code{15L};
 range: from \code{1L} to \code{100L})}
 
 \item{n_comps}{integer; Number of principal components (default: \code{50L}; range:
@@ -19,7 +19,7 @@ means no denoising. (default: \code{15L}; range: from \code{0L} to \code{40L})}
 
 \item{resolution}{numeric; Resolution of louvain clustering, which determines
 the granularity of the clustering. Higher values will result in more clusters.
-(default: \code{2.5}; range: from \code{0.1} to \code{10L})}
+(default: \code{1L}; range: from \code{0.1} to \code{10L})}
 
 \item{embedding_type}{discrete; Either 'umap' (scales very well, recommended
 for very large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for

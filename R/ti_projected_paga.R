@@ -13,7 +13,7 @@
 #' 
 #' 
 #' 
-#' @param n_neighbors integer; Number of neighbours for knn (default: `30L`;
+#' @param n_neighbors integer; Number of neighbours for knn (default: `15L`;
 #' range: from `1L` to `100L`)
 #' @param n_comps integer; Number of principal components (default: `50L`; range:
 #' from `0L` to `100L`)
@@ -21,7 +21,7 @@
 #' means no denoising. (default: `15L`; range: from `0L` to `40L`)
 #' @param resolution numeric; Resolution of louvain clustering, which determines
 #' the granularity of the clustering. Higher values will result in more clusters.
-#' (default: `2.5`; range: from `0.1` to `10L`)
+#' (default: `1L`; range: from `0.1` to `10L`)
 #' @param embedding_type discrete; Either 'umap' (scales very well, recommended
 #' for very large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for
 #' small datasets). (default: `"fa"`; values: {`"umap"`, `"fa"`})
@@ -31,10 +31,10 @@
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_projected_paga <- function(
-    n_neighbors = 30L,
+    n_neighbors = 15L,
     n_comps = 50L,
     n_dcs = 15L,
-    resolution = 2.5,
+    resolution = 1L,
     embedding_type = "fa",
     run_environment = NULL
 ) {
