@@ -44,6 +44,7 @@ sc <- sc %>% compdist(
 )
 
 # perform clustering
+params$clustnr <- min(params$clustnr, ceiling(ncol(sc@expdata)/5))
 sc <- sc %>% clustexp(
   sat = params$sat,
   samp = params$samp,
