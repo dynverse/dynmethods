@@ -28,17 +28,16 @@ if (params$numcluster_null) {
 checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
 # collect sample info
-sample_info <- groups_id %>% rename(GroupID = group_id) %>% as.data.frame
+sample_info <- groups_id %>% select(cell_id, GroupID = group_id) %>% as.data.frame
 
 # designate landmarks
-
 landmark_cluster <- Mpath::landmark_designation(
   rpkmFile = t(counts),
   baseName = NULL,
   sampleFile = sample_info,
   distMethod = params$distMethod,
   method = params$method,
-  numcluster = params$numcluster,
+  numcluster = min(params$numcluster, nrow(counts) - 1),
   diversity_cut = params$diversity_cut,
   size_cut = params$size_cut,
   saveRes = FALSE
@@ -49,37 +48,45 @@ milestone_ids <- unique(landmark_cluster$landmark_cluster)
 
 # catch situation where mpath only detects 1 landmark
 if (length(milestone_ids) == 1) {
-  stop("Mpath only detected one landmark")
+  warning("Mpath only detected one landmark")
+
+  milestone_network <-
+    data_frame(
+      from = "M1",
+      to = "M1",
+      length = 0,
+      directed = FALSE
+    )
+} else {
+  # build network
+  network <- Mpath::build_network(
+    exprs = t(counts),
+    baseName = NULL,
+    landmark_cluster = landmark_cluster,
+    distMethod = params$distMethod,
+    writeRes = FALSE
+  )
+
+  # trim network
+  trimmed_network <- Mpath::trim_net(
+    nb12 = network,
+    writeRes = FALSE
+  )
+
+  # create final milestone network
+  class(trimmed_network) <- NULL
+  milestone_network <- trimmed_network %>%
+    reshape2::melt(varnames = c("from", "to"), value.name = "length") %>%
+    mutate_if(is.factor, as.character) %>%
+    filter(length > 0, from < to) %>%
+    mutate(directed = FALSE)
 }
-
-# build network
-network <- Mpath::build_network(
-  exprs = t(counts),
-  baseName = NULL,
-  landmark_cluster = landmark_cluster,
-  distMethod = params$distMethod,
-  writeRes = FALSE
-)
-
-# trim network
-trimmed_network <- Mpath::trim_net(
-  nb12 = network,
-  writeRes = FALSE
-)
 
 # TIMING: done with method
 checkpoints$method_aftermethod <- as.numeric(Sys.time())
 
-# create final milestone network
-class(trimmed_network) <- NULL
-milestone_network <- trimmed_network %>%
-  reshape2::melt(varnames = c("from", "to"), value.name = "length") %>%
-  mutate_if(is.factor, as.character) %>%
-  filter(length > 0, from < to) %>%
-  mutate(directed = FALSE)
-
 grouping <-
-  with(landmark_cluster, setNames(landmark_cluster, cell))
+  tibble::deframe(landmark_cluster)
 
 output <- lst(
   cell_ids = names(grouping),
