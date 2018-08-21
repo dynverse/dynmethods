@@ -19,7 +19,7 @@
 #' `"dm_diffusionMap"`})
 #' @param ndim integer; (default: `2`; range: from `2` to `30`)
 #' @param component integer; (default: `1`; range: from `1` to `10`)
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -28,11 +28,12 @@ ti_comp1 <- function(
     dimred = "pca",
     ndim = 2,
     component = 1,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/comp1",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/comp1@sha256:f1e406c5a977a66eb5bdcdced615ddf39f0d05b308aa01092f69d81db0eb8a0a",
+    container_type = container_type
+  )(
     dimred = dimred,
     ndim = ndim,
     component = component

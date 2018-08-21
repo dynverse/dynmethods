@@ -6,7 +6,7 @@
 \usage{
 ti_topslam(n_components = 2L, n_neighbors = 10L, linear_dims = 0L,
   max_iters = 1000L, dimreds = c(TRUE, TRUE, TRUE, TRUE, TRUE),
-  run_environment = NULL)
+  container_type = NULL)
 }
 \arguments{
 \item{n_components}{integer; The number of components (default: \code{2L}; range:
@@ -23,7 +23,8 @@ from \code{2L} to \code{100L})}
 \item{dimreds}{logical_vector; Which dimensionality reductions to use; tSNE,
 PCA, Spectral, Isomap and/or ICA}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

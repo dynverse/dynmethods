@@ -6,7 +6,7 @@
 \usage{
 ti_projected_monocle(reduction_method = "DDRTree", max_components = 2L,
   norm_method = "vstExprs", auto_param_selection = TRUE,
-  run_environment = NULL)
+  container_type = NULL)
 }
 \arguments{
 \item{reduction_method}{discrete; A character string specifying the algorithm
@@ -24,7 +24,8 @@ prior to reducing dimensionality (default: \code{"vstExprs"}; values: {\code{"vs
 (default), it will automatically calculate the proper value for the ncenter
 (number of centroids) parameters which will be passed into DDRTree call.}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

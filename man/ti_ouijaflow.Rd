@@ -4,12 +4,13 @@
 \alias{ti_ouijaflow}
 \title{Inferring a trajectory inference using ouijaflow}
 \usage{
-ti_ouijaflow(iter = 1000L, run_environment = NULL)
+ti_ouijaflow(iter = 1000L, container_type = NULL)
 }
 \arguments{
 \item{iter}{integer; (default: \code{1000L}; range: from \code{2L} to \code{50000L})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

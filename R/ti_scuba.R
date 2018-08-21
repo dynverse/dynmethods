@@ -30,7 +30,7 @@
 #' for this cluster to be split. (default: `15L`; range: from `1L` to `100L`)
 #' @param min_percentage_split numeric; Minimum fraction of cells in the smaller
 #' cluster during a bifurcation. (default: `0.25`; range: from `0L` to `1L`)
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -42,11 +42,12 @@ ti_scuba <- function(
     low_gene_fraction_max = 0.7,
     min_split = 15L,
     min_percentage_split = 0.25,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/scuba",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/scuba@sha256:3fd5935df45d797f30aa981d27e5970d701dc633af0251bb22319420df156c48",
+    container_type = container_type
+  )(
     rigorous_gap_stats = rigorous_gap_stats,
     N_dim = N_dim,
     low_gene_threshold = low_gene_threshold,

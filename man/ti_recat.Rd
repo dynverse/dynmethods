@@ -6,7 +6,7 @@
 \usage{
 ti_recat(TSPFold = 2, beginNum = 10, endNum = 15, step_size = 2,
   base_cycle_range_start = 6, base_cycle_range_end = 9,
-  max_num = 300, clustMethod = "GMM", run_environment = NULL)
+  max_num = 300, clustMethod = "GMM", container_type = NULL)
 }
 \arguments{
 \item{TSPFold}{integer; No documentation provided by authors (default: \code{2};
@@ -40,7 +40,8 @@ range: from \code{100} to \code{500})}
 \item{clustMethod}{discrete; No documentation provided by authors (default:
 \code{"GMM"}; values: {\code{"GMM"}, \code{"Pam"}, \code{"Kmeans"}})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

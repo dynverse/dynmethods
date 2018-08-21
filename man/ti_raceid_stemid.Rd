@@ -10,7 +10,7 @@ ti_raceid_stemid(knn = 10L, ccor = 0.4, metric = "pearson",
   outminc = 5L, outlg = 2L, outdistquant = 0.95,
   initial_cmd = TRUE, perplexity = 30L, cthr = 5L, nmode = TRUE,
   projcells_knn = 3L, fr = FALSE, pdishuf = 500L, fast = FALSE,
-  pthr = 0.01, scthr = 0.2, run_environment = NULL)
+  pthr = 0.01, scthr = 0.2, container_type = NULL)
 }
 \arguments{
 \item{knn}{integer; Number of nearest neighbors used to infer corresponding
@@ -100,7 +100,8 @@ occupied by cells. (default: \code{0.01}; range: from \code{1e-05} to \code{1L})
 \item{scthr}{numeric; Score threshold for links to be shown in the graph.
 (default: \code{0.2}; range: from \code{0} to \code{1})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

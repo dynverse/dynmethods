@@ -6,7 +6,7 @@
 \usage{
 ti_dpt(sigma = "local", distance = "euclidean", ndim = 20L,
   density_norm = TRUE, n_local_lower = 5L, n_local_upper = 7L,
-  w_width = 0.1, run_environment = NULL)
+  w_width = 0.1, container_type = NULL)
 }
 \arguments{
 \item{sigma}{discrete; Diffusion scale parameter of the Gaussian kernel. A
@@ -40,7 +40,8 @@ from \code{2L} to \code{20L})}
 \item{w_width}{numeric; Window width to use for deciding the branch cutoff
 (default: \code{0.1}; range: from \code{1e-04} to \code{1})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

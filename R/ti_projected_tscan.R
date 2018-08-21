@@ -21,7 +21,7 @@
 #' @param modelNames discrete; (default: `"VVV"`; values: {`"EII"`, `"VII"`,
 #' `"EEI"`, `"VEI"`, `"EVI"`, `"VVI"`, `"EEE"`, `"EVE"`, `"VEE"`, `"VVE"`,
 #' `"EEV"`, `"VEV"`, `"EVV"`, `"VVV"`})
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -33,11 +33,12 @@ ti_projected_tscan <- function(
     clusternum_lower = 2L,
     clusternum_upper = 9L,
     modelNames = "VVV",
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/projected_tscan",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/projected_tscan@sha256:ef776409c2133b02354a39f43ca4200489f638d73f3c4099afcbd8f6c35b5ab7",
+    container_type = container_type
+  )(
     minexpr_percent = minexpr_percent,
     minexpr_value = minexpr_value,
     cvcutoff = cvcutoff,

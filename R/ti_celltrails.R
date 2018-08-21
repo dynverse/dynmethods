@@ -41,7 +41,7 @@
 #' @param min_fc numeric; Mimimum fold-change for differential expression
 #' computation (default: `2L`; range: from `0L` to `5L`)
 #' @param l integer; Neighborhood size (default: `10L`; range: from `1L` to `50L`)
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -57,11 +57,12 @@ ti_celltrails <- function(
     max_pval = 1e-04,
     min_fc = 2L,
     l = 10L,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/celltrails",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/celltrails@sha256:7afb146e876124805e1fec0c7cf45cbbb07f4de7500ce5d2da497690c6be6eb3",
+    container_type = container_type
+  )(
     threshold_dl = threshold_dl,
     threshold_cov = threshold_cov,
     threshold_ff = threshold_ff,

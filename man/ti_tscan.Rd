@@ -6,7 +6,7 @@
 \usage{
 ti_tscan(minexpr_percent = 0, minexpr_value = 0, cvcutoff = 0,
   clusternum_lower = 2L, clusternum_upper = 9L, modelNames = "VVV",
-  run_environment = NULL)
+  container_type = NULL)
 }
 \arguments{
 \item{minexpr_percent}{numeric; (default: \code{0}; range: from \code{0} to \code{1})}
@@ -23,7 +23,8 @@ ti_tscan(minexpr_percent = 0, minexpr_value = 0, cvcutoff = 0,
 \code{"EEI"}, \code{"VEI"}, \code{"EVI"}, \code{"VVI"}, \code{"EEE"}, \code{"EVE"}, \code{"VEE"}, \code{"VVE"},
 \code{"EEV"}, \code{"VEV"}, \code{"EVV"}, \code{"VVV"}})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

@@ -38,7 +38,7 @@
 #' `"lowess"`, `"periodic_lowess"`})
 #' @param sparse logical; Whether or not to use sparse MDS dimensionality
 #' reduction,for datasets with large amounts of cells.
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -52,11 +52,12 @@ ti_scorpius <- function(
     stretch = 0,
     smoother = "smooth_spline",
     sparse = TRUE,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/scorpius",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/scorpius@sha256:9985471d8ce50d1aad6d5fdbbb889e5f63019516c3a480399a19c0a1da20ec94",
+    container_type = container_type
+  )(
     distance_method = distance_method,
     ndim = ndim,
     k = k,

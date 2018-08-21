@@ -15,18 +15,19 @@
 #' 
 #' @param dummy_param numeric; Dummy parameter (default: `0.5`; range: from `0` to
 #' `1`)
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_identity <- function(
     dummy_param = 0.5,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/identity",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/identity@sha256:f4f4f050cd81502c7eb1deadf41c1cdd80867e979928a938e579ebc804ac552b",
+    container_type = container_type
+  )(
     dummy_param = dummy_param
   )
 }

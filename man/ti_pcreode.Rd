@@ -5,7 +5,7 @@
 \title{Inferring a trajectory inference using pCreode}
 \usage{
 ti_pcreode(n_pca_components = 3L, radius = 1L, noise = 8L,
-  target = 25L, num_runs = 10L, run_environment = NULL)
+  target = 25L, num_runs = 10L, container_type = NULL)
 }
 \arguments{
 \item{n_pca_components}{integer; (default: \code{3L}; range: from \code{2L} to \code{10L})}
@@ -18,7 +18,8 @@ ti_pcreode(n_pca_components = 3L, radius = 1L, noise = 8L,
 
 \item{num_runs}{integer; (default: \code{10L}; range: from \code{10L} to \code{1000L})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

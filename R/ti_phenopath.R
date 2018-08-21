@@ -29,7 +29,7 @@
 #' modelled?
 #' @param scale_y logical; Logical - should the expression matrix be centre
 #' scaled?
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -39,11 +39,12 @@ ti_phenopath <- function(
     z_init = "1",
     model_mu = FALSE,
     scale_y = TRUE,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/phenopath",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/phenopath@sha256:ff9471bc912dc168917d7d9c2c1604ba7d30c694d6115cbc1cf7b7285f12cecb",
+    container_type = container_type
+  )(
     thin = thin,
     z_init = z_init,
     model_mu = model_mu,

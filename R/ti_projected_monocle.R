@@ -26,7 +26,7 @@
 #' @param auto_param_selection logical; When this argument is set to TRUE
 #' (default), it will automatically calculate the proper value for the ncenter
 #' (number of centroids) parameters which will be passed into DDRTree call.
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -36,11 +36,12 @@ ti_projected_monocle <- function(
     max_components = 2L,
     norm_method = "vstExprs",
     auto_param_selection = TRUE,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/projected_monocle",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/projected_monocle@sha256:81093045e8d511dd4ee21cc284e0e5e029bc0343d628bc5c8ad193bf0188f350",
+    container_type = container_type
+  )(
     reduction_method = reduction_method,
     max_components = max_components,
     norm_method = norm_method,

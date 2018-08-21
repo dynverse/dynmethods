@@ -19,18 +19,19 @@
 #' Neurogenesis. Cell Stem Cell 17, 360–372.
 #' 
 #' @param num_clusters integer; (default: `10`; range: from `2` to `20`)
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_waterfall <- function(
     num_clusters = 10,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/waterfall",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/waterfall@sha256:ec2538060ed25c150b620f141e852813e5a92946c44c57770cc73f4178e72091",
+    container_type = container_type
+  )(
     num_clusters = num_clusters
   )
 }

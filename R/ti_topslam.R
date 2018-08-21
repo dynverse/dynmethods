@@ -24,7 +24,7 @@
 #' `1000L`; range: from `10L` to `10000L`)
 #' @param dimreds logical_vector; Which dimensionality reductions to use; tSNE,
 #' PCA, Spectral, Isomap and/or ICA
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -35,11 +35,12 @@ ti_topslam <- function(
     linear_dims = 0L,
     max_iters = 1000L,
     dimreds = c(TRUE, TRUE, TRUE, TRUE, TRUE),
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/topslam",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/topslam@sha256:5e378774e606185fc20456c5f7b91f528cf7e3107b86c6ef38b56e4e9310493b",
+    container_type = container_type
+  )(
     n_components = n_components,
     n_neighbors = n_neighbors,
     linear_dims = linear_dims,

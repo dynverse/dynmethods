@@ -7,7 +7,7 @@
 ti_celltrails(threshold_dl = 2L, threshold_cov = 0.05,
   threshold_ff = 1.7, min_expr = 0L, frac = 100L, min_size = 0.01,
   min_feat = 5L, max_pval = 1e-04, min_fc = 2L, l = 10L,
-  run_environment = NULL)
+  container_type = NULL)
 }
 \arguments{
 \item{threshold_dl}{integer; Minimum number of samples; if value < 1 it is
@@ -44,7 +44,8 @@ computation (default: \code{2L}; range: from \code{0L} to \code{5L})}
 
 \item{l}{integer; Neighborhood size (default: \code{10L}; range: from \code{1L} to \code{50L})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

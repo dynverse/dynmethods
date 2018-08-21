@@ -24,7 +24,7 @@
 #' @param norm_method discrete; Determines how to transform expression values
 #' prior to reducing dimensionality (default: `"vstExprs"`; values: {`"vstExprs"`,
 #' `"log"`, `"none"`})
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -33,11 +33,12 @@ ti_monocle_ica <- function(
     reduction_method = "ICA",
     max_components = 2L,
     norm_method = "vstExprs",
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/monocle_ica",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/monocle_ica@sha256:127a12e349192d3cbf90e554c9f6ce60293ade0ed15e8adef0defa5328888f95",
+    container_type = container_type
+  )(
     reduction_method = reduction_method,
     max_components = max_components,
     norm_method = norm_method

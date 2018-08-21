@@ -6,7 +6,7 @@
 \usage{
 ti_mfa(b = 2L, iter = 2000L, thin = 1L, pc_initialise = 1L,
   prop_collapse = 0, scale_input = TRUE, zero_inflation = FALSE,
-  run_environment = NULL)
+  container_type = NULL)
 }
 \arguments{
 \item{b}{integer; Number of branches to model (default: \code{2L}; range: from \code{1L}
@@ -29,7 +29,8 @@ variance 1}
 
 \item{zero_inflation}{logical; Logical, should zero inflation be enabled?}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

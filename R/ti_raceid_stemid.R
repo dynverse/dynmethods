@@ -82,7 +82,7 @@
 #' occupied by cells. (default: `0.01`; range: from `1e-05` to `1L`)
 #' @param scthr numeric; Score threshold for links to be shown in the graph.
 #' (default: `0.2`; range: from `0` to `1`)
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -111,11 +111,12 @@ ti_raceid_stemid <- function(
     fast = FALSE,
     pthr = 0.01,
     scthr = 0.2,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/raceid_stemid",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/raceid_stemid@sha256:e15808694591159e4959c4f624acbcfeea7ecd7f147e0767bcd16b1a332608a4",
+    container_type = container_type
+  )(
     knn = knn,
     ccor = ccor,
     metric = metric,
