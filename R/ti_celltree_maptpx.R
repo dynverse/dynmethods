@@ -48,7 +48,7 @@ ti_celltree_maptpx <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/celltree_maptpx@sha256:b52dc7d03a4cd9f76b0cf269524dce2006acdcfd77d757c929fca6620c883fa5",
+    image = "dynverse/celltree_maptpx@sha256:9e60d6969db4590f36626068406a106f01b51b6fcfe213caeb341ea64152ebae",
     container_type = container_type
   )(
     method = method,

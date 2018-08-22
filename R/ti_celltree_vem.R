@@ -46,7 +46,7 @@ ti_celltree_vem <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/celltree_vem@sha256:205ef7e1502312e290093f23e023869ad1f1a6e26b0e531ced1c93fe9e6b0966",
+    image = "dynverse/celltree_vem@sha256:2e3fb96bd44bf5c254328a3bbf135e8459f5f1081abed3558e282375d4da385b",
     container_type = container_type
   )(
     method = method,

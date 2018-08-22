@@ -55,7 +55,7 @@ ti_scorpius <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/scorpius@sha256:9985471d8ce50d1aad6d5fdbbb889e5f63019516c3a480399a19c0a1da20ec94",
+    image = "dynverse/scorpius@sha256:c3b9a14fb5171a9796dd7781a9be46791fd7b6ba3858ea859d89f1748bcdb781",
     container_type = container_type
   )(
     distance_method = distance_method,

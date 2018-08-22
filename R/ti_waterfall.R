@@ -29,7 +29,7 @@ ti_waterfall <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/waterfall@sha256:ec2538060ed25c150b620f141e852813e5a92946c44c57770cc73f4178e72091",
+    image = "dynverse/waterfall@sha256:d30fbb548efa884473c01bc45b2a49b8d8288cea10f5fa777270c1845123e4a7",
     container_type = container_type
   )(
     num_clusters = num_clusters

@@ -7,7 +7,7 @@
 ti_merlot(sigma = "local", distance = "euclidean", ndim = 20L,
   density_norm = TRUE, n_local_lower = 5L, n_local_upper = 7L,
   w_width = 0.01, n_components_to_use = 3, N_yk = 100,
-  lambda_0 = 1e-10, mu_0 = 0.0025, increaseFactor_mu = 20,
+  lambda_0 = 8e-10, mu_0 = 0.0025, increaseFactor_mu = 20,
   increaseFactor_lambda = 20, FixEndpoints = FALSE,
   container_type = NULL)
 }
@@ -50,7 +50,7 @@ analysis (default: \code{3}; range: from \code{2} to \code{20})}
 \code{100}; range: from \code{2} to \code{1000})}
 
 \item{lambda_0}{numeric; Principal elastic tree energy function parameter.
-(default: \code{1e-10}; range: from \code{1e-15} to \code{1e-04})}
+(default: \code{8e-10}; range: from \code{1e-12} to \code{1e-06})}
 
 \item{mu_0}{numeric; Principal elastic tree energy function parameter.
 (default: \code{0.0025}; range: from \code{5e-04} to \code{0.005})}

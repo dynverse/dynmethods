@@ -30,8 +30,8 @@ based on finding the saturation point of the mean within-cluster dispersion as
 a function of the cluster number. If \code{FALSE}, then cluster number needs to
 be given as \code{cln}.}
 
-\item{samp}{integer; Number of booststrapping runs for clusterboot. Default is
-50 (default: \code{1000L}; range: from \code{50L} to \code{10000L})}
+\item{samp}{integer; Number of bootstrapping runs for clusterboot (default:
+\code{1000L}; range: from \code{50L} to \code{10000L})}
 
 \item{cln}{integer; Number of clusters to be used. If \code{sat} is
 \code{TRUE}, this number is inferred by the saturation criterion. (default:

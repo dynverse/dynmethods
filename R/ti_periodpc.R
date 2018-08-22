@@ -26,7 +26,7 @@ ti_periodpc <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/periodpc@sha256:214c0621e2b4d412c1ab32da494c81e7dcfbab36af82c34625f2b7b1c15ae71e",
+    image = "dynverse/periodpc@sha256:dd828c576e1e1002b4fca5fcd739cd1b5b9c4bd8f175bc4e08a4bdc872b0312b",
     container_type = container_type
   )(
     ndim = ndim,

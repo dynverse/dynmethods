@@ -47,7 +47,7 @@ ti_wishbone <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/wishbone@sha256:9dcccbdf102ff7da6bb9b969a4dc46713d05134f0750b6f6da28fe5988a7e14c",
+    image = "dynverse/wishbone@sha256:28aa2af53af951a7511d383ab8e4ffb8fa6d988ca9701d9b295f73e983e23994 dynverse/wishbone@sha256:9dcccbdf102ff7da6bb9b969a4dc46713d05134f0750b6f6da28fe5988a7e14c",
     container_type = container_type
   )(
     normalise = normalise,

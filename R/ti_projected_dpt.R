@@ -53,7 +53,7 @@ ti_projected_dpt <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/projected_dpt@sha256:ecd489061520415ffcf5682942efe0fc30e4c0bffd042023ac61313883a00213",
+    image = "dynverse/projected_dpt@sha256:2d7aa743ea32d9f6bbc88d882ae1d738fe596ccd16a2fc1b74fdc2835afa4a5b",
     container_type = container_type
   )(
     sigma = sigma,

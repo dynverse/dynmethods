@@ -50,7 +50,7 @@ ti_elpilinear <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/elpilinear@sha256:5dccf23279aff3ec2ecca03e5b4998b2040cc1ef200a3be96d4ba62452453e8b",
+    image = "dynverse/elpilinear@sha256:fbdd8469f3c3fd885552f85edbe4544452d7c9772148333cb571282b0cde4ad6",
     container_type = container_type
   )(
     topology = topology,

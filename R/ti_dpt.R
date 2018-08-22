@@ -56,7 +56,7 @@ ti_dpt <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/dpt@sha256:9e122293e964bb01ac83e605b7f057052c987c3ae90a264309391f15425235af",
+    image = "dynverse/dpt@sha256:798056dd48bddc874f7046ba803a32594522efad6112c3dd7bfe3c37637d17c2",
     container_type = container_type
   )(
     sigma = sigma,

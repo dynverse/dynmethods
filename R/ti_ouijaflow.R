@@ -26,7 +26,7 @@ ti_ouijaflow <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ouijaflow@sha256:d51af23e0e35645168663c37dcefdefb045c77bad0c707957fe9646e9a423379",
+    image = "dynverse/ouijaflow@sha256:77eae9fbbf19a606fae0ca01e2f0608775da4b555e11cf42e33223e4c8f2515f",
     container_type = container_type
   )(
     iter = iter

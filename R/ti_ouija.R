@@ -40,7 +40,7 @@ ti_ouija <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ouija@sha256:f452fe58ab2fa531f79724ff2e3d5ea8a07fd71c39d31e64acaef23f8f431091",
+    image = "dynverse/ouija@sha256:3ebf85819e1a1d36f1eb41c28d005f89c733c5c48be0b63dcdd856c615d63c2d",
     container_type = container_type
   )(
     iter = iter,

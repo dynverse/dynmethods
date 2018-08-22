@@ -82,7 +82,7 @@ ti_embeddr <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/embeddr@sha256:63ccac8539dc2ed10e9fd110290923adb9e3d20378153bc9f3d19434f67de4c7",
+    image = "dynverse/embeddr@sha256:e507a88e972c395c0f0f433b40fb7ae96994bb424e354b7065259038c1c4656c",
     container_type = container_type
   )(
     ndim = ndim,

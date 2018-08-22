@@ -50,7 +50,7 @@ ti_elpicycle <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/elpicycle@sha256:99a1aaed29680f5c76087672535cba3baae7170222d85a77720ed8109d8f3ded",
+    image = "dynverse/elpicycle@sha256:a3484dcdc2836d4208d4539b044ba7155b340f9733e70a2ad4f138afde9056f7",
     container_type = container_type
   )(
     topology = topology,

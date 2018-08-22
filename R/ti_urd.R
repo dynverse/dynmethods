@@ -100,7 +100,7 @@ ti_urd <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/urd@sha256:5a5634b2a20096615f300376e9bd6830a817d3fe073a14ceb91ad9cfa6ff1490",
+    image = "dynverse/urd@sha256:19e55bc836a0aa3b8fa4d9cd082a96705783bcce61723a826303e3001853c810",
     container_type = container_type
   )(
     knn = knn,

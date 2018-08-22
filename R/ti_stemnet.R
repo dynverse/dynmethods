@@ -38,7 +38,7 @@ ti_stemnet <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/stemnet@sha256:09e82ff5c4b6a482af20ba355170d27523fa52056b08fad1f0ca193b5c199f6b",
+    image = "dynverse/stemnet@sha256:c0f9ebc0be4ec40de787d9a554e70e5a159ea73993a8a449b57f04c19bfebda1",
     container_type = container_type
   )(
     alpha = alpha,

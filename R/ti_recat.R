@@ -57,7 +57,7 @@ ti_recat <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/recat@sha256:0943a5511f8c1c5f8c9aea94ecd653627b722aace5a899ad7958b82831a963d4",
+    image = "dynverse/recat@sha256:e6ff8565b097378bd7acd9d77dccea6e10c759faeb096de54073b9b845de26a5",
     container_type = container_type
   )(
     TSPFold = TSPFold,

@@ -42,7 +42,7 @@ ti_phenopath <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/phenopath@sha256:ff9471bc912dc168917d7d9c2c1604ba7d30c694d6115cbc1cf7b7285f12cecb",
+    image = "dynverse/phenopath@sha256:3fd5761cc8517e40d1e4588c71b1eeef0be1ecef6f69aa51ece101dea188f894",
     container_type = container_type
   )(
     thin = thin,

@@ -65,7 +65,7 @@ ti_slingshot <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/slingshot@sha256:797d879f6a5fd772b2bae4e5e0df07aba3c8e3815f2beb8d9388680362e89258",
+    image = "dynverse/slingshot@sha256:f8e20d2f97f8aef70607c3f57d2e189081911359ff9bcae3331c4354e2c8004f",
     container_type = container_type
   )(
     shrink = shrink,

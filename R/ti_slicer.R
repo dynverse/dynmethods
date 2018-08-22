@@ -33,7 +33,7 @@ ti_slicer <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/slicer@sha256:90e06a7d2a7d5b5a2af6273b89904e5d3db2316dec18415cd4cc99b290a704df",
+    image = "dynverse/slicer@sha256:f831ba633f3e37b570b71342376df222fa629e1c269e0782be3820778e1febe3",
     container_type = container_type
   )(
     kmin = kmin,

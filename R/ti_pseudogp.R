@@ -57,7 +57,7 @@ ti_pseudogp <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/pseudogp@sha256:e2be96a469d21ba13e4e8cc7a8004be26a6cfb5c1c3abf95e91a3869cc2d47ef",
+    image = "dynverse/pseudogp@sha256:c35f20b1250e163d191aa9ba871343cb676984f1db118eb67ceae0532e302a3c",
     container_type = container_type
   )(
     smoothing_alpha = smoothing_alpha,

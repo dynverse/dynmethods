@@ -25,7 +25,7 @@ ti_random <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/random@sha256:8258879411521c5e3a37424a9fd425ae1b86ef19d77a61d6e5f623c0c81c8dde",
+    image = "dynverse/random@sha256:86b52d8297070fa702fd5c7dfc61b26bf5b6cf2d5cfe5790e09380b0922c4b8c",
     container_type = container_type
   )(
     dummy_param = dummy_param

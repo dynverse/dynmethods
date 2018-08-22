@@ -31,8 +31,8 @@
 #' based on finding the saturation point of the mean within-cluster dispersion as
 #' a function of the cluster number. If \code{FALSE}, then cluster number needs to
 #' be given as \code{cln}.
-#' @param samp integer; Number of booststrapping runs for clusterboot. Default is
-#' 50 (default: `1000L`; range: from `50L` to `10000L`)
+#' @param samp integer; Number of bootstrapping runs for clusterboot (default:
+#' `1000L`; range: from `50L` to `10000L`)
 #' @param cln integer; Number of clusters to be used. If \code{sat} is
 #' \code{TRUE}, this number is inferred by the saturation criterion. (default:
 #' `30L`; range: from `10L` to `100L`)
@@ -114,7 +114,7 @@ ti_raceid_stemid <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/raceid_stemid@sha256:e15808694591159e4959c4f624acbcfeea7ecd7f147e0767bcd16b1a332608a4",
+    image = "",
     container_type = container_type
   )(
     knn = knn,

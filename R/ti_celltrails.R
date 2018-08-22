@@ -60,7 +60,7 @@ ti_celltrails <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/celltrails@sha256:7afb146e876124805e1fec0c7cf45cbbb07f4de7500ce5d2da497690c6be6eb3",
+    image = "dynverse/celltrails@sha256:f4c87a03ae53da97c90c2dbb66b4d3cd7b905bb8b38814250f24976df45fc694",
     container_type = container_type
   )(
     threshold_dl = threshold_dl,

@@ -6,6 +6,7 @@
 \usage{
 ti_projected_monocle(reduction_method = "DDRTree", max_components = 2L,
   norm_method = "vstExprs", auto_param_selection = TRUE,
+  filter_features = TRUE, filter_features_mean_expression = 0.1,
   container_type = NULL)
 }
 \arguments{
@@ -23,6 +24,12 @@ prior to reducing dimensionality (default: \code{"vstExprs"}; values: {\code{"vs
 \item{auto_param_selection}{logical; When this argument is set to TRUE
 (default), it will automatically calculate the proper value for the ncenter
 (number of centroids) parameters which will be passed into DDRTree call.}
+
+\item{filter_features}{logical; Whether to include monocle feature filtering}
+
+\item{filter_features_mean_expression}{numeric; Minimal mean feature
+expression, only used when \code{filter_features} is set to TRUE (default: \code{0.1};
+range: from \code{0L} to \code{10L})}
 
 \item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
 By default, docker will be used.}

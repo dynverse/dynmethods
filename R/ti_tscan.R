@@ -39,7 +39,7 @@ ti_tscan <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/tscan@sha256:f499f47be4af7c5489f065c34fe4b3a77e44efb0902875b3e28359f5fda32dfe",
+    image = "dynverse/tscan@sha256:ccca20dd282d0b7e5b14c49068743c09bc5cedffaf9bf595caa08f0ee6c356d7",
     container_type = container_type
   )(
     minexpr_percent = minexpr_percent,

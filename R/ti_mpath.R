@@ -51,7 +51,7 @@ ti_mpath <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/mpath@sha256:7f21b7f77072ed3d64d67b70eef7aee76a95d3a224f952b3da7ddf9aed483634",
+    image = "dynverse/mpath@sha256:d52f4f38b7055378cd2f8dc5cc5143cbfe3413ebe1f7babede3df1f04546ae35",
     container_type = container_type
   )(
     distMethod = distMethod,
