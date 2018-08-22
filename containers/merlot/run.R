@@ -98,7 +98,7 @@ checkpoints$method_aftermethod <- as.numeric(Sys.time())
 milestone_network <- ElasticTree$Edges %>%
   as.data.frame() %>%
   purrr::set_names(c("from", "to")) %>%
-  mutate_all(as.character) %>%
+  mutate_all(function(x) paste0("M", x)) %>%
   mutate(edge_id = row_number())
 
 progressions <- tibble(
@@ -121,16 +121,20 @@ milestone_network <- left_join(
   select(from, to, length, directed)
 
 # now calculate percentages of progression
-progressions <- progressions %>%
+progressions <-
+  progressions %>%
   group_by(edge_id) %>%
-  mutate(percentage = (pseudotime - min(pseudotime))/(max(pseudotime) - min(pseudotime))) %>%
+  mutate(percentage = (pseudotime - min(pseudotime)) / (max(pseudotime) - min(pseudotime))) %>%
   ungroup() %>%
-  select(cell_id, from, to, percentage)
+  select(cell_id, from, to, percentage) %>%
+  na.omit()
 
 # get dimred
-dimred <- CellCoordinates %>%
-  as.data.frame()
-dimred$cell_id <- rownames(expression)
+dimred <-
+  CellCoordinates %>%
+  as.data.frame() %>%
+  mutate(cell_id = rownames(expression)) %>%
+  select(cell_id, everything())
 
 # save
 output <- lst(
