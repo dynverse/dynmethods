@@ -85,24 +85,21 @@ parameters:
     upper: 1
     lower: 0.00001
     description: Outlier probability threshold for a minimum of outlg genes to be an outlier cell. This probability is computed from a negative binomial background model of expression in a cluster.
-    distribution: exponential
-    rate: 1.0
+    distribution: expuniform
   outminc:
     type: integer
     default: 5
     upper: 100
     lower: 0
     description: Minimal transcript count of a gene in a clusters to be tested for being an outlier gene.
-    distribution: exponential
-    rate: 1.0
+    distribution: expuniform
   outlg:
     type: integer
     default: 2
     upper: 100
     lower: 0
     description: Minimum number of outlier genes required for being an outlier cell.
-    distribution: exponential
-    rate: 1.0
+    distribution: expuniform
   outdistquant:
     type: numeric
     default: 0.95
@@ -145,8 +142,7 @@ parameters:
     upper: 10000
     lower: 10
     description: Number of randomizations of cell positions for which to compute projections of cells on inter-cluster links.
-    distribution: exponential
-    rate: 1.0
+    distribution: expuniform
   fast:
     type: logical
     default: FALSE
@@ -157,8 +153,7 @@ parameters:
     upper: 1
     lower: 0.00001
     description: p-value cutoff for link significance. This threshold is applied for the calculation of link scores reflecting how uniformly a link is occupied by cells.
-    distribution: exponential
-    rate: 1.0
+    distribution: expuniform
   scthr:
     type: numeric
     default: 0.2

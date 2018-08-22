@@ -63,8 +63,7 @@ parameters:
     default: 0.01
     upper: 1.0
     lower: 0.0001
-    distribution: exponential
-    rate: 1.0
+    distribution: expuniform
     description: Window width to use for deciding the branch cutoff
   n_components_to_use:
     type: integer
@@ -83,8 +82,7 @@ parameters:
     default: 1.0e-10
     upper: 0.0001
     lower: 1.0e-15
-    distribution: exponential
-    rate: 1.0
+    distribution: expuniform
     description: principal elastic tree energy function parameter.
   mu_0:
     type: numeric

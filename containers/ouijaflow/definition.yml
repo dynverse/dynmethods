@@ -10,7 +10,7 @@ parameters:
     lower: 2
     upper: 50000
     default: 1000
-    distribution: exponential
+    distribution: expuniform
     rate: 0.0001
 input:
   format: text

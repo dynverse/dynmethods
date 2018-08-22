@@ -90,8 +90,7 @@ parameters:
     default: 0.001
     upper: 100000.0
     lower: 1.0e-05
-    distribution: exponential
-    rate: 1.0
+    distribution: expuniform
     description: convergence threshold on shortest distances to the curve.
   maxit:
     type: integer

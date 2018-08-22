@@ -28,7 +28,7 @@ parameters:
     lower: 10
     upper: 10000
     default: 1000
-    distribution: exponential
+    distribution: expuniform
     rate: 0.001
   dimreds:
     descriptions: which dimensionality reductions to use; tSNE, PCA, Spectral, Isomap

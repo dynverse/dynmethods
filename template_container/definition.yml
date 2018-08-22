@@ -42,8 +42,7 @@ parameters:
     lower: 0.0
     upper: 1.0
     description: Description of param3
-    distribution: exponential
-    rate: 1.0
+    distribution: expuniform
   param4:
     type: logical
     default: TRUE

@@ -2,7 +2,7 @@ library(tidyverse)
 
 rm(list = ls())
 
-method <- "cellrouter"
+method <- "raceid_stemid"
 folder <- paste0("containers/", method)
 
 # read definition and build docker
@@ -13,7 +13,7 @@ zzz <- processx::run("docker", args = c("build", folder, "-t", docker_repo), ech
 source(paste0(folder, "/example.R"))
 
 options(dynwrap_run_environment = "docker")
-# traj <- dynwrap::infer_trajectory(data, method, parameters = params, verbose = TRUE, debug = TRUE)
+# traj <- dynwrap::infer_trajectory(data, docker_repo, parameters = params, verbose = TRUE, debug = TRUE)
 traj <- dynwrap::infer_trajectory(data, docker_repo, parameters = params, verbose = TRUE)
 dynplot::plot_graph(traj)
 

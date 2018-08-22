@@ -59,7 +59,7 @@ parameters:
     default: 0.0001
     lower: 1.0e-07
     upper: 1
-    distribution: exponential
+    distribution: expuniform
     rate: 0.1
   min_fc:
     description: Mimimum fold-change for differential expression computation
