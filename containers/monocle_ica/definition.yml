@@ -41,7 +41,7 @@ parameters:
     description: Determines how to transform expression values prior to reducing dimensionality
   filter_features:
     type: logical
-    default: no
+    default: yes
     description: whether to include monocle feature filtering
   filter_features_mean_expression:
     type: numeric

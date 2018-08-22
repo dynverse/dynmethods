@@ -43,7 +43,7 @@ parameters:
       which will be passed into DDRTree call.
   filter_features:
     type: logical
-    default: no
+    default: yes
     description: whether to include monocle feature filtering
   filter_features_mean_expression:
     type: numeric
