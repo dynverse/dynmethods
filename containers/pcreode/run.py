@@ -40,11 +40,11 @@ out_graph, out_ids = pcreode.pCreode(
   target = target,
   file_path = "/ti/workspace/.",
   num_runs = params["num_runs"],
-  mute=True
+  mute = True
 )
 
 # score graphs, returns a vector of ranks by similarity
-graph ranks = pcreode.pCreode_Scoring(data = pca_reduced_data, file_path = "/ti/workspace/.", num_graphs = params["num_runs"], mute=True)
+graph_ranks = pcreode.pCreode_Scoring(data = pca_reduced_data, file_path = "/ti/workspace/.", num_graphs = params["num_runs"], mute=True)
 # select most representative graph
 gid = graph_ranks[0]
 
