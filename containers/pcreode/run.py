@@ -22,34 +22,31 @@ checkpoints["method_afterpreproc"] = time.time()
 data_pca = pcreode.PCA(expression)
 data_pca.get_pca()
 
-pca_reduced_data = data_pca.pca_set_components(params["n_pca_components"])
+pca_reduced_data = data_pca.pca_set_components(min(params["n_pca_components"],expression.shape[1]))
 
 # calculate density
 dens = pcreode.Density(pca_reduced_data)
-density = dens.get_density(radius = params["radius"])
+best_guess = dens.radius_best_guess()
+density = dens.get_density(radius = best_guess, mute=True)
 
-# downsample
-downed, downed_ind = pcreode.Down_Sample(pca_reduced_data, density, params["noise"], params["target"])
+# get downsampling parameters
+noise, target = pcreode.get_thresholds( pca_reduced_data)
 
 # run pCreode
 out_graph, out_ids = pcreode.pCreode(
   data = pca_reduced_data,
   density = density,
-  noise = params["noise"],
-  target = params["target"],
+  noise = noise,
+  target = target,
   file_path = "/ti/workspace/.",
-  num_runs = params["num_runs"]
+  num_runs = params["num_runs"],
+  mute=True
 )
 
-# score graphs
-# Wrapper's note: There is currently no way of extracting the best graph ordering, even though it is printed. Will select random graph.
-pcreode.pCreode_Scoring(
-  data = pca_reduced_data,
-  file_path = "/ti/workspace/.",
-  num_graphs = params["num_runs"]
-)
-
-gid = np.random.choice(range(params["num_runs"]), 1)[0]
+# score graphs, returns a vector of ranks by similarity
+graph ranks = pcreode.pCreode_Scoring(data = pca_reduced_data, file_path = "/ti/workspace/.", num_graphs = params["num_runs"], mute=True)
+# select most representative graph
+gid = graph_ranks[0]
 
 # extract cell graph
 # Wrapper's note: This is actually a cluster graph and a grouping, but none of the objects contain this grouping
