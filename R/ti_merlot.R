@@ -53,7 +53,7 @@
 #' @param increaseFactor_lambda numeric; Factor by which the mu will be increased
 #' for the embedding (default: `20`; range: from `2` to `50`)
 #' @param FixEndpoints logical; Documentation not provided by authors
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -73,11 +73,12 @@ ti_merlot <- function(
     increaseFactor_mu = 20,
     increaseFactor_lambda = 20,
     FixEndpoints = FALSE,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/merlot",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/merlot@sha256:28bdfce2986dda37d3096ede1d3b1f7ae60799b989f2402ca41712a6d25a3063",
+    container_type = container_type
+  )(
     sigma = sigma,
     distance = distance,
     ndim = ndim,

@@ -4,13 +4,14 @@
 \alias{ti_shuffle}
 \title{Inferring a trajectory inference using Control: shuffle}
 \usage{
-ti_shuffle(dummy_param = 0.5, run_environment = NULL)
+ti_shuffle(dummy_param = 0.5, container_type = NULL)
 }
 \arguments{
 \item{dummy_param}{numeric; Dummy parameter (default: \code{0.5}; range: from \code{0} to
 \code{1})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

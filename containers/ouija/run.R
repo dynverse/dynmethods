@@ -25,7 +25,9 @@ expression <- data$expression
 
 
 # ouija assumes that a small number of marker genes is used, otherwise the method is too slow
-expression <- expression[, data$features_id]
+if (!is.null(data$features_id)) {
+  expression <- expression[, data$features_id]
+}
 
 # write compiled instance of the stanmodel to HDD
 rstan::rstan_options(auto_write = TRUE)

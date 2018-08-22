@@ -5,7 +5,7 @@
 \title{Inferring a trajectory inference using STEMNET}
 \usage{
 ti_stemnet(alpha = 0.1, lambda_auto = TRUE, lambda = 0.1,
-  force = FALSE, run_environment = NULL)
+  force = FALSE, container_type = NULL)
 }
 \arguments{
 \item{alpha}{numeric; The elastic net mixing parameter of the ‘glmnet’
@@ -19,7 +19,8 @@ classifier. (default: \code{0.1}; range: from \code{0.001} to \code{10L})}
 \item{force}{logical; Do not use! This is a parameter to force FateID to run on
 benchmark datasets where not enough end groups are present.}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

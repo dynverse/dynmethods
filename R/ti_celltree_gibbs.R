@@ -28,7 +28,7 @@
 #' @param num_topics integer; (default: `4`; range: from `2` to `15`)
 #' @param tot_iter numeric; (default: `200L`; range: from `10L` to `1000L`)
 #' @param tolerance numeric; (default: `1e-05`; range: from `1e-07` to `0.001`)
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -43,11 +43,12 @@ ti_celltree_gibbs <- function(
     num_topics = 4,
     tot_iter = 200L,
     tolerance = 1e-05,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/celltree_gibbs",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/celltree_gibbs@sha256:dd91a8a24cc06719a369ab04a568bae12c1a0b2249663e593d350e52cb59a9b1",
+    container_type = container_type
+  )(
     method = method,
     sd_filter = sd_filter,
     absolute_width = absolute_width,

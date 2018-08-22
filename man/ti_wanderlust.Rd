@@ -6,7 +6,7 @@
 \usage{
 ti_wanderlust(normalise = TRUE, knn = 25L,
   n_diffusion_components = 3L, n_pca_components = 30L, k = 25L,
-  num_waypoints = 250L, epsilon = 1L, run_environment = NULL)
+  num_waypoints = 250L, epsilon = 1L, container_type = NULL)
 }
 \arguments{
 \item{normalise}{logical;}
@@ -27,7 +27,8 @@ range: from \code{15L} to \code{100L})}
 
 \item{epsilon}{numeric; Epsilon (default: \code{1L}; range: from \code{0.1} to \code{5L})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

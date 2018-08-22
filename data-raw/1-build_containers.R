@@ -41,7 +41,7 @@ out <- map(definition_files, function(file) {
 
     # run method on example, with possible parameters
     message("Running ", definition$id)
-    traj <- dynwrap::infer_trajectory(data, definition$id, parameters = params, verbose = FALSE)
+    traj <- dynwrap::infer_trajectory(data, docker_repo, parameters = params, verbose = FALSE)
 
     # if traj is indeed a trajectory, push the docker to dockerhub
     if (dynwrap::is_wrapper_with_trajectory(traj)) {

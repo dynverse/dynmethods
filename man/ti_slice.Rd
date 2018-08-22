@@ -8,7 +8,7 @@ ti_slice(lm.method = "clustering", model.type = "tree",
   ss.method = "all", ss.threshold = 0.25,
   community.method = "louvain", cluster.method = "kmeans", k = 0L,
   k.max = 10L, B = 100L, k.opt.method = "firstmax",
-  run_environment = NULL)
+  container_type = NULL)
 }
 \arguments{
 \item{lm.method}{discrete; Select "clustering" based or "graph" based method to
@@ -59,7 +59,8 @@ is NULL. (default: \code{10L}; range: from \code{3L} to \code{20L})}
 when k is NULL (default: \code{"firstmax"}; values: {\code{"firstmax"}, \code{"globalmax"},
 \code{"Tibs2001SEmax"}, \code{"firstSEmax"}, \code{"globalSEmax"}})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

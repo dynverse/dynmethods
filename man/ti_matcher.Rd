@@ -4,8 +4,7 @@
 \alias{ti_matcher}
 \title{Inferring a trajectory inference using MATCHER}
 \usage{
-ti_matcher(quantiles = 50L, method = "linear",
-  run_environment = NULL)
+ti_matcher(quantiles = 50L, method = "linear", container_type = NULL)
 }
 \arguments{
 \item{quantiles}{integer; Quantiles How many quantiles to use when computing
@@ -14,7 +13,8 @@ warp functions (integer) (default: \code{50L}; range: from \code{2L} to \code{50
 \item{method}{discrete; Gaussian process regression or linear interpolation?
 ("gp" or "linear) (default: \code{"linear"}; values: {\code{"gp"}, \code{"linear"}})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

@@ -24,7 +24,7 @@
 #' `"diag"`, `"sample"`, `"global"`, `"glasso"`, `"corpcor"`, `"average"`})
 #' @param cov_reg numeric; (default: `0.05`; range: from `0.01` to `0.1`)
 #' @param max_iter integer; (default: `3L`; range: from `1L` to `20L`)
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -36,11 +36,12 @@ ti_scimitar <- function(
     cov_estimator = "corpcor",
     cov_reg = 0.05,
     max_iter = 3L,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/scimitar",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/scimitar@sha256:844a2caed006724edf54f4001d11f2b4d7ab89f0046f21cee97e9f633ed8a680",
+    container_type = container_type
+  )(
     covariance_type = covariance_type,
     degree = degree,
     step_size = step_size,

@@ -5,7 +5,7 @@
 \title{Inferring a trajectory inference using Monocle ICA}
 \usage{
 ti_monocle_ica(reduction_method = "ICA", max_components = 2L,
-  norm_method = "vstExprs", run_environment = NULL)
+  norm_method = "vstExprs", container_type = NULL)
 }
 \arguments{
 \item{reduction_method}{discrete; A character string specifying the algorithm
@@ -18,7 +18,8 @@ to use for dimensionality reduction. (default: \code{"ICA"}; values: {\code{"ICA
 prior to reducing dimensionality (default: \code{"vstExprs"}; values: {\code{"vstExprs"},
 \code{"log"}, \code{"none"}})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

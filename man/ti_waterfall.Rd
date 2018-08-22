@@ -4,12 +4,13 @@
 \alias{ti_waterfall}
 \title{Inferring a trajectory inference using Waterfall}
 \usage{
-ti_waterfall(num_clusters = 10, run_environment = NULL)
+ti_waterfall(num_clusters = 10, container_type = NULL)
 }
 \arguments{
 \item{num_clusters}{integer; (default: \code{10}; range: from \code{2} to \code{20})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

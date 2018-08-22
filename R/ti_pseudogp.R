@@ -40,7 +40,7 @@
 #' rather than combining them. If a particular representation is required, it isup
 #' to the user to re-order them. (default: `"random"`; values: {`"random"`,
 #' `"principal_curve"`, `"pca"`})
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -54,11 +54,12 @@ ti_pseudogp <- function(
     iter = 100L,
     dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
     initialise_from = "random",
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/pseudogp",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/pseudogp@sha256:e2be96a469d21ba13e4e8cc7a8004be26a6cfb5c1c3abf95e91a3869cc2d47ef",
+    container_type = container_type
+  )(
     smoothing_alpha = smoothing_alpha,
     smoothing_beta = smoothing_beta,
     pseudotime_mean = pseudotime_mean,

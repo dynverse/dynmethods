@@ -7,7 +7,7 @@
 ti_scuba(rigorous_gap_stats = TRUE, N_dim = 2L,
   low_gene_threshold = 1L, low_gene_fraction_max = 0.7,
   min_split = 15L, min_percentage_split = 0.25,
-  run_environment = NULL)
+  container_type = NULL)
 }
 \arguments{
 \item{rigorous_gap_stats}{logical; Whether to use rigorous gap statistics to
@@ -28,7 +28,8 @@ for this cluster to be split. (default: \code{15L}; range: from \code{1L} to \co
 \item{min_percentage_split}{numeric; Minimum fraction of cells in the smaller
 cluster during a bifurcation. (default: \code{0.25}; range: from \code{0L} to \code{1L})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

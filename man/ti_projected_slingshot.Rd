@@ -7,7 +7,7 @@
 ti_projected_slingshot(shrink = 1, reweight = TRUE, reassign = TRUE,
   thresh = 0.001, maxit = 10L, stretch = 2,
   smoother = "smooth.spline", shrink.method = "cosine",
-  run_environment = NULL)
+  container_type = NULL)
 }
 \arguments{
 \item{shrink}{numeric; Logical or numeric between 0 and 1, determines whether
@@ -49,7 +49,8 @@ the same as for \code{kernel} in \code{\link[=density]{density()}} (default is \
 well as \code{"tricube"} and \code{"density"}. See 'Details' for more.
 (default: \code{"cosine"}; values: {\code{"cosine"}, \code{"tricube"}, \code{"density"}})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

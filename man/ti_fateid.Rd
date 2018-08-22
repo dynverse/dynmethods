@@ -6,7 +6,7 @@
 \usage{
 ti_fateid(reclassify = TRUE, clthr = 0.9, nbfactor = 5L, q = 0.75,
   k = 3L, m = "tsne", minnr = 5L, minnrh = 10L, trthr = 0.4,
-  force = FALSE, run_environment = NULL)
+  force = FALSE, container_type = NULL)
 }
 \arguments{
 \item{reclassify}{logical; Whether to reclassify the cell grouping}
@@ -62,7 +62,8 @@ range: from \code{0L} to \code{1L})}
 \item{force}{logical; Do not use! This is a parameter to force FateID to run on
 benchmark datasets where not enough end groups are present.}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

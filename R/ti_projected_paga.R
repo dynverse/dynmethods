@@ -25,7 +25,7 @@
 #' @param embedding_type discrete; Either 'umap' (scales very well, recommended
 #' for very large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for
 #' small datasets). (default: `"fa"`; values: {`"umap"`, `"fa"`})
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -36,11 +36,12 @@ ti_projected_paga <- function(
     n_dcs = 15L,
     resolution = 1L,
     embedding_type = "fa",
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/projected_paga",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/projected_paga@sha256:3337827c87d92ca56ac1d633c18a94ab5dcd5bc0703f99d094359602256b6304",
+    container_type = container_type
+  )(
     n_neighbors = n_neighbors,
     n_comps = n_comps,
     n_dcs = n_dcs,

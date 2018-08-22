@@ -40,7 +40,7 @@
 #' range: from `100` to `500`)
 #' @param clustMethod discrete; No documentation provided by authors (default:
 #' `"GMM"`; values: {`"GMM"`, `"Pam"`, `"Kmeans"`})
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -54,11 +54,12 @@ ti_recat <- function(
     base_cycle_range_end = 9,
     max_num = 300,
     clustMethod = "GMM",
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/recat",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/recat@sha256:0943a5511f8c1c5f8c9aea94ecd653627b722aace5a899ad7958b82831a963d4",
+    container_type = container_type
+  )(
     TSPFold = TSPFold,
     beginNum = beginNum,
     endNum = endNum,

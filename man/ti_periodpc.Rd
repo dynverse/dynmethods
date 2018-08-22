@@ -4,14 +4,15 @@
 \alias{ti_periodpc}
 \title{Inferring a trajectory inference using Periodic PrinCurve}
 \usage{
-ti_periodpc(ndim = 3, maxit = 10, run_environment = NULL)
+ti_periodpc(ndim = 3, maxit = 10, container_type = NULL)
 }
 \arguments{
 \item{ndim}{integer; (default: \code{3}; range: from \code{2} to \code{10})}
 
 \item{maxit}{integer; (default: \code{10}; range: from \code{0} to \code{100})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

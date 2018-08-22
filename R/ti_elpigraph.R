@@ -32,7 +32,7 @@
 #' @param eps numeric; Minimal relative change in the position of the nodes to
 #' stop embedment (default: `0.01`; range: from `0.001` to `1L`)
 #' @param CenterData logical; Should data and initial node positions be centered?
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -47,11 +47,12 @@ ti_elpigraph <- function(
     MaxNumberOfIterations = 10L,
     eps = 0.01,
     CenterData = FALSE,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/elpigraph",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/elpigraph@sha256:32b3fc36bc98bdb833fe0bfa9468c9a867c4edcdca6fdf9891293bc82b928963",
+    container_type = container_type
+  )(
     topology = topology,
     NumNodes = NumNodes,
     NumEdges = NumEdges,

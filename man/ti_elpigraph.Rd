@@ -7,7 +7,7 @@
 ti_elpigraph(topology = "tree", NumNodes = 50L, NumEdges = 100000L,
   InitNodes = 2L, Mu = 0.1, Lambda = 0.01,
   MaxNumberOfIterations = 10L, eps = 0.01, CenterData = FALSE,
-  run_environment = NULL)
+  container_type = NULL)
 }
 \arguments{
 \item{topology}{discrete; The kind of topology to detect (default: \code{"tree"};
@@ -36,7 +36,8 @@ stop embedment (default: \code{0.01}; range: from \code{0.001} to \code{1L})}
 
 \item{CenterData}{logical; Should data and initial node positions be centered?}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

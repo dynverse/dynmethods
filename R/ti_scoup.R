@@ -35,7 +35,7 @@
 #' @param sigma_squared_min numeric; Lower bound of sigma squared (default is 0.1)
 #' (default: `0.1`; range: from `0.001` to `10`)
 #' @param thresh numeric; Threshold (default: `0.01`; range: from `0.01` to `10`)
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -50,11 +50,12 @@ ti_scoup <- function(
     t_max = 2,
     sigma_squared_min = 0.1,
     thresh = 0.01,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/scoup",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/scoup@sha256:f012f640e88e1bb7eb42260bd0ecbfcb8f35811bea68ed4ce664463e3be6181f",
+    container_type = container_type
+  )(
     ndim = ndim,
     max_ite1 = max_ite1,
     max_ite2 = max_ite2,
