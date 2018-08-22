@@ -2,7 +2,7 @@ library(tidyverse)
 
 rm(list = ls())
 
-method <- "raceid_stemid"
+method <- "method_id"
 folder <- paste0("containers/", method)
 
 # read definition and build docker
