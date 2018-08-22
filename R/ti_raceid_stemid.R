@@ -114,7 +114,7 @@ ti_raceid_stemid <- function(
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "",
+    image = "dynverse/raceid_stemid@sha256:46bb7db8acb5b167fdf410a39066a6cd910302b2f6542b47b71db3bf12c877f8",
     container_type = container_type
   )(
     knn = knn,

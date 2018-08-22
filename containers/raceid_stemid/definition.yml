@@ -92,14 +92,12 @@ parameters:
     upper: 100
     lower: 0
     description: Minimal transcript count of a gene in a clusters to be tested for being an outlier gene.
-    distribution: expuniform
   outlg:
     type: integer
     default: 2
     upper: 100
     lower: 0
     description: Minimum number of outlier genes required for being an outlier cell.
-    distribution: expuniform
   outdistquant:
     type: numeric
     default: 0.95

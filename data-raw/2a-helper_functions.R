@@ -69,7 +69,7 @@ generate_function_from_definition <- function(definition) {
     parameters, "\n",
     ") {\n",
     "  create_ti_method_with_container(\n",
-    "    image = \"", definition$remote_digests, "\",\n",
+    "    image = \"", definition$remote_digests[[1]], "\",\n",
     "    container_type = container_type\n",
     "  )(\n",
     args, "\n",
