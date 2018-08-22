@@ -34,7 +34,7 @@ parameters:
     description: the dimensionality of the reduced space
   norm_method:
     type: discrete
-    default: vstExprs
+    default: log
     values:
     - vstExprs
     - log
@@ -46,6 +46,16 @@ parameters:
     description: when this argument is set to TRUE (default), it will automatically
       calculate the proper value for the ncenter (number of centroids) parameters
       which will be passed into DDRTree call.
+  filter_features:
+    type: logical
+    default: no
+    description: whether to include monocle feature filtering
+  filter_features_mean_expression:
+    type: numeric
+    default: 0.1
+    lower: 0
+    upper: 10
+    description: minimal mean feature expression, only used when `filter_features` is set to TRUE
 input:
   format: rds
   required: counts
