@@ -39,9 +39,9 @@ start_ix <- groups_id %>%
   .$cell_id
 
 # create distribution on starting population
-vars <- apply(expression[start_ix,, drop = F], 2, stats::var)
-vars[vars == 0] <- diff(range(expression)) * 1e-3
-means <- apply(expression[start_ix,, drop=F], 2, mean)
+vars <- apply(expression[start_ix,, drop = FALSE], 2, stats::var)
+vars[is.na(vars | vars == 0)] <- diff(range(expression)) * 1e-3
+means <- apply(expression[start_ix,, drop = FALSE], 2, mean)
 distr_df <- data.frame(i = seq_along(vars) - 1, means, vars)
 
 # write data to files

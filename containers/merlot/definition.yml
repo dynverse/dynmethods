@@ -79,9 +79,9 @@ parameters:
     description: number of nodes for the elastic principal tree
   lambda_0:
     type: numeric
-    default: 1.0e-10
-    upper: 0.0001
-    lower: 1.0e-15
+    default: 8.0e-10
+    upper: 1.0e-6
+    lower: 1.0e-12
     distribution: expuniform
     description: principal elastic tree energy function parameter.
   mu_0:

@@ -84,7 +84,7 @@ EmbeddedTree <- merlot::GenesSpaceEmbedding(
 # T0=3 means that the Endpoint number 3 in the Endpoints list corresponds to the zygote fate and is used as initial pseudotime t0
 # Any given cell can be used as t0 by specifying its index using the parameter C0=cell_index
 if (is.null(start_id)) {
-  Pseudotimes <- merlot::CalculatePseudotimes(EmbeddedTree, T0=1)
+  Pseudotimes <- merlot::CalculatePseudotimes(EmbeddedTree, T0 = 1)
 } else {
   Pseudotimes <- merlot::CalculatePseudotimes(EmbeddedTree, C0=which(rownames(expression) == start_id))
 }
