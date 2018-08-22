@@ -18,13 +18,14 @@ out <- map(files, function(file) {
   method_id <- definition$id
   docker_repo <- definition$docker_repository
 
+  err_fun <- function(x, proc) readr::write_lines(x, paste0(log_dir, method_id, "_stderr.txt"), append = TRUE)
+  out_fun <- function(x, proc) readr::write_lines(x, paste0(log_dir, method_id, "_stdout.txt"), append = TRUE)
+
   message(method_id, ": Pull remote docker")
   processx::run("docker", args = c("pull", docker_repo), echo = FALSE, stdout_callback = out_fun, stderr_callback = err_fun)
   digest <- tryCatch(dynwrap:::.container_get_digests(docker_repo, "docker")$digest, error = function(e) NA)
 
   message(method_id, ": Building new docker")
-  err_fun <- function(x, proc) readr::write_lines(x, paste0(log_dir, method_id, "_stderr.txt"), append = TRUE)
-  out_fun <- function(x, proc) readr::write_lines(x, paste0(log_dir, method_id, "_stdout.txt"), append = TRUE)
   processx::run("docker", args = c("build", folder, "-t", docker_repo), echo = FALSE, stdout_callback = out_fun, stderr_callback = err_fun)
 
   new_digest <- tryCatch(dynwrap:::.container_get_digests(docker_repo, "docker")$digest, error = function(e) NA)
