@@ -30,7 +30,7 @@ parameters:
     default: 0.4
     upper: 1.0
     lower: 0.0
-    description: Correlation coefficient used as a treshhold for determining genes correlated to eachother. 
+    description: Correlation coefficient used as a treshhold for determining genes correlated to eachother.
   metric:
     type: discrete
     default: pearson
@@ -39,7 +39,7 @@ parameters:
     - spearman
     - logpearson
     - euclidean
-    description: Distances are computed from the filtered expression matrix after optional feature selection, 
+    description: Distances are computed from the filtered expression matrix after optional feature selection,
       dimensional reduction, and/or transformation (batch correction).
   sat:
     type: logical
@@ -50,9 +50,8 @@ parameters:
     default: 1000
     upper: 10000
     lower: 50
-    description: number of booststrapping runs for clusterboot. Default is 50
-    distribution: exponential
-    rate: 1.0
+    description: number of bootstrapping runs for clusterboot
+    distribution: expuniform
   cln:
     type: integer
     default: 30
@@ -65,7 +64,7 @@ parameters:
     upper: 100
     lower: 10
     description: Maximum number of clusters for the derivation of the cluster
-      number by the saturation of mean within-cluster-dispersion. 
+      number by the saturation of mean within-cluster-dispersion.
   bootnr:
     type: integer
     default: 50
@@ -79,7 +78,7 @@ parameters:
     - kmedoids
     - kmeans
     - hclust
-    description: Clustering method used by RaceID3. 
+    description: Clustering method used by RaceID3.
   probthr:
     type: numeric
     default: 0.001
@@ -113,13 +112,13 @@ parameters:
   initial_cmd:
     type: logical
     default: TRUE
-    description: If TRUE, then the t-SNE map computation is initialized with a configuration obtained by classical multidimensional scaling. 
+    description: If TRUE, then the t-SNE map computation is initialized with a configuration obtained by classical multidimensional scaling.
   perplexity:
     type: integer
     default: 30
     upper: 100
     lower: 5
-    description: Perplexity of the t-SNE map. 
+    description: Perplexity of the t-SNE map.
   cthr:
     type: integer
     default: 5
@@ -129,7 +128,7 @@ parameters:
   nmode:
     type: logical
     default: TRUE
-    description: If \code{TRUE}, then a cell of given cluster is assigned to the link to the cluster with the smallest average distance of the knn nearest neighbours within this cluster. 
+    description: If \code{TRUE}, then a cell of given cluster is assigned to the link to the cluster with the smallest average distance of the knn nearest neighbours within this cluster.
   projcells_knn:
     type: integer
     default: 3
@@ -139,19 +138,19 @@ parameters:
   fr:
     type: logical
     default: FALSE
-    description: Use Fruchterman-Rheingold layout instead of t-SNE for dimensional-reduction representation of the lineage tree. 
+    description: Use Fruchterman-Rheingold layout instead of t-SNE for dimensional-reduction representation of the lineage tree.
   pdishuf:
     type: integer
     default: 500
     upper: 10000
     lower: 10
-    description: Number of randomizations of cell positions for which to compute projections of cells on inter-cluster links. 
+    description: Number of randomizations of cell positions for which to compute projections of cells on inter-cluster links.
     distribution: exponential
     rate: 1.0
   fast:
     type: logical
     default: FALSE
-    description: If \code{TRUE} and \code{nmode} is \code{FALSE} cells will still be assigned to links based on maximum projections but a fast approximate background model will be used to infer significance. The function will do nothing in this case. 
+    description: If \code{TRUE} and \code{nmode} is \code{FALSE} cells will still be assigned to links based on maximum projections but a fast approximate background model will be used to infer significance. The function will do nothing in this case.
   pthr:
     type: numeric
     default: 0.01
@@ -165,7 +164,7 @@ parameters:
     default: 0.2
     lower: 0.0
     upper: 1.0
-    description: Score threshold for links to be shown in the graph. 
+    description: Score threshold for links to be shown in the graph.
   forbidden: thr_lower > thr_upper
 input:
   format: rds
