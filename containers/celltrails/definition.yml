@@ -60,7 +60,6 @@ parameters:
     lower: 1.0e-07
     upper: 1
     distribution: expuniform
-    rate: 0.1
   min_fc:
     description: Mimimum fold-change for differential expression computation
     type: numeric
