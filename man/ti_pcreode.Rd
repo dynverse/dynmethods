@@ -4,19 +4,15 @@
 \alias{ti_pcreode}
 \title{Inferring a trajectory inference using pCreode}
 \usage{
-ti_pcreode(n_pca_components = 3L, radius = 1L, noise = 8L,
-  target = 25L, num_runs = 10L, container_type = NULL)
+ti_pcreode(n_pca_components = 3L, noise = 8L, num_runs = 10L,
+  container_type = NULL)
 }
 \arguments{
 \item{n_pca_components}{integer; (default: \code{3L}; range: from \code{2L} to \code{10L})}
 
-\item{radius}{numeric; (default: \code{1L}; range: from \code{0.01} to \code{10L})}
-
 \item{noise}{numeric; (default: \code{8L}; range: from \code{1L} to \code{20L})}
 
-\item{target}{numeric; (default: \code{25L}; range: from \code{5L} to \code{100L})}
-
-\item{num_runs}{integer; (default: \code{10L}; range: from \code{10L} to \code{1000L})}
+\item{num_runs}{integer; (default: \code{10L}; range: from \code{10L} to \code{100L})}
 
 \item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
 By default, docker will be used.}

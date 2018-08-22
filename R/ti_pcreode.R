@@ -20,10 +20,8 @@
 #' 37–51.e9.
 #' 
 #' @param n_pca_components integer; (default: `3L`; range: from `2L` to `10L`)
-#' @param radius numeric; (default: `1L`; range: from `0.01` to `10L`)
 #' @param noise numeric; (default: `8L`; range: from `1L` to `20L`)
-#' @param target numeric; (default: `25L`; range: from `5L` to `100L`)
-#' @param num_runs integer; (default: `10L`; range: from `10L` to `1000L`)
+#' @param num_runs integer; (default: `10L`; range: from `10L` to `100L`)
 #' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
@@ -31,20 +29,16 @@
 #' @export
 ti_pcreode <- function(
     n_pca_components = 3L,
-    radius = 1L,
     noise = 8L,
-    target = 25L,
     num_runs = 10L,
     container_type = NULL
 ) {
   create_ti_method_with_container(
-    image = "dynverse/pcreode@sha256:7bc68bb4bf84c8a74b3e9f03547f7682f06c91cf812e08833ab49c58d845679f",
+    image = "dynverse/pcreode@sha256:2920c842b5c35f398e0cecb74ad603a21923d502cf05dc297babab607be59b0f",
     container_type = container_type
   )(
     n_pca_components = n_pca_components,
-    radius = radius,
     noise = noise,
-    target = target,
     num_runs = num_runs
   )
 }

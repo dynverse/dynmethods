@@ -15,7 +15,6 @@ containers <- c(
 
 # iterate over the containers and generate R scripts for each of them
 future_map(containers, generate_file_from_container)
-map(containers, function(c) { cat(c, "\n", sep = ""); generate_file_from_container(c) })
 
 # don't forget to regenerate the documentation
 devtools::document()
