@@ -32,7 +32,7 @@ out <- map(files, function(file) {
 
   if (!identical(new_digest, digest)) {
     tryCatch({
-      message(method_id, ": Changes detected")
+      message(method_id, ": New version found; testing method")
 
       # read example data and possible parameters
       message(method_id, ": Generating example and params")

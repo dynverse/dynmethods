@@ -6,7 +6,8 @@ method <- "method_id"
 folder <- paste0("containers/", method)
 
 # read definition and build docker
-docker_repo <- yaml::read_yaml(paste0(folder, "/definition.yml"))$docker_repository
+definition <- yaml::read_yaml(paste0(folder, "/definition.yml"))
+docker_repo <- definition$docker_repository
 zzz <- processx::run("docker", args = c("build", folder, "-t", docker_repo), echo = TRUE)
 
 # try to run the method with a toy dataset
