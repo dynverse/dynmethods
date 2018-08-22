@@ -4,4 +4,4 @@ RUN R -e 'install.packages("SLICER")'
 
 ADD . /code
 
-ENTRYPOINT Rscript /code/run.R
+ENTRYPOINT cat /code/run.R | R --no-save

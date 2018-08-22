@@ -2,4 +2,4 @@ FROM dynverse/dynwrap:r
 
 ADD . /code
 
-ENTRYPOINT Rscript /code/run.R
+ENTRYPOINT cat /code/run.R | R --no-save
