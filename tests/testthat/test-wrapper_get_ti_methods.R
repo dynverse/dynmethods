@@ -3,12 +3,12 @@ context("Testing get_ti_methods")
 # only run this test on the maintainer's development environment
 skip_if_not(Sys.info()[["user"]] %in% c("rcannood", "wouters"))
 
-methods <- get_ti_methods(ti_packages = "dynmethods")
+methods <- dynwrap::get_ti_methods(ti_packages = "dynmethods")
 
 for (i in seq_len(nrow(methods))) {
-  method <- extract_row_to_list(methods, i)$fun()
+  method <- dynutils::extract_row_to_list(methods, i)$fun()
 
-  test_that(pritt("Checking whether {method$short_name} can generate parameters"), {
+  test_that(glue::glue("Checking whether {method$id} can generate parameters"), {
     par_set <- method$par_set
 
     # must be able to generate a 3 random parameters
