@@ -6,7 +6,7 @@
 \usage{
 ti_scimitar(covariance_type = "diag", degree = 3L, step_size = 0.07,
   cov_estimator = "corpcor", cov_reg = 0.05, max_iter = 3L,
-  run_environment = NULL)
+  container_type = NULL)
 }
 \arguments{
 \item{covariance_type}{discrete; (default: \code{"diag"}; values: {\code{"diag"},
@@ -23,7 +23,8 @@ ti_scimitar(covariance_type = "diag", degree = 3L, step_size = 0.07,
 
 \item{max_iter}{integer; (default: \code{3L}; range: from \code{1L} to \code{20L})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

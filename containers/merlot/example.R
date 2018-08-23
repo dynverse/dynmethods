@@ -6,5 +6,5 @@ data <- dyntoy::generate_dataset(
   model = "tree"
 )
 params <- list(
-  N_yk = 20
+  N_yk = 25
 )

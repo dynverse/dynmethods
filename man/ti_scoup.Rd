@@ -4,39 +4,39 @@
 \alias{ti_scoup}
 \title{Inferring a trajectory inference using SCOUP}
 \usage{
-ti_scoup(ndim = 2L, max_ite1 = 100, max_ite2 = 100,
-  alpha_min = 0.1, alpha_max = 100, t_min = 0.001, t_max = 2,
-  sigma_squared_min = 0.1, thresh = 0.01, run_environment = NULL)
+ti_scoup(ndim = 2L, max_ite1 = 100L, max_ite2 = 100L,
+  alpha_min = 0.1, alpha_max = 100L, t_min = 0.001, t_max = 2L,
+  sigma_squared_min = 0.1, thresh = 0.01, container_type = NULL)
 }
 \arguments{
 \item{ndim}{integer; Number of pca dimensions (default: \code{2L}; range: from \code{2L}
 to \code{20L})}
 
-\item{max_ite1}{numeric; Upper bound of EM iteration (without pseudo-time
-optimization). The detailed explanation is described in the supplementary text.
-(default is 1,000) (default: \code{100}; range: from \code{2} to \code{5000})}
+\item{max_ite1}{integer; Upper bound of EM iteration (without pseudo-time
+optimization). (default: \code{100L}; range: from \code{2L} to \code{5000L})}
 
-\item{max_ite2}{numeric; Upper bound of EM iteration (including pseudo-time
-optimization) (default is 1,000). (default: \code{100}; range: from \code{2} to \code{5e+05})}
+\item{max_ite2}{integer; Upper bound of EM iteration (including pseudo-time
+optimization). (default: \code{100L}; range: from \code{2L} to \code{500000L})}
 
-\item{alpha_min}{numeric; Lower bound of alpha (default is 0.1) (default:
-\code{0.1}; range: from \code{0.001} to \code{10})}
+\item{alpha_min}{numeric; Lower bound of alpha. (default: \code{0.1}; range: from
+\code{0.001} to \code{10})}
 
-\item{alpha_max}{numeric; Upper bound of alpha (default is 100) (default:
-\code{100}; range: from \code{1} to \code{10000})}
+\item{alpha_max}{numeric; Upper bound of alpha. (default: \code{100L}; range: from
+\code{1L} to \code{10000L})}
 
-\item{t_min}{numeric; Lower bound of pseudo-time (default is 0.001) (default:
-\code{0.001}; range: from \code{1e-05} to \code{1})}
+\item{t_min}{numeric; Lower bound of pseudo-time. (default: \code{0.001}; range:
+from \code{1e-05} to \code{1})}
 
-\item{t_max}{numeric; Upper bound of pseudo-time (default is 2.0) (default:
-\code{2}; range: from \code{0.1} to \code{100})}
+\item{t_max}{numeric; Upper bound of pseudo-time (default: \code{2L}; range: from
+\code{0.1} to \code{100L})}
 
-\item{sigma_squared_min}{numeric; Lower bound of sigma squared (default is 0.1)
-(default: \code{0.1}; range: from \code{0.001} to \code{10})}
+\item{sigma_squared_min}{numeric; Lower bound of sigma squared (default: \code{0.1};
+range: from \code{0.001} to \code{10})}
 
 \item{thresh}{numeric; Threshold (default: \code{0.01}; range: from \code{0.01} to \code{10})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

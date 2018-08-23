@@ -11,5 +11,5 @@ RUN pip install library1 library2
 
 ADD . /code
 
-ENTRYPOINT Rscript /code/run.R
+ENTRYPOINT cat /code/run.R | R --no-save
 ENTRYPOINT python /code/run.py

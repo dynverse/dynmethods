@@ -3,34 +3,24 @@ library(tidyverse)
 rm(list = ls())
 
 method <- "method_id"
-file <- paste0("containers/", method, "/definition.yml")
+folder <- paste0("containers/", method)
 
 # read definition and build docker
-definition <- yaml::read_yaml(file)
+definition <- yaml::read_yaml(paste0(folder, "/definition.yml"))
 docker_repo <- definition$docker_repository
-folder <- stringr::str_replace(file, "/definition.yml$", "")
-zzz <- processx::run("docker", args = c("build", folder, "-t", docker_repo), echo = TRUE)
-
-# generate R file in dynmethods
-source("data-raw/2a-helper_functions.R")
-generate_file_from_container(docker_repo)
-devtools::document()
-devtools::install(dep = FALSE)
-
-# rebuild if changes were made
 zzz <- processx::run("docker", args = c("build", folder, "-t", docker_repo), echo = TRUE)
 
 # try to run the method with a toy dataset
 source(paste0(folder, "/example.R"))
 
 options(dynwrap_run_environment = "docker")
-# traj <- dynwrap::infer_trajectory(data, method, parameters = params, verbose = TRUE, debug = TRUE)
-traj <- dynwrap::infer_trajectory(data, method, parameters = params, verbose = TRUE)
+# traj <- dynwrap::infer_trajectory(data, docker_repo, parameters = params, verbose = TRUE, debug = TRUE)
+traj <- dynwrap::infer_trajectory(data, docker_repo, parameters = params, verbose = TRUE)
 dynplot::plot_graph(traj)
 
 
 #' @examples
-#' # you can test whether elpigraph can be evaluated
+#' # you can test whether this method can be evaluated
 #' eval <- dyneval::evaluate_ti_method(data, method, parameters = params, metrics = c("correlation", "edge_flip", "rf_mse", "featureimp_cor"), verbose = TRUE)
 #' eval$summary
 #' dynplot::plot_graph(eval$models[[1]])

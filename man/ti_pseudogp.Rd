@@ -8,7 +8,7 @@ ti_pseudogp(smoothing_alpha = 10, smoothing_beta = 3,
   pseudotime_mean = 0.5, pseudotime_var = 1, chains = 3L,
   iter = 100L, dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE,
   FALSE, FALSE, FALSE, FALSE, FALSE), initialise_from = "random",
-  run_environment = NULL)
+  container_type = NULL)
 }
 \arguments{
 \item{smoothing_alpha}{numeric; The hyperparameter for the Gamma distribution
@@ -42,7 +42,8 @@ rather than combining them. If a particular representation is required, it isup
 to the user to re-order them. (default: \code{"random"}; values: {\code{"random"},
 \code{"principal_curve"}, \code{"pca"}})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

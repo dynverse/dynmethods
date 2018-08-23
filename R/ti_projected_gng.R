@@ -27,7 +27,7 @@
 #' from `2L` to `30L`)
 #' @param apply_mst logical; If true, an MST post-processing of the GNG is
 #' performed.
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -38,11 +38,12 @@ ti_projected_gng <- function(
     max_iter = 15000,
     max_nodes = 8L,
     apply_mst = TRUE,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/projected_gng",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/projected_gng@sha256:5024d3f8e87e93446b223c8b576217dda33ea4b563fc62e9217d245ba92ff1d0",
+    container_type = container_type
+  )(
     dimred = dimred,
     ndim = ndim,
     max_iter = max_iter,

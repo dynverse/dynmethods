@@ -20,30 +20,25 @@
 #' 37–51.e9.
 #' 
 #' @param n_pca_components integer; (default: `3L`; range: from `2L` to `10L`)
-#' @param radius numeric; (default: `1L`; range: from `0.01` to `10L`)
 #' @param noise numeric; (default: `8L`; range: from `1L` to `20L`)
-#' @param target numeric; (default: `25L`; range: from `5L` to `100L`)
-#' @param num_runs integer; (default: `10L`; range: from `10L` to `1000L`)
-#' @inheritParams dynwrap::create_container_ti_method
+#' @param num_runs integer; (default: `10L`; range: from `10L` to `100L`)
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_pcreode <- function(
     n_pca_components = 3L,
-    radius = 1L,
     noise = 8L,
-    target = 25L,
     num_runs = 10L,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/pcreode",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/pcreode@sha256:2920c842b5c35f398e0cecb74ad603a21923d502cf05dc297babab607be59b0f",
+    container_type = container_type
+  )(
     n_pca_components = n_pca_components,
-    radius = radius,
     noise = noise,
-    target = target,
     num_runs = num_runs
   )
 }

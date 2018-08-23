@@ -27,7 +27,7 @@
 #' @param normalise_expression logical; Logical, default TRUE. If TRUE the data is
 #' pre-normalisedso the average peak expression is approximately 1. This makes the
 #' strength parametersapproximately comparable between genes.
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -37,11 +37,12 @@ ti_ouija <- function(
     response_type = "switch",
     inference_type = "hmc",
     normalise_expression = TRUE,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/ouija",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/ouija@sha256:3ebf85819e1a1d36f1eb41c28d005f89c733c5c48be0b63dcdd856c615d63c2d",
+    container_type = container_type
+  )(
     iter = iter,
     response_type = response_type,
     inference_type = inference_type,

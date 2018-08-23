@@ -33,12 +33,22 @@ parameters:
     description: the dimensionality of the reduced space
   norm_method:
     type: discrete
-    default: vstExprs
+    default: log
     values:
     - vstExprs
     - log
     - none
     description: Determines how to transform expression values prior to reducing dimensionality
+  filter_features:
+    type: logical
+    default: yes
+    description: whether to include monocle feature filtering
+  filter_features_mean_expression:
+    type: numeric
+    default: 0.1
+    lower: 0
+    upper: 10
+    description: minimal mean feature expression, only used when `filter_features` is set to TRUE
 input:
   format: rds
   optional: groups_n

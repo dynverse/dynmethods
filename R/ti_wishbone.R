@@ -3,20 +3,20 @@
 ################################################################################################
 
 #' @title Inferring a trajectory inference using Wishbone
-#' 
+#'
 #' @description
 #' Will generate a trajectory using [Wishbone](https://doi.org/10.1038/nbt.3569).
-#' 
+#'
 #' This method was wrapped inside a
 #' [container](https://github.com/dynverse/dynmethods/tree/master/containers/wishbone).
 #' The original code of this method is available
 #' [here](https://github.com/ManuSetty/wishbone).
-#' 
+#'
 #' @references Setty, M., Tadmor, M.D., Reich-Zeliger, S., Angel, O., Salame,
 #' T.M., Kathail, P., Choi, K., Bendall, S., Friedman, N., Pe’er, D., 2016.
 #' Wishbone identifies bifurcating developmental trajectories from single-cell
 #' data. Nature Biotechnology 34, 637–645.
-#' 
+#'
 #' @param normalise logical;
 #' @param knn integer; K-nearest neighbours for diffusion (default: `25L`; range:
 #' from `15L` to `100L`)
@@ -30,8 +30,8 @@
 #' @param epsilon numeric; Epsilon (default: `1L`; range: from `0.1` to `5L`)
 #' @param branch logical; Whether to allow a single bifurcation within the
 #' trajectory (wishbone versus wanderlust)
-#' @inheritParams dynwrap::create_container_ti_method
-#' 
+#' @inheritParams dynwrap::create_ti_method_with_container
+#'
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
@@ -44,11 +44,12 @@ ti_wishbone <- function(
     num_waypoints = 250L,
     epsilon = 1L,
     branch = TRUE,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/wishbone",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/wishbone@sha256:28aa2af53af951a7511d383ab8e4ffb8fa6d988ca9701d9b295f73e983e23994",
+    container_type = container_type
+  )(
     normalise = normalise,
     knn = knn,
     n_diffusion_components = n_diffusion_components,

@@ -28,7 +28,7 @@
 #' @param num_topics integer; (default: `4`; range: from `2` to `15`)
 #' @param tot_iter numeric; (default: `1e+06`; range: from `10000` to `1e+07`)
 #' @param tolerance numeric; (default: `1e-05`; range: from `1e-07` to `0.001`)
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -43,11 +43,12 @@ ti_celltree_vem <- function(
     num_topics = 4,
     tot_iter = 1e+06,
     tolerance = 1e-05,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/celltree_vem",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/celltree_vem@sha256:2e3fb96bd44bf5c254328a3bbf135e8459f5f1081abed3558e282375d4da385b",
+    container_type = container_type
+  )(
     method = method,
     sd_filter = sd_filter,
     absolute_width = absolute_width,

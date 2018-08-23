@@ -19,42 +19,42 @@
 #' 
 #' @param ndim integer; Number of pca dimensions (default: `2L`; range: from `2L`
 #' to `20L`)
-#' @param max_ite1 numeric; Upper bound of EM iteration (without pseudo-time
-#' optimization). The detailed explanation is described in the supplementary text.
-#' (default is 1,000) (default: `100`; range: from `2` to `5000`)
-#' @param max_ite2 numeric; Upper bound of EM iteration (including pseudo-time
-#' optimization) (default is 1,000). (default: `100`; range: from `2` to `5e+05`)
-#' @param alpha_min numeric; Lower bound of alpha (default is 0.1) (default:
-#' `0.1`; range: from `0.001` to `10`)
-#' @param alpha_max numeric; Upper bound of alpha (default is 100) (default:
-#' `100`; range: from `1` to `10000`)
-#' @param t_min numeric; Lower bound of pseudo-time (default is 0.001) (default:
-#' `0.001`; range: from `1e-05` to `1`)
-#' @param t_max numeric; Upper bound of pseudo-time (default is 2.0) (default:
-#' `2`; range: from `0.1` to `100`)
-#' @param sigma_squared_min numeric; Lower bound of sigma squared (default is 0.1)
-#' (default: `0.1`; range: from `0.001` to `10`)
+#' @param max_ite1 integer; Upper bound of EM iteration (without pseudo-time
+#' optimization). (default: `100L`; range: from `2L` to `5000L`)
+#' @param max_ite2 integer; Upper bound of EM iteration (including pseudo-time
+#' optimization). (default: `100L`; range: from `2L` to `500000L`)
+#' @param alpha_min numeric; Lower bound of alpha. (default: `0.1`; range: from
+#' `0.001` to `10`)
+#' @param alpha_max numeric; Upper bound of alpha. (default: `100L`; range: from
+#' `1L` to `10000L`)
+#' @param t_min numeric; Lower bound of pseudo-time. (default: `0.001`; range:
+#' from `1e-05` to `1`)
+#' @param t_max numeric; Upper bound of pseudo-time (default: `2L`; range: from
+#' `0.1` to `100L`)
+#' @param sigma_squared_min numeric; Lower bound of sigma squared (default: `0.1`;
+#' range: from `0.001` to `10`)
 #' @param thresh numeric; Threshold (default: `0.01`; range: from `0.01` to `10`)
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_scoup <- function(
     ndim = 2L,
-    max_ite1 = 100,
-    max_ite2 = 100,
+    max_ite1 = 100L,
+    max_ite2 = 100L,
     alpha_min = 0.1,
-    alpha_max = 100,
+    alpha_max = 100L,
     t_min = 0.001,
-    t_max = 2,
+    t_max = 2L,
     sigma_squared_min = 0.1,
     thresh = 0.01,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/scoup",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/scoup@sha256:82fe3fa7984ae5d36ce2c007b191b2fc906ff64c7a61f7148657d7e0ab071a0c",
+    container_type = container_type
+  )(
     ndim = ndim,
     max_ite1 = max_ite1,
     max_ite2 = max_ite2,

@@ -31,8 +31,8 @@
 #' based on finding the saturation point of the mean within-cluster dispersion as
 #' a function of the cluster number. If \code{FALSE}, then cluster number needs to
 #' be given as \code{cln}.
-#' @param samp integer; Number of booststrapping runs for clusterboot. Default is
-#' 50 (default: `1000L`; range: from `50L` to `10000L`)
+#' @param samp integer; Number of bootstrapping runs for clusterboot (default:
+#' `1000L`; range: from `50L` to `10000L`)
 #' @param cln integer; Number of clusters to be used. If \code{sat} is
 #' \code{TRUE}, this number is inferred by the saturation criterion. (default:
 #' `30L`; range: from `10L` to `100L`)
@@ -82,7 +82,7 @@
 #' occupied by cells. (default: `0.01`; range: from `1e-05` to `1L`)
 #' @param scthr numeric; Score threshold for links to be shown in the graph.
 #' (default: `0.2`; range: from `0` to `1`)
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -111,11 +111,12 @@ ti_raceid_stemid <- function(
     fast = FALSE,
     pthr = 0.01,
     scthr = 0.2,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/raceid_stemid",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/raceid_stemid@sha256:46bb7db8acb5b167fdf410a39066a6cd910302b2f6542b47b71db3bf12c877f8",
+    container_type = container_type
+  )(
     knn = knn,
     ccor = ccor,
     metric = metric,

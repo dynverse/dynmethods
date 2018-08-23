@@ -25,7 +25,7 @@
 #' `0.05` to `1L`)
 #' @param force logical; Do not use! This is a parameter to force FateID to run on
 #' benchmark datasets where not enough end groups are present.
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -35,11 +35,12 @@ ti_stemnet <- function(
     lambda_auto = TRUE,
     lambda = 0.1,
     force = FALSE,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/stemnet",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/stemnet@sha256:c0f9ebc0be4ec40de787d9a554e70e5a159ea73993a8a449b57f04c19bfebda1",
+    container_type = container_type
+  )(
     alpha = alpha,
     lambda_auto = lambda_auto,
     lambda = lambda,

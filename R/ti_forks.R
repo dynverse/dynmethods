@@ -36,7 +36,7 @@
 #' range: from `1e-04` to `100L`)
 #' @param C numeric; No description provided by the author. (default: `1L`; range:
 #' from `1e-04` to `1000L`)
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -52,11 +52,12 @@ ti_forks <- function(
     iterMax = 1000L,
     eta = 0.01,
     C = 1L,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/forks",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/forks@sha256:5c9117424def21d4bd4e09ef6e4449416ea70478b0a1d7a8677d04f070684f32",
+    container_type = container_type
+  )(
     norm_function = norm_function,
     norm_quantile = norm_quantile,
     cum_sum_exp_var = cum_sum_exp_var,

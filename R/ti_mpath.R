@@ -36,7 +36,7 @@
 #' differentiating landmark clusters from non-landmark clusters. The number of
 #' cells in a landmark cluster must be greater than this cutoff. (default: `0.05`;
 #' range: from `0.01` to `1`)
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -48,11 +48,12 @@ ti_mpath <- function(
     numcluster_null = TRUE,
     diversity_cut = 0.6,
     size_cut = 0.05,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/mpath",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/mpath@sha256:d52f4f38b7055378cd2f8dc5cc5143cbfe3413ebe1f7babede3df1f04546ae35",
+    container_type = container_type
+  )(
     distMethod = distMethod,
     method = method,
     numcluster = numcluster,

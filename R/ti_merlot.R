@@ -45,7 +45,7 @@
 #' @param N_yk integer; Number of nodes for the elastic principal tree (default:
 #' `100`; range: from `2` to `1000`)
 #' @param lambda_0 numeric; Principal elastic tree energy function parameter.
-#' (default: `1e-10`; range: from `1e-15` to `1e-04`)
+#' (default: `8e-10`; range: from `1e-12` to `1e-06`)
 #' @param mu_0 numeric; Principal elastic tree energy function parameter.
 #' (default: `0.0025`; range: from `5e-04` to `0.005`)
 #' @param increaseFactor_mu numeric; Factor by which the mu will be increased for
@@ -53,7 +53,7 @@
 #' @param increaseFactor_lambda numeric; Factor by which the mu will be increased
 #' for the embedding (default: `20`; range: from `2` to `50`)
 #' @param FixEndpoints logical; Documentation not provided by authors
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -68,16 +68,17 @@ ti_merlot <- function(
     w_width = 0.01,
     n_components_to_use = 3,
     N_yk = 100,
-    lambda_0 = 1e-10,
+    lambda_0 = 8e-10,
     mu_0 = 0.0025,
     increaseFactor_mu = 20,
     increaseFactor_lambda = 20,
     FixEndpoints = FALSE,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/merlot",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/merlot@sha256:050da4686a42e194e0b726234206e8467ab096375c55140154931c8377c0e595",
+    container_type = container_type
+  )(
     sigma = sigma,
     distance = distance,
     ndim = ndim,

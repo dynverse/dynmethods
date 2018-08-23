@@ -6,7 +6,7 @@ skip_if_not(Sys.info()[["user"]] %in% c("rcannood", "wouters"))
 methods <- get_ti_methods(ti_packages = "dynmethods")
 
 for (i in seq_len(nrow(methods))) {
-  method <- extract_row_to_list(methods, i)$method_func()
+  method <- extract_row_to_list(methods, i)$fun()
 
   test_that(pritt("Checking whether {method$short_name} can generate parameters"), {
     par_set <- method$par_set

@@ -5,7 +5,8 @@
 \title{Inferring a trajectory inference using Monocle ICA}
 \usage{
 ti_monocle_ica(reduction_method = "ICA", max_components = 2L,
-  norm_method = "vstExprs", run_environment = NULL)
+  norm_method = "log", filter_features = TRUE,
+  filter_features_mean_expression = 0.1, container_type = NULL)
 }
 \arguments{
 \item{reduction_method}{discrete; A character string specifying the algorithm
@@ -15,10 +16,17 @@ to use for dimensionality reduction. (default: \code{"ICA"}; values: {\code{"ICA
 (default: \code{2L}; range: from \code{2L} to \code{20L})}
 
 \item{norm_method}{discrete; Determines how to transform expression values
-prior to reducing dimensionality (default: \code{"vstExprs"}; values: {\code{"vstExprs"},
+prior to reducing dimensionality (default: \code{"log"}; values: {\code{"vstExprs"},
 \code{"log"}, \code{"none"}})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{filter_features}{logical; Whether to include monocle feature filtering}
+
+\item{filter_features_mean_expression}{numeric; Minimal mean feature
+expression, only used when \code{filter_features} is set to TRUE (default: \code{0.1};
+range: from \code{0L} to \code{10L})}
+
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

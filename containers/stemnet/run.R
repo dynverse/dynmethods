@@ -28,11 +28,11 @@ groups_id <- data$groups_id
 checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
 
 # determine end groups
-grouping <- groups_id %>% deframe() %>% .[rownames(expression)]
+grouping <- groups_id %>% select(cell_id, group_id) %>% deframe() %>% .[rownames(expression)]
 end_groups <- grouping[end_id] %>% unique()
 
 # remove end groups with only one cell
-end_groups <- intersect(end_groups, names(table(grouping) %>% keep(~.>2)))
+end_groups <- intersect(end_groups, names(table(grouping) %>% keep(~. > 2)))
 
 # check if there are two or more end groups
 if (length(end_groups) < 2) {

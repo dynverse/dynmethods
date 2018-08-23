@@ -8,7 +8,7 @@ ti_sincell(distance_method = "euclidean", dimred_method = "none",
   clust.method = "max.distance", mutual = TRUE, max.distance = 0,
   k = 3L, shortest.rank.percent = 10, graph.algorithm = "MST",
   graph.using.cells.clustering = FALSE, k_imc = 3L,
-  pct_leaf_node_cutoff = 0.5, run_environment = NULL)
+  pct_leaf_node_cutoff = 0.5, container_type = NULL)
 }
 \arguments{
 \item{distance_method}{discrete; Distance method to be used. The available
@@ -100,7 +100,8 @@ the percentage of leaf nodes is below the given cutoff. Removed nodes are
 projected to their closest neighbour. This is to constrain the number of
 milestones being created. (default: \code{0.5}; range: from \code{0.01} to \code{0.8})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

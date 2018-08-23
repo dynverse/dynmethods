@@ -23,7 +23,7 @@ params <- jsonlite::read_json("/ti/input/params.json")
 #' setwd("~/Downloads/CALISTA/CALISTA-R/")
 
 expression <- data$expression
-file_loc <- "/ti/input/calista_expression.csv"
+file_loc <- tempfile(pattern = "expression.csv")
 
 data_df <- data.frame(
   row.names = NULL,

@@ -15,7 +15,7 @@
 #' 
 #' @param ndim integer; (default: `3`; range: from `2` to `10`)
 #' @param maxit integer; (default: `10`; range: from `0` to `100`)
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -23,11 +23,12 @@
 ti_periodpc <- function(
     ndim = 3,
     maxit = 10,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/periodpc",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/periodpc@sha256:dd828c576e1e1002b4fca5fcd739cd1b5b9c4bd8f175bc4e08a4bdc872b0312b",
+    container_type = container_type
+  )(
     ndim = ndim,
     maxit = maxit
   )

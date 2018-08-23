@@ -71,24 +71,21 @@ parameters:
     lower: 100
     upper: 100000
     description: No description provided by the author.
-    distribution: exponential
-    rate: 1.0
+    distribution: expuniform
   eta:
     type: numeric
     default: .01
     lower: .0001
     upper: 100
     description: No description provided by the author.
-    distribution: exponential
-    rate: 1.0
+    distribution: expuniform
   C:
     type: numeric
     default: 1
     lower: .0001
     upper: 1000
     description: No description provided by the author.
-    distribution: exponential
-    rate: 1.0
+    distribution: expuniform
   forbidden: min_cluster > max_cluster
 input:
   format: text

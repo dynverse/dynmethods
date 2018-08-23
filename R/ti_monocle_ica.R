@@ -22,9 +22,13 @@
 #' @param max_components integer; The dimensionality of the reduced space
 #' (default: `2L`; range: from `2L` to `20L`)
 #' @param norm_method discrete; Determines how to transform expression values
-#' prior to reducing dimensionality (default: `"vstExprs"`; values: {`"vstExprs"`,
+#' prior to reducing dimensionality (default: `"log"`; values: {`"vstExprs"`,
 #' `"log"`, `"none"`})
-#' @inheritParams dynwrap::create_container_ti_method
+#' @param filter_features logical; Whether to include monocle feature filtering
+#' @param filter_features_mean_expression numeric; Minimal mean feature
+#' expression, only used when `filter_features` is set to TRUE (default: `0.1`;
+#' range: from `0L` to `10L`)
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -32,15 +36,20 @@
 ti_monocle_ica <- function(
     reduction_method = "ICA",
     max_components = 2L,
-    norm_method = "vstExprs",
-    run_environment = NULL
+    norm_method = "log",
+    filter_features = TRUE,
+    filter_features_mean_expression = 0.1,
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/monocle_ica",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/monocle_ica@sha256:0e5a03d9895bfab675e3b265e5e1b5e136231d271b3b804de195a434f0e0966a",
+    container_type = container_type
+  )(
     reduction_method = reduction_method,
     max_components = max_components,
-    norm_method = norm_method
+    norm_method = norm_method,
+    filter_features = filter_features,
+    filter_features_mean_expression = filter_features_mean_expression
   )
 }
 

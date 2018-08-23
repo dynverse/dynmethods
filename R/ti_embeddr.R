@@ -61,7 +61,7 @@
 #' you may want to use \code{iter = 0} with \code{lowess()}. (default:
 #' `"smooth.spline"`; values: {`"smooth.spline"`, `"lowess"`,
 #' `"periodic.lowess"`})
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -79,11 +79,12 @@ ti_embeddr <- function(
     maxit = 10L,
     stretch = 2,
     smoother = "smooth.spline",
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/embeddr",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/embeddr@sha256:e507a88e972c395c0f0f433b40fb7ae96994bb424e354b7065259038c1c4656c",
+    container_type = container_type
+  )(
     ndim = ndim,
     kernel = kernel,
     metric = metric,

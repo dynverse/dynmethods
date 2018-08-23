@@ -46,7 +46,7 @@
 #' the same as for \code{kernel} in [density()] (default is \code{"cosine"}), as
 #' well as \code{"tricube"} and \code{"density"}. See 'Details' for more.
 #' (default: `"cosine"`; values: {`"cosine"`, `"tricube"`, `"density"`})
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -60,11 +60,12 @@ ti_projected_slingshot <- function(
     stretch = 2,
     smoother = "smooth.spline",
     shrink.method = "cosine",
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/projected_slingshot",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/projected_slingshot@sha256:91563432a3763a4d8d6a5e049c9f73fad4ff6655c56720f7103b4a44ad9ae6c5",
+    container_type = container_type
+  )(
     shrink = shrink,
     reweight = reweight,
     reassign = reassign,

@@ -16,18 +16,19 @@
 #' to single-cell pseudotime inference.
 #' 
 #' @param iter integer; (default: `1000L`; range: from `2L` to `50000L`)
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_ouijaflow <- function(
     iter = 1000L,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/ouijaflow",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/ouijaflow@sha256:77eae9fbbf19a606fae0ca01e2f0608775da4b555e11cf42e33223e4c8f2515f",
+    container_type = container_type
+  )(
     iter = iter
   )
 }

@@ -9,7 +9,8 @@ plan(multiprocess)
 
 # use all the dynmethods containers, but surely containers from other sources could be added as well
 containers <- c(
-  list.files("containers", pattern = "definition.yml", recursive = TRUE, full.names = TRUE) %>% map_chr(~ yaml::read_yaml(.)$docker_repository)
+  list.files("containers", pattern = "definition.yml", recursive = TRUE, full.names = TRUE) %>%
+    map_chr(~ yaml::read_yaml(.)$docker_repository)
 )
 
 # iterate over the containers and generate R scripts for each of them

@@ -23,12 +23,16 @@
 #' @param max_components integer; The dimensionality of the reduced space
 #' (default: `2L`; range: from `2L` to `20L`)
 #' @param norm_method discrete; Determines how to transform expression values
-#' prior to reducing dimensionality (default: `"vstExprs"`; values: {`"vstExprs"`,
+#' prior to reducing dimensionality (default: `"log"`; values: {`"vstExprs"`,
 #' `"log"`, `"none"`})
 #' @param auto_param_selection logical; When this argument is set to TRUE
 #' (default), it will automatically calculate the proper value for the ncenter
 #' (number of centroids) parameters which will be passed into DDRTree call.
-#' @inheritParams dynwrap::create_container_ti_method
+#' @param filter_features logical; Whether to include monocle feature filtering
+#' @param filter_features_mean_expression numeric; Minimal mean feature
+#' expression, only used when `filter_features` is set to TRUE (default: `0.1`;
+#' range: from `0L` to `10L`)
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -36,17 +40,22 @@
 ti_monocle_ddrtree <- function(
     reduction_method = "DDRTree",
     max_components = 2L,
-    norm_method = "vstExprs",
+    norm_method = "log",
     auto_param_selection = TRUE,
-    run_environment = NULL
+    filter_features = TRUE,
+    filter_features_mean_expression = 0.1,
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/monocle_ddrtree",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/monocle_ddrtree@sha256:c0c10680f2447974e808c429d3063a514ae27ea0f0bfb9944a2a8aa4a94fe584",
+    container_type = container_type
+  )(
     reduction_method = reduction_method,
     max_components = max_components,
     norm_method = norm_method,
-    auto_param_selection = auto_param_selection
+    auto_param_selection = auto_param_selection,
+    filter_features = filter_features,
+    filter_features_mean_expression = filter_features_mean_expression
   )
 }
 

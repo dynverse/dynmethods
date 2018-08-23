@@ -10,7 +10,7 @@ ti_raceid_stemid(knn = 10L, ccor = 0.4, metric = "pearson",
   outminc = 5L, outlg = 2L, outdistquant = 0.95,
   initial_cmd = TRUE, perplexity = 30L, cthr = 5L, nmode = TRUE,
   projcells_knn = 3L, fr = FALSE, pdishuf = 500L, fast = FALSE,
-  pthr = 0.01, scthr = 0.2, run_environment = NULL)
+  pthr = 0.01, scthr = 0.2, container_type = NULL)
 }
 \arguments{
 \item{knn}{integer; Number of nearest neighbors used to infer corresponding
@@ -30,8 +30,8 @@ based on finding the saturation point of the mean within-cluster dispersion as
 a function of the cluster number. If \code{FALSE}, then cluster number needs to
 be given as \code{cln}.}
 
-\item{samp}{integer; Number of booststrapping runs for clusterboot. Default is
-50 (default: \code{1000L}; range: from \code{50L} to \code{10000L})}
+\item{samp}{integer; Number of bootstrapping runs for clusterboot (default:
+\code{1000L}; range: from \code{50L} to \code{10000L})}
 
 \item{cln}{integer; Number of clusters to be used. If \code{sat} is
 \code{TRUE}, this number is inferred by the saturation criterion. (default:
@@ -100,7 +100,8 @@ occupied by cells. (default: \code{0.01}; range: from \code{1e-05} to \code{1L})
 \item{scthr}{numeric; Score threshold for links to be shown in the graph.
 (default: \code{0.2}; range: from \code{0} to \code{1})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with

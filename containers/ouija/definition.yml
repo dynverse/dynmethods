@@ -21,8 +21,7 @@ parameters:
     default: 100
     upper: 1000
     lower: 10
-    distribution: exponential
-    rate: 0.01
+    distribution: expuniform
     description: Number of iterations
   response_type:
     type: discrete

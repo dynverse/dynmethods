@@ -16,7 +16,7 @@ checkpoints = {}
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 data = h5py.File("/ti/input/data.h5", "r")
-counts = pd.DataFrame(data['counts'][:].T, index=data['counts'].attrs['rownames'].astype(np.str))
+counts = pd.DataFrame(data['counts'][:].T, index = data['counts_rows'][:].astype(np.str), columns = data['counts_cols'][:].astype(np.str))
 data.close()
 
 params = json.load(open("/ti/input/params.json", "r"))

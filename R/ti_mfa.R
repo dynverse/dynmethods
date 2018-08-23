@@ -30,7 +30,7 @@
 #' @param scale_input logical; Logical. If true, input is scaled to have mean 0
 #' variance 1
 #' @param zero_inflation logical; Logical, should zero inflation be enabled?
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -43,11 +43,12 @@ ti_mfa <- function(
     prop_collapse = 0,
     scale_input = TRUE,
     zero_inflation = FALSE,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/mfa",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/mfa@sha256:7e062edbd0d480abbc5e2b92cf63330f9287dbed5887bc384af25fd71e1304eb",
+    container_type = container_type
+  )(
     b = b,
     iter = iter,
     thin = thin,

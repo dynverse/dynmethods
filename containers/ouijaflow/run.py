@@ -9,13 +9,11 @@ checkpoints = {}
 #   Load data                                                               ####
 expression = pd.read_csv("/ti/input/expression.csv", index_col=[0])
 p = json.load(open("/ti/input/params.json", "r"))
-features_id = json.load(open("/ti/input/features_id.json"))
 
 checkpoints["method_afterpreproc"] = time.time()
 
 #   ____________________________________________________________________________
 #   Create trajectory                                                       ####
-expression = expression.ix[:,features_id]
 
 oui = ouija()
 oui.fit(expression.values, n_iter=int(p["iter"]))

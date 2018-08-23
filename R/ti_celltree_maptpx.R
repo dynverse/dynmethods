@@ -29,7 +29,7 @@
 #' @param num_topics_upper integer; (default: `15`; range: from `2` to `15`)
 #' @param tot_iter numeric; (default: `1e+06`; range: from `10000` to `1e+07`)
 #' @param tolerance numeric; (default: `0.05`; range: from `0.001` to `0.5`)
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -45,11 +45,12 @@ ti_celltree_maptpx <- function(
     num_topics_upper = 15,
     tot_iter = 1e+06,
     tolerance = 0.05,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/celltree_maptpx",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/celltree_maptpx@sha256:9e60d6969db4590f36626068406a106f01b51b6fcfe213caeb341ea64152ebae",
+    container_type = container_type
+  )(
     method = method,
     sd_filter = sd_filter,
     absolute_width = absolute_width,

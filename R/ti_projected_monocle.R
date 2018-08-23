@@ -26,7 +26,11 @@
 #' @param auto_param_selection logical; When this argument is set to TRUE
 #' (default), it will automatically calculate the proper value for the ncenter
 #' (number of centroids) parameters which will be passed into DDRTree call.
-#' @inheritParams dynwrap::create_container_ti_method
+#' @param filter_features logical; Whether to include monocle feature filtering
+#' @param filter_features_mean_expression numeric; Minimal mean feature
+#' expression, only used when `filter_features` is set to TRUE (default: `0.1`;
+#' range: from `0L` to `10L`)
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -36,15 +40,20 @@ ti_projected_monocle <- function(
     max_components = 2L,
     norm_method = "vstExprs",
     auto_param_selection = TRUE,
-    run_environment = NULL
+    filter_features = TRUE,
+    filter_features_mean_expression = 0.1,
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/projected_monocle",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/projected_monocle@sha256:d39170cab97d6b1109f6cd24c6a068bfdcbb435a86438078f7180915d0d3fea1",
+    container_type = container_type
+  )(
     reduction_method = reduction_method,
     max_components = max_components,
     norm_method = norm_method,
-    auto_param_selection = auto_param_selection
+    auto_param_selection = auto_param_selection,
+    filter_features = filter_features,
+    filter_features_mean_expression = filter_features_mean_expression
   )
 }
 

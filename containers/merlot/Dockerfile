@@ -21,4 +21,4 @@ RUN R -e "devtools::install_github('soedinglab/merlot')"
 
 ADD . /code
 
-ENTRYPOINT Rscript /code/run.R
+ENTRYPOINT cat /code/run.R | R --no-save

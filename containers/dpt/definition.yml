@@ -70,8 +70,7 @@ parameters:
     default: 0.1
     upper: 1.0
     lower: 0.0001
-    distribution: exponential
-    rate: 1.0
+    distribution: expuniform
     description: Window width to use for deciding the branch cutoff
   forbidden: n_local_lower > n_local_upper
 input:

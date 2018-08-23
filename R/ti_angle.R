@@ -17,18 +17,19 @@
 #' `"pca"`; values: {`"pca"`, `"mds"`, `"tsne"`, `"ica"`, `"lle"`,
 #' `"landmark_mds"`, `"mds_sammon"`, `"mds_isomds"`, `"mds_smacof"`, `"umap"`,
 #' `"dm_diffusionMap"`})
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_angle <- function(
     dimred = "pca",
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/angle",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/angle@sha256:57431002f59b5d9d0dcc10e1e338f29322a70ab5e016bab560e36965dc8dd2cb",
+    container_type = container_type
+  )(
     dimred = dimred
   )
 }

@@ -19,7 +19,7 @@
 #' `50L`; range: from `20L` to `100L`)
 #' @param max_iter integer; Number of iterations in greedy algorithm (default:
 #' `100L`; range: from `20L` to `400L`)
-#' @inheritParams dynwrap::create_container_ti_method
+#' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -27,11 +27,12 @@
 ti_calista <- function(
     runs = 50L,
     max_iter = 100L,
-    run_environment = NULL
+    container_type = NULL
 ) {
-  create_container_ti_method(
-    docker_repository = "dynverse/calista",
-    run_environment = run_environment,
+  create_ti_method_with_container(
+    image = "dynverse/calista@sha256:3b44c9e8a3a2b6028fa1b1820dccf7e25a252fba0132f3b1506507ddef10fc28",
+    container_type = container_type
+  )(
     runs = runs,
     max_iter = max_iter
   )

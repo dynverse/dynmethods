@@ -6,4 +6,4 @@ RUN R -e 'devtools::install_github("rcannood/gng")'
 
 ADD . /code
 
-ENTRYPOINT Rscript /code/run.R
+ENTRYPOINT cat /code/run.R | R --no-save

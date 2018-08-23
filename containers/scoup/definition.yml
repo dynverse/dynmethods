@@ -22,54 +22,60 @@ parameters:
     lower: 2
     description: Number of pca dimensions
   max_ite1:
-    type: numeric
-    default: 100.0
-    upper: 5000.0
-    lower: 2.0
-    description: Upper bound of EM iteration (without pseudo-time optimization). The
-      detailed explanation is described in the supplementary text. (default is 1,000)
+    type: integer
+    default: 100
+    upper: 5000
+    lower: 2
+    distribution: expuniform
+    description: Upper bound of EM iteration (without pseudo-time optimization).
   max_ite2:
-    type: numeric
-    default: 100.0
-    upper: 500000.0
-    lower: 2.0
-    description: Upper bound of EM iteration (including pseudo-time optimization)
-      (default is 1,000).
+    type: integer
+    default: 100
+    upper: 500000
+    lower: 2
+    distribution: expuniform
+    description: Upper bound of EM iteration (including pseudo-time optimization).
   alpha_min:
     type: numeric
     default: 0.1
     upper: 10.0
     lower: 0.001
-    description: Lower bound of alpha (default is 0.1)
+    distribution: expuniform
+    description: Lower bound of alpha.
   alpha_max:
     type: numeric
-    default: 100.0
-    upper: 10000.0
-    lower: 1.0
-    description: Upper bound of alpha (default is 100)
+    default: 100
+    upper: 10000
+    lower: 1
+    distribution: expuniform
+    description: Upper bound of alpha.
   t_min:
     type: numeric
     default: 0.001
     upper: 1.0
     lower: 1.0e-05
-    description: Lower bound of pseudo-time (default is 0.001)
+    distribution: expuniform
+    description: Lower bound of pseudo-time.
   t_max:
     type: numeric
-    default: 2.0
-    upper: 100.0
+    default: 2
+    upper: 100
     lower: 0.1
-    description: Upper bound of pseudo-time (default is 2.0)
+    distribution: expuniform
+    description: Upper bound of pseudo-time
   sigma_squared_min:
     type: numeric
     default: 0.1
     upper: 10.0
     lower: 0.001
-    description: Lower bound of sigma squared (default is 0.1)
+    distribution: expuniform
+    description: Lower bound of sigma squared
   thresh:
     type: numeric
     default: 0.01
     upper: 10.0
     lower: 0.01
+    distribution: expuniform
     description: Threshold
 input:
   format: rds

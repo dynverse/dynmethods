@@ -75,7 +75,10 @@ rd <- pca$x[, seq_len(optpoint)]
 
 #   ____________________________________________________________________________
 #   Clustering                                                              ####
-clusterings <- lapply(3:10, function(K){
+# max clusters equal to number of cells
+max_clusters <- min(nrow(counts)-1, 10)
+
+clusterings <- lapply(3:max_clusters, function(K){
   pam(rd, K) # we generally prefer PAM as a more robust alternative to k-means
 })
 

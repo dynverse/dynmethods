@@ -6,11 +6,6 @@ library(purrr)
 library(merlot)
 library(destiny)
 
-dir.create("/ti/workspace/tmp")
-Sys.setenv(TMP = "/ti/workspace/tmp")
-Sys.setenv(TEMP = "/ti/workspace/tmp")
-Sys.setenv(TMPDIR = "/ti/workspace/tmp")
-
 #   ____________________________________________________________________________
 #   Load data                                                               ####
 
@@ -89,7 +84,7 @@ EmbeddedTree <- merlot::GenesSpaceEmbedding(
 # T0=3 means that the Endpoint number 3 in the Endpoints list corresponds to the zygote fate and is used as initial pseudotime t0
 # Any given cell can be used as t0 by specifying its index using the parameter C0=cell_index
 if (is.null(start_id)) {
-  Pseudotimes <- merlot::CalculatePseudotimes(EmbeddedTree, T0=1)
+  Pseudotimes <- merlot::CalculatePseudotimes(EmbeddedTree, T0 = 1)
 } else {
   Pseudotimes <- merlot::CalculatePseudotimes(EmbeddedTree, C0=which(rownames(expression) == start_id))
 }
@@ -103,7 +98,7 @@ checkpoints$method_aftermethod <- as.numeric(Sys.time())
 milestone_network <- ElasticTree$Edges %>%
   as.data.frame() %>%
   purrr::set_names(c("from", "to")) %>%
-  mutate_all(as.character) %>%
+  mutate_all(function(x) paste0("M", x)) %>%
   mutate(edge_id = row_number())
 
 progressions <- tibble(
@@ -126,16 +121,20 @@ milestone_network <- left_join(
   select(from, to, length, directed)
 
 # now calculate percentages of progression
-progressions <- progressions %>%
+progressions <-
+  progressions %>%
   group_by(edge_id) %>%
-  mutate(percentage = (pseudotime - min(pseudotime))/(max(pseudotime) - min(pseudotime))) %>%
+  mutate(percentage = (pseudotime - min(pseudotime)) / (max(pseudotime) - min(pseudotime))) %>%
   ungroup() %>%
-  select(cell_id, from, to, percentage)
+  select(cell_id, from, to, percentage) %>%
+  na.omit()
 
 # get dimred
-dimred <- CellCoordinates %>%
-  as.data.frame()
-dimred$cell_id <- rownames(expression)
+dimred <-
+  CellCoordinates %>%
+  as.data.frame() %>%
+  mutate(cell_id = rownames(expression)) %>%
+  select(cell_id, everything())
 
 # save
 output <- lst(

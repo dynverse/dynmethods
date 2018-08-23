@@ -39,6 +39,21 @@ cds <- monocle::newCellDataSet(t(counts), pd, fd)
 cds <- BiocGenerics::estimateSizeFactors(cds)
 cds <- BiocGenerics::estimateDispersions(cds)
 
+# filter features if requested
+if (params$filter_features) {
+  disp_table <- dispersionTable(cds)
+  ordering_genes <- subset(disp_table, mean_expression >= params$filter_features_mean_expression)
+  cds <- setOrderingFilter(cds, ordering_genes)
+
+  print(nrow(ordering_genes))
+}
+
+# if low # cells or features -> https://github.com/cole-trapnell-lab/monocle-release/issues/26
+# this avoids the error "initial centers are not distinct."
+if (ncol(counts) < 500 || nrow(counts) < 500) {
+  params$auto_param_selection <- FALSE
+}
+
 # reduce the dimensionality
 cds <- monocle::reduceDimension(
   cds,

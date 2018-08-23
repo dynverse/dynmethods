@@ -8,7 +8,7 @@ ti_celltree_maptpx(method = "maptpx", sd_filter = 0.5,
   absolute_width = 0, width_scale_factor = 1.5,
   outlier_tolerance_factor = 0.1, rooting_method = "null",
   num_topics_lower = 2, num_topics_upper = 15, tot_iter = 1e+06,
-  tolerance = 0.05, run_environment = NULL)
+  tolerance = 0.05, container_type = NULL)
 }
 \arguments{
 \item{method}{discrete; (default: \code{"maptpx"}; values: {\code{"maptpx"}})}
@@ -33,7 +33,8 @@ to \code{1000})}
 
 \item{tolerance}{numeric; (default: \code{0.05}; range: from \code{0.001} to \code{0.5})}
 
-\item{run_environment}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.}
+\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
+By default, docker will be used.}
 }
 \value{
 A TI method wrapper to be used together with
