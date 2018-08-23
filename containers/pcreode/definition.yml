@@ -10,11 +10,6 @@ parameters:
     default: 3
     lower: 2
     upper: 10
-  noise:
-    type: numeric
-    default: 8
-    upper: 20
-    lower: 1
   num_runs:
     type: integer
     default: 10

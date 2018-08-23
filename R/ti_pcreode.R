@@ -20,7 +20,6 @@
 #' 37–51.e9.
 #' 
 #' @param n_pca_components integer; (default: `3L`; range: from `2L` to `10L`)
-#' @param noise numeric; (default: `8L`; range: from `1L` to `20L`)
 #' @param num_runs integer; (default: `10L`; range: from `10L` to `100L`)
 #' @inheritParams dynwrap::create_ti_method_with_container
 #' 
@@ -29,16 +28,14 @@
 #' @export
 ti_pcreode <- function(
     n_pca_components = 3L,
-    noise = 8L,
     num_runs = 10L,
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/pcreode@sha256:2920c842b5c35f398e0cecb74ad603a21923d502cf05dc297babab607be59b0f",
+    image = "dynverse/pcreode@sha256:b913dc8f7eec1996090a6d694229cd6bc8944b90c3363bde91bff1106a96fad3",
     config = config
   )(
     n_pca_components = n_pca_components,
-    noise = noise,
     num_runs = num_runs
   )
 }

@@ -57,7 +57,7 @@ analysis = pcreode.Analysis(
   graph_id = gid,
   data = pca_reduced_data,
   density = density,
-  noise = params["noise"]
+  noise = noise
 )
 
 checkpoints["method_aftermethod"] = time.time()
