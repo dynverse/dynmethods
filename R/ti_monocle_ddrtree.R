@@ -44,11 +44,11 @@ ti_monocle_ddrtree <- function(
     auto_param_selection = TRUE,
     filter_features = TRUE,
     filter_features_mean_expression = 0.1,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/monocle_ddrtree@sha256:c0c10680f2447974e808c429d3063a514ae27ea0f0bfb9944a2a8aa4a94fe584",
-    container_type = container_type
+    config = config
   )(
     reduction_method = reduction_method,
     max_components = max_components,

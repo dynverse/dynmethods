@@ -36,11 +36,11 @@ ti_tscan <- function(
     clusternum_lower = 2L,
     clusternum_upper = 9L,
     modelNames = "VVV",
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/tscan@sha256:ccca20dd282d0b7e5b14c49068743c09bc5cedffaf9bf595caa08f0ee6c356d7",
-    container_type = container_type
+    config = config
   )(
     minexpr_percent = minexpr_percent,
     minexpr_value = minexpr_value,

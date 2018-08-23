@@ -29,11 +29,11 @@ ti_grandprix <- function(
     n_inducing_points = 40L,
     latent_prior_var = 0.1,
     latent_var = 0.028,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/grandprix@sha256:35887710492140479cf2453c82a3012478ddca4cd8046af1100273c7d682b44e",
-    container_type = container_type
+    config = config
   )(
     n_latent_dims = n_latent_dims,
     n_inducing_points = n_inducing_points,

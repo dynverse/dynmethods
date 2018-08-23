@@ -29,11 +29,11 @@
 ti_matcher <- function(
     quantiles = 50L,
     method = "linear",
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/matcher@sha256:f197087ebea87e4c453d7f44f6dfe3968adcc47edd2b3210ff8a5b1bc70adf95",
-    container_type = container_type
+    config = config
   )(
     quantiles = quantiles,
     method = method

@@ -52,11 +52,11 @@ ti_forks <- function(
     iterMax = 1000L,
     eta = 0.01,
     C = 1L,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/forks@sha256:5c9117424def21d4bd4e09ef6e4449416ea70478b0a1d7a8677d04f070684f32",
-    container_type = container_type
+    config = config
   )(
     norm_function = norm_function,
     norm_quantile = norm_quantile,

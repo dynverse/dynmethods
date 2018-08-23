@@ -22,11 +22,11 @@
 #' @export
 ti_identity <- function(
     dummy_param = 0.5,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/identity@sha256:ca86db63d0f703f6502cb18f824ffb24ae4bb9755675e9a0a545486746ec9523",
-    container_type = container_type
+    config = config
   )(
     dummy_param = dummy_param
   )

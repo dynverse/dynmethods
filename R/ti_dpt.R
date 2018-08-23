@@ -53,11 +53,11 @@ ti_dpt <- function(
     n_local_lower = 5L,
     n_local_upper = 7L,
     w_width = 0.1,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/dpt@sha256:798056dd48bddc874f7046ba803a32594522efad6112c3dd7bfe3c37637d17c2",
-    container_type = container_type
+    config = config
   )(
     sigma = sigma,
     distance = distance,

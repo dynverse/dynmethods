@@ -79,11 +79,11 @@ ti_embeddr <- function(
     maxit = 10L,
     stretch = 2,
     smoother = "smooth.spline",
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/embeddr@sha256:e507a88e972c395c0f0f433b40fb7ae96994bb424e354b7065259038c1c4656c",
-    container_type = container_type
+    config = config
   )(
     ndim = ndim,
     kernel = kernel,

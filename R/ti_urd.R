@@ -97,11 +97,11 @@ ti_urd <- function(
     cells.per.pseudotime.bin = 80L,
     bins.per.pseudotime.window = 5L,
     p.thresh = 0.01,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/urd@sha256:19e55bc836a0aa3b8fa4d9cd082a96705783bcce61723a826303e3001853c810",
-    container_type = container_type
+    config = config
   )(
     knn = knn,
     sigma.use = sigma.use,

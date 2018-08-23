@@ -112,11 +112,11 @@ ti_sincell <- function(
     graph.using.cells.clustering = FALSE,
     k_imc = 3L,
     pct_leaf_node_cutoff = 0.5,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/sincell@sha256:3b24500d7811cfffbc1a5ef494119c19b08b468a296a38c286960880121e6bd9",
-    container_type = container_type
+    config = config
   )(
     distance_method = distance_method,
     dimred_method = dimred_method,

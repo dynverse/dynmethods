@@ -23,11 +23,11 @@
 ti_periodpc <- function(
     ndim = 3,
     maxit = 10,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/periodpc@sha256:dd828c576e1e1002b4fca5fcd739cd1b5b9c4bd8f175bc4e08a4bdc872b0312b",
-    container_type = container_type
+    config = config
   )(
     ndim = ndim,
     maxit = maxit

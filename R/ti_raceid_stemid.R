@@ -111,11 +111,11 @@ ti_raceid_stemid <- function(
     fast = FALSE,
     pthr = 0.01,
     scthr = 0.2,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/raceid_stemid@sha256:46bb7db8acb5b167fdf410a39066a6cd910302b2f6542b47b71db3bf12c877f8",
-    container_type = container_type
+    config = config
   )(
     knn = knn,
     ccor = ccor,

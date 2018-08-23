@@ -39,11 +39,11 @@ ti_phenopath <- function(
     z_init = "1",
     model_mu = FALSE,
     scale_y = TRUE,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/phenopath@sha256:3fd5761cc8517e40d1e4588c71b1eeef0be1ecef6f69aa51ece101dea188f894",
-    container_type = container_type
+    config = config
   )(
     thin = thin,
     z_init = z_init,

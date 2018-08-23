@@ -67,11 +67,11 @@ ti_cellrouter <- function(
     num_cells = 3L,
     neighs = 3L,
     perplexity = 30L,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/cellrouter@sha256:3b456086c1096ea36e1d12ec67e9a7cde58afc3312aea8a5e8be0548209275e4",
-    container_type = container_type
+    config = config
   )(
     ndim_pca = ndim_pca,
     ndim_tsne = ndim_tsne,

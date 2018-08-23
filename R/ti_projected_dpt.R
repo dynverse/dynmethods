@@ -50,11 +50,11 @@ ti_projected_dpt <- function(
     n_local_lower = 5L,
     n_local_upper = 7L,
     w_width = 0.1,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/projected_dpt@sha256:2d7aa743ea32d9f6bbc88d882ae1d738fe596ccd16a2fc1b74fdc2835afa4a5b",
-    container_type = container_type
+    config = config
   )(
     sigma = sigma,
     distance = distance,

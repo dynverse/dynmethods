@@ -6,7 +6,7 @@
 \usage{
 ti_mpath(distMethod = "euclidean", method = "kmeans",
   numcluster = 11L, numcluster_null = TRUE, diversity_cut = 0.6,
-  size_cut = 0.05, container_type = NULL)
+  size_cut = 0.05, config = dynwrap::container_config())
 }
 \arguments{
 \item{distMethod}{discrete; The method for calculating dissimilarity between
@@ -35,8 +35,7 @@ differentiating landmark clusters from non-landmark clusters. The number of
 cells in a landmark cluster must be greater than this cutoff. (default: \code{0.05};
 range: from \code{0.01} to \code{1})}
 
-\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
-By default, docker will be used.}
+\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

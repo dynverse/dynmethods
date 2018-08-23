@@ -36,11 +36,11 @@ ti_projected_paga <- function(
     n_dcs = 15L,
     resolution = 1L,
     embedding_type = "fa",
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/projected_paga@sha256:3337827c87d92ca56ac1d633c18a94ab5dcd5bc0703f99d094359602256b6304",
-    container_type = container_type
+    config = config
   )(
     n_neighbors = n_neighbors,
     n_comps = n_comps,

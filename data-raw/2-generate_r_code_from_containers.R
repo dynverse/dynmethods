@@ -5,7 +5,7 @@ library(furrr)
 source("data-raw/2a-helper_functions.R")
 
 # here we do some metaprogramming to generate the ti_{method} functions
-plan(multiprocess)
+# plan(multiprocess)
 
 # use all the dynmethods containers, but surely containers from other sources could be added as well
 containers <- c(

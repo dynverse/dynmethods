@@ -54,11 +54,11 @@ ti_pseudogp <- function(
     iter = 100L,
     dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
     initialise_from = "random",
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/pseudogp@sha256:c35f20b1250e163d191aa9ba871343cb676984f1db118eb67ceae0532e302a3c",
-    container_type = container_type
+    config = config
   )(
     smoothing_alpha = smoothing_alpha,
     smoothing_beta = smoothing_beta,

@@ -39,11 +39,11 @@ ti_monocle_ica <- function(
     norm_method = "log",
     filter_features = TRUE,
     filter_features_mean_expression = 0.1,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/monocle_ica@sha256:0e5a03d9895bfab675e3b265e5e1b5e136231d271b3b804de195a434f0e0966a",
-    container_type = container_type
+    config = config
   )(
     reduction_method = reduction_method,
     max_components = max_components,

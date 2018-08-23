@@ -47,11 +47,11 @@ ti_elpilinear <- function(
     MaxNumberOfIterations = 10L,
     eps = 0.01,
     CenterData = FALSE,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/elpilinear@sha256:fbdd8469f3c3fd885552f85edbe4544452d7c9772148333cb571282b0cde4ad6",
-    container_type = container_type
+    config = config
   )(
     topology = topology,
     NumNodes = NumNodes,

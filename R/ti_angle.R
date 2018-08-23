@@ -24,11 +24,11 @@
 #' @export
 ti_angle <- function(
     dimred = "pca",
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/angle@sha256:57431002f59b5d9d0dcc10e1e338f29322a70ab5e016bab560e36965dc8dd2cb",
-    container_type = container_type
+    config = config
   )(
     dimred = dimred
   )

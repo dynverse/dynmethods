@@ -43,11 +43,11 @@ ti_mfa <- function(
     prop_collapse = 0,
     scale_input = TRUE,
     zero_inflation = FALSE,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/mfa@sha256:7e062edbd0d480abbc5e2b92cf63330f9287dbed5887bc384af25fd71e1304eb",
-    container_type = container_type
+    config = config
   )(
     b = b,
     iter = iter,

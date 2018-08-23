@@ -31,11 +31,11 @@ ti_pcreode <- function(
     n_pca_components = 3L,
     noise = 8L,
     num_runs = 10L,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/pcreode@sha256:2920c842b5c35f398e0cecb74ad603a21923d502cf05dc297babab607be59b0f",
-    container_type = container_type
+    config = config
   )(
     n_pca_components = n_pca_components,
     noise = noise,

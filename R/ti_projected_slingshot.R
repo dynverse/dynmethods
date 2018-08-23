@@ -60,11 +60,11 @@ ti_projected_slingshot <- function(
     stretch = 2,
     smoother = "smooth.spline",
     shrink.method = "cosine",
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/projected_slingshot@sha256:91563432a3763a4d8d6a5e049c9f73fad4ff6655c56720f7103b4a44ad9ae6c5",
-    container_type = container_type
+    config = config
   )(
     shrink = shrink,
     reweight = reweight,

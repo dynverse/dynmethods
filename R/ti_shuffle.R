@@ -22,11 +22,11 @@
 #' @export
 ti_shuffle <- function(
     dummy_param = 0.5,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
     image = "dynverse/shuffle@sha256:6784507e5703261ff51d04fa18497edfbb82c4c9f2f807ca8d6b900c739af300",
-    container_type = container_type
+    config = config
   )(
     dummy_param = dummy_param
   )

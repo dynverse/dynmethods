@@ -6,7 +6,8 @@
 \usage{
 ti_recat(TSPFold = 2, beginNum = 10, endNum = 15, step_size = 2,
   base_cycle_range_start = 6, base_cycle_range_end = 9,
-  max_num = 300, clustMethod = "GMM", container_type = NULL)
+  max_num = 300, clustMethod = "GMM",
+  config = dynwrap::container_config())
 }
 \arguments{
 \item{TSPFold}{integer; No documentation provided by authors (default: \code{2};
@@ -40,8 +41,7 @@ range: from \code{100} to \code{500})}
 \item{clustMethod}{discrete; No documentation provided by authors (default:
 \code{"GMM"}; values: {\code{"GMM"}, \code{"Pam"}, \code{"Kmeans"}})}
 
-\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
-By default, docker will be used.}
+\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

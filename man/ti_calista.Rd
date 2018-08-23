@@ -4,7 +4,8 @@
 \alias{ti_calista}
 \title{Inferring a trajectory inference using CALISTA}
 \usage{
-ti_calista(runs = 50L, max_iter = 100L, container_type = NULL)
+ti_calista(runs = 50L, max_iter = 100L,
+  config = dynwrap::container_config())
 }
 \arguments{
 \item{runs}{integer; Number of independent runs of greedy algorithm (default:
@@ -13,8 +14,7 @@ ti_calista(runs = 50L, max_iter = 100L, container_type = NULL)
 \item{max_iter}{integer; Number of iterations in greedy algorithm (default:
 \code{100L}; range: from \code{20L} to \code{400L})}
 
-\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
-By default, docker will be used.}
+\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with
