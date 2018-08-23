@@ -8,4 +8,4 @@ RUN R -e 'install.packages("FateID")'
 
 ADD . /code
 
-ENTRYPOINT cat /code/run.R | R --no-save
+ENTRYPOINT Rscript /code/run.R

@@ -55,7 +55,7 @@ ti_scorpius <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/scorpius@sha256:c3b9a14fb5171a9796dd7781a9be46791fd7b6ba3858ea859d89f1748bcdb781",
+    image = "dynverse/scorpius@sha256:3bd9b58d0b9f465ce6751c34dde72abf26d0e0c5b20a31c06fb14fc00889d6bf",
     config = config
   )(
     distance_method = distance_method,

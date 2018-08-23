@@ -46,7 +46,7 @@ ti_celltree_gibbs <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/celltree_gibbs@sha256:53794aa6205d1502bd36cabe1562516775cbef49da4043f5c75a02d5b9b56bbf",
+    image = "dynverse/celltree_gibbs@sha256:8572b0e79cb1add0cac1eb4956c2a2c75bec1f49828dab7b62f3474b93c91a5d",
     config = config
   )(
     method = method,

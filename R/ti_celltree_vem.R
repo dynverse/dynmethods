@@ -46,7 +46,7 @@ ti_celltree_vem <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/celltree_vem@sha256:2e3fb96bd44bf5c254328a3bbf135e8459f5f1081abed3558e282375d4da385b",
+    image = "dynverse/celltree_vem@sha256:14daa99100906d7a1ad3f3a6273a67234be1f617d918384c0313bf67e5f44c7b",
     config = config
   )(
     method = method,

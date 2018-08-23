@@ -40,7 +40,7 @@ ti_ouija <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ouija@sha256:3ebf85819e1a1d36f1eb41c28d005f89c733c5c48be0b63dcdd856c615d63c2d",
+    image = "dynverse/ouija@sha256:357317a8f6982f460fcdd2f0fba236d0f3a6cc6b2786d8c6fc4d9f105ad9be4d",
     config = config
   )(
     iter = iter,

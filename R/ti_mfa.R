@@ -46,7 +46,7 @@ ti_mfa <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/mfa@sha256:7e062edbd0d480abbc5e2b92cf63330f9287dbed5887bc384af25fd71e1304eb",
+    image = "dynverse/mfa@sha256:141beb7118a565baf573296620973c6603ae838385e6b369592e914bbef0199d",
     config = config
   )(
     b = b,

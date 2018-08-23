@@ -6,4 +6,4 @@ RUN R -e 'install.packages("cellTree")'
 
 ADD . /code
 
-ENTRYPOINT cat /code/run.R | R --no-save
+ENTRYPOINT Rscript /code/run.R

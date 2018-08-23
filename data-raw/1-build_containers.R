@@ -51,15 +51,9 @@ out <- map(files, function(file) {
       }
 
       # if traj is indeed a trajectory, push the docker to dockerhub
-      if (method_id == "error" || dynwrap::is_wrapper_with_trajectory(traj)) {
-        message(method_id, ": OK! Pushing to docker")
-        processx::run("docker", args = c("push", docker_repo), echo = FALSE)
+      message(method_id, ": OK! Pushing to docker")
+      processx::run("docker", args = c("push", docker_repo), echo = FALSE)
 
-        data_frame(id = method_id, built = TRUE, example = TRUE)
-      } else {
-        message(method_id, ": ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR!")
-        stop("No trajectory found")
-      }
     }, error = function(e) {
       data_frame(id = method_id, built = TRUE, example = FALSE)
     })

@@ -20,4 +20,4 @@ ADD . /code
 # patch CALISTA so it can work in a docker
 RUN cd CALISTA; patch -p0 < /code/calista.patch; chmod +w -R .
 
-ENTRYPOINT cat /code/run.R | R --no-save
+ENTRYPOINT Rscript /code/run.R

@@ -45,7 +45,7 @@ ti_projected_monocle <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/projected_monocle@sha256:d39170cab97d6b1109f6cd24c6a068bfdcbb435a86438078f7180915d0d3fea1",
+    image = "dynverse/projected_monocle@sha256:ee00b057076123f42a7ea99a247be2b3ec4f71d08d27b996163ae26f8045f1e7",
     config = config
   )(
     reduction_method = reduction_method,

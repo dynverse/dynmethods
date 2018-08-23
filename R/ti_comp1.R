@@ -31,7 +31,7 @@ ti_comp1 <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/comp1@sha256:6231ffafe28586649b9d7cf205c96369a121d9ef270467b2777183e43e3b8237",
+    image = "dynverse/comp1@sha256:f1e406c5a977a66eb5bdcdced615ddf39f0d05b308aa01092f69d81db0eb8a0a",
     config = config
   )(
     dimred = dimred,

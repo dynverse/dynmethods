@@ -25,7 +25,7 @@ ti_error <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/error@sha256:235454970ca8d0429266d722ad42432c538645e0622caef7129bda62088fc057",
+    image = "dynverse/error@sha256:8a7fdbcb5378a007a66bb711554f213414fc4d482e9981082379f9a908a9957f",
     config = config
   )(
     dummy_param = dummy_param

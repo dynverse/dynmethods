@@ -30,7 +30,7 @@ ti_calista <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/calista@sha256:3b44c9e8a3a2b6028fa1b1820dccf7e25a252fba0132f3b1506507ddef10fc28",
+    image = "dynverse/calista@sha256:aea9579930563165817cf257b3f718724392357927132affad3ad97ed650e366",
     config = config
   )(
     runs = runs,

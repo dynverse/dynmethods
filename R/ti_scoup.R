@@ -52,7 +52,7 @@ ti_scoup <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/scoup@sha256:82fe3fa7984ae5d36ce2c007b191b2fc906ff64c7a61f7148657d7e0ab071a0c",
+    image = "dynverse/scoup@sha256:267159fbe83b1821d73a7be8e3dacce551783e0914edd69c1a798f8b12f93da3",
     config = config
   )(
     ndim = ndim,
