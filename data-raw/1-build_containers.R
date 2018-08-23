@@ -38,6 +38,12 @@ out <- map(files, function(file) {
       message(method_id, ": Generating example and params")
       source(paste0(folder, "/example.R"))
 
+      message(method_id, ": Testing par_set")
+      method <- dynwrap::create_ti_method_with_container(docker_repo)()
+      par_set <- method$par_set
+      design <- ParamHelpers::generateDesign(3, par_set, trafo = TRUE)
+      design <- ParamHelpers::generateDesignOfDefaults(par_set, trafo = TRUE)
+
       # run method on example, with possible parameters
       message(method_id, ": Executing method")
       if (method_id != "error") {
