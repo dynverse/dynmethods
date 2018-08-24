@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import json
 import pandas as pd
 from ouijaflow import ouija

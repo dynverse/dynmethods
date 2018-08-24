@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import wishbone
 import os
 import sys

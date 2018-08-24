@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 # force matplotlib backend, to avoid tkinter problems (through GPy)
 import matplotlib
 matplotlib.use('PS')

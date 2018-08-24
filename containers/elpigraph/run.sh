@@ -1,3 +1,5 @@
+#!/usr/bin/Rscript
+	
 library(jsonlite)
 library(dplyr)
 library(purrr)

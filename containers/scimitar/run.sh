@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 # to avoid singularity loading the home directory python libraries
 import sys
 sys.path = ['/usr/local/lib/python2.7', '/usr/local/lib/python2.7/site-packages', '/usr/local/lib/python2.7/lib-old', '/usr/local/lib/python2.7/lib-dynload']
