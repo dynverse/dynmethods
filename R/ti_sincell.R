@@ -114,6 +114,7 @@ ti_sincell <- function(
     pct_leaf_node_cutoff = 0.5,
     config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = repo_digests[["dynverse/sincell"]],
     config = config

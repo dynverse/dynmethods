@@ -24,6 +24,7 @@ ti_identity <- function(
     dummy_param = 0.5,
     config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = repo_digests[["dynverse/identity"]],
     config = config

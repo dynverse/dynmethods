@@ -38,6 +38,7 @@ ti_tscan <- function(
     modelNames = "VVV",
     config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = repo_digests[["dynverse/tscan"]],
     config = config

@@ -38,6 +38,7 @@ ti_scimitar <- function(
     max_iter = 3L,
     config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = repo_digests[["dynverse/scimitar"]],
     config = config

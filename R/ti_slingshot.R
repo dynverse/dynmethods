@@ -64,6 +64,7 @@ ti_slingshot <- function(
     shrink.method = "cosine",
     config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = repo_digests[["dynverse/slingshot"]],
     config = config

@@ -31,6 +31,7 @@ ti_matcher <- function(
     method = "linear",
     config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = repo_digests[["dynverse/matcher"]],
     config = config

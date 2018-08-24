@@ -45,6 +45,7 @@ ti_celltree_gibbs <- function(
     tolerance = 1e-05,
     config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = repo_digests[["dynverse/celltree_gibbs"]],
     config = config
