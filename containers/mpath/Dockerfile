@@ -8,4 +8,4 @@ RUN R -e 'devtools::install_github("dynverse/Mpath")'
 
 ADD . /code
 
-ENTRYPOINT Rscript /code/run.R
+ENTRYPOINT /code/run.sh

@@ -13,4 +13,4 @@ RUN pip install git+https://github.com/dimenwarper/scimitar
 RUN R -e "install.packages('corpcor', repos = 'http://cran.us.r-project.org')"
 
 ADD . /code
-ENTRYPOINT python /code/run.py
+ENTRYPOINT /code/run.sh

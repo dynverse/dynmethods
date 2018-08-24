@@ -6,4 +6,4 @@ RUN pip install Cython
 RUN pip install git+https://github.com/dynverse/pywishbone --upgrade --upgrade-strategy only-if-needed
 
 ADD . /code
-ENTRYPOINT python /code/run.py
+ENTRYPOINT /code/run.sh

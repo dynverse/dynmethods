@@ -4,4 +4,4 @@ RUN pip install pymatcher
 
 ADD . /code
 
-ENTRYPOINT python /code/run.py
+ENTRYPOINT /code/run.sh

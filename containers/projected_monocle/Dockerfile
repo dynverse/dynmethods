@@ -4,4 +4,4 @@ RUN R -e 'install.packages("monocle")'
 
 ADD . /code
 
-ENTRYPOINT Rscript /code/run.R
+ENTRYPOINT /code/run.sh

@@ -13,4 +13,4 @@ RUN git clone https://github.com/mzwiessele/topslam.git ; \
     python setup.py develop
 
 ADD . /code
-ENTRYPOINT python /code/run.py
+ENTRYPOINT /code/run.sh

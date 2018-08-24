@@ -10,4 +10,4 @@ RUN R -e 'install.packages("RaceID")'
 
 ADD . /code
 
-ENTRYPOINT Rscript /code/run.R
+ENTRYPOINT /code/run.sh

@@ -10,4 +10,4 @@ RUN R -e 'devtools::install_github("rcannood/RHmm")'
 
 ADD . /code
 
-ENTRYPOINT Rscript /code/run.R
+ENTRYPOINT /code/run.sh

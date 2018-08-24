@@ -4,4 +4,4 @@ RUN pip install git+https://github.com/kieranrcampbell/ouijaflow.git --upgrade -
 RUN pip install tensorflow==1.6 # temporary fix for edward https://github.com/blei-lab/edward/issues/882
 
 ADD . /code
-ENTRYPOINT python /code/run.py
+ENTRYPOINT /code/run.sh

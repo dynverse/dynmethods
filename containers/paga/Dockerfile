@@ -10,4 +10,4 @@ RUN pip install fa2
 
 ADD . /code
 
-ENTRYPOINT python /code/run.py
+ENTRYPOINT /code/run.sh

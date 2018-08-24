@@ -4,4 +4,4 @@ RUN R -e 'devtools::install_github("kieranrcampbell/mfa")'
 
 ADD . /code
 
-ENTRYPOINT Rscript /code/run.R
+ENTRYPOINT /code/run.sh

@@ -6,4 +6,4 @@ RUN R -e "devtools::install_git('https://git.embl.de/velten/STEMNET/')"
 
 ADD . /code
 
-ENTRYPOINT Rscript /code/run.R
+ENTRYPOINT /code/run.sh
