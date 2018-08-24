@@ -32,7 +32,7 @@ ti_matcher <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/matcher@sha256:f197087ebea87e4c453d7f44f6dfe3968adcc47edd2b3210ff8a5b1bc70adf95",
+    image = repo_digests[["dynverse/matcher"]],
     config = config
   )(
     quantiles = quantiles,

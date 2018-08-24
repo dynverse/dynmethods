@@ -41,7 +41,7 @@ ti_projected_gng <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/projected_gng@sha256:8bffb1a6c963cde2313cc0a2a912aed88cb0bf003768c08b029797e741de95c7",
+    image = repo_digests[["dynverse/projected_gng"]],
     config = config
   )(
     dimred = dimred,

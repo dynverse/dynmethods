@@ -50,7 +50,7 @@ ti_elpilinear <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/elpilinear@sha256:5dccf23279aff3ec2ecca03e5b4998b2040cc1ef200a3be96d4ba62452453e8b",
+    image = repo_digests[["dynverse/elpilinear"]],
     config = config
   )(
     topology = topology,

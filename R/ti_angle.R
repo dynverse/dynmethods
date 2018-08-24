@@ -27,7 +27,7 @@ ti_angle <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/angle@sha256:473e5453ee6a15775fb538206e6bea4ad9cd0203de02dd7a59a2c2b041b400a5",
+    image = repo_digests[["dynverse/angle"]],
     config = config
   )(
     dimred = dimred

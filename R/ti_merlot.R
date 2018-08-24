@@ -76,7 +76,7 @@ ti_merlot <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/merlot@sha256:745ecb038c3c0138bc76cdb50e23dea049f7ae675aa4c7868dfcbaefd41edc40",
+    image = repo_digests[["dynverse/merlot"]],
     config = config
   )(
     sigma = sigma,

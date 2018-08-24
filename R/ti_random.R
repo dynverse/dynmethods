@@ -25,7 +25,7 @@ ti_random <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/random@sha256:8258879411521c5e3a37424a9fd425ae1b86ef19d77a61d6e5f623c0c81c8dde",
+    image = repo_digests[["dynverse/random"]],
     config = config
   )(
     dummy_param = dummy_param

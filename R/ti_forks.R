@@ -55,7 +55,7 @@ ti_forks <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/forks@sha256:5c9117424def21d4bd4e09ef6e4449416ea70478b0a1d7a8677d04f070684f32",
+    image = repo_digests[["dynverse/forks"]],
     config = config
   )(
     norm_function = norm_function,

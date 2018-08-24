@@ -60,7 +60,7 @@ ti_celltrails <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/celltrails@sha256:1d7204849630acddf618ee4a191215778c7226b5ad0cde783b6aace7238faa7b",
+    image = repo_digests[["dynverse/celltrails"]],
     config = config
   )(
     threshold_dl = threshold_dl,

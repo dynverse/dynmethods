@@ -73,7 +73,7 @@ ti_slice <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/slice@sha256:be0336839f496876b9a013d6af66c5bd508fa405c88e3abc7c933ccfeabe5a2f",
+    image = repo_digests[["dynverse/slice"]],
     config = config
   )(
     lm.method = lm.method,

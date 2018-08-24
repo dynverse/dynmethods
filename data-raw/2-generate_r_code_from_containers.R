@@ -4,18 +4,33 @@ library(furrr)
 
 source("data-raw/2a-helper_functions.R")
 
-# here we do some metaprogramming to generate the ti_{method} functions
-# use all the dynmethods containers, but surely containers from other sources could be added as well
-containers <- c(
-  list.files("containers", pattern = "definition.yml", recursive = TRUE, full.names = TRUE) %>%
-    map_chr(~ yaml::read_yaml(.)$docker_repository)
-)
+files <- list.files("containers", pattern = "definition.yml", recursive = TRUE, full.names = TRUE)
 
 # iterate over the containers and generate R scripts for each of them
-map(containers, function(x) {
-  cat(x, "\n", sep = "")
-  generate_file_from_container(x)
-})
+definitions <-
+  map(files, function(file) {
+    cat(file, "\n", sep = "")
+
+    # read the docker repository
+    repo <- yaml::read_yaml(file)$docker_repository
+
+    # fetch definition /with/ digests
+    definition <- dynwrap:::.container_get_definition(repo)
+
+    # generate file from definition
+    generate_file_from_container(definition)
+
+    # return the definition
+    definition
+  })
+methods <- dynutils::list_as_tibble(definitions)
+repo_digests <- methods %>%
+  select(docker_repository, repo_digests) %>%
+  mutate(repo_digests = map_chr(repo_digests, first)) %>%
+  deframe()
+
+devtools::use_data(methods, overwrite = TRUE)
+devtools::use_data(repo_digests, overwrite = TRUE)
 
 # don't forget to regenerate the documentation
 devtools::document()

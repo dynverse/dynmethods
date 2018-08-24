@@ -25,7 +25,7 @@ ti_identity <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/identity@sha256:f4f4f050cd81502c7eb1deadf41c1cdd80867e979928a938e579ebc804ac552b",
+    image = repo_digests[["dynverse/identity"]],
     config = config
   )(
     dummy_param = dummy_param

@@ -39,7 +39,7 @@ ti_scimitar <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/scimitar@sha256:844a2caed006724edf54f4001d11f2b4d7ab89f0046f21cee97e9f633ed8a680",
+    image = repo_digests[["dynverse/scimitar"]],
     config = config
   )(
     covariance_type = covariance_type,

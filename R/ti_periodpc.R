@@ -26,7 +26,7 @@ ti_periodpc <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/periodpc@sha256:214c0621e2b4d412c1ab32da494c81e7dcfbab36af82c34625f2b7b1c15ae71e",
+    image = repo_digests[["dynverse/periodpc"]],
     config = config
   )(
     ndim = ndim,

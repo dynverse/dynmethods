@@ -47,7 +47,7 @@ ti_wishbone <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/wishbone@sha256:28aa2af53af951a7511d383ab8e4ffb8fa6d988ca9701d9b295f73e983e23994",
+    image = repo_digests[["dynverse/wishbone"]],
     config = config
   )(
     normalise = normalise,

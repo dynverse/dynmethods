@@ -47,7 +47,7 @@ ti_monocle_ddrtree <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/monocle_ddrtree@sha256:e25c35fcb61d8f26b80f897855d0ca08d6d1ff37a15404289f4fa3856bd4707d",
+    image = repo_digests[["dynverse/monocle_ddrtree"]],
     config = config
   )(
     reduction_method = reduction_method,

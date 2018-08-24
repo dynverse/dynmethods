@@ -100,7 +100,7 @@ ti_urd <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/urd@sha256:9a935deca292bdc7044acfd1cd7664dcbaf79fa18e6dd4fdd56347a4ec716498",
+    image = repo_digests[["dynverse/urd"]],
     config = config
   )(
     knn = knn,

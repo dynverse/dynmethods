@@ -70,7 +70,7 @@ ti_cellrouter <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/cellrouter@sha256:1d9f6aba7fc927c5876820fee731f0f0cdfd0a77790c32d7a61747c9e72bfed0",
+    image = repo_digests[["dynverse/cellrouter"]],
     config = config
   )(
     ndim_pca = ndim_pca,

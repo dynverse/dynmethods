@@ -50,7 +50,7 @@ ti_elpigraph <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/elpigraph@sha256:32b3fc36bc98bdb833fe0bfa9468c9a867c4edcdca6fdf9891293bc82b928963",
+    image = repo_digests[["dynverse/elpigraph"]],
     config = config
   )(
     topology = topology,

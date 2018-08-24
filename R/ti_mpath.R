@@ -51,7 +51,7 @@ ti_mpath <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/mpath@sha256:7f21b7f77072ed3d64d67b70eef7aee76a95d3a224f952b3da7ddf9aed483634",
+    image = repo_digests[["dynverse/mpath"]],
     config = config
   )(
     distMethod = distMethod,

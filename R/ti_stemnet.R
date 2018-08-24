@@ -38,7 +38,7 @@ ti_stemnet <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/stemnet@sha256:09e82ff5c4b6a482af20ba355170d27523fa52056b08fad1f0ca193b5c199f6b",
+    image = repo_digests[["dynverse/stemnet"]],
     config = config
   )(
     alpha = alpha,

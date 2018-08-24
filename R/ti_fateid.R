@@ -78,7 +78,7 @@ ti_fateid <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/fateid@sha256:8612d4322eef3d58f56483c5f5e3528a22e3a930b7e867dd2283de2994afa35a",
+    image = repo_digests[["dynverse/fateid"]],
     config = config
   )(
     reclassify = reclassify,

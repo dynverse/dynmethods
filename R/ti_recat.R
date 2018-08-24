@@ -57,7 +57,7 @@ ti_recat <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/recat@sha256:0943a5511f8c1c5f8c9aea94ecd653627b722aace5a899ad7958b82831a963d4",
+    image = repo_digests[["dynverse/recat"]],
     config = config
   )(
     TSPFold = TSPFold,

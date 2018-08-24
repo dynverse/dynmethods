@@ -114,7 +114,7 @@ ti_raceid_stemid <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/raceid_stemid@sha256:f9ab6d16bd21be2d6189629fb557e6d7ce3e9c72cc7abe720f86b0d82965716b",
+    image = repo_digests[["dynverse/raceid_stemid"]],
     config = config
   )(
     knn = knn,

@@ -33,7 +33,7 @@ ti_slicer <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/slicer@sha256:90e06a7d2a7d5b5a2af6273b89904e5d3db2316dec18415cd4cc99b290a704df",
+    image = repo_digests[["dynverse/slicer"]],
     config = config
   )(
     kmin = kmin,

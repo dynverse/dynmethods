@@ -39,7 +39,7 @@ ti_projected_paga <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/projected_paga@sha256:3337827c87d92ca56ac1d633c18a94ab5dcd5bc0703f99d094359602256b6304",
+    image = repo_digests[["dynverse/projected_paga"]],
     config = config
   )(
     n_neighbors = n_neighbors,

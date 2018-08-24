@@ -82,7 +82,7 @@ ti_embeddr <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/embeddr@sha256:874bb5a05ee0c5b1b43b53f16653f84f3adad1eefbe15c2865b768959a10b489",
+    image = repo_digests[["dynverse/embeddr"]],
     config = config
   )(
     ndim = ndim,

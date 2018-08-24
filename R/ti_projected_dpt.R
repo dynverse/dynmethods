@@ -53,7 +53,7 @@ ti_projected_dpt <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/projected_dpt@sha256:9462af6698a7a9c6eaf5ae521a8f97861c6eb117ec03e9ffecd4456b956a9ce2",
+    image = repo_digests[["dynverse/projected_dpt"]],
     config = config
   )(
     sigma = sigma,

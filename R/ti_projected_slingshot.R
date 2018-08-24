@@ -63,7 +63,7 @@ ti_projected_slingshot <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/projected_slingshot@sha256:83f1bb8507301d728090ffc8e5f41d6ec55dcdfe1f175bd886291f4b8aa5d8ca",
+    image = repo_digests[["dynverse/projected_slingshot"]],
     config = config
   )(
     shrink = shrink,

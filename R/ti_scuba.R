@@ -45,7 +45,7 @@ ti_scuba <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/scuba@sha256:190e14fa49d11de2233e100619e1f2436d28a3ef095b86a0ef364baf8b59d173",
+    image = repo_digests[["dynverse/scuba"]],
     config = config
   )(
     rigorous_gap_stats = rigorous_gap_stats,

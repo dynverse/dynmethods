@@ -36,7 +36,7 @@ ti_projected_tscan <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/projected_tscan@sha256:ef776409c2133b02354a39f43ca4200489f638d73f3c4099afcbd8f6c35b5ab7",
+    image = repo_digests[["dynverse/projected_tscan"]],
     config = config
   )(
     minexpr_percent = minexpr_percent,

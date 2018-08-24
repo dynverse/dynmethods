@@ -32,7 +32,7 @@ ti_pcreode <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/pcreode@sha256:b913dc8f7eec1996090a6d694229cd6bc8944b90c3363bde91bff1106a96fad3",
+    image = repo_digests[["dynverse/pcreode"]],
     config = config
   )(
     n_pca_components = n_pca_components,

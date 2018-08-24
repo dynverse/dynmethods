@@ -45,7 +45,7 @@ ti_wanderlust <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/wanderlust@sha256:e44af50392912862efdbbed8910ab4348febbe7d3cf9034a084fd89bfda40d08",
+    image = repo_digests[["dynverse/wanderlust"]],
     config = config
   )(
     normalise = normalise,

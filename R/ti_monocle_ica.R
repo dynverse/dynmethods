@@ -42,7 +42,7 @@ ti_monocle_ica <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/monocle_ica@sha256:ba611628b903f3b0b1814160132a11ac57ad4049a976615a47e143a15f510399",
+    image = repo_digests[["dynverse/monocle_ica"]],
     config = config
   )(
     reduction_method = reduction_method,

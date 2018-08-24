@@ -56,7 +56,7 @@ ti_dpt <- function(
     config = dynwrap::container_config()
 ) {
   create_ti_method_with_container(
-    image = "dynverse/dpt@sha256:310e43fc219ea3d9e2f0812d4a9f119de6c57e8c2589b7d49e525dde6d1bfd99",
+    image = repo_digests[["dynverse/dpt"]],
     config = config
   )(
     sigma = sigma,

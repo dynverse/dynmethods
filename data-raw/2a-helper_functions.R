@@ -1,5 +1,5 @@
-generate_file_from_container <- function(container) {
-  definition <- dynwrap:::.container_get_definition(container)
+generate_file_from_container <- function(definition) {
+  definition
 
   file_text <- paste0(
     # header
@@ -69,7 +69,7 @@ generate_function_from_definition <- function(definition) {
     parameters, "\n",
     ") {\n",
     "  create_ti_method_with_container(\n",
-    "    image = \"", definition$repo_digests[[1]], "\",\n",
+    "    image = repo_digests[[\"", definition$docker_repository, "\"]],\n",
     "    config = config\n",
     "  )(\n",
     args, "\n",
