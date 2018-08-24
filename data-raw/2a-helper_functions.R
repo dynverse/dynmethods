@@ -68,6 +68,7 @@ generate_function_from_definition <- function(definition) {
     "ti_", definition$id, " <- function(\n",
     parameters, "\n",
     ") {\n",
+    "  data(repo_digests, package = \"dynmethods\")\n",
     "  create_ti_method_with_container(\n",
     "    image = repo_digests[[\"", definition$docker_repository, "\"]],\n",
     "    config = config\n",
