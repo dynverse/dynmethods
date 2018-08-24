@@ -11,7 +11,7 @@ unlink(log_dir, recursive = TRUE)
 dir.create(log_dir)
 
 # rebuild all dockers in the 'containers' folder
-out <- map(files, function(file) {
+out <- furrr::future_map(files, function(file) {
   folder <- stringr::str_replace(file, "/definition.yml$", "")
 
   definition <- yaml::read_yaml(file)
