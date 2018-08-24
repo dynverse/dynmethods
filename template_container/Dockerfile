@@ -9,7 +9,7 @@ RUN R -e 'devtools::install_github("dynverse/template")'
 FROM library/python
 RUN pip install library1 library2
 
+# Both
 ADD . /code
 
-ENTRYPOINT Rscript /code/run.R
-ENTRYPOINT python /code/run.py
+ENTRYPOINT /code/run.sh
