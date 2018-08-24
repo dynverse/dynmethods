@@ -10,7 +10,7 @@ RUN pip install git+https://github.com/dimenwarper/pyroconductor
 RUN pip install git+https://github.com/dimenwarper/scimitar
 
 # install R dependencies
-RUN R -e "devtools::install_cran('corpcor', repos = 'http://cran.us.r-project.org')"
+RUN R -e "install.packages('corpcor', repos = 'http://cran.us.r-project.org')"
 
 ADD . /code
 ENTRYPOINT /code/run.sh
