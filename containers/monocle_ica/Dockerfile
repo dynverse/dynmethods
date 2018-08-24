@@ -1,6 +1,6 @@
 FROM dynverse/dynwrap:bioc
 
-RUN R -e 'install.packages("monocle")'
+RUN R -e 'devtools::install_cran("monocle")'
 
 ADD . /code
 

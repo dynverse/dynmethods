@@ -1,6 +1,6 @@
 FROM dynverse/dynwrap:bioc
 
-RUN R -e 'install.packages("sincell")'
+RUN R -e 'devtools::install_cran("sincell")'
 
 ADD . /code
 

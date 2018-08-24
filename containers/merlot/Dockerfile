@@ -1,6 +1,6 @@
 FROM dynverse/dynwrap:bioc
 
-RUN R -e 'install.packages("destiny")'
+RUN R -e 'devtools::install_cran("destiny")'
 
 # install rgl dependencies
 RUN apt-get update
@@ -14,7 +14,7 @@ RUN pip3 install git+https://github.com/soedinglab/csgraph_mod
 
 # install udunits (for elpigraph)
 RUN apt-get -y install libudunits2-dev
-RUN Rscript -e 'install.packages("udunits2", configure.args =  c(udunits2 = "--with-udunits2-include=/usr/include/udunits2"))'
+RUN Rscript -e 'devtools::install_cran("udunits2", configure.args =  c(udunits2 = "--with-udunits2-include=/usr/include/udunits2"))'
 
 # install merlot
 RUN R -e "devtools::install_github('soedinglab/merlot')"

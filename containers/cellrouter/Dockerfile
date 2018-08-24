@@ -4,7 +4,7 @@ FROM dynverse/dynwrap:bioc
 RUN R -e " \
 list.of.packages <- c('reshape','reshape2','pheatmap','tsne','igraph','ggplot2','mclust','grid','Rtsne','cccd', 'irlba'); \
 new.packages <- list.of.packages[!(list.of.packages %in% rownames(installed.packages()))]; \
-if(length(new.packages)) install.packages(new.packages); \
+if(length(new.packages)) devtools::install_cran(new.packages); \
 "
 
 # get lib
@@ -15,7 +15,7 @@ RUN apt-get update
 RUN apt-get install -y default-jre
 
 # install feather
-RUN R -e "install.packages('feather')"
+RUN R -e "devtools::install_cran('feather')"
 
 ADD . /code
 ENTRYPOINT /code/run.sh

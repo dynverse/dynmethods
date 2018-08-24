@@ -2,7 +2,7 @@
 FROM rocker/tidyverse
 
 RUN echo 'utils::setRepositories(ind=1:4)' > ~/.Rprofile
-RUN R -e 'install.packages("template")'
+RUN R -e 'devtools::install_cran("template")'
 RUN R -e 'devtools::install_github("dynverse/template")'
 
 # Python

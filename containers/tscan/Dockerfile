@@ -1,6 +1,6 @@
 FROM dynverse/dynwrap:bioc
 
-RUN R -e 'install.packages("TSCAN")'
+RUN R -e 'devtools::install_cran("TSCAN")'
 
 ADD . /code
 

@@ -30,7 +30,7 @@ out <- map(files, function(file) {
 
   new_digest <- tryCatch(dynwrap:::.container_get_digests(docker_repo, "docker")$digest, error = function(e) NA)
 
-  if (!identical(new_digest, digest)) {
+  # if (!identical(new_digest, digest)) {
     tryCatch({
       message(method_id, ": New version found; testing method")
 
@@ -57,9 +57,9 @@ out <- map(files, function(file) {
     }, error = function(e) {
       data_frame(id = method_id, built = TRUE, example = FALSE)
     })
-  } else {
-    message(method_id, ": No changes detected")
-  }
+  # } else {
+  #   message(method_id, ": No changes detected")
+  # }
 
   message(method_id, ": Finished ")
 })

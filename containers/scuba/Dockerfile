@@ -11,7 +11,7 @@ RUN pip install git+https://github.com/dynverse/PySCUBA.git # first install with
 RUN pip install git+https://github.com/dynverse/PySCUBA.git --upgrade --no-dependencies --no-cache-dir -U # now upgrade PySCUBA
 
 # install legacy princurve for now
-RUN R -e 'install.packages("devtools", repos = "http://cran.us.r-project.org")'
+RUN R -e 'devtools::install_cran("devtools", repos = "http://cran.us.r-project.org")'
 RUN R -e 'devtools::install_github("dynverse/princurve@69b85ad4709b15e5b40f8541f4b5e2ca9059be3a")'
 
 ADD . /code

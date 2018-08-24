@@ -1,6 +1,6 @@
 FROM dynverse/dynwrap:r
 
-RUN R -e 'install.packages("SLICER")'
+RUN R -e 'devtools::install_cran("SLICER")'
 
 ADD . /code
 
