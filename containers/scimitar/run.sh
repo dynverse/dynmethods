@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/bin/python
 
 # to avoid singularity loading the home directory python libraries
 import sys
