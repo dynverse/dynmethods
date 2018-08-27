@@ -5,7 +5,8 @@
 \title{Inferring a trajectory inference using Projected GNG}
 \usage{
 ti_projected_gng(dimred = "pca", ndim = 5L, max_iter = 15000,
-  max_nodes = 8L, apply_mst = TRUE, container_type = NULL)
+  max_nodes = 8L, apply_mst = TRUE,
+  config = dynwrap::container_config())
 }
 \arguments{
 \item{dimred}{discrete; Which dimensionality reduction method to use. (default:
@@ -25,8 +26,7 @@ from \code{2L} to \code{30L})}
 \item{apply_mst}{logical; If true, an MST post-processing of the GNG is
 performed.}
 
-\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
-By default, docker will be used.}
+\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

@@ -23,11 +23,12 @@
 #' @export
 ti_ouijaflow <- function(
     iter = 1000L,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/ouijaflow@sha256:77eae9fbbf19a606fae0ca01e2f0608775da4b555e11cf42e33223e4c8f2515f",
-    container_type = container_type
+    image = repo_digests[["dynverse/ouijaflow"]],
+    config = config
   )(
     iter = iter
   )

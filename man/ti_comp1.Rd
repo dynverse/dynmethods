@@ -5,7 +5,7 @@
 \title{Inferring a trajectory inference using Component 1}
 \usage{
 ti_comp1(dimred = "pca", ndim = 2, component = 1,
-  container_type = NULL)
+  config = dynwrap::container_config())
 }
 \arguments{
 \item{dimred}{discrete; Which dimensionality reduction method to use. (default:
@@ -17,8 +17,7 @@ ti_comp1(dimred = "pca", ndim = 2, component = 1,
 
 \item{component}{integer; (default: \code{1}; range: from \code{1} to \code{10})}
 
-\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
-By default, docker will be used.}
+\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

@@ -5,7 +5,8 @@
 \title{Inferring a trajectory inference using Projected PAGA}
 \usage{
 ti_projected_paga(n_neighbors = 15L, n_comps = 50L, n_dcs = 15L,
-  resolution = 1L, embedding_type = "fa", container_type = NULL)
+  resolution = 1L, embedding_type = "fa",
+  config = dynwrap::container_config())
 }
 \arguments{
 \item{n_neighbors}{integer; Number of neighbours for knn (default: \code{15L};
@@ -25,8 +26,7 @@ the granularity of the clustering. Higher values will result in more clusters.
 for very large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for
 small datasets). (default: \code{"fa"}; values: {\code{"umap"}, \code{"fa"}})}
 
-\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
-By default, docker will be used.}
+\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

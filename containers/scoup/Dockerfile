@@ -4,4 +4,4 @@ RUN git clone https://github.com/hmatsu1226/SCOUP.git && cd SCOUP && make all
 
 ADD . /code
 
-ENTRYPOINT cat /code/run.R | R --no-save
+ENTRYPOINT /code/run.sh

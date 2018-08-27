@@ -6,4 +6,4 @@ RUN pip install hdbscan
 RUN git clone https://github.com/macsharma/FORKS.git
 
 ADD . /code
-ENTRYPOINT python /code/run.py
+ENTRYPOINT /code/run.sh

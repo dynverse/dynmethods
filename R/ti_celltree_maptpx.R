@@ -45,11 +45,12 @@ ti_celltree_maptpx <- function(
     num_topics_upper = 15,
     tot_iter = 1e+06,
     tolerance = 0.05,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/celltree_maptpx@sha256:9e60d6969db4590f36626068406a106f01b51b6fcfe213caeb341ea64152ebae",
-    container_type = container_type
+    image = repo_digests[["dynverse/celltree_maptpx"]],
+    config = config
   )(
     method = method,
     sd_filter = sd_filter,

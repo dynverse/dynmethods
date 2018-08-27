@@ -43,11 +43,12 @@ ti_celltree_gibbs <- function(
     num_topics = 4,
     tot_iter = 200L,
     tolerance = 1e-05,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/celltree_gibbs@sha256:53794aa6205d1502bd36cabe1562516775cbef49da4043f5c75a02d5b9b56bbf",
-    container_type = container_type
+    image = repo_digests[["dynverse/celltree_gibbs"]],
+    config = config
   )(
     method = method,
     sd_filter = sd_filter,

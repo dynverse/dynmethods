@@ -40,11 +40,12 @@ ti_paga <- function(
     n_dcs = 15L,
     resolution = 1L,
     embedding_type = "fa",
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/paga@sha256:c1974c81770b3ce54984ff4a8536be90e87d5cf0b690342c00943c5e094b3ebb",
-    container_type = container_type
+    image = repo_digests[["dynverse/paga"]],
+    config = config
   )(
     n_neighbors = n_neighbors,
     n_comps = n_comps,

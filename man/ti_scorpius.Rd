@@ -6,7 +6,8 @@
 \usage{
 ti_scorpius(distance_method = "spearman", ndim = 3L, k = 4L,
   thresh = 0.001, maxit = 10L, stretch = 0,
-  smoother = "smooth_spline", sparse = TRUE, container_type = NULL)
+  smoother = "smooth_spline", sparse = TRUE,
+  config = dynwrap::container_config())
 }
 \arguments{
 \item{distance_method}{discrete; A character string indicating which
@@ -38,8 +39,7 @@ choice of smoother (default: \code{"smooth_spline"}; values: {\code{"smooth_spli
 \item{sparse}{logical; Whether or not to use sparse MDS dimensionality
 reduction,for datasets with large amounts of cells.}
 
-\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
-By default, docker will be used.}
+\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

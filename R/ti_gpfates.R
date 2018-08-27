@@ -36,11 +36,12 @@ ti_gpfates <- function(
     log_expression_cutoff = 0.5,
     min_cells_expression_cutoff = 0L,
     ndim = 2L,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/gpfates@sha256:1ba7fcb69fbf09182d7a3a5c5a342709245450b338a4606fc16f1d4f66a3bdf4",
-    container_type = container_type
+    image = repo_digests[["dynverse/gpfates"]],
+    config = config
   )(
     log_expression_cutoff = log_expression_cutoff,
     min_cells_expression_cutoff = min_cells_expression_cutoff,

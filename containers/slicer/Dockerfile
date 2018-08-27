@@ -1,7 +1,7 @@
 FROM dynverse/dynwrap:r
 
-RUN R -e 'install.packages("SLICER")'
+RUN R -e 'devtools::install_cran("SLICER")'
 
 ADD . /code
 
-ENTRYPOINT cat /code/run.R | R --no-save
+ENTRYPOINT /code/run.sh

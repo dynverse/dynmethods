@@ -4,18 +4,15 @@
 \alias{ti_pcreode}
 \title{Inferring a trajectory inference using pCreode}
 \usage{
-ti_pcreode(n_pca_components = 3L, noise = 8L, num_runs = 10L,
-  container_type = NULL)
+ti_pcreode(n_pca_components = 3L, num_runs = 10L,
+  config = dynwrap::container_config())
 }
 \arguments{
 \item{n_pca_components}{integer; (default: \code{3L}; range: from \code{2L} to \code{10L})}
 
-\item{noise}{numeric; (default: \code{8L}; range: from \code{1L} to \code{20L})}
-
 \item{num_runs}{integer; (default: \code{10L}; range: from \code{10L} to \code{100L})}
 
-\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
-By default, docker will be used.}
+\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

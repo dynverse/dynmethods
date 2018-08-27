@@ -37,11 +37,12 @@ ti_ouija <- function(
     response_type = "switch",
     inference_type = "hmc",
     normalise_expression = TRUE,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/ouija@sha256:3ebf85819e1a1d36f1eb41c28d005f89c733c5c48be0b63dcdd856c615d63c2d",
-    container_type = container_type
+    image = repo_digests[["dynverse/ouija"]],
+    config = config
   )(
     iter = iter,
     response_type = response_type,

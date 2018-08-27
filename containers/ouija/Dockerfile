@@ -1,9 +1,9 @@
 FROM dynverse/dynwrap:r
 
 RUN R -e 'devtools::install_github("kieranrcampbell/ouija")'
-RUN R -e 'install.packages("rstan")'
-RUN R -e 'install.packages("coda")'
+RUN R -e 'devtools::install_cran("rstan")'
+RUN R -e 'devtools::install_cran("coda")'
 
 ADD . /code
 
-ENTRYPOINT cat /code/run.R | R --no-save
+ENTRYPOINT /code/run.sh

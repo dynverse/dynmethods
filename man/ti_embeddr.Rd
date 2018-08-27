@@ -7,7 +7,7 @@
 ti_embeddr(ndim = 2L, kernel = "nn", metric = "correlation",
   nn_pct = 0, eps = 0, t = 0, symmetrize = "mean",
   measure_type = "unorm", thresh = 0.001, maxit = 10L, stretch = 2,
-  smoother = "smooth.spline", container_type = NULL)
+  smoother = "smooth.spline", config = dynwrap::container_config())
 }
 \arguments{
 \item{ndim}{integer; Dimension of the embedded space, default is 2 (default:
@@ -67,8 +67,7 @@ you may want to use \code{iter = 0} with \code{lowess()}. (default:
 \code{"smooth.spline"}; values: {\code{"smooth.spline"}, \code{"lowess"},
 \code{"periodic.lowess"}})}
 
-\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
-By default, docker will be used.}
+\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

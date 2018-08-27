@@ -70,11 +70,12 @@ ti_slice <- function(
     k.max = 10L,
     B = 100L,
     k.opt.method = "firstmax",
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/slice@sha256:86a89c1322149be852529fc03c0c9324bcddd5fc3d0bc19ac055b12e001d2a5f",
-    container_type = container_type
+    image = repo_digests[["dynverse/slice"]],
+    config = config
   )(
     lm.method = lm.method,
     model.type = model.type,

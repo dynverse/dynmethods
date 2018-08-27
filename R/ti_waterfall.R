@@ -26,11 +26,12 @@
 #' @export
 ti_waterfall <- function(
     num_clusters = 10,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/waterfall@sha256:d30fbb548efa884473c01bc45b2a49b8d8288cea10f5fa777270c1845123e4a7",
-    container_type = container_type
+    image = repo_digests[["dynverse/waterfall"]],
+    config = config
   )(
     num_clusters = num_clusters
   )

@@ -6,7 +6,7 @@
 \usage{
 ti_wishbone(normalise = TRUE, knn = 25L, n_diffusion_components = 3L,
   n_pca_components = 30L, k = 25L, num_waypoints = 250L,
-  epsilon = 1L, branch = TRUE, container_type = NULL)
+  epsilon = 1L, branch = TRUE, config = dynwrap::container_config())
 }
 \arguments{
 \item{normalise}{logical;}
@@ -30,8 +30,7 @@ range: from \code{15L} to \code{100L})}
 \item{branch}{logical; Whether to allow a single bifurcation within the
 trajectory (wishbone versus wanderlust)}
 
-\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
-By default, docker will be used.}
+\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

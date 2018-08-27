@@ -4,10 +4,10 @@ RUN wget http://www.cell.com/cms/attachment/2038326541/2052521637/mmc9.zip && un
 
 RUN apt-get install -y libcgal-dev libglu1-mesa-dev libglu1-mesa-dev
 
-RUN R -e 'install.packages(c("matrixStats", "rgl", "pheatmap", "limma", "MASS", "ape", "RColorBrewer"))'
+RUN R -e 'devtools::install_cran(c("matrixStats", "rgl", "pheatmap", "limma", "MASS", "ape", "RColorBrewer"))'
 
 RUN R -e 'devtools::install_github("rcannood/RHmm")'
 
 ADD . /code
 
-ENTRYPOINT cat /code/run.R | R --no-save
+ENTRYPOINT /code/run.sh

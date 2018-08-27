@@ -6,7 +6,8 @@
 \usage{
 ti_monocle_ica(reduction_method = "ICA", max_components = 2L,
   norm_method = "log", filter_features = TRUE,
-  filter_features_mean_expression = 0.1, container_type = NULL)
+  filter_features_mean_expression = 0.1,
+  config = dynwrap::container_config())
 }
 \arguments{
 \item{reduction_method}{discrete; A character string specifying the algorithm
@@ -25,8 +26,7 @@ prior to reducing dimensionality (default: \code{"log"}; values: {\code{"vstExpr
 expression, only used when \code{filter_features} is set to TRUE (default: \code{0.1};
 range: from \code{0L} to \code{10L})}
 
-\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
-By default, docker will be used.}
+\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

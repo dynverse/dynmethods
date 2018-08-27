@@ -158,7 +158,6 @@ parameters:
     lower: 0.0
     upper: 1.0
     description: Score threshold for links to be shown in the graph.
-  forbidden: thr_lower > thr_upper
 input:
   format: rds
   required: counts

@@ -1,7 +1,7 @@
 FROM dynverse/dynwrap:r
 
-RUN R -e 'install.packages("princurve")'
+RUN R -e 'devtools::install_cran("princurve")'
 
 ADD . /code
 
-ENTRYPOINT cat /code/run.R | R --no-save
+ENTRYPOINT /code/run.sh

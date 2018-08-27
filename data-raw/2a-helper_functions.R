@@ -1,5 +1,5 @@
-generate_file_from_container <- function(container) {
-  definition <- dynwrap:::.container_get_definition(container, container_type = "docker", singularity_images_folder = "")
+generate_file_from_container <- function(definition) {
+  definition
 
   file_text <- paste0(
     # header
@@ -56,7 +56,7 @@ generate_function_from_definition <- function(definition) {
       deparse(definition$parameters[[pid]]$default, width.cutoff = 500)
     )
   }) %>%
-    c(., "container_type = NULL") %>%
+    c(., "config = dynwrap::container_config()") %>%
     paste0("    ", ., collapse = ",\n")
 
   # generate code for passing the default parameters to create_ti_method
@@ -68,9 +68,10 @@ generate_function_from_definition <- function(definition) {
     "ti_", definition$id, " <- function(\n",
     parameters, "\n",
     ") {\n",
+    "  data(repo_digests, package = \"dynmethods\")\n",
     "  create_ti_method_with_container(\n",
-    "    image = \"", definition$remote_digests[[1]], "\",\n",
-    "    container_type = container_type\n",
+    "    image = repo_digests[[\"", definition$docker_repository, "\"]],\n",
+    "    config = config\n",
     "  )(\n",
     args, "\n",
     "  )\n",

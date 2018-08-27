@@ -42,11 +42,12 @@ ti_wanderlust <- function(
     k = 25L,
     num_waypoints = 250L,
     epsilon = 1L,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/wanderlust@sha256:e44af50392912862efdbbed8910ab4348febbe7d3cf9034a084fd89bfda40d08",
-    container_type = container_type
+    image = repo_digests[["dynverse/wanderlust"]],
+    config = config
   )(
     normalise = normalise,
     knn = knn,

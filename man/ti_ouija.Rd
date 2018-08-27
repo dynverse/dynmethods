@@ -6,7 +6,7 @@
 \usage{
 ti_ouija(iter = 100L, response_type = "switch",
   inference_type = "hmc", normalise_expression = TRUE,
-  container_type = NULL)
+  config = dynwrap::container_config())
 }
 \arguments{
 \item{iter}{numeric; Number of iterations (default: \code{100L}; range: from \code{10L}
@@ -25,8 +25,7 @@ magnitude faster. (default: \code{"hmc"}; values: {\code{"hmc"}, \code{"vb"}})}
 pre-normalisedso the average peak expression is approximately 1. This makes the
 strength parametersapproximately comparable between genes.}
 
-\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
-By default, docker will be used.}
+\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

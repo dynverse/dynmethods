@@ -27,11 +27,12 @@
 ti_calista <- function(
     runs = 50L,
     max_iter = 100L,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/calista@sha256:3b44c9e8a3a2b6028fa1b1820dccf7e25a252fba0132f3b1506507ddef10fc28",
-    container_type = container_type
+    image = repo_digests[["dynverse/calista"]],
+    config = config
   )(
     runs = runs,
     max_iter = max_iter

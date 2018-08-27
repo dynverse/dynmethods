@@ -7,7 +7,7 @@
 ti_elpilinear(topology = "linear", NumNodes = 50L,
   NumEdges = 100000L, InitNodes = 2L, Mu = 0.1, Lambda = 0.01,
   MaxNumberOfIterations = 10L, eps = 0.01, CenterData = FALSE,
-  container_type = NULL)
+  config = dynwrap::container_config())
 }
 \arguments{
 \item{topology}{discrete; The kind of topology to detect (default: \code{"linear"};
@@ -36,8 +36,7 @@ stop embedment (default: \code{0.01}; range: from \code{0.001} to \code{1L})}
 
 \item{CenterData}{logical; Should data and initial node positions be centered?}
 
-\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
-By default, docker will be used.}
+\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

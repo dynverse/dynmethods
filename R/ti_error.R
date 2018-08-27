@@ -22,11 +22,12 @@
 #' @export
 ti_error <- function(
     dummy_param = 0.5,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/error@sha256:235454970ca8d0429266d722ad42432c538645e0622caef7129bda62088fc057",
-    container_type = container_type
+    image = repo_digests[["dynverse/error"]],
+    config = config
   )(
     dummy_param = dummy_param
   )

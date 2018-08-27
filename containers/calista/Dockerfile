@@ -1,6 +1,6 @@
 FROM dynverse/dynwrap:bioc
 
-RUN R -e 'install.packages("destiny")'
+RUN R -e 'devtools::install_cran("destiny")'
 
 RUN git clone https://github.com/CABSEL/CALISTA.git; rm -rf CALISTA/.git; find CALISTA -type f \( -iname \*.zip -o -iname \*.csv -o -iname \*.txt \) -exec rm {} +
 
@@ -20,4 +20,4 @@ ADD . /code
 # patch CALISTA so it can work in a docker
 RUN cd CALISTA; patch -p0 < /code/calista.patch; chmod +w -R .
 
-ENTRYPOINT cat /code/run.R | R --no-save
+ENTRYPOINT /code/run.sh

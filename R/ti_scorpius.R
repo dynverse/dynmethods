@@ -52,11 +52,12 @@ ti_scorpius <- function(
     stretch = 0,
     smoother = "smooth_spline",
     sparse = TRUE,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/scorpius@sha256:c3b9a14fb5171a9796dd7781a9be46791fd7b6ba3858ea859d89f1748bcdb781",
-    container_type = container_type
+    image = repo_digests[["dynverse/scorpius"]],
+    config = config
   )(
     distance_method = distance_method,
     ndim = ndim,

@@ -4,7 +4,7 @@
 \alias{ti_slicer}
 \title{Inferring a trajectory inference using SLICER}
 \usage{
-ti_slicer(kmin = 10L, m = 2L, container_type = NULL)
+ti_slicer(kmin = 10L, m = 2L, config = dynwrap::container_config())
 }
 \arguments{
 \item{kmin}{integer; Smallest value of k to try (default: \code{10L}; range: from
@@ -14,8 +14,7 @@ ti_slicer(kmin = 10L, m = 2L, container_type = NULL)
 influences the visualisation of the results. The real intrinsic dimension will
 be calculated automaticly.  (default: \code{2L}; range: from \code{2L} to \code{20L})}
 
-\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
-By default, docker will be used.}
+\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

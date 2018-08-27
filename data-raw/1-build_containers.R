@@ -11,7 +11,7 @@ unlink(log_dir, recursive = TRUE)
 dir.create(log_dir)
 
 # rebuild all dockers in the 'containers' folder
-out <- map(files, function(file) {
+out <- furrr::future_map(files, function(file) {
   folder <- stringr::str_replace(file, "/definition.yml$", "")
 
   definition <- yaml::read_yaml(file)
@@ -38,6 +38,12 @@ out <- map(files, function(file) {
       message(method_id, ": Generating example and params")
       source(paste0(folder, "/example.R"))
 
+      message(method_id, ": Testing par_set")
+      method <- dynwrap::create_ti_method_with_container(docker_repo)()
+      par_set <- method$par_set
+      design <- ParamHelpers::generateDesign(3, par_set, trafo = TRUE)
+      design <- ParamHelpers::generateDesignOfDefaults(par_set, trafo = TRUE)
+
       # run method on example, with possible parameters
       message(method_id, ": Executing method")
       if (method_id != "error") {
@@ -45,15 +51,9 @@ out <- map(files, function(file) {
       }
 
       # if traj is indeed a trajectory, push the docker to dockerhub
-      if (method_id == "error" || dynwrap::is_wrapper_with_trajectory(traj)) {
-        message(method_id, ": OK! Pushing to docker")
-        processx::run("docker", args = c("push", docker_repo), echo = FALSE)
+      message(method_id, ": OK! Pushing to docker")
+      processx::run("docker", args = c("push", docker_repo), echo = FALSE)
 
-        data_frame(id = method_id, built = TRUE, example = TRUE)
-      } else {
-        message(method_id, ": ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR!")
-        stop("No trajectory found")
-      }
     }, error = function(e) {
       data_frame(id = method_id, built = TRUE, example = FALSE)
     })

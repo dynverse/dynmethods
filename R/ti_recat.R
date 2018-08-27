@@ -54,11 +54,12 @@ ti_recat <- function(
     base_cycle_range_end = 9,
     max_num = 300,
     clustMethod = "GMM",
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/recat@sha256:e6ff8565b097378bd7acd9d77dccea6e10c759faeb096de54073b9b845de26a5",
-    container_type = container_type
+    image = repo_digests[["dynverse/recat"]],
+    config = config
   )(
     TSPFold = TSPFold,
     beginNum = beginNum,

@@ -49,11 +49,12 @@ ti_scoup <- function(
     t_max = 2L,
     sigma_squared_min = 0.1,
     thresh = 0.01,
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/scoup@sha256:82fe3fa7984ae5d36ce2c007b191b2fc906ff64c7a61f7148657d7e0ab071a0c",
-    container_type = container_type
+    image = repo_digests[["dynverse/scoup"]],
+    config = config
   )(
     ndim = ndim,
     max_ite1 = max_ite1,

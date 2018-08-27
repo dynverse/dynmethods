@@ -16,4 +16,4 @@ RUN R -e 'devtools::install_github("dynverse/princurve@69b85ad4709b15e5b40f8541f
 
 ADD . /code
 
-ENTRYPOINT python /code/run.py
+ENTRYPOINT /code/run.sh

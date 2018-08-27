@@ -33,11 +33,12 @@ ti_projected_tscan <- function(
     clusternum_lower = 2L,
     clusternum_upper = 9L,
     modelNames = "VVV",
-    container_type = NULL
+    config = dynwrap::container_config()
 ) {
+  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/projected_tscan@sha256:e28d0a7716a74ae8543268351dcd659ec57f0ee248d45c4d84d435657d007394",
-    container_type = container_type
+    image = repo_digests[["dynverse/projected_tscan"]],
+    config = config
   )(
     minexpr_percent = minexpr_percent,
     minexpr_value = minexpr_value,

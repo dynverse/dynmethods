@@ -7,7 +7,8 @@
 ti_forks(norm_function = "median", norm_quantile = 75L,
   cum_sum_exp_var = 0.9, min_cluster = 4L, max_cluster = 10L,
   mapping_type = "Isomap", initialization = "kmeans",
-  iterMax = 1000L, eta = 0.01, C = 1L, container_type = NULL)
+  iterMax = 1000L, eta = 0.01, C = 1L,
+  config = dynwrap::container_config())
 }
 \arguments{
 \item{norm_function}{discrete; No description provided by the author. (default:
@@ -41,8 +42,7 @@ range: from \code{1e-04} to \code{100L})}
 \item{C}{numeric; No description provided by the author. (default: \code{1L}; range:
 from \code{1e-04} to \code{1000L})}
 
-\item{container_type}{In which environment to run the method, can be \code{"docker"} or \code{"singularity"}.
-By default, docker will be used.}
+\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with
