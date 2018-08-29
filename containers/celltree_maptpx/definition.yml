@@ -1,5 +1,5 @@
 id: celltree_maptpx
-docker_repository: dynverse/celltree_maptpx
+docker_repository: dynverse/dynmethods:celltree_maptpx
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/celltree_maptpx
 name: cellTree with maptpx
 type: algorithm

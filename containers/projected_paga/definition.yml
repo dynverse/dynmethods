@@ -1,5 +1,5 @@
 id: projected_paga
-docker_repository: dynverse/projected_paga
+docker_repository: dynverse/dynmethods:projected_paga
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/projected_paga
 name: Projected PAGA
 type: algorithm_test

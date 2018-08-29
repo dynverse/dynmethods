@@ -1,5 +1,5 @@
 id: embeddr
-docker_repository: dynverse/embeddr
+docker_repository: dynverse/dynmethods:embeddr
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/embeddr
 name: Embeddr
 type: algorithm

@@ -1,5 +1,5 @@
 id: scuba
-docker_repository: dynverse/scuba
+docker_repository: dynverse/dynmethods:scuba
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/scuba
 name: SCUBA
 type: algorithm

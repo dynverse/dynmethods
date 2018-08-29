@@ -1,5 +1,5 @@
 id: cellrouter
-docker_repository: dynverse/cellrouter
+docker_repository: dynverse/dynmethods:cellrouter
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/cellrouter
 name: CellRouter
 type: algorithm

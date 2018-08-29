@@ -1,5 +1,5 @@
 id: projected_monocle
-docker_repository: dynverse/projected_monocle
+docker_repository: dynverse/dynmethods:projected_monocle
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/projected_monocle
 name: Projected Monocle
 type: algorithm_test

@@ -1,5 +1,5 @@
 id: wanderlust
-docker_repository: dynverse/wanderlust
+docker_repository: dynverse/dynmethods:wanderlust
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/wishbone
 name: Wanderlust
 type: algorithm

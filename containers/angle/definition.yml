@@ -1,5 +1,5 @@
 id: angle
-docker_repository: dynverse/angle
+docker_repository: dynverse/dynmethods:angle
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/angle
 name: Angle
 type: control

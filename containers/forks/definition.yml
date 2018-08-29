@@ -1,5 +1,5 @@
 id: forks
-docker_repository: dynverse/forks
+docker_repository: dynverse/dynmethods:forks
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/forks
 name: FORKS
 type: algorithm

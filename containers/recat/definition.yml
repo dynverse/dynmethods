@@ -1,5 +1,5 @@
 id: recat
-docker_repository: dynverse/recat
+docker_repository: dynverse/dynmethods:recat
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/recat
 name: reCAT
 type: algorithm

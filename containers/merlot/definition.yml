@@ -1,5 +1,5 @@
 id: merlot
-docker_repository: dynverse/merlot
+docker_repository: dynverse/dynmethods:merlot
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/merlot
 name: MERLoT
 type: algorithm

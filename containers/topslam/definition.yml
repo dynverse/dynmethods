@@ -1,5 +1,5 @@
 id: topslam
-docker_repository: dynverse/topslam
+docker_repository: dynverse/dynmethods:topslam
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/topslam
 name: topslam
 type: algorithm

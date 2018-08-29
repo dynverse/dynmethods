@@ -1,5 +1,5 @@
 id: pseudogp
-docker_repository: dynverse/pseudogp
+docker_repository: dynverse/dynmethods:pseudogp
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/pseudogp
 name: pseudogp
 type: algorithm

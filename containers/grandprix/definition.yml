@@ -1,5 +1,5 @@
 id: grandprix
-docker_repository: dynverse/grandprix
+docker_repository: dynverse/dynmethods:grandprix
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/grandprix
 name: GrandPrix
 type: algorithm

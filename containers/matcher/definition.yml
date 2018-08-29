@@ -1,5 +1,5 @@
 id: matcher
-docker_repository: dynverse/matcher
+docker_repository: dynverse/dynmethods:matcher
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/matcher
 name: MATCHER
 type: algorithm

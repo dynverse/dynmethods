@@ -1,5 +1,5 @@
 id: scimitar
-docker_repository: dynverse/scimitar
+docker_repository: dynverse/dynmethods:scimitar
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/scimitar
 name: SCIMITAR
 type: algorithm

@@ -1,5 +1,5 @@
 id: sincell
-docker_repository: dynverse/sincell
+docker_repository: dynverse/dynmethods:sincell
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/sincell
 name: Sincell
 type: algorithm

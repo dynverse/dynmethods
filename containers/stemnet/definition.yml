@@ -1,5 +1,5 @@
 id: stemnet
-docker_repository: dynverse/stemnet
+docker_repository: dynverse/dynmethods:stemnet
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/stemnet
 name: STEMNET
 type: algorithm

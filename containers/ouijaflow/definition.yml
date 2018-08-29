@@ -1,5 +1,5 @@
 id: ouijaflow
-docker_repository: dynverse/ouijaflow
+docker_repository: dynverse/dynmethods:ouijaflow
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/ouijaflow
 name: ouijaflow
 type: algorithm

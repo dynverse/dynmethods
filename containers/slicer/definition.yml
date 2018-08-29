@@ -1,5 +1,5 @@
 id: slicer
-docker_repository: dynverse/slicer
+docker_repository: dynverse/dynmethods:slicer
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/slicer
 name: SLICER
 type: algorithm

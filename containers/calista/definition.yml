@@ -1,5 +1,5 @@
 id: calista
-docker_repository: dynverse/calista
+docker_repository: dynverse/dynmethods:calista
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/calista
 name: CALISTA
 type: algorithm

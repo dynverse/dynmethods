@@ -1,5 +1,5 @@
 id: urd
-docker_repository: dynverse/urd
+docker_repository: dynverse/dynmethods:urd
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/urd
 name: URD
 type: algorithm

@@ -1,5 +1,5 @@
 id: random
-docker_repository: dynverse/random
+docker_repository: dynverse/dynmethods:random
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/random
 name: 'Control: random'
 type: control

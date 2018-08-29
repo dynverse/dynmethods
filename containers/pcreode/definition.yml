@@ -1,5 +1,5 @@
 id: pcreode
-docker_repository: dynverse/pcreode
+docker_repository: dynverse/dynmethods:pcreode
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/pcreode
 name: pCreode
 type: algorithm

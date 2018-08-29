@@ -1,5 +1,5 @@
 id: mpath
-docker_repository: dynverse/mpath
+docker_repository: dynverse/dynmethods:mpath
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/mpath
 name: Mpath
 type: algorithm

@@ -1,5 +1,5 @@
 id: phenopath
-docker_repository: dynverse/phenopath
+docker_repository: dynverse/dynmethods:phenopath
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/phenopath
 name: PhenoPath
 type: algorithm

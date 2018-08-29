@@ -1,5 +1,5 @@
 id: raceid_stemid
-docker_repository: dynverse/raceid_stemid
+docker_repository: dynverse/dynmethods:raceid_stemid
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/raceid_stemid
 name: RaceID / StemID
 type: algorithm

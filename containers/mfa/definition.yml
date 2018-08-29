@@ -1,5 +1,5 @@
 id: mfa
-docker_repository: dynverse/mfa
+docker_repository: dynverse/dynmethods:mfa
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/mfa
 name: mfa
 type: algorithm

@@ -1,5 +1,5 @@
 id: projected_gng
-docker_repository: dynverse/projected_gng
+docker_repository: dynverse/dynmethods:projected_gng
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/projected_gng
 name: Projected GNG
 type: algorithm_test

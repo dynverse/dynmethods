@@ -1,5 +1,5 @@
 id: projected_tscan
-docker_repository: dynverse/projected_tscan
+docker_repository: dynverse/dynmethods:projected_tscan
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/projected_tscan
 name: Projected TSCAN
 type: algorithm_test

@@ -1,5 +1,5 @@
 id: waterfall
-docker_repository: dynverse/waterfall
+docker_repository: dynverse/dynmethods:waterfall
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/waterfall
 name: Waterfall
 type: algorithm

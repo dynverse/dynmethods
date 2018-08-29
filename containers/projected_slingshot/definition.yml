@@ -1,5 +1,5 @@
 id: projected_slingshot
-docker_repository: dynverse/projected_slingshot
+docker_repository: dynverse/dynmethods:projected_slingshot
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/projected_slingshot
 name: Projected Slingshot
 type: algorithm_test

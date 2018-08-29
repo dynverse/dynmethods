@@ -1,5 +1,5 @@
 id: wishbone
-docker_repository: dynverse/wishbone
+docker_repository: dynverse/dynmethods:wishbone
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/wishbone
 name: Wishbone
 type: algorithm

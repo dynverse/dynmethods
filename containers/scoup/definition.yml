@@ -1,5 +1,5 @@
 id: scoup
-docker_repository: dynverse/scoup
+docker_repository: dynverse/dynmethods:scoup
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/scoup
 name: SCOUP
 type: algorithm

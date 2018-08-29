@@ -1,5 +1,5 @@
 id: elpicycle
-docker_repository: dynverse/elpicycle
+docker_repository: dynverse/dynmethods:elpicycle
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/elpigraph
 name: ElPiGraph cycle
 type: algorithm

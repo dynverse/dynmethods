@@ -1,5 +1,5 @@
 id: dpt
-docker_repository: dynverse/dpt
+docker_repository: dynverse/dynmethods:dpt
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/dpt
 name: DPT
 type: algorithm

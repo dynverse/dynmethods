@@ -1,5 +1,5 @@
 id: error
-docker_repository: dynverse/error
+docker_repository: dynverse/dynmethods:error
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/error
 name: 'Control: error'
 type: control

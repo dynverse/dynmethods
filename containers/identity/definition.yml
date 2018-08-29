@@ -1,5 +1,5 @@
 id: identity
-docker_repository: dynverse/identity
+docker_repository: dynverse/dynmethods:identity
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/identity
 name: 'Control: identity'
 type: control_test
