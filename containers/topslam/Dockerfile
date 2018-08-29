@@ -1,5 +1,6 @@
 FROM dynverse/dynwrap:py2.7
 
+LABEL version 0.1.0.1
 
 # install GPy
 RUN git clone https://github.com/SheffieldML/GPy.git ; \

@@ -1,8 +1,9 @@
 FROM dynverse/dynwrap:py2.7
 
+LABEL version 0.1.0.1
+
 # install R before rpy2
-RUN apt-get update
-RUN apt-get install -y r-base
+RUN apt-get update && apt-get install -y r-base
 
 RUN pip install rpy2==2.8
 RUN pip install munkres

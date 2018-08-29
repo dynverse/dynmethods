@@ -1,21 +1,14 @@
 FROM dynverse/dynwrap:bioc
 
-# most steps are taken from https://github.com/edroaldo/cellrouter
-RUN R -e " \
-list.of.packages <- c('reshape','reshape2','pheatmap','tsne','igraph','ggplot2','mclust','grid','Rtsne','cccd', 'irlba'); \
-new.packages <- list.of.packages[!(list.of.packages %in% rownames(installed.packages()))]; \
-if(length(new.packages)) devtools::install_cran(new.packages); \
-"
+LABEL version 0.1.0.1
 
-# get lib
-RUN git clone https://github.com/edroaldo/cellrouter.git && find cellrouter -type f | grep -v '^cellrouter/CellRouter' | xargs rm
+RUN R -e "devtools::install_cran(c("reshape", "reshape2", "pheatmap", "tsne", "igraph", "ggplot2", "mclust", "grid", "Rtsne", "cccd", "irlba"))"
 
-# install java
-RUN apt-get update
-RUN apt-get install -y default-jre
+RUN git clone https://github.com/edroaldo/cellrouter.git && find cellrouter -type f | grep -v "^cellrouter/CellRouter" | xargs rm
 
-# install feather
-RUN R -e "devtools::install_cran('feather')"
+RUN apt-get update && apt-get install -y default-jre
+
+RUN R -e "devtools::install_cran("feather")"
 
 ADD . /code
 ENTRYPOINT /code/run.sh
