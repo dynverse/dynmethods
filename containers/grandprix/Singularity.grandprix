@@ -1,0 +1,19 @@
+Bootstrap: shub
+
+From: dynverse/dynwrap:py3.6
+
+%environment
+
+%labels
+    version 0.1.0.1
+
+%post
+    pip install tensorflow
+    git clone https://github.com/GPflow/GPflow.git && cd GPflow && pip install GPflow
+    git clone https://github.com/ManchesterBioinference/GrandPrix && cd GrandPrix && python setup.py install
+
+%files
+    . /code
+
+%runscript
+    exec /code/run.sh

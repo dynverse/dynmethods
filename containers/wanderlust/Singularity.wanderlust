@@ -1,0 +1,18 @@
+Bootstrap: shub
+
+From: dynverse/dynwrap:py3.6
+
+%environment
+
+%labels
+    version 0.1.0.1
+
+%post
+    pip install Cython
+    pip install git+https://github.com/dynverse/pywishbone --upgrade --upgrade-strategy only-if-needed
+
+%files
+    . /code
+
+%runscript
+    exec /code/run.sh

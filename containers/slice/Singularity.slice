@@ -1,0 +1,17 @@
+Bootstrap: shub
+
+From: dynverse/dynwrap:bioc
+
+%environment
+
+%labels
+    version 0.1.0.1
+
+%post
+    R -e 'devtools::install_github("dynverse/SLICE")'
+
+%files
+    . /code
+
+%runscript
+    exec /code/run.sh

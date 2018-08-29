@@ -1,0 +1,18 @@
+Bootstrap: shub
+
+From: dynverse/dynwrap:py2.7
+
+%environment
+
+%labels
+    version 0.1.0.1
+
+%post
+    git clone https://github.com/SheffieldML/GPy.git ; \
+    git clone https://github.com/mzwiessele/topslam.git ; \
+
+%files
+    . /code
+
+%runscript
+    exec /code/run.sh

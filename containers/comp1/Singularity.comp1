@@ -1,0 +1,16 @@
+Bootstrap: shub
+
+From: dynverse/dynwrap:r
+
+%environment
+
+%labels
+    version 0.1.0.1
+
+%post
+
+%files
+    . /code
+
+%runscript
+    exec /code/run.sh

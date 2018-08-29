@@ -1,0 +1,18 @@
+Bootstrap: shub
+
+From: dynverse/dynwrap:py3.6
+
+%environment
+
+%labels
+    version 0.1.0.1
+
+%post
+    pip install git+https://github.com/kieranrcampbell/ouijaflow.git --upgrade --upgrade-strategy only-if-needed
+    pip install tensorflow==1.6 # temporary fix for edward https://github.com/blei-lab/edward/issues/882
+
+%files
+    . /code
+
+%runscript
+    exec /code/run.sh

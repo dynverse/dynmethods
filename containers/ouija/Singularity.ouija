@@ -1,0 +1,19 @@
+Bootstrap: shub
+
+From: dynverse/dynwrap:r
+
+%environment
+
+%labels
+    version 0.1.0.1
+
+%post
+    R -e 'devtools::install_github("kieranrcampbell/ouija")'
+    R -e 'devtools::install_cran("rstan")'
+    R -e 'devtools::install_cran("coda")'
+
+%files
+    . /code
+
+%runscript
+    exec /code/run.sh

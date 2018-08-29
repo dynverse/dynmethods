@@ -1,0 +1,18 @@
+Bootstrap: shub
+
+From: dynverse/dynwrap:bioc
+
+%environment
+
+%labels
+    version 0.1.0.1
+
+%post
+    R -e 'devtools::install_github("dynverse/scaterlegacy")'
+    R -e 'devtools::install_github("dynverse/embeddr")'
+
+%files
+    . /code
+
+%runscript
+    exec /code/run.sh
