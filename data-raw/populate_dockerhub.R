@@ -22,7 +22,7 @@ out <- furrr::future_map(files, function(file) {
   out_fun <- function(x, proc) readr::write_lines(x, paste0(log_dir, method_id, "_stdout.txt"), append = TRUE)
 
   # message(method_id, ": Pull remote docker")
-  processx::run("docker", args = c("pull", docker_repo), echo = FALSE, stdout_callback = out_fun, stderr_callback = err_fun, error_on_status = FALSE)
+  # processx::run("docker", args = c("pull", docker_repo), echo = FALSE, stdout_callback = out_fun, stderr_callback = err_fun, error_on_status = FALSE)
   version <- dynwrap:::.container_get_version(docker_repo, container_docker())
 
   message(method_id, ": Building new docker")
