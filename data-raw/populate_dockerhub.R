@@ -5,7 +5,7 @@ library(dynwrap)
 
 plan(multiprocess)
 
-files <- list.files("containers", pattern = "definition.yml", recursive = TRUE, full.names = TRUE)
+files <- list.files("../methods/", pattern = "definition.yml", recursive = TRUE, full.names = TRUE)
 log_dir <- "logs/"
 unlink(log_dir, recursive = TRUE)
 dir.create(log_dir)
