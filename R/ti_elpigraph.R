@@ -51,7 +51,8 @@ ti_elpigraph <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/elpigraph"]],
+    image = "dynverse/dynmethods:elpigraph",
+    version = method_versions[["dynverse/dynmethods:elpigraph"]],
     config = config
   )(
     topology = topology,

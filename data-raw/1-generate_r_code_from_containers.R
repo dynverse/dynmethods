@@ -24,13 +24,12 @@ definitions <-
     definition
   })
 methods <- dynutils::list_as_tibble(definitions)
-repo_digests <- methods %>%
-  select(docker_repository, repo_digests) %>%
-  mutate(repo_digests = map_chr(repo_digests, first)) %>%
+method_versions <- methods %>%
+  select(docker_repository, version) %>%
   deframe()
 
 devtools::use_data(methods, overwrite = TRUE)
-devtools::use_data(repo_digests, overwrite = TRUE)
+devtools::use_data(method_versions, overwrite = TRUE)
 
 # don't forget to regenerate the documentation
 devtools::document()

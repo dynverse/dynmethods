@@ -47,7 +47,8 @@ ti_celltree_gibbs <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/celltree_gibbs"]],
+    image = "dynverse/dynmethods:celltree_gibbs",
+    version = method_versions[["dynverse/dynmethods:celltree_gibbs"]],
     config = config
   )(
     method = method,

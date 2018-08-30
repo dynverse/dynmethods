@@ -51,7 +51,8 @@ ti_elpilinear <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/elpilinear"]],
+    image = "dynverse/dynmethods:elpilinear",
+    version = method_versions[["dynverse/dynmethods:elpilinear"]],
     config = config
   )(
     topology = topology,

@@ -26,7 +26,8 @@ ti_random <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/random"]],
+    image = "dynverse/dynmethods:random",
+    version = method_versions[["dynverse/dynmethods:random"]],
     config = config
   )(
     dummy_param = dummy_param

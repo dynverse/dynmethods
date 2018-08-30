@@ -32,7 +32,8 @@ ti_comp1 <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/comp1"]],
+    image = "dynverse/dynmethods:comp1",
+    version = method_versions[["dynverse/dynmethods:comp1"]],
     config = config
   )(
     dimred = dimred,

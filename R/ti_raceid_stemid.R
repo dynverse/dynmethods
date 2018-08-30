@@ -115,7 +115,8 @@ ti_raceid_stemid <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/raceid_stemid"]],
+    image = "dynverse/dynmethods:raceid_stemid",
+    version = method_versions[["dynverse/dynmethods:raceid_stemid"]],
     config = config
   )(
     knn = knn,

@@ -58,7 +58,8 @@ ti_recat <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/recat"]],
+    image = "dynverse/dynmethods:recat",
+    version = method_versions[["dynverse/dynmethods:recat"]],
     config = config
   )(
     TSPFold = TSPFold,

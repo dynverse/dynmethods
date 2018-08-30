@@ -26,7 +26,8 @@ ti_identity <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/identity"]],
+    image = "dynverse/dynmethods:identity",
+    version = method_versions[["dynverse/dynmethods:identity"]],
     config = config
   )(
     dummy_param = dummy_param

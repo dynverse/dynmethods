@@ -39,7 +39,8 @@ ti_topslam <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/topslam"]],
+    image = "dynverse/dynmethods:topslam",
+    version = method_versions[["dynverse/dynmethods:topslam"]],
     config = config
   )(
     n_components = n_components,

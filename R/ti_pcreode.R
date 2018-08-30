@@ -33,7 +33,8 @@ ti_pcreode <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/pcreode"]],
+    image = "dynverse/dynmethods:pcreode",
+    version = method_versions[["dynverse/dynmethods:pcreode"]],
     config = config
   )(
     n_pca_components = n_pca_components,

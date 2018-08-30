@@ -56,7 +56,8 @@ ti_forks <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/forks"]],
+    image = "dynverse/dynmethods:forks",
+    version = method_versions[["dynverse/dynmethods:forks"]],
     config = config
   )(
     norm_function = norm_function,

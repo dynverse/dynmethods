@@ -39,7 +39,8 @@ ti_stemnet <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/stemnet"]],
+    image = "dynverse/dynmethods:stemnet",
+    version = method_versions[["dynverse/dynmethods:stemnet"]],
     config = config
   )(
     alpha = alpha,

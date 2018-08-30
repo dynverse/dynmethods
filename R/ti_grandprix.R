@@ -33,7 +33,8 @@ ti_grandprix <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/grandprix"]],
+    image = "dynverse/dynmethods:grandprix",
+    version = method_versions[["dynverse/dynmethods:grandprix"]],
     config = config
   )(
     n_latent_dims = n_latent_dims,

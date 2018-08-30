@@ -58,7 +58,8 @@ ti_pseudogp <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/pseudogp"]],
+    image = "dynverse/dynmethods:pseudogp",
+    version = method_versions[["dynverse/dynmethods:pseudogp"]],
     config = config
   )(
     smoothing_alpha = smoothing_alpha,

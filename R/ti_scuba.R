@@ -46,7 +46,8 @@ ti_scuba <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/scuba"]],
+    image = "dynverse/dynmethods:scuba",
+    version = method_versions[["dynverse/dynmethods:scuba"]],
     config = config
   )(
     rigorous_gap_stats = rigorous_gap_stats,

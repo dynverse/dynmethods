@@ -74,7 +74,8 @@ ti_slice <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/slice"]],
+    image = "dynverse/dynmethods:slice",
+    version = method_versions[["dynverse/dynmethods:slice"]],
     config = config
   )(
     lm.method = lm.method,

@@ -51,7 +51,8 @@ ti_elpicycle <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/elpicycle"]],
+    image = "dynverse/dynmethods:elpicycle",
+    version = method_versions[["dynverse/dynmethods:elpicycle"]],
     config = config
   )(
     topology = topology,

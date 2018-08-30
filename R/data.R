@@ -3,7 +3,7 @@
 #' @docType data
 "methods"
 
-#' Digests of the method repos
+#' Version numbers of the method repos
 #'
 #' @docType data
-"repo_digests"
+"method_versions"

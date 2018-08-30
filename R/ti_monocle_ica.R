@@ -43,7 +43,8 @@ ti_monocle_ica <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/monocle_ica"]],
+    image = "dynverse/dynmethods:monocle_ica",
+    version = method_versions[["dynverse/dynmethods:monocle_ica"]],
     config = config
   )(
     reduction_method = reduction_method,

@@ -31,7 +31,8 @@ ti_calista <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/calista"]],
+    image = "dynverse/dynmethods:calista",
+    version = method_versions[["dynverse/dynmethods:calista"]],
     config = config
   )(
     runs = runs,

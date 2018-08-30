@@ -40,7 +40,8 @@ ti_tscan <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/tscan"]],
+    image = "dynverse/dynmethods:tscan",
+    version = method_versions[["dynverse/dynmethods:tscan"]],
     config = config
   )(
     minexpr_percent = minexpr_percent,

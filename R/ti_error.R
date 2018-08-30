@@ -26,7 +26,8 @@ ti_error <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/error"]],
+    image = "dynverse/dynmethods:error",
+    version = method_versions[["dynverse/dynmethods:error"]],
     config = config
   )(
     dummy_param = dummy_param

@@ -40,7 +40,8 @@ ti_scimitar <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/scimitar"]],
+    image = "dynverse/dynmethods:scimitar",
+    version = method_versions[["dynverse/dynmethods:scimitar"]],
     config = config
   )(
     covariance_type = covariance_type,

@@ -28,7 +28,8 @@ ti_angle <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/angle"]],
+    image = "dynverse/dynmethods:angle",
+    version = method_versions[["dynverse/dynmethods:angle"]],
     config = config
   )(
     dimred = dimred

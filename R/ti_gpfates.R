@@ -40,7 +40,8 @@ ti_gpfates <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/gpfates"]],
+    image = "dynverse/dynmethods:gpfates",
+    version = method_versions[["dynverse/dynmethods:gpfates"]],
     config = config
   )(
     log_expression_cutoff = log_expression_cutoff,

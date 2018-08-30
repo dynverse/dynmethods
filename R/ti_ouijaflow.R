@@ -27,7 +27,8 @@ ti_ouijaflow <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/ouijaflow"]],
+    image = "dynverse/dynmethods:ouijaflow",
+    version = method_versions[["dynverse/dynmethods:ouijaflow"]],
     config = config
   )(
     iter = iter

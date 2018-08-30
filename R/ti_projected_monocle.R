@@ -46,7 +46,8 @@ ti_projected_monocle <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/projected_monocle"]],
+    image = "dynverse/dynmethods:projected_monocle",
+    version = method_versions[["dynverse/dynmethods:projected_monocle"]],
     config = config
   )(
     reduction_method = reduction_method,

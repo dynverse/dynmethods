@@ -27,7 +27,8 @@ ti_periodpc <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/periodpc"]],
+    image = "dynverse/dynmethods:periodpc",
+    version = method_versions[["dynverse/dynmethods:periodpc"]],
     config = config
   )(
     ndim = ndim,

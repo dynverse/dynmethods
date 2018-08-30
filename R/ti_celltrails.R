@@ -61,7 +61,8 @@ ti_celltrails <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/celltrails"]],
+    image = "dynverse/dynmethods:celltrails",
+    version = method_versions[["dynverse/dynmethods:celltrails"]],
     config = config
   )(
     threshold_dl = threshold_dl,

@@ -53,7 +53,8 @@ ti_scoup <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/scoup"]],
+    image = "dynverse/dynmethods:scoup",
+    version = method_versions[["dynverse/dynmethods:scoup"]],
     config = config
   )(
     ndim = ndim,

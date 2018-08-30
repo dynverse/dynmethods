@@ -79,7 +79,8 @@ ti_fateid <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/fateid"]],
+    image = "dynverse/dynmethods:fateid",
+    version = method_versions[["dynverse/dynmethods:fateid"]],
     config = config
   )(
     reclassify = reclassify,

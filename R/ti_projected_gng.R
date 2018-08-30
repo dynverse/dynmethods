@@ -42,7 +42,8 @@ ti_projected_gng <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/projected_gng"]],
+    image = "dynverse/dynmethods:projected_gng",
+    version = method_versions[["dynverse/dynmethods:projected_gng"]],
     config = config
   )(
     dimred = dimred,

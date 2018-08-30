@@ -47,7 +47,8 @@ ti_celltree_vem <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/celltree_vem"]],
+    image = "dynverse/dynmethods:celltree_vem",
+    version = method_versions[["dynverse/dynmethods:celltree_vem"]],
     config = config
   )(
     method = method,

@@ -47,7 +47,8 @@ ti_mfa <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/mfa"]],
+    image = "dynverse/dynmethods:mfa",
+    version = method_versions[["dynverse/dynmethods:mfa"]],
     config = config
   )(
     b = b,
