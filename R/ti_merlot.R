@@ -8,7 +8,7 @@
 #' Will generate a trajectory using [MERLoT](https://doi.org/10.1101/261768).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/merlot).
+#' [container](https://github.com/dynverse/ti_merlot).
 #' The original code of this method is available
 #' [here](https://github.com/soedinglab/merlot).
 #' 
@@ -77,8 +77,8 @@ ti_merlot <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:merlot",
-    version = method_versions[["dynverse/dynmethods:merlot"]],
+    image = "dynverse/ti_merlot",
+    version = method_versions[["dynverse/ti_merlot"]],
     config = config
   )(
     sigma = sigma,

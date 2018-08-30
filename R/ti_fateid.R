@@ -8,7 +8,7 @@
 #' Will generate a trajectory using [FateID](https://doi.org/10.1038/nmeth.4662).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/fateid).
+#' [container](https://github.com/dynverse/ti_fateid).
 #' The original code of this method is available
 #' [here](https://github.com/dgrun/FateID/).
 #' 
@@ -79,8 +79,8 @@ ti_fateid <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:fateid",
-    version = method_versions[["dynverse/dynmethods:fateid"]],
+    image = "dynverse/ti_fateid",
+    version = method_versions[["dynverse/ti_fateid"]],
     config = config
   )(
     reclassify = reclassify,

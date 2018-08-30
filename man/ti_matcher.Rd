@@ -25,7 +25,7 @@ Will generate a trajectory using
 \href{https://doi.org/10.1186/s13059-017-1269-0}{MATCHER}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/matcher}{container}.
+\href{https://github.com/dynverse/ti_matcher}{container}.
 The original code of this method is available
 \href{https://github.com/jw156605/MATCHER}{here}.
 }

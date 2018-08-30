@@ -53,7 +53,7 @@ Will generate a trajectory using
 \href{https://doi.org/10.1371/journal.pcbi.1005212}{pseudogp}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/pseudogp}{container}.
+\href{https://github.com/dynverse/ti_pseudogp}{container}.
 The original code of this method is available
 \href{https://github.com/kieranrcampbell/pseudogp}{here}.
 }

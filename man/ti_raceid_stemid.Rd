@@ -110,7 +110,7 @@ A TI method wrapper to be used together with
 Will generate a trajectory using \href{https://doi.org/10.1016/j.stem.2016.05.010}{RaceID / StemID}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/raceid_stemid}{container}.
+\href{https://github.com/dynverse/ti_raceid_stemid}{container}.
 The original code of this method is available
 \href{https://github.com/dgrun/RaceID3_StemID2_package}{here}.
 }

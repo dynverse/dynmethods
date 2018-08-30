@@ -8,7 +8,7 @@
 #' Will generate a trajectory using Control: identity.
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/identity).
+#' [container](https://github.com/dynverse/ti_identity).
 #' 
 #' 
 #' 
@@ -26,8 +26,8 @@ ti_identity <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:identity",
-    version = method_versions[["dynverse/dynmethods:identity"]],
+    image = "dynverse/ti_identity",
+    version = method_versions[["dynverse/ti_identity"]],
     config = config
   )(
     dummy_param = dummy_param

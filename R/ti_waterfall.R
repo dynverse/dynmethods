@@ -9,7 +9,7 @@
 #' [Waterfall](https://doi.org/10.1016/j.stem.2015.07.013).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/waterfall).
+#' [container](https://github.com/dynverse/ti_waterfall).
 #' The original code of this method is available
 #' [here](http://www.cell.com/cms/attachment/2038326541/2052521637/mmc9.zip).
 #' 
@@ -30,8 +30,8 @@ ti_waterfall <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:waterfall",
-    version = method_versions[["dynverse/dynmethods:waterfall"]],
+    image = "dynverse/ti_waterfall",
+    version = method_versions[["dynverse/ti_waterfall"]],
     config = config
   )(
     num_clusters = num_clusters

@@ -40,7 +40,7 @@ Will generate a trajectory using
 \href{https://doi.org/10.12688/wellcomeopenres.11087.1}{mfa}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/mfa}{container}.
+\href{https://github.com/dynverse/ti_mfa}{container}.
 The original code of this method is available
 \href{https://github.com/kieranrcampbell/mfa}{here}.
 }

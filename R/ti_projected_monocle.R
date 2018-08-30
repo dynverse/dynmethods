@@ -9,7 +9,7 @@
 #' Monocle](https://github.com/cole-trapnell-lab/monocle-release).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/projected_monocle).
+#' [container](https://github.com/dynverse/ti_projected_monocle).
 #' The original code of this method is available
 #' [here](https://github.com/cole-trapnell-lab/monocle-release).
 #' 
@@ -46,8 +46,8 @@ ti_projected_monocle <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:projected_monocle",
-    version = method_versions[["dynverse/dynmethods:projected_monocle"]],
+    image = "dynverse/ti_projected_monocle",
+    version = method_versions[["dynverse/ti_projected_monocle"]],
     config = config
   )(
     reduction_method = reduction_method,

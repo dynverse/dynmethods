@@ -47,7 +47,7 @@ Will generate a trajectory using
 \href{https://doi.org/10.1186/s12859-016-1109-3}{SCOUP}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/scoup}{container}.
+\href{https://github.com/dynverse/ti_scoup}{container}.
 The original code of this method is available
 \href{https://github.com/hmatsu1226/SCOUP}{here}.
 }

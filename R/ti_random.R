@@ -8,7 +8,7 @@
 #' Will generate a trajectory using Control: random.
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/random).
+#' [container](https://github.com/dynverse/ti_random).
 #' 
 #' 
 #' 
@@ -26,8 +26,8 @@ ti_random <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:random",
-    version = method_versions[["dynverse/dynmethods:random"]],
+    image = "dynverse/ti_random",
+    version = method_versions[["dynverse/ti_random"]],
     config = config
   )(
     dummy_param = dummy_param

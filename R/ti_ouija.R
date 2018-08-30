@@ -8,7 +8,7 @@
 #' Will generate a trajectory using [ouija](https://doi.org/10.1101/060442).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/ouija).
+#' [container](https://github.com/dynverse/ti_ouija).
 #' The original code of this method is available
 #' [here](https://github.com/kieranrcampbell/ouija).
 #' 
@@ -41,8 +41,8 @@ ti_ouija <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:ouija",
-    version = method_versions[["dynverse/dynmethods:ouija"]],
+    image = "dynverse/ti_ouija",
+    version = method_versions[["dynverse/ti_ouija"]],
     config = config
   )(
     iter = iter,

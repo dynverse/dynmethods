@@ -34,7 +34,7 @@ Will generate a trajectory using
 \href{https://doi.org/10.1142/9789813207813_0053}{SCIMITAR}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/scimitar}{container}.
+\href{https://github.com/dynverse/ti_scimitar}{container}.
 The original code of this method is available
 \href{https://github.com/dimenwarper/scimitar}{here}.
 }

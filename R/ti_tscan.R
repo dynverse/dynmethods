@@ -8,7 +8,7 @@
 #' Will generate a trajectory using [TSCAN](https://doi.org/10.1093/nar/gkw430).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/tscan).
+#' [container](https://github.com/dynverse/ti_tscan).
 #' The original code of this method is available
 #' [here](https://github.com/zji90/TSCAN).
 #' 
@@ -40,8 +40,8 @@ ti_tscan <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:tscan",
-    version = method_versions[["dynverse/dynmethods:tscan"]],
+    image = "dynverse/ti_tscan",
+    version = method_versions[["dynverse/ti_tscan"]],
     config = config
   )(
     minexpr_percent = minexpr_percent,

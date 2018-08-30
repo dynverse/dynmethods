@@ -52,7 +52,7 @@ Will generate a trajectory using
 \href{https://doi.org/10.1038/s41467-017-00039-z}{reCAT}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/recat}{container}.
+\href{https://github.com/dynverse/ti_recat}{container}.
 The original code of this method is available
 \href{https://github.com/tinglab/reCAT}{here}.
 }

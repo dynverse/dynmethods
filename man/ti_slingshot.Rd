@@ -60,7 +60,7 @@ Will generate a trajectory using
 \href{https://doi.org/10.1186/s12864-018-4772-0}{Slingshot}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/slingshot}{container}.
+\href{https://github.com/dynverse/ti_slingshot}{container}.
 The original code of this method is available
 \href{https://github.com/kstreet13/slingshot}{here}.
 }

@@ -49,7 +49,7 @@ A TI method wrapper to be used together with
 Will generate a trajectory using \href{https://doi.org/10.1101/079509}{SCORPIUS}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/scorpius}{container}.
+\href{https://github.com/dynverse/ti_scorpius}{container}.
 The original code of this method is available
 \href{https://github.com/rcannood/SCORPIUS}{here}.
 }

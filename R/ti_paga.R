@@ -8,7 +8,7 @@
 #' Will generate a trajectory using [PAGA](https://doi.org/10.1101/208819).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/paga).
+#' [container](https://github.com/dynverse/ti_paga).
 #' The original code of this method is available
 #' [here](https://github.com/theislab/graph_abstraction).
 #' 
@@ -44,8 +44,8 @@ ti_paga <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:paga",
-    version = method_versions[["dynverse/dynmethods:paga"]],
+    image = "dynverse/ti_paga",
+    version = method_versions[["dynverse/ti_paga"]],
     config = config
   )(
     n_neighbors = n_neighbors,

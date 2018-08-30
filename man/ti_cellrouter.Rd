@@ -66,7 +66,7 @@ Will generate a trajectory using
 \href{https://doi.org/10.1038/s41467-018-03214-y}{CellRouter}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/cellrouter}{container}.
+\href{https://github.com/dynverse/ti_cellrouter}{container}.
 The original code of this method is available
 \href{https://github.com/edroaldo/cellrouter}{here}.
 }

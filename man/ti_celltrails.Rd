@@ -55,7 +55,7 @@ Will generate a trajectory using
 \href{https://doi.org/10.1016/j.celrep.2018.05.002}{CellTrails}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/celltrails}{container}.
+\href{https://github.com/dynverse/ti_celltrails}{container}.
 The original code of this method is available
 \href{https://github.com/dcellwanger/CellTrails}{here}.
 }

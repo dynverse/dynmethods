@@ -8,7 +8,7 @@
 #' Will generate a trajectory using Projected PAGA.
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/projected_paga).
+#' [container](https://github.com/dynverse/ti_projected_paga).
 #' 
 #' 
 #' 
@@ -40,8 +40,8 @@ ti_projected_paga <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:projected_paga",
-    version = method_versions[["dynverse/dynmethods:projected_paga"]],
+    image = "dynverse/ti_projected_paga",
+    version = method_versions[["dynverse/ti_projected_paga"]],
     config = config
   )(
     n_neighbors = n_neighbors,

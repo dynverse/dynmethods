@@ -9,7 +9,7 @@
 #' [reCAT](https://doi.org/10.1038/s41467-017-00039-z).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/recat).
+#' [container](https://github.com/dynverse/ti_recat).
 #' The original code of this method is available
 #' [here](https://github.com/tinglab/reCAT).
 #' 
@@ -58,8 +58,8 @@ ti_recat <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:recat",
-    version = method_versions[["dynverse/dynmethods:recat"]],
+    image = "dynverse/ti_recat",
+    version = method_versions[["dynverse/ti_recat"]],
     config = config
   )(
     TSPFold = TSPFold,

@@ -8,7 +8,7 @@
 #' Will generate a trajectory using Control: error.
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/error).
+#' [container](https://github.com/dynverse/ti_error).
 #' 
 #' 
 #' 
@@ -26,8 +26,8 @@ ti_error <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:error",
-    version = method_versions[["dynverse/dynmethods:error"]],
+    image = "dynverse/ti_error",
+    version = method_versions[["dynverse/ti_error"]],
     config = config
   )(
     dummy_param = dummy_param

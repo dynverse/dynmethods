@@ -8,7 +8,7 @@
 #' Will generate a trajectory using Angle.
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/angle).
+#' [container](https://github.com/dynverse/ti_angle).
 #' 
 #' 
 #' 
@@ -28,8 +28,8 @@ ti_angle <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:angle",
-    version = method_versions[["dynverse/dynmethods:angle"]],
+    image = "dynverse/ti_angle",
+    version = method_versions[["dynverse/ti_angle"]],
     config = config
   )(
     dimred = dimred

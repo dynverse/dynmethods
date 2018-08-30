@@ -4,7 +4,7 @@ library(furrr)
 
 source("data-raw/1a-helper_functions.R")
 
-files <- list.files("containers", pattern = "definition.yml", recursive = TRUE, full.names = TRUE)
+files <- list.files("../methods/", pattern = "definition.yml", recursive = TRUE, full.names = TRUE)
 
 # iterate over the containers and generate R scripts for each of them
 definitions <-

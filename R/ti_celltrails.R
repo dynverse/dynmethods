@@ -9,7 +9,7 @@
 #' [CellTrails](https://doi.org/10.1016/j.celrep.2018.05.002).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/celltrails).
+#' [container](https://github.com/dynverse/ti_celltrails).
 #' The original code of this method is available
 #' [here](https://github.com/dcellwanger/CellTrails).
 #' 
@@ -61,8 +61,8 @@ ti_celltrails <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:celltrails",
-    version = method_versions[["dynverse/dynmethods:celltrails"]],
+    image = "dynverse/ti_celltrails",
+    version = method_versions[["dynverse/ti_celltrails"]],
     config = config
   )(
     threshold_dl = threshold_dl,

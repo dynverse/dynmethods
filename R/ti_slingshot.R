@@ -9,7 +9,7 @@
 #' [Slingshot](https://doi.org/10.1186/s12864-018-4772-0).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/slingshot).
+#' [container](https://github.com/dynverse/ti_slingshot).
 #' The original code of this method is available
 #' [here](https://github.com/kstreet13/slingshot).
 #' 
@@ -66,8 +66,8 @@ ti_slingshot <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:slingshot",
-    version = method_versions[["dynverse/dynmethods:slingshot"]],
+    image = "dynverse/ti_slingshot",
+    version = method_versions[["dynverse/ti_slingshot"]],
     config = config
   )(
     shrink = shrink,

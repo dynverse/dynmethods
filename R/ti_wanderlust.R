@@ -9,7 +9,7 @@
 #' [Wanderlust](https://doi.org/10.1016/j.cell.2014.04.005).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/wishbone).
+#' [container](https://github.com/dynverse/ti_wanderlust).
 #' The original code of this method is available
 #' [here](https://github.com/ManuSetty/wishbone).
 #' 
@@ -46,8 +46,8 @@ ti_wanderlust <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:wanderlust",
-    version = method_versions[["dynverse/dynmethods:wanderlust"]],
+    image = "dynverse/ti_wanderlust",
+    version = method_versions[["dynverse/ti_wanderlust"]],
     config = config
   )(
     normalise = normalise,

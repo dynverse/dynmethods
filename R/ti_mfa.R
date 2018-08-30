@@ -9,7 +9,7 @@
 #' [mfa](https://doi.org/10.12688/wellcomeopenres.11087.1).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/mfa).
+#' [container](https://github.com/dynverse/ti_mfa).
 #' The original code of this method is available
 #' [here](https://github.com/kieranrcampbell/mfa).
 #' 
@@ -47,8 +47,8 @@ ti_mfa <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:mfa",
-    version = method_versions[["dynverse/dynmethods:mfa"]],
+    image = "dynverse/ti_mfa",
+    version = method_versions[["dynverse/ti_mfa"]],
     config = config
   )(
     b = b,

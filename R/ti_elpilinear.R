@@ -9,7 +9,7 @@
 #' linear](https://github.com/Albluca/ElPiGraph.R).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/elpigraph).
+#' [container](https://github.com/dynverse/ti_elpilinear).
 #' The original code of this method is available
 #' [here](https://github.com/Albluca/ElPiGraph.R).
 #' 
@@ -51,8 +51,8 @@ ti_elpilinear <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:elpilinear",
-    version = method_versions[["dynverse/dynmethods:elpilinear"]],
+    image = "dynverse/ti_elpilinear",
+    version = method_versions[["dynverse/ti_elpilinear"]],
     config = config
   )(
     topology = topology,

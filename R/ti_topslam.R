@@ -8,7 +8,7 @@
 #' Will generate a trajectory using [topslam](https://doi.org/10.1101/057778).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/topslam).
+#' [container](https://github.com/dynverse/ti_topslam).
 #' The original code of this method is available
 #' [here](https://github.com/mzwiessele/topslam).
 #' 
@@ -39,8 +39,8 @@ ti_topslam <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:topslam",
-    version = method_versions[["dynverse/dynmethods:topslam"]],
+    image = "dynverse/ti_topslam",
+    version = method_versions[["dynverse/ti_topslam"]],
     config = config
   )(
     n_components = n_components,

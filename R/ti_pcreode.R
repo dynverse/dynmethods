@@ -9,7 +9,7 @@
 #' [pCreode](https://doi.org/10.1016/j.cels.2017.10.012).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/pcreode).
+#' [container](https://github.com/dynverse/ti_pcreode).
 #' The original code of this method is available
 #' [here](https://github.com/KenLauLab/pCreode).
 #' 
@@ -33,8 +33,8 @@ ti_pcreode <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:pcreode",
-    version = method_versions[["dynverse/dynmethods:pcreode"]],
+    image = "dynverse/ti_pcreode",
+    version = method_versions[["dynverse/ti_pcreode"]],
     config = config
   )(
     n_pca_components = n_pca_components,

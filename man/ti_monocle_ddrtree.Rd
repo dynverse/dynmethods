@@ -41,7 +41,7 @@ A TI method wrapper to be used together with
 Will generate a trajectory using \href{https://doi.org/10.1038/nmeth.4402}{Monocle DDRTree}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/monocle_ddrtree}{container}.
+\href{https://github.com/dynverse/ti_monocle_ddrtree}{container}.
 The original code of this method is available
 \href{https://github.com/cole-trapnell-lab/monocle-release}{here}.
 }

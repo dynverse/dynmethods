@@ -8,7 +8,7 @@
 #' Will generate a trajectory using [SCORPIUS](https://doi.org/10.1101/079509).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/scorpius).
+#' [container](https://github.com/dynverse/ti_scorpius).
 #' The original code of this method is available
 #' [here](https://github.com/rcannood/SCORPIUS).
 #' 
@@ -56,8 +56,8 @@ ti_scorpius <- function(
 ) {
   data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = "dynverse/dynmethods:scorpius",
-    version = method_versions[["dynverse/dynmethods:scorpius"]],
+    image = "dynverse/ti_scorpius",
+    version = method_versions[["dynverse/ti_scorpius"]],
     config = config
   )(
     distance_method = distance_method,
