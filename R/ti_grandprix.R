@@ -31,10 +31,9 @@ ti_grandprix <- function(
     latent_var = 0.028,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_grandprix",
-    version = method_versions[["dynverse/ti_grandprix"]],
+    version = dynmethods::method_versions[["dynverse/ti_grandprix"]],
     config = config
   )(
     n_latent_dims = n_latent_dims,

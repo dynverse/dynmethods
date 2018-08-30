@@ -25,10 +25,9 @@ ti_periodpc <- function(
     maxit = 10,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_periodpc",
-    version = method_versions[["dynverse/ti_periodpc"]],
+    version = dynmethods::method_versions[["dynverse/ti_periodpc"]],
     config = config
   )(
     ndim = ndim,

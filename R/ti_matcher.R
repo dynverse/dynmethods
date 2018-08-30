@@ -31,10 +31,9 @@ ti_matcher <- function(
     method = "linear",
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_matcher",
-    version = method_versions[["dynverse/ti_matcher"]],
+    version = dynmethods::method_versions[["dynverse/ti_matcher"]],
     config = config
   )(
     quantiles = quantiles,

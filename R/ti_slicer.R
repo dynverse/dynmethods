@@ -32,10 +32,9 @@ ti_slicer <- function(
     m = 2L,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_slicer",
-    version = method_versions[["dynverse/ti_slicer"]],
+    version = dynmethods::method_versions[["dynverse/ti_slicer"]],
     config = config
   )(
     kmin = kmin,

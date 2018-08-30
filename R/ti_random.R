@@ -24,10 +24,9 @@ ti_random <- function(
     dummy_param = 0.5,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_random",
-    version = method_versions[["dynverse/ti_random"]],
+    version = dynmethods::method_versions[["dynverse/ti_random"]],
     config = config
   )(
     dummy_param = dummy_param

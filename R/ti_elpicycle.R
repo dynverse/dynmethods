@@ -49,10 +49,9 @@ ti_elpicycle <- function(
     CenterData = FALSE,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_elpicycle",
-    version = method_versions[["dynverse/ti_elpicycle"]],
+    version = dynmethods::method_versions[["dynverse/ti_elpicycle"]],
     config = config
   )(
     topology = topology,

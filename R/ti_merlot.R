@@ -75,10 +75,9 @@ ti_merlot <- function(
     FixEndpoints = FALSE,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_merlot",
-    version = method_versions[["dynverse/ti_merlot"]],
+    version = dynmethods::method_versions[["dynverse/ti_merlot"]],
     config = config
   )(
     sigma = sigma,

@@ -56,10 +56,9 @@ ti_recat <- function(
     clustMethod = "GMM",
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_recat",
-    version = method_versions[["dynverse/ti_recat"]],
+    version = dynmethods::method_versions[["dynverse/ti_recat"]],
     config = config
   )(
     TSPFold = TSPFold,

@@ -44,10 +44,9 @@ ti_wanderlust <- function(
     epsilon = 1L,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_wanderlust",
-    version = method_versions[["dynverse/ti_wanderlust"]],
+    version = dynmethods::method_versions[["dynverse/ti_wanderlust"]],
     config = config
   )(
     normalise = normalise,

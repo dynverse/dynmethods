@@ -31,10 +31,9 @@ ti_pcreode <- function(
     num_runs = 10L,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_pcreode",
-    version = method_versions[["dynverse/ti_pcreode"]],
+    version = dynmethods::method_versions[["dynverse/ti_pcreode"]],
     config = config
   )(
     n_pca_components = n_pca_components,

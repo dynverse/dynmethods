@@ -49,10 +49,9 @@ ti_elpilinear <- function(
     CenterData = FALSE,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_elpilinear",
-    version = method_versions[["dynverse/ti_elpilinear"]],
+    version = dynmethods::method_versions[["dynverse/ti_elpilinear"]],
     config = config
   )(
     topology = topology,

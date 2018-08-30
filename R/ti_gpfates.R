@@ -38,10 +38,9 @@ ti_gpfates <- function(
     ndim = 2L,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_gpfates",
-    version = method_versions[["dynverse/ti_gpfates"]],
+    version = dynmethods::method_versions[["dynverse/ti_gpfates"]],
     config = config
   )(
     log_expression_cutoff = log_expression_cutoff,

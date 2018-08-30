@@ -55,10 +55,9 @@ ti_dpt <- function(
     w_width = 0.1,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_dpt",
-    version = method_versions[["dynverse/ti_dpt"]],
+    version = dynmethods::method_versions[["dynverse/ti_dpt"]],
     config = config
   )(
     sigma = sigma,

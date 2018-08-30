@@ -37,10 +37,9 @@ ti_topslam <- function(
     dimreds = c(TRUE, TRUE, TRUE, TRUE, TRUE),
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_topslam",
-    version = method_versions[["dynverse/ti_topslam"]],
+    version = dynmethods::method_versions[["dynverse/ti_topslam"]],
     config = config
   )(
     n_components = n_components,

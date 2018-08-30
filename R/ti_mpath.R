@@ -50,10 +50,9 @@ ti_mpath <- function(
     size_cut = 0.05,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_mpath",
-    version = method_versions[["dynverse/ti_mpath"]],
+    version = dynmethods::method_versions[["dynverse/ti_mpath"]],
     config = config
   )(
     distMethod = distMethod,

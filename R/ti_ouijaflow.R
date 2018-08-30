@@ -25,10 +25,9 @@ ti_ouijaflow <- function(
     iter = 1000L,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_ouijaflow",
-    version = method_versions[["dynverse/ti_ouijaflow"]],
+    version = dynmethods::method_versions[["dynverse/ti_ouijaflow"]],
     config = config
   )(
     iter = iter

@@ -38,10 +38,9 @@ ti_scimitar <- function(
     max_iter = 3L,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_scimitar",
-    version = method_versions[["dynverse/ti_scimitar"]],
+    version = dynmethods::method_versions[["dynverse/ti_scimitar"]],
     config = config
   )(
     covariance_type = covariance_type,

@@ -51,10 +51,9 @@ ti_scoup <- function(
     thresh = 0.01,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_scoup",
-    version = method_versions[["dynverse/ti_scoup"]],
+    version = dynmethods::method_versions[["dynverse/ti_scoup"]],
     config = config
   )(
     ndim = ndim,

@@ -114,10 +114,9 @@ ti_sincell <- function(
     pct_leaf_node_cutoff = 0.5,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_sincell",
-    version = method_versions[["dynverse/ti_sincell"]],
+    version = dynmethods::method_versions[["dynverse/ti_sincell"]],
     config = config
   )(
     distance_method = distance_method,

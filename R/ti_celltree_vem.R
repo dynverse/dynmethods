@@ -45,10 +45,9 @@ ti_celltree_vem <- function(
     tolerance = 1e-05,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_celltree_vem",
-    version = method_versions[["dynverse/ti_celltree_vem"]],
+    version = dynmethods::method_versions[["dynverse/ti_celltree_vem"]],
     config = config
   )(
     method = method,

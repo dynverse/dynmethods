@@ -26,10 +26,9 @@ ti_angle <- function(
     dimred = "pca",
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_angle",
-    version = method_versions[["dynverse/ti_angle"]],
+    version = dynmethods::method_versions[["dynverse/ti_angle"]],
     config = config
   )(
     dimred = dimred

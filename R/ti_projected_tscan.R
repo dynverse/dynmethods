@@ -35,10 +35,9 @@ ti_projected_tscan <- function(
     modelNames = "VVV",
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_projected_tscan",
-    version = method_versions[["dynverse/ti_projected_tscan"]],
+    version = dynmethods::method_versions[["dynverse/ti_projected_tscan"]],
     config = config
   )(
     minexpr_percent = minexpr_percent,

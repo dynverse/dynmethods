@@ -39,10 +39,9 @@ ti_ouija <- function(
     normalise_expression = TRUE,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_ouija",
-    version = method_versions[["dynverse/ti_ouija"]],
+    version = dynmethods::method_versions[["dynverse/ti_ouija"]],
     config = config
   )(
     iter = iter,

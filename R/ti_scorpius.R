@@ -54,10 +54,9 @@ ti_scorpius <- function(
     sparse = TRUE,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
     image = "dynverse/ti_scorpius",
-    version = method_versions[["dynverse/ti_scorpius"]],
+    version = dynmethods::method_versions[["dynverse/ti_scorpius"]],
     config = config
   )(
     distance_method = distance_method,
