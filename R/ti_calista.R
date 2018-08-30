@@ -8,7 +8,7 @@
 #' Will generate a trajectory using [CALISTA](https://doi.org/10.1101/257550).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/calista).
+#' [container](https://github.com/dynverse/ti_calista).
 #' The original code of this method is available
 #' [here](https://github.com/CABSEL/CALISTA).
 #' 
@@ -29,9 +29,9 @@ ti_calista <- function(
     max_iter = 100L,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/calista"]],
+    image = "dynverse/ti_calista",
+    version = dynmethods::method_versions[["dynverse/ti_calista"]],
     config = config
   )(
     runs = runs,

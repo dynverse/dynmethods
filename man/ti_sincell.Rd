@@ -111,7 +111,7 @@ Will generate a trajectory using
 \href{https://doi.org/10.1093/bioinformatics/btv368}{Sincell}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/sincell}{container}.
+\href{https://github.com/dynverse/ti_sincell}{container}.
 The original code of this method is available
 \href{https://github.com/Cortalak/MCA_Sincell_0}{here}.
 }

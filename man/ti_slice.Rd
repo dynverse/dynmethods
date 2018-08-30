@@ -69,7 +69,7 @@ A TI method wrapper to be used together with
 Will generate a trajectory using \href{https://doi.org/10.1093/nar/gkw1278}{SLICE}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/slice}{container}.
+\href{https://github.com/dynverse/ti_slice}{container}.
 The original code of this method is available
 \href{https://research.cchmc.org/pbge/slice.html}{here}.
 }

@@ -1,5 +1,5 @@
 id: template
-docker_repository: dynverse/template
+docker_repository: dynverse/dynmethods:template
 container_url: https://github.com/dynverse/dynmethods/tree/master/containers/template
 name: Template
 type: algorithm

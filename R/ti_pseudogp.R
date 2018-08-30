@@ -9,7 +9,7 @@
 #' [pseudogp](https://doi.org/10.1371/journal.pcbi.1005212).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/pseudogp).
+#' [container](https://github.com/dynverse/ti_pseudogp).
 #' The original code of this method is available
 #' [here](https://github.com/kieranrcampbell/pseudogp).
 #' 
@@ -56,9 +56,9 @@ ti_pseudogp <- function(
     initialise_from = "random",
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/pseudogp"]],
+    image = "dynverse/ti_pseudogp",
+    version = dynmethods::method_versions[["dynverse/ti_pseudogp"]],
     config = config
   )(
     smoothing_alpha = smoothing_alpha,

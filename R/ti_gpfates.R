@@ -9,7 +9,7 @@
 #' [GPfates](https://doi.org/10.1126/sciimmunol.aal2192).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/gpfates).
+#' [container](https://github.com/dynverse/ti_gpfates).
 #' The original code of this method is available
 #' [here](https://github.com/Teichlab/GPfates).
 #' 
@@ -38,9 +38,9 @@ ti_gpfates <- function(
     ndim = 2L,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/gpfates"]],
+    image = "dynverse/ti_gpfates",
+    version = dynmethods::method_versions[["dynverse/ti_gpfates"]],
     config = config
   )(
     log_expression_cutoff = log_expression_cutoff,

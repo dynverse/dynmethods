@@ -29,7 +29,7 @@ Will generate a trajectory using
 \href{https://doi.org/10.1126/sciimmunol.aal2192}{GPfates}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/gpfates}{container}.
+\href{https://github.com/dynverse/ti_gpfates}{container}.
 The original code of this method is available
 \href{https://github.com/Teichlab/GPfates}{here}.
 }

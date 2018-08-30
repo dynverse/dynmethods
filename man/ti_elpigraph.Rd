@@ -47,7 +47,7 @@ Will generate a trajectory using
 \href{https://github.com/Albluca/ElPiGraph.R}{ElPiGraph}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/elpigraph}{container}.
+\href{https://github.com/dynverse/ti_elpigraph}{container}.
 The original code of this method is available
 \href{https://github.com/Albluca/ElPiGraph.R}{here}.
 }

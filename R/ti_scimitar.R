@@ -9,7 +9,7 @@
 #' [SCIMITAR](https://doi.org/10.1142/9789813207813_0053).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/scimitar).
+#' [container](https://github.com/dynverse/ti_scimitar).
 #' The original code of this method is available
 #' [here](https://github.com/dimenwarper/scimitar).
 #' 
@@ -38,9 +38,9 @@ ti_scimitar <- function(
     max_iter = 3L,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/scimitar"]],
+    image = "dynverse/ti_scimitar",
+    version = dynmethods::method_versions[["dynverse/ti_scimitar"]],
     config = config
   )(
     covariance_type = covariance_type,

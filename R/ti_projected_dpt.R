@@ -8,7 +8,7 @@
 #' Will generate a trajectory using Projected DPT.
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/projected_dpt).
+#' [container](https://github.com/dynverse/ti_projected_dpt).
 #' 
 #' 
 #' 
@@ -52,9 +52,9 @@ ti_projected_dpt <- function(
     w_width = 0.1,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/projected_dpt"]],
+    image = "dynverse/ti_projected_dpt",
+    version = dynmethods::method_versions[["dynverse/ti_projected_dpt"]],
     config = config
   )(
     sigma = sigma,

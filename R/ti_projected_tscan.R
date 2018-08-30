@@ -8,7 +8,7 @@
 #' Will generate a trajectory using Projected TSCAN.
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/projected_tscan).
+#' [container](https://github.com/dynverse/ti_projected_tscan).
 #' 
 #' 
 #' 
@@ -35,9 +35,9 @@ ti_projected_tscan <- function(
     modelNames = "VVV",
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/projected_tscan"]],
+    image = "dynverse/ti_projected_tscan",
+    version = dynmethods::method_versions[["dynverse/ti_projected_tscan"]],
     config = config
   )(
     minexpr_percent = minexpr_percent,

@@ -8,7 +8,7 @@
 #' Will generate a trajectory using Control: shuffle.
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/shuffle).
+#' [container](https://github.com/dynverse/ti_shuffle).
 #' 
 #' 
 #' 
@@ -24,9 +24,9 @@ ti_shuffle <- function(
     dummy_param = 0.5,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/shuffle"]],
+    image = "dynverse/ti_shuffle",
+    version = dynmethods::method_versions[["dynverse/ti_shuffle"]],
     config = config
   )(
     dummy_param = dummy_param

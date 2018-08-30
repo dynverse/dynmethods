@@ -9,7 +9,7 @@
 #' ICA](https://doi.org/10.1038/nmeth.4402).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/monocle_ica).
+#' [container](https://github.com/dynverse/ti_monocle_ica).
 #' The original code of this method is available
 #' [here](https://github.com/cole-trapnell-lab/monocle-release).
 #' 
@@ -41,9 +41,9 @@ ti_monocle_ica <- function(
     filter_features_mean_expression = 0.1,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/monocle_ica"]],
+    image = "dynverse/ti_monocle_ica",
+    version = dynmethods::method_versions[["dynverse/ti_monocle_ica"]],
     config = config
   )(
     reduction_method = reduction_method,

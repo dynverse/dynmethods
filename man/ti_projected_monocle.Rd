@@ -41,7 +41,7 @@ A TI method wrapper to be used together with
 Will generate a trajectory using \href{https://github.com/cole-trapnell-lab/monocle-release}{Projected Monocle}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/projected_monocle}{container}.
+\href{https://github.com/dynverse/ti_projected_monocle}{container}.
 The original code of this method is available
 \href{https://github.com/cole-trapnell-lab/monocle-release}{here}.
 }

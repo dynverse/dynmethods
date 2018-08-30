@@ -9,7 +9,7 @@
 #' [CellRouter](https://doi.org/10.1038/s41467-018-03214-y).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/cellrouter).
+#' [container](https://github.com/dynverse/ti_cellrouter).
 #' The original code of this method is available
 #' [here](https://github.com/edroaldo/cellrouter).
 #' 
@@ -69,9 +69,9 @@ ti_cellrouter <- function(
     perplexity = 30L,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/cellrouter"]],
+    image = "dynverse/ti_cellrouter",
+    version = dynmethods::method_versions[["dynverse/ti_cellrouter"]],
     config = config
   )(
     ndim_pca = ndim_pca,

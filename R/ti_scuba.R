@@ -9,7 +9,7 @@
 #' [SCUBA](https://doi.org/10.1073/pnas.1408993111).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/scuba).
+#' [container](https://github.com/dynverse/ti_scuba).
 #' The original code of this method is available
 #' [here](https://github.com/gcyuan/SCUBA).
 #' 
@@ -44,9 +44,9 @@ ti_scuba <- function(
     min_percentage_split = 0.25,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/scuba"]],
+    image = "dynverse/ti_scuba",
+    version = dynmethods::method_versions[["dynverse/ti_scuba"]],
     config = config
   )(
     rigorous_gap_stats = rigorous_gap_stats,

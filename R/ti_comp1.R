@@ -8,7 +8,7 @@
 #' Will generate a trajectory using Component 1.
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/comp1).
+#' [container](https://github.com/dynverse/ti_comp1).
 #' 
 #' 
 #' 
@@ -30,9 +30,9 @@ ti_comp1 <- function(
     component = 1,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/comp1"]],
+    image = "dynverse/ti_comp1",
+    version = dynmethods::method_versions[["dynverse/ti_comp1"]],
     config = config
   )(
     dimred = dimred,

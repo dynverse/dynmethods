@@ -50,5 +50,5 @@ A TI method wrapper to be used together with
 Will generate a trajectory using Projected DPT.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/projected_dpt}{container}.
+\href{https://github.com/dynverse/ti_projected_dpt}{container}.
 }

@@ -24,7 +24,7 @@ A TI method wrapper to be used together with
 Will generate a trajectory using \href{https://doi.org/10.1101/257550}{CALISTA}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/calista}{container}.
+\href{https://github.com/dynverse/ti_calista}{container}.
 The original code of this method is available
 \href{https://github.com/CABSEL/CALISTA}{here}.
 }

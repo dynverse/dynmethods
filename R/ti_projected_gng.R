@@ -9,7 +9,7 @@
 #' GNG](https://github.com/rcannood/gng).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/projected_gng).
+#' [container](https://github.com/dynverse/ti_projected_gng).
 #' The original code of this method is available
 #' [here](https://github.com/rcannood/gng).
 #' 
@@ -40,9 +40,9 @@ ti_projected_gng <- function(
     apply_mst = TRUE,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/projected_gng"]],
+    image = "dynverse/ti_projected_gng",
+    version = dynmethods::method_versions[["dynverse/ti_projected_gng"]],
     config = config
   )(
     dimred = dimred,

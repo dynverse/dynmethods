@@ -8,7 +8,7 @@
 #' Will generate a trajectory using [Mpath](https://doi.org/10.1038/ncomms11988).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/mpath).
+#' [container](https://github.com/dynverse/ti_mpath).
 #' The original code of this method is available
 #' [here](https://github.com/JinmiaoChenLab/Mpath).
 #' 
@@ -50,9 +50,9 @@ ti_mpath <- function(
     size_cut = 0.05,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/mpath"]],
+    image = "dynverse/ti_mpath",
+    version = dynmethods::method_versions[["dynverse/ti_mpath"]],
     config = config
   )(
     distMethod = distMethod,

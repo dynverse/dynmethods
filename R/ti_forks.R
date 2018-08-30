@@ -8,7 +8,7 @@
 #' Will generate a trajectory using [FORKS](https://doi.org/10.1101/132811).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/forks).
+#' [container](https://github.com/dynverse/ti_forks).
 #' The original code of this method is available
 #' [here](https://github.com/macsharma/FORKS).
 #' 
@@ -54,9 +54,9 @@ ti_forks <- function(
     C = 1L,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/forks"]],
+    image = "dynverse/ti_forks",
+    version = dynmethods::method_versions[["dynverse/ti_forks"]],
     config = config
   )(
     norm_function = norm_function,

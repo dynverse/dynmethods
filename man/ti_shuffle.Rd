@@ -20,5 +20,5 @@ A TI method wrapper to be used together with
 Will generate a trajectory using Control: shuffle.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/shuffle}{container}.
+\href{https://github.com/dynverse/ti_shuffle}{container}.
 }

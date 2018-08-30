@@ -20,7 +20,7 @@ Will generate a trajectory using
 \href{https://doi.org/10.1016/j.stem.2015.07.013}{Waterfall}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/waterfall}{container}.
+\href{https://github.com/dynverse/ti_waterfall}{container}.
 The original code of this method is available
 \href{http://www.cell.com/cms/attachment/2038326541/2052521637/mmc9.zip}{here}.
 }

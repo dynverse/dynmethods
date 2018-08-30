@@ -50,7 +50,7 @@ A TI method wrapper to be used together with
 Will generate a trajectory using \href{https://doi.org/10.1038/nmeth.3971}{DPT}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/dpt}{container}.
+\href{https://github.com/dynverse/ti_dpt}{container}.
 The original code of this method is available
 \href{https://bioconductor.org/packages/release/bioc/html/destiny.html}{here}.
 }

@@ -8,7 +8,7 @@
 #' Will generate a trajectory using Periodic PrinCurve.
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/periodpc).
+#' [container](https://github.com/dynverse/ti_periodpc).
 #' 
 #' 
 #' 
@@ -25,9 +25,9 @@ ti_periodpc <- function(
     maxit = 10,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/periodpc"]],
+    image = "dynverse/ti_periodpc",
+    version = dynmethods::method_versions[["dynverse/ti_periodpc"]],
     config = config
   )(
     ndim = ndim,

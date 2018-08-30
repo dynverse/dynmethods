@@ -8,7 +8,7 @@
 #' Will generate a trajectory using [SLICE](https://doi.org/10.1093/nar/gkw1278).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/slice).
+#' [container](https://github.com/dynverse/ti_slice).
 #' The original code of this method is available
 #' [here](https://research.cchmc.org/pbge/slice.html).
 #' 
@@ -72,9 +72,9 @@ ti_slice <- function(
     k.opt.method = "firstmax",
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/slice"]],
+    image = "dynverse/ti_slice",
+    version = dynmethods::method_versions[["dynverse/ti_slice"]],
     config = config
   )(
     lm.method = lm.method,

@@ -9,7 +9,7 @@
 #' gibbs](https://doi.org/10.1186/s12859-016-1175-6).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/celltree_gibbs).
+#' [container](https://github.com/dynverse/ti_celltree_gibbs).
 #' The original code of this method is available
 #' [here](https://bioconductor.org/packages/release/bioc/html/cellTree.html).
 #' 
@@ -45,9 +45,9 @@ ti_celltree_gibbs <- function(
     tolerance = 1e-05,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/celltree_gibbs"]],
+    image = "dynverse/ti_celltree_gibbs",
+    version = dynmethods::method_versions[["dynverse/ti_celltree_gibbs"]],
     config = config
   )(
     method = method,

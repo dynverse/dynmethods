@@ -23,7 +23,7 @@ Will generate a trajectory using
 \href{https://doi.org/10.1016/j.cels.2017.10.012}{pCreode}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/pcreode}{container}.
+\href{https://github.com/dynverse/ti_pcreode}{container}.
 The original code of this method is available
 \href{https://github.com/KenLauLab/pCreode}{here}.
 }

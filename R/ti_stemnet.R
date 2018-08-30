@@ -8,7 +8,7 @@
 #' Will generate a trajectory using [STEMNET](https://doi.org/10.1038/ncb3493).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/stemnet).
+#' [container](https://github.com/dynverse/ti_stemnet).
 #' The original code of this method is available
 #' [here](https://git.embl.de/velten/STEMNET).
 #' 
@@ -37,9 +37,9 @@ ti_stemnet <- function(
     force = FALSE,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/stemnet"]],
+    image = "dynverse/ti_stemnet",
+    version = dynmethods::method_versions[["dynverse/ti_stemnet"]],
     config = config
   )(
     alpha = alpha,

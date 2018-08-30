@@ -9,7 +9,7 @@
 #' [SLICER](https://doi.org/10.1186/s13059-016-0975-3).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/slicer).
+#' [container](https://github.com/dynverse/ti_slicer).
 #' The original code of this method is available
 #' [here](https://github.com/jw156605/SLICER).
 #' 
@@ -32,9 +32,9 @@ ti_slicer <- function(
     m = 2L,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/slicer"]],
+    image = "dynverse/ti_slicer",
+    version = dynmethods::method_versions[["dynverse/ti_slicer"]],
     config = config
   )(
     kmin = kmin,

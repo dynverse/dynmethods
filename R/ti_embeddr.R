@@ -8,7 +8,7 @@
 #' Will generate a trajectory using [Embeddr](https://doi.org/10.1101/027219).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/embeddr).
+#' [container](https://github.com/dynverse/ti_embeddr).
 #' The original code of this method is available
 #' [here](https://github.com/kieranrcampbell/embeddr).
 #' 
@@ -81,9 +81,9 @@ ti_embeddr <- function(
     smoother = "smooth.spline",
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/embeddr"]],
+    image = "dynverse/ti_embeddr",
+    version = dynmethods::method_versions[["dynverse/ti_embeddr"]],
     config = config
   )(
     ndim = ndim,

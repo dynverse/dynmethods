@@ -52,7 +52,7 @@ A TI method wrapper to be used together with
 Will generate a trajectory using \href{https://doi.org/10.1101/132811}{FORKS}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/forks}{container}.
+\href{https://github.com/dynverse/ti_forks}{container}.
 The original code of this method is available
 \href{https://github.com/macsharma/FORKS}{here}.
 }

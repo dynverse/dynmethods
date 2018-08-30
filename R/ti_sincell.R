@@ -9,7 +9,7 @@
 #' [Sincell](https://doi.org/10.1093/bioinformatics/btv368).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/sincell).
+#' [container](https://github.com/dynverse/ti_sincell).
 #' The original code of this method is available
 #' [here](https://github.com/Cortalak/MCA_Sincell_0).
 #' 
@@ -114,9 +114,9 @@ ti_sincell <- function(
     pct_leaf_node_cutoff = 0.5,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/sincell"]],
+    image = "dynverse/ti_sincell",
+    version = dynmethods::method_versions[["dynverse/ti_sincell"]],
     config = config
   )(
     distance_method = distance_method,

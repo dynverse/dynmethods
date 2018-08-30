@@ -9,7 +9,7 @@
 #' [URD](https://doi.org/10.1126/science.aar3131).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/urd).
+#' [container](https://github.com/dynverse/ti_urd).
 #' The original code of this method is available
 #' [here](https://github.com/farrellja/URD).
 #' 
@@ -99,9 +99,9 @@ ti_urd <- function(
     p.thresh = 0.01,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/urd"]],
+    image = "dynverse/ti_urd",
+    version = dynmethods::method_versions[["dynverse/ti_urd"]],
     config = config
   )(
     knn = knn,

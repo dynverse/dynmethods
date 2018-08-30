@@ -99,7 +99,7 @@ Will generate a trajectory using
 \href{https://doi.org/10.1126/science.aar3131}{URD}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/urd}{container}.
+\href{https://github.com/dynverse/ti_urd}{container}.
 The original code of this method is available
 \href{https://github.com/farrellja/URD}{here}.
 }

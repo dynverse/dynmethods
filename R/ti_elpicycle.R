@@ -9,7 +9,7 @@
 #' cycle](https://github.com/Albluca/ElPiGraph.R).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/elpigraph).
+#' [container](https://github.com/dynverse/ti_elpicycle).
 #' The original code of this method is available
 #' [here](https://github.com/Albluca/ElPiGraph.R).
 #' 
@@ -49,9 +49,9 @@ ti_elpicycle <- function(
     CenterData = FALSE,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/elpicycle"]],
+    image = "dynverse/ti_elpicycle",
+    version = dynmethods::method_versions[["dynverse/ti_elpicycle"]],
     config = config
   )(
     topology = topology,

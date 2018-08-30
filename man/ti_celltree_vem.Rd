@@ -40,7 +40,7 @@ A TI method wrapper to be used together with
 Will generate a trajectory using \href{https://doi.org/10.1186/s12859-016-1175-6}{cellTree with vem}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/celltree_vem}{container}.
+\href{https://github.com/dynverse/ti_celltree_vem}{container}.
 The original code of this method is available
 \href{https://bioconductor.org/packages/release/bioc/html/cellTree.html}{here}.
 }

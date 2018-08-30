@@ -8,7 +8,7 @@
 #' Will generate a trajectory using [DPT](https://doi.org/10.1038/nmeth.3971).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/dpt).
+#' [container](https://github.com/dynverse/ti_dpt).
 #' The original code of this method is available
 #' [here](https://bioconductor.org/packages/release/bioc/html/destiny.html).
 #' 
@@ -55,9 +55,9 @@ ti_dpt <- function(
     w_width = 0.1,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/dpt"]],
+    image = "dynverse/ti_dpt",
+    version = dynmethods::method_versions[["dynverse/ti_dpt"]],
     config = config
   )(
     sigma = sigma,

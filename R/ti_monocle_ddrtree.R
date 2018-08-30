@@ -9,7 +9,7 @@
 #' DDRTree](https://doi.org/10.1038/nmeth.4402).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/monocle_ddrtree).
+#' [container](https://github.com/dynverse/ti_monocle_ddrtree).
 #' The original code of this method is available
 #' [here](https://github.com/cole-trapnell-lab/monocle-release).
 #' 
@@ -46,9 +46,9 @@ ti_monocle_ddrtree <- function(
     filter_features_mean_expression = 0.1,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/monocle_ddrtree"]],
+    image = "dynverse/ti_monocle_ddrtree",
+    version = dynmethods::method_versions[["dynverse/ti_monocle_ddrtree"]],
     config = config
   )(
     reduction_method = reduction_method,

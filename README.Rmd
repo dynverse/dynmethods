@@ -46,6 +46,7 @@ df <- methods %>%
   arrange(fct_infreq(type)) %>% 
   mutate(
     docker_url = paste0("https://hub.docker.com/r/", docker_repository),
+    singularity_url = paste0("https://hub.docker.com/r/", docker_repository),
     `Method` = map2_chr(name, doi, function(name, doi) {
       if (!is.null(doi) && !is.na(doi)) {
         glue::glue("{name} <a href='https://doi.org/{doi}'><img src='man/figures/doi_logo.png' height='16'></a>")
@@ -53,7 +54,9 @@ df <- methods %>%
         name
       }
     }),
-    `Container` = glue::glue("✓ ([code]({container_url}), [dockerhub]({docker_url}))"), 
+    `Version` = version,
+    `Container` = glue::glue("[code]({container_url})"), 
+    `Docker` = glue::glue("[dockerhub]({docker_url})"), 
     `Authors` = map_chr(authors, function(authors) {
       first <- authors[[1]]
       if (length(first) == 1 && is.na(first)) {
@@ -81,7 +84,9 @@ df <- methods %>%
 df2 <- df %>% 
   select(
     `Method`,
-    `<a href='https://hub.docker.com/u/dynverse/'><img src='man/figures/docker_logo.png' height='30'></a>` = `Container`,
+    `Version`,
+    `Container`,
+    `<a href='https://hub.docker.com/u/dynverse/'><img src='man/figures/docker_logo.png' height='30'></a>` = `Docker`,
     `Authors`
   )
 

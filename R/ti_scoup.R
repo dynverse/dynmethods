@@ -9,7 +9,7 @@
 #' [SCOUP](https://doi.org/10.1186/s12859-016-1109-3).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/scoup).
+#' [container](https://github.com/dynverse/ti_scoup).
 #' The original code of this method is available
 #' [here](https://github.com/hmatsu1226/SCOUP).
 #' 
@@ -51,9 +51,9 @@ ti_scoup <- function(
     thresh = 0.01,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/scoup"]],
+    image = "dynverse/ti_scoup",
+    version = dynmethods::method_versions[["dynverse/ti_scoup"]],
     config = config
   )(
     ndim = ndim,

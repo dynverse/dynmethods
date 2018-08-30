@@ -8,7 +8,7 @@
 #' Will generate a trajectory using [PhenoPath](https://doi.org/10.1101/159913).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/dynmethods/tree/master/containers/phenopath).
+#' [container](https://github.com/dynverse/ti_phenopath).
 #' The original code of this method is available
 #' [here](https://github.com/kieranrcampbell/phenopath).
 #' 
@@ -41,9 +41,9 @@ ti_phenopath <- function(
     scale_y = TRUE,
     config = dynwrap::container_config()
 ) {
-  data(repo_digests, package = "dynmethods")
   create_ti_method_with_container(
-    image = repo_digests[["dynverse/phenopath"]],
+    image = "dynverse/ti_phenopath",
+    version = dynmethods::method_versions[["dynverse/ti_phenopath"]],
     config = config
   )(
     thin = thin,

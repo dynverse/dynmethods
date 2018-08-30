@@ -22,5 +22,5 @@ A TI method wrapper to be used together with
 Will generate a trajectory using Periodic PrinCurve.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/dynmethods/tree/master/containers/periodpc}{container}.
+\href{https://github.com/dynverse/ti_periodpc}{container}.
 }
