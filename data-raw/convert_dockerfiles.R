@@ -19,7 +19,7 @@ bump_version_numbers <- function (by) {
 
   walk(files, function(file) {
     readr::read_lines(file) %>%
-      str_replace_all("version .*", increment(c(0, 0, 1))) %>%
+      str_replace_all("version .*", increment(by)) %>%
       readr::write_lines(file)
 
     new_file <- gsub("Dockerfile", "Singularity", file)
