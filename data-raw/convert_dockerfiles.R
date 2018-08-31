@@ -27,12 +27,13 @@ bump_version_numbers <- function (by) {
   })
 }
 
-bump_version_numbers(c(0, 0, 1))
+bump_version_numbers(c(0, 0, 0))
 
 # walk(list.files("../methods", full.names = TRUE), function(folder) {
+#   cat("Processing ", folder, "\n", sep = "")
 #   setwd(folder)
 #   system("git add Dockerfile Singularity")
-#   system("git commit -m 'update dockerfile and singularity recipe'")
+#   system("git commit -m '...'")
 #   system("git push")
 #   setwd("../../dynmethods")
 # })
