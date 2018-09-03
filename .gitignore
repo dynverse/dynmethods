@@ -8,4 +8,4 @@ inst/doc
 singularity_images
 logs*
 *.simg
-^containers
+containers
