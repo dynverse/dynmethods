@@ -54,7 +54,7 @@ df <- methods %>%
         name
       }
     }),
-    `Version` = glue::glue("https://img.shields.io/badge/dynmethods-{version}-blue.svg"),
+    `Version` = glue::glue("![Version](https://img.shields.io/badge/Version-{version}-blue.svg)"),
     `Container` = glue::glue("[code]({container_url})"), 
     `Docker` = glue::glue("[dockerhub]({docker_url})"), 
     `Status` = glue::glue("[![Build status]({travis_url}.svg?branch=master)]({travis_url})"),
