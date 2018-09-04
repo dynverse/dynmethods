@@ -6,6 +6,10 @@ source("data-raw/1a-helper_functions.R")
 
 files <- list.files("../methods/", pattern = "definition.yml", recursive = TRUE, full.names = TRUE)
 
+# dynbenchmark::setup_singularity_methods()
+# config <- container_singularity()
+config <- container_docker()
+
 # iterate over the containers and generate R scripts for each of them
 definitions <-
   map(files, function(file) {
@@ -15,7 +19,8 @@ definitions <-
     repo <- yaml::read_yaml(file)$docker_repository
 
     # fetch definition /with/ digests
-    definition <- dynwrap:::.container_get_definition(repo)
+    dynwrap:::.container_pull_image(repo, config)
+    definition <- dynwrap:::.container_get_definition(repo, config)
 
     # generate file from definition
     generate_file_from_container(definition)
