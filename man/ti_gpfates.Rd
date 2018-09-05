@@ -5,8 +5,7 @@
 \title{Inferring a trajectory inference using GPfates}
 \usage{
 ti_gpfates(log_expression_cutoff = 0.5,
-  min_cells_expression_cutoff = 0L, ndim = 2L,
-  config = dynwrap::container_config())
+  min_cells_expression_cutoff = 0L, ndim = 2L)
 }
 \arguments{
 \item{log_expression_cutoff}{numeric; The log expression cutoff (default:
@@ -17,8 +16,6 @@ ti_gpfates(log_expression_cutoff = 0.5,
 
 \item{ndim}{integer; Number of dimensions for dimensionality reduction
 (default: \code{2L}; range: from \code{1L} to \code{5L})}
-
-\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

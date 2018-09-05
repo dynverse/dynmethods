@@ -42,13 +42,11 @@ ti_celltree_vem <- function(
     rooting_method = "null",
     num_topics = 4,
     tot_iter = 1e+06,
-    tolerance = 1e-05,
-    config = dynwrap::container_config()
+    tolerance = 1e-05
 ) {
   create_ti_method_with_container(
     image = "dynverse/ti_celltree_vem",
     version = dynmethods::method_versions[["dynverse/ti_celltree_vem"]],
-    config = config
   )(
     method = method,
     sd_filter = sd_filter,

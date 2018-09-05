@@ -37,13 +37,11 @@ ti_projected_gng <- function(
     ndim = 5L,
     max_iter = 15000,
     max_nodes = 8L,
-    apply_mst = TRUE,
-    config = dynwrap::container_config()
+    apply_mst = TRUE
 ) {
   create_ti_method_with_container(
     image = "dynverse/ti_projected_gng",
     version = dynmethods::method_versions[["dynverse/ti_projected_gng"]],
-    config = config
   )(
     dimred = dimred,
     ndim = ndim,

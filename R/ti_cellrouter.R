@@ -66,13 +66,11 @@ ti_cellrouter <- function(
     ranks = "rank",
     num_cells = 3L,
     neighs = 3L,
-    perplexity = 30L,
-    config = dynwrap::container_config()
+    perplexity = 30L
 ) {
   create_ti_method_with_container(
     image = "dynverse/ti_cellrouter",
     version = dynmethods::method_versions[["dynverse/ti_cellrouter"]],
-    config = config
   )(
     ndim_pca = ndim_pca,
     ndim_tsne = ndim_tsne,

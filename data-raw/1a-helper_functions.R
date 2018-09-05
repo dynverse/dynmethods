@@ -56,7 +56,6 @@ generate_function_from_definition <- function(definition) {
       deparse(definition$parameters[[pid]]$default, width.cutoff = 500)
     )
   }) %>%
-    c(., "config = dynwrap::container_config()") %>%
     paste0("    ", ., collapse = ",\n")
 
   # generate code for passing the default parameters to create_ti_method
@@ -71,7 +70,6 @@ generate_function_from_definition <- function(definition) {
     "  create_ti_method_with_container(\n",
     "    image = \"", definition$docker_repository, "\",\n",
     "    version = dynmethods::method_versions[[\"", definition$docker_repository, "\"]],\n",
-    "    config = config\n",
     "  )(\n",
     args, "\n",
     "  )\n",

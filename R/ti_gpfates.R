@@ -35,13 +35,11 @@
 ti_gpfates <- function(
     log_expression_cutoff = 0.5,
     min_cells_expression_cutoff = 0L,
-    ndim = 2L,
-    config = dynwrap::container_config()
+    ndim = 2L
 ) {
   create_ti_method_with_container(
     image = "dynverse/ti_gpfates",
     version = dynmethods::method_versions[["dynverse/ti_gpfates"]],
-    config = config
   )(
     log_expression_cutoff = log_expression_cutoff,
     min_cells_expression_cutoff = min_cells_expression_cutoff,

@@ -69,13 +69,11 @@ ti_slice <- function(
     k = 0L,
     k.max = 10L,
     B = 100L,
-    k.opt.method = "firstmax",
-    config = dynwrap::container_config()
+    k.opt.method = "firstmax"
 ) {
   create_ti_method_with_container(
     image = "dynverse/ti_slice",
     version = dynmethods::method_versions[["dynverse/ti_slice"]],
-    config = config
   )(
     lm.method = lm.method,
     model.type = model.type,

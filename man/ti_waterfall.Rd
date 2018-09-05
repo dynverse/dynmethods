@@ -4,12 +4,10 @@
 \alias{ti_waterfall}
 \title{Inferring a trajectory inference using Waterfall}
 \usage{
-ti_waterfall(num_clusters = 10, config = dynwrap::container_config())
+ti_waterfall(num_clusters = 10)
 }
 \arguments{
 \item{num_clusters}{integer; (default: \code{10}; range: from \code{2} to \code{20})}
-
-\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

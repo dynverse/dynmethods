@@ -42,13 +42,11 @@ ti_celltree_gibbs <- function(
     rooting_method = "null",
     num_topics = 4,
     tot_iter = 200L,
-    tolerance = 1e-05,
-    config = dynwrap::container_config()
+    tolerance = 1e-05
 ) {
   create_ti_method_with_container(
     image = "dynverse/ti_celltree_gibbs",
     version = dynmethods::method_versions[["dynverse/ti_celltree_gibbs"]],
-    config = config
   )(
     method = method,
     sd_filter = sd_filter,

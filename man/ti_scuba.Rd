@@ -6,8 +6,7 @@
 \usage{
 ti_scuba(rigorous_gap_stats = TRUE, N_dim = 2L,
   low_gene_threshold = 1L, low_gene_fraction_max = 0.7,
-  min_split = 15L, min_percentage_split = 0.25,
-  config = dynwrap::container_config())
+  min_split = 15L, min_percentage_split = 0.25)
 }
 \arguments{
 \item{rigorous_gap_stats}{logical; Whether to use rigorous gap statistics to
@@ -27,8 +26,6 @@ for this cluster to be split. (default: \code{15L}; range: from \code{1L} to \co
 
 \item{min_percentage_split}{numeric; Minimum fraction of cells in the smaller
 cluster during a bifurcation. (default: \code{0.25}; range: from \code{0L} to \code{1L})}
-
-\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

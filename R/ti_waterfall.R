@@ -25,13 +25,11 @@
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_waterfall <- function(
-    num_clusters = 10,
-    config = dynwrap::container_config()
+    num_clusters = 10
 ) {
   create_ti_method_with_container(
     image = "dynverse/ti_waterfall",
     version = dynmethods::method_versions[["dynverse/ti_waterfall"]],
-    config = config
   )(
     num_clusters = num_clusters
   )

@@ -110,13 +110,11 @@ ti_raceid_stemid <- function(
     pdishuf = 500L,
     fast = FALSE,
     pthr = 0.01,
-    scthr = 0.2,
-    config = dynwrap::container_config()
+    scthr = 0.2
 ) {
   create_ti_method_with_container(
     image = "dynverse/ti_raceid_stemid",
     version = dynmethods::method_versions[["dynverse/ti_raceid_stemid"]],
-    config = config
   )(
     knn = knn,
     ccor = ccor,

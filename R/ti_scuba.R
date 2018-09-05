@@ -41,13 +41,11 @@ ti_scuba <- function(
     low_gene_threshold = 1L,
     low_gene_fraction_max = 0.7,
     min_split = 15L,
-    min_percentage_split = 0.25,
-    config = dynwrap::container_config()
+    min_percentage_split = 0.25
 ) {
   create_ti_method_with_container(
     image = "dynverse/ti_scuba",
     version = dynmethods::method_versions[["dynverse/ti_scuba"]],
-    config = config
   )(
     rigorous_gap_stats = rigorous_gap_stats,
     N_dim = N_dim,

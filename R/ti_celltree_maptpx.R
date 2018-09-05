@@ -44,13 +44,11 @@ ti_celltree_maptpx <- function(
     num_topics_lower = 2,
     num_topics_upper = 15,
     tot_iter = 1e+06,
-    tolerance = 0.05,
-    config = dynwrap::container_config()
+    tolerance = 0.05
 ) {
   create_ti_method_with_container(
     image = "dynverse/ti_celltree_maptpx",
     version = dynmethods::method_versions[["dynverse/ti_celltree_maptpx"]],
-    config = config
   )(
     method = method,
     sd_filter = sd_filter,

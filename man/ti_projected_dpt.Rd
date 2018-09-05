@@ -6,7 +6,7 @@
 \usage{
 ti_projected_dpt(sigma = "local", distance = "euclidean", ndim = 20L,
   density_norm = TRUE, n_local_lower = 5L, n_local_upper = 7L,
-  w_width = 0.1, config = dynwrap::container_config())
+  w_width = 0.1)
 }
 \arguments{
 \item{sigma}{discrete; Diffusion scale parameter of the Gaussian kernel. A
@@ -39,8 +39,6 @@ from \code{2L} to \code{20L})}
 
 \item{w_width}{numeric; Window width to use for deciding the branch cutoff
 (default: \code{0.1}; range: from \code{1e-04} to \code{1})}
-
-\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

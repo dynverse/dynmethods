@@ -23,13 +23,11 @@
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_angle <- function(
-    dimred = "pca",
-    config = dynwrap::container_config()
+    dimred = "pca"
 ) {
   create_ti_method_with_container(
     image = "dynverse/ti_angle",
     version = dynmethods::method_versions[["dynverse/ti_angle"]],
-    config = config
   )(
     dimred = dimred
   )

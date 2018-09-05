@@ -41,13 +41,11 @@ ti_wanderlust <- function(
     n_pca_components = 30L,
     k = 25L,
     num_waypoints = 250L,
-    epsilon = 1L,
-    config = dynwrap::container_config()
+    epsilon = 1L
 ) {
   create_ti_method_with_container(
     image = "dynverse/ti_wanderlust",
     version = dynmethods::method_versions[["dynverse/ti_wanderlust"]],
-    config = config
   )(
     normalise = normalise,
     knn = knn,

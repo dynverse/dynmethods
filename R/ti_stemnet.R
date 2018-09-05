@@ -34,13 +34,11 @@ ti_stemnet <- function(
     alpha = 0.1,
     lambda_auto = TRUE,
     lambda = 0.1,
-    force = FALSE,
-    config = dynwrap::container_config()
+    force = FALSE
 ) {
   create_ti_method_with_container(
     image = "dynverse/ti_stemnet",
     version = dynmethods::method_versions[["dynverse/ti_stemnet"]],
-    config = config
   )(
     alpha = alpha,
     lambda_auto = lambda_auto,

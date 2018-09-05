@@ -8,8 +8,7 @@ ti_cellrouter(ndim_pca = 20L, ndim_tsne = 11L, max_iter = 1000L,
   cluster_method = "graph.clustering", k_clustering = 20L,
   ndim_pca_clustering = 20L, k_knn = 10L, ndim_pca_knn = 20L,
   sim_type = "jaccard", distance_method_paths = "graph",
-  ranks = "rank", num_cells = 3L, neighs = 3L, perplexity = 30L,
-  config = dynwrap::container_config())
+  ranks = "rank", num_cells = 3L, neighs = 3L, perplexity = 30L)
 }
 \arguments{
 \item{ndim_pca}{integer; Number of principlal components to compute (default:
@@ -54,8 +53,6 @@ smoothen kinetic profiles (default: \code{3L}; range: from \code{2L} to \code{10
 
 \item{perplexity}{numeric; Perplexity parameter for tsne (default: \code{30L};
 range: from \code{5L} to \code{100L})}
-
-\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

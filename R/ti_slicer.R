@@ -29,13 +29,11 @@
 #' @export
 ti_slicer <- function(
     kmin = 10L,
-    m = 2L,
-    config = dynwrap::container_config()
+    m = 2L
 ) {
   create_ti_method_with_container(
     image = "dynverse/ti_slicer",
     version = dynmethods::method_versions[["dynverse/ti_slicer"]],
-    config = config
   )(
     kmin = kmin,
     m = m

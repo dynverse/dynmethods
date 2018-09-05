@@ -5,7 +5,7 @@
 \title{Inferring a trajectory inference using PhenoPath}
 \usage{
 ti_phenopath(thin = 40L, z_init = "1", model_mu = FALSE,
-  scale_y = TRUE, config = dynwrap::container_config())
+  scale_y = TRUE)
 }
 \arguments{
 \item{thin}{integer; The number of iterations to wait each time
@@ -24,8 +24,6 @@ modelled?}
 
 \item{scale_y}{logical; Logical - should the expression matrix be centre
 scaled?}
-
-\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

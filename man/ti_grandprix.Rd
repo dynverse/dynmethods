@@ -5,8 +5,7 @@
 \title{Inferring a trajectory inference using GrandPrix}
 \usage{
 ti_grandprix(n_latent_dims = 2L, n_inducing_points = 40L,
-  latent_prior_var = 0.1, latent_var = 0.028,
-  config = dynwrap::container_config())
+  latent_prior_var = 0.1, latent_var = 0.028)
 }
 \arguments{
 \item{n_latent_dims}{integer; (default: \code{2L}; range: from \code{1L} to \code{10L})}
@@ -16,8 +15,6 @@ ti_grandprix(n_latent_dims = 2L, n_inducing_points = 40L,
 \item{latent_prior_var}{numeric; (default: \code{0.1}; range: from \code{NULL} to \code{NULL})}
 
 \item{latent_var}{numeric; (default: \code{0.028}; range: from \code{NULL} to \code{NULL})}
-
-\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

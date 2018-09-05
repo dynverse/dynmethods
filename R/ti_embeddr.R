@@ -78,13 +78,11 @@ ti_embeddr <- function(
     thresh = 0.001,
     maxit = 10L,
     stretch = 2,
-    smoother = "smooth.spline",
-    config = dynwrap::container_config()
+    smoother = "smooth.spline"
 ) {
   create_ti_method_with_container(
     image = "dynverse/ti_embeddr",
     version = dynmethods::method_versions[["dynverse/ti_embeddr"]],
-    config = config
   )(
     ndim = ndim,
     kernel = kernel,

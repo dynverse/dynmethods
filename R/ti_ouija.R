@@ -36,13 +36,11 @@ ti_ouija <- function(
     iter = 100L,
     response_type = "switch",
     inference_type = "hmc",
-    normalise_expression = TRUE,
-    config = dynwrap::container_config()
+    normalise_expression = TRUE
 ) {
   create_ti_method_with_container(
     image = "dynverse/ti_ouija",
     version = dynmethods::method_versions[["dynverse/ti_ouija"]],
-    config = config
   )(
     iter = iter,
     response_type = response_type,

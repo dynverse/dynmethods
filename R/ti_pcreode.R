@@ -28,13 +28,11 @@
 #' @export
 ti_pcreode <- function(
     n_pca_components = 3L,
-    num_runs = 10L,
-    config = dynwrap::container_config()
+    num_runs = 10L
 ) {
   create_ti_method_with_container(
     image = "dynverse/ti_pcreode",
     version = dynmethods::method_versions[["dynverse/ti_pcreode"]],
-    config = config
   )(
     n_pca_components = n_pca_components,
     num_runs = num_runs

@@ -26,13 +26,11 @@
 #' @export
 ti_calista <- function(
     runs = 50L,
-    max_iter = 100L,
-    config = dynwrap::container_config()
+    max_iter = 100L
 ) {
   create_ti_method_with_container(
     image = "dynverse/ti_calista",
     version = dynmethods::method_versions[["dynverse/ti_calista"]],
-    config = config
   )(
     runs = runs,
     max_iter = max_iter

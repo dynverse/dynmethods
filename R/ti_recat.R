@@ -53,13 +53,11 @@ ti_recat <- function(
     base_cycle_range_start = 6,
     base_cycle_range_end = 9,
     max_num = 300,
-    clustMethod = "GMM",
-    config = dynwrap::container_config()
+    clustMethod = "GMM"
 ) {
   create_ti_method_with_container(
     image = "dynverse/ti_recat",
     version = dynmethods::method_versions[["dynverse/ti_recat"]],
-    config = config
   )(
     TSPFold = TSPFold,
     beginNum = beginNum,

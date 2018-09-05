@@ -5,8 +5,7 @@
 \title{Inferring a trajectory inference using mfa}
 \usage{
 ti_mfa(b = 2L, iter = 2000L, thin = 1L, pc_initialise = 1L,
-  prop_collapse = 0, scale_input = TRUE, zero_inflation = FALSE,
-  config = dynwrap::container_config())
+  prop_collapse = 0, scale_input = TRUE, zero_inflation = FALSE)
 }
 \arguments{
 \item{b}{integer; Number of branches to model (default: \code{2L}; range: from \code{1L}
@@ -28,8 +27,6 @@ marginalise over c (default: \code{0}; range: from \code{0} to \code{1})}
 variance 1}
 
 \item{zero_inflation}{logical; Logical, should zero inflation be enabled?}
-
-\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with
