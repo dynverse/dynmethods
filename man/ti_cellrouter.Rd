@@ -11,7 +11,7 @@ ti_cellrouter(ndim_pca = 20L, ndim_tsne = 11L, max_iter = 1000L,
   ranks = "rank", num_cells = 3L, neighs = 3L, perplexity = 30L)
 }
 \arguments{
-\item{ndim_pca}{integer; Number of principlal components to compute (default:
+\item{ndim_pca}{integer; Number of principal components to compute (default:
 \code{20L}; range: from \code{2L} to \code{100L})}
 
 \item{ndim_tsne}{integer; Number of tsne dimensions to compute (default: \code{11L};

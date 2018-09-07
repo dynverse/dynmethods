@@ -51,7 +51,7 @@ ti_scoup <- function(
     thresh = 0.01
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_scoup",
+    container_id = "dynverse/ti_scoup",
     version = dynmethods::method_versions[["dynverse/ti_scoup"]],
   )(
     ndim = ndim,

@@ -25,7 +25,7 @@ ti_ouijaflow <- function(
     iter = 1000L
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_ouijaflow",
+    container_id = "dynverse/ti_ouijaflow",
     version = dynmethods::method_versions[["dynverse/ti_ouijaflow"]],
   )(
     iter = iter

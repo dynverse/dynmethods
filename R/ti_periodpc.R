@@ -25,7 +25,7 @@ ti_periodpc <- function(
     maxit = 10
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_periodpc",
+    container_id = "dynverse/ti_periodpc",
     version = dynmethods::method_versions[["dynverse/ti_periodpc"]],
   )(
     ndim = ndim,

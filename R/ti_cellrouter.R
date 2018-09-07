@@ -18,7 +18,7 @@
 #' Reconstruction of complex single-cell trajectories using CellRouter. Nature
 #' Communications 9.
 #' 
-#' @param ndim_pca integer; Number of principlal components to compute (default:
+#' @param ndim_pca integer; Number of principal components to compute (default:
 #' `20L`; range: from `2L` to `100L`)
 #' @param ndim_tsne integer; Number of tsne dimensions to compute (default: `11L`;
 #' range: from `2L` to `100L`)
@@ -69,7 +69,7 @@ ti_cellrouter <- function(
     perplexity = 30L
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_cellrouter",
+    container_id = "dynverse/ti_cellrouter",
     version = dynmethods::method_versions[["dynverse/ti_cellrouter"]],
   )(
     ndim_pca = ndim_pca,

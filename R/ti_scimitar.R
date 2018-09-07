@@ -38,7 +38,7 @@ ti_scimitar <- function(
     max_iter = 3L
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_scimitar",
+    container_id = "dynverse/ti_scimitar",
     version = dynmethods::method_versions[["dynverse/ti_scimitar"]],
   )(
     covariance_type = covariance_type,

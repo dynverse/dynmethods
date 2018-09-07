@@ -50,7 +50,7 @@ ti_mpath <- function(
     size_cut = 0.05
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_mpath",
+    container_id = "dynverse/ti_mpath",
     version = dynmethods::method_versions[["dynverse/ti_mpath"]],
   )(
     distMethod = distMethod,

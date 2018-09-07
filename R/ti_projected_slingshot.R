@@ -62,7 +62,7 @@ ti_projected_slingshot <- function(
     shrink.method = "cosine"
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_projected_slingshot",
+    container_id = "dynverse/ti_projected_slingshot",
     version = dynmethods::method_versions[["dynverse/ti_projected_slingshot"]],
   )(
     shrink = shrink,

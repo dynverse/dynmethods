@@ -38,7 +38,7 @@ ti_tscan <- function(
     modelNames = "VVV"
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_tscan",
+    container_id = "dynverse/ti_tscan",
     version = dynmethods::method_versions[["dynverse/ti_tscan"]],
   )(
     minexpr_percent = minexpr_percent,

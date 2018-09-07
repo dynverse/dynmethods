@@ -39,7 +39,7 @@ ti_ouija <- function(
     normalise_expression = TRUE
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_ouija",
+    container_id = "dynverse/ti_ouija",
     version = dynmethods::method_versions[["dynverse/ti_ouija"]],
   )(
     iter = iter,

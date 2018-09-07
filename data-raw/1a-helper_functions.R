@@ -68,7 +68,7 @@ generate_function_from_definition <- function(definition) {
     parameters, "\n",
     ") {\n",
     "  create_ti_method_with_container(\n",
-    "    image = \"", definition$docker_repository, "\",\n",
+    "    container_id = \"", definition$docker_repository, "\",\n",
     "    version = dynmethods::method_versions[[\"", definition$docker_repository, "\"]],\n",
     "  )(\n",
     args, "\n",

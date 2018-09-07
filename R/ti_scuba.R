@@ -44,7 +44,7 @@ ti_scuba <- function(
     min_percentage_split = 0.25
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_scuba",
+    container_id = "dynverse/ti_scuba",
     version = dynmethods::method_versions[["dynverse/ti_scuba"]],
   )(
     rigorous_gap_stats = rigorous_gap_stats,

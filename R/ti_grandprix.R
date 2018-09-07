@@ -31,7 +31,7 @@ ti_grandprix <- function(
     latent_var = 0.028
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_grandprix",
+    container_id = "dynverse/ti_grandprix",
     version = dynmethods::method_versions[["dynverse/ti_grandprix"]],
   )(
     n_latent_dims = n_latent_dims,

@@ -45,7 +45,7 @@ ti_mfa <- function(
     zero_inflation = FALSE
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_mfa",
+    container_id = "dynverse/ti_mfa",
     version = dynmethods::method_versions[["dynverse/ti_mfa"]],
   )(
     b = b,

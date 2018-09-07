@@ -40,7 +40,7 @@ ti_projected_gng <- function(
     apply_mst = TRUE
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_projected_gng",
+    container_id = "dynverse/ti_projected_gng",
     version = dynmethods::method_versions[["dynverse/ti_projected_gng"]],
   )(
     dimred = dimred,

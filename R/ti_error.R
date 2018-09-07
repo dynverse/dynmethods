@@ -24,7 +24,7 @@ ti_error <- function(
     dummy_param = 0.5
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_error",
+    container_id = "dynverse/ti_error",
     version = dynmethods::method_versions[["dynverse/ti_error"]],
   )(
     dummy_param = dummy_param

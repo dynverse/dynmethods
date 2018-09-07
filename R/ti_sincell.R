@@ -114,7 +114,7 @@ ti_sincell <- function(
     pct_leaf_node_cutoff = 0.5
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_sincell",
+    container_id = "dynverse/ti_sincell",
     version = dynmethods::method_versions[["dynverse/ti_sincell"]],
   )(
     distance_method = distance_method,

@@ -54,7 +54,7 @@ ti_forks <- function(
     C = 1L
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_forks",
+    container_id = "dynverse/ti_forks",
     version = dynmethods::method_versions[["dynverse/ti_forks"]],
   )(
     norm_function = norm_function,

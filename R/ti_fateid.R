@@ -77,7 +77,7 @@ ti_fateid <- function(
     force = FALSE
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_fateid",
+    container_id = "dynverse/ti_fateid",
     version = dynmethods::method_versions[["dynverse/ti_fateid"]],
   )(
     reclassify = reclassify,

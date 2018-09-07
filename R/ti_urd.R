@@ -99,7 +99,7 @@ ti_urd <- function(
     p.thresh = 0.01
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_urd",
+    container_id = "dynverse/ti_urd",
     version = dynmethods::method_versions[["dynverse/ti_urd"]],
   )(
     knn = knn,

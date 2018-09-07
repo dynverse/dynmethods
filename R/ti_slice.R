@@ -72,7 +72,7 @@ ti_slice <- function(
     k.opt.method = "firstmax"
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_slice",
+    container_id = "dynverse/ti_slice",
     version = dynmethods::method_versions[["dynverse/ti_slice"]],
   )(
     lm.method = lm.method,

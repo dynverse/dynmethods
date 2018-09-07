@@ -59,7 +59,7 @@ ti_celltrails <- function(
     l = 10L
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_celltrails",
+    container_id = "dynverse/ti_celltrails",
     version = dynmethods::method_versions[["dynverse/ti_celltrails"]],
   )(
     threshold_dl = threshold_dl,

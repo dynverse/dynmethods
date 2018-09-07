@@ -41,7 +41,7 @@ ti_phenopath <- function(
     scale_y = TRUE
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_phenopath",
+    container_id = "dynverse/ti_phenopath",
     version = dynmethods::method_versions[["dynverse/ti_phenopath"]],
   )(
     thin = thin,

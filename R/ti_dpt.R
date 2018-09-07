@@ -55,7 +55,7 @@ ti_dpt <- function(
     w_width = 0.1
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_dpt",
+    container_id = "dynverse/ti_dpt",
     version = dynmethods::method_versions[["dynverse/ti_dpt"]],
   )(
     sigma = sigma,

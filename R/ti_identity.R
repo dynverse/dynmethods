@@ -24,7 +24,7 @@ ti_identity <- function(
     dummy_param = 0.5
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_identity",
+    container_id = "dynverse/ti_identity",
     version = dynmethods::method_versions[["dynverse/ti_identity"]],
   )(
     dummy_param = dummy_param

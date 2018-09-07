@@ -28,7 +28,7 @@ ti_waterfall <- function(
     num_clusters = 10
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_waterfall",
+    container_id = "dynverse/ti_waterfall",
     version = dynmethods::method_versions[["dynverse/ti_waterfall"]],
   )(
     num_clusters = num_clusters

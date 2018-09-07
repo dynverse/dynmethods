@@ -29,7 +29,7 @@ ti_calista <- function(
     max_iter = 100L
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_calista",
+    container_id = "dynverse/ti_calista",
     version = dynmethods::method_versions[["dynverse/ti_calista"]],
   )(
     runs = runs,

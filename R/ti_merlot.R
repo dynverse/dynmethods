@@ -75,7 +75,7 @@ ti_merlot <- function(
     FixEndpoints = FALSE
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_merlot",
+    container_id = "dynverse/ti_merlot",
     version = dynmethods::method_versions[["dynverse/ti_merlot"]],
   )(
     sigma = sigma,

@@ -49,7 +49,7 @@ ti_elpicycle <- function(
     CenterData = FALSE
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_elpicycle",
+    container_id = "dynverse/ti_elpicycle",
     version = dynmethods::method_versions[["dynverse/ti_elpicycle"]],
   )(
     topology = topology,

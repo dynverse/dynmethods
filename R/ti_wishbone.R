@@ -46,7 +46,7 @@ ti_wishbone <- function(
     branch = TRUE
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_wishbone",
+    container_id = "dynverse/ti_wishbone",
     version = dynmethods::method_versions[["dynverse/ti_wishbone"]],
   )(
     normalise = normalise,

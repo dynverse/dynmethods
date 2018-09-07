@@ -15,7 +15,7 @@ definitions <-
     repo <- yaml::read_yaml(file)$docker_repository
 
     # fetch definition /with/ digests
-    dynwrap:::.container_pull_image(repo)
+    babelwhale::pull_container(repo)
     definition <- dynwrap:::.container_get_definition(repo)
 
     # generate file from definition

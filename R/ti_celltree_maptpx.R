@@ -47,7 +47,7 @@ ti_celltree_maptpx <- function(
     tolerance = 0.05
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_celltree_maptpx",
+    container_id = "dynverse/ti_celltree_maptpx",
     version = dynmethods::method_versions[["dynverse/ti_celltree_maptpx"]],
   )(
     method = method,

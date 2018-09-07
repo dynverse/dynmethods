@@ -44,7 +44,7 @@ ti_wanderlust <- function(
     epsilon = 1L
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_wanderlust",
+    container_id = "dynverse/ti_wanderlust",
     version = dynmethods::method_versions[["dynverse/ti_wanderlust"]],
   )(
     normalise = normalise,

@@ -49,7 +49,7 @@ ti_elpilinear <- function(
     CenterData = FALSE
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_elpilinear",
+    container_id = "dynverse/ti_elpilinear",
     version = dynmethods::method_versions[["dynverse/ti_elpilinear"]],
   )(
     topology = topology,

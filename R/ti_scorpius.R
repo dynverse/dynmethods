@@ -54,7 +54,7 @@ ti_scorpius <- function(
     sparse = TRUE
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_scorpius",
+    container_id = "dynverse/ti_scorpius",
     version = dynmethods::method_versions[["dynverse/ti_scorpius"]],
   )(
     distance_method = distance_method,

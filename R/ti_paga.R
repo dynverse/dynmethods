@@ -42,7 +42,7 @@ ti_paga <- function(
     embedding_type = "fa"
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_paga",
+    container_id = "dynverse/ti_paga",
     version = dynmethods::method_versions[["dynverse/ti_paga"]],
   )(
     n_neighbors = n_neighbors,

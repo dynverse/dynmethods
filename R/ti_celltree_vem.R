@@ -45,7 +45,7 @@ ti_celltree_vem <- function(
     tolerance = 1e-05
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_celltree_vem",
+    container_id = "dynverse/ti_celltree_vem",
     version = dynmethods::method_versions[["dynverse/ti_celltree_vem"]],
   )(
     method = method,

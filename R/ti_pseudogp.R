@@ -56,7 +56,7 @@ ti_pseudogp <- function(
     initialise_from = "random"
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_pseudogp",
+    container_id = "dynverse/ti_pseudogp",
     version = dynmethods::method_versions[["dynverse/ti_pseudogp"]],
   )(
     smoothing_alpha = smoothing_alpha,
