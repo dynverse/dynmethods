@@ -47,13 +47,8 @@ df <- methods %>%
   mutate(
     docker_url = paste0("https://hub.docker.com/r/", docker_repository),
     travis_url = paste0("https://travis-ci.org/", docker_repository),
-    `Method` = map2_chr(name, doi, function(name, doi) {
-      if (!is.null(doi) && !is.na(doi)) {
-        glue::glue("{name} <a href='https://doi.org/{doi}'><img src='man/figures/doi_logo.png' height='16'></a>")
-      } else {
-        name
-      }
-    }),
+    `Method` = name,
+    `doi` = map_chr(doi, function(do) if (!is.null(do) && !is.na(do)) paste0("<a href='https://doi.org/", do, "'><img src='man/figures/doi_logo.png' height='16'></a>") else "" ),
     `Docker` = glue::glue("[![Version](https://img.shields.io/badge/Docker-v{version}-blue.svg?logo=docker)]({docker_url})"),
     `Code` = glue::glue("[code]({container_url})"), 
     `Status` = glue::glue("[![Build status]({travis_url}.svg?branch=master)]({travis_url})"),
