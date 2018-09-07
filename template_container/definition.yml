@@ -1,8 +1,9 @@
 id: template
-docker_repository: dynverse/dynmethods:template
-container_url: https://github.com/dynverse/dynmethods/tree/master/containers/template
 name: Template
 type: algorithm
+container_url: https://github.com/dynverse/ti_template
+docker_repository: dynverse/ti_template
+singularity_collection: 1000
 doi: '101010101/1101010101'
 google_scholar_cluster_id: '1010001010101111211'
 platform: R
