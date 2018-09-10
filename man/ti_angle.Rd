@@ -4,15 +4,13 @@
 \alias{ti_angle}
 \title{Inferring a trajectory inference using Angle}
 \usage{
-ti_angle(dimred = "pca", config = dynwrap::container_config())
+ti_angle(dimred = "pca")
 }
 \arguments{
 \item{dimred}{discrete; Which dimensionality reduction method to use. (default:
 \code{"pca"}; values: {\code{"pca"}, \code{"mds"}, \code{"tsne"}, \code{"ica"}, \code{"lle"},
 \code{"landmark_mds"}, \code{"mds_sammon"}, \code{"mds_isomds"}, \code{"mds_smacof"}, \code{"umap"},
 \code{"dm_diffusionMap"}})}
-
-\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

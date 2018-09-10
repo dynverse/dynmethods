@@ -48,13 +48,11 @@ ti_scoup <- function(
     t_min = 0.001,
     t_max = 2L,
     sigma_squared_min = 0.1,
-    thresh = 0.01,
-    config = dynwrap::container_config()
+    thresh = 0.01
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_scoup",
+    container_id = "dynverse/ti_scoup",
     version = dynmethods::method_versions[["dynverse/ti_scoup"]],
-    config = config
   )(
     ndim = ndim,
     max_ite1 = max_ite1,

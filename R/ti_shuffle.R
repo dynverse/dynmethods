@@ -21,13 +21,11 @@
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_shuffle <- function(
-    dummy_param = 0.5,
-    config = dynwrap::container_config()
+    dummy_param = 0.5
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_shuffle",
+    container_id = "dynverse/ti_shuffle",
     version = dynmethods::method_versions[["dynverse/ti_shuffle"]],
-    config = config
   )(
     dummy_param = dummy_param
   )

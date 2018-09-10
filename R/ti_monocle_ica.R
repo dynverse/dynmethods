@@ -38,13 +38,11 @@ ti_monocle_ica <- function(
     max_components = 2L,
     norm_method = "log",
     filter_features = TRUE,
-    filter_features_mean_expression = 0.1,
-    config = dynwrap::container_config()
+    filter_features_mean_expression = 0.1
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_monocle_ica",
+    container_id = "dynverse/ti_monocle_ica",
     version = dynmethods::method_versions[["dynverse/ti_monocle_ica"]],
-    config = config
   )(
     reduction_method = reduction_method,
     max_components = max_components,

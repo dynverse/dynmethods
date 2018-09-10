@@ -23,7 +23,7 @@ bump_version_numbers <- function (by) {
       readr::write_lines(file)
 
     new_file <- gsub("Dockerfile", "Singularity", file)
-    dynwrap:::.container_dockerfile_to_singularityrecipe(file, new_file)
+    babelwhale::convert_dockerfile_to_singularityrecipe(file, new_file)
   })
 }
 

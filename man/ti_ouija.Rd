@@ -5,8 +5,7 @@
 \title{Inferring a trajectory inference using ouija}
 \usage{
 ti_ouija(iter = 100L, response_type = "switch",
-  inference_type = "hmc", normalise_expression = TRUE,
-  config = dynwrap::container_config())
+  inference_type = "hmc", normalise_expression = TRUE)
 }
 \arguments{
 \item{iter}{numeric; Number of iterations (default: \code{100L}; range: from \code{10L}
@@ -24,8 +23,6 @@ magnitude faster. (default: \code{"hmc"}; values: {\code{"hmc"}, \code{"vb"}})}
 \item{normalise_expression}{logical; Logical, default TRUE. If TRUE the data is
 pre-normalisedso the average peak expression is approximately 1. This makes the
 strength parametersapproximately comparable between genes.}
-
-\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

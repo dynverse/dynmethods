@@ -23,12 +23,12 @@ out <- furrr::future_map(files, function(file) {
 
   # message(method_id, ": Pull remote docker")
   processx::run("docker", args = c("pull", docker_repo), echo = FALSE, stdout_callback = out_fun, stderr_callback = err_fun, error_on_status = FALSE)
-  version <- dynwrap:::.container_get_version(docker_repo, container_docker())
+  version <- dynwrap:::.container_get_version(docker_repo)
 
   message(method_id, ": Building new docker")
   processx::run("docker", args = c("build", folder, "-t", docker_repo), echo = FALSE, stdout_callback = out_fun, stderr_callback = err_fun)
 
-  new_version <- dynwrap:::.container_get_version(docker_repo, container_docker())
+  new_version <- dynwrap:::.container_get_version(docker_repo)
 
   if (!identical(new_version, version)) {
     tryCatch({

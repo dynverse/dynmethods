@@ -22,13 +22,11 @@
 #' @export
 ti_periodpc <- function(
     ndim = 3,
-    maxit = 10,
-    config = dynwrap::container_config()
+    maxit = 10
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_periodpc",
+    container_id = "dynverse/ti_periodpc",
     version = dynmethods::method_versions[["dynverse/ti_periodpc"]],
-    config = config
   )(
     ndim = ndim,
     maxit = maxit

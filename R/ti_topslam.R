@@ -34,13 +34,11 @@ ti_topslam <- function(
     n_neighbors = 10L,
     linear_dims = 0L,
     max_iters = 1000L,
-    dimreds = c(TRUE, TRUE, TRUE, TRUE, TRUE),
-    config = dynwrap::container_config()
+    dimreds = c(TRUE, TRUE, TRUE, TRUE, TRUE)
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_topslam",
+    container_id = "dynverse/ti_topslam",
     version = dynmethods::method_versions[["dynverse/ti_topslam"]],
-    config = config
   )(
     n_components = n_components,
     n_neighbors = n_neighbors,

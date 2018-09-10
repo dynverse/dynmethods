@@ -51,13 +51,11 @@ ti_forks <- function(
     initialization = "kmeans",
     iterMax = 1000L,
     eta = 0.01,
-    C = 1L,
-    config = dynwrap::container_config()
+    C = 1L
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_forks",
+    container_id = "dynverse/ti_forks",
     version = dynmethods::method_versions[["dynverse/ti_forks"]],
-    config = config
   )(
     norm_function = norm_function,
     norm_quantile = norm_quantile,

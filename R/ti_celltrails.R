@@ -56,13 +56,11 @@ ti_celltrails <- function(
     min_feat = 5L,
     max_pval = 1e-04,
     min_fc = 2L,
-    l = 10L,
-    config = dynwrap::container_config()
+    l = 10L
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_celltrails",
+    container_id = "dynverse/ti_celltrails",
     version = dynmethods::method_versions[["dynverse/ti_celltrails"]],
-    config = config
   )(
     threshold_dl = threshold_dl,
     threshold_cov = threshold_cov,

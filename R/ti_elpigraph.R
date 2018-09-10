@@ -46,13 +46,11 @@ ti_elpigraph <- function(
     Lambda = 0.01,
     MaxNumberOfIterations = 10L,
     eps = 0.01,
-    CenterData = FALSE,
-    config = dynwrap::container_config()
+    CenterData = FALSE
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_elpigraph",
+    container_id = "dynverse/ti_elpigraph",
     version = dynmethods::method_versions[["dynverse/ti_elpigraph"]],
-    config = config
   )(
     topology = topology,
     NumNodes = NumNodes,

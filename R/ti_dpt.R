@@ -52,13 +52,11 @@ ti_dpt <- function(
     density_norm = TRUE,
     n_local_lower = 5L,
     n_local_upper = 7L,
-    w_width = 0.1,
-    config = dynwrap::container_config()
+    w_width = 0.1
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_dpt",
+    container_id = "dynverse/ti_dpt",
     version = dynmethods::method_versions[["dynverse/ti_dpt"]],
-    config = config
   )(
     sigma = sigma,
     distance = distance,

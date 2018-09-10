@@ -4,15 +4,12 @@
 \alias{ti_periodpc}
 \title{Inferring a trajectory inference using Periodic PrinCurve}
 \usage{
-ti_periodpc(ndim = 3, maxit = 10,
-  config = dynwrap::container_config())
+ti_periodpc(ndim = 3, maxit = 10)
 }
 \arguments{
 \item{ndim}{integer; (default: \code{3}; range: from \code{2} to \code{10})}
 
 \item{maxit}{integer; (default: \code{10}; range: from \code{0} to \code{100})}
-
-\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

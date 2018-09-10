@@ -28,13 +28,11 @@
 #' @export
 ti_matcher <- function(
     quantiles = 50L,
-    method = "linear",
-    config = dynwrap::container_config()
+    method = "linear"
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_matcher",
+    container_id = "dynverse/ti_matcher",
     version = dynmethods::method_versions[["dynverse/ti_matcher"]],
-    config = config
   )(
     quantiles = quantiles,
     method = method

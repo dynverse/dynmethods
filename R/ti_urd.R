@@ -96,13 +96,11 @@ ti_urd <- function(
     divergence.method = "ks",
     cells.per.pseudotime.bin = 80L,
     bins.per.pseudotime.window = 5L,
-    p.thresh = 0.01,
-    config = dynwrap::container_config()
+    p.thresh = 0.01
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_urd",
+    container_id = "dynverse/ti_urd",
     version = dynmethods::method_versions[["dynverse/ti_urd"]],
-    config = config
   )(
     knn = knn,
     sigma.use = sigma.use,

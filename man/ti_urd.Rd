@@ -11,7 +11,7 @@ ti_urd(knn = 0L, sigma.use = 0, distance = "euclidean",
   max.cells.back = 40L, n.per.tip = 25000L, root.visits = 1L,
   max.steps = 25000L, n.subsample = 10L, divergence.method = "ks",
   cells.per.pseudotime.bin = 80L, bins.per.pseudotime.window = 5L,
-  p.thresh = 0.01, config = dynwrap::container_config())
+  p.thresh = 0.01)
 }
 \arguments{
 \item{knn}{integer; Number of nearest neighbors to use. \code{0} takes a guess.
@@ -87,8 +87,6 @@ used for branchpoint finding, in terms of bins. (default: \code{5L}; range: from
 \item{p.thresh}{numeric; P-value threshold to use in determining whether
 visitation is significantly different from pairs of tips (default: \code{0.01};
 range: from \code{1e-05} to \code{1L})}
-
-\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

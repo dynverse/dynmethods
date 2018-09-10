@@ -35,13 +35,11 @@ ti_scimitar <- function(
     step_size = 0.07,
     cov_estimator = "corpcor",
     cov_reg = 0.05,
-    max_iter = 3L,
-    config = dynwrap::container_config()
+    max_iter = 3L
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_scimitar",
+    container_id = "dynverse/ti_scimitar",
     version = dynmethods::method_versions[["dynverse/ti_scimitar"]],
-    config = config
   )(
     covariance_type = covariance_type,
     degree = degree,

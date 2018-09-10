@@ -47,13 +47,11 @@ ti_mpath <- function(
     numcluster = 11L,
     numcluster_null = TRUE,
     diversity_cut = 0.6,
-    size_cut = 0.05,
-    config = dynwrap::container_config()
+    size_cut = 0.05
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_mpath",
+    container_id = "dynverse/ti_mpath",
     version = dynmethods::method_versions[["dynverse/ti_mpath"]],
-    config = config
   )(
     distMethod = distMethod,
     method = method,

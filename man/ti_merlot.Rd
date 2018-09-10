@@ -8,8 +8,7 @@ ti_merlot(sigma = "local", distance = "euclidean", ndim = 20L,
   density_norm = TRUE, n_local_lower = 5L, n_local_upper = 7L,
   w_width = 0.01, n_components_to_use = 3, N_yk = 100,
   lambda_0 = 8e-10, mu_0 = 0.0025, increaseFactor_mu = 20,
-  increaseFactor_lambda = 20, FixEndpoints = FALSE,
-  config = dynwrap::container_config())
+  increaseFactor_lambda = 20, FixEndpoints = FALSE)
 }
 \arguments{
 \item{sigma}{discrete; Diffusion scale parameter of the Gaussian kernel. A
@@ -62,8 +61,6 @@ the embedding (default: \code{20}; range: from \code{2} to \code{50})}
 for the embedding (default: \code{20}; range: from \code{2} to \code{50})}
 
 \item{FixEndpoints}{logical; Documentation not provided by authors}
-
-\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

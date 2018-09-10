@@ -43,13 +43,11 @@ ti_wishbone <- function(
     k = 25L,
     num_waypoints = 250L,
     epsilon = 1L,
-    branch = TRUE,
-    config = dynwrap::container_config()
+    branch = TRUE
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_wishbone",
+    container_id = "dynverse/ti_wishbone",
     version = dynmethods::method_versions[["dynverse/ti_wishbone"]],
-    config = config
   )(
     normalise = normalise,
     knn = knn,

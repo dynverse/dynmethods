@@ -74,13 +74,11 @@ ti_fateid <- function(
     minnr = 5L,
     minnrh = 10L,
     trthr = 0.4,
-    force = FALSE,
-    config = dynwrap::container_config()
+    force = FALSE
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_fateid",
+    container_id = "dynverse/ti_fateid",
     version = dynmethods::method_versions[["dynverse/ti_fateid"]],
-    config = config
   )(
     reclassify = reclassify,
     clthr = clthr,

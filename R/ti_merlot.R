@@ -72,13 +72,11 @@ ti_merlot <- function(
     mu_0 = 0.0025,
     increaseFactor_mu = 20,
     increaseFactor_lambda = 20,
-    FixEndpoints = FALSE,
-    config = dynwrap::container_config()
+    FixEndpoints = FALSE
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_merlot",
+    container_id = "dynverse/ti_merlot",
     version = dynmethods::method_versions[["dynverse/ti_merlot"]],
-    config = config
   )(
     sigma = sigma,
     distance = distance,

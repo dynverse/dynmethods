@@ -27,13 +27,11 @@
 ti_comp1 <- function(
     dimred = "pca",
     ndim = 2,
-    component = 1,
-    config = dynwrap::container_config()
+    component = 1
 ) {
   create_ti_method_with_container(
-    image = "dynverse/ti_comp1",
+    container_id = "dynverse/ti_comp1",
     version = dynmethods::method_versions[["dynverse/ti_comp1"]],
-    config = config
   )(
     dimred = dimred,
     ndim = ndim,

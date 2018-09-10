@@ -5,8 +5,7 @@
 \title{Inferring a trajectory inference using topslam}
 \usage{
 ti_topslam(n_components = 2L, n_neighbors = 10L, linear_dims = 0L,
-  max_iters = 1000L, dimreds = c(TRUE, TRUE, TRUE, TRUE, TRUE),
-  config = dynwrap::container_config())
+  max_iters = 1000L, dimreds = c(TRUE, TRUE, TRUE, TRUE, TRUE))
 }
 \arguments{
 \item{n_components}{integer; The number of components (default: \code{2L}; range:
@@ -22,8 +21,6 @@ from \code{2L} to \code{100L})}
 
 \item{dimreds}{logical_vector; Which dimensionality reductions to use; tSNE,
 PCA, Spectral, Isomap and/or ICA}
-
-\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with

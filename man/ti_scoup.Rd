@@ -6,8 +6,7 @@
 \usage{
 ti_scoup(ndim = 2L, max_ite1 = 100L, max_ite2 = 100L,
   alpha_min = 0.1, alpha_max = 100L, t_min = 0.001, t_max = 2L,
-  sigma_squared_min = 0.1, thresh = 0.01,
-  config = dynwrap::container_config())
+  sigma_squared_min = 0.1, thresh = 0.01)
 }
 \arguments{
 \item{ndim}{integer; Number of pca dimensions (default: \code{2L}; range: from \code{2L}
@@ -35,8 +34,6 @@ from \code{1e-05} to \code{1})}
 range: from \code{0.001} to \code{10})}
 
 \item{thresh}{numeric; Threshold (default: \code{0.01}; range: from \code{0.01} to \code{10})}
-
-\item{config}{A container config. See \code{\link[=container_config]{container_config()}} for more information.}
 }
 \value{
 A TI method wrapper to be used together with
