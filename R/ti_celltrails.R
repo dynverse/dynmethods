@@ -17,6 +17,7 @@
 #' P.G., Heller, S., 2018. Transcriptional Dynamics of Hair-Bundle Morphogenesis
 #' Revealed with CellTrails. Cell Reports 23, 2901–2914.e14.
 #' 
+#' @param filter_features logical; Whether to include celltrails feature filtering
 #' @param threshold_dl integer; Minimum number of samples; if value < 1 it is
 #' interpreted as fraction, otherwise as absolute sample count (default: `2L`;
 #' range: from `0L` to `100L`)
@@ -47,6 +48,7 @@
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_celltrails <- function(
+    filter_features = FALSE,
     threshold_dl = 2L,
     threshold_cov = 0.05,
     threshold_ff = 1.7,
@@ -62,6 +64,7 @@ ti_celltrails <- function(
     container_id = "dynverse/ti_celltrails",
     version = dynmethods::method_versions[["dynverse/ti_celltrails"]],
   )(
+    filter_features = filter_features,
     threshold_dl = threshold_dl,
     threshold_cov = threshold_cov,
     threshold_ff = threshold_ff,
