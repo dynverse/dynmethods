@@ -17,8 +17,8 @@
 #' `"pca"`; values: {`"pca"`, `"mds"`, `"tsne"`, `"ica"`, `"lle"`,
 #' `"landmark_mds"`, `"mds_sammon"`, `"mds_isomds"`, `"mds_smacof"`, `"umap"`,
 #' `"dm_diffusionMap"`})
-#' @param ndim integer; (default: `2`; range: from `2` to `30`)
-#' @param component integer; (default: `1`; range: from `1` to `10`)
+#' @param ndim integer; (default: `2L`; range: from `2L` to `30L`)
+#' @param component integer; (default: `1L`; range: from `1L` to `10L`)
 #' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
@@ -26,8 +26,8 @@
 #' @export
 ti_comp1 <- function(
     dimred = "pca",
-    ndim = 2,
-    component = 1
+    ndim = 2L,
+    component = 1L
 ) {
   create_ti_method_with_container(
     container_id = "dynverse/ti_comp1",

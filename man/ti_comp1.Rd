@@ -4,7 +4,7 @@
 \alias{ti_comp1}
 \title{Inferring a trajectory inference using Component 1}
 \usage{
-ti_comp1(dimred = "pca", ndim = 2, component = 1)
+ti_comp1(dimred = "pca", ndim = 2L, component = 1L)
 }
 \arguments{
 \item{dimred}{discrete; Which dimensionality reduction method to use. (default:
@@ -12,9 +12,9 @@ ti_comp1(dimred = "pca", ndim = 2, component = 1)
 \code{"landmark_mds"}, \code{"mds_sammon"}, \code{"mds_isomds"}, \code{"mds_smacof"}, \code{"umap"},
 \code{"dm_diffusionMap"}})}
 
-\item{ndim}{integer; (default: \code{2}; range: from \code{2} to \code{30})}
+\item{ndim}{integer; (default: \code{2L}; range: from \code{2L} to \code{30L})}
 
-\item{component}{integer; (default: \code{1}; range: from \code{1} to \code{10})}
+\item{component}{integer; (default: \code{1L}; range: from \code{1L} to \code{10L})}
 }
 \value{
 A TI method wrapper to be used together with
