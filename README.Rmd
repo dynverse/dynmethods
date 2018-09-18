@@ -65,6 +65,7 @@ df <- methods %>%
 df2 <- df %>% 
   select(
     `Method`,
+    `doi`,
     `Code`,
     `<a href='https://hub.docker.com/u/dynverse/'><img src='man/figures/docker_logo.png' height='30'></a>` = `Docker`,
     `Status`,
