@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_mfa.R
 \name{ti_mfa}
 \alias{ti_mfa}
-\title{Inferring a trajectory inference using mfa}
+\title{Inferring a trajectory inference using MFA}
 \usage{
 ti_mfa(b = 2L, iter = 2000L, thin = 1L, pc_initialise = 1L,
   prop_collapse = 0, scale_input = TRUE, zero_inflation = FALSE)
@@ -34,7 +34,7 @@ A TI method wrapper to be used together with
 }
 \description{
 Will generate a trajectory using
-\href{https://doi.org/10.12688/wellcomeopenres.11087.1}{mfa}.
+\href{https://doi.org/10.12688/wellcomeopenres.11087.1}{MFA}.
 
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_mfa}{container}.

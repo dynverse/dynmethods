@@ -29,7 +29,7 @@ To include your own method, feel free to send us a [pull request](https://github
 ```{r, echo = FALSE, warning = FALSE, error = FALSE, message = FALSE, results='asis'}
 df <- methods %>% 
   arrange(name) %>% 
-  arrange(fct_infreq(type)) %>% 
+  arrange(fct_infreq(source)) %>% 
   mutate(
     docker_url = paste0("https://hub.docker.com/r/", docker_repository),
     travis_url = paste0("https://travis-ci.org/", docker_repository),

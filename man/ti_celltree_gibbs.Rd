@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_celltree_gibbs.R
 \name{ti_celltree_gibbs}
 \alias{ti_celltree_gibbs}
-\title{Inferring a trajectory inference using cellTree with gibbs}
+\title{Inferring a trajectory inference using cellTree with Gibbs}
 \usage{
 ti_celltree_gibbs(method = "Gibbs", sd_filter = 0.5,
   absolute_width = 0, width_scale_factor = 1.5,
@@ -35,7 +35,7 @@ A TI method wrapper to be used together with
 \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/10.1186/s12859-016-1175-6}{cellTree with gibbs}.
+Will generate a trajectory using \href{https://doi.org/10.1186/s12859-016-1175-6}{cellTree with Gibbs}.
 
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_celltree_gibbs}{container}.
