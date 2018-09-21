@@ -29,6 +29,8 @@
 #' @param embedding_type discrete; Either 'umap' (scales very well, recommended
 #' for very large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for
 #' small datasets). (default: `"fa"`; values: {`"umap"`, `"fa"`})
+#' @param connectivity_cutoff numeric; Cutoff for the connectivity matrix
+#' (default: `0.05`; range: from `0L` to `1L`)
 #' @inheritParams dynwrap::create_ti_method_with_container
 #' 
 #' @return A TI method wrapper to be used together with
@@ -39,7 +41,8 @@ ti_paga <- function(
     n_comps = 50L,
     n_dcs = 15L,
     resolution = 1L,
-    embedding_type = "fa"
+    embedding_type = "fa",
+    connectivity_cutoff = 0.05
 ) {
   create_ti_method_with_container(
     container_id = "dynverse/ti_paga",
@@ -49,7 +52,8 @@ ti_paga <- function(
     n_comps = n_comps,
     n_dcs = n_dcs,
     resolution = resolution,
-    embedding_type = embedding_type
+    embedding_type = embedding_type,
+    connectivity_cutoff = connectivity_cutoff
   )
 }
 

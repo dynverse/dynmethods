@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_celltree_maptpx.R
 \name{ti_celltree_maptpx}
 \alias{ti_celltree_maptpx}
-\title{Inferring a trajectory inference using cellTree with maptpx}
+\title{Inferring a trajectory inference using cellTree maptpx}
 \usage{
 ti_celltree_maptpx(method = "maptpx", sd_filter = 0.5,
   absolute_width = 0, width_scale_factor = 1.5,
@@ -38,7 +38,7 @@ A TI method wrapper to be used together with
 \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/10.1186/s12859-016-1175-6}{cellTree with maptpx}.
+Will generate a trajectory using \href{https://doi.org/10.1186/s12859-016-1175-6}{cellTree maptpx}.
 
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_celltree_maptpx}{container}.

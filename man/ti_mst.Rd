@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_mst.R
 \name{ti_mst}
 \alias{ti_mst}
-\title{Inferring a trajectory inference using Minimum Spanning Tree}
+\title{Inferring a trajectory inference using MST}
 \usage{
 ti_mst(dimred = "pca", ndim = 2L)
 }
@@ -19,7 +19,7 @@ A TI method wrapper to be used together with
 \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 }
 \description{
-Will generate a trajectory using Minimum Spanning Tree.
+Will generate a trajectory using MST.
 
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_mst}{container}.

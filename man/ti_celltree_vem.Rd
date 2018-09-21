@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_celltree_vem.R
 \name{ti_celltree_vem}
 \alias{ti_celltree_vem}
-\title{Inferring a trajectory inference using cellTree with VEM}
+\title{Inferring a trajectory inference using cellTree VEM}
 \usage{
 ti_celltree_vem(method = "VEM", sd_filter = 0.5, absolute_width = 0,
   width_scale_factor = 1.5, outlier_tolerance_factor = 0.1,
@@ -35,7 +35,7 @@ A TI method wrapper to be used together with
 \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/10.1186/s12859-016-1175-6}{cellTree with VEM}.
+Will generate a trajectory using \href{https://doi.org/10.1186/s12859-016-1175-6}{cellTree VEM}.
 
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_celltree_vem}{container}.
