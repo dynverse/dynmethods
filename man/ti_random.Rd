@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_random.R
 \name{ti_random}
 \alias{ti_random}
-\title{Inferring a trajectory inference using Control: random}
+\title{Inferring a trajectory inference using Random}
 \usage{
 ti_random(dummy_param = 0.5)
 }
@@ -15,7 +15,7 @@ A TI method wrapper to be used together with
 \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 }
 \description{
-Will generate a trajectory using Control: random.
+Will generate a trajectory using Random.
 
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_random}{container}.

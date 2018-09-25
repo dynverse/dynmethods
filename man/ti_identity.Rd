@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_identity.R
 \name{ti_identity}
 \alias{ti_identity}
-\title{Inferring a trajectory inference using Control: identity}
+\title{Inferring a trajectory inference using Identity}
 \usage{
 ti_identity(dummy_param = 0.5)
 }
@@ -15,7 +15,7 @@ A TI method wrapper to be used together with
 \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 }
 \description{
-Will generate a trajectory using Control: identity.
+Will generate a trajectory using Identity.
 
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_identity}{container}.

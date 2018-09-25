@@ -4,7 +4,7 @@
 \name{method_versions}
 \alias{method_versions}
 \title{Version numbers of the method repos}
-\format{An object of class \code{character} of length 57.}
+\format{An object of class \code{character} of length 59.}
 \usage{
 method_versions
 }
