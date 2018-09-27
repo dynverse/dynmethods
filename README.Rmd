@@ -17,7 +17,7 @@ data("methods")
 <img src="man/figures/logo.png" align="right" /> [![Build status](https://travis-ci.org/dynverse/dynmethods.svg?branch=master)](https://travis-ci.org/dynverse/dynmethods)
 
 # A collection of `r nrow(methods)` trajectory inference methods
-This package contains wrappers for all of the trajectory inference (TI) methods included in the [dynverse](https://www.github.com/dynverse/dynverse) review. The output of each method is transformed into a common trajectory model using [dynwrap](https://www.github.com/dynverse/dynwrap), which allows easy [visualisation and comparison](https://www.github.com/dynverse/dynplot). Nearly all methods are integrated within a docker container, avoiding dependency issues. Some methods are also directly wrapped inside of R.
+This package contains wrappers for trajectory inference (TI) methods. The output of each method is transformed into a common trajectory model using [dynwrap](https://www.github.com/dynverse/dynwrap), which allows easy [visualisation and comparison](https://www.github.com/dynverse/dyno). All methods are wrapped inside a docker container, which avoids dependency issues, and also makes it easy to add a new method.
 
 **To run any of these methods, interpret the results and visualise the trajectory, see the [dyno package](https://www.github.com/dynverse/dyno).**
 
