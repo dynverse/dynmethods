@@ -17,8 +17,6 @@
 #' bifurcations in single-cell gene expression data using a Bayesian mixture of
 #' factor analyzers. Wellcome Open Research 2, 19.
 #' 
-#' @param b integer; Number of branches to model (default: `2L`; range: from `1L`
-#' to `10L`)
 #' @param iter integer; Number of MCMC iterations (default: `2000L`; range: from
 #' `20L` to `5000L`)
 #' @param thin integer; MCMC samples to thin (default: `1L`; range: from `1L` to
@@ -36,7 +34,6 @@
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_mfa <- function(
-    b = 2L,
     iter = 2000L,
     thin = 1L,
     pc_initialise = 1L,
@@ -48,7 +45,6 @@ ti_mfa <- function(
     container_id = "dynverse/ti_mfa",
     version = dynmethods::method_versions[["dynverse/ti_mfa"]],
   )(
-    b = b,
     iter = iter,
     thin = thin,
     pc_initialise = pc_initialise,

@@ -15,7 +15,6 @@
 #' @references Ahmed, S., Rattray, M., Boukouvalas, A., 2017. GrandPrix: Scaling
 #' up the Bayesian GPLVM for single-cell data.
 #' 
-#' @param n_latent_dims integer; (default: `2L`; range: from `1L` to `10L`)
 #' @param n_inducing_points integer; (default: `40L`; range: from `10L` to `500L`)
 #' @param latent_prior_var numeric; (default: `0.1`; range: from `NULL` to `NULL`)
 #' @param latent_var numeric; (default: `0.028`; range: from `NULL` to `NULL`)
@@ -25,7 +24,6 @@
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_grandprix <- function(
-    n_latent_dims = 2L,
     n_inducing_points = 40L,
     latent_prior_var = 0.1,
     latent_var = 0.028
@@ -34,7 +32,6 @@ ti_grandprix <- function(
     container_id = "dynverse/ti_grandprix",
     version = dynmethods::method_versions[["dynverse/ti_grandprix"]],
   )(
-    n_latent_dims = n_latent_dims,
     n_inducing_points = n_inducing_points,
     latent_prior_var = latent_prior_var,
     latent_var = latent_var

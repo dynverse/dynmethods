@@ -4,13 +4,10 @@
 \alias{ti_mfa}
 \title{Inferring a trajectory inference using MFA}
 \usage{
-ti_mfa(b = 2L, iter = 2000L, thin = 1L, pc_initialise = 1L,
+ti_mfa(iter = 2000L, thin = 1L, pc_initialise = 1L,
   prop_collapse = 0, scale_input = TRUE, zero_inflation = FALSE)
 }
 \arguments{
-\item{b}{integer; Number of branches to model (default: \code{2L}; range: from \code{1L}
-to \code{10L})}
-
 \item{iter}{integer; Number of MCMC iterations (default: \code{2000L}; range: from
 \code{20L} to \code{5000L})}
 
