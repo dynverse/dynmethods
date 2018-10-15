@@ -25,17 +25,17 @@
 #' range: from `2L` to `20L`)
 #' @param k integer; The number of clusters to cluster the data into. (default:
 #' `4L`; range: from `1L` to `20L`)
-#' @param thresh numeric; \code{\link[princurve]{principal_curve}} parameter:
-#' convergence threshhold on shortest distances to the curve (default: `0.001`;
-#' range: from `1e-05` to `1e+05`)
-#' @param maxit integer; \code{\link[princurve]{principal_curve}} parameter:
-#' maximum number of iterations (default: `10L`; range: from `0L` to `50L`)
-#' @param stretch numeric; \code{\link[princurve]{principal_curve}} parameter: a
-#' factor by which the curve can be extrapolated when points are projected
-#' (default: `0`; range: from `0` to `5`)
-#' @param smoother discrete; \code{\link[princurve]{principal_curve}} parameter:
-#' choice of smoother (default: `"smooth_spline"`; values: {`"smooth_spline"`,
-#' `"lowess"`, `"periodic_lowess"`})
+#' @param thresh numeric; \code{principal_curve} parameter: convergence threshhold
+#' on shortest distances to the curve (default: `0.001`; range: from `1e-05` to
+#' `1e+05`)
+#' @param maxit integer; \code{principal_curve} parameter: maximum number of
+#' iterations (default: `10L`; range: from `0L` to `50L`)
+#' @param stretch numeric; \code{principal_curve} parameter: a factor by which the
+#' curve can be extrapolated when points are projected (default: `0`; range: from
+#' `0` to `5`)
+#' @param smoother discrete; \code{principal_curve} parameter: choice of smoother
+#' (default: `"smooth_spline"`; values: {`"smooth_spline"`, `"lowess"`,
+#' `"periodic_lowess"`})
 #' @param sparse logical; Whether or not to use sparse MDS dimensionality
 #' reduction,for datasets with large amounts of cells.
 #' @inheritParams dynwrap::create_ti_method_with_container

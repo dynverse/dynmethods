@@ -30,9 +30,8 @@
 #' @param iter integer; The number of iterations for the MCMC trace (default:
 #' `100L`; range: from `100L` to `1000L`)
 #' @param dimreds logical_vector; A character vector specifying which
-#' dimensionality reduction methods to use.See
-#' \code{\link[dyndimred:dimred]{dyndimred::dimred}} for the list of available
-#' dimensionality reduction methods.
+#' dimensionality reduction methods to use.See \code{dyndimred::dimred} for the
+#' list of available dimensionality reduction methods.
 #' @param initialise_from discrete; How to initialise the MCMC chain. One of
 #' "random" (stan decides),"principal_curve", or "pca" (the first component of PCA
 #' rescaled is taken to be the pseudotimes).Note: if multiple representations are

@@ -29,9 +29,8 @@ range: from \code{1L} to \code{20L})}
 \code{100L}; range: from \code{100L} to \code{1000L})}
 
 \item{dimreds}{logical_vector; A character vector specifying which
-dimensionality reduction methods to use.See
-\code{\link[dyndimred:dimred]{dyndimred::dimred}} for the list of available
-dimensionality reduction methods.}
+dimensionality reduction methods to use.See \code{dyndimred::dimred} for the
+list of available dimensionality reduction methods.}
 
 \item{initialise_from}{discrete; How to initialise the MCMC chain. One of
 "random" (stan decides),"principal_curve", or "pca" (the first component of PCA
