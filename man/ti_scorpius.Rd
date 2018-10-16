@@ -20,20 +20,20 @@ range: from \code{2L} to \code{20L})}
 \item{k}{integer; The number of clusters to cluster the data into. (default:
 \code{4L}; range: from \code{1L} to \code{20L})}
 
-\item{thresh}{numeric; \code{\link[princurve]{principal_curve}} parameter:
-convergence threshhold on shortest distances to the curve (default: \code{0.001};
-range: from \code{1e-05} to \code{1e+05})}
+\item{thresh}{numeric; \code{principal_curve} parameter: convergence threshhold
+on shortest distances to the curve (default: \code{0.001}; range: from \code{1e-05} to
+\code{1e+05})}
 
-\item{maxit}{integer; \code{\link[princurve]{principal_curve}} parameter:
-maximum number of iterations (default: \code{10L}; range: from \code{0L} to \code{50L})}
+\item{maxit}{integer; \code{principal_curve} parameter: maximum number of
+iterations (default: \code{10L}; range: from \code{0L} to \code{50L})}
 
-\item{stretch}{numeric; \code{\link[princurve]{principal_curve}} parameter: a
-factor by which the curve can be extrapolated when points are projected
-(default: \code{0}; range: from \code{0} to \code{5})}
+\item{stretch}{numeric; \code{principal_curve} parameter: a factor by which the
+curve can be extrapolated when points are projected (default: \code{0}; range: from
+\code{0} to \code{5})}
 
-\item{smoother}{discrete; \code{\link[princurve]{principal_curve}} parameter:
-choice of smoother (default: \code{"smooth_spline"}; values: {\code{"smooth_spline"},
-\code{"lowess"}, \code{"periodic_lowess"}})}
+\item{smoother}{discrete; \code{principal_curve} parameter: choice of smoother
+(default: \code{"smooth_spline"}; values: {\code{"smooth_spline"}, \code{"lowess"},
+\code{"periodic_lowess"}})}
 
 \item{sparse}{logical; Whether or not to use sparse MDS dimensionality
 reduction,for datasets with large amounts of cells.}

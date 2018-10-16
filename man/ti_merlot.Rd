@@ -15,17 +15,15 @@ ti_merlot(sigma = "local", distance = "euclidean", ndim = 20L,
 larger sigma might be necessary if the eigenvalues can not be found because of
 a singularity in the matrix. Must be one of:\itemize{\item A character vector:
 \code{"local"} (default) or \code{"global"},\item a numeric global sigma -- a
-global sigma will be calculated using
-\code{\link[destiny:find_sigmas]{destiny::find_sigmas()}}\item or a
+global sigma will be calculated using \code{destiny::find_sigmas()}\item or a
 \code{\link[destiny:Sigmas-class]{destiny::Sigmas-class()}} object.} (default:
 \code{"local"}; values: {\code{"local"}, \code{"global"}})}
 
-\item{distance}{discrete; A \code{\link[stats:dist]{stats::dist()}} object, or
-a character vector specifying which distance metric to use. Allowed
-measures:\itemize{\item Euclidean distance (default),\item cosine distance
-(1-corr(c_1, c_2)), or\item rank correlation distance (1-corr(rank(c_1),
-rank(c_2)))} (default: \code{"euclidean"}; values: {\code{"euclidean"}, \code{"cosine"},
-\code{"rankcor"}})}
+\item{distance}{discrete; A \code{stats::dist()} object, or a character vector
+specifying which distance metric to use. Allowed measures:\itemize{\item
+Euclidean distance (default),\item cosine distance (1-corr(c_1, c_2)), or\item
+rank correlation distance (1-corr(rank(c_1), rank(c_2)))} (default:
+\code{"euclidean"}; values: {\code{"euclidean"}, \code{"cosine"}, \code{"rankcor"}})}
 
 \item{ndim}{integer; Number of eigenvectors/dimensions to return (default:
 \code{20L}; range: from \code{2L} to \code{20L})}

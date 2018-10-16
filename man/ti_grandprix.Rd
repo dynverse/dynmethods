@@ -4,12 +4,10 @@
 \alias{ti_grandprix}
 \title{Inferring a trajectory inference using GrandPrix}
 \usage{
-ti_grandprix(n_latent_dims = 2L, n_inducing_points = 40L,
-  latent_prior_var = 0.1, latent_var = 0.028)
+ti_grandprix(n_inducing_points = 40L, latent_prior_var = 0.1,
+  latent_var = 0.028)
 }
 \arguments{
-\item{n_latent_dims}{integer; (default: \code{2L}; range: from \code{1L} to \code{10L})}
-
 \item{n_inducing_points}{integer; (default: \code{40L}; range: from \code{10L} to \code{500L})}
 
 \item{latent_prior_var}{numeric; (default: \code{0.1}; range: from \code{NULL} to \code{NULL})}

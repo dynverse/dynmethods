@@ -155,7 +155,8 @@ format_parameter_documentation <- function(definition) {
           TRUE ~ ""
         )
 
-      paste0("@param ", parameter_id, " ", parameter$type, "; ", description, defaults)
+      paste0("@param ", parameter_id, " ", parameter$type, "; ", description, defaults) %>%
+        gsub("\\\\link\\[[a-zA-Z0-9_:]*\\]\\{([^\\}]*)\\}", "\\1", .) # substitute \link[X](Y) with just Y
     }
   )
 
