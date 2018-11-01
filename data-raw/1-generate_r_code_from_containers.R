@@ -29,8 +29,8 @@ method_versions <- methods %>%
   select(docker_repository, version) %>%
   deframe()
 
-devtools::use_data(methods, overwrite = TRUE)
-devtools::use_data(method_versions, overwrite = TRUE)
+usethis::use_data(methods, overwrite = TRUE)
+usethis::use_data(method_versions, overwrite = TRUE)
 
 # don't forget to regenerate the documentation
 devtools::document()
