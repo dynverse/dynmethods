@@ -27,7 +27,7 @@
 #' `0L`; range: from `0L` to `20L`)
 #' @param ndim integer; Number of dimensions for dimensionality reduction
 #' (default: `2L`; range: from `1L` to `5L`)
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -37,7 +37,7 @@ ti_gpfates <- function(
     min_cells_expression_cutoff = 0L,
     ndim = 2L
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_gpfates",
     version = dynmethods::method_versions[["dynverse/ti_gpfates"]],
   )(

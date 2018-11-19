@@ -47,7 +47,7 @@
 #' smoothen kinetic profiles (default: `3L`; range: from `2L` to `100L`)
 #' @param perplexity numeric; Perplexity parameter for tsne (default: `30L`;
 #' range: from `5L` to `100L`)
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -68,7 +68,7 @@ ti_cellrouter <- function(
     neighs = 3L,
     perplexity = 30L
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_cellrouter",
     version = dynmethods::method_versions[["dynverse/ti_cellrouter"]],
   )(

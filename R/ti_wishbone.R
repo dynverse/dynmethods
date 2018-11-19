@@ -30,7 +30,7 @@
 #' @param epsilon numeric; Epsilon (default: `1L`; range: from `0.1` to `5L`)
 #' @param branch logical; Whether to allow a single bifurcation within the
 #' trajectory (wishbone versus wanderlust)
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -45,7 +45,7 @@ ti_wishbone <- function(
     epsilon = 1L,
     branch = TRUE
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_wishbone",
     version = dynmethods::method_versions[["dynverse/ti_wishbone"]],
   )(

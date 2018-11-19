@@ -74,6 +74,6 @@ The original code of this method is available
 }
 \references{
 Parra, R.G., Papadopoulos, N., Ahumada-Arranz, L., El Kholtei, J.,
-Treutlein, B., Soeding, J., 2018. Reconstructing complex lineage trees from
-scRNA-seq data using MERLoT.
+Mottelson, N., Horokhovskyi, Y., Treutlein, B., Soeding, J., 2018.
+Reconstructing complex lineage trees from scRNA-seq data using MERLoT.
 }

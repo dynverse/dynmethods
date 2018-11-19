@@ -18,7 +18,7 @@
 #' @param n_inducing_points integer; (default: `40L`; range: from `10L` to `500L`)
 #' @param latent_prior_var numeric; (default: `0.1`; range: from `NULL` to `NULL`)
 #' @param latent_var numeric; (default: `0.028`; range: from `NULL` to `NULL`)
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -28,7 +28,7 @@ ti_grandprix <- function(
     latent_prior_var = 0.1,
     latent_var = 0.028
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_grandprix",
     version = dynmethods::method_versions[["dynverse/ti_grandprix"]],
   )(

@@ -22,7 +22,7 @@
 #' @param m integer; Intrinsic dimension of the data. This parameter mainly
 #' influences the visualisation of the results. The real intrinsic dimension will
 #' be calculated automaticly.  (default: `2L`; range: from `2L` to `20L`)
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -31,7 +31,7 @@ ti_slicer <- function(
     kmin = 10L,
     m = 2L
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_slicer",
     version = dynmethods::method_versions[["dynverse/ti_slicer"]],
   )(

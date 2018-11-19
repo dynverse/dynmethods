@@ -30,7 +30,7 @@
 #' for this cluster to be split. (default: `15L`; range: from `1L` to `100L`)
 #' @param min_percentage_split numeric; Minimum fraction of cells in the smaller
 #' cluster during a bifurcation. (default: `0.25`; range: from `0L` to `1L`)
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -43,7 +43,7 @@ ti_scuba <- function(
     min_split = 15L,
     min_percentage_split = 0.25
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_scuba",
     version = dynmethods::method_versions[["dynverse/ti_scuba"]],
   )(

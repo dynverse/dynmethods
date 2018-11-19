@@ -14,7 +14,7 @@
 #' 
 #' @references Chen, J., Schlitzer, A., Chakarov, S., Ginhoux, F., Poidinger, M.,
 #' 2016. Mpath maps multi-branching single-cell trajectories revealing progenitor
-#' cell progression during development. Nature Communications 7, 11988.
+#' cell progression during development. Nature Communications 7.
 #' 
 #' @param distMethod discrete; The method for calculating dissimilarity between
 #' cells. distMethod can be one of "pearson", "kendall", "spearman" or
@@ -36,7 +36,7 @@
 #' differentiating landmark clusters from non-landmark clusters. The number of
 #' cells in a landmark cluster must be greater than this cutoff. (default: `0.05`;
 #' range: from `0.01` to `1`)
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -49,7 +49,7 @@ ti_mpath <- function(
     diversity_cut = 0.6,
     size_cut = 0.05
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_mpath",
     version = dynmethods::method_versions[["dynverse/ti_mpath"]],
   )(

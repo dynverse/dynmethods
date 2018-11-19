@@ -24,7 +24,7 @@
 #' `"diag"`, `"sample"`, `"global"`, `"glasso"`, `"corpcor"`, `"average"`})
 #' @param cov_reg numeric; (default: `0.05`; range: from `0.01` to `0.1`)
 #' @param max_iter integer; (default: `3L`; range: from `1L` to `20L`)
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -37,7 +37,7 @@ ti_scimitar <- function(
     cov_reg = 0.05,
     max_iter = 3L
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_scimitar",
     version = dynmethods::method_versions[["dynverse/ti_scimitar"]],
   )(

@@ -50,5 +50,5 @@ The original code of this method is available
 \references{
 Chen, J., Schlitzer, A., Chakarov, S., Ginhoux, F., Poidinger, M.,
 2016. Mpath maps multi-branching single-cell trajectories revealing progenitor
-cell progression during development. Nature Communications 7, 11988.
+cell progression during development. Nature Communications 7.
 }

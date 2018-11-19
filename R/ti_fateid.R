@@ -59,7 +59,7 @@
 #' range: from `0L` to `1L`)
 #' @param force logical; Do not use! This is a parameter to force FateID to run on
 #' benchmark datasets where not enough end groups are present.
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -76,7 +76,7 @@ ti_fateid <- function(
     trthr = 0.4,
     force = FALSE
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_fateid",
     version = dynmethods::method_versions[["dynverse/ti_fateid"]],
   )(

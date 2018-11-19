@@ -27,7 +27,7 @@
 #' small datasets). (default: `"fa"`; values: {`"umap"`, `"fa"`})
 #' @param connectivity_cutoff numeric; Cutoff for the connectivity matrix
 #' (default: `0.05`; range: from `0L` to `1L`)
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -40,7 +40,7 @@ ti_projected_paga <- function(
     embedding_type = "fa",
     connectivity_cutoff = 0.05
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_projected_paga",
     version = dynmethods::method_versions[["dynverse/ti_projected_paga"]],
   )(

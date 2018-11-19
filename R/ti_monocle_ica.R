@@ -28,7 +28,7 @@
 #' @param filter_features_mean_expression numeric; Minimal mean feature
 #' expression, only used when `filter_features` is set to TRUE (default: `0.1`;
 #' range: from `0L` to `10L`)
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -40,7 +40,7 @@ ti_monocle_ica <- function(
     filter_features = TRUE,
     filter_features_mean_expression = 0.1
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_monocle_ica",
     version = dynmethods::method_versions[["dynverse/ti_monocle_ica"]],
   )(

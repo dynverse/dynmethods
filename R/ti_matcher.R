@@ -21,7 +21,7 @@
 #' warp functions (integer) (default: `50L`; range: from `2L` to `500L`)
 #' @param method discrete; Gaussian process regression or linear interpolation?
 #' ("gp" or "linear) (default: `"linear"`; values: {`"gp"`, `"linear"`})
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -30,7 +30,7 @@ ti_matcher <- function(
     quantiles = 50L,
     method = "linear"
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_matcher",
     version = dynmethods::method_versions[["dynverse/ti_matcher"]],
   )(

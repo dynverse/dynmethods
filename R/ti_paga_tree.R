@@ -29,7 +29,7 @@
 #' @param embedding_type discrete; Either 'umap' (scales very well, recommended
 #' for very large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for
 #' small datasets). (default: `"fa"`; values: {`"umap"`, `"fa"`})
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -41,7 +41,7 @@ ti_paga_tree <- function(
     resolution = 1L,
     embedding_type = "fa"
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_paga_tree",
     version = dynmethods::method_versions[["dynverse/ti_paga_tree"]],
   )(

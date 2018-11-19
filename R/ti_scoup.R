@@ -34,7 +34,7 @@
 #' @param sigma_squared_min numeric; Lower bound of sigma squared (default: `0.1`;
 #' range: from `0.001` to `10`)
 #' @param thresh numeric; Threshold (default: `0.01`; range: from `0.01` to `10`)
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -50,7 +50,7 @@ ti_scoup <- function(
     sigma_squared_min = 0.1,
     thresh = 0.01
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_scoup",
     version = dynmethods::method_versions[["dynverse/ti_scoup"]],
   )(

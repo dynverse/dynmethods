@@ -36,7 +36,7 @@
 #' range: from `1e-04` to `100L`)
 #' @param C numeric; No description provided by the author. (default: `1L`; range:
 #' from `1e-04` to `1000L`)
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -53,7 +53,7 @@ ti_forks <- function(
     eta = 0.01,
     C = 1L
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_forks",
     version = dynmethods::method_versions[["dynverse/ti_forks"]],
   )(
