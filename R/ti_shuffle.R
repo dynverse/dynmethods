@@ -15,7 +15,7 @@
 #' 
 #' @param dummy_param numeric; Dummy parameter (default: `0.5`; range: from `0` to
 #' `1`)
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -23,7 +23,7 @@
 ti_shuffle <- function(
     dummy_param = 0.5
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_shuffle",
     version = dynmethods::method_versions[["dynverse/ti_shuffle"]],
   )(

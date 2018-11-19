@@ -17,7 +17,7 @@
 #' `"pca"`; values: {`"pca"`, `"mds"`, `"tsne"`, `"ica"`, `"lle"`,
 #' `"landmark_mds"`, `"mds_sammon"`, `"mds_isomds"`, `"mds_smacof"`, `"umap"`,
 #' `"dm_diffusionMap"`})
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -25,7 +25,7 @@
 ti_angle <- function(
     dimred = "pca"
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_angle",
     version = dynmethods::method_versions[["dynverse/ti_angle"]],
   )(

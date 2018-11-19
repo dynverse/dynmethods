@@ -32,7 +32,7 @@
 #' @param eps numeric; Minimal relative change in the position of the nodes to
 #' stop embedment (default: `0.01`; range: from `0.001` to `1L`)
 #' @param CenterData logical; Should data and initial node positions be centered?
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -48,7 +48,7 @@ ti_elpicycle <- function(
     eps = 0.01,
     CenterData = FALSE
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_elpicycle",
     version = dynmethods::method_versions[["dynverse/ti_elpicycle"]],
   )(

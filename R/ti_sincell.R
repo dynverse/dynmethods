@@ -95,7 +95,7 @@
 #' the percentage of leaf nodes is below the given cutoff. Removed nodes are
 #' projected to their closest neighbour. This is to constrain the number of
 #' milestones being created. (default: `0.5`; range: from `0.01` to `0.8`)
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -113,7 +113,7 @@ ti_sincell <- function(
     k_imc = 3L,
     pct_leaf_node_cutoff = 0.5
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_sincell",
     version = dynmethods::method_versions[["dynverse/ti_sincell"]],
   )(

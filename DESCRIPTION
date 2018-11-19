@@ -14,12 +14,11 @@ RoxygenNote: 6.1.0
 Depends:
   R (>= 3.4.0)
 Imports: 
-  dynwrap
+  dynwrap (>= 0.3.0)
 Suggests:
   dplyr,
   dynutils,
   knitr,
-  ParamHelpers (>= 1.11),
   purrr,
   testthat,
   tibble

@@ -29,7 +29,7 @@
 #' @param num_waypoints integer; Number of waypoints (default: `250L`; range: from
 #' `100L` to `500L`)
 #' @param epsilon numeric; Epsilon (default: `1L`; range: from `0.1` to `5L`)
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -43,7 +43,7 @@ ti_wanderlust <- function(
     num_waypoints = 250L,
     epsilon = 1L
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_wanderlust",
     version = dynmethods::method_versions[["dynverse/ti_wanderlust"]],
   )(

@@ -13,8 +13,8 @@
 #' [here](https://github.com/soedinglab/merlot).
 #' 
 #' @references Parra, R.G., Papadopoulos, N., Ahumada-Arranz, L., El Kholtei, J.,
-#' Treutlein, B., Soeding, J., 2018. Reconstructing complex lineage trees from
-#' scRNA-seq data using MERLoT.
+#' Mottelson, N., Horokhovskyi, Y., Treutlein, B., Soeding, J., 2018.
+#' Reconstructing complex lineage trees from scRNA-seq data using MERLoT.
 #' 
 #' @param sigma discrete; Diffusion scale parameter of the Gaussian kernel. A
 #' larger sigma might be necessary if the eigenvalues can not be found because of
@@ -51,7 +51,7 @@
 #' @param increaseFactor_lambda numeric; Factor by which the mu will be increased
 #' for the embedding (default: `20`; range: from `2` to `50`)
 #' @param FixEndpoints logical; Documentation not provided by authors
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -72,7 +72,7 @@ ti_merlot <- function(
     increaseFactor_lambda = 20,
     FixEndpoints = FALSE
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_merlot",
     version = dynmethods::method_versions[["dynverse/ti_merlot"]],
   )(

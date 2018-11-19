@@ -21,7 +21,7 @@ dynplot::plot_graph(traj)
 
 #' @examples
 #' # you can test whether this method can be evaluated
-#' eval <- dyneval::evaluate_ti_method(data, dynwrap::create_ti_method_with_container(paste0("dynverse/ti_", method))(), parameters = params, metrics = c("correlation", "edge_flip", "rf_mse", "featureimp_cor"), verbose = TRUE)
+#' eval <- dyneval::evaluate_ti_method(data, dynwrap::create_ti_methods_container(paste0("dynverse/ti_", method))(), parameters = params, metrics = c("correlation", "edge_flip", "rf_mse", "featureimp_cor"), verbose = TRUE)
 #' eval$summary
 #' dynplot::plot_graph(eval$models[[1]])
 #' eval$summary$error

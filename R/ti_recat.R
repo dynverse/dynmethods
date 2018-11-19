@@ -40,7 +40,7 @@
 #' range: from `100` to `500`)
 #' @param clustMethod discrete; No documentation provided by authors (default:
 #' `"GMM"`; values: {`"GMM"`, `"Pam"`, `"Kmeans"`})
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -55,7 +55,7 @@ ti_recat <- function(
     max_num = 300,
     clustMethod = "GMM"
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_recat",
     version = dynmethods::method_versions[["dynverse/ti_recat"]],
   )(

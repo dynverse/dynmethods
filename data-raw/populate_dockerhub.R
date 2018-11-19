@@ -39,7 +39,7 @@ out <- furrr::future_map(files, function(file) {
       source(paste0(folder, "/example.R"))
 
       message(method_id, ": Testing par_set")
-      method <- dynwrap::create_ti_method_with_container(docker_repo)()
+      method <- dynwrap::create_ti_method_container(docker_repo)()
       par_set <- method$par_set
       design <- ParamHelpers::generateDesign(3, par_set, trafo = TRUE)
       design <- ParamHelpers::generateDesignOfDefaults(par_set, trafo = TRUE)

@@ -35,7 +35,7 @@
 #' from `2L` to `20L`)
 #' @param w_width numeric; Window width to use for deciding the branch cutoff
 #' (default: `0.1`; range: from `1e-04` to `1`)
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -49,7 +49,7 @@ ti_projected_dpt <- function(
     n_local_upper = 7L,
     w_width = 0.1
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_projected_dpt",
     version = dynmethods::method_versions[["dynverse/ti_projected_dpt"]],
   )(

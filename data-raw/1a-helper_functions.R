@@ -67,7 +67,7 @@ generate_function_from_definition <- function(definition) {
     "ti_", definition$id, " <- function(\n",
     parameters, "\n",
     ") {\n",
-    "  create_ti_method_with_container(\n",
+    "  create_ti_method_container(\n",
     "    container_id = \"", definition$docker_repository, "\",\n",
     "    version = dynmethods::method_versions[[\"", definition$docker_repository, "\"]],\n",
     "  )(\n",
@@ -160,5 +160,5 @@ format_parameter_documentation <- function(definition) {
     }
   )
 
-  c(param_texts, "@inheritParams dynwrap::create_ti_method_with_container")
+  c(param_texts, "@inheritParams dynwrap::create_ti_method_container")
 }

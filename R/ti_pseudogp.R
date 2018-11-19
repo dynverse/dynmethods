@@ -39,7 +39,7 @@
 #' rather than combining them. If a particular representation is required, it isup
 #' to the user to re-order them. (default: `"random"`; values: {`"random"`,
 #' `"principal_curve"`, `"pca"`})
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -54,7 +54,7 @@ ti_pseudogp <- function(
     dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
     initialise_from = "random"
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_pseudogp",
     version = dynmethods::method_versions[["dynverse/ti_pseudogp"]],
   )(

@@ -21,7 +21,7 @@
 #' 
 #' @param n_pca_components integer; (default: `3L`; range: from `2L` to `10L`)
 #' @param num_runs integer; (default: `10L`; range: from `10L` to `100L`)
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -30,7 +30,7 @@ ti_pcreode <- function(
     n_pca_components = 3L,
     num_runs = 10L
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_pcreode",
     version = dynmethods::method_versions[["dynverse/ti_pcreode"]],
   )(

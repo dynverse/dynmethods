@@ -70,7 +70,7 @@
 #' @param p.thresh numeric; P-value threshold to use in determining whether
 #' visitation is significantly different from pairs of tips (default: `0.01`;
 #' range: from `1e-05` to `1L`)
-#' @inheritParams dynwrap::create_ti_method_with_container
+#' @inheritParams dynwrap::create_ti_method_container
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -98,7 +98,7 @@ ti_urd <- function(
     bins.per.pseudotime.window = 5L,
     p.thresh = 0.01
 ) {
-  create_ti_method_with_container(
+  create_ti_method_container(
     container_id = "dynverse/ti_urd",
     version = dynmethods::method_versions[["dynverse/ti_urd"]],
   )(
