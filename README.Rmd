@@ -69,6 +69,37 @@ df %>%
   knitr::kable()
 ```
 
+
+## Latest changes
+Check out `news(package = "dynmethods")` or [NEWS.md](inst/NEWS.md) for a full list of changes.
+
+<!-- This section gets automatically generated from inst/NEWS.md, and also generates inst/NEWS -->
+
+```{r news, results='asis', echo=FALSE}
+library(tidyverse)
+
+news_md <- readr::read_lines("inst/NEWS.md")
+
+# creating NEWS for package
+news_normal <- news_md %>% 
+  str_replace_all("^# dynmethods", "dynmethods") %>% 
+  str_replace_all("\\[[^\\]]*\\]\\(([^\\)]*)\\)", "\\1")
+readr::write_lines(news_normal, "inst/NEWS")
+
+# creating text for readme
+ix <- which(str_detect(news_md, "^# dynmethods"))
+
+cat(str_replace(news_md[[ix[[1]]]], "^# ", "### Latest changes in "))
+
+cat(news_md[seq(ix[[1]]+1, ix[[2]]-1)], sep = "\n")
+
+cat(str_replace(news_md[[ix[[2]]]], "^# ", "### Latest changes in "))
+
+len2 <- if (length(ix) >= 3) ix[[3]] - 1 else length(news_md)
+cat(news_md[seq(ix[[2]]+1, len2)], sep = "\n")
+```
+
+
 ## Sources
 
 We used following resources to get a (hopefully exhaustive) list of all TI methods:

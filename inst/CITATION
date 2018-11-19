@@ -1,0 +1,13 @@
+citEntry(
+  entry    = "Article",
+  author   = "Robrecht Cannoodt and Wouter Saelens and Helena Todorov",
+  title    = "dynmethods: A collection of trajectory inference methods.",
+  journal  = "In Progress",
+  year     = "2019",
+  month    = "",
+  volume   = "",
+  number   = "",
+  pages    = "",
+  doi      = "",
+  textVersion = "Cannoodt R. Saelens W., and Todorov H., dynmethods: A collection of trajectory inference methods, 2019."
+)

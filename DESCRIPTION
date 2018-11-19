@@ -1,12 +1,12 @@
 Package: dynmethods
 Type: Package
-Title: Wrappers for trajectory inference methods
+Title: A collection of trajectory inference methods
 Version: 0.1.0
 Authors@R: c(
   person("Robrecht", "Cannoodt", email = "rcannood@gmail.com", role = c("aut", "cre")),
   person("Wouter", "Saelens", email = "wouter.saelens@ugent.be", role = c("aut")),
   person("Helena", "Todorov", email = "helena.todorov@ugent.be", role = c("aut")))
-Description: dynmethods provides wrappers for TI methods and their respective plotting functions.
+Description: dynmethods provides helper functions for containerised trajectory inference methods.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
