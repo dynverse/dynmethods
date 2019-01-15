@@ -151,7 +151,7 @@ format_parameter_documentation <- function(definition) {
 
       defaults <-
         case_when(
-          parameter$type %in% c("integer", "numeric", "discrete") ~ paste0(" (default: `", deparse(parameter$default, width.cutoff = 500), "`", range_text, ")"),
+          parameter$type %in% c("integer", "numeric", "discrete", "logical") ~ paste0(" (default: `", deparse(parameter$default, width.cutoff = 500), "`", range_text, ")"),
           TRUE ~ ""
         )
 
