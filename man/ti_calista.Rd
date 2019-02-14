@@ -26,6 +26,6 @@ The original code of this method is available
 \href{https://github.com/CABSEL/CALISTA}{here}.
 }
 \references{
-Papili Gao, N., Hartmann, T., Gunawan, R., 2018. CALISTA:
-Clustering And Lineage Inference in Single-Cell Transcriptional Analysis.
+Papili Gao, N., Hartmann, T., Fang, T., Gunawan, R., 2018. CALISTA:
+Clustering And Lineage Inference in Single-Cell Transcriptional Analysis:
 }
