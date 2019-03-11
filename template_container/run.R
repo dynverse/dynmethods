@@ -32,9 +32,6 @@ timings$method_aftermethod <- Sys.time()
 #####################################
 ###     SAVE OUTPUT TRAJECTORY    ###
 #####################################
-
-
-# save output
 output <-
   wrap_data(
     cell_ids = rownames(expression)
