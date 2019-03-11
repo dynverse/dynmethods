@@ -1,6 +1,7 @@
 method:
   id: template
   name: Template
+  tool_id: template
   source: tool|control
   platform: R|Python
   url: https://github.com/dynverse/template

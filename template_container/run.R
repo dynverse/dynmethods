@@ -1,11 +1,6 @@
 #!/usr/local/bin/Rscript
 
 library(dyncli)
-library(dynwrap)
-library(dplyr)
-library(purrr)
-
-library(TEMPLATE)
 
 #####################################
 ###           LOAD DATA           ###
@@ -13,6 +8,13 @@ library(TEMPLATE)
 
 # load data
 task <- dyncli::main()
+
+# load libraries
+library(dynwrap)
+library(dplyr)
+library(purrr)
+
+library(TEMPLATE)
 
 expression <- task$expression
 params <- task$params
