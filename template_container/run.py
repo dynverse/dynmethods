@@ -1,6 +1,7 @@
 #!/usr/local/bin/python
 
 import dynclipy
+task = dynclipy.main()
 
 import pandas as pd
 
@@ -9,7 +10,6 @@ checkpoints = {}
 
 #   ____________________________________________________________________________
 #   Load data                                                               ####
-task = dynclipy.main()
 
 expression = task["expression"]
 
