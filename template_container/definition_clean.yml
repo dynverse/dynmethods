@@ -1,0 +1,30 @@
+method:
+  id:
+  name:
+  source:
+  platform:
+  url:
+  license:
+  authors:
+
+manuscript:
+  doi:
+  google_scholar_cluster_id:
+  preprint_date:
+  publication_date:
+
+container:
+  url:
+  docker:
+
+wrapper:
+  type:
+  topology_inference:
+  trajectory_types:
+  example:
+  input_required:
+  input_optional:
+
+
+parameters:
+
