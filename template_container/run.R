@@ -1,21 +1,18 @@
 #!/usr/local/bin/Rscript
 
-library(dyncli)
+task <- dyncli::main()
+
+# load libraries
+library(dyncli, warn.conflicts = FALSE)
+library(dynwrap, warn.conflicts = FALSE)
+library(dplyr, warn.conflicts = FALSE)
+library(purrr, warn.conflicts = FALSE)
+
+library(TEMPLATE)
 
 #####################################
 ###           LOAD DATA           ###
 #####################################
-
-# load data
-task <- dyncli::main()
-
-# load libraries
-library(dynwrap)
-library(dplyr)
-library(purrr)
-
-library(TEMPLATE)
-
 expression <- task$expression
 params <- task$params
 priors <- task$priors
@@ -35,9 +32,6 @@ timings$method_aftermethod <- Sys.time()
 #####################################
 ###     SAVE OUTPUT TRAJECTORY    ###
 #####################################
-
-
-# save output
 output <-
   wrap_data(
     cell_ids = rownames(expression)
