@@ -1,25 +1,23 @@
 ############################################################
 #                     Dockerfile for R                     #
 ############################################################
-FROM dynverse/dynwrap:r
-# or: FROM dynverse/dynwrap:bioc
+FROM dynverse/dynwrapr:v0.1.0
 
 RUN R -e 'devtools::install_cran("template")'
 RUN R -e 'devtools::install_github("dynverse/template")'
 
-ADD . /code
+COPY definition.yml run.R example.R /code/
 
-ENTRYPOINT Rscript /code/run.R
+ENTRYPOINT ["/code/run.R"]
 
 
 ############################################################
 #                  Dockerfile for Python                   #
 ############################################################
-FROM dynverse/dynwrap:py3.6
-# or FROM dynverse/dynwrap:py2.7
+FROM dynverse/dynwrappy:v0.1.0
 
 RUN pip install library1 library2
 
-ADD . /code
+COPY definition.yml run.py example.R /code/
 
-ENTRYPOINT python /code/run.py
+ENTRYPOINT ["/code/run.py"]

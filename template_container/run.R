@@ -1,47 +1,54 @@
-library(jsonlite)
-library(readr)
+#!/usr/local/bin/Rscript
+
+library(dyncli)
+library(dynwrap)
 library(dplyr)
 library(purrr)
 
 library(TEMPLATE)
 
-#   ____________________________________________________________________________
-#   Load data                                                               ####
+#####################################
+###           LOAD DATA           ###
+#####################################
 
-data <- read_rds("/ti/input/data.rds")
-params <- jsonlite::read_json("/ti/input/params.json")
+# load data
+task <- dyncli::main()
 
-#' @examples
-#' data <- dyntoy::generate_dataset(id = "test", num_cells = 300, num_features = 300, model = "linear") %>% c(., .$prior_information)
-#' params <- yaml::read_yaml("containers/TEMPLATE/definition.yml")$parameters %>%
-#'   {.[names(.) != "forbidden"]} %>%
-#'   map(~ .$default)
-
-#   ____________________________________________________________________________
-#   Infer trajectory                                                        ####
-
-counts <- data$counts
-
+expression <- task$expression
+params <- task$params
+priors <- task$priors
 
 # TIMING: done with preproc
-checkpoints <- list(method_afterpreproc = as.numeric(Sys.time()))
+timings <- list(method_afterpreproc = Sys.time())
+
+#####################################
+###        INFER TRAJECTORY       ###
+#####################################
+
+# do TI calculations
+
+# TIMING: done with trajectory inference
+timings$method_aftermethod <- Sys.time()
+
+#####################################
+###     SAVE OUTPUT TRAJECTORY    ###
+#####################################
 
 
+# save output
+output <-
+  wrap_data(
+    cell_ids = rownames(expression)
+  ) %>%
+  add_dimred(
+    dimred = dimred
+  )%>%
+  add_cell_graph(
+    cell_graph = cell_graph,
+    to_keep = to_keep
+  )  %>%
+  add_timings(
+    timings = timings
+  )
 
-
-# TIMING: done with method
-checkpoints$method_aftermethod <- as.numeric(Sys.time())
-
-
-
-
-
-# return output
-model <- lst(
-  timings = checkpoints
-)
-
-#   ____________________________________________________________________________
-#   Save output                                                             ####
-
-write_rds(model, "/ti/output.rds")
+dyncli::write_output(output, task$output)
