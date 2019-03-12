@@ -38,7 +38,6 @@ output["timings"] = timings
 #   ____________________________________________________________________________
 #   Save output                                                             ####
 
-pseudotime = pd.DataFrame({
 dataset = dynclipy.wrap_data(cell_ids = counts.index)
 dataset.add_branch_trajectory(
   grouping = output["grouping"], 

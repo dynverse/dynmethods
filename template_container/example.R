@@ -6,7 +6,8 @@ data <- dyntoy::generate_dataset(
   id = "specific_example/template",
   num_cells = 200,
   num_features = 300,
-  model = "tree"
+  model = "tree",
+  normalise = FALSE
 )
 
 # add method specific args (if needed)
