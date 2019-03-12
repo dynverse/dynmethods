@@ -1,6 +1,7 @@
 method:
   id:
   name:
+  tool_id:
   source:
   platform:
   url:
