@@ -38,11 +38,11 @@ output <-
   ) %>%
   add_dimred(
     dimred = dimred
-  )%>%
+  ) %>%
   add_cell_graph(
     cell_graph = cell_graph,
     to_keep = to_keep
-  )  %>%
+  ) %>%
   add_timings(
     timings = timings
   )
