@@ -7,7 +7,8 @@
 ti_ouijaflow(iter = 1000L)
 }
 \arguments{
-\item{iter}{integer; (default: \code{1000L}; range: from \code{2L} to \code{50000L})}
+\item{iter}{Parameter; ., Domain: e^U(0.69, 10.82), Default: 1000, Format:
+integer.}
 }
 \value{
 A TI method wrapper to be used together with

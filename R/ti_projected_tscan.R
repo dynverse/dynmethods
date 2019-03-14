@@ -5,23 +5,27 @@
 #' @title Inferring a trajectory inference using Projected TSCAN
 #' 
 #' @description
-#' Will generate a trajectory using Projected TSCAN.
+#' Will generate a trajectory using [Projected
+#' TSCAN](https://github.com/zji90/TSCAN).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/ti_projected_tscan).
+#' [container](https://github.com/dynverse/ti_tscan).
+#' The original code of this method is available
+#' [here](https://github.com/zji90/TSCAN).
 #' 
 #' 
 #' 
-#' 
-#' @param minexpr_percent numeric; (default: `0`; range: from `0` to `1`)
-#' @param minexpr_value numeric; (default: `0`; range: from `0` to `10`)
-#' @param cvcutoff numeric; (default: `0`; range: from `0` to `5`)
-#' @param clusternum_lower integer; (default: `2L`; range: from `2L` to `20L`)
-#' @param clusternum_upper integer; (default: `9L`; range: from `2L` to `20L`)
-#' @param modelNames discrete; (default: `"VVV"`; values: {`"EII"`, `"VII"`,
-#' `"EEI"`, `"VEI"`, `"EVI"`, `"VVI"`, `"EEE"`, `"EVE"`, `"VEE"`, `"VVE"`,
-#' `"EEV"`, `"VEV"`, `"EVV"`, `"VVV"`})
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param minexpr_percent Parameter; ., Domain: U(0, 1), Default: 0, Format:
+#' numeric.
+#' @param minexpr_value Parameter; ., Domain: U(0, 10), Default: 0, Format:
+#' numeric.
+#' @param cvcutoff Parameter; ., Domain: U(0, 5), Default: 0, Format: numeric.
+#' @param clusternum_lower Parameter; ., Domain: U(2, 20), Default: 2, Format:
+#' integer.
+#' @param clusternum_upper Parameter; ., Domain: U(2, 20), Default: 9, Format:
+#' integer.
+#' @param modelNames Parameter; ., Domain: {EII, VII, EEI, VEI, EVI, VVI, EEE,
+#' EVE, VEE, VVE, EEV, VEV, EVV, VVV}, Default: VVV, Format: character.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -35,8 +39,7 @@ ti_projected_tscan <- function(
     modelNames = "VVV"
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_projected_tscan",
-    version = dynmethods::method_versions[["dynverse/ti_projected_tscan"]],
+    container_id = "dynverse/ti_tscan:v0.9.9",
   )(
     minexpr_percent = minexpr_percent,
     minexpr_value = minexpr_value,

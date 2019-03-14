@@ -17,32 +17,33 @@
 #' P.G., Heller, S., 2018. Transcriptional Dynamics of Hair-Bundle Morphogenesis
 #' Revealed with CellTrails. Cell Reports 23, 2901–2914.e14.
 #' 
-#' @param filter_features logical; Whether to include celltrails feature filtering
-#' @param threshold_dl integer; Minimum number of samples; if value < 1 it is
-#' interpreted as fraction, otherwise as absolute sample count (default: `2L`;
-#' range: from `0L` to `100L`)
-#' @param threshold_cov numeric; Minimum coefficient of variation; numeric value
-#' between 0 and 1 (default: `0.05`; range: from `0L` to `1L`)
-#' @param threshold_ff numeric; A Z-score cutoff (default: `1.7`; range: from `0L`
-#' to `5L`)
-#' @param min_expr numeric; Minimum average feature expression (default: `0L`;
-#' range: from `0L` to `2L`)
-#' @param frac numeric; Fraction or number (if frac > 1) of eigengaps used to
-#' perform linear fit. (default: `100L`; range: from `1L` to `1000L`)
-#' @param min_size numeric; The initial cluster dedrogram is cut at an height such
-#' that the minimum cluster size is at least min_size; if min_size < 1 than the
-#' fraction of total samples is used, otherwise it is used as absoulte count
-#' (default: `0.01`; range: from `0.001` to `1L`)
-#' @param min_feat integer; Minimum number of differentially expressed features
+#' @param filter_features Parameter; Whether to include celltrails feature
+#' filtering., Default: FALSE, Format: logical.
+#' @param threshold_dl Parameter; Minimum number of samples; if value < 1 it is
+#' interpreted as fraction, otherwise as absolute sample count., Domain: U(0,
+#' 100), Default: 2, Format: integer.
+#' @param threshold_cov Parameter; Minimum coefficient of variation; numeric value
+#' between 0 and 1., Domain: U(0, 1), Default: 0.05, Format: numeric.
+#' @param threshold_ff Parameter; A Z-score cutoff., Domain: U(0, 5), Default:
+#' 1.7, Format: numeric.
+#' @param min_expr Parameter; Minimum average feature expression., Domain: U(0,
+#' 2), Default: 0, Format: numeric.
+#' @param frac Parameter; Fraction or number (if frac > 1) of eigengaps used to
+#' perform linear fit., Domain: e^U(0.00, 6.91), Default: 100, Format: numeric.
+#' @param min_size Parameter; The initial cluster dedrogram is cut at an height
+#' such that the minimum cluster size is at least min_size; if min_size < 1 than
+#' the fraction of total samples is used, otherwise it is used as absoulte count.,
+#' Domain: e^U(-6.91, 0.00), Default: 0.01, Format: numeric.
+#' @param min_feat Parameter; Minimum number of differentially expressed features
 #' between siblings. If this number is not reached, two neighboring clusters
-#' (siblings) in the pruned dendrogram get joined. (default: `5L`; range: from
-#' `1L` to `100L`)
-#' @param max_pval numeric; Maximum P-value for differential expression
-#' computation. (default: `1e-04`; range: from `1e-07` to `1L`)
-#' @param min_fc numeric; Mimimum fold-change for differential expression
-#' computation (default: `2L`; range: from `0L` to `5L`)
-#' @param l integer; Neighborhood size (default: `10L`; range: from `1L` to `50L`)
-#' @inheritParams dynwrap::create_ti_method_container
+#' (siblings) in the pruned dendrogram get joined., Domain: U(1, 100), Default: 5,
+#' Format: integer.
+#' @param max_pval Parameter; Maximum P-value for differential expression
+#' computation., Domain: e^U(-16.12, 0.00), Default: 1e-04, Format: numeric.
+#' @param min_fc Parameter; Mimimum fold-change for differential expression
+#' computation., Domain: U(0, 5), Default: 2, Format: numeric.
+#' @param l Parameter; Neighborhood size., Domain: U(1, 50), Default: 10, Format:
+#' integer.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -61,8 +62,7 @@ ti_celltrails <- function(
     l = 10L
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_celltrails",
-    version = dynmethods::method_versions[["dynverse/ti_celltrails"]],
+    container_id = "dynverse/ti_celltrails:v0.9.9",
   )(
     filter_features = filter_features,
     threshold_dl = threshold_dl,

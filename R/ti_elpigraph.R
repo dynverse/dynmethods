@@ -15,24 +15,24 @@
 #' 
 #' 
 #' 
-#' @param topology discrete; The kind of topology to detect (default: `"tree"`;
-#' values: {`"cycle"`, `"tree"`, `"linear"`})
-#' @param NumNodes integer; The number of nodes of the principal graph (default:
-#' `50L`; range: from `2L` to `1000L`)
-#' @param NumEdges integer; The maximum number of edges (default: `100000L`;
-#' range: from `2L` to `100000L`)
-#' @param InitNodes integer; Number of points to include in the initial graph
-#' (default: `2L`; range: from `2L` to `1000L`)
-#' @param Mu numeric; Controls the elastic energy (default: `0.1`; range: from
-#' `0.001` to `1L`)
-#' @param Lambda numeric; Controls the elastic energy (default: `0.01`; range:
-#' from `0.001` to `1L`)
-#' @param MaxNumberOfIterations integer; Maximum number of steps to embed the
-#' nodes (default: `10L`; range: from `1L` to `1000L`)
-#' @param eps numeric; Minimal relative change in the position of the nodes to
-#' stop embedment (default: `0.01`; range: from `0.001` to `1L`)
-#' @param CenterData logical; Should data and initial node positions be centered?
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param topology Parameter; The kind of topology to detect., Domain: {cycle,
+#' tree, linear}, Default: tree, Format: character.
+#' @param NumNodes Parameter; The number of nodes of the principal graph., Domain:
+#' U(2, 1000), Default: 50, Format: integer.
+#' @param NumEdges Parameter; The maximum number of edges., Domain: e^U(0.69,
+#' 11.51), Default: 100000, Format: integer.
+#' @param InitNodes Parameter; Number of points to include in the initial graph.,
+#' Domain: e^U(0.69, 6.91), Default: 2, Format: integer.
+#' @param Mu Parameter; Controls the elastic energy., Domain: e^U(-6.91, 0.00),
+#' Default: 0.1, Format: numeric.
+#' @param Lambda Parameter; Controls the elastic energy., Domain: e^U(-6.91,
+#' 0.00), Default: 0.01, Format: numeric.
+#' @param MaxNumberOfIterations Parameter; Maximum number of steps to embed the
+#' nodes., Domain: e^U(0.00, 6.91), Default: 10, Format: integer.
+#' @param eps Parameter; Minimal relative change in the position of the nodes to
+#' stop embedment., Domain: e^U(-6.91, 0.00), Default: 0.01, Format: numeric.
+#' @param CenterData Parameter; Should data and initial node positions be
+#' centered?., Default: FALSE, Format: logical.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -49,8 +49,7 @@ ti_elpigraph <- function(
     CenterData = FALSE
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_elpigraph",
-    version = dynmethods::method_versions[["dynverse/ti_elpigraph"]],
+    container_id = "dynverse/ti_elpigraph:v0.9.9",
   )(
     topology = topology,
     NumNodes = NumNodes,

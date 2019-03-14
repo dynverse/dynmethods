@@ -17,28 +17,28 @@
 #' improves trajectory inference and identifies novel modules in dendritic cell
 #' development.
 #' 
-#' @param distance_method discrete; A character string indicating which
+#' @param distance_method Parameter; A character string indicating which
 #' correlationcoefficient (or covariance) is to be computed. One of "pearson",
-#' "kendall", or "spearman". (default: `"spearman"`; values: {`"spearman"`,
-#' `"pearson"`, `"kendall"`})
-#' @param ndim integer; The number of dimensions in the new space. (default: `3L`;
-#' range: from `2L` to `20L`)
-#' @param k integer; The number of clusters to cluster the data into. (default:
-#' `4L`; range: from `1L` to `20L`)
-#' @param thresh numeric; \code{principal_curve} parameter: convergence threshhold
-#' on shortest distances to the curve (default: `0.001`; range: from `1e-05` to
-#' `1e+05`)
-#' @param maxit integer; \code{principal_curve} parameter: maximum number of
-#' iterations (default: `10L`; range: from `0L` to `50L`)
-#' @param stretch numeric; \code{principal_curve} parameter: a factor by which the
-#' curve can be extrapolated when points are projected (default: `0`; range: from
-#' `0` to `5`)
-#' @param smoother discrete; \code{principal_curve} parameter: choice of smoother
-#' (default: `"smooth_spline"`; values: {`"smooth_spline"`, `"lowess"`,
-#' `"periodic_lowess"`})
-#' @param sparse logical; Whether or not to use sparse MDS dimensionality
-#' reduction,for datasets with large amounts of cells.
-#' @inheritParams dynwrap::create_ti_method_container
+#' "kendall", or "spearman"., Domain: {spearman, pearson, kendall}, Default:
+#' spearman, Format: character.
+#' @param ndim Parameter; The number of dimensions in the new space., Domain: U(2,
+#' 20), Default: 3, Format: integer.
+#' @param k Parameter; The number of clusters to cluster the data into., Domain:
+#' U(1, 20), Default: 4, Format: integer.
+#' @param thresh Parameter; \code{principal_curve} parameter: convergence
+#' threshhold on shortest distances to the curve., Domain: e^U(-11.51, 11.51),
+#' Default: 0.001, Format: numeric.
+#' @param maxit Parameter; \code{principal_curve} parameter: maximum number of
+#' iterations., Domain: U(0, 50), Default: 10, Format: integer.
+#' @param stretch Parameter; \code{principal_curve} parameter: a factor by which
+#' the curve can be extrapolated when points are projected., Domain: U(0, 5),
+#' Default: 0, Format: numeric.
+#' @param smoother Parameter; \code{principal_curve} parameter: choice of
+#' smoother., Domain: {smooth_spline, lowess, periodic_lowess}, Default:
+#' smooth_spline, Format: character.
+#' @param sparse Parameter; Whether or not to use sparse MDS dimensionality
+#' reduction,for datasets with large amounts of cells., Default: TRUE, Format:
+#' logical.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -54,8 +54,7 @@ ti_scorpius <- function(
     sparse = TRUE
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_scorpius",
-    version = dynmethods::method_versions[["dynverse/ti_scorpius"]],
+    container_id = "dynverse/ti_scorpius:v0.9.9",
   )(
     distance_method = distance_method,
     ndim = ndim,

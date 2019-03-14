@@ -10,56 +10,59 @@
 #' This method was wrapped inside a
 #' [container](https://github.com/dynverse/ti_fateid).
 #' The original code of this method is available
-#' [here](https://github.com/dgrun/FateID/).
+#' [here](https://github.com/dgrun/FateID).
 #' 
 #' @references Herman, J.S., Sagar, Grün, D., 2018. FateID infers cell fate bias
 #' in multipotent progenitors from single-cell RNA-seq data. Nature Methods 15,
 #' 379–386.
 #' 
-#' @param reclassify logical; Whether to reclassify the cell grouping
-#' @param clthr numeric; Real number between zero and one. This is the threshold
+#' @param reclassify Parameter; Whether to reclassify the cell grouping., Default:
+#' TRUE, Format: logical.
+#' @param clthr Parameter; Real number between zero and one. This is the threshold
 #' for the fraction of random forest votes required to assign a cell not contained
 #' within the target clusters to one of these clusters. The value of this
 #' parameter should be sufficiently high to only reclassify cells with a
-#' high-confidence assignment. Default value is 0.9. (default: `0.9`; range: from
-#' `0.1` to `1L`)
-#' @param nbfactor integer; Positive integer number. Determines the number of
+#' high-confidence assignment. Default value is 0.9., Domain: U(0.1, 1), Default:
+#' 0.9, Format: numeric.
+#' @param nbfactor Parameter; Positive integer number. Determines the number of
 #' trees grown for each random forest. The number of trees is given by the number
 #' of columns of th training set multiplied by \code{nbfactor}. Default value is
-#' 5. (default: `5L`; range: from `2L` to `100L`)
-#' @param q numeric; Q real value between zero and one. This number specifies a
+#' 5., Domain: U(2, 100), Default: 5, Format: integer.
+#' @param q Parameter; Q real value between zero and one. This number specifies a
 #' threshold used for feature selection based on importance sampling. A reduced
 #' expression table is generated containing only features with an importance
 #' larger than the q-quantile for at least one of the classes (i. e. target
-#' clusters). Default value is 0.75. (default: `0.75`; range: from `0L` to `1L`)
-#' @param k integer; Number of dimensions (default: `3L`; range: from `2L` to
-#' `100L`)
-#' @param m discrete; Dimensionality reduction method to use. Can be tsne, cmd, dm
-#' or lle (default: `"tsne"`; values: {`"tsne"`, `"cmd"`, `"dm"`, `"lle"`})
-#' @param minnr integer; Integer number of cells per target cluster to be selected
-#' for classification (test set) in each round of training. For each target
-#' cluster, the \code{minnr} cells with the highest similarity to a cell in the
-#' training set are selected for classification. If \code{z} is not \code{NULL} it
-#' is used as the similarity matrix for this step. Otherwise, \code{1-cor(x)} is
-#' used. Default value is 5. (default: `5L`; range: from `2L` to `100L`)
-#' @param minnrh integer; Integer number of cells from the training set used for
+#' clusters). Default value is 0.75., Domain: U(0, 1), Default: 0.75, Format:
+#' numeric.
+#' @param k Parameter; Number of dimensions., Domain: U(2, 100), Default: 3,
+#' Format: integer.
+#' @param m Parameter; Dimensionality reduction method to use. Can be tsne, cmd,
+#' dm or lle., Domain: {tsne, cmd, dm, lle}, Default: tsne, Format: character.
+#' @param minnr Parameter; Integer number of cells per target cluster to be
+#' selected for classification (test set) in each round of training. For each
+#' target cluster, the \code{minnr} cells with the highest similarity to a cell in
+#' the training set are selected for classification. If \code{z} is not
+#' \code{NULL} it is used as the similarity matrix for this step. Otherwise,
+#' \code{1-cor(x)} is used. Default value is 5., Domain: U(2, 100), Default: 5,
+#' Format: integer.
+#' @param minnrh Parameter; Integer number of cells from the training set used for
 #' classification. From each training set, the \code{minnrh} cells with the
 #' highest similarity to the training set are selected. If \code{z} is not
 #' \code{NULL} it is used as the similarity matrix for this step. Default value is
-#' 10. (default: `10L`; range: from `2L` to `100L`)
-#' @param trthr numeric; Real value representing the threshold of the fraction of
-#' random forest votes required for the inclusion of a given cell for the
+#' 10., Domain: U(2, 100), Default: 10, Format: integer.
+#' @param trthr Parameter; Real value representing the threshold of the fraction
+#' of random forest votes required for the inclusion of a given cell for the
 #' computation of the principal curve. If \code{NULL} then only cells with a
 #' significant bias >1 are included for each trajectory. The bias is computed as
 #' the ratio of the number of votes for a trajectory and the number of votes for
 #' the trajectory with the second largest number of votes. By this means only the
 #' trajectory with the largest number of votes will receive a bias >1. The
 #' siginifcance is computed based on counting statistics on the difference in the
-#' number of votes. A significant bias requires a p-value < 0.05. (default: `0.4`;
-#' range: from `0L` to `1L`)
-#' @param force logical; Do not use! This is a parameter to force FateID to run on
-#' benchmark datasets where not enough end groups are present.
-#' @inheritParams dynwrap::create_ti_method_container
+#' number of votes. A significant bias requires a p-value < 0.05., Domain: U(0,
+#' 1), Default: 0.4, Format: numeric.
+#' @param force Parameter; Do not use! This is a parameter to force FateID to run
+#' on benchmark datasets where not enough end groups are present., Default: FALSE,
+#' Format: logical.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -77,8 +80,7 @@ ti_fateid <- function(
     force = FALSE
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_fateid",
-    version = dynmethods::method_versions[["dynverse/ti_fateid"]],
+    container_id = "dynverse/ti_fateid:v0.9.9",
   )(
     reclassify = reclassify,
     clthr = clthr,

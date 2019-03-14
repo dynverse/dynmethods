@@ -7,10 +7,9 @@
 ti_angle(dimred = "pca")
 }
 \arguments{
-\item{dimred}{discrete; Which dimensionality reduction method to use. (default:
-\code{"pca"}; values: {\code{"pca"}, \code{"mds"}, \code{"tsne"}, \code{"ica"}, \code{"lle"},
-\code{"landmark_mds"}, \code{"mds_sammon"}, \code{"mds_isomds"}, \code{"mds_smacof"}, \code{"umap"},
-\code{"dm_diffusionMap"}})}
+\item{dimred}{Parameter; Which dimensionality reduction method to use., Domain:
+{pca, mds, tsne, ica, lle, landmark_mds, mds_sammon, mds_isomds, mds_smacof,
+umap, dm_diffusionMap, dm_destiny}, Default: pca, Format: character.}
 }
 \value{
 A TI method wrapper to be used together with

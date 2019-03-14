@@ -11,48 +11,52 @@ ti_cellrouter(ndim_pca = 20L, ndim_tsne = 11L, max_iter = 1000L,
   ranks = "rank", num_cells = 3L, neighs = 3L, perplexity = 30L)
 }
 \arguments{
-\item{ndim_pca}{integer; Number of principal components to compute (default:
-\code{20L}; range: from \code{2L} to \code{100L})}
+\item{ndim_pca}{Parameter; Number of principal components to compute., Domain:
+U(2, 100), Default: 20, Format: integer.}
 
-\item{ndim_tsne}{integer; Number of tsne dimensions to compute (default: \code{11L};
-range: from \code{2L} to \code{100L})}
+\item{ndim_tsne}{Parameter; Number of tsne dimensions to compute., Domain: U(2,
+100), Default: 11, Format: integer.}
 
-\item{max_iter}{integer; Maximal number of tsne iterations (default: \code{1000L};
-range: from \code{100L} to \code{100000L})}
+\item{max_iter}{Parameter; Maximal number of tsne iterations., Domain:
+e^U(4.61, 11.51), Default: 1000, Format: integer.}
 
-\item{cluster_method}{discrete; Method to use for clustering (default:
-\code{"graph.clustering"}; values: {\code{"graph.clustering"}, \code{"model.clustering"}})}
+\item{cluster_method}{Parameter; Method to use for clustering., Domain:
+{graph.clustering, model.clustering}, Default: graph.clustering, Format:
+character.}
 
-\item{k_clustering}{integer; Number of nearest neighbors to build a k-nearest
-neighbors graph for clustering (default: \code{20L}; range: from \code{2L} to \code{1000L})}
+\item{k_clustering}{Parameter; Number of nearest neighbors to build a k-nearest
+neighbors graph for clustering., Domain: U(2, 1000), Default: 20, Format:
+integer.}
 
-\item{ndim_pca_clustering}{integer; Number of PCA dimensions used for k-nearest
-neighbors graph for clustering (default: \code{20L}; range: from \code{2L} to \code{100L})}
+\item{ndim_pca_clustering}{Parameter; Number of PCA dimensions used for
+k-nearest neighbors graph for clustering., Domain: U(2, 100), Default: 20,
+Format: integer.}
 
-\item{k_knn}{integer; Number of nearest neighbors to build a k-nearest
-neighbors graph for knn (default: \code{10L}; range: from \code{2L} to \code{1000L})}
+\item{k_knn}{Parameter; Number of nearest neighbors to build a k-nearest
+neighbors graph for knn., Domain: e^U(0.69, 6.91), Default: 10, Format:
+integer.}
 
-\item{ndim_pca_knn}{integer; Number of PCA dimensions used for knn (default:
-\code{20L}; range: from \code{2L} to \code{100L})}
+\item{ndim_pca_knn}{Parameter; Number of PCA dimensions used for knn., Domain:
+U(2, 100), Default: 20, Format: integer.}
 
-\item{sim_type}{discrete; Similarity type for knn (default: \code{"jaccard"};
-values: {\code{"jaccard"}})}
+\item{sim_type}{Parameter; Similarity type for knn., Domain: {jaccard},
+Default: jaccard, Format: character.}
 
-\item{distance_method_paths}{discrete; Distance method for paths (default:
-\code{"graph"}; values: {\code{"euclidean"}, \code{"maximum"}, \code{"manhattan"}, \code{"canberra"},
-\code{"binary"}, \code{"graph"}})}
+\item{distance_method_paths}{Parameter; Distance method for paths., Domain:
+{euclidean, maximum, manhattan, canberra, binary, graph}, Default: graph,
+Format: character.}
 
-\item{ranks}{discrete; How to rank the paths (default: \code{"rank"}; values:
-{\code{"path_cost"}, \code{"path_flow"}, \code{"rank"}, \code{"length"}})}
+\item{ranks}{Parameter; How to rank the paths., Domain: {path_cost, path_flow,
+rank, length}, Default: rank, Format: character.}
 
-\item{num_cells}{integer; Trajectories should contain at least num.cells
-(default: \code{3L}; range: from \code{3L} to \code{100L})}
+\item{num_cells}{Parameter; Trajectories should contain at least num.cells.,
+Domain: U(3, 100), Default: 3, Format: integer.}
 
-\item{neighs}{integer; The size of the neighborhood in kNN graph used to
-smoothen kinetic profiles (default: \code{3L}; range: from \code{2L} to \code{100L})}
+\item{neighs}{Parameter; The size of the neighborhood in kNN graph used to
+smoothen kinetic profiles., Domain: U(2, 100), Default: 3, Format: integer.}
 
-\item{perplexity}{numeric; Perplexity parameter for tsne (default: \code{30L};
-range: from \code{5L} to \code{100L})}
+\item{perplexity}{Parameter; Perplexity parameter for tsne., Domain: U(5, 100),
+Default: 30, Format: numeric.}
 }
 \value{
 A TI method wrapper to be used together with

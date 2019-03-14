@@ -19,9 +19,10 @@
 #' Data Reveals Alternative Tuft Cell Origins in the Gut. Cell Systems 6,
 #' 37–51.e9.
 #' 
-#' @param n_pca_components integer; (default: `3L`; range: from `2L` to `10L`)
-#' @param num_runs integer; (default: `10L`; range: from `10L` to `100L`)
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param n_pca_components Parameter; ., Domain: U(2, 10), Default: 3, Format:
+#' integer.
+#' @param num_runs Parameter; ., Domain: e^U(2.30, 4.61), Default: 10, Format:
+#' integer.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -31,8 +32,7 @@ ti_pcreode <- function(
     num_runs = 10L
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_pcreode",
-    version = dynmethods::method_versions[["dynverse/ti_pcreode"]],
+    container_id = "dynverse/ti_pcreode:v0.9.9",
   )(
     n_pca_components = n_pca_components,
     num_runs = num_runs

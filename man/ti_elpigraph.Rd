@@ -9,31 +9,32 @@ ti_elpigraph(topology = "tree", NumNodes = 50L, NumEdges = 100000L,
   MaxNumberOfIterations = 10L, eps = 0.01, CenterData = FALSE)
 }
 \arguments{
-\item{topology}{discrete; The kind of topology to detect (default: \code{"tree"};
-values: {\code{"cycle"}, \code{"tree"}, \code{"linear"}})}
+\item{topology}{Parameter; The kind of topology to detect., Domain: {cycle,
+tree, linear}, Default: tree, Format: character.}
 
-\item{NumNodes}{integer; The number of nodes of the principal graph (default:
-\code{50L}; range: from \code{2L} to \code{1000L})}
+\item{NumNodes}{Parameter; The number of nodes of the principal graph., Domain:
+U(2, 1000), Default: 50, Format: integer.}
 
-\item{NumEdges}{integer; The maximum number of edges (default: \code{100000L};
-range: from \code{2L} to \code{100000L})}
+\item{NumEdges}{Parameter; The maximum number of edges., Domain: e^U(0.69,
+11.51), Default: 100000, Format: integer.}
 
-\item{InitNodes}{integer; Number of points to include in the initial graph
-(default: \code{2L}; range: from \code{2L} to \code{1000L})}
+\item{InitNodes}{Parameter; Number of points to include in the initial graph.,
+Domain: e^U(0.69, 6.91), Default: 2, Format: integer.}
 
-\item{Mu}{numeric; Controls the elastic energy (default: \code{0.1}; range: from
-\code{0.001} to \code{1L})}
+\item{Mu}{Parameter; Controls the elastic energy., Domain: e^U(-6.91, 0.00),
+Default: 0.1, Format: numeric.}
 
-\item{Lambda}{numeric; Controls the elastic energy (default: \code{0.01}; range:
-from \code{0.001} to \code{1L})}
+\item{Lambda}{Parameter; Controls the elastic energy., Domain: e^U(-6.91,
+0.00), Default: 0.01, Format: numeric.}
 
-\item{MaxNumberOfIterations}{integer; Maximum number of steps to embed the
-nodes (default: \code{10L}; range: from \code{1L} to \code{1000L})}
+\item{MaxNumberOfIterations}{Parameter; Maximum number of steps to embed the
+nodes., Domain: e^U(0.00, 6.91), Default: 10, Format: integer.}
 
-\item{eps}{numeric; Minimal relative change in the position of the nodes to
-stop embedment (default: \code{0.01}; range: from \code{0.001} to \code{1L})}
+\item{eps}{Parameter; Minimal relative change in the position of the nodes to
+stop embedment., Domain: e^U(-6.91, 0.00), Default: 0.01, Format: numeric.}
 
-\item{CenterData}{logical; Should data and initial node positions be centered?}
+\item{CenterData}{Parameter; Should data and initial node positions be
+centered?., Default: FALSE, Format: logical.}
 }
 \value{
 A TI method wrapper to be used together with

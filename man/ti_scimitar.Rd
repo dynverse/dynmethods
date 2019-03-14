@@ -5,22 +5,24 @@
 \title{Inferring a trajectory inference using SCIMITAR}
 \usage{
 ti_scimitar(covariance_type = "diag", degree = 3L, step_size = 0.07,
-  cov_estimator = "corpcor", cov_reg = 0.05, max_iter = 3L)
+  cov_estimator = "identity", cov_reg = 0.05, max_iter = 3L)
 }
 \arguments{
-\item{covariance_type}{discrete; (default: \code{"diag"}; values: {\code{"diag"},
-\code{"spherical"}, \code{"full"}})}
+\item{covariance_type}{Parameter; ., Domain: {diag, spherical, full}, Default:
+diag, Format: character.}
 
-\item{degree}{integer; (default: \code{3L}; range: from \code{1L} to \code{20L})}
+\item{degree}{Parameter; ., Domain: U(1, 20), Default: 3, Format: integer.}
 
-\item{step_size}{numeric; (default: \code{0.07}; range: from \code{0.01} to \code{0.1})}
+\item{step_size}{Parameter; ., Domain: e^U(-4.61, -2.30), Default: 0.07,
+Format: numeric.}
 
-\item{cov_estimator}{discrete; (default: \code{"corpcor"}; values: {\code{"identity"},
-\code{"diag"}, \code{"sample"}, \code{"global"}, \code{"glasso"}, \code{"corpcor"}, \code{"average"}})}
+\item{cov_estimator}{Parameter; ., Domain: {identity, diag, sample, global,
+glasso, average}, Default: identity, Format: character.}
 
-\item{cov_reg}{numeric; (default: \code{0.05}; range: from \code{0.01} to \code{0.1})}
+\item{cov_reg}{Parameter; ., Domain: e^U(-4.61, -2.30), Default: 0.05, Format:
+numeric.}
 
-\item{max_iter}{integer; (default: \code{3L}; range: from \code{1L} to \code{20L})}
+\item{max_iter}{Parameter; ., Domain: U(1, 20), Default: 3, Format: integer.}
 }
 \value{
 A TI method wrapper to be used together with

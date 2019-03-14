@@ -4,11 +4,7 @@
 \alias{ti_identity}
 \title{Inferring a trajectory inference using Identity}
 \usage{
-ti_identity(dummy_param = 0.5)
-}
-\arguments{
-\item{dummy_param}{numeric; Dummy parameter (default: \code{0.5}; range: from \code{0} to
-\code{1})}
+ti_identity()
 }
 \value{
 A TI method wrapper to be used together with

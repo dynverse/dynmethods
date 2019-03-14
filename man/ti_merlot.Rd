@@ -11,54 +11,56 @@ ti_merlot(sigma = "local", distance = "euclidean", ndim = 20L,
   increaseFactor_lambda = 20, FixEndpoints = FALSE)
 }
 \arguments{
-\item{sigma}{discrete; Diffusion scale parameter of the Gaussian kernel. A
+\item{sigma}{Parameter; Diffusion scale parameter of the Gaussian kernel. A
 larger sigma might be necessary if the eigenvalues can not be found because of
 a singularity in the matrix. Must be one of:\itemize{\item A character vector:
 \code{"local"} (default) or \code{"global"},\item a numeric global sigma -- a
 global sigma will be calculated using \code{destiny::find_sigmas()}\item or a
-\code{\link[destiny:Sigmas-class]{destiny::Sigmas-class()}} object.} (default:
-\code{"local"}; values: {\code{"local"}, \code{"global"}})}
+\code{\link[destiny:Sigmas-class]{destiny::Sigmas-class()}} object.}., Domain:
+{local, global}, Default: local, Format: character.}
 
-\item{distance}{discrete; A \code{stats::dist()} object, or a character vector
+\item{distance}{Parameter; A \code{stats::dist()} object, or a character vector
 specifying which distance metric to use. Allowed measures:\itemize{\item
 Euclidean distance (default),\item cosine distance (1-corr(c_1, c_2)), or\item
-rank correlation distance (1-corr(rank(c_1), rank(c_2)))} (default:
-\code{"euclidean"}; values: {\code{"euclidean"}, \code{"cosine"}, \code{"rankcor"}})}
+rank correlation distance (1-corr(rank(c_1), rank(c_2)))}., Domain: {euclidean,
+cosine, rankcor}, Default: euclidean, Format: character.}
 
-\item{ndim}{integer; Number of eigenvectors/dimensions to return (default:
-\code{20L}; range: from \code{2L} to \code{20L})}
+\item{ndim}{Parameter; Number of eigenvectors/dimensions to return., Domain:
+U(2, 20), Default: 20, Format: integer.}
 
-\item{density_norm}{logical; Logical. If TRUE, use density normalisation}
+\item{density_norm}{Parameter; Logical. If TRUE, use density normalisation.,
+Default: TRUE, Format: logical.}
 
-\item{n_local_lower}{integer; If sigma == 'local', the
+\item{n_local_lower}{Parameter; If sigma == 'local', the
 \code{n_local_lower}:\code{n_local_upper} nearest neighbor(s) determine(s) the
-local sigma (default: \code{5L}; range: from \code{2L} to \code{20L})}
+local sigma., Domain: U(2, 20), Default: 5, Format: integer.}
 
-\item{n_local_upper}{integer; See \code{n_local_lower} (default: \code{7L}; range:
-from \code{2L} to \code{20L})}
+\item{n_local_upper}{Parameter; See \code{n_local_lower}., Domain: U(2, 20),
+Default: 7, Format: integer.}
 
-\item{w_width}{numeric; Window width to use for deciding the branch cutoff
-(default: \code{0.01}; range: from \code{1e-04} to \code{1})}
+\item{w_width}{Parameter; Window width to use for deciding the branch cutoff.,
+Domain: e^U(-9.21, 0.00), Default: 0.01, Format: numeric.}
 
-\item{n_components_to_use}{integer; Which components to use in downstream
-analysis (default: \code{3}; range: from \code{2} to \code{20})}
+\item{n_components_to_use}{Parameter; Which components to use in downstream
+analysis., Domain: U(2, 20), Default: 3, Format: integer.}
 
-\item{N_yk}{integer; Number of nodes for the elastic principal tree (default:
-\code{100}; range: from \code{2} to \code{1000})}
+\item{N_yk}{Parameter; Number of nodes for the elastic principal tree., Domain:
+U(2, 1000), Default: 100, Format: integer.}
 
-\item{lambda_0}{numeric; Principal elastic tree energy function parameter.
-(default: \code{8e-10}; range: from \code{1e-12} to \code{1e-06})}
+\item{lambda_0}{Parameter; Principal elastic tree energy function parameter.,
+Domain: e^U(-27.63, -13.82), Default: 8e-10, Format: numeric.}
 
-\item{mu_0}{numeric; Principal elastic tree energy function parameter.
-(default: \code{0.0025}; range: from \code{5e-04} to \code{0.005})}
+\item{mu_0}{Parameter; Principal elastic tree energy function parameter.,
+Domain: U(5e-04, 0.005), Default: 0.0025, Format: numeric.}
 
-\item{increaseFactor_mu}{numeric; Factor by which the mu will be increased for
-the embedding (default: \code{20}; range: from \code{2} to \code{50})}
+\item{increaseFactor_mu}{Parameter; Factor by which the mu will be increased
+for the embedding., Domain: U(2, 50), Default: 20, Format: numeric.}
 
-\item{increaseFactor_lambda}{numeric; Factor by which the mu will be increased
-for the embedding (default: \code{20}; range: from \code{2} to \code{50})}
+\item{increaseFactor_lambda}{Parameter; Factor by which the mu will be
+increased for the embedding., Domain: U(2, 50), Default: 20, Format: numeric.}
 
-\item{FixEndpoints}{logical; Documentation not provided by authors}
+\item{FixEndpoints}{Parameter; Documentation not provided by authors., Default:
+FALSE, Format: logical.}
 }
 \value{
 A TI method wrapper to be used together with

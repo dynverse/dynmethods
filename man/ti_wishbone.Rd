@@ -6,29 +6,28 @@
 \usage{
 ti_wishbone(normalise = TRUE, knn = 25L, n_diffusion_components = 3L,
   n_pca_components = 30L, k = 25L, num_waypoints = 250L,
-  epsilon = 1L, branch = TRUE)
+  epsilon = 1L)
 }
 \arguments{
-\item{normalise}{logical;}
+\item{normalise}{Parameter; ., Default: TRUE, Format: logical.}
 
-\item{knn}{integer; K-nearest neighbours for diffusion (default: \code{25L}; range:
-from \code{15L} to \code{100L})}
+\item{knn}{Parameter; K-nearest neighbours for diffusion., Domain: U(15, 100),
+Default: 25, Format: integer.}
 
-\item{n_diffusion_components}{integer; Number of diffusion components (default:
-\code{3L}; range: from \code{3L} to \code{20L})}
+\item{n_diffusion_components}{Parameter; Number of diffusion components.,
+Domain: U(3, 20), Default: 3, Format: integer.}
 
-\item{n_pca_components}{integer; Number of pca components (default: \code{30L};
-range: from \code{15L} to \code{100L})}
+\item{n_pca_components}{Parameter; Number of pca components., Domain: U(15,
+100), Default: 30, Format: integer.}
 
-\item{k}{integer; K parameter (default: \code{25L}; range: from \code{15L} to \code{100L})}
+\item{k}{Parameter; K parameter., Domain: U(15, 100), Default: 25, Format:
+integer.}
 
-\item{num_waypoints}{integer; Number of waypoints (default: \code{250L}; range: from
-\code{100L} to \code{500L})}
+\item{num_waypoints}{Parameter; Number of waypoints., Domain: U(100, 500),
+Default: 250, Format: integer.}
 
-\item{epsilon}{numeric; Epsilon (default: \code{1L}; range: from \code{0.1} to \code{5L})}
-
-\item{branch}{logical; Whether to allow a single bifurcation within the
-trajectory (wishbone versus wanderlust)}
+\item{epsilon}{Parameter; Epsilon., Domain: U(0.1, 5), Default: 1, Format:
+numeric.}
 }
 \value{
 A TI method wrapper to be used together with

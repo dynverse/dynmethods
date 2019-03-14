@@ -9,34 +9,35 @@ ti_scorpius(distance_method = "spearman", ndim = 3L, k = 4L,
   smoother = "smooth_spline", sparse = TRUE)
 }
 \arguments{
-\item{distance_method}{discrete; A character string indicating which
+\item{distance_method}{Parameter; A character string indicating which
 correlationcoefficient (or covariance) is to be computed. One of "pearson",
-"kendall", or "spearman". (default: \code{"spearman"}; values: {\code{"spearman"},
-\code{"pearson"}, \code{"kendall"}})}
+"kendall", or "spearman"., Domain: {spearman, pearson, kendall}, Default:
+spearman, Format: character.}
 
-\item{ndim}{integer; The number of dimensions in the new space. (default: \code{3L};
-range: from \code{2L} to \code{20L})}
+\item{ndim}{Parameter; The number of dimensions in the new space., Domain: U(2,
+20), Default: 3, Format: integer.}
 
-\item{k}{integer; The number of clusters to cluster the data into. (default:
-\code{4L}; range: from \code{1L} to \code{20L})}
+\item{k}{Parameter; The number of clusters to cluster the data into., Domain:
+U(1, 20), Default: 4, Format: integer.}
 
-\item{thresh}{numeric; \code{principal_curve} parameter: convergence threshhold
-on shortest distances to the curve (default: \code{0.001}; range: from \code{1e-05} to
-\code{1e+05})}
+\item{thresh}{Parameter; \code{principal_curve} parameter: convergence
+threshhold on shortest distances to the curve., Domain: e^U(-11.51, 11.51),
+Default: 0.001, Format: numeric.}
 
-\item{maxit}{integer; \code{principal_curve} parameter: maximum number of
-iterations (default: \code{10L}; range: from \code{0L} to \code{50L})}
+\item{maxit}{Parameter; \code{principal_curve} parameter: maximum number of
+iterations., Domain: U(0, 50), Default: 10, Format: integer.}
 
-\item{stretch}{numeric; \code{principal_curve} parameter: a factor by which the
-curve can be extrapolated when points are projected (default: \code{0}; range: from
-\code{0} to \code{5})}
+\item{stretch}{Parameter; \code{principal_curve} parameter: a factor by which
+the curve can be extrapolated when points are projected., Domain: U(0, 5),
+Default: 0, Format: numeric.}
 
-\item{smoother}{discrete; \code{principal_curve} parameter: choice of smoother
-(default: \code{"smooth_spline"}; values: {\code{"smooth_spline"}, \code{"lowess"},
-\code{"periodic_lowess"}})}
+\item{smoother}{Parameter; \code{principal_curve} parameter: choice of
+smoother., Domain: {smooth_spline, lowess, periodic_lowess}, Default:
+smooth_spline, Format: character.}
 
-\item{sparse}{logical; Whether or not to use sparse MDS dimensionality
-reduction,for datasets with large amounts of cells.}
+\item{sparse}{Parameter; Whether or not to use sparse MDS dimensionality
+reduction,for datasets with large amounts of cells., Default: TRUE, Format:
+logical.}
 }
 \value{
 A TI method wrapper to be used together with

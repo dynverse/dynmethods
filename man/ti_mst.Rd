@@ -7,12 +7,11 @@
 ti_mst(dimred = "pca", ndim = 2L)
 }
 \arguments{
-\item{dimred}{discrete; Which dimensionality reduction method to use. (default:
-\code{"pca"}; values: {\code{"pca"}, \code{"mds"}, \code{"tsne"}, \code{"ica"}, \code{"lle"},
-\code{"landmark_mds"}, \code{"mds_sammon"}, \code{"mds_isomds"}, \code{"mds_smacof"}, \code{"umap"},
-\code{"dm_diffusionMap"}})}
+\item{dimred}{Parameter; Which dimensionality reduction method to use., Domain:
+{pca, mds, tsne, ica, lle, landmark_mds, mds_sammon, mds_isomds, mds_smacof,
+umap, dm_diffusionMap}, Default: pca, Format: character.}
 
-\item{ndim}{integer; (default: \code{2L}; range: from \code{2L} to \code{30L})}
+\item{ndim}{Parameter; ., Domain: U(2, 30), Default: 2, Format: integer.}
 }
 \value{
 A TI method wrapper to be used together with

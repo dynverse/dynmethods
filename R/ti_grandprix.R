@@ -15,10 +15,12 @@
 #' @references Ahmed, S., Rattray, M., Boukouvalas, A., 2017. GrandPrix: Scaling
 #' up the Bayesian GPLVM for single-cell data.
 #' 
-#' @param n_inducing_points integer; (default: `40L`; range: from `10L` to `500L`)
-#' @param latent_prior_var numeric; (default: `0.1`; range: from `NULL` to `NULL`)
-#' @param latent_var numeric; (default: `0.028`; range: from `NULL` to `NULL`)
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param n_inducing_points Parameter; ., Domain: U(0, 1), Default: 40, Format:
+#' integer.
+#' @param latent_prior_var Parameter; ., Domain: U(0, 1), Default: 0.1, Format:
+#' numeric.
+#' @param latent_var Parameter; ., Domain: U(0, 1), Default: 0.028, Format:
+#' numeric.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -29,8 +31,7 @@ ti_grandprix <- function(
     latent_var = 0.028
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_grandprix",
-    version = dynmethods::method_versions[["dynverse/ti_grandprix"]],
+    container_id = "dynverse/ti_grandprix:v0.9.9",
   )(
     n_inducing_points = n_inducing_points,
     latent_prior_var = latent_prior_var,

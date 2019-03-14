@@ -13,13 +13,11 @@
 #' 
 #' 
 #' 
-#' @param dimred discrete; Which dimensionality reduction method to use. (default:
-#' `"pca"`; values: {`"pca"`, `"mds"`, `"tsne"`, `"ica"`, `"lle"`,
-#' `"landmark_mds"`, `"mds_sammon"`, `"mds_isomds"`, `"mds_smacof"`, `"umap"`,
-#' `"dm_diffusionMap"`})
-#' @param ndim integer; (default: `2L`; range: from `2L` to `30L`)
-#' @param component integer; (default: `1L`; range: from `1L` to `10L`)
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param dimred Parameter; Which dimensionality reduction method to use., Domain:
+#' {pca, mds, tsne, ica, lle, landmark_mds, mds_sammon, mds_isomds, mds_smacof,
+#' umap, dm_diffusionMap}, Default: pca, Format: character.
+#' @param ndim Parameter; ., Domain: U(2, 30), Default: 2, Format: integer.
+#' @param component Parameter; ., Domain: U(1, 10), Default: 1, Format: integer.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -30,8 +28,7 @@ ti_comp1 <- function(
     component = 1L
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_comp1",
-    version = dynmethods::method_versions[["dynverse/ti_comp1"]],
+    container_id = "dynverse/ti_comp1:v0.9.9",
   )(
     dimred = dimred,
     ndim = ndim,

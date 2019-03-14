@@ -9,54 +9,60 @@ ti_projected_slingshot(shrink = 1, reweight = TRUE, reassign = TRUE,
   smoother = "smooth.spline", shrink.method = "cosine")
 }
 \arguments{
-\item{shrink}{numeric; Logical or numeric between 0 and 1, determines whether
+\item{shrink}{Parameter; Logical or numeric between 0 and 1, determines whether
 and how much to shrink branching lineages toward their average prior to the
-split. (default: \code{1}; range: from \code{0} to \code{1})}
+split., Domain: e^U(-Inf, 0.00), Default: 1, Format: numeric.}
 
-\item{reweight}{logical; Logical, whether to allow cells shared between
+\item{reweight}{Parameter; Logical, whether to allow cells shared between
 lineages to be reweighted during curve-fitting. If \code{TRUE}, cells shared
 between lineages will be weighted by: distance to nearest curve / distance to
-curve.}
+curve., Default: TRUE, Format: logical.}
 
-\item{reassign}{logical; Logical, whether to reassign cells to lineages at each
-iteration. If TRUE, cells will be added to a lineage when their projection
+\item{reassign}{Parameter; Logical, whether to reassign cells to lineages at
+each iteration. If TRUE, cells will be added to a lineage when their projection
 distance to the curve is less than the median distance for all cells currently
 assigned to the lineage. Additionally, shared cells will be removed from a
 lineage if their projection distance to the curve is above the 90th percentile
-and their weight along the curve is less than 0.1.}
+and their weight along the curve is less than 0.1., Default: TRUE, Format:
+logical.}
 
-\item{thresh}{numeric; Numeric, determines the convergence criterion. Percent
+\item{thresh}{Parameter; Numeric, determines the convergence criterion. Percent
 change in the total distance from cells to their projections along curves must
-be less than thresh. Default is 0.001, similar to principal.curve. (default:
-\code{0.001}; range: from \code{1e-05} to \code{1e+05})}
+be less than thresh. Default is 0.001, similar to principal.curve., Domain:
+e^U(-11.51, 11.51), Default: 0.001, Format: numeric.}
 
-\item{maxit}{integer; Numeric, maximum number of iterations, see
-principal.curve. (default: \code{10L}; range: from \code{0L} to \code{50L})}
+\item{maxit}{Parameter; Numeric, maximum number of iterations, see
+principal.curve., Domain: U(0, 50), Default: 10, Format: integer.}
 
-\item{stretch}{numeric; Numeric factor by which curves can be extrapolated
-beyond endpoints. Default is 2, see principal.curve. (default: \code{2}; range: from
-\code{0} to \code{5})}
+\item{stretch}{Parameter; Numeric factor by which curves can be extrapolated
+beyond endpoints. Default is 2, see principal.curve., Domain: e^U(-Inf, 1.61),
+Default: 2, Format: numeric.}
 
-\item{smoother}{discrete; Choice of scatter plot smoother. Same as
+\item{smoother}{Parameter; Choice of scatter plot smoother. Same as
 principal.curve, but "lowess" option is replaced with "loess" for additional
-flexibility. (default: \code{"smooth.spline"}; values: {\code{"smooth.spline"},
-\code{"loess"}, \code{"periodic.lowess"}})}
+flexibility., Domain: {smooth.spline, loess, periodic.lowess}, Default:
+smooth.spline, Format: character.}
 
-\item{shrink.method}{discrete; Character denoting how to determine the
+\item{shrink.method}{Parameter; Character denoting how to determine the
 appropriate amount of shrinkage for a branching lineage. Accepted values are
 the same as for \code{kernel} in \code{\link[=density]{density()}} (default is \code{"cosine"}), as
-well as \code{"tricube"} and \code{"density"}. See 'Details' for more.
-(default: \code{"cosine"}; values: {\code{"cosine"}, \code{"tricube"}, \code{"density"}})}
+well as \code{"tricube"} and \code{"density"}. See 'Details' for more., Domain:
+{cosine, tricube, density}, Default: cosine, Format: character.}
 }
 \value{
 A TI method wrapper to be used together with
 \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 }
 \description{
-Will generate a trajectory using \href{https://github.com/kstreet13/slingshot}{Projected Slingshot}.
+Will generate a trajectory using \href{https://doi.org/10.1186/s12864-018-4772-0}{Projected Slingshot}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/ti_projected_slingshot}{container}.
+\href{https://github.com/dynverse/ti_slingshot}{container}.
 The original code of this method is available
 \href{https://github.com/kstreet13/slingshot}{here}.
+}
+\references{
+Street, K., Risso, D., Fletcher, R.B., Das, D., Ngai, J., Yosef,
+N., Purdom, E., Dudoit, S., 2018. Slingshot: cell lineage and pseudotime
+inference for single-cell transcriptomics. BMC Genomics 19.
 }

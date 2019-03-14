@@ -18,14 +18,15 @@
 #' Human haematopoietic stem cell lineage commitment is a continuous process.
 #' Nature Cell Biology 19, 271–281.
 #' 
-#' @param alpha numeric; The elastic net mixing parameter of the ‘glmnet’
-#' classifier. (default: `0.1`; range: from `0.001` to `10L`)
-#' @param lambda_auto logical; Whether to select the lambda by cross-validation
-#' @param lambda numeric; The lambda penalty of GLM. (default: `0.1`; range: from
-#' `0.05` to `1L`)
-#' @param force logical; Do not use! This is a parameter to force FateID to run on
-#' benchmark datasets where not enough end groups are present.
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param alpha Parameter; The elastic net mixing parameter of the ‘glmnet’
+#' classifier., Domain: e^U(-6.91, 2.30), Default: 0.1, Format: numeric.
+#' @param lambda_auto Parameter; Whether to select the lambda by
+#' cross-validation., Default: TRUE, Format: logical.
+#' @param lambda Parameter; The lambda penalty of GLM., Domain: e^U(-3.00, 0.00),
+#' Default: 0.1, Format: numeric.
+#' @param force Parameter; Do not use! This is a parameter to force STEMNET to run
+#' on benchmark datasets where not enough end groups are present., Default: FALSE,
+#' Format: logical.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -37,8 +38,7 @@ ti_stemnet <- function(
     force = FALSE
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_stemnet",
-    version = dynmethods::method_versions[["dynverse/ti_stemnet"]],
+    container_id = "dynverse/ti_stemnet:v0.9.9",
   )(
     alpha = alpha,
     lambda_auto = lambda_auto,

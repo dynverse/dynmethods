@@ -13,13 +13,12 @@
 #' [here](https://github.com/CABSEL/CALISTA).
 #' 
 #' @references Papili Gao, N., Hartmann, T., Fang, T., Gunawan, R., 2018. CALISTA:
-#' Clustering And Lineage Inference in Single-Cell Transcriptional Analysis:
+#' Clustering And Lineage Inference in Single-Cell Transcriptional Analysis.
 #' 
-#' @param runs integer; Number of independent runs of greedy algorithm (default:
-#' `50L`; range: from `20L` to `100L`)
-#' @param max_iter integer; Number of iterations in greedy algorithm (default:
-#' `100L`; range: from `20L` to `400L`)
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param runs Parameter; Number of independent runs of greedy algorithm., Domain:
+#' U(20, 100), Default: 50, Format: integer.
+#' @param max_iter Parameter; Number of iterations in greedy algorithm., Domain:
+#' U(20, 400), Default: 100, Format: integer.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -29,8 +28,7 @@ ti_calista <- function(
     max_iter = 100L
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_calista",
-    version = dynmethods::method_versions[["dynverse/ti_calista"]],
+    container_id = "dynverse/ti_calista:v0.9.9",
   )(
     runs = runs,
     max_iter = max_iter

@@ -8,19 +8,22 @@ ti_tscan(minexpr_percent = 0, minexpr_value = 0, cvcutoff = 0,
   clusternum_lower = 2L, clusternum_upper = 9L, modelNames = "VVV")
 }
 \arguments{
-\item{minexpr_percent}{numeric; (default: \code{0}; range: from \code{0} to \code{1})}
+\item{minexpr_percent}{Parameter; ., Domain: U(0, 1), Default: 0, Format:
+numeric.}
 
-\item{minexpr_value}{numeric; (default: \code{0}; range: from \code{0} to \code{10})}
+\item{minexpr_value}{Parameter; ., Domain: U(0, 10), Default: 0, Format:
+numeric.}
 
-\item{cvcutoff}{numeric; (default: \code{0}; range: from \code{0} to \code{5})}
+\item{cvcutoff}{Parameter; ., Domain: U(0, 5), Default: 0, Format: numeric.}
 
-\item{clusternum_lower}{integer; (default: \code{2L}; range: from \code{2L} to \code{20L})}
+\item{clusternum_lower}{Parameter; ., Domain: U(2, 20), Default: 2, Format:
+integer.}
 
-\item{clusternum_upper}{integer; (default: \code{9L}; range: from \code{2L} to \code{20L})}
+\item{clusternum_upper}{Parameter; ., Domain: U(2, 20), Default: 9, Format:
+integer.}
 
-\item{modelNames}{discrete; (default: \code{"VVV"}; values: {\code{"EII"}, \code{"VII"},
-\code{"EEI"}, \code{"VEI"}, \code{"EVI"}, \code{"VVI"}, \code{"EEE"}, \code{"EVE"}, \code{"VEE"}, \code{"VVE"},
-\code{"EEV"}, \code{"VEV"}, \code{"EVV"}, \code{"VVV"}})}
+\item{modelNames}{Parameter; ., Domain: {EII, VII, EEI, VEI, EVI, VVI, EEE,
+EVE, VEE, VVE, EEV, VEV, EVV, VVV}, Default: VVV, Format: character.}
 }
 \value{
 A TI method wrapper to be used together with

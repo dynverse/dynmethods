@@ -4,31 +4,33 @@
 \alias{ti_monocle_ddrtree}
 \title{Inferring a trajectory inference using Monocle DDRTree}
 \usage{
-ti_monocle_ddrtree(reduction_method = "DDRTree", max_components = 2L,
+ti_monocle_ddrtree(reduction_method = "ICA", max_components = 2L,
   norm_method = "log", auto_param_selection = TRUE,
   filter_features = TRUE, filter_features_mean_expression = 0.1)
 }
 \arguments{
-\item{reduction_method}{discrete; A character string specifying the algorithm
-to use for dimensionality reduction. (default: \code{"DDRTree"}; values:
-{\code{"DDRTree"}})}
+\item{reduction_method}{Parameter; A character string specifying the algorithm
+to use for dimensionality reduction., Domain: {ICA}, Default: ICA, Format:
+character.}
 
-\item{max_components}{integer; The dimensionality of the reduced space
-(default: \code{2L}; range: from \code{2L} to \code{20L})}
+\item{max_components}{Parameter; The dimensionality of the reduced space.,
+Domain: U(2, 20), Default: 2, Format: integer.}
 
-\item{norm_method}{discrete; Determines how to transform expression values
-prior to reducing dimensionality (default: \code{"log"}; values: {\code{"vstExprs"},
-\code{"log"}, \code{"none"}})}
+\item{norm_method}{Parameter; Determines how to transform expression values
+prior to reducing dimensionality., Domain: {vstExprs, log, none}, Default: log,
+Format: character.}
 
-\item{auto_param_selection}{logical; When this argument is set to TRUE
+\item{auto_param_selection}{Parameter; When this argument is set to TRUE
 (default), it will automatically calculate the proper value for the ncenter
-(number of centroids) parameters which will be passed into DDRTree call.}
+(number of centroids) parameters which will be passed into DDRTree call.,
+Default: TRUE, Format: logical.}
 
-\item{filter_features}{logical; Whether to include monocle feature filtering}
+\item{filter_features}{Parameter; Whether to include monocle feature
+filtering., Default: TRUE, Format: logical.}
 
-\item{filter_features_mean_expression}{numeric; Minimal mean feature
-expression, only used when \code{filter_features} is set to TRUE (default: \code{0.1};
-range: from \code{0L} to \code{10L})}
+\item{filter_features_mean_expression}{Parameter; Minimal mean feature
+expression, only used when \code{filter_features} is set to TRUE., Domain: U(0, 10),
+Default: 0.1, Format: numeric.}
 }
 \value{
 A TI method wrapper to be used together with

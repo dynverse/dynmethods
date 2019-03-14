@@ -15,16 +15,16 @@
 #' @references Zwiessele, M., Lawrence, N.D., 2016. Topslam: Waddington Landscape
 #' Recovery for Single Cell Experiments.
 #' 
-#' @param n_components integer; The number of components (default: `2L`; range:
-#' from `2L` to `10L`)
-#' @param n_neighbors integer; The number of neighbors (default: `10L`; range:
-#' from `2L` to `100L`)
-#' @param linear_dims integer; (default: `0L`; range: from `0L` to `5L`)
-#' @param max_iters integer; The number of iterations to optimize over (default:
-#' `1000L`; range: from `10L` to `10000L`)
-#' @param dimreds logical_vector; Which dimensionality reductions to use; tSNE,
-#' PCA, Spectral, Isomap and/or ICA
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param n_components Parameter; The number of components., Domain: U(2, 10),
+#' Default: 2, Format: integer.
+#' @param n_neighbors Parameter; The number of neighbors., Domain: U(2, 100),
+#' Default: 10, Format: integer.
+#' @param linear_dims Parameter; ., Domain: U(0, 5), Default: 0, Format: integer.
+#' @param max_iters Parameter; The number of iterations to optimize over., Domain:
+#' e^U(2.30, 9.21), Default: 1000, Format: integer.
+#' @param dimreds Parameter; Which dimensionality reductions to use and/or ICA.,
+#' Domain: {x | x ⊆ {t-SNE, PCA, Spectral, Isomap, ICA}}, Default: {t-SNE, PCA,
+#' Spectral, Isomap, ICA}, Format: subset.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -34,11 +34,10 @@ ti_topslam <- function(
     n_neighbors = 10L,
     linear_dims = 0L,
     max_iters = 1000L,
-    dimreds = c(TRUE, TRUE, TRUE, TRUE, TRUE)
+    dimreds = c("t-SNE", "PCA", "Spectral", "Isomap", "ICA")
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_topslam",
-    version = dynmethods::method_versions[["dynverse/ti_topslam"]],
+    container_id = "dynverse/ti_topslam:v0.9.9",
   )(
     n_components = n_components,
     n_neighbors = n_neighbors,

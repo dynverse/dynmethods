@@ -10,15 +10,15 @@ ti_slice(lm.method = "clustering", model.type = "tree",
   k.max = 10L, B = 100L, k.opt.method = "firstmax")
 }
 \arguments{
-\item{lm.method}{discrete; Select "clustering" based or "graph" based method to
-infer lineage model (default: \code{"clustering"}; values: {\code{"clustering"},
-\code{"graph"}})}
+\item{lm.method}{Parameter; Select "clustering" based or "graph" based method
+to infer lineage model., Domain: {clustering, graph}, Default: clustering,
+Format: character.}
 
-\item{model.type}{discrete; The type of models that will be infered: "tree" -
-directed minimum spanning tree based, "graph" - directed graph based (default:
-\code{"tree"}; values: {\code{"tree"}, \code{"graph"}})}
+\item{model.type}{Parameter; The type of models that will be infered: "tree" -
+directed minimum spanning tree based, "graph" - directed graph based., Domain:
+{tree, graph}, Default: tree, Format: character.}
 
-\item{ss.method}{discrete; The method for defining core cell set for stable
+\item{ss.method}{Parameter; The method for defining core cell set for stable
 state detection: all - all the cells in a cluster constitute the core cell set;
 top - cells with scEntropy lower than the ss.threshold quantile of all the
 values in a cluster constitute the core cell set; pcst - cells with scEntropy
@@ -26,37 +26,37 @@ lower than the ss.threshold quantile of all the values in a cluster constitute
 the prize nodes, linear prize-collecting steiner tree algorithm is used to
 approximate an optimal subnetwork, the cells in the subnetwork constitute the
 core cell set. Stable states are defined as the centroids of the core cell
-sets. (default: \code{"all"}; values: {\code{"all"}, \code{"top"}, \code{"pcst"}})}
+sets., Domain: {all, top, pcst}, Default: all, Format: character.}
 
-\item{ss.threshold}{numeric; The threshold used when ss.method is "top" or
-"pcst". Default: 0.25. (default: \code{0.25}; range: from \code{0} to \code{1})}
+\item{ss.threshold}{Parameter; The threshold used when ss.method is "top" or
+"pcst". Default: 0.25., Domain: U(0, 1), Default: 0.25, Format: numeric.}
 
-\item{community.method}{discrete; The method for network community detection.
+\item{community.method}{Parameter; The method for network community detection.
 Most of the community detection methods implemented in the igraph package are
 supported, including "fast_greedy", "edge_betweenness", "label_prop",
 "leading_eigen","louvain","spinglass", "walktrap". If this parameter is set to
 "auto", the algorithm will perform all the community detection methods and
 select the one that generates the communities with best modularity. Only take
-effect when lm.method is "graph" (default: \code{"louvain"}; values:
-{\code{"fast_greedy"}, \code{"edge_betweenness"}, \code{"label_prop"}, \code{"leading_eigen"},
-\code{"louvain"}, \code{"spinglass"}, \code{"walktrap"}, \code{"auto"}})}
+effect when lm.method is "graph"., Domain: {fast_greedy, edge_betweenness,
+label_prop, leading_eigen, louvain, spinglass, walktrap, auto}, Default:
+louvain, Format: character.}
 
-\item{cluster.method}{discrete; Use "kmeans" or "pam" to divide cells into
-clusters. Only take effect when lm.method is "clustering" (default: \code{"kmeans"};
-values: {\code{"kmeans"}, \code{"pam"}})}
+\item{cluster.method}{Parameter; Use "kmeans" or "pam" to divide cells into
+clusters. Only take effect when lm.method is "clustering"., Domain: {kmeans,
+pam}, Default: kmeans, Format: character.}
 
-\item{k}{integer; The number of cell clusters. If NULL, Gap statistic will be
-used to determine an optimal k. (default: \code{0L}; range: from \code{0L} to \code{20L})}
+\item{k}{Parameter; The number of cell clusters. If NULL, Gap statistic will be
+used to determine an optimal k., Domain: U(0, 20), Default: 0, Format: integer.}
 
-\item{k.max}{integer; The "k.max" parameter of cluster::clusGap(); used when k
-is NULL. (default: \code{10L}; range: from \code{3L} to \code{20L})}
+\item{k.max}{Parameter; The "k.max" parameter of cluster::clusGap(); used when
+k is NULL., Domain: U(3, 20), Default: 10, Format: integer.}
 
-\item{B}{integer; The "B" parameter of cluster::clusGap(); used when k is NULL
-(default: \code{100L}; range: from \code{3L} to \code{500L})}
+\item{B}{Parameter; The "B" parameter of cluster::clusGap(); used when k is
+NULL., Domain: U(3, 500), Default: 100, Format: integer.}
 
-\item{k.opt.method}{discrete; The "method" parameter of cluster::maxSE(); used
-when k is NULL (default: \code{"firstmax"}; values: {\code{"firstmax"}, \code{"globalmax"},
-\code{"Tibs2001SEmax"}, \code{"firstSEmax"}, \code{"globalSEmax"}})}
+\item{k.opt.method}{Parameter; The "method" parameter of cluster::maxSE(); used
+when k is NULL., Domain: {firstmax, globalmax, Tibs2001SEmax, firstSEmax,
+globalSEmax}, Default: firstmax, Format: character.}
 }
 \value{
 A TI method wrapper to be used together with

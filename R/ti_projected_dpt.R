@@ -5,37 +5,37 @@
 #' @title Inferring a trajectory inference using Projected DPT
 #' 
 #' @description
-#' Will generate a trajectory using Projected DPT.
+#' Will generate a trajectory using [Projected
+#' DPT](https://bioconductor.org/packages/release/bioc/html/destiny.html).
 #' 
 #' This method was wrapped inside a
 #' [container](https://github.com/dynverse/ti_projected_dpt).
+#' The original code of this method is available
+#' [here](https://bioconductor.org/packages/release/bioc/html/destiny.html).
 #' 
 #' 
 #' 
-#' 
-#' @param sigma discrete; Diffusion scale parameter of the Gaussian kernel. A
+#' @param sigma Parameter; Diffusion scale parameter of the Gaussian kernel. A
 #' larger sigma might be necessary if the eigenvalues can not be found because of
 #' a singularity in the matrix. Must be one of:\itemize{\item A character vector:
 #' \code{"local"} (default) or \code{"global"},\item a numeric global sigma -- a
 #' global sigma will be calculated using \code{destiny::find_sigmas()}\item or a
-#' \code{\link[destiny:Sigmas-class]{destiny::Sigmas-class()}} object.} (default:
-#' `"local"`; values: {`"local"`, `"global"`})
-#' @param distance discrete; A \code{stats::dist()} object, or a character vector
+#' \code{\link[destiny:Sigmas-class]{destiny::Sigmas-class()}} object.}., Domain:
+#' {local, global}, Default: local, Format: character.
+#' @param distance Parameter; A \code{stats::dist()} object, or a character vector
 #' specifying which distance metric to use. Allowed measures:\itemize{\item
 #' Euclidean distance (default),\item cosine distance (1-corr(c_1, c_2)), or\item
-#' rank correlation distance (1-corr(rank(c_1), rank(c_2)))} (default:
-#' `"euclidean"`; values: {`"euclidean"`, `"cosine"`, `"rankcor"`})
-#' @param ndim integer; Number of eigenvectors/dimensions to return (default:
-#' `20L`; range: from `3L` to `100L`)
-#' @param density_norm logical; Logical. If TRUE, use density normalisation
-#' @param n_local_lower integer; If sigma == 'local', the
-#' \code{n_local_lower}:\code{n_local_upper} nearest neighbor(s) determine(s) the
-#' local sigma (default: `5L`; range: from `2L` to `20L`)
-#' @param n_local_upper integer; See \code{n_local_lower} (default: `7L`; range:
-#' from `2L` to `20L`)
-#' @param w_width numeric; Window width to use for deciding the branch cutoff
-#' (default: `0.1`; range: from `1e-04` to `1`)
-#' @inheritParams dynwrap::create_ti_method_container
+#' rank correlation distance (1-corr(rank(c_1), rank(c_2)))}., Domain: {euclidean,
+#' cosine, rankcor}, Default: euclidean, Format: character.
+#' @param ndim Parameter; Number of eigenvectors/dimensions to return., Domain:
+#' U(3, 100), Default: 20, Format: integer.
+#' @param density_norm Parameter; Logical. If TRUE, use density normalisation.,
+#' Default: TRUE, Format: logical.
+#' @param n_local Parameter; If sigma == 'local', the \code{n_local} nearest
+#' neighbor(s) determine(s) the local sigma., Domain: ( U(2, 20), U(2, 20) ),
+#' Default: (5, 7), Format: range.
+#' @param w_width Parameter; Window width to use for deciding the branch cutoff.,
+#' Domain: e^U(-9.21, 0.00), Default: 0.1, Format: numeric.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -45,20 +45,17 @@ ti_projected_dpt <- function(
     distance = "euclidean",
     ndim = 20L,
     density_norm = TRUE,
-    n_local_lower = 5L,
-    n_local_upper = 7L,
+    n_local = c(5L, 7L),
     w_width = 0.1
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_projected_dpt",
-    version = dynmethods::method_versions[["dynverse/ti_projected_dpt"]],
+    container_id = "dynverse/ti_projected_dpt:v0.9.9",
   )(
     sigma = sigma,
     distance = distance,
     ndim = ndim,
     density_norm = density_norm,
-    n_local_lower = n_local_lower,
-    n_local_upper = n_local_upper,
+    n_local = n_local,
     w_width = w_width
   )
 }

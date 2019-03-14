@@ -16,20 +16,20 @@
 #' heterogeneous genetic and environmental backgrounds across single-cells and
 #' populations.
 #' 
-#' @param thin integer; The number of iterations to wait each time
-#' beforere-calculating the elbo (default: `40L`; range: from `2L` to `500L`)
-#' @param z_init discrete; The initialisation of the latent trajectory. Should be
+#' @param thin Parameter; The number of iterations to wait each time
+#' beforere-calculating the elbo., Domain: U(2, 500), Default: 40, Format:
+#' integer.
+#' @param z_init Parameter; The initialisation of the latent trajectory. Should be
 #' one of\enumerate{\item A positive integer describing which principal component
 #' of the data shouldbe used for initialisation (default 1), \emph{or}\item A
 #' numeric vector of length number of samples to be used directly for
 #' initialisation, \emph{or}\item The text character \code{"random"}, for random
-#' initialisation from a standard normal distribution.} (default: `"1"`; values:
-#' {`"1"`, `"2"`, `"3"`, `"4"`, `"5"`, `"random"`})
-#' @param model_mu logical; Logical - should a gene-specific intercept term be
-#' modelled?
-#' @param scale_y logical; Logical - should the expression matrix be centre
-#' scaled?
-#' @inheritParams dynwrap::create_ti_method_container
+#' initialisation from a standard normal distribution.}., Domain: {1, 2, 3, 4, 5,
+#' random}, Default: 1, Format: character.
+#' @param model_mu Parameter; Logical - should a gene-specific intercept term be
+#' modelled?., Default: FALSE, Format: logical.
+#' @param scale_y Parameter; Logical - should the expression matrix be centre
+#' scaled?., Default: TRUE, Format: logical.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -41,8 +41,7 @@ ti_phenopath <- function(
     scale_y = TRUE
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_phenopath",
-    version = dynmethods::method_versions[["dynverse/ti_phenopath"]],
+    container_id = "dynverse/ti_phenopath:v0.9.9",
   )(
     thin = thin,
     z_init = z_init,

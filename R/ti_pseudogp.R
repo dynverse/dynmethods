@@ -17,29 +17,30 @@
 #' Differential Expression Analysis Using Probabilistic Models for Pseudotime
 #' Inference. PLOS Computational Biology 12, e1005212.
 #' 
-#' @param smoothing_alpha numeric; The hyperparameter for the Gamma distribution
-#' that controls arc-length (default: `10`; range: from `1` to `20`)
-#' @param smoothing_beta numeric; The hyperparameter for the Gamma distribution
-#' that controls arc-length (default: `3`; range: from `1` to `20`)
-#' @param pseudotime_mean numeric; The mean of the constrained normal prior on the
-#' pseudotimes (default: `0.5`; range: from `0` to `1`)
-#' @param pseudotime_var numeric; The variance of the constrained normal prior on
-#' the pseudotimes (default: `1`; range: from `0.01` to `1`)
-#' @param chains integer; The number of chains for the MCMC trace (default: `3L`;
-#' range: from `1L` to `20L`)
-#' @param iter integer; The number of iterations for the MCMC trace (default:
-#' `100L`; range: from `100L` to `1000L`)
-#' @param dimreds logical_vector; A character vector specifying which
-#' dimensionality reduction methods to use.See \code{dyndimred::dimred} for the
-#' list of available dimensionality reduction methods.
-#' @param initialise_from discrete; How to initialise the MCMC chain. One of
+#' @param smoothing_alpha Parameter; The hyperparameter for the Gamma distribution
+#' that controls arc-length., Domain: U(1, 20), Default: 10, Format: numeric.
+#' @param smoothing_beta Parameter; The hyperparameter for the Gamma distribution
+#' that controls arc-length., Domain: U(1, 20), Default: 3, Format: numeric.
+#' @param pseudotime_mean Parameter; The mean of the constrained normal prior on
+#' the pseudotimes., Domain: U(0, 1), Default: 0.5, Format: numeric.
+#' @param pseudotime_var Parameter; The variance of the constrained normal prior
+#' on the pseudotimes., Domain: U(0.01, 1), Default: 1, Format: numeric.
+#' @param chains Parameter; The number of chains for the MCMC trace., Domain: U(1,
+#' 20), Default: 3, Format: integer.
+#' @param iter Parameter; The number of iterations for the MCMC trace., Domain:
+#' e^U(4.61, 6.91), Default: 100, Format: integer.
+#' @param dimreds Parameter; A character vector specifying which dimensionality
+#' reduction methods to use.See \code{dyndimred::dimred} for the list of available
+#' dimensionality reduction methods., Domain: {x | x ⊆ {pca, mds, tsne, ica, lle,
+#' landmark_mds, mds_sammon, mds_isomds, mds_smacof, umap, dm_diffusionmap,
+#' dm_destiny}}, Default: {pca, mds}, Format: subset.
+#' @param initialise_from Parameter; How to initialise the MCMC chain. One of
 #' "random" (stan decides),"principal_curve", or "pca" (the first component of PCA
 #' rescaled is taken to be the pseudotimes).Note: if multiple representations are
 #' provided, \code{pseudogp} will take the principal curve orpca from the first
 #' rather than combining them. If a particular representation is required, it isup
-#' to the user to re-order them. (default: `"random"`; values: {`"random"`,
-#' `"principal_curve"`, `"pca"`})
-#' @inheritParams dynwrap::create_ti_method_container
+#' to the user to re-order them., Domain: {random, principal_curve, pca}, Default:
+#' random, Format: character.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -51,12 +52,11 @@ ti_pseudogp <- function(
     pseudotime_var = 1,
     chains = 3L,
     iter = 100L,
-    dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
+    dimreds = c("pca", "mds"),
     initialise_from = "random"
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_pseudogp",
-    version = dynmethods::method_versions[["dynverse/ti_pseudogp"]],
+    container_id = "dynverse/ti_pseudogp:v0.9.9",
   )(
     smoothing_alpha = smoothing_alpha,
     smoothing_beta = smoothing_beta,

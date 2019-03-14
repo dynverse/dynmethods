@@ -4,10 +4,11 @@
 \alias{ti_waterfall}
 \title{Inferring a trajectory inference using Waterfall}
 \usage{
-ti_waterfall(num_clusters = 10)
+ti_waterfall(num_clusters = 10L)
 }
 \arguments{
-\item{num_clusters}{integer; (default: \code{10}; range: from \code{2} to \code{20})}
+\item{num_clusters}{Parameter; ., Domain: U(2, 20), Default: 10, Format:
+integer.}
 }
 \value{
 A TI method wrapper to be used together with

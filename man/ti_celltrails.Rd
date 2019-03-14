@@ -10,41 +10,43 @@ ti_celltrails(filter_features = FALSE, threshold_dl = 2L,
   min_fc = 2L, l = 10L)
 }
 \arguments{
-\item{filter_features}{logical; Whether to include celltrails feature filtering}
+\item{filter_features}{Parameter; Whether to include celltrails feature
+filtering., Default: FALSE, Format: logical.}
 
-\item{threshold_dl}{integer; Minimum number of samples; if value < 1 it is
-interpreted as fraction, otherwise as absolute sample count (default: \code{2L};
-range: from \code{0L} to \code{100L})}
+\item{threshold_dl}{Parameter; Minimum number of samples; if value < 1 it is
+interpreted as fraction, otherwise as absolute sample count., Domain: U(0,
+100), Default: 2, Format: integer.}
 
-\item{threshold_cov}{numeric; Minimum coefficient of variation; numeric value
-between 0 and 1 (default: \code{0.05}; range: from \code{0L} to \code{1L})}
+\item{threshold_cov}{Parameter; Minimum coefficient of variation; numeric value
+between 0 and 1., Domain: U(0, 1), Default: 0.05, Format: numeric.}
 
-\item{threshold_ff}{numeric; A Z-score cutoff (default: \code{1.7}; range: from \code{0L}
-to \code{5L})}
+\item{threshold_ff}{Parameter; A Z-score cutoff., Domain: U(0, 5), Default:
+1.7, Format: numeric.}
 
-\item{min_expr}{numeric; Minimum average feature expression (default: \code{0L};
-range: from \code{0L} to \code{2L})}
+\item{min_expr}{Parameter; Minimum average feature expression., Domain: U(0,
+2), Default: 0, Format: numeric.}
 
-\item{frac}{numeric; Fraction or number (if frac > 1) of eigengaps used to
-perform linear fit. (default: \code{100L}; range: from \code{1L} to \code{1000L})}
+\item{frac}{Parameter; Fraction or number (if frac > 1) of eigengaps used to
+perform linear fit., Domain: e^U(0.00, 6.91), Default: 100, Format: numeric.}
 
-\item{min_size}{numeric; The initial cluster dedrogram is cut at an height such
-that the minimum cluster size is at least min_size; if min_size < 1 than the
-fraction of total samples is used, otherwise it is used as absoulte count
-(default: \code{0.01}; range: from \code{0.001} to \code{1L})}
+\item{min_size}{Parameter; The initial cluster dedrogram is cut at an height
+such that the minimum cluster size is at least min_size; if min_size < 1 than
+the fraction of total samples is used, otherwise it is used as absoulte count.,
+Domain: e^U(-6.91, 0.00), Default: 0.01, Format: numeric.}
 
-\item{min_feat}{integer; Minimum number of differentially expressed features
+\item{min_feat}{Parameter; Minimum number of differentially expressed features
 between siblings. If this number is not reached, two neighboring clusters
-(siblings) in the pruned dendrogram get joined. (default: \code{5L}; range: from
-\code{1L} to \code{100L})}
+(siblings) in the pruned dendrogram get joined., Domain: U(1, 100), Default: 5,
+Format: integer.}
 
-\item{max_pval}{numeric; Maximum P-value for differential expression
-computation. (default: \code{1e-04}; range: from \code{1e-07} to \code{1L})}
+\item{max_pval}{Parameter; Maximum P-value for differential expression
+computation., Domain: e^U(-16.12, 0.00), Default: 1e-04, Format: numeric.}
 
-\item{min_fc}{numeric; Mimimum fold-change for differential expression
-computation (default: \code{2L}; range: from \code{0L} to \code{5L})}
+\item{min_fc}{Parameter; Mimimum fold-change for differential expression
+computation., Domain: U(0, 5), Default: 2, Format: numeric.}
 
-\item{l}{integer; Neighborhood size (default: \code{10L}; range: from \code{1L} to \code{50L})}
+\item{l}{Parameter; Neighborhood size., Domain: U(1, 50), Default: 10, Format:
+integer.}
 }
 \value{
 A TI method wrapper to be used together with

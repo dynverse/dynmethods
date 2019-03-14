@@ -13,20 +13,18 @@
 #' 
 #' 
 #' 
-#' @param ndim integer; (default: `3`; range: from `2` to `10`)
-#' @param maxit integer; (default: `10`; range: from `0` to `100`)
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param ndim Parameter; ., Domain: U(2, 10), Default: 3, Format: integer.
+#' @param maxit Parameter; ., Domain: U(0, 100), Default: 10, Format: integer.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_periodpc <- function(
-    ndim = 3,
-    maxit = 10
+    ndim = 3L,
+    maxit = 10L
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_periodpc",
-    version = dynmethods::method_versions[["dynverse/ti_periodpc"]],
+    container_id = "dynverse/ti_periodpc:v0.9.9",
   )(
     ndim = ndim,
     maxit = maxit

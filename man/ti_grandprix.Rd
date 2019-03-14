@@ -8,11 +8,14 @@ ti_grandprix(n_inducing_points = 40L, latent_prior_var = 0.1,
   latent_var = 0.028)
 }
 \arguments{
-\item{n_inducing_points}{integer; (default: \code{40L}; range: from \code{10L} to \code{500L})}
+\item{n_inducing_points}{Parameter; ., Domain: U(0, 1), Default: 40, Format:
+integer.}
 
-\item{latent_prior_var}{numeric; (default: \code{0.1}; range: from \code{NULL} to \code{NULL})}
+\item{latent_prior_var}{Parameter; ., Domain: U(0, 1), Default: 0.1, Format:
+numeric.}
 
-\item{latent_var}{numeric; (default: \code{0.028}; range: from \code{NULL} to \code{NULL})}
+\item{latent_var}{Parameter; ., Domain: U(0, 1), Default: 0.028, Format:
+numeric.}
 }
 \value{
 A TI method wrapper to be used together with
