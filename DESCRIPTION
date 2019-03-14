@@ -1,7 +1,7 @@
 Package: dynmethods
 Type: Package
 Title: A collection of trajectory inference methods
-Version: 0.1.0
+Version: 0.9.9
 Authors@R: c(
   person("Robrecht", "Cannoodt", email = "rcannood@gmail.com", role = c("aut", "cre")),
   person("Wouter", "Saelens", email = "wouter.saelens@ugent.be", role = c("aut")),
@@ -14,7 +14,7 @@ RoxygenNote: 6.1.1
 Depends:
   R (>= 3.4.0)
 Imports: 
-  dynwrap (>= 0.3.1)
+  dynwrap (>= 0.9.9)
 Suggests:
   dplyr,
   dynutils,
@@ -24,6 +24,6 @@ Suggests:
   tibble
 Remotes:
   dynverse/dynutils,
-  dynverse/dynwrap
+  dynverse/dynwrap@singularity3
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
