@@ -24,6 +24,6 @@ Suggests:
   tibble
 Remotes:
   dynverse/dynutils,
-  dynverse/dynwrap@singularity3
+  dynverse/dynwrap@devel
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
