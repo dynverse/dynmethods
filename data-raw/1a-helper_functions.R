@@ -1,6 +1,4 @@
-generate_file_from_container <- function(definition) {
-  definition
-
+generate_file_from_container <- function(definition, version) {
   file_text <- paste0(
     # header
     "######################################### DO NOT EDIT! #########################################\n",
@@ -9,22 +7,22 @@ generate_file_from_container <- function(definition) {
     "\n",
 
     # documentation
-    generate_documentation_from_definition(definition), "\n",
+    generate_documentation_from_definition(definition, version), "\n",
 
     # function
-    generate_function_from_definition(definition), "\n"
+    generate_function_from_definition(definition, version), "\n"
   )
 
-  path <- paste0("R/ti_", definition$id, ".R")
+  path <- paste0("R/ti_", definition$method$id, ".R")
 
   readr::write_file(file_text, path)
 }
 
 
-generate_documentation_from_definition <- function(definition) {
+generate_documentation_from_definition <- function(definition, version) {
   # url within name
   c(
-    paste0("@title Inferring a trajectory inference using ", definition$name),
+    paste0("@title Inferring a trajectory inference using ", definition$method$name),
     "",
     "@description ", format_description(definition),
     "",
@@ -42,18 +40,16 @@ generate_documentation_from_definition <- function(definition) {
     paste0("#' ", ., collapse = "\n")
 }
 
-generate_function_from_definition <- function(definition) {
-  # forbidden are forbidden combinations of parameters; e.g. xmin > xmax.
+generate_function_from_definition <- function(definition, version) {
   parameter_ids <-
-    names(definition$parameters) %>%
-    keep(~. != "forbidden")
+    names(definition$parameters$parameters)
 
   # collect default parameters
   parameters <- map_chr(parameter_ids, function (pid) {
     paste0(
       pid,
       " = ",
-      deparse(definition$parameters[[pid]]$default, width.cutoff = 500)
+      deparse(definition$parameters$parameters[[pid]]$default, width.cutoff = 500)
     )
   }) %>%
     paste0("    ", ., collapse = ",\n")
@@ -64,12 +60,11 @@ generate_function_from_definition <- function(definition) {
 
   # return code for function
   paste0(
-    "ti_", definition$id, " <- function(\n",
+    "ti_", definition$method$id, " <- function(\n",
     parameters, "\n",
     ") {\n",
     "  create_ti_method_container(\n",
-    "    container_id = \"", definition$docker_repository, "\",\n",
-    "    version = dynmethods::method_versions[[\"", definition$docker_repository, "\"]],\n",
+    "    container_id = \"", definition$container$docker, ":v", version, "\",\n",
     "  )(\n",
     args, "\n",
     "  )\n",
@@ -78,24 +73,24 @@ generate_function_from_definition <- function(definition) {
 }
 
 format_description <- function(definition) {
-  if (!is.null(definition$description)) {
-    definition$description
+  if (!is.null(definition$method$description)) {
+    definition$method$description
   } else {
     paste0("Will generate a trajectory using ", format_url_name(definition), ".")
   }
 }
 
 format_code_url <- function(definition) {
-  if (!is.null(definition$code_url)) {
-    paste0("The original code of this method is available [here](", definition$code_url, ").")
+  if (!is.null(definition$method$url)) {
+    paste0("The original code of this method is available [here](", definition$method$url, ").")
   } else {
     ""
   }
 }
 
 format_container_url <- function(definition) {
-  if (!is.null(definition$container_url)) {
-    paste0("This method was wrapped inside a [container](", definition$container_url, ").")
+  if (!is.null(definition$container$url)) {
+    paste0("This method was wrapped inside a [container](", definition$container$url, ").")
   } else {
     ""
   }
@@ -103,10 +98,10 @@ format_container_url <- function(definition) {
 
 #' @importFrom rcrossref cr_cn
 format_citation <- function(definition) {
-  if (!is.null(definition$doi)) {
+  if (!is.null(definition$manuscript$doi)) {
     paste0(
       "@references ",
-      rcrossref::cr_cn(dois = definition$doi[[1]], format = "text", style = "elsevier-harvard")
+      rcrossref::cr_cn(dois = definition$manuscript$doi[[1]], format = "text", style = "elsevier-harvard")
     )
   } else {
     ""
@@ -114,51 +109,27 @@ format_citation <- function(definition) {
 }
 
 format_url_name <- function(definition) {
-  if (!is.null(definition$doi)) {
-    paste0("[", definition$name, "](https://doi.org/", definition$doi[[1]], ")")
-  } else if (!is.null(definition$code_url)) {
-    paste0("[", definition$name, "](", definition$code_url, ")")
+  if (!is.null(definition$manuscript$doi)) {
+    paste0("[", definition$method$name, "](https://doi.org/", definition$manuscript$doi[[1]], ")")
+  } else if (!is.null(definition$method$url)) {
+    paste0("[", definition$method$name, "](", definition$method$url, ")")
   } else {
-    definition$name
+    definition$method$name
   }
 }
 
 #' @importFrom Hmisc capitalize
 format_parameter_documentation <- function(definition) {
-  # forbidden are forbidden combinations of parameters; e.g. xmin > xmax.
   parameter_ids <-
-    names(definition$parameters) %>%
-    keep(~. != "forbidden")
+    names(definition$parameters$parameters)
 
   # generate documentation per parameter separately
-  param_texts <- map_chr(
+  map_chr(
     parameter_ids,
     function(parameter_id) {
-      parameter <- definition$parameters[[parameter_id]]
+      parameter <- definition$parameters$parameters[[parameter_id]]
 
-      description <-
-        parameter$description %>%
-        ifelse(!is.null(.), ., "") %>%     # use "" if no description is provided
-        str_replace_all("\n", "") %>%      # remove newlines
-        Hmisc::capitalize()                # capitalise sentences
-
-      range_text <-
-        case_when(
-          parameter$type == "discrete" ~ paste0("; values: {", paste0("`", sapply(parameter$values, deparse), "`", collapse = ", "), "}"),
-          parameter$type %in% c("integer", "numeric") ~ paste0("; range: from `", deparse(parameter$lower), "` to `", deparse(parameter$upper), "`"),
-          TRUE ~ ""
-        )
-
-      defaults <-
-        case_when(
-          parameter$type %in% c("integer", "numeric", "discrete", "logical") ~ paste0(" (default: `", deparse(parameter$default, width.cutoff = 500), "`", range_text, ")"),
-          TRUE ~ ""
-        )
-
-      paste0("@param ", parameter_id, " ", parameter$type, "; ", description, defaults) %>%
-        gsub("\\\\link\\[[a-zA-Z0-9_:]*\\]\\{([^\\}]*)\\}", "\\1", .) # substitute \link[X](Y) with just Y
+      dynparam::as_roxygen(parameter)
     }
   )
-
-  c(param_texts, "@inheritParams dynwrap::create_ti_method_container")
 }

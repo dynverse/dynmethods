@@ -13,92 +13,91 @@ ti_raceid_stemid(knn = 10L, ccor = 0.4, metric = "pearson",
   pthr = 0.01, scthr = 0.2)
 }
 \arguments{
-\item{knn}{integer; Number of nearest neighbors used to infer corresponding
-cell types in different batches. (default: \code{10L}; range: from \code{5L} to \code{50L})}
+\item{knn}{Number of nearest neighbors used to infer corresponding cell types
+in different batches. Domain: U(5, 50). Default: 10. Format: integer.}
 
-\item{ccor}{numeric; Correlation coefficient used as a treshhold for
-determining genes correlated to eachother. (default: \code{0.4}; range: from \code{0} to
-\code{1})}
+\item{ccor}{Correlation coefficient used as a treshhold for determining genes
+correlated to eachother. Domain: U(0, 1). Default: 0.4. Format: numeric.}
 
-\item{metric}{discrete; Distances are computed from the filtered expression
-matrix after optional feature selection, dimensional reduction, and/or
-transformation (batch correction). (default: \code{"pearson"}; values: {\code{"pearson"},
-\code{"spearman"}, \code{"logpearson"}, \code{"euclidean"}})}
+\item{metric}{Distances are computed from the filtered expression matrix after
+optional feature selection, dimensional reduction, and/or transformation (batch
+correction). Domain: {pearson, spearman, logpearson, euclidean}. Default:
+pearson. Format: character.}
 
-\item{sat}{logical; If \code{TRUE}, then the number of clusters is determined
-based on finding the saturation point of the mean within-cluster dispersion as
-a function of the cluster number. If \code{FALSE}, then cluster number needs to
-be given as \code{cln}.}
+\item{sat}{If \code{TRUE}, then the number of clusters is determined based on
+finding the saturation point of the mean within-cluster dispersion as a
+function of the cluster number. If \code{FALSE}, then cluster number needs to be
+given as \code{cln}. Default: TRUE. Format: logical.}
 
-\item{samp}{integer; Number of bootstrapping runs for clusterboot (default:
-\code{1000L}; range: from \code{50L} to \code{10000L})}
+\item{samp}{Number of bootstrapping runs for clusterboot. Domain: e^U(3.91,
+9.21). Default: 1000. Format: integer.}
 
-\item{cln}{integer; Number of clusters to be used. If \code{sat} is
-\code{TRUE}, this number is inferred by the saturation criterion. (default:
-\code{30L}; range: from \code{10L} to \code{100L})}
+\item{cln}{Number of clusters to be used. If \code{sat} is \code{TRUE}, this number is
+inferred by the saturation criterion. Domain: U(10, 100). Default: 30. Format:
+integer.}
 
-\item{clustnr}{integer; Maximum number of clusters for the derivation of the
-cluster number by the saturation of mean within-cluster-dispersion. (default:
-\code{30L}; range: from \code{10L} to \code{100L})}
+\item{clustnr}{Maximum number of clusters for the derivation of the cluster
+number by the saturation of mean within-cluster-dispersion. Domain: U(10, 100).
+Default: 30. Format: integer.}
 
-\item{bootnr}{integer; Number of booststrapping runs for clusterboot. (default:
-\code{50L}; range: from \code{20L} to \code{100L})}
+\item{bootnr}{Number of booststrapping runs for clusterboot. Domain: U(20,
+100). Default: 50. Format: integer.}
 
-\item{FUNcluster}{discrete; Clustering method used by RaceID3. (default:
-\code{"kmedoids"}; values: {\code{"kmedoids"}, \code{"kmeans"}, \code{"hclust"}})}
+\item{FUNcluster}{Clustering method used by RaceID3. Domain: {kmedoids, kmeans,
+hclust}. Default: kmedoids. Format: character.}
 
-\item{probthr}{numeric; Outlier probability threshold for a minimum of outlg
-genes to be an outlier cell. This probability is computed from a negative
-binomial background model of expression in a cluster. (default: \code{0.001}; range:
-from \code{1e-05} to \code{1L})}
+\item{probthr}{Outlier probability threshold for a minimum of outlg genes to be
+an outlier cell. This probability is computed from a negative binomial
+background model of expression in a cluster. Domain: e^U(-11.51, 0.00).
+Default: 0.001. Format: numeric.}
 
-\item{outminc}{integer; Minimal transcript count of a gene in a clusters to be
-tested for being an outlier gene. (default: \code{5L}; range: from \code{0L} to \code{100L})}
+\item{outminc}{Minimal transcript count of a gene in a clusters to be tested
+for being an outlier gene. Domain: U(0, 100). Default: 5. Format: integer.}
 
-\item{outlg}{integer; Minimum number of outlier genes required for being an
-outlier cell. (default: \code{2L}; range: from \code{0L} to \code{100L})}
+\item{outlg}{Minimum number of outlier genes required for being an outlier
+cell. Domain: U(0, 100). Default: 2. Format: integer.}
 
-\item{outdistquant}{numeric; Real number between zero and one. Outlier cells
-are merged to outlier clusters if their distance smaller than the
-outdistquant-quantile of the distance distribution of pairs of cells in the
-orginal clusters after outlier removal. (default: \code{0.95}; range: from \code{0} to
-\code{1})}
+\item{outdistquant}{Real number between zero and one. Outlier cells are merged
+to outlier clusters if their distance smaller than the outdistquant-quantile of
+the distance distribution of pairs of cells in the orginal clusters after
+outlier removal. Domain: U(0, 1). Default: 0.95. Format: numeric.}
 
-\item{initial_cmd}{logical; If TRUE, then the t-SNE map computation is
-initialized with a configuration obtained by classical multidimensional
-scaling.}
+\item{initial_cmd}{If TRUE, then the t-SNE map computation is initialized with
+a configuration obtained by classical multidimensional scaling. Default: TRUE.
+Format: logical.}
 
-\item{perplexity}{integer; Perplexity of the t-SNE map. (default: \code{30L}; range:
-from \code{5L} to \code{100L})}
+\item{perplexity}{Perplexity of the t-SNE map. Domain: U(5, 100). Default: 30.
+Format: integer.}
 
-\item{cthr}{integer; Clusters to be included into the StemID2 analysis must
-contain more than cthr cells. D (default: \code{5L}; range: from \code{1L} to \code{25L})}
+\item{cthr}{Clusters to be included into the StemID2 analysis must contain more
+than cthr cells. D. Domain: U(1, 25). Default: 5. Format: integer.}
 
-\item{nmode}{logical; If \code{TRUE}, then a cell of given cluster is assigned
-to the link to the cluster with the smallest average distance of the knn
-nearest neighbours within this cluster.}
+\item{nmode}{If \code{TRUE}, then a cell of given cluster is assigned to the link to
+the cluster with the smallest average distance of the knn nearest neighbours
+within this cluster. Default: TRUE. Format: logical.}
 
-\item{projcells_knn}{integer; See \code{nmode}. (default: \code{3L}; range: from
-\code{3L} to \code{20L})}
+\item{projcells_knn}{See \code{nmode}. Domain: U(3, 20). Default: 3. Format:
+integer.}
 
-\item{fr}{logical; Use Fruchterman-Rheingold layout instead of t-SNE for
-dimensional-reduction representation of the lineage tree.}
+\item{fr}{Use Fruchterman-Rheingold layout instead of t-SNE for
+dimensional-reduction representation of the lineage tree. Default: FALSE.
+Format: logical.}
 
-\item{pdishuf}{integer; Number of randomizations of cell positions for which to
-compute projections of cells on inter-cluster links. (default: \code{500L}; range:
-from \code{10L} to \code{10000L})}
+\item{pdishuf}{Number of randomizations of cell positions for which to compute
+projections of cells on inter-cluster links. Domain: e^U(2.30, 9.21). Default:
+500. Format: integer.}
 
-\item{fast}{logical; If \code{TRUE} and \code{nmode} is \code{FALSE} cells will
-still be assigned to links based on maximum projections but a fast approximate
-background model will be used to infer significance. The function will do
-nothing in this case.}
+\item{fast}{If \code{TRUE} and \code{nmode} is \code{FALSE} cells will still be assigned to
+links based on maximum projections but a fast approximate background model will
+be used to infer significance. The function will do nothing in this case.
+Default: FALSE. Format: logical.}
 
-\item{pthr}{numeric; P-value cutoff for link significance. This threshold is
-applied for the calculation of link scores reflecting how uniformly a link is
-occupied by cells. (default: \code{0.01}; range: from \code{1e-05} to \code{1L})}
+\item{pthr}{P-value cutoff for link significance. This threshold is applied for
+the calculation of link scores reflecting how uniformly a link is occupied by
+cells. Domain: e^U(-11.51, 0.00). Default: 0.01. Format: numeric.}
 
-\item{scthr}{numeric; Score threshold for links to be shown in the graph.
-(default: \code{0.2}; range: from \code{0} to \code{1})}
+\item{scthr}{Score threshold for links to be shown in the graph. Domain: U(0,
+1). Default: 0.2. Format: numeric.}
 }
 \value{
 A TI method wrapper to be used together with

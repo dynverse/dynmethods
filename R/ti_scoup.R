@@ -17,24 +17,20 @@
 #' on the Ornstein–Uhlenbeck process to analyze single-cell expression data during
 #' differentiation. BMC Bioinformatics 17.
 #' 
-#' @param ndim integer; Number of pca dimensions (default: `2L`; range: from `2L`
-#' to `20L`)
-#' @param max_ite1 integer; Upper bound of EM iteration (without pseudo-time
-#' optimization). (default: `100L`; range: from `2L` to `5000L`)
-#' @param max_ite2 integer; Upper bound of EM iteration (including pseudo-time
-#' optimization). (default: `100L`; range: from `2L` to `500000L`)
-#' @param alpha_min numeric; Lower bound of alpha. (default: `0.1`; range: from
-#' `0.001` to `10`)
-#' @param alpha_max numeric; Upper bound of alpha. (default: `100L`; range: from
-#' `1L` to `10000L`)
-#' @param t_min numeric; Lower bound of pseudo-time. (default: `0.001`; range:
-#' from `1e-05` to `1`)
-#' @param t_max numeric; Upper bound of pseudo-time (default: `2L`; range: from
-#' `0.1` to `100L`)
-#' @param sigma_squared_min numeric; Lower bound of sigma squared (default: `0.1`;
-#' range: from `0.001` to `10`)
-#' @param thresh numeric; Threshold (default: `0.01`; range: from `0.01` to `10`)
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param ndim Number of pca dimensions. Domain: U(2, 20). Default: 2. Format:
+#' integer.
+#' @param max_ite1 Upper bound of EM iteration (without pseudo-time optimization).
+#' Domain: e^U(0.69, 8.52). Default: 100. Format: integer.
+#' @param max_ite2 Upper bound of EM iteration (including pseudo-time
+#' optimization). Domain: e^U(0.69, 13.12). Default: 100. Format: integer.
+#' @param alpha Bounds of alpha. Domain: ( e^U(-6.91, 2.30), e^U(-6.91, 2.30) ).
+#' Default: (0.1, 100). Format: numeric_range.
+#' @param t Bounds of pseudo-time. Domain: ( e^U(-11.51, 0.00), e^U(-11.51, 0.00)
+#' ). Default: (0.001, 2). Format: numeric_range.
+#' @param sigma_squared Lower bound of sigma squared. Domain: e^U(-6.91, 2.30).
+#' Default: 0.1. Format: numeric.
+#' @param thresh Threshold. Domain: e^U(-4.61, 2.30). Default: 0.01. Format:
+#' numeric.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -43,25 +39,20 @@ ti_scoup <- function(
     ndim = 2L,
     max_ite1 = 100L,
     max_ite2 = 100L,
-    alpha_min = 0.1,
-    alpha_max = 100L,
-    t_min = 0.001,
-    t_max = 2L,
-    sigma_squared_min = 0.1,
+    alpha = c(0.1, 100),
+    t = c(0.001, 2),
+    sigma_squared = 0.1,
     thresh = 0.01
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_scoup",
-    version = dynmethods::method_versions[["dynverse/ti_scoup"]],
+    container_id = "dynverse/ti_scoup:v0.9.9",
   )(
     ndim = ndim,
     max_ite1 = max_ite1,
     max_ite2 = max_ite2,
-    alpha_min = alpha_min,
-    alpha_max = alpha_max,
-    t_min = t_min,
-    t_max = t_max,
-    sigma_squared_min = sigma_squared_min,
+    alpha = alpha,
+    t = t,
+    sigma_squared = sigma_squared,
     thresh = thresh
   )
 }

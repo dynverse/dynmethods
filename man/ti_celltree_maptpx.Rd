@@ -5,33 +5,53 @@
 \title{Inferring a trajectory inference using cellTree maptpx}
 \usage{
 ti_celltree_maptpx(method = "maptpx", sd_filter = 0.5,
-  absolute_width = 0, width_scale_factor = 1.5,
+  absolute_width = 0L, width_scale_factor = 1.5,
   outlier_tolerance_factor = 0.1, rooting_method = "null",
-  num_topics_lower = 2, num_topics_upper = 15, tot_iter = 1e+06,
-  tolerance = 0.05)
+  num_topics = c(2L, 15L), tot_iter = 200L, tolerance = 0.05)
 }
 \arguments{
-\item{method}{discrete; (default: \code{"maptpx"}; values: {\code{"maptpx"}})}
+\item{method}{LDA inference method to use. Domain: {maptpx}. Default: maptpx.
+Format: character.}
 
-\item{sd_filter}{numeric; (default: \code{0.5}; range: from \code{0.01} to \code{5})}
+\item{sd_filter}{Standard-deviation threshold below which genes should be
+removed from the data. Domain: e^U(-4.61, 1.61). Default: 0.5. Format: numeric.}
 
-\item{absolute_width}{numeric; (default: \code{0}; range: from \code{NULL} to \code{NULL})}
+\item{absolute_width}{Distance threshold below which a cell vertex is
+considered to be attached to a backbone vertex (see paper for more details). By
+default, this threshold is computed dynamically, based on the distance
+distribution for each branch. Domain: U(0, 1). Default: 0. Format: numeric.}
 
-\item{width_scale_factor}{numeric; (default: \code{1.5}; range: from \code{0.1} to \code{100})}
+\item{width_scale_factor}{A scaling factor for the dynamically-computed
+distance threshold (ignored if absolute_width is provided). Higher values will
+result in less branches in the backbone tree, while lower values might lead to
+a large number of backbone branches. Domain: e^U(-2.30, 4.61). Default: 1.5.
+Format: numeric.}
 
-\item{outlier_tolerance_factor}{numeric; (default: \code{0.1}; range: from \code{1e-04}
-to \code{1000})}
+\item{outlier_tolerance_factor}{Proportion of vertices, out of the total number
+of vertices divided by the total number of branches, that can be left at the
+end of the backbone tree-building algorithm. Domain: e^U(-9.21, 6.91). Default:
+0.1. Format: numeric.}
 
-\item{rooting_method}{discrete; (default: \code{"null"}; values: {\code{"longest.path"},
-\code{"center.start.group"}, \code{"average.start.group"}, \code{"null"}})}
+\item{rooting_method}{Method used to root the backbone tree. Must be either
+NULL or one of ‘longest.path’, ‘center.start.group’ or ‘average.start.group’.
+‘longest.path’ picks one end of the longest shortest-path between two vertices.
+’center.start.group’ picks the vertex in the starting group with lowest
+mean-square-distance to the others. ‘average.start.group’ creates a new
+artificial vertex, as the average of all cells in the starting group. If no
+value is provided, the best method is picked based on the type of grouping and
+start group information available. Domain: {longest.path, center.start.group,
+average.start.group, null}. Default: null. Format: character.}
 
-\item{num_topics_lower}{integer; (default: \code{2}; range: from \code{2} to \code{15})}
+\item{num_topics}{Number of topics to fit in the model. Domain: ( U(2, 10),
+U(10, 30) ). Default: (2, 15). Format: integer_range.}
 
-\item{num_topics_upper}{integer; (default: \code{15}; range: from \code{2} to \code{15})}
+\item{tot_iter}{Numeric parameters (optional) forwarded to the chosen LDA
+inference method's contol class. Domain: e^U(9.21, 13.82). Default: 200.
+Format: numeric.}
 
-\item{tot_iter}{numeric; (default: \code{1e+06}; range: from \code{10000} to \code{1e+07})}
-
-\item{tolerance}{numeric; (default: \code{0.05}; range: from \code{0.001} to \code{0.5})}
+\item{tolerance}{Numeric parameters (optional) forwarded to the chosen LDA
+inference method's contol class. Domain: e^U(-6.91, -0.69). Default: 0.05.
+Format: numeric.}
 }
 \value{
 A TI method wrapper to be used together with

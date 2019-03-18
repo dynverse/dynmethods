@@ -5,41 +5,38 @@
 \title{Inferring a trajectory inference using FORKS}
 \usage{
 ti_forks(norm_function = "median", norm_quantile = 75L,
-  cum_sum_exp_var = 0.9, min_cluster = 4L, max_cluster = 10L,
+  cum_sum_exp_var = 0.9, cluster = c(4L, 10L),
   mapping_type = "Isomap", initialization = "kmeans",
   iterMax = 1000L, eta = 0.01, C = 1L)
 }
 \arguments{
-\item{norm_function}{discrete; No description provided by the author. (default:
-\code{"median"}; values: {\code{"mean"}, \code{"median"}, \code{"quantile"}})}
+\item{norm_function}{No description provided by the author. Domain: {mean,
+median, quantile}. Default: median. Format: character.}
 
-\item{norm_quantile}{numeric; No description provided by the author. (default:
-\code{75L}; range: from \code{0L} to \code{100L})}
+\item{norm_quantile}{No description provided by the author. Domain: U(0, 100).
+Default: 75. Format: numeric.}
 
-\item{cum_sum_exp_var}{numeric; No description provided by the author.
-(default: \code{0.9}; range: from \code{0} to \code{1})}
+\item{cum_sum_exp_var}{No description provided by the author. Domain: U(0, 1).
+Default: 0.9. Format: numeric.}
 
-\item{min_cluster}{integer; No description provided by the author. (default:
-\code{4L}; range: from \code{3L} to \code{20L})}
+\item{cluster}{No description provided by the author. Domain: ( U(3, 20), U(3,
+20) ). Default: (4, 10). Format: integer_range.}
 
-\item{max_cluster}{integer; No description provided by the author. (default:
-\code{10L}; range: from \code{3L} to \code{20L})}
+\item{mapping_type}{No description provided by the author. Domain: {Isomap,
+MDS, PCA, RandomForest, SpectralEmbedding, LLE_standard, tSNE}. Default:
+Isomap. Format: character.}
 
-\item{mapping_type}{discrete; No description provided by the author. (default:
-\code{"Isomap"}; values: {\code{"Isomap"}, \code{"MDS"}, \code{"PCA"}, \code{"RandomForest"},
-\code{"SpectralEmbedding"}, \code{"LLE_standard"}, \code{"tSNE"}})}
+\item{initialization}{No description provided by the author. Domain: {kmeans,
+kmedoids, random}. Default: kmeans. Format: character.}
 
-\item{initialization}{discrete; No description provided by the author.
-(default: \code{"kmeans"}; values: {\code{"kmeans"}, \code{"kmedoids"}, \code{"random"}})}
+\item{iterMax}{No description provided by the author. Domain: e^U(4.61, 11.51).
+Default: 1000. Format: integer.}
 
-\item{iterMax}{integer; No description provided by the author. (default:
-\code{1000L}; range: from \code{100L} to \code{100000L})}
+\item{eta}{No description provided by the author. Domain: e^U(-9.21, 4.61).
+Default: 0.01. Format: numeric.}
 
-\item{eta}{numeric; No description provided by the author. (default: \code{0.01};
-range: from \code{1e-04} to \code{100L})}
-
-\item{C}{numeric; No description provided by the author. (default: \code{1L}; range:
-from \code{1e-04} to \code{1000L})}
+\item{C}{No description provided by the author. Domain: e^U(-9.21, 6.91).
+Default: 1. Format: numeric.}
 }
 \value{
 A TI method wrapper to be used together with

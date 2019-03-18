@@ -17,20 +17,17 @@
 #' Wishbone identifies bifurcating developmental trajectories from single-cell
 #' data. Nature Biotechnology 34, 637–645.
 #' 
-#' @param normalise logical;
-#' @param knn integer; K-nearest neighbours for diffusion (default: `25L`; range:
-#' from `15L` to `100L`)
-#' @param n_diffusion_components integer; Number of diffusion components (default:
-#' `3L`; range: from `3L` to `20L`)
-#' @param n_pca_components integer; Number of pca components (default: `30L`;
-#' range: from `15L` to `100L`)
-#' @param k integer; K parameter (default: `25L`; range: from `15L` to `100L`)
-#' @param num_waypoints integer; Number of waypoints (default: `250L`; range: from
-#' `100L` to `500L`)
-#' @param epsilon numeric; Epsilon (default: `1L`; range: from `0.1` to `5L`)
-#' @param branch logical; Whether to allow a single bifurcation within the
-#' trajectory (wishbone versus wanderlust)
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param normalise . Default: TRUE. Format: logical.
+#' @param knn K-nearest neighbours for diffusion. Domain: U(15, 100). Default: 25.
+#' Format: integer.
+#' @param n_diffusion_components Number of diffusion components. Domain: U(3, 20).
+#' Default: 3. Format: integer.
+#' @param n_pca_components Number of pca components. Domain: U(15, 100). Default:
+#' 30. Format: integer.
+#' @param k K parameter. Domain: U(15, 100). Default: 25. Format: integer.
+#' @param num_waypoints Number of waypoints. Domain: U(100, 500). Default: 250.
+#' Format: integer.
+#' @param epsilon Epsilon. Domain: U(0.1, 5). Default: 1. Format: numeric.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -42,12 +39,10 @@ ti_wishbone <- function(
     n_pca_components = 30L,
     k = 25L,
     num_waypoints = 250L,
-    epsilon = 1L,
-    branch = TRUE
+    epsilon = 1L
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_wishbone",
-    version = dynmethods::method_versions[["dynverse/ti_wishbone"]],
+    container_id = "dynverse/ti_wishbone:v0.9.9",
   )(
     normalise = normalise,
     knn = knn,
@@ -55,8 +50,7 @@ ti_wishbone <- function(
     n_pca_components = n_pca_components,
     k = k,
     num_waypoints = num_waypoints,
-    epsilon = epsilon,
-    branch = branch
+    epsilon = epsilon
   )
 }
 

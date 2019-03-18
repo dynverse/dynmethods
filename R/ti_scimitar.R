@@ -16,15 +16,14 @@
 #' @references CORDERO, P., STUART, J.M., 2016. TRACING CO-REGULATORY NETWORK
 #' DYNAMICS IN NOISY, SINGLE-CELL TRANSCRIPTOME TRAJECTORIES. Biocomputing 2017.
 #' 
-#' @param covariance_type discrete; (default: `"diag"`; values: {`"diag"`,
-#' `"spherical"`, `"full"`})
-#' @param degree integer; (default: `3L`; range: from `1L` to `20L`)
-#' @param step_size numeric; (default: `0.07`; range: from `0.01` to `0.1`)
-#' @param cov_estimator discrete; (default: `"corpcor"`; values: {`"identity"`,
-#' `"diag"`, `"sample"`, `"global"`, `"glasso"`, `"corpcor"`, `"average"`})
-#' @param cov_reg numeric; (default: `0.05`; range: from `0.01` to `0.1`)
-#' @param max_iter integer; (default: `3L`; range: from `1L` to `20L`)
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param covariance_type . Domain: {diag, spherical, full}. Default: diag.
+#' Format: character.
+#' @param degree . Domain: U(1, 20). Default: 3. Format: integer.
+#' @param step_size . Domain: e^U(-4.61, -2.30). Default: 0.07. Format: numeric.
+#' @param cov_estimator . Domain: {identity, diag, sample, global, glasso,
+#' average}. Default: identity. Format: character.
+#' @param cov_reg . Domain: e^U(-4.61, -2.30). Default: 0.05. Format: numeric.
+#' @param max_iter . Domain: U(1, 20). Default: 3. Format: integer.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -33,13 +32,12 @@ ti_scimitar <- function(
     covariance_type = "diag",
     degree = 3L,
     step_size = 0.07,
-    cov_estimator = "corpcor",
+    cov_estimator = "identity",
     cov_reg = 0.05,
     max_iter = 3L
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_scimitar",
-    version = dynmethods::method_versions[["dynverse/ti_scimitar"]],
+    container_id = "dynverse/ti_scimitar:v0.9.9",
   )(
     covariance_type = covariance_type,
     degree = degree,

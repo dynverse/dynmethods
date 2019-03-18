@@ -17,12 +17,11 @@
 #' branched, nonlinear cellular trajectories from single cell RNA-seq data. Genome
 #' Biology 17.
 #' 
-#' @param kmin integer; Smallest value of k to try (default: `10L`; range: from
-#' `2L` to `20L`)
-#' @param m integer; Intrinsic dimension of the data. This parameter mainly
-#' influences the visualisation of the results. The real intrinsic dimension will
-#' be calculated automaticly.  (default: `2L`; range: from `2L` to `20L`)
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param kmin Smallest value of k to try. Domain: U(2, 20). Default: 10. Format:
+#' integer.
+#' @param m Intrinsic dimension of the data. This parameter mainly influences the
+#' visualisation of the results. The real intrinsic dimension will be calculated
+#' automaticly. Domain: U(2, 20). Default: 2. Format: integer.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -32,8 +31,7 @@ ti_slicer <- function(
     m = 2L
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_slicer",
-    version = dynmethods::method_versions[["dynverse/ti_slicer"]],
+    container_id = "dynverse/ti_slicer:v0.9.9",
   )(
     kmin = kmin,
     m = m

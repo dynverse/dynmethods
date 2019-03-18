@@ -16,27 +16,26 @@
 #' 2016. Mpath maps multi-branching single-cell trajectories revealing progenitor
 #' cell progression during development. Nature Communications 7.
 #' 
-#' @param distMethod discrete; The method for calculating dissimilarity between
-#' cells. distMethod can be one of "pearson", "kendall", "spearman" or
-#' "euclidean". Default is "euclidean". (default: `"euclidean"`; values:
-#' {`"pearson"`, `"kendall"`, `"spearman"`, `"euclidean"`})
-#' @param method discrete; Method for distinguishing landmark clusters from
-#' non-landmark clusters.method can be "kmeans" or "diversity" or "size" or
-#' "diversity_size". When method="diversity", numlm needs to be specified. Default
-#' is "diversity_size". (default: `"kmeans"`; values: {`"kmeans"`, `"diversity"`,
-#' `"size"`, `"diversity_size"`})
-#' @param numcluster integer; Number of initial clusters (default: `11L`; range:
-#' from `3L` to `30L`)
-#' @param numcluster_null logical; If TRUE, will automatically select the number
-#' of clusters
-#' @param diversity_cut numeric; The cutoff value of diversity for differentiating
-#' landmark clusters from non-landmark clusters. The diversity of a landmark
-#' cluster must be below this cutoff. (default: `0.6`; range: from `0.1` to `1`)
-#' @param size_cut numeric; The cutoff value of size i.e. number of cells for
+#' @param distMethod The method for calculating dissimilarity between cells.
+#' distMethod can be one of "pearson", "kendall", "spearman" or "euclidean".
+#' Default is "euclidean". Domain: {pearson, kendall, spearman, euclidean}.
+#' Default: euclidean. Format: character.
+#' @param method Method for distinguishing landmark clusters from non-landmark
+#' clusters.method can be "kmeans" or "diversity" or "size" or "diversity_size".
+#' When method="diversity", numlm needs to be specified. Default is
+#' "diversity_size". Domain: {kmeans, diversity, size, diversity_size}. Default:
+#' kmeans. Format: character.
+#' @param numcluster Number of initial clusters. Domain: U(3, 30). Default: 11.
+#' Format: integer.
+#' @param numcluster_null If TRUE, will automatically select the number of
+#' clusters. Default: TRUE. Format: logical.
+#' @param diversity_cut The cutoff value of diversity for differentiating landmark
+#' clusters from non-landmark clusters. The diversity of a landmark cluster must
+#' be below this cutoff. Domain: U(0.1, 1). Default: 0.6. Format: numeric.
+#' @param size_cut The cutoff value of size i.e. number of cells for
 #' differentiating landmark clusters from non-landmark clusters. The number of
-#' cells in a landmark cluster must be greater than this cutoff. (default: `0.05`;
-#' range: from `0.01` to `1`)
-#' @inheritParams dynwrap::create_ti_method_container
+#' cells in a landmark cluster must be greater than this cutoff. Domain: U(0.01,
+#' 1). Default: 0.05. Format: numeric.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -50,8 +49,7 @@ ti_mpath <- function(
     size_cut = 0.05
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_mpath",
-    version = dynmethods::method_versions[["dynverse/ti_mpath"]],
+    container_id = "dynverse/ti_mpath:v0.9.9",
   )(
     distMethod = distMethod,
     method = method,

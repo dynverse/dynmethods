@@ -14,33 +14,30 @@
 #' 
 #' 
 #' 
-#' @param dimred discrete; Which dimensionality reduction method to use. (default:
-#' `"pca"`; values: {`"pca"`, `"mds"`, `"tsne"`, `"ica"`, `"lle"`,
-#' `"landmark_mds"`, `"mds_sammon"`, `"mds_isomds"`, `"mds_smacof"`, `"umap"`,
-#' `"dm_diffusionMap"`})
-#' @param ndim integer; The number of dimensions (default: `5L`; range: from `2L`
-#' to `10L`)
-#' @param max_iter numeric; The max number of iterations (default: `15000`; range:
-#' from `25` to `1e+06`)
-#' @param max_nodes integer; The maximum number of nodes (default: `8L`; range:
-#' from `2L` to `30L`)
-#' @param apply_mst logical; If true, an MST post-processing of the GNG is
-#' performed.
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param dimred Which dimensionality reduction method to use. Domain: {pca, mds,
+#' tsne, ica, lle, landmark_mds, mds_sammon, mds_isomds, mds_smacof, umap,
+#' dm_diffusionMap}. Default: landmark_mds. Format: character.
+#' @param ndim The number of dimensions. Domain: U(2, 10). Default: 5. Format:
+#' integer.
+#' @param max_iter The max number of iterations. Domain: e^U(3.22, 13.82).
+#' Default: 15000. Format: numeric.
+#' @param max_nodes The maximum number of nodes. Domain: U(2, 30). Default: 8.
+#' Format: integer.
+#' @param apply_mst If true, an MST post-processing of the GNG is performed.
+#' Default: TRUE. Format: logical.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_gng <- function(
-    dimred = "pca",
+    dimred = "landmark_mds",
     ndim = 5L,
-    max_iter = 15000,
+    max_iter = 15000L,
     max_nodes = 8L,
     apply_mst = TRUE
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_gng",
-    version = dynmethods::method_versions[["dynverse/ti_gng"]],
+    container_id = "dynverse/ti_gng:v0.9.9",
   )(
     dimred = dimred,
     ndim = ndim,

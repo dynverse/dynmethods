@@ -13,11 +13,9 @@
 #' 
 #' 
 #' 
-#' @param dimred discrete; Which dimensionality reduction method to use. (default:
-#' `"pca"`; values: {`"pca"`, `"mds"`, `"tsne"`, `"ica"`, `"lle"`,
-#' `"landmark_mds"`, `"mds_sammon"`, `"mds_isomds"`, `"mds_smacof"`, `"umap"`,
-#' `"dm_diffusionMap"`})
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param dimred Which dimensionality reduction method to use. Domain: {pca, mds,
+#' tsne, ica, lle, landmark_mds, mds_sammon, mds_isomds, mds_smacof, umap,
+#' dm_diffusionMap, dm_destiny}. Default: pca. Format: character.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -26,8 +24,7 @@ ti_angle <- function(
     dimred = "pca"
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_angle",
-    version = dynmethods::method_versions[["dynverse/ti_angle"]],
+    container_id = "dynverse/ti_angle:v0.9.9",
   )(
     dimred = dimred
   )

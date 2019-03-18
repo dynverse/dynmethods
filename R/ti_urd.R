@@ -17,60 +17,58 @@
 #' Schier, A.F., 2018. Single-cell reconstruction of developmental trajectories
 #' during zebrafish embryogenesis. Science 360, eaar3131.
 #' 
-#' @param knn integer; Number of nearest neighbors to use. `0` takes a guess.
-#' (default: `0L`; range: from `0L` to `50L`)
-#' @param sigma.use numeric; Kernel width to use for the diffusion map. `0` uses
-#' destiny's global auto-detection procedure. (default: `0`; range: from `0` to
-#' `1`)
-#' @param distance discrete; Distance metric to use for determining transition
-#' probabilities. (default: `"euclidean"`; values: {`"euclidean"`, `"cosine"`,
-#' `"rankcor"`})
-#' @param n_floods integer; Number of simulations to perform and average.
-#' (default: `20L`; range: from `5L` to `50L`)
-#' @param stability.div numeric; Number of simulation subsamplings to calculate.
-#' (default: `10L`; range: from `2L` to `50L`)
-#' @param mp.factor numeric; Retain PCs than are this factor more than the
-#' estimated maximum singular value expected or random data. This is useful in
-#' cases when there are many PCs that have standard deviations just above that
-#' expected by random, which probably represent noise and should be excluded.
-#' (default: `1L`; range: from `0L` to `10L`)
-#' @param perplexity numeric; Perplexity parameter for the tSNE. (default: `30L`;
-#' range: from `0L` to `100L`)
-#' @param theta numeric; Speed/accuracy trade-off for Barnes-Hut approximation of
-#' tSNE. 0 is exact tSNE, higher is less accurate. (default: `0.5`; range: from
-#' `0L` to `1L`)
-#' @param max_iter integer; Number of nearest neighbors to use. `0` takes a guess.
-#' (default: `1000L`; range: from `100L` to `10000L`)
-#' @param num.nn integer; How many nearest-neighbors to use in the k-nn graph.
-#' (default: `30L`; range: from `10L` to `100L`)
-#' @param do.jaccard logical; Weight edges in the k-nn graph according to their
-#' Jaccard overlap?
-#' @param optimal.cells.forward numeric; The number of cells in the direction
-#' specified by pseudotime.direction at which the logistic should reach
-#' 1-asymptote. (default: `20L`; range: from `5L` to `100L`)
-#' @param max.cells.back numeric; The number of cells in the direction opposite
-#' from that specified by pseudotime.direction at which the logistic should reach
-#' asymptote. (default: `40L`; range: from `5L` to `200L`)
-#' @param n.per.tip integer; Number of walks to do per tip. (default: `25000L`;
-#' range: from `100L` to `1000000L`)
-#' @param root.visits integer; Number of steps to take that visit a root.cell
-#' before stopping. (default: `1L`; range: from `1L` to `5L`)
-#' @param max.steps integer; Number of walks to do per tip. (default: `25000L`;
-#' range: from `100L` to `1000000L`)
-#' @param n.subsample integer; Number of subsamplings to perform for calculating
-#' stability. (default: `10L`; range: from `2L` to `100L`)
-#' @param divergence.method discrete; Distance metric to use for determining
-#' transition probabilities. (default: `"ks"`; values: {`"ks"`, `"preference"`})
-#' @param cells.per.pseudotime.bin integer; Approximate number of cells to assign
-#' to each pseudotime bin for branchpoint finding. (default: `80L`; range: from
-#' `10L` to `1000L`)
-#' @param bins.per.pseudotime.window integer; Width of moving window in pseudotime
-#' used for branchpoint finding, in terms of bins. (default: `5L`; range: from
-#' `2L` to `20L`)
-#' @param p.thresh numeric; P-value threshold to use in determining whether
-#' visitation is significantly different from pairs of tips (default: `0.01`;
-#' range: from `1e-05` to `1L`)
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param knn Number of nearest neighbors to use. `0` takes a guess. Domain: U(0,
+#' 50). Default: 0. Format: integer.
+#' @param sigma.use Kernel width to use for the diffusion map. `0` uses destiny's
+#' global auto-detection procedure. Domain: U(0, 1). Default: 0. Format: numeric.
+#' @param distance Distance metric to use for determining transition
+#' probabilities. Domain: {euclidean, cosine, rankcor}. Default: euclidean.
+#' Format: character.
+#' @param n_floods Number of simulations to perform and average. Domain: U(5, 50).
+#' Default: 20. Format: integer.
+#' @param stability.div Number of simulation subsamplings to calculate. Domain:
+#' U(2, 50). Default: 10. Format: numeric.
+#' @param mp.factor Retain PCs than are this factor more than the estimated
+#' maximum singular value expected or random data. This is useful in cases when
+#' there are many PCs that have standard deviations just above that expected by
+#' random, which probably represent noise and should be excluded. Domain: U(0,
+#' 10). Default: 1. Format: numeric.
+#' @param perplexity Perplexity parameter for the tSNE. Domain: U(0, 100).
+#' Default: 30. Format: numeric.
+#' @param theta Speed/accuracy trade-off for Barnes-Hut approximation of tSNE. 0
+#' is exact tSNE, higher is less accurate. Domain: U(0, 1). Default: 0.5. Format:
+#' numeric.
+#' @param max_iter Number of nearest neighbors to use. `0` takes a guess. Domain:
+#' e^U(4.61, 9.21). Default: 1000. Format: integer.
+#' @param num.nn How many nearest-neighbors to use in the k-nn graph. Domain:
+#' e^U(2.30, 4.61). Default: 30. Format: integer.
+#' @param do.jaccard Weight edges in the k-nn graph according to their Jaccard
+#' overlap?. Default: TRUE. Format: logical.
+#' @param optimal.cells.forward The number of cells in the direction specified by
+#' pseudotime.direction at which the logistic should reach 1-asymptote. Domain:
+#' e^U(1.61, 4.61). Default: 20. Format: numeric.
+#' @param max.cells.back The number of cells in the direction opposite from that
+#' specified by pseudotime.direction at which the logistic should reach asymptote.
+#' Domain: e^U(1.61, 5.30). Default: 40. Format: numeric.
+#' @param n.per.tip Number of walks to do per tip. Domain: e^U(4.61, 13.82).
+#' Default: 25000. Format: integer.
+#' @param root.visits Number of steps to take that visit a root.cell before
+#' stopping. Domain: U(1, 5). Default: 1. Format: integer.
+#' @param max.steps Number of walks to do per tip. Domain: e^U(4.61, 13.82).
+#' Default: 25000. Format: integer.
+#' @param n.subsample Number of subsamplings to perform for calculating stability.
+#' Domain: e^U(0.69, 4.61). Default: 10. Format: integer.
+#' @param divergence.method Distance metric to use for determining transition
+#' probabilities. Domain: {ks, preference}. Default: ks. Format: character.
+#' @param cells.per.pseudotime.bin Approximate number of cells to assign to each
+#' pseudotime bin for branchpoint finding. Domain: e^U(2.30, 6.91). Default: 80.
+#' Format: integer.
+#' @param bins.per.pseudotime.window Width of moving window in pseudotime used for
+#' branchpoint finding, in terms of bins. Domain: U(2, 20). Default: 5. Format:
+#' integer.
+#' @param p.thresh P-value threshold to use in determining whether visitation is
+#' significantly different from pairs of tips. Domain: e^U(-11.51, 0.00). Default:
+#' 0.01. Format: numeric.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -99,8 +97,7 @@ ti_urd <- function(
     p.thresh = 0.01
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_urd",
-    version = dynmethods::method_versions[["dynverse/ti_urd"]],
+    container_id = "dynverse/ti_urd:v0.9.9",
   )(
     knn = knn,
     sigma.use = sigma.use,

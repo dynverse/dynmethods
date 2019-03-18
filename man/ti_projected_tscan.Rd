@@ -4,32 +4,31 @@
 \alias{ti_projected_tscan}
 \title{Inferring a trajectory inference using Projected TSCAN}
 \usage{
-ti_projected_tscan(minexpr_percent = 0, minexpr_value = 0,
-  cvcutoff = 0, clusternum_lower = 2L, clusternum_upper = 9L,
-  modelNames = "VVV")
+ti_projected_tscan(minexpr_percent = 0L, minexpr_value = 0L,
+  cvcutoff = 0L, clusternum = c(2L, 9L), modelNames = "VVV")
 }
 \arguments{
-\item{minexpr_percent}{numeric; (default: \code{0}; range: from \code{0} to \code{1})}
+\item{minexpr_percent}{. Domain: U(0, 1). Default: 0. Format: numeric.}
 
-\item{minexpr_value}{numeric; (default: \code{0}; range: from \code{0} to \code{10})}
+\item{minexpr_value}{. Domain: U(0, 10). Default: 0. Format: numeric.}
 
-\item{cvcutoff}{numeric; (default: \code{0}; range: from \code{0} to \code{5})}
+\item{cvcutoff}{. Domain: U(0, 5). Default: 0. Format: numeric.}
 
-\item{clusternum_lower}{integer; (default: \code{2L}; range: from \code{2L} to \code{20L})}
+\item{clusternum}{. Domain: ( U(2, 20), U(2, 20) ). Default: (2, 9). Format:
+integer_range.}
 
-\item{clusternum_upper}{integer; (default: \code{9L}; range: from \code{2L} to \code{20L})}
-
-\item{modelNames}{discrete; (default: \code{"VVV"}; values: {\code{"EII"}, \code{"VII"},
-\code{"EEI"}, \code{"VEI"}, \code{"EVI"}, \code{"VVI"}, \code{"EEE"}, \code{"EVE"}, \code{"VEE"}, \code{"VVE"},
-\code{"EEV"}, \code{"VEV"}, \code{"EVV"}, \code{"VVV"}})}
+\item{modelNames}{. Domain: {EII, VII, EEI, VEI, EVI, VVI, EEE, EVE, VEE, VVE,
+EEV, VEV, EVV, VVV}. Default: VVV. Format: character.}
 }
 \value{
 A TI method wrapper to be used together with
 \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 }
 \description{
-Will generate a trajectory using Projected TSCAN.
+Will generate a trajectory using \href{https://github.com/zji90/TSCAN}{Projected TSCAN}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/ti_projected_tscan}{container}.
+\href{https://github.com/dynverse/ti_tscan}{container}.
+The original code of this method is available
+\href{https://github.com/zji90/TSCAN}{here}.
 }

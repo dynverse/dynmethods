@@ -17,28 +17,28 @@
 #' Trapnell, C., 2017. Reversed graph embedding resolves complex single-cell
 #' trajectories. Nature Methods 14, 979–982.
 #' 
-#' @param reduction_method discrete; A character string specifying the algorithm
-#' to use for dimensionality reduction. (default: `"DDRTree"`; values:
-#' {`"DDRTree"`})
-#' @param max_components integer; The dimensionality of the reduced space
-#' (default: `2L`; range: from `2L` to `20L`)
-#' @param norm_method discrete; Determines how to transform expression values
-#' prior to reducing dimensionality (default: `"log"`; values: {`"vstExprs"`,
-#' `"log"`, `"none"`})
-#' @param auto_param_selection logical; When this argument is set to TRUE
-#' (default), it will automatically calculate the proper value for the ncenter
-#' (number of centroids) parameters which will be passed into DDRTree call.
-#' @param filter_features logical; Whether to include monocle feature filtering
-#' @param filter_features_mean_expression numeric; Minimal mean feature
-#' expression, only used when `filter_features` is set to TRUE (default: `0.1`;
-#' range: from `0L` to `10L`)
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param reduction_method A character string specifying the algorithm to use for
+#' dimensionality reduction. Domain: {ICA}. Default: ICA. Format: character.
+#' @param max_components The dimensionality of the reduced space. Domain: U(2,
+#' 20). Default: 2. Format: integer.
+#' @param norm_method Determines how to transform expression values prior to
+#' reducing dimensionality. Domain: {vstExprs, log, none}. Default: log. Format:
+#' character.
+#' @param auto_param_selection When this argument is set to TRUE (default), it
+#' will automatically calculate the proper value for the ncenter (number of
+#' centroids) parameters which will be passed into DDRTree call. Default: TRUE.
+#' Format: logical.
+#' @param filter_features Whether to include monocle feature filtering. Default:
+#' TRUE. Format: logical.
+#' @param filter_features_mean_expression Minimal mean feature expression, only
+#' used when `filter_features` is set to TRUE. Domain: U(0, 10). Default: 0.1.
+#' Format: numeric.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_monocle_ddrtree <- function(
-    reduction_method = "DDRTree",
+    reduction_method = "ICA",
     max_components = 2L,
     norm_method = "log",
     auto_param_selection = TRUE,
@@ -46,8 +46,7 @@ ti_monocle_ddrtree <- function(
     filter_features_mean_expression = 0.1
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_monocle_ddrtree",
-    version = dynmethods::method_versions[["dynverse/ti_monocle_ddrtree"]],
+    container_id = "dynverse/ti_monocle_ddrtree:v0.9.9",
   )(
     reduction_method = reduction_method,
     max_components = max_components,

@@ -16,36 +16,31 @@
 #' evaluation in single-cell RNA-seq analysis. Nucleic Acids Research 44,
 #' e117–e117.
 #' 
-#' @param minexpr_percent numeric; (default: `0`; range: from `0` to `1`)
-#' @param minexpr_value numeric; (default: `0`; range: from `0` to `10`)
-#' @param cvcutoff numeric; (default: `0`; range: from `0` to `5`)
-#' @param clusternum_lower integer; (default: `2L`; range: from `2L` to `20L`)
-#' @param clusternum_upper integer; (default: `9L`; range: from `2L` to `20L`)
-#' @param modelNames discrete; (default: `"VVV"`; values: {`"EII"`, `"VII"`,
-#' `"EEI"`, `"VEI"`, `"EVI"`, `"VVI"`, `"EEE"`, `"EVE"`, `"VEE"`, `"VVE"`,
-#' `"EEV"`, `"VEV"`, `"EVV"`, `"VVV"`})
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param minexpr_percent . Domain: U(0, 1). Default: 0. Format: numeric.
+#' @param minexpr_value . Domain: U(0, 10). Default: 0. Format: numeric.
+#' @param cvcutoff . Domain: U(0, 5). Default: 0. Format: numeric.
+#' @param clusternum . Domain: ( U(2, 20), U(2, 20) ). Default: (2, 9). Format:
+#' integer_range.
+#' @param modelNames . Domain: {EII, VII, EEI, VEI, EVI, VVI, EEE, EVE, VEE, VVE,
+#' EEV, VEV, EVV, VVV}. Default: VVV. Format: character.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_tscan <- function(
-    minexpr_percent = 0,
-    minexpr_value = 0,
-    cvcutoff = 0,
-    clusternum_lower = 2L,
-    clusternum_upper = 9L,
+    minexpr_percent = 0L,
+    minexpr_value = 0L,
+    cvcutoff = 0L,
+    clusternum = c(2L, 9L),
     modelNames = "VVV"
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_tscan",
-    version = dynmethods::method_versions[["dynverse/ti_tscan"]],
+    container_id = "dynverse/ti_tscan:v0.9.9",
   )(
     minexpr_percent = minexpr_percent,
     minexpr_value = minexpr_value,
     cvcutoff = cvcutoff,
-    clusternum_lower = clusternum_lower,
-    clusternum_upper = clusternum_upper,
+    clusternum = clusternum,
     modelNames = modelNames
   )
 }

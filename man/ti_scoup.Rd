@@ -5,35 +5,30 @@
 \title{Inferring a trajectory inference using SCOUP}
 \usage{
 ti_scoup(ndim = 2L, max_ite1 = 100L, max_ite2 = 100L,
-  alpha_min = 0.1, alpha_max = 100L, t_min = 0.001, t_max = 2L,
-  sigma_squared_min = 0.1, thresh = 0.01)
+  alpha = c(0.1, 100), t = c(0.001, 2), sigma_squared = 0.1,
+  thresh = 0.01)
 }
 \arguments{
-\item{ndim}{integer; Number of pca dimensions (default: \code{2L}; range: from \code{2L}
-to \code{20L})}
+\item{ndim}{Number of pca dimensions. Domain: U(2, 20). Default: 2. Format:
+integer.}
 
-\item{max_ite1}{integer; Upper bound of EM iteration (without pseudo-time
-optimization). (default: \code{100L}; range: from \code{2L} to \code{5000L})}
+\item{max_ite1}{Upper bound of EM iteration (without pseudo-time optimization).
+Domain: e^U(0.69, 8.52). Default: 100. Format: integer.}
 
-\item{max_ite2}{integer; Upper bound of EM iteration (including pseudo-time
-optimization). (default: \code{100L}; range: from \code{2L} to \code{500000L})}
+\item{max_ite2}{Upper bound of EM iteration (including pseudo-time
+optimization). Domain: e^U(0.69, 13.12). Default: 100. Format: integer.}
 
-\item{alpha_min}{numeric; Lower bound of alpha. (default: \code{0.1}; range: from
-\code{0.001} to \code{10})}
+\item{alpha}{Bounds of alpha. Domain: ( e^U(-6.91, 2.30), e^U(-6.91, 2.30) ).
+Default: (0.1, 100). Format: numeric_range.}
 
-\item{alpha_max}{numeric; Upper bound of alpha. (default: \code{100L}; range: from
-\code{1L} to \code{10000L})}
+\item{t}{Bounds of pseudo-time. Domain: ( e^U(-11.51, 0.00), e^U(-11.51, 0.00)
+). Default: (0.001, 2). Format: numeric_range.}
 
-\item{t_min}{numeric; Lower bound of pseudo-time. (default: \code{0.001}; range:
-from \code{1e-05} to \code{1})}
+\item{sigma_squared}{Lower bound of sigma squared. Domain: e^U(-6.91, 2.30).
+Default: 0.1. Format: numeric.}
 
-\item{t_max}{numeric; Upper bound of pseudo-time (default: \code{2L}; range: from
-\code{0.1} to \code{100L})}
-
-\item{sigma_squared_min}{numeric; Lower bound of sigma squared (default: \code{0.1};
-range: from \code{0.001} to \code{10})}
-
-\item{thresh}{numeric; Threshold (default: \code{0.01}; range: from \code{0.01} to \code{10})}
+\item{thresh}{Threshold. Domain: e^U(-4.61, 2.30). Default: 0.01. Format:
+numeric.}
 }
 \value{
 A TI method wrapper to be used together with

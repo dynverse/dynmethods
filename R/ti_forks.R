@@ -15,28 +15,25 @@
 #' @references Sharma, M., Li, H., Sengupta, D., Prabhakar, S., Jayadeva, J.,
 #' 2017. FORKS: Finding Orderings Robustly using K-means and Steiner trees.
 #' 
-#' @param norm_function discrete; No description provided by the author. (default:
-#' `"median"`; values: {`"mean"`, `"median"`, `"quantile"`})
-#' @param norm_quantile numeric; No description provided by the author. (default:
-#' `75L`; range: from `0L` to `100L`)
-#' @param cum_sum_exp_var numeric; No description provided by the author.
-#' (default: `0.9`; range: from `0` to `1`)
-#' @param min_cluster integer; No description provided by the author. (default:
-#' `4L`; range: from `3L` to `20L`)
-#' @param max_cluster integer; No description provided by the author. (default:
-#' `10L`; range: from `3L` to `20L`)
-#' @param mapping_type discrete; No description provided by the author. (default:
-#' `"Isomap"`; values: {`"Isomap"`, `"MDS"`, `"PCA"`, `"RandomForest"`,
-#' `"SpectralEmbedding"`, `"LLE_standard"`, `"tSNE"`})
-#' @param initialization discrete; No description provided by the author.
-#' (default: `"kmeans"`; values: {`"kmeans"`, `"kmedoids"`, `"random"`})
-#' @param iterMax integer; No description provided by the author. (default:
-#' `1000L`; range: from `100L` to `100000L`)
-#' @param eta numeric; No description provided by the author. (default: `0.01`;
-#' range: from `1e-04` to `100L`)
-#' @param C numeric; No description provided by the author. (default: `1L`; range:
-#' from `1e-04` to `1000L`)
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param norm_function No description provided by the author. Domain: {mean,
+#' median, quantile}. Default: median. Format: character.
+#' @param norm_quantile No description provided by the author. Domain: U(0, 100).
+#' Default: 75. Format: numeric.
+#' @param cum_sum_exp_var No description provided by the author. Domain: U(0, 1).
+#' Default: 0.9. Format: numeric.
+#' @param cluster No description provided by the author. Domain: ( U(3, 20), U(3,
+#' 20) ). Default: (4, 10). Format: integer_range.
+#' @param mapping_type No description provided by the author. Domain: {Isomap,
+#' MDS, PCA, RandomForest, SpectralEmbedding, LLE_standard, tSNE}. Default:
+#' Isomap. Format: character.
+#' @param initialization No description provided by the author. Domain: {kmeans,
+#' kmedoids, random}. Default: kmeans. Format: character.
+#' @param iterMax No description provided by the author. Domain: e^U(4.61, 11.51).
+#' Default: 1000. Format: integer.
+#' @param eta No description provided by the author. Domain: e^U(-9.21, 4.61).
+#' Default: 0.01. Format: numeric.
+#' @param C No description provided by the author. Domain: e^U(-9.21, 6.91).
+#' Default: 1. Format: numeric.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -45,8 +42,7 @@ ti_forks <- function(
     norm_function = "median",
     norm_quantile = 75L,
     cum_sum_exp_var = 0.9,
-    min_cluster = 4L,
-    max_cluster = 10L,
+    cluster = c(4L, 10L),
     mapping_type = "Isomap",
     initialization = "kmeans",
     iterMax = 1000L,
@@ -54,14 +50,12 @@ ti_forks <- function(
     C = 1L
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_forks",
-    version = dynmethods::method_versions[["dynverse/ti_forks"]],
+    container_id = "dynverse/ti_forks:v0.9.9",
   )(
     norm_function = norm_function,
     norm_quantile = norm_quantile,
     cum_sum_exp_var = cum_sum_exp_var,
-    min_cluster = min_cluster,
-    max_cluster = max_cluster,
+    cluster = cluster,
     mapping_type = mapping_type,
     initialization = initialization,
     iterMax = iterMax,

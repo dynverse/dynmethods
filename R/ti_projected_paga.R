@@ -5,29 +5,33 @@
 #' @title Inferring a trajectory inference using Projected PAGA
 #' 
 #' @description
-#' Will generate a trajectory using Projected PAGA.
+#' Will generate a trajectory using [Projected
+#' PAGA](https://doi.org/10.1101/208819).
 #' 
 #' This method was wrapped inside a
 #' [container](https://github.com/dynverse/ti_projected_paga).
+#' The original code of this method is available
+#' [here](https://github.com/theislab/graph_abstraction).
 #' 
+#' @references Wolf, F.A., Hamey, F., Plass, M., Solana, J., Dahlin, J.S.,
+#' Gottgens, B., Rajewsky, N., Simon, L., Theis, F.J., 2017. Graph abstraction
+#' reconciles clustering with trajectory inference through a topology preserving
+#' map of single cells.
 #' 
-#' 
-#' 
-#' @param n_neighbors integer; Number of neighbours for knn (default: `15L`;
-#' range: from `1L` to `100L`)
-#' @param n_comps integer; Number of principal components (default: `50L`; range:
-#' from `0L` to `100L`)
-#' @param n_dcs integer; Number of diffusion components for denoising graph, 0
-#' means no denoising. (default: `15L`; range: from `0L` to `40L`)
-#' @param resolution numeric; Resolution of louvain clustering, which determines
-#' the granularity of the clustering. Higher values will result in more clusters.
-#' (default: `1L`; range: from `0.1` to `10L`)
-#' @param embedding_type discrete; Either 'umap' (scales very well, recommended
-#' for very large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for
-#' small datasets). (default: `"fa"`; values: {`"umap"`, `"fa"`})
-#' @param connectivity_cutoff numeric; Cutoff for the connectivity matrix
-#' (default: `0.05`; range: from `0L` to `1L`)
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param n_neighbors Number of neighbours for knn. Domain: U(1, 100). Default:
+#' 15. Format: integer.
+#' @param n_comps Number of principal components. Domain: U(0, 100). Default: 50.
+#' Format: integer.
+#' @param n_dcs Number of diffusion components for denoising graph, 0 means no
+#' denoising. Domain: U(0, 40). Default: 15. Format: integer.
+#' @param resolution Resolution of louvain clustering, which determines the
+#' granularity of the clustering. Higher values will result in more clusters.
+#' Domain: U(0.1, 10). Default: 1. Format: numeric.
+#' @param embedding_type Either 'umap' (scales very well, recommended for very
+#' large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for small
+#' datasets). Domain: {umap, fa}. Default: fa. Format: character.
+#' @param connectivity_cutoff Cutoff for the connectivity matrix. Domain: U(0, 1).
+#' Default: 0.05. Format: numeric.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -41,8 +45,7 @@ ti_projected_paga <- function(
     connectivity_cutoff = 0.05
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_projected_paga",
-    version = dynmethods::method_versions[["dynverse/ti_projected_paga"]],
+    container_id = "dynverse/ti_projected_paga:v0.9.9",
   )(
     n_neighbors = n_neighbors,
     n_comps = n_comps,

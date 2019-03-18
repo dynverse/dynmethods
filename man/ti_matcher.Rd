@@ -7,11 +7,11 @@
 ti_matcher(quantiles = 50L, method = "linear")
 }
 \arguments{
-\item{quantiles}{integer; Quantiles How many quantiles to use when computing
-warp functions (integer) (default: \code{50L}; range: from \code{2L} to \code{500L})}
+\item{quantiles}{Quantiles How many quantiles to use when computing warp
+functions (integer). Domain: U(2, 500). Default: 50. Format: integer.}
 
-\item{method}{discrete; Gaussian process regression or linear interpolation?
-("gp" or "linear) (default: \code{"linear"}; values: {\code{"gp"}, \code{"linear"}})}
+\item{method}{Gaussian process regression or linear interpolation? ("gp" or
+"linear). Domain: {gp, linear}. Default: linear. Format: character.}
 }
 \value{
 A TI method wrapper to be used together with

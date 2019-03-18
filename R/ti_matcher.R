@@ -17,11 +17,10 @@
 #' alignment reveals correspondence between single cell transcriptome and
 #' epigenome dynamics. Genome Biology 18.
 #' 
-#' @param quantiles integer; Quantiles How many quantiles to use when computing
-#' warp functions (integer) (default: `50L`; range: from `2L` to `500L`)
-#' @param method discrete; Gaussian process regression or linear interpolation?
-#' ("gp" or "linear) (default: `"linear"`; values: {`"gp"`, `"linear"`})
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param quantiles Quantiles How many quantiles to use when computing warp
+#' functions (integer). Domain: U(2, 500). Default: 50. Format: integer.
+#' @param method Gaussian process regression or linear interpolation? ("gp" or
+#' "linear). Domain: {gp, linear}. Default: linear. Format: character.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -31,8 +30,7 @@ ti_matcher <- function(
     method = "linear"
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_matcher",
-    version = dynmethods::method_versions[["dynverse/ti_matcher"]],
+    container_id = "dynverse/ti_matcher:v0.9.9",
   )(
     quantiles = quantiles,
     method = method

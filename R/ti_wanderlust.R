@@ -18,18 +18,17 @@
 #' Trajectory Detection Uncovers Progression and Regulatory Coordination in Human
 #' B Cell Development. Cell 157, 714–725.
 #' 
-#' @param normalise logical;
-#' @param knn integer; K-nearest neighbours for diffusion (default: `25L`; range:
-#' from `15L` to `100L`)
-#' @param n_diffusion_components integer; Number of diffusion components (default:
-#' `3L`; range: from `3L` to `20L`)
-#' @param n_pca_components integer; Number of pca components (default: `30L`;
-#' range: from `15L` to `100L`)
-#' @param k integer; K parameter (default: `25L`; range: from `15L` to `100L`)
-#' @param num_waypoints integer; Number of waypoints (default: `250L`; range: from
-#' `100L` to `500L`)
-#' @param epsilon numeric; Epsilon (default: `1L`; range: from `0.1` to `5L`)
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param normalise . Default: TRUE. Format: logical.
+#' @param knn K-nearest neighbours for diffusion. Domain: U(15, 100). Default: 25.
+#' Format: integer.
+#' @param n_diffusion_components Number of diffusion components. Domain: U(3, 20).
+#' Default: 3. Format: integer.
+#' @param n_pca_components Number of pca components. Domain: U(15, 100). Default:
+#' 30. Format: integer.
+#' @param k K parameter. Domain: U(15, 100). Default: 25. Format: integer.
+#' @param num_waypoints Number of waypoints. Domain: U(100, 500). Default: 250.
+#' Format: integer.
+#' @param epsilon Epsilon. Domain: U(0.1, 5). Default: 1. Format: numeric.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -44,8 +43,7 @@ ti_wanderlust <- function(
     epsilon = 1L
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_wanderlust",
-    version = dynmethods::method_versions[["dynverse/ti_wanderlust"]],
+    container_id = "dynverse/ti_wanderlust:v0.9.9",
   )(
     normalise = normalise,
     knn = knn,

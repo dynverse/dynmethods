@@ -13,12 +13,10 @@
 #' 
 #' 
 #' 
-#' @param dimred discrete; Which dimensionality reduction method to use. (default:
-#' `"pca"`; values: {`"pca"`, `"mds"`, `"tsne"`, `"ica"`, `"lle"`,
-#' `"landmark_mds"`, `"mds_sammon"`, `"mds_isomds"`, `"mds_smacof"`, `"umap"`,
-#' `"dm_diffusionMap"`})
-#' @param ndim integer; (default: `2L`; range: from `2L` to `30L`)
-#' @inheritParams dynwrap::create_ti_method_container
+#' @param dimred Which dimensionality reduction method to use. Domain: {pca, mds,
+#' tsne, ica, lle, landmark_mds, mds_sammon, mds_isomds, mds_smacof, umap,
+#' dm_diffusionMap}. Default: pca. Format: character.
+#' @param ndim . Domain: U(2, 30). Default: 2. Format: integer.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -28,8 +26,7 @@ ti_mst <- function(
     ndim = 2L
 ) {
   create_ti_method_container(
-    container_id = "dynverse/ti_mst",
-    version = dynmethods::method_versions[["dynverse/ti_mst"]],
+    container_id = "dynverse/ti_mst:v0.9.9",
   )(
     dimred = dimred,
     ndim = ndim

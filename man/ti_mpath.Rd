@@ -9,31 +9,31 @@ ti_mpath(distMethod = "euclidean", method = "kmeans",
   size_cut = 0.05)
 }
 \arguments{
-\item{distMethod}{discrete; The method for calculating dissimilarity between
-cells. distMethod can be one of "pearson", "kendall", "spearman" or
-"euclidean". Default is "euclidean". (default: \code{"euclidean"}; values:
-{\code{"pearson"}, \code{"kendall"}, \code{"spearman"}, \code{"euclidean"}})}
+\item{distMethod}{The method for calculating dissimilarity between cells.
+distMethod can be one of "pearson", "kendall", "spearman" or "euclidean".
+Default is "euclidean". Domain: {pearson, kendall, spearman, euclidean}.
+Default: euclidean. Format: character.}
 
-\item{method}{discrete; Method for distinguishing landmark clusters from
-non-landmark clusters.method can be "kmeans" or "diversity" or "size" or
-"diversity_size". When method="diversity", numlm needs to be specified. Default
-is "diversity_size". (default: \code{"kmeans"}; values: {\code{"kmeans"}, \code{"diversity"},
-\code{"size"}, \code{"diversity_size"}})}
+\item{method}{Method for distinguishing landmark clusters from non-landmark
+clusters.method can be "kmeans" or "diversity" or "size" or "diversity_size".
+When method="diversity", numlm needs to be specified. Default is
+"diversity_size". Domain: {kmeans, diversity, size, diversity_size}. Default:
+kmeans. Format: character.}
 
-\item{numcluster}{integer; Number of initial clusters (default: \code{11L}; range:
-from \code{3L} to \code{30L})}
+\item{numcluster}{Number of initial clusters. Domain: U(3, 30). Default: 11.
+Format: integer.}
 
-\item{numcluster_null}{logical; If TRUE, will automatically select the number
-of clusters}
+\item{numcluster_null}{If TRUE, will automatically select the number of
+clusters. Default: TRUE. Format: logical.}
 
-\item{diversity_cut}{numeric; The cutoff value of diversity for differentiating
-landmark clusters from non-landmark clusters. The diversity of a landmark
-cluster must be below this cutoff. (default: \code{0.6}; range: from \code{0.1} to \code{1})}
+\item{diversity_cut}{The cutoff value of diversity for differentiating landmark
+clusters from non-landmark clusters. The diversity of a landmark cluster must
+be below this cutoff. Domain: U(0.1, 1). Default: 0.6. Format: numeric.}
 
-\item{size_cut}{numeric; The cutoff value of size i.e. number of cells for
+\item{size_cut}{The cutoff value of size i.e. number of cells for
 differentiating landmark clusters from non-landmark clusters. The number of
-cells in a landmark cluster must be greater than this cutoff. (default: \code{0.05};
-range: from \code{0.01} to \code{1})}
+cells in a landmark cluster must be greater than this cutoff. Domain: U(0.01,
+1). Default: 0.05. Format: numeric.}
 }
 \value{
 A TI method wrapper to be used together with
