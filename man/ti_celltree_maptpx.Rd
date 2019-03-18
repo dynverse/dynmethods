@@ -43,7 +43,7 @@ start group information available. Domain: {longest.path, center.start.group,
 average.start.group, null}. Default: null. Format: character.}
 
 \item{num_topics}{Number of topics to fit in the model. Domain: ( U(2, 10),
-U(10, 30) ). Default: (2, 15). Format: range.}
+U(10, 30) ). Default: (2, 15). Format: integer_range.}
 
 \item{tot_iter}{Numeric parameters (optional) forwarded to the chosen LDA
 inference method's contol class. Domain: e^U(9.21, 13.82). Default: 200.

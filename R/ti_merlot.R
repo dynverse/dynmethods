@@ -31,7 +31,7 @@
 #' Format: logical.
 #' @param n_local If sigma == 'local', the `n_local` nearest neighbor(s)
 #' determine(s) the local sigma. Domain: ( U(2, 20), U(2, 20) ). Default: (5, 7).
-#' Format: range.
+#' Format: integer_range.
 #' @param w_width Window width to use for deciding the branch cutoff. Domain:
 #' e^U(-9.21, 0.00). Default: 0.01. Format: numeric.
 #' @param n_components_to_use Which components to use in downstream analysis.

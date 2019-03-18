@@ -19,10 +19,10 @@ Domain: e^U(0.69, 8.52). Default: 100. Format: integer.}
 optimization). Domain: e^U(0.69, 13.12). Default: 100. Format: integer.}
 
 \item{alpha}{Bounds of alpha. Domain: ( e^U(-6.91, 2.30), e^U(-6.91, 2.30) ).
-Default: (0.1, 100). Format: range.}
+Default: (0.1, 100). Format: numeric_range.}
 
 \item{t}{Bounds of pseudo-time. Domain: ( e^U(-11.51, 0.00), e^U(-11.51, 0.00)
-). Default: (0.001, 2). Format: range.}
+). Default: (0.001, 2). Format: numeric_range.}
 
 \item{sigma_squared}{Lower bound of sigma squared. Domain: e^U(-6.91, 2.30).
 Default: 0.1. Format: numeric.}

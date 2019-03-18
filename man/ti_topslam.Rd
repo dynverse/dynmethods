@@ -20,8 +20,8 @@ Format: integer.}
 \item{max_iters}{The number of iterations to optimize over. Domain: e^U(2.30,
 9.21). Default: 1000. Format: integer.}
 
-\item{dimreds}{Which dimensionality reductions to use and/or ICA. Domain: {x |
-x ⊆ {t-SNE, PCA, Spectral, Isomap, ICA}}. Default: {t-SNE, PCA, Spectral,
+\item{dimreds}{Which dimensionality reductions to use and/or ICA. Domain: all
+subsets of {t-SNE, PCA, Spectral, Isomap, ICA}. Default: {t-SNE, PCA, Spectral,
 Isomap, ICA}. Format: subset.}
 }
 \value{

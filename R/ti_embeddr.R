@@ -35,13 +35,12 @@
 #' 0. Format: numeric.
 #' @param symmetrize How to make the adjacency matrix symmetric. Note that
 #' slightlycounterintuitively, node i having node j as a nearest neighbour doesn't
-#' guarantee nodej has node i. There are several ways to get round
-#' this:\itemize{\item \code{mean} If the above case occurs make the link weight
-#' 0.5 so the adjacency matrix becomes \eqn{0.5(A + A')}\item \code{ceil} If the
-#' above case occurs set the link weight to 1 (ie take the ceiling of the mean
-#' case)\item \code{floor} If the above case occurs set the link weight to 0 (ie
-#' take the floor of the mean case)}. Domain: {mean, ceil, floor}. Default: mean.
-#' Format: character.
+#' guarantee nodej has node i. There are several ways to get round this;* `mean`
+#' If the above case occurs make the link weight 0.5 so the adjacency matrix
+#' becomes $0.5(A + A')$* `ceil` If the above case occurs set the link weight to 1
+#' (ie take the ceiling of the mean case)* `floor` If the above case occurs set
+#' the link weight to 0 (ie take the floor of the mean case). Domain: {mean, ceil,
+#' floor}. Default: mean. Format: character.
 #' @param measure_type Type of laplacian eigenmap, which corresponds to the
 #' constraint on the eigenvalue problem. Iftype is 'unorm' (default), then the
 #' graph measure used is the identity matrix, while if type is 'norm' then the
@@ -51,15 +50,15 @@
 #' e^U(-11.51, 11.51). Default: 0.001. Format: numeric.
 #' @param maxit Maximum number of iterations. Domain: U(0, 50). Default: 10.
 #' Format: integer.
-#' @param stretch A factor by which the curve can be extrapolated whenpoints are
-#' projected.  Default is 2 (times the last segmentlength). The default is 0 for
-#' \code{smoother} equal to\code{"periodic_lowess"}. Domain: U(0, 5). Default: 2.
-#' Format: numeric.
-#' @param smoother Choice of smoother. The default is\code{"smooth_spline"}, and
-#' other choices are \code{"lowess"} and\code{"periodic_lowess"}. The latter
-#' allows one to fit closed curves.Beware, you may want to use \code{iter = 0}
-#' with \code{lowess()}. Domain: {smooth.spline, lowess, periodic.lowess}.
-#' Default: smooth.spline. Format: character.
+#' @param stretch A factor by which the curve can be extrapolated when points are
+#' projected.  Default is 2 (times the last segment length). The default is 0 for
+#' `smoother` equal to `"periodic_lowess"`. Domain: U(0, 5). Default: 2. Format:
+#' numeric.
+#' @param smoother Choice of smoother. The default is `"smooth_spline"`, and other
+#' choices are `"lowess"` and `"periodic_lowess"`. The latter allows one to fit
+#' closed curves. Beware, you may want to use `iter = 0` with `lowess()`. Domain:
+#' {smooth.spline, lowess, periodic.lowess}. Default: smooth.spline. Format:
+#' character.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

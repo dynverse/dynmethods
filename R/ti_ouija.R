@@ -20,10 +20,10 @@
 #' @param response_type A vector declaring whether each gene exhibits "switch" or
 #' "transient"expression. Defaults to "switch" for all genes. Domain: {switch,
 #' transient}. Default: switch. Format: character.
-#' @param inference_type The type of inference to be performed, either \code{hmc}
-#' for HamiltonianMonte Carlo or \code{vb} for ADVI (Variational Bayes). Note that
-#' HMC is typically more accuratebut VB will be orders of magnitude faster.
-#' Domain: {hmc, vb}. Default: hmc. Format: character.
+#' @param inference_type The type of inference to be performed, either `hmc` for
+#' HamiltonianMonte Carlo or `vb` for ADVI (Variational Bayes). Note that HMC is
+#' typically more accuratebut VB will be orders of magnitude faster. Domain: {hmc,
+#' vb}. Default: hmc. Format: character.
 #' @param normalise_expression Logical, default TRUE. If TRUE the data is
 #' pre-normalisedso the average peak expression is approximately 1. This makes the
 #' strength parametersapproximately comparable between genes. Default: TRUE.

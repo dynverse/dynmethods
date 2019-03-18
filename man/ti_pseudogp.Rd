@@ -28,10 +28,10 @@ Default: 3. Format: integer.}
 6.91). Default: 100. Format: integer.}
 
 \item{dimreds}{A character vector specifying which dimensionality reduction
-methods to use.See \code{dyndimred::dimred} for the list of available
-dimensionality reduction methods. Domain: {x | x ⊆ {pca, mds, tsne, ica, lle,
-landmark_mds, mds_sammon, mds_isomds, mds_smacof, umap, dm_diffusionmap,
-dm_destiny}}. Default: {pca, mds}. Format: subset.}
+methods to use. See \code{dyndimred::dimred()} for the list of available
+dimensionality reduction methods. Domain: all subsets of {pca, mds, tsne, ica,
+lle, landmark_mds, mds_sammon, mds_isomds, mds_smacof, umap, dm_diffusionmap,
+dm_destiny}. Default: {pca, mds}. Format: subset.}
 
 \item{initialise_from}{How to initialise the MCMC chain. One of "random" (stan
 decides),"principal_curve", or "pca" (the first component of PCA rescaled is

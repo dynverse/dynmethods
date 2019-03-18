@@ -14,9 +14,9 @@ much to shrink branching lineages toward their average prior to the split.
 Domain: e^U(-Inf, 0.00). Default: 1. Format: numeric.}
 
 \item{reweight}{Logical, whether to allow cells shared between lineages to be
-reweighted during curve-fitting. If \code{TRUE}, cells shared between lineages
-will be weighted by: distance to nearest curve / distance to curve. Default:
-TRUE. Format: logical.}
+reweighted during curve-fitting. If \code{TRUE}, cells shared between lineages will
+be weighted by: distance to nearest curve / distance to curve. Default: TRUE.
+Format: logical.}
 
 \item{reassign}{Logical, whether to reassign cells to lineages at each
 iteration. If TRUE, cells will be added to a lineage when their projection
@@ -45,9 +45,9 @@ character.}
 
 \item{shrink.method}{Character denoting how to determine the appropriate amount
 of shrinkage for a branching lineage. Accepted values are the same as for
-\code{kernel} in \code{\link[=density]{density()}} (default is \code{"cosine"}), as well as
-\code{"tricube"} and \code{"density"}. See 'Details' for more. Domain: {cosine,
-tricube, density}. Default: cosine. Format: character.}
+\code{kernel} in \code{density()} (default is \code{"cosine"}), as well as \code{"tricube"} and
+\code{"density"}. See 'Details' for more. Domain: {cosine, tricube, density}.
+Default: cosine. Format: character.}
 }
 \value{
 A TI method wrapper to be used together with

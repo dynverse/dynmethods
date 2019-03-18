@@ -15,10 +15,10 @@ Format: numeric.}
 "transient"expression. Defaults to "switch" for all genes. Domain: {switch,
 transient}. Default: switch. Format: character.}
 
-\item{inference_type}{The type of inference to be performed, either \code{hmc}
-for HamiltonianMonte Carlo or \code{vb} for ADVI (Variational Bayes). Note that
-HMC is typically more accuratebut VB will be orders of magnitude faster.
-Domain: {hmc, vb}. Default: hmc. Format: character.}
+\item{inference_type}{The type of inference to be performed, either \code{hmc} for
+HamiltonianMonte Carlo or \code{vb} for ADVI (Variational Bayes). Note that HMC is
+typically more accuratebut VB will be orders of magnitude faster. Domain: {hmc,
+vb}. Default: hmc. Format: character.}
 
 \item{normalise_expression}{Logical, default TRUE. If TRUE the data is
 pre-normalisedso the average peak expression is approximately 1. This makes the

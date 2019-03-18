@@ -16,15 +16,13 @@
 #' heterogeneous genetic and environmental backgrounds across single-cells and
 #' populations.
 #' 
-#' @param thin The number of iterations to wait each time beforere-calculating the
-#' elbo. Domain: U(2, 500). Default: 40. Format: integer.
-#' @param z_init The initialisation of the latent trajectory. Should be one
-#' of\enumerate{\item A positive integer describing which principal component of
-#' the data shouldbe used for initialisation (default 1), \emph{or}\item A numeric
-#' vector of length number of samples to be used directly for initialisation,
-#' \emph{or}\item The text character \code{"random"}, for random initialisation
-#' from a standard normal distribution.}. Domain: {1, 2, 3, 4, 5, random}.
-#' Default: 1. Format: character.
+#' @param thin The number of iterations to wait each time before re-calculating
+#' the elbo. Domain: U(2, 500). Default: 40. Format: integer.
+#' @param z_init The initialisation of the latent trajectory. Should be one of* A
+#' positive integer describing which principal component of the data should be
+#' used for initialisation (default 1), or * The text character `"random"`, for
+#' random initialisation from a standard normal distribution. Domain: {1, 2, 3, 4,
+#' 5, random}. Default: 1. Format: character.
 #' @param model_mu Logical - should a gene-specific intercept term be modelled?.
 #' Default: FALSE. Format: logical.
 #' @param scale_y Logical - should the expression matrix be centre scaled?.

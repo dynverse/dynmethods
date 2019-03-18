@@ -20,7 +20,7 @@
 #' @param minexpr_value . Domain: U(0, 10). Default: 0. Format: numeric.
 #' @param cvcutoff . Domain: U(0, 5). Default: 0. Format: numeric.
 #' @param clusternum . Domain: ( U(2, 20), U(2, 20) ). Default: (2, 9). Format:
-#' range.
+#' integer_range.
 #' @param modelNames . Domain: {EII, VII, EEI, VEI, EVI, VVI, EEE, EVE, VEE, VVE,
 #' EEV, VEV, EVV, VVV}. Default: VVV. Format: character.
 #' 

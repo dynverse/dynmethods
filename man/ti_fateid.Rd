@@ -21,8 +21,8 @@ numeric.}
 
 \item{nbfactor}{Positive integer number. Determines the number of trees grown
 for each random forest. The number of trees is given by the number of columns
-of th training set multiplied by \code{nbfactor}. Default value is 5. Domain:
-U(2, 100). Default: 5. Format: integer.}
+of th training set multiplied by \code{nbfactor}. Default value is 5. Domain: U(2,
+100). Default: 5. Format: integer.}
 
 \item{q}{Q real value between zero and one. This number specifies a threshold
 used for feature selection based on importance sampling. A reduced expression
@@ -37,26 +37,26 @@ Domain: {tsne, cmd, dm, lle}. Default: tsne. Format: character.}
 
 \item{minnr}{Integer number of cells per target cluster to be selected for
 classification (test set) in each round of training. For each target cluster,
-the \code{minnr} cells with the highest similarity to a cell in the training
-set are selected for classification. If \code{z} is not \code{NULL} it is used
-as the similarity matrix for this step. Otherwise, \code{1-cor(x)} is used.
-Default value is 5. Domain: U(2, 100). Default: 5. Format: integer.}
+the \code{minnr} cells with the highest similarity to a cell in the training set are
+selected for classification. If \code{z} is not \code{NULL} it is used as the similarity
+matrix for this step. Otherwise, \code{1-cor(x)} is used. Default value is 5.
+Domain: U(2, 100). Default: 5. Format: integer.}
 
 \item{minnrh}{Integer number of cells from the training set used for
-classification. From each training set, the \code{minnrh} cells with the
-highest similarity to the training set are selected. If \code{z} is not
-\code{NULL} it is used as the similarity matrix for this step. Default value is
-10. Domain: U(2, 100). Default: 10. Format: integer.}
+classification. From each training set, the \code{minnrh} cells with the highest
+similarity to the training set are selected. If \code{z} is not \code{NULL} it is used as
+the similarity matrix for this step. Default value is 10. Domain: U(2, 100).
+Default: 10. Format: integer.}
 
 \item{trthr}{Real value representing the threshold of the fraction of random
 forest votes required for the inclusion of a given cell for the computation of
-the principal curve. If \code{NULL} then only cells with a significant bias >1
-are included for each trajectory. The bias is computed as the ratio of the
-number of votes for a trajectory and the number of votes for the trajectory
-with the second largest number of votes. By this means only the trajectory with
-the largest number of votes will receive a bias >1. The siginifcance is
-computed based on counting statistics on the difference in the number of votes.
-A significant bias requires a p-value < 0.05. Domain: U(0, 1). Default: 0.4.
+the principal curve. If \code{NULL} then only cells with a significant bias >1 are
+included for each trajectory. The bias is computed as the ratio of the number
+of votes for a trajectory and the number of votes for the trajectory with the
+second largest number of votes. By this means only the trajectory with the
+largest number of votes will receive a bias >1. The siginifcance is computed
+based on counting statistics on the difference in the number of votes. A
+significant bias requires a p-value < 0.05. Domain: U(0, 1). Default: 0.4.
 Format: numeric.}
 
 \item{force}{Do not use! This is a parameter to force FateID to run on

@@ -5,7 +5,7 @@
 \title{Inferring a trajectory inference using reCAT}
 \usage{
 ti_recat(TSPFold = 2L, beginNum = 10L, endNum = 15L,
-  step_size = 2L, base_cycle_range_start = c(6L, 9L), max_num = 300L,
+  step_size = 2L, base_cycle_range = c(6L, 9L), max_num = 300L,
   clustMethod = "GMM")
 }
 \arguments{
@@ -26,8 +26,8 @@ would suffice and bigger steps are recommended for larger datasets (>1000
 cells) in order to reduce computational time. Domain: U(2, 20). Default: 2.
 Format: integer.}
 
-\item{base_cycle_range_start}{. Domain: ( U(5, 10), U(5, 10) ). Default: (6,
-9). Format: range.}
+\item{base_cycle_range}{. Domain: ( U(5, 10), U(5, 10) ). Default: (6, 9).
+Format: integer_range.}
 
 \item{max_num}{No documentation provided by authors. Domain: U(100, 500).
 Default: 300. Format: integer.}

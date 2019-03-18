@@ -78,9 +78,9 @@
 #' shortest distances will be represented as links. Domain: U(0, 100). Default:
 #' 10. Format: numeric.
 #' @param graph.algorithm Graph building algorithm to be used; the Minimum
-#' Spanning Tree \n(graph.algorithm="MST"), the Maximum Similarity Spanning Tree
-#' (graph.algorithm="SST") and the Iterative Mutual Clustering Graph
-#' (graph.algorithm="IMC"). Domain: {MST, SST, IMC}. Default: MST. Format:
+#' Spanning Tree (`graph.algorithm="MST"`), the Maximum Similarity Spanning Tree
+#' (`graph.algorithm="SST"`) and the Iterative Mutual Clustering Graph
+#' (`graph.algorithm="IMC"`). Domain: {MST, SST, IMC}. Default: MST. Format:
 #' character.
 #' @param graph.using.cells.clustering If graph.using.cells.clustering=TRUE and
 #' graph.algorithm="MST" or graph.algorithm="MST", a precalculated clustering of

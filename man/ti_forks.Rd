@@ -20,7 +20,7 @@ Default: 75. Format: numeric.}
 Default: 0.9. Format: numeric.}
 
 \item{cluster}{No description provided by the author. Domain: ( U(3, 20), U(3,
-20) ). Default: (4, 10). Format: range.}
+20) ). Default: (4, 10). Format: integer_range.}
 
 \item{mapping_type}{No description provided by the author. Domain: {Isomap,
 MDS, PCA, RandomForest, SpectralEmbedding, LLE_standard, tSNE}. Default:

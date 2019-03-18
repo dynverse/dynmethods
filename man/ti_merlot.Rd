@@ -29,7 +29,7 @@ Format: logical.}
 
 \item{n_local}{If sigma == 'local', the \code{n_local} nearest neighbor(s)
 determine(s) the local sigma. Domain: ( U(2, 20), U(2, 20) ). Default: (5, 7).
-Format: range.}
+Format: integer_range.}
 
 \item{w_width}{Window width to use for deciding the branch cutoff. Domain:
 e^U(-9.21, 0.00). Default: 0.01. Format: numeric.}

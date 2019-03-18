@@ -24,9 +24,9 @@
 #' @param max_ite2 Upper bound of EM iteration (including pseudo-time
 #' optimization). Domain: e^U(0.69, 13.12). Default: 100. Format: integer.
 #' @param alpha Bounds of alpha. Domain: ( e^U(-6.91, 2.30), e^U(-6.91, 2.30) ).
-#' Default: (0.1, 100). Format: range.
+#' Default: (0.1, 100). Format: numeric_range.
 #' @param t Bounds of pseudo-time. Domain: ( e^U(-11.51, 0.00), e^U(-11.51, 0.00)
-#' ). Default: (0.001, 2). Format: range.
+#' ). Default: (0.001, 2). Format: numeric_range.
 #' @param sigma_squared Lower bound of sigma squared. Domain: e^U(-6.91, 2.30).
 #' Default: 0.1. Format: numeric.
 #' @param thresh Threshold. Domain: e^U(-4.61, 2.30). Default: 0.01. Format:

@@ -8,16 +8,14 @@ ti_phenopath(thin = 40L, z_init = "1", model_mu = FALSE,
   scale_y = TRUE)
 }
 \arguments{
-\item{thin}{The number of iterations to wait each time beforere-calculating the
-elbo. Domain: U(2, 500). Default: 40. Format: integer.}
+\item{thin}{The number of iterations to wait each time before re-calculating
+the elbo. Domain: U(2, 500). Default: 40. Format: integer.}
 
-\item{z_init}{The initialisation of the latent trajectory. Should be one
-of\enumerate{\item A positive integer describing which principal component of
-the data shouldbe used for initialisation (default 1), \emph{or}\item A numeric
-vector of length number of samples to be used directly for initialisation,
-\emph{or}\item The text character \code{"random"}, for random initialisation
-from a standard normal distribution.}. Domain: {1, 2, 3, 4, 5, random}.
-Default: 1. Format: character.}
+\item{z_init}{The initialisation of the latent trajectory. Should be one of* A
+positive integer describing which principal component of the data should be
+used for initialisation (default 1), or * The text character \code{"random"}, for
+random initialisation from a standard normal distribution. Domain: {1, 2, 3, 4,
+5, random}. Default: 1. Format: character.}
 
 \item{model_mu}{Logical - should a gene-specific intercept term be modelled?.
 Default: FALSE. Format: logical.}

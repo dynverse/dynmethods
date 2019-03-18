@@ -26,15 +26,15 @@ pearson. Format: character.}
 
 \item{sat}{If \code{TRUE}, then the number of clusters is determined based on
 finding the saturation point of the mean within-cluster dispersion as a
-function of the cluster number. If \code{FALSE}, then cluster number needs to
-be given as \code{cln}. Default: TRUE. Format: logical.}
+function of the cluster number. If \code{FALSE}, then cluster number needs to be
+given as \code{cln}. Default: TRUE. Format: logical.}
 
 \item{samp}{Number of bootstrapping runs for clusterboot. Domain: e^U(3.91,
 9.21). Default: 1000. Format: integer.}
 
-\item{cln}{Number of clusters to be used. If \code{sat} is \code{TRUE}, this
-number is inferred by the saturation criterion. Domain: U(10, 100). Default:
-30. Format: integer.}
+\item{cln}{Number of clusters to be used. If \code{sat} is \code{TRUE}, this number is
+inferred by the saturation criterion. Domain: U(10, 100). Default: 30. Format:
+integer.}
 
 \item{clustnr}{Maximum number of clusters for the derivation of the cluster
 number by the saturation of mean within-cluster-dispersion. Domain: U(10, 100).
@@ -72,9 +72,9 @@ Format: integer.}
 \item{cthr}{Clusters to be included into the StemID2 analysis must contain more
 than cthr cells. D. Domain: U(1, 25). Default: 5. Format: integer.}
 
-\item{nmode}{If \code{TRUE}, then a cell of given cluster is assigned to the
-link to the cluster with the smallest average distance of the knn nearest
-neighbours within this cluster. Default: TRUE. Format: logical.}
+\item{nmode}{If \code{TRUE}, then a cell of given cluster is assigned to the link to
+the cluster with the smallest average distance of the knn nearest neighbours
+within this cluster. Default: TRUE. Format: logical.}
 
 \item{projcells_knn}{See \code{nmode}. Domain: U(3, 20). Default: 3. Format:
 integer.}
@@ -87,10 +87,10 @@ Format: logical.}
 projections of cells on inter-cluster links. Domain: e^U(2.30, 9.21). Default:
 500. Format: integer.}
 
-\item{fast}{If \code{TRUE} and \code{nmode} is \code{FALSE} cells will still be
-assigned to links based on maximum projections but a fast approximate
-background model will be used to infer significance. The function will do
-nothing in this case. Default: FALSE. Format: logical.}
+\item{fast}{If \code{TRUE} and \code{nmode} is \code{FALSE} cells will still be assigned to
+links based on maximum projections but a fast approximate background model will
+be used to infer significance. The function will do nothing in this case.
+Default: FALSE. Format: logical.}
 
 \item{pthr}{P-value cutoff for link significance. This threshold is applied for
 the calculation of link scores reflecting how uniformly a link is occupied by

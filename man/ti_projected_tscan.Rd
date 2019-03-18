@@ -15,7 +15,7 @@ ti_projected_tscan(minexpr_percent = 0L, minexpr_value = 0L,
 \item{cvcutoff}{. Domain: U(0, 5). Default: 0. Format: numeric.}
 
 \item{clusternum}{. Domain: ( U(2, 20), U(2, 20) ). Default: (2, 9). Format:
-range.}
+integer_range.}
 
 \item{modelNames}{. Domain: {EII, VII, EEI, VEI, EVI, VVI, EEE, EVE, VEE, VVE,
 EEV, VEV, EVV, VVV}. Default: VVV. Format: character.}

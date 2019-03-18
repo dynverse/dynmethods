@@ -22,7 +22,7 @@
 #' @param cum_sum_exp_var No description provided by the author. Domain: U(0, 1).
 #' Default: 0.9. Format: numeric.
 #' @param cluster No description provided by the author. Domain: ( U(3, 20), U(3,
-#' 20) ). Default: (4, 10). Format: range.
+#' 20) ). Default: (4, 10). Format: integer_range.
 #' @param mapping_type No description provided by the author. Domain: {Isomap,
 #' MDS, PCA, RandomForest, SpectralEmbedding, LLE_standard, tSNE}. Default:
 #' Isomap. Format: character.

@@ -22,8 +22,8 @@
 #' @param linear_dims . Domain: U(0, 5). Default: 0. Format: integer.
 #' @param max_iters The number of iterations to optimize over. Domain: e^U(2.30,
 #' 9.21). Default: 1000. Format: integer.
-#' @param dimreds Which dimensionality reductions to use and/or ICA. Domain: {x |
-#' x ⊆ {t-SNE, PCA, Spectral, Isomap, ICA}}. Default: {t-SNE, PCA, Spectral,
+#' @param dimreds Which dimensionality reductions to use and/or ICA. Domain: all
+#' subsets of {t-SNE, PCA, Spectral, Isomap, ICA}. Default: {t-SNE, PCA, Spectral,
 #' Isomap, ICA}. Format: subset.
 #' 
 #' @return A TI method wrapper to be used together with

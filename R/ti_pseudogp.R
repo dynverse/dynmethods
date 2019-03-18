@@ -30,14 +30,14 @@
 #' @param iter The number of iterations for the MCMC trace. Domain: e^U(4.61,
 #' 6.91). Default: 100. Format: integer.
 #' @param dimreds A character vector specifying which dimensionality reduction
-#' methods to use.See \code{dyndimred::dimred} for the list of available
-#' dimensionality reduction methods. Domain: {x | x ⊆ {pca, mds, tsne, ica, lle,
-#' landmark_mds, mds_sammon, mds_isomds, mds_smacof, umap, dm_diffusionmap,
-#' dm_destiny}}. Default: {pca, mds}. Format: subset.
+#' methods to use. See `dyndimred::dimred()` for the list of available
+#' dimensionality reduction methods. Domain: all subsets of {pca, mds, tsne, ica,
+#' lle, landmark_mds, mds_sammon, mds_isomds, mds_smacof, umap, dm_diffusionmap,
+#' dm_destiny}. Default: {pca, mds}. Format: subset.
 #' @param initialise_from How to initialise the MCMC chain. One of "random" (stan
 #' decides),"principal_curve", or "pca" (the first component of PCA rescaled is
 #' taken to be the pseudotimes).Note: if multiple representations are provided,
-#' \code{pseudogp} will take the principal curve orpca from the first rather than
+#' `pseudogp` will take the principal curve orpca from the first rather than
 #' combining them. If a particular representation is required, it isup to the user
 #' to re-order them. Domain: {random, principal_curve, pca}. Default: random.
 #' Format: character.

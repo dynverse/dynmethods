@@ -35,13 +35,12 @@ Default: 0. Format: numeric.}
 
 \item{symmetrize}{How to make the adjacency matrix symmetric. Note that
 slightlycounterintuitively, node i having node j as a nearest neighbour doesn't
-guarantee nodej has node i. There are several ways to get round
-this:\itemize{\item \code{mean} If the above case occurs make the link weight
-0.5 so the adjacency matrix becomes \eqn{0.5(A + A')}\item \code{ceil} If the
-above case occurs set the link weight to 1 (ie take the ceiling of the mean
-case)\item \code{floor} If the above case occurs set the link weight to 0 (ie
-take the floor of the mean case)}. Domain: {mean, ceil, floor}. Default: mean.
-Format: character.}
+guarantee nodej has node i. There are several ways to get round this;* \code{mean}
+If the above case occurs make the link weight 0.5 so the adjacency matrix
+becomes $0.5(A + A')$* \code{ceil} If the above case occurs set the link weight to 1
+(ie take the ceiling of the mean case)* \code{floor} If the above case occurs set
+the link weight to 0 (ie take the floor of the mean case). Domain: {mean, ceil,
+floor}. Default: mean. Format: character.}
 
 \item{measure_type}{Type of laplacian eigenmap, which corresponds to the
 constraint on the eigenvalue problem. Iftype is 'unorm' (default), then the
@@ -55,16 +54,16 @@ e^U(-11.51, 11.51). Default: 0.001. Format: numeric.}
 \item{maxit}{Maximum number of iterations. Domain: U(0, 50). Default: 10.
 Format: integer.}
 
-\item{stretch}{A factor by which the curve can be extrapolated whenpoints are
-projected.  Default is 2 (times the last segmentlength). The default is 0 for
-\code{smoother} equal to\code{"periodic_lowess"}. Domain: U(0, 5). Default: 2.
-Format: numeric.}
+\item{stretch}{A factor by which the curve can be extrapolated when points are
+projected.  Default is 2 (times the last segment length). The default is 0 for
+\code{smoother} equal to \code{"periodic_lowess"}. Domain: U(0, 5). Default: 2. Format:
+numeric.}
 
-\item{smoother}{Choice of smoother. The default is\code{"smooth_spline"}, and
-other choices are \code{"lowess"} and\code{"periodic_lowess"}. The latter
-allows one to fit closed curves.Beware, you may want to use \code{iter = 0}
-with \code{lowess()}. Domain: {smooth.spline, lowess, periodic.lowess}.
-Default: smooth.spline. Format: character.}
+\item{smoother}{Choice of smoother. The default is \code{"smooth_spline"}, and other
+choices are \code{"lowess"} and \code{"periodic_lowess"}. The latter allows one to fit
+closed curves. Beware, you may want to use \code{iter = 0} with \code{lowess()}. Domain:
+{smooth.spline, lowess, periodic.lowess}. Default: smooth.spline. Format:
+character.}
 }
 \value{
 A TI method wrapper to be used together with
