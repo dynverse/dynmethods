@@ -9,20 +9,20 @@ ti_topslam(n_components = 2L, n_neighbors = 10L, linear_dims = 0L,
   "ICA"))
 }
 \arguments{
-\item{n_components}{Parameter; The number of components, Domain: U(2, 10),
-Default: 2, Format: integer.}
+\item{n_components}{The number of components. Domain: U(2, 10). Default: 2.
+Format: integer.}
 
-\item{n_neighbors}{Parameter; The number of neighbors, Domain: U(2, 100),
-Default: 10, Format: integer.}
+\item{n_neighbors}{The number of neighbors. Domain: U(2, 100). Default: 10.
+Format: integer.}
 
-\item{linear_dims}{Parameter; , Domain: U(0, 5), Default: 0, Format: integer.}
+\item{linear_dims}{. Domain: U(0, 5). Default: 0. Format: integer.}
 
-\item{max_iters}{Parameter; The number of iterations to optimize over, Domain:
-e^U(2.30, 9.21), Default: 1000, Format: integer.}
+\item{max_iters}{The number of iterations to optimize over. Domain: e^U(2.30,
+9.21). Default: 1000. Format: integer.}
 
-\item{dimreds}{Parameter; Which dimensionality reductions to use and/or ICA,
-Domain: {x | x ⊆ {t-SNE, PCA, Spectral, Isomap, ICA}}, Default: {t-SNE, PCA,
-Spectral, Isomap, ICA}, Format: subset.}
+\item{dimreds}{Which dimensionality reductions to use and/or ICA. Domain: {x |
+x ⊆ {t-SNE, PCA, Spectral, Isomap, ICA}}. Default: {t-SNE, PCA, Spectral,
+Isomap, ICA}. Format: subset.}
 }
 \value{
 A TI method wrapper to be used together with

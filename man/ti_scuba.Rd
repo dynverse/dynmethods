@@ -9,23 +9,23 @@ ti_scuba(rigorous_gap_stats = TRUE, N_dim = 2L,
   min_split = 15L, min_percentage_split = 0.25)
 }
 \arguments{
-\item{rigorous_gap_stats}{Parameter; Whether to use rigorous gap statistics to
-determine number of clusters, Default: TRUE, Format: logical.}
+\item{rigorous_gap_stats}{Whether to use rigorous gap statistics to determine
+number of clusters. Default: TRUE. Format: logical.}
 
-\item{N_dim}{Parameter; Number of TSNE dimensions, Domain: U(2, 3), Default: 2,
-Format: integer.}
+\item{N_dim}{Number of TSNE dimensions. Domain: U(2, 3). Default: 2. Format:
+integer.}
 
-\item{low_gene_threshold}{Parameter; Threshold value for genes of low
-expression levels, Domain: U(0, 5), Default: 1, Format: numeric.}
+\item{low_gene_threshold}{Threshold value for genes of low expression levels.
+Domain: U(0, 5). Default: 1. Format: numeric.}
 
-\item{low_gene_fraction_max}{Parameter; Maximum fraction of lowly-expressed
-cells allowed for each gene, Domain: U(0, 1), Default: 0.7, Format: numeric.}
+\item{low_gene_fraction_max}{Maximum fraction of lowly-expressed cells allowed
+for each gene. Domain: U(0, 1). Default: 0.7. Format: numeric.}
 
-\item{min_split}{Parameter; Lower threshold on the number of cells in a cluster
-for this cluster to be split, Domain: U(1, 100), Default: 15, Format: integer.}
+\item{min_split}{Lower threshold on the number of cells in a cluster for this
+cluster to be split. Domain: U(1, 100). Default: 15. Format: integer.}
 
-\item{min_percentage_split}{Parameter; Minimum fraction of cells in the smaller
-cluster during a bifurcation, Domain: U(0, 1), Default: 0.25, Format: numeric.}
+\item{min_percentage_split}{Minimum fraction of cells in the smaller cluster
+during a bifurcation. Domain: U(0, 1). Default: 0.25. Format: numeric.}
 }
 \value{
 A TI method wrapper to be used together with

@@ -10,45 +10,43 @@ ti_celltree_vem(method = "VEM", sd_filter = 0.5,
   tolerance = 1e-05)
 }
 \arguments{
-\item{method}{Parameter; LDA inference method to use, Domain: {VEM}, Default:
-VEM, Format: character.}
+\item{method}{LDA inference method to use. Domain: {VEM}. Default: VEM. Format:
+character.}
 
-\item{sd_filter}{Parameter; Standard-deviation threshold below which genes
-should be removed from the data, Domain: e^U(-4.61, 1.61), Default: 0.5,
+\item{sd_filter}{Standard-deviation threshold below which genes should be
+removed from the data. Domain: e^U(-4.61, 1.61). Default: 0.5. Format: numeric.}
+
+\item{width_scale_factor}{A scaling factor for the dynamically-computed
+distance threshold (ignored if absolute_width is provided). Higher values will
+result in less branches in the backbone tree, while lower values might lead to
+a large number of backbone branches. Domain: e^U(-2.30, 4.61). Default: 1.5.
 Format: numeric.}
 
-\item{width_scale_factor}{Parameter; A scaling factor for the
-dynamically-computed distance threshold (ignored if absolute_width is
-provided). Higher values will result in less branches in the backbone tree,
-while lower values might lead to a large number of backbone branches, Domain:
-e^U(-2.30, 4.61), Default: 1.5, Format: numeric.}
+\item{outlier_tolerance_factor}{Proportion of vertices, out of the total number
+of vertices divided by the total number of branches, that can be left at the
+end of the backbone tree-building algorithm. Domain: e^U(-9.21, 6.91). Default:
+0.1. Format: numeric.}
 
-\item{outlier_tolerance_factor}{Parameter; Proportion of vertices, out of the
-total number of vertices divided by the total number of branches, that can be
-left at the end of the backbone tree-building algorithm, Domain: e^U(-9.21,
-6.91), Default: 0.1, Format: numeric.}
+\item{rooting_method}{Method used to root the backbone tree. Must be either
+NULL or one of ‘longest.path’, ‘center.start.group’ or ‘average.start.group’.
+‘longest.path’ picks one end of the longest shortest-path between two vertices.
+’center.start.group’ picks the vertex in the starting group with lowest
+mean-square-distance to the others. ‘average.start.group’ creates a new
+artificial vertex, as the average of all cells in the starting group. If no
+value is provided, the best method is picked based on the type of grouping and
+start group information available. Domain: {longest.path, center.start.group,
+average.start.group, null}. Default: null. Format: character.}
 
-\item{rooting_method}{Parameter; Method used to root the backbone tree. Must be
-either NULL or one of ‘longest.path’, ‘center.start.group’ or
-‘average.start.group’. ‘longest.path’ picks one end of the longest
-shortest-path between two vertices. ’center.start.group’ picks the vertex in
-the starting group with lowest mean-square-distance to the others.
-‘average.start.group’ creates a new artificial vertex, as the average of all
-cells in the starting group. If no value is provided, the best method is picked
-based on the type of grouping and start group information available, Domain:
-{longest.path, center.start.group, average.start.group, null}, Default: null,
-Format: character.}
+\item{num_topics}{Number of topics to fit in the model. Domain: U(2, 15).
+Default: 4. Format: integer.}
 
-\item{num_topics}{Parameter; Number of topics to fit in the model, Domain: U(2,
-15), Default: 4, Format: integer.}
+\item{tot_iter}{Numeric parameters (optional) forwarded to the chosen LDA
+inference method's contol class. Domain: e^U(9.21, 16.12). Default: 1000000.
+Format: numeric.}
 
-\item{tot_iter}{Parameter; Numeric parameters (optional) forwarded to the
-chosen LDA inference method's contol class, Domain: e^U(9.21, 16.12), Default:
-1000000, Format: numeric.}
-
-\item{tolerance}{Parameter; Numeric parameters (optional) forwarded to the
-chosen LDA inference method's contol class, Domain: e^U(-16.12, -6.91),
-Default: 1e-05, Format: numeric.}
+\item{tolerance}{Numeric parameters (optional) forwarded to the chosen LDA
+inference method's contol class. Domain: e^U(-16.12, -6.91). Default: 1e-05.
+Format: numeric.}
 }
 \value{
 A TI method wrapper to be used together with

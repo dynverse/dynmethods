@@ -13,8 +13,8 @@
 #' 
 #' 
 #' 
-#' @param dummy_param Parameter; Dummy parameter, Domain: U(0, 1), Default: 0.5,
-#' Format: numeric.
+#' @param dummy_param Dummy parameter. Domain: U(0, 1). Default: 0.5. Format:
+#' numeric.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

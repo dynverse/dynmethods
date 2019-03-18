@@ -10,63 +10,61 @@ ti_embeddr(ndim = 2L, kernel = "nn", metric = "correlation",
   stretch = 2L, smoother = "smooth.spline")
 }
 \arguments{
-\item{ndim}{Parameter; Dimension of the embedded space, default is 2, Domain:
-U(2, 10), Default: 2, Format: integer.}
+\item{ndim}{Dimension of the embedded space, default is 2. Domain: U(2, 10).
+Default: 2. Format: integer.}
 
-\item{kernel}{Parameter; The choice of kernel. 'nn' will give nearest
-neighbours, 'dist' gives minimum distance and'heat' gives a heat kernel.
-Discussed in detail in 'Laplacian Eigenmaps and Spectral Techniques for
-Embedding and Clustering',Belkin & Niyogi, Domain: {nn, dist, heat}, Default:
-nn, Format: character.}
+\item{kernel}{The choice of kernel. 'nn' will give nearest neighbours, 'dist'
+gives minimum distance and'heat' gives a heat kernel. Discussed in detail in
+'Laplacian Eigenmaps and Spectral Techniques for Embedding and
+Clustering',Belkin & Niyogi. Domain: {nn, dist, heat}. Default: nn. Format:
+character.}
 
-\item{metric}{Parameter; The metric with which to assess 'closeness' for
-nearest neighbour selection, one of'correlation' (pearson) or 'euclidean'.
-Default is 'correlation', Domain: {correlation, euclidean, cosine}, Default:
-correlation, Format: character.}
+\item{metric}{The metric with which to assess 'closeness' for nearest neighbour
+selection, one of'correlation' (pearson) or 'euclidean'. Default is
+'correlation'. Domain: {correlation, euclidean, cosine}. Default: correlation.
+Format: character.}
 
-\item{nn_pct}{Parameter; The percentage of cells to use as tge number of
-nearest neighbours if kernel == 'nn', Domain: U(-2, 1), Default: 0, Format:
-numeric.}
+\item{nn_pct}{The percentage of cells to use as tge number of nearest
+neighbours if kernel == 'nn'. Domain: U(-2, 1). Default: 0. Format: numeric.}
 
-\item{eps}{Parameter; Maximum distance parameter if kernel == 'dist', Domain:
-U(-5, 5), Default: 0, Format: numeric.}
+\item{eps}{Maximum distance parameter if kernel == 'dist'. Domain: U(-5, 5).
+Default: 0. Format: numeric.}
 
-\item{t}{Parameter; "time" for heat kernel if kernel == "heat", Domain: U(-5,
-5), Default: 0, Format: numeric.}
+\item{t}{"time" for heat kernel if kernel == "heat". Domain: U(-5, 5). Default:
+0. Format: numeric.}
 
-\item{symmetrize}{Parameter; How to make the adjacency matrix symmetric. Note
-that slightlycounterintuitively, node i having node j as a nearest neighbour
-doesn't guarantee nodej has node i. There are several ways to get round
+\item{symmetrize}{How to make the adjacency matrix symmetric. Note that
+slightlycounterintuitively, node i having node j as a nearest neighbour doesn't
+guarantee nodej has node i. There are several ways to get round
 this:\itemize{\item \code{mean} If the above case occurs make the link weight
 0.5 so the adjacency matrix becomes \eqn{0.5(A + A')}\item \code{ceil} If the
 above case occurs set the link weight to 1 (ie take the ceiling of the mean
 case)\item \code{floor} If the above case occurs set the link weight to 0 (ie
-take the floor of the mean case)}, Domain: {mean, ceil, floor}, Default: mean,
+take the floor of the mean case)}. Domain: {mean, ceil, floor}. Default: mean.
 Format: character.}
 
-\item{measure_type}{Parameter; Type of laplacian eigenmap, which corresponds to
-the constraint on the eigenvalue problem. Iftype is 'unorm' (default), then the
+\item{measure_type}{Type of laplacian eigenmap, which corresponds to the
+constraint on the eigenvalue problem. Iftype is 'unorm' (default), then the
 graph measure used is the identity matrix, while if type is 'norm' then the
-measureused is the degree matrix, Domain: {unorm, norm}, Default: unorm,
+measureused is the degree matrix. Domain: {unorm, norm}. Default: unorm.
 Format: character.}
 
-\item{thresh}{Parameter; Convergence threshold on shortest distances to the
-curve, Domain: e^U(-11.51, 11.51), Default: 0.001, Format: numeric.}
+\item{thresh}{Convergence threshold on shortest distances to the curve. Domain:
+e^U(-11.51, 11.51). Default: 0.001. Format: numeric.}
 
-\item{maxit}{Parameter; Maximum number of iterations, Domain: U(0, 50),
-Default: 10, Format: integer.}
+\item{maxit}{Maximum number of iterations. Domain: U(0, 50). Default: 10.
+Format: integer.}
 
-\item{stretch}{Parameter; A factor by which the curve can be extrapolated
-whenpoints are projected.  Default is 2 (times the last segmentlength). The
-default is 0 for \code{smoother} equal to\code{"periodic_lowess"}, Domain: U(0,
-5), Default: 2, Format: numeric.}
+\item{stretch}{A factor by which the curve can be extrapolated whenpoints are
+projected.  Default is 2 (times the last segmentlength). The default is 0 for
+\code{smoother} equal to\code{"periodic_lowess"}. Domain: U(0, 5). Default: 2.
+Format: numeric.}
 
-\item{smoother}{Parameter; Choice of smoother. The default
-is\code{"smooth_spline"}, and other choices are \code{"lowess"}
-and\code{"periodic_lowess"}. The latter allows one to fit closed curves.Beware,
-you may want to use \code{iter = 0} with \code{lowess()}, Domain:
-{smooth.spline, lowess, periodic.lowess}, Default: smooth.spline, Format:
-character.}
+\item{smoother}{Choice of smoother. The default is\code{"smooth_spline"}, and
+other choices are \code{"lowess"} and\code{"periodic_lowess"}. The latter
+allows one to fit closed curves.Beware, you may want to use \code{iter = 0}
+with \code{lowess()}. Domain: {smooth.spline, lowess, periodic.lowess}.
+Default: smooth.spline. Format: character.}
 }
 \value{
 A TI method wrapper to be used together with

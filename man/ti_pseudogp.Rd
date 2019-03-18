@@ -9,37 +9,37 @@ ti_pseudogp(smoothing_alpha = 10, smoothing_beta = 3,
   iter = 100L, dimreds = c("pca", "mds"), initialise_from = "random")
 }
 \arguments{
-\item{smoothing_alpha}{Parameter; The hyperparameter for the Gamma distribution
-that controls arc-length, Domain: U(1, 20), Default: 10, Format: numeric.}
+\item{smoothing_alpha}{The hyperparameter for the Gamma distribution that
+controls arc-length. Domain: U(1, 20). Default: 10. Format: numeric.}
 
-\item{smoothing_beta}{Parameter; The hyperparameter for the Gamma distribution
-that controls arc-length, Domain: U(1, 20), Default: 3, Format: numeric.}
+\item{smoothing_beta}{The hyperparameter for the Gamma distribution that
+controls arc-length. Domain: U(1, 20). Default: 3. Format: numeric.}
 
-\item{pseudotime_mean}{Parameter; The mean of the constrained normal prior on
-the pseudotimes, Domain: U(0, 1), Default: 0.5, Format: numeric.}
+\item{pseudotime_mean}{The mean of the constrained normal prior on the
+pseudotimes. Domain: U(0, 1). Default: 0.5. Format: numeric.}
 
-\item{pseudotime_var}{Parameter; The variance of the constrained normal prior
-on the pseudotimes, Domain: U(0.01, 1), Default: 1, Format: numeric.}
+\item{pseudotime_var}{The variance of the constrained normal prior on the
+pseudotimes. Domain: U(0.01, 1). Default: 1. Format: numeric.}
 
-\item{chains}{Parameter; The number of chains for the MCMC trace, Domain: U(1,
-20), Default: 3, Format: integer.}
+\item{chains}{The number of chains for the MCMC trace. Domain: U(1, 20).
+Default: 3. Format: integer.}
 
-\item{iter}{Parameter; The number of iterations for the MCMC trace, Domain:
-e^U(4.61, 6.91), Default: 100, Format: integer.}
+\item{iter}{The number of iterations for the MCMC trace. Domain: e^U(4.61,
+6.91). Default: 100. Format: integer.}
 
-\item{dimreds}{Parameter; A character vector specifying which dimensionality
-reduction methods to use.See \code{dyndimred::dimred} for the list of available
-dimensionality reduction methods, Domain: {x | x ⊆ {pca, mds, tsne, ica, lle,
+\item{dimreds}{A character vector specifying which dimensionality reduction
+methods to use.See \code{dyndimred::dimred} for the list of available
+dimensionality reduction methods. Domain: {x | x ⊆ {pca, mds, tsne, ica, lle,
 landmark_mds, mds_sammon, mds_isomds, mds_smacof, umap, dm_diffusionmap,
-dm_destiny}}, Default: {pca, mds}, Format: subset.}
+dm_destiny}}. Default: {pca, mds}. Format: subset.}
 
-\item{initialise_from}{Parameter; How to initialise the MCMC chain. One of
-"random" (stan decides),"principal_curve", or "pca" (the first component of PCA
-rescaled is taken to be the pseudotimes).Note: if multiple representations are
-provided, \code{pseudogp} will take the principal curve orpca from the first
-rather than combining them. If a particular representation is required, it isup
-to the user to re-order them, Domain: {random, principal_curve, pca}, Default:
-random, Format: character.}
+\item{initialise_from}{How to initialise the MCMC chain. One of "random" (stan
+decides),"principal_curve", or "pca" (the first component of PCA rescaled is
+taken to be the pseudotimes).Note: if multiple representations are provided,
+\code{pseudogp} will take the principal curve orpca from the first rather than
+combining them. If a particular representation is required, it isup to the user
+to re-order them. Domain: {random, principal_curve, pca}. Default: random.
+Format: character.}
 }
 \value{
 A TI method wrapper to be used together with

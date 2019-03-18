@@ -16,38 +16,38 @@
 #' Mottelson, N., Horokhovskyi, Y., Treutlein, B., Soeding, J., 2018.
 #' Reconstructing complex lineage trees from scRNA-seq data using MERLoT.
 #' 
-#' @param sigma Parameter; Diffusion scale parameter of the Gaussian kernel. A
-#' larger sigma might be necessary if the eigenvalues can not be found because of
-#' a singularity in the matrix. Must a character vector -- `"local"` (default) or
-#' `"global"`, Domain: {local, global}, Default: local, Format: character.
-#' @param distance Parameter; A character vector specifying which distance metric
-#' to use. Allowed measures are the Euclidean distance (default), the cosine
-#' distance (`1-corr(c_1, c_2)`), or the rank correlation distance
-#' (`1-corr(rank(c_1), rank(c_2))`), Domain: {euclidean, cosine, rankcor},
-#' Default: euclidean, Format: character.
-#' @param ndim Parameter; Number of eigenvectors/dimensions to return, Domain:
-#' U(2, 20), Default: 20, Format: integer.
-#' @param density_norm Parameter; Logical. If TRUE, use density normalisation,
-#' Default: TRUE, Format: logical.
-#' @param n_local Parameter; If sigma == 'local', the `n_local` nearest
-#' neighbor(s) determine(s) the local sigma, Domain: ( U(2, 20), U(2, 20) ),
-#' Default: (5, 7), Format: range.
-#' @param w_width Parameter; Window width to use for deciding the branch cutoff,
-#' Domain: e^U(-9.21, 0.00), Default: 0.01, Format: numeric.
-#' @param n_components_to_use Parameter; Which components to use in downstream
-#' analysis, Domain: U(2, 20), Default: 3, Format: integer.
-#' @param N_yk Parameter; Number of nodes for the elastic principal tree, Domain:
-#' U(2, 1000), Default: 100, Format: integer.
-#' @param lambda_0 Parameter; Principal elastic tree energy function parameter,
-#' Domain: e^U(-27.63, -13.82), Default: 8e-10, Format: numeric.
-#' @param mu_0 Parameter; Principal elastic tree energy function parameter,
-#' Domain: U(5e-04, 0.005), Default: 0.0025, Format: numeric.
-#' @param increaseFactor_mu Parameter; Factor by which the mu will be increased
-#' for the embedding, Domain: U(2, 50), Default: 20, Format: numeric.
-#' @param increaseFactor_lambda Parameter; Factor by which the mu will be
-#' increased for the embedding, Domain: U(2, 50), Default: 20, Format: numeric.
-#' @param FixEndpoints Parameter; Documentation not provided by authors, Default:
-#' FALSE, Format: logical.
+#' @param sigma Diffusion scale parameter of the Gaussian kernel. A larger sigma
+#' might be necessary if the eigenvalues can not be found because of a singularity
+#' in the matrix. Must a character vector -- `"local"` (default) or `"global"`.
+#' Domain: {local, global}. Default: local. Format: character.
+#' @param distance A character vector specifying which distance metric to use.
+#' Allowed measures are the Euclidean distance (default), the cosine distance
+#' (`1-corr(c_1, c_2)`), or the rank correlation distance (`1-corr(rank(c_1),
+#' rank(c_2))`). Domain: {euclidean, cosine, rankcor}. Default: euclidean. Format:
+#' character.
+#' @param ndim Number of eigenvectors/dimensions to return. Domain: U(2, 20).
+#' Default: 20. Format: integer.
+#' @param density_norm Logical. If TRUE, use density normalisation. Default: TRUE.
+#' Format: logical.
+#' @param n_local If sigma == 'local', the `n_local` nearest neighbor(s)
+#' determine(s) the local sigma. Domain: ( U(2, 20), U(2, 20) ). Default: (5, 7).
+#' Format: range.
+#' @param w_width Window width to use for deciding the branch cutoff. Domain:
+#' e^U(-9.21, 0.00). Default: 0.01. Format: numeric.
+#' @param n_components_to_use Which components to use in downstream analysis.
+#' Domain: U(2, 20). Default: 3. Format: integer.
+#' @param N_yk Number of nodes for the elastic principal tree. Domain: U(2, 1000).
+#' Default: 100. Format: integer.
+#' @param lambda_0 Principal elastic tree energy function parameter. Domain:
+#' e^U(-27.63, -13.82). Default: 8e-10. Format: numeric.
+#' @param mu_0 Principal elastic tree energy function parameter. Domain: U(5e-04,
+#' 0.005). Default: 0.0025. Format: numeric.
+#' @param increaseFactor_mu Factor by which the mu will be increased for the
+#' embedding. Domain: U(2, 50). Default: 20. Format: numeric.
+#' @param increaseFactor_lambda Factor by which the mu will be increased for the
+#' embedding. Domain: U(2, 50). Default: 20. Format: numeric.
+#' @param FixEndpoints Documentation not provided by authors. Default: FALSE.
+#' Format: logical.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
@@ -59,12 +59,12 @@ ti_merlot <- function(
     density_norm = TRUE,
     n_local = c(5L, 7L),
     w_width = 0.01,
-    n_components_to_use = 3,
-    N_yk = 100,
+    n_components_to_use = 3L,
+    N_yk = 100L,
     lambda_0 = 8e-10,
     mu_0 = 0.0025,
-    increaseFactor_mu = 20,
-    increaseFactor_lambda = 20,
+    increaseFactor_mu = 20L,
+    increaseFactor_lambda = 20L,
     FixEndpoints = FALSE
 ) {
   create_ti_method_container(

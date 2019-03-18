@@ -5,26 +5,26 @@
 \title{Inferring a trajectory inference using MFA}
 \usage{
 ti_mfa(iter = 2000L, thin = 1L, pc_initialise = 1L,
-  prop_collapse = 0, scale_input = TRUE, zero_inflation = FALSE)
+  prop_collapse = 0L, scale_input = TRUE, zero_inflation = FALSE)
 }
 \arguments{
-\item{iter}{Parameter; Number of MCMC iterations, Domain: U(20, 5000), Default:
-2000, Format: integer.}
-
-\item{thin}{Parameter; MCMC samples to thin, Domain: U(1, 20), Default: 1,
+\item{iter}{Number of MCMC iterations. Domain: U(20, 5000). Default: 2000.
 Format: integer.}
 
-\item{pc_initialise}{Parameter; Which principal component to initialise
-pseudotimes to, Domain: U(1, 5), Default: 1, Format: integer.}
+\item{thin}{MCMC samples to thin. Domain: U(1, 20). Default: 1. Format:
+integer.}
 
-\item{prop_collapse}{Parameter; Proportion of Gibbs samples which should
-marginalise over c, Domain: U(0, 1), Default: 0, Format: numeric.}
+\item{pc_initialise}{Which principal component to initialise pseudotimes to.
+Domain: U(1, 5). Default: 1. Format: integer.}
 
-\item{scale_input}{Parameter; Logical. If true, input is scaled to have mean 0
-variance 1, Default: TRUE, Format: logical.}
+\item{prop_collapse}{Proportion of Gibbs samples which should marginalise over
+c. Domain: U(0, 1). Default: 0. Format: numeric.}
 
-\item{zero_inflation}{Parameter; Logical, should zero inflation be enabled?,
-Default: FALSE, Format: logical.}
+\item{scale_input}{Logical. If true, input is scaled to have mean 0 variance 1.
+Default: TRUE. Format: logical.}
+
+\item{zero_inflation}{Logical, should zero inflation be enabled?. Default:
+FALSE. Format: logical.}
 }
 \value{
 A TI method wrapper to be used together with

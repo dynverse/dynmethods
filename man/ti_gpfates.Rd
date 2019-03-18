@@ -8,14 +8,14 @@ ti_gpfates(log_expression_cutoff = 0.5,
   min_cells_expression_cutoff = 0L, ndim = 2L)
 }
 \arguments{
-\item{log_expression_cutoff}{Parameter; The log expression cutoff, Domain:
-U(0.5, 5), Default: 0.5, Format: numeric.}
+\item{log_expression_cutoff}{The log expression cutoff. Domain: U(0.5, 5).
+Default: 0.5. Format: numeric.}
 
-\item{min_cells_expression_cutoff}{Parameter; The min expression cutoff,
-Domain: U(0, 20), Default: 0, Format: numeric.}
+\item{min_cells_expression_cutoff}{The min expression cutoff. Domain: U(0, 20).
+Default: 0. Format: numeric.}
 
-\item{ndim}{Parameter; Number of dimensions for dimensionality reduction,
-Domain: U(1, 5), Default: 2, Format: integer.}
+\item{ndim}{Number of dimensions for dimensionality reduction. Domain: U(1, 5).
+Default: 2. Format: integer.}
 }
 \value{
 A TI method wrapper to be used together with

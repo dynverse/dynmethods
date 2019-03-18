@@ -13,10 +13,10 @@
 #' 
 #' 
 #' 
-#' @param dimred Parameter; Which dimensionality reduction method to use, Domain:
-#' {pca, mds, tsne, ica, lle, landmark_mds, mds_sammon, mds_isomds, mds_smacof,
-#' umap, dm_diffusionMap}, Default: pca, Format: character.
-#' @param ndim Parameter; , Domain: U(2, 30), Default: 2, Format: integer.
+#' @param dimred Which dimensionality reduction method to use. Domain: {pca, mds,
+#' tsne, ica, lle, landmark_mds, mds_sammon, mds_isomds, mds_smacof, umap,
+#' dm_diffusionMap}. Default: pca. Format: character.
+#' @param ndim . Domain: U(2, 30). Default: 2. Format: integer.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

@@ -18,8 +18,7 @@
 #' Single-Cell RNA-Seq with Waterfall Reveals Molecular Cascades underlying Adult
 #' Neurogenesis. Cell Stem Cell 17, 360–372.
 #' 
-#' @param num_clusters Parameter; , Domain: U(2, 20), Default: 10, Format:
-#' integer.
+#' @param num_clusters . Domain: U(2, 20). Default: 10. Format: integer.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

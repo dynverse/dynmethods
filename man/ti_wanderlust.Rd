@@ -9,25 +9,23 @@ ti_wanderlust(normalise = TRUE, knn = 25L,
   num_waypoints = 250L, epsilon = 1L)
 }
 \arguments{
-\item{normalise}{Parameter; , Default: TRUE, Format: logical.}
+\item{normalise}{. Default: TRUE. Format: logical.}
 
-\item{knn}{Parameter; K-nearest neighbours for diffusion, Domain: U(15, 100),
-Default: 25, Format: integer.}
+\item{knn}{K-nearest neighbours for diffusion. Domain: U(15, 100). Default: 25.
+Format: integer.}
 
-\item{n_diffusion_components}{Parameter; Number of diffusion components,
-Domain: U(3, 20), Default: 3, Format: integer.}
+\item{n_diffusion_components}{Number of diffusion components. Domain: U(3, 20).
+Default: 3. Format: integer.}
 
-\item{n_pca_components}{Parameter; Number of pca components, Domain: U(15,
-100), Default: 30, Format: integer.}
+\item{n_pca_components}{Number of pca components. Domain: U(15, 100). Default:
+30. Format: integer.}
 
-\item{k}{Parameter; K parameter, Domain: U(15, 100), Default: 25, Format:
-integer.}
+\item{k}{K parameter. Domain: U(15, 100). Default: 25. Format: integer.}
 
-\item{num_waypoints}{Parameter; Number of waypoints, Domain: U(100, 500),
-Default: 250, Format: integer.}
+\item{num_waypoints}{Number of waypoints. Domain: U(100, 500). Default: 250.
+Format: integer.}
 
-\item{epsilon}{Parameter; Epsilon, Domain: U(0.1, 5), Default: 1, Format:
-numeric.}
+\item{epsilon}{Epsilon. Domain: U(0.1, 5). Default: 1. Format: numeric.}
 }
 \value{
 A TI method wrapper to be used together with

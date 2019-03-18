@@ -15,8 +15,7 @@
 #' @references Campbell, K.R., Yau, C., 2016. A descriptive marker gene approach
 #' to single-cell pseudotime inference.
 #' 
-#' @param iter Parameter; , Domain: e^U(0.69, 10.82), Default: 1000, Format:
-#' integer.
+#' @param iter . Domain: e^U(0.69, 10.82). Default: 1000. Format: integer.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

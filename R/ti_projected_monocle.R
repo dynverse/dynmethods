@@ -15,23 +15,23 @@
 #' 
 #' 
 #' 
-#' @param reduction_method Parameter; A character string specifying the algorithm
-#' to use for dimensionality reduction, Domain: {DDRTree}, Default: DDRTree,
+#' @param reduction_method A character string specifying the algorithm to use for
+#' dimensionality reduction. Domain: {DDRTree}. Default: DDRTree. Format:
+#' character.
+#' @param max_components The dimensionality of the reduced space. Domain: U(2,
+#' 20). Default: 2. Format: integer.
+#' @param norm_method Determines how to transform expression values prior to
+#' reducing dimensionality. Domain: {vstExprs, log, none}. Default: vstExprs.
 #' Format: character.
-#' @param max_components Parameter; The dimensionality of the reduced space,
-#' Domain: U(2, 20), Default: 2, Format: integer.
-#' @param norm_method Parameter; Determines how to transform expression values
-#' prior to reducing dimensionality, Domain: {vstExprs, log, none}, Default:
-#' vstExprs, Format: character.
-#' @param auto_param_selection Parameter; When this argument is set to TRUE
-#' (default), it will automatically calculate the proper value for the ncenter
-#' (number of centroids) parameters which will be passed into DDRTree call,
-#' Default: TRUE, Format: logical.
-#' @param filter_features Parameter; Whether to include monocle feature filtering,
-#' Default: TRUE, Format: logical.
-#' @param filter_features_mean_expression Parameter; Minimal mean feature
-#' expression, only used when `filter_features` is set to TRUE, Domain: U(0, 10),
-#' Default: 0.1, Format: numeric.
+#' @param auto_param_selection When this argument is set to TRUE (default), it
+#' will automatically calculate the proper value for the ncenter (number of
+#' centroids) parameters which will be passed into DDRTree call. Default: TRUE.
+#' Format: logical.
+#' @param filter_features Whether to include monocle feature filtering. Default:
+#' TRUE. Format: logical.
+#' @param filter_features_mean_expression Minimal mean feature expression, only
+#' used when `filter_features` is set to TRUE. Domain: U(0, 10). Default: 0.1.
+#' Format: numeric.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

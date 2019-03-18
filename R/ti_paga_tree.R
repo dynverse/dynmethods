@@ -17,18 +17,18 @@
 #' reconciles clustering with trajectory inference through a topology preserving
 #' map of single cells.
 #' 
-#' @param n_neighbors Parameter; Number of neighbours for knn, Domain: U(1, 100),
-#' Default: 15, Format: integer.
-#' @param n_comps Parameter; Number of principal components, Domain: U(0, 100),
-#' Default: 50, Format: integer.
-#' @param n_dcs Parameter; Number of diffusion components for denoising graph, 0
-#' means no denoising, Domain: U(0, 40), Default: 15, Format: integer.
-#' @param resolution Parameter; Resolution of louvain clustering, which determines
-#' the granularity of the clustering. Higher values will result in more clusters,
-#' Domain: U(0.1, 10), Default: 1, Format: numeric.
-#' @param embedding_type Parameter; Either 'umap' (scales very well, recommended
-#' for very large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for
-#' small datasets), Domain: {umap, fa}, Default: fa, Format: character.
+#' @param n_neighbors Number of neighbours for knn. Domain: U(1, 100). Default:
+#' 15. Format: integer.
+#' @param n_comps Number of principal components. Domain: U(0, 100). Default: 50.
+#' Format: integer.
+#' @param n_dcs Number of diffusion components for denoising graph, 0 means no
+#' denoising. Domain: U(0, 40). Default: 15. Format: integer.
+#' @param resolution Resolution of louvain clustering, which determines the
+#' granularity of the clustering. Higher values will result in more clusters.
+#' Domain: U(0.1, 10). Default: 1. Format: numeric.
+#' @param embedding_type Either 'umap' (scales very well, recommended for very
+#' large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for small
+#' datasets). Domain: {umap, fa}. Default: fa. Format: character.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

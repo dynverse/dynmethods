@@ -8,29 +8,28 @@ ti_dpt(sigma = "local", distance = "euclidean", ndim = 20L,
   density_norm = TRUE, n_local = c(5L, 7L), w_width = 0.1)
 }
 \arguments{
-\item{sigma}{Parameter; Diffusion scale parameter of the Gaussian kernel. A
-larger sigma might be necessary if the eigenvalues can not be found because of
-a singularity in the matrix. Must a character vector -- \code{"local"} (default) or
-\code{"global"}, Domain: {local, global}, Default: local, Format: character.}
+\item{sigma}{Diffusion scale parameter of the Gaussian kernel. A larger sigma
+might be necessary if the eigenvalues can not be found because of a singularity
+in the matrix. Must a character vector -- \code{"local"} (default) or \code{"global"}.
+Domain: {local, global}. Default: local. Format: character.}
 
-\item{distance}{Parameter; A character vector specifying which distance metric
-to use. Allowed measures are the Euclidean distance (default), the cosine
-distance (\code{1-corr(c_1, c_2)}), or the rank correlation distance
-(\code{1-corr(rank(c_1), rank(c_2))}), Domain: {euclidean, cosine, rankcor},
-Default: euclidean, Format: character.}
+\item{distance}{A character vector specifying which distance metric to use.
+Allowed measures are the Euclidean distance (default), the cosine distance
+(\code{1-corr(c_1, c_2)}), or the rank correlation distance (\code{1-corr(rank(c_1), rank(c_2))}). Domain: {euclidean, cosine, rankcor}. Default: euclidean. Format:
+character.}
 
-\item{ndim}{Parameter; Number of eigenvectors/dimensions to return, Domain:
-U(3, 100), Default: 20, Format: integer.}
+\item{ndim}{Number of eigenvectors/dimensions to return. Domain: U(3, 100).
+Default: 20. Format: integer.}
 
-\item{density_norm}{Parameter; Logical. If TRUE, use density normalisation,
-Default: TRUE, Format: logical.}
+\item{density_norm}{Logical. If TRUE, use density normalisation. Default: TRUE.
+Format: logical.}
 
-\item{n_local}{Parameter; If sigma == 'local', the \code{n_local} nearest
-neighbor(s) determine(s) the local sigma, Domain: ( U(2, 20), U(2, 20) ),
-Default: (5, 7), Format: range.}
+\item{n_local}{If sigma == 'local', the \code{n_local} nearest neighbor(s)
+determine(s) the local sigma. Domain: ( U(2, 20), U(2, 20) ). Default: (5, 7).
+Format: range.}
 
-\item{w_width}{Parameter; Window width to use for deciding the branch cutoff,
-Domain: e^U(-9.21, 0.00), Default: 0.1, Format: numeric.}
+\item{w_width}{Window width to use for deciding the branch cutoff. Domain:
+e^U(-9.21, 0.00). Default: 0.1. Format: numeric.}
 }
 \value{
 A TI method wrapper to be used together with

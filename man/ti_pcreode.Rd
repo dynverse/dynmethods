@@ -7,11 +7,9 @@
 ti_pcreode(n_pca_components = 3L, num_runs = 10L)
 }
 \arguments{
-\item{n_pca_components}{Parameter; , Domain: U(2, 10), Default: 3, Format:
-integer.}
+\item{n_pca_components}{. Domain: U(2, 10). Default: 3. Format: integer.}
 
-\item{num_runs}{Parameter; , Domain: e^U(2.30, 4.61), Default: 10, Format:
-integer.}
+\item{num_runs}{. Domain: e^U(2.30, 4.61). Default: 10. Format: integer.}
 }
 \value{
 A TI method wrapper to be used together with

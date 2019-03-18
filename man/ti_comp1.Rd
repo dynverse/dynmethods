@@ -7,13 +7,13 @@
 ti_comp1(dimred = "pca", ndim = 2L, component = 1L)
 }
 \arguments{
-\item{dimred}{Parameter; Which dimensionality reduction method to use, Domain:
-{pca, mds, tsne, ica, lle, landmark_mds, mds_sammon, mds_isomds, mds_smacof,
-umap, dm_diffusionMap}, Default: pca, Format: character.}
+\item{dimred}{Which dimensionality reduction method to use. Domain: {pca, mds,
+tsne, ica, lle, landmark_mds, mds_sammon, mds_isomds, mds_smacof, umap,
+dm_diffusionMap}. Default: pca. Format: character.}
 
-\item{ndim}{Parameter; , Domain: U(2, 30), Default: 2, Format: integer.}
+\item{ndim}{. Domain: U(2, 30). Default: 2. Format: integer.}
 
-\item{component}{Parameter; , Domain: U(1, 10), Default: 1, Format: integer.}
+\item{component}{. Domain: U(1, 10). Default: 1. Format: integer.}
 }
 \value{
 A TI method wrapper to be used together with

@@ -9,32 +9,32 @@ ti_elpigraph(topology = "tree", NumNodes = 50L, NumEdges = 100000L,
   MaxNumberOfIterations = 10L, eps = 0.01, CenterData = FALSE)
 }
 \arguments{
-\item{topology}{Parameter; The kind of topology to detect, Domain: {cycle,
-tree, linear}, Default: tree, Format: character.}
+\item{topology}{The kind of topology to detect. Domain: {cycle, tree, linear}.
+Default: tree. Format: character.}
 
-\item{NumNodes}{Parameter; The number of nodes of the principal graph, Domain:
-U(2, 1000), Default: 50, Format: integer.}
+\item{NumNodes}{The number of nodes of the principal graph. Domain: U(2, 1000).
+Default: 50. Format: integer.}
 
-\item{NumEdges}{Parameter; The maximum number of edges, Domain: e^U(0.69,
-11.51), Default: 100000, Format: integer.}
+\item{NumEdges}{The maximum number of edges. Domain: e^U(0.69, 11.51). Default:
+100000. Format: integer.}
 
-\item{InitNodes}{Parameter; Number of points to include in the initial graph,
-Domain: e^U(0.69, 6.91), Default: 2, Format: integer.}
+\item{InitNodes}{Number of points to include in the initial graph. Domain:
+e^U(0.69, 6.91). Default: 2. Format: integer.}
 
-\item{Mu}{Parameter; Controls the elastic energy, Domain: e^U(-6.91, 0.00),
-Default: 0.1, Format: numeric.}
+\item{Mu}{Controls the elastic energy. Domain: e^U(-6.91, 0.00). Default: 0.1.
+Format: numeric.}
 
-\item{Lambda}{Parameter; Controls the elastic energy, Domain: e^U(-6.91, 0.00),
-Default: 0.01, Format: numeric.}
+\item{Lambda}{Controls the elastic energy. Domain: e^U(-6.91, 0.00). Default:
+0.01. Format: numeric.}
 
-\item{MaxNumberOfIterations}{Parameter; Maximum number of steps to embed the
-nodes, Domain: e^U(0.00, 6.91), Default: 10, Format: integer.}
+\item{MaxNumberOfIterations}{Maximum number of steps to embed the nodes.
+Domain: e^U(0.00, 6.91). Default: 10. Format: integer.}
 
-\item{eps}{Parameter; Minimal relative change in the position of the nodes to
-stop embedment, Domain: e^U(-6.91, 0.00), Default: 0.01, Format: numeric.}
+\item{eps}{Minimal relative change in the position of the nodes to stop
+embedment. Domain: e^U(-6.91, 0.00). Default: 0.01. Format: numeric.}
 
-\item{CenterData}{Parameter; Should data and initial node positions be
-centered?, Default: FALSE, Format: logical.}
+\item{CenterData}{Should data and initial node positions be centered?. Default:
+FALSE. Format: logical.}
 }
 \value{
 A TI method wrapper to be used together with

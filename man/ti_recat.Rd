@@ -4,41 +4,36 @@
 \alias{ti_recat}
 \title{Inferring a trajectory inference using reCAT}
 \usage{
-ti_recat(TSPFold = 2, beginNum = 10, endNum = 15, step_size = 2,
-  base_cycle_range_start = 6, base_cycle_range_end = 9,
-  max_num = 300, clustMethod = "GMM")
+ti_recat(TSPFold = 2L, beginNum = 10L, endNum = 15L,
+  step_size = 2L, base_cycle_range_start = c(6L, 9L), max_num = 300L,
+  clustMethod = "GMM")
 }
 \arguments{
-\item{TSPFold}{Parameter; No documentation provided by authors, Domain: U(2,
-10), Default: 2, Format: integer.}
+\item{TSPFold}{No documentation provided by authors. Domain: U(2, 10). Default:
+2. Format: integer.}
 
-\item{beginNum}{Parameter; No documentation provided by authors, Domain: U(2,
-20), Default: 10, Format: integer.}
+\item{beginNum}{No documentation provided by authors. Domain: U(2, 20).
+Default: 10. Format: integer.}
 
-\item{endNum}{Parameter; No documentation provided by authors, Domain: U(2,
-20), Default: 15, Format: integer.}
+\item{endNum}{No documentation provided by authors. Domain: U(2, 20). Default:
+15. Format: integer.}
 
-\item{step_size}{Parameter; Determines the number of k to skip in your
-consensus path, ie ifstep_size = 2, then reCAT would only calculate and merge
-the paths fork = 12, 14, 16, 18, ..., n-2, n. We recommend step_size of up to a
-maximum of 5 while preserving the performance of reCAT. Usually a step_size of
-2 (by default) would suffice and bigger steps are recommended for larger
-datasets (>1000 cells) in order to reduce computational time, Domain: U(2, 20),
-Default: 2, Format: integer.}
+\item{step_size}{Determines the number of k to skip in your consensus path, ie
+ifstep_size = 2, then reCAT would only calculate and merge the paths fork = 12,
+14, 16, 18, ..., n-2, n. We recommend step_size of up to a maximum of 5 while
+preserving the performance of reCAT. Usually a step_size of 2 (by default)
+would suffice and bigger steps are recommended for larger datasets (>1000
+cells) in order to reduce computational time. Domain: U(2, 20). Default: 2.
+Format: integer.}
 
-\item{base_cycle_range_start}{Parameter; The minimal number of four k's for
-computing the reference cycle mentioned in the manuscript. Can be set to 6 or
-7, Domain: U(6, 7), Default: 6, Format: integer.}
+\item{base_cycle_range_start}{. Domain: ( U(5, 10), U(5, 10) ). Default: (6,
+9). Format: range.}
 
-\item{base_cycle_range_end}{Parameter; The maximal number of four k's for
-computing the reference cycle mentioned in the manuscript. Can be set to 6 or
-7, Domain: U(9, 10), Default: 9, Format: integer.}
+\item{max_num}{No documentation provided by authors. Domain: U(100, 500).
+Default: 300. Format: integer.}
 
-\item{max_num}{Parameter; No documentation provided by authors, Domain: U(100,
-500), Default: 300, Format: integer.}
-
-\item{clustMethod}{Parameter; No documentation provided by authors, Domain:
-{GMM, Pam, Kmeans}, Default: GMM, Format: character.}
+\item{clustMethod}{No documentation provided by authors. Domain: {GMM, Pam,
+Kmeans}. Default: GMM. Format: character.}
 }
 \value{
 A TI method wrapper to be used together with

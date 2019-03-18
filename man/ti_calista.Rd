@@ -7,11 +7,11 @@
 ti_calista(runs = 50L, max_iter = 100L)
 }
 \arguments{
-\item{runs}{Parameter; Number of independent runs of greedy algorithm, Domain:
-U(20, 100), Default: 50, Format: integer.}
+\item{runs}{Number of independent runs of greedy algorithm. Domain: U(20, 100).
+Default: 50. Format: integer.}
 
-\item{max_iter}{Parameter; Number of iterations in greedy algorithm, Domain:
-U(20, 400), Default: 100, Format: integer.}
+\item{max_iter}{Number of iterations in greedy algorithm. Domain: U(20, 400).
+Default: 100. Format: integer.}
 }
 \value{
 A TI method wrapper to be used together with

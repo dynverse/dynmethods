@@ -7,8 +7,8 @@
 ti_random(dummy_param = 0.5)
 }
 \arguments{
-\item{dummy_param}{Parameter; Dummy parameter, Domain: U(0, 1), Default: 0.5,
-Format: numeric.}
+\item{dummy_param}{Dummy parameter. Domain: U(0, 1). Default: 0.5. Format:
+numeric.}
 }
 \value{
 A TI method wrapper to be used together with

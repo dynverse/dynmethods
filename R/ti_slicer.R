@@ -17,11 +17,11 @@
 #' branched, nonlinear cellular trajectories from single cell RNA-seq data. Genome
 #' Biology 17.
 #' 
-#' @param kmin Parameter; Smallest value of k to try, Domain: U(2, 20), Default:
-#' 10, Format: integer.
-#' @param m Parameter; Intrinsic dimension of the data. This parameter mainly
-#' influences the visualisation of the results. The real intrinsic dimension will
-#' be calculated automaticly, Domain: U(2, 20), Default: 2, Format: integer.
+#' @param kmin Smallest value of k to try. Domain: U(2, 20). Default: 10. Format:
+#' integer.
+#' @param m Intrinsic dimension of the data. This parameter mainly influences the
+#' visualisation of the results. The real intrinsic dimension will be calculated
+#' automaticly. Domain: U(2, 20). Default: 2. Format: integer.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

@@ -15,12 +15,9 @@
 #' @references Ahmed, S., Rattray, M., Boukouvalas, A., 2017. GrandPrix: Scaling
 #' up the Bayesian GPLVM for single-cell data.
 #' 
-#' @param n_inducing_points Parameter; , Domain: U(0, 1), Default: 40, Format:
-#' integer.
-#' @param latent_prior_var Parameter; , Domain: U(0, 1), Default: 0.1, Format:
-#' numeric.
-#' @param latent_var Parameter; , Domain: U(0, 1), Default: 0.028, Format:
-#' numeric.
+#' @param n_inducing_points . Domain: U(0, 1). Default: 40. Format: integer.
+#' @param latent_prior_var . Domain: U(0, 1). Default: 0.1. Format: numeric.
+#' @param latent_var . Domain: U(0, 1). Default: 0.028. Format: numeric.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

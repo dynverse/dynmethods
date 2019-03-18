@@ -17,10 +17,10 @@
 #' alignment reveals correspondence between single cell transcriptome and
 #' epigenome dynamics. Genome Biology 18.
 #' 
-#' @param quantiles Parameter; Quantiles How many quantiles to use when computing
-#' warp functions (integer), Domain: U(2, 500), Default: 50, Format: integer.
-#' @param method Parameter; Gaussian process regression or linear interpolation?
-#' ("gp" or "linear), Domain: {gp, linear}, Default: linear, Format: character.
+#' @param quantiles Quantiles How many quantiles to use when computing warp
+#' functions (integer). Domain: U(2, 500). Default: 50. Format: integer.
+#' @param method Gaussian process regression or linear interpolation? ("gp" or
+#' "linear). Domain: {gp, linear}. Default: linear. Format: character.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

@@ -16,27 +16,22 @@
 #' evaluation in single-cell RNA-seq analysis. Nucleic Acids Research 44,
 #' e117–e117.
 #' 
-#' @param minexpr_percent Parameter; , Domain: U(0, 1), Default: 0, Format:
-#' numeric.
-#' @param minexpr_value Parameter; , Domain: U(0, 10), Default: 0, Format:
-#' numeric.
-#' @param cvcutoff Parameter; , Domain: U(0, 5), Default: 0, Format: numeric.
-#' @param clusternum_lower Parameter; , Domain: U(2, 20), Default: 2, Format:
-#' integer.
-#' @param clusternum_upper Parameter; , Domain: U(2, 20), Default: 9, Format:
-#' integer.
-#' @param modelNames Parameter; , Domain: {EII, VII, EEI, VEI, EVI, VVI, EEE, EVE,
-#' VEE, VVE, EEV, VEV, EVV, VVV}, Default: VVV, Format: character.
+#' @param minexpr_percent . Domain: U(0, 1). Default: 0. Format: numeric.
+#' @param minexpr_value . Domain: U(0, 10). Default: 0. Format: numeric.
+#' @param cvcutoff . Domain: U(0, 5). Default: 0. Format: numeric.
+#' @param clusternum . Domain: ( U(2, 20), U(2, 20) ). Default: (2, 9). Format:
+#' range.
+#' @param modelNames . Domain: {EII, VII, EEI, VEI, EVI, VVI, EEE, EVE, VEE, VVE,
+#' EEV, VEV, EVV, VVV}. Default: VVV. Format: character.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_tscan <- function(
-    minexpr_percent = 0,
-    minexpr_value = 0,
-    cvcutoff = 0,
-    clusternum_lower = 2L,
-    clusternum_upper = 9L,
+    minexpr_percent = 0L,
+    minexpr_value = 0L,
+    cvcutoff = 0L,
+    clusternum = c(2L, 9L),
     modelNames = "VVV"
 ) {
   create_ti_method_container(
@@ -45,8 +40,7 @@ ti_tscan <- function(
     minexpr_percent = minexpr_percent,
     minexpr_value = minexpr_value,
     cvcutoff = cvcutoff,
-    clusternum_lower = clusternum_lower,
-    clusternum_upper = clusternum_upper,
+    clusternum = clusternum,
     modelNames = modelNames
   )
 }

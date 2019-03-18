@@ -7,12 +7,12 @@
 ti_slicer(kmin = 10L, m = 2L)
 }
 \arguments{
-\item{kmin}{Parameter; Smallest value of k to try, Domain: U(2, 20), Default:
-10, Format: integer.}
+\item{kmin}{Smallest value of k to try. Domain: U(2, 20). Default: 10. Format:
+integer.}
 
-\item{m}{Parameter; Intrinsic dimension of the data. This parameter mainly
-influences the visualisation of the results. The real intrinsic dimension will
-be calculated automaticly, Domain: U(2, 20), Default: 2, Format: integer.}
+\item{m}{Intrinsic dimension of the data. This parameter mainly influences the
+visualisation of the results. The real intrinsic dimension will be calculated
+automaticly. Domain: U(2, 20). Default: 2. Format: integer.}
 }
 \value{
 A TI method wrapper to be used together with

@@ -21,12 +21,12 @@
 #' and computational analysis using temporal mixture modeling resolves TH1/TFHfate
 #' bifurcation in malaria. Science Immunology 2, eaal2192.
 #' 
-#' @param log_expression_cutoff Parameter; The log expression cutoff, Domain:
-#' U(0.5, 5), Default: 0.5, Format: numeric.
-#' @param min_cells_expression_cutoff Parameter; The min expression cutoff,
-#' Domain: U(0, 20), Default: 0, Format: numeric.
-#' @param ndim Parameter; Number of dimensions for dimensionality reduction,
-#' Domain: U(1, 5), Default: 2, Format: integer.
+#' @param log_expression_cutoff The log expression cutoff. Domain: U(0.5, 5).
+#' Default: 0.5. Format: numeric.
+#' @param min_cells_expression_cutoff The min expression cutoff. Domain: U(0, 20).
+#' Default: 0. Format: numeric.
+#' @param ndim Number of dimensions for dimensionality reduction. Domain: U(1, 5).
+#' Default: 2. Format: integer.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

@@ -7,11 +7,11 @@
 ti_matcher(quantiles = 50L, method = "linear")
 }
 \arguments{
-\item{quantiles}{Parameter; Quantiles How many quantiles to use when computing
-warp functions (integer), Domain: U(2, 500), Default: 50, Format: integer.}
+\item{quantiles}{Quantiles How many quantiles to use when computing warp
+functions (integer). Domain: U(2, 500). Default: 50. Format: integer.}
 
-\item{method}{Parameter; Gaussian process regression or linear interpolation?
-("gp" or "linear), Domain: {gp, linear}, Default: linear, Format: character.}
+\item{method}{Gaussian process regression or linear interpolation? ("gp" or
+"linear). Domain: {gp, linear}. Default: linear. Format: character.}
 }
 \value{
 A TI method wrapper to be used together with

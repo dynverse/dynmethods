@@ -14,17 +14,17 @@
 #' 
 #' 
 #' 
-#' @param dimred Parameter; Which dimensionality reduction method to use, Domain:
-#' {pca, mds, tsne, ica, lle, landmark_mds, mds_sammon, mds_isomds, mds_smacof,
-#' umap, dm_diffusionMap}, Default: landmark_mds, Format: character.
-#' @param ndim Parameter; The number of dimensions, Domain: U(2, 10), Default: 5,
+#' @param dimred Which dimensionality reduction method to use. Domain: {pca, mds,
+#' tsne, ica, lle, landmark_mds, mds_sammon, mds_isomds, mds_smacof, umap,
+#' dm_diffusionMap}. Default: landmark_mds. Format: character.
+#' @param ndim The number of dimensions. Domain: U(2, 10). Default: 5. Format:
+#' integer.
+#' @param max_iter The max number of iterations. Domain: e^U(3.22, 13.82).
+#' Default: 15000. Format: numeric.
+#' @param max_nodes The maximum number of nodes. Domain: U(2, 30). Default: 8.
 #' Format: integer.
-#' @param max_iter Parameter; The max number of iterations, Domain: e^U(3.22,
-#' 13.82), Default: 15000, Format: numeric.
-#' @param max_nodes Parameter; The maximum number of nodes, Domain: U(2, 30),
-#' Default: 8, Format: integer.
-#' @param apply_mst Parameter; If true, an MST post-processing of the GNG is
-#' performed, Default: TRUE, Format: logical.
+#' @param apply_mst If true, an MST post-processing of the GNG is performed.
+#' Default: TRUE. Format: logical.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
