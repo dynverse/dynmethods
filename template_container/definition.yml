@@ -2,15 +2,16 @@ method:
   id: template
   name: Template
   tool_id: template
-  source: tool|control
+  source: tool|adaptation|offtheshelf|control
   platform: R|Python
   url: https://github.com/dynverse/template
   license: GPL-3
-  authors:
+  authors: 
   - given: Bob
     family: Dylan
     email: bob.dylan@example.com
     github: bobdylan
+    orcid: '0000-0003-1234-5678'
 
 manuscript: 
   doi: '101010101/1101010101'
@@ -35,7 +36,6 @@ wrapper:
   - graph
   - acyclic_graph
   - disconnected_graph
-  example: /code/example.R
   input_required: 
   - counts
   - expression
