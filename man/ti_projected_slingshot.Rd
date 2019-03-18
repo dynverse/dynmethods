@@ -11,42 +11,42 @@ ti_projected_slingshot(shrink = 1, reweight = TRUE, reassign = TRUE,
 \arguments{
 \item{shrink}{Parameter; Logical or numeric between 0 and 1, determines whether
 and how much to shrink branching lineages toward their average prior to the
-split., Domain: e^U(-Inf, 0.00), Default: 1, Format: numeric.}
+split, Domain: e^U(-Inf, 0.00), Default: 1, Format: numeric.}
 
 \item{reweight}{Parameter; Logical, whether to allow cells shared between
 lineages to be reweighted during curve-fitting. If \code{TRUE}, cells shared
 between lineages will be weighted by: distance to nearest curve / distance to
-curve., Default: TRUE, Format: logical.}
+curve, Default: TRUE, Format: logical.}
 
 \item{reassign}{Parameter; Logical, whether to reassign cells to lineages at
 each iteration. If TRUE, cells will be added to a lineage when their projection
 distance to the curve is less than the median distance for all cells currently
 assigned to the lineage. Additionally, shared cells will be removed from a
 lineage if their projection distance to the curve is above the 90th percentile
-and their weight along the curve is less than 0.1., Default: TRUE, Format:
+and their weight along the curve is less than 0.1, Default: TRUE, Format:
 logical.}
 
 \item{thresh}{Parameter; Numeric, determines the convergence criterion. Percent
 change in the total distance from cells to their projections along curves must
-be less than thresh. Default is 0.001, similar to principal.curve., Domain:
+be less than thresh. Default is 0.001, similar to principal.curve, Domain:
 e^U(-11.51, 11.51), Default: 0.001, Format: numeric.}
 
 \item{maxit}{Parameter; Numeric, maximum number of iterations, see
-principal.curve., Domain: U(0, 50), Default: 10, Format: integer.}
+principal.curve, Domain: U(0, 50), Default: 10, Format: integer.}
 
 \item{stretch}{Parameter; Numeric factor by which curves can be extrapolated
-beyond endpoints. Default is 2, see principal.curve., Domain: e^U(-Inf, 1.61),
+beyond endpoints. Default is 2, see principal.curve, Domain: e^U(-Inf, 1.61),
 Default: 2, Format: numeric.}
 
 \item{smoother}{Parameter; Choice of scatter plot smoother. Same as
 principal.curve, but "lowess" option is replaced with "loess" for additional
-flexibility., Domain: {smooth.spline, loess, periodic.lowess}, Default:
+flexibility, Domain: {smooth.spline, loess, periodic.lowess}, Default:
 smooth.spline, Format: character.}
 
 \item{shrink.method}{Parameter; Character denoting how to determine the
 appropriate amount of shrinkage for a branching lineage. Accepted values are
 the same as for \code{kernel} in \code{\link[=density]{density()}} (default is \code{"cosine"}), as
-well as \code{"tricube"} and \code{"density"}. See 'Details' for more., Domain:
+well as \code{"tricube"} and \code{"density"}. See 'Details' for more, Domain:
 {cosine, tricube, density}, Default: cosine, Format: character.}
 }
 \value{

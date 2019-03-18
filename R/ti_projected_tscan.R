@@ -15,17 +15,17 @@
 #' 
 #' 
 #' 
-#' @param minexpr_percent Parameter; ., Domain: U(0, 1), Default: 0, Format:
+#' @param minexpr_percent Parameter; , Domain: U(0, 1), Default: 0, Format:
 #' numeric.
-#' @param minexpr_value Parameter; ., Domain: U(0, 10), Default: 0, Format:
+#' @param minexpr_value Parameter; , Domain: U(0, 10), Default: 0, Format:
 #' numeric.
-#' @param cvcutoff Parameter; ., Domain: U(0, 5), Default: 0, Format: numeric.
-#' @param clusternum_lower Parameter; ., Domain: U(2, 20), Default: 2, Format:
+#' @param cvcutoff Parameter; , Domain: U(0, 5), Default: 0, Format: numeric.
+#' @param clusternum_lower Parameter; , Domain: U(2, 20), Default: 2, Format:
 #' integer.
-#' @param clusternum_upper Parameter; ., Domain: U(2, 20), Default: 9, Format:
+#' @param clusternum_upper Parameter; , Domain: U(2, 20), Default: 9, Format:
 #' integer.
-#' @param modelNames Parameter; ., Domain: {EII, VII, EEI, VEI, EVI, VVI, EEE,
-#' EVE, VEE, VVE, EEV, VEV, EVV, VVV}, Default: VVV, Format: character.
+#' @param modelNames Parameter; , Domain: {EII, VII, EEI, VEI, EVI, VVI, EEE, EVE,
+#' VEE, VVE, EEV, VEV, EVV, VVV}, Default: VVV, Format: character.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

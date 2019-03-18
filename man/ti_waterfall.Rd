@@ -7,7 +7,7 @@
 ti_waterfall(num_clusters = 10L)
 }
 \arguments{
-\item{num_clusters}{Parameter; ., Domain: U(2, 20), Default: 10, Format:
+\item{num_clusters}{Parameter; , Domain: U(2, 20), Default: 10, Format:
 integer.}
 }
 \value{

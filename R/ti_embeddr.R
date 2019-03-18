@@ -16,23 +16,23 @@
 #' and principal curves for high resolution pseudotemporal ordering of single-cell
 #' RNA-seq profiles.
 #' 
-#' @param ndim Parameter; Dimension of the embedded space, default is 2., Domain:
+#' @param ndim Parameter; Dimension of the embedded space, default is 2, Domain:
 #' U(2, 10), Default: 2, Format: integer.
 #' @param kernel Parameter; The choice of kernel. 'nn' will give nearest
 #' neighbours, 'dist' gives minimum distance and'heat' gives a heat kernel.
 #' Discussed in detail in 'Laplacian Eigenmaps and Spectral Techniques for
-#' Embedding and Clustering',Belkin & Niyogi., Domain: {nn, dist, heat}, Default:
+#' Embedding and Clustering',Belkin & Niyogi, Domain: {nn, dist, heat}, Default:
 #' nn, Format: character.
 #' @param metric Parameter; The metric with which to assess 'closeness' for
 #' nearest neighbour selection, one of'correlation' (pearson) or 'euclidean'.
-#' Default is 'correlation'., Domain: {correlation, euclidean, cosine}, Default:
+#' Default is 'correlation', Domain: {correlation, euclidean, cosine}, Default:
 #' correlation, Format: character.
 #' @param nn_pct Parameter; The percentage of cells to use as tge number of
-#' nearest neighbours if kernel == 'nn'., Domain: U(-2, 1), Default: 0, Format:
+#' nearest neighbours if kernel == 'nn', Domain: U(-2, 1), Default: 0, Format:
 #' numeric.
-#' @param eps Parameter; Maximum distance parameter if kernel == 'dist'., Domain:
+#' @param eps Parameter; Maximum distance parameter if kernel == 'dist', Domain:
 #' U(-5, 5), Default: 0, Format: numeric.
-#' @param t Parameter; "time" for heat kernel if kernel == "heat"., Domain: U(-5,
+#' @param t Parameter; "time" for heat kernel if kernel == "heat", Domain: U(-5,
 #' 5), Default: 0, Format: numeric.
 #' @param symmetrize Parameter; How to make the adjacency matrix symmetric. Note
 #' that slightlycounterintuitively, node i having node j as a nearest neighbour
@@ -41,25 +41,25 @@
 #' 0.5 so the adjacency matrix becomes \eqn{0.5(A + A')}\item \code{ceil} If the
 #' above case occurs set the link weight to 1 (ie take the ceiling of the mean
 #' case)\item \code{floor} If the above case occurs set the link weight to 0 (ie
-#' take the floor of the mean case)}., Domain: {mean, ceil, floor}, Default: mean,
+#' take the floor of the mean case)}, Domain: {mean, ceil, floor}, Default: mean,
 #' Format: character.
 #' @param measure_type Parameter; Type of laplacian eigenmap, which corresponds to
 #' the constraint on the eigenvalue problem. Iftype is 'unorm' (default), then the
 #' graph measure used is the identity matrix, while if type is 'norm' then the
-#' measureused is the degree matrix., Domain: {unorm, norm}, Default: unorm,
+#' measureused is the degree matrix, Domain: {unorm, norm}, Default: unorm,
 #' Format: character.
 #' @param thresh Parameter; Convergence threshold on shortest distances to the
-#' curve., Domain: e^U(-11.51, 11.51), Default: 0.001, Format: numeric.
-#' @param maxit Parameter; Maximum number of iterations., Domain: U(0, 50),
+#' curve, Domain: e^U(-11.51, 11.51), Default: 0.001, Format: numeric.
+#' @param maxit Parameter; Maximum number of iterations, Domain: U(0, 50),
 #' Default: 10, Format: integer.
 #' @param stretch Parameter; A factor by which the curve can be extrapolated
 #' whenpoints are projected.  Default is 2 (times the last segmentlength). The
-#' default is 0 for \code{smoother} equal to\code{"periodic_lowess"}., Domain:
-#' U(0, 5), Default: 2, Format: numeric.
+#' default is 0 for \code{smoother} equal to\code{"periodic_lowess"}, Domain: U(0,
+#' 5), Default: 2, Format: numeric.
 #' @param smoother Parameter; Choice of smoother. The default
 #' is\code{"smooth_spline"}, and other choices are \code{"lowess"}
 #' and\code{"periodic_lowess"}. The latter allows one to fit closed curves.Beware,
-#' you may want to use \code{iter = 0} with \code{lowess()}., Domain:
+#' you may want to use \code{iter = 0} with \code{lowess()}, Domain:
 #' {smooth.spline, lowess, periodic.lowess}, Default: smooth.spline, Format:
 #' character.
 #' 

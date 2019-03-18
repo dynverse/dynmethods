@@ -17,59 +17,59 @@
 #' Schier, A.F., 2018. Single-cell reconstruction of developmental trajectories
 #' during zebrafish embryogenesis. Science 360, eaar3131.
 #' 
-#' @param knn Parameter; Number of nearest neighbors to use. `0` takes a guess.,
+#' @param knn Parameter; Number of nearest neighbors to use. `0` takes a guess,
 #' Domain: U(0, 50), Default: 0, Format: integer.
 #' @param sigma.use Parameter; Kernel width to use for the diffusion map. `0` uses
-#' destiny's global auto-detection procedure., Domain: U(0, 1), Default: 0,
-#' Format: numeric.
+#' destiny's global auto-detection procedure, Domain: U(0, 1), Default: 0, Format:
+#' numeric.
 #' @param distance Parameter; Distance metric to use for determining transition
-#' probabilities., Domain: {euclidean, cosine, rankcor}, Default: euclidean,
+#' probabilities, Domain: {euclidean, cosine, rankcor}, Default: euclidean,
 #' Format: character.
-#' @param n_floods Parameter; Number of simulations to perform and average.,
+#' @param n_floods Parameter; Number of simulations to perform and average,
 #' Domain: U(5, 50), Default: 20, Format: integer.
-#' @param stability.div Parameter; Number of simulation subsamplings to
-#' calculate., Domain: U(2, 50), Default: 10, Format: numeric.
+#' @param stability.div Parameter; Number of simulation subsamplings to calculate,
+#' Domain: U(2, 50), Default: 10, Format: numeric.
 #' @param mp.factor Parameter; Retain PCs than are this factor more than the
 #' estimated maximum singular value expected or random data. This is useful in
 #' cases when there are many PCs that have standard deviations just above that
-#' expected by random, which probably represent noise and should be excluded.,
+#' expected by random, which probably represent noise and should be excluded,
 #' Domain: U(0, 10), Default: 1, Format: numeric.
-#' @param perplexity Parameter; Perplexity parameter for the tSNE., Domain: U(0,
+#' @param perplexity Parameter; Perplexity parameter for the tSNE, Domain: U(0,
 #' 100), Default: 30, Format: numeric.
 #' @param theta Parameter; Speed/accuracy trade-off for Barnes-Hut approximation
-#' of tSNE. 0 is exact tSNE, higher is less accurate., Domain: U(0, 1), Default:
+#' of tSNE. 0 is exact tSNE, higher is less accurate, Domain: U(0, 1), Default:
 #' 0.5, Format: numeric.
 #' @param max_iter Parameter; Number of nearest neighbors to use. `0` takes a
-#' guess., Domain: e^U(4.61, 9.21), Default: 1000, Format: integer.
-#' @param num.nn Parameter; How many nearest-neighbors to use in the k-nn graph.,
+#' guess, Domain: e^U(4.61, 9.21), Default: 1000, Format: integer.
+#' @param num.nn Parameter; How many nearest-neighbors to use in the k-nn graph,
 #' Domain: e^U(2.30, 4.61), Default: 30, Format: integer.
 #' @param do.jaccard Parameter; Weight edges in the k-nn graph according to their
-#' Jaccard overlap?., Default: TRUE, Format: logical.
+#' Jaccard overlap?, Default: TRUE, Format: logical.
 #' @param optimal.cells.forward Parameter; The number of cells in the direction
 #' specified by pseudotime.direction at which the logistic should reach
-#' 1-asymptote., Domain: e^U(1.61, 4.61), Default: 20, Format: numeric.
+#' 1-asymptote, Domain: e^U(1.61, 4.61), Default: 20, Format: numeric.
 #' @param max.cells.back Parameter; The number of cells in the direction opposite
 #' from that specified by pseudotime.direction at which the logistic should reach
-#' asymptote., Domain: e^U(1.61, 5.30), Default: 40, Format: numeric.
-#' @param n.per.tip Parameter; Number of walks to do per tip., Domain: e^U(4.61,
+#' asymptote, Domain: e^U(1.61, 5.30), Default: 40, Format: numeric.
+#' @param n.per.tip Parameter; Number of walks to do per tip, Domain: e^U(4.61,
 #' 13.82), Default: 25000, Format: integer.
 #' @param root.visits Parameter; Number of steps to take that visit a root.cell
-#' before stopping., Domain: U(1, 5), Default: 1, Format: integer.
-#' @param max.steps Parameter; Number of walks to do per tip., Domain: e^U(4.61,
+#' before stopping, Domain: U(1, 5), Default: 1, Format: integer.
+#' @param max.steps Parameter; Number of walks to do per tip, Domain: e^U(4.61,
 #' 13.82), Default: 25000, Format: integer.
 #' @param n.subsample Parameter; Number of subsamplings to perform for calculating
-#' stability., Domain: e^U(0.69, 4.61), Default: 10, Format: integer.
+#' stability, Domain: e^U(0.69, 4.61), Default: 10, Format: integer.
 #' @param divergence.method Parameter; Distance metric to use for determining
-#' transition probabilities., Domain: {ks, preference}, Default: ks, Format:
+#' transition probabilities, Domain: {ks, preference}, Default: ks, Format:
 #' character.
 #' @param cells.per.pseudotime.bin Parameter; Approximate number of cells to
-#' assign to each pseudotime bin for branchpoint finding., Domain: e^U(2.30,
-#' 6.91), Default: 80, Format: integer.
+#' assign to each pseudotime bin for branchpoint finding, Domain: e^U(2.30, 6.91),
+#' Default: 80, Format: integer.
 #' @param bins.per.pseudotime.window Parameter; Width of moving window in
-#' pseudotime used for branchpoint finding, in terms of bins., Domain: U(2, 20),
+#' pseudotime used for branchpoint finding, in terms of bins, Domain: U(2, 20),
 #' Default: 5, Format: integer.
 #' @param p.thresh Parameter; P-value threshold to use in determining whether
-#' visitation is significantly different from pairs of tips., Domain: e^U(-11.51,
+#' visitation is significantly different from pairs of tips, Domain: e^U(-11.51,
 #' 0.00), Default: 0.01, Format: numeric.
 #' 
 #' @return A TI method wrapper to be used together with

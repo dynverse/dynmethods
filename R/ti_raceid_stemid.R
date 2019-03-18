@@ -19,72 +19,71 @@
 #' Identity using Single-Cell Transcriptome Data. Cell Stem Cell 19, 266–277.
 #' 
 #' @param knn Parameter; Number of nearest neighbors used to infer corresponding
-#' cell types in different batches., Domain: U(5, 50), Default: 10, Format:
+#' cell types in different batches, Domain: U(5, 50), Default: 10, Format:
 #' integer.
 #' @param ccor Parameter; Correlation coefficient used as a treshhold for
-#' determining genes correlated to eachother., Domain: U(0, 1), Default: 0.4,
+#' determining genes correlated to eachother, Domain: U(0, 1), Default: 0.4,
 #' Format: numeric.
 #' @param metric Parameter; Distances are computed from the filtered expression
 #' matrix after optional feature selection, dimensional reduction, and/or
-#' transformation (batch correction)., Domain: {pearson, spearman, logpearson,
+#' transformation (batch correction), Domain: {pearson, spearman, logpearson,
 #' euclidean}, Default: pearson, Format: character.
 #' @param sat Parameter; If \code{TRUE}, then the number of clusters is determined
 #' based on finding the saturation point of the mean within-cluster dispersion as
 #' a function of the cluster number. If \code{FALSE}, then cluster number needs to
-#' be given as \code{cln}., Default: TRUE, Format: logical.
-#' @param samp Parameter; Number of bootstrapping runs for clusterboot., Domain:
+#' be given as \code{cln}, Default: TRUE, Format: logical.
+#' @param samp Parameter; Number of bootstrapping runs for clusterboot, Domain:
 #' e^U(3.91, 9.21), Default: 1000, Format: integer.
 #' @param cln Parameter; Number of clusters to be used. If \code{sat} is
-#' \code{TRUE}, this number is inferred by the saturation criterion., Domain:
-#' U(10, 100), Default: 30, Format: integer.
+#' \code{TRUE}, this number is inferred by the saturation criterion, Domain: U(10,
+#' 100), Default: 30, Format: integer.
 #' @param clustnr Parameter; Maximum number of clusters for the derivation of the
-#' cluster number by the saturation of mean within-cluster-dispersion., Domain:
+#' cluster number by the saturation of mean within-cluster-dispersion, Domain:
 #' U(10, 100), Default: 30, Format: integer.
-#' @param bootnr Parameter; Number of booststrapping runs for clusterboot.,
-#' Domain: U(20, 100), Default: 50, Format: integer.
-#' @param FUNcluster Parameter; Clustering method used by RaceID3., Domain:
+#' @param bootnr Parameter; Number of booststrapping runs for clusterboot, Domain:
+#' U(20, 100), Default: 50, Format: integer.
+#' @param FUNcluster Parameter; Clustering method used by RaceID3, Domain:
 #' {kmedoids, kmeans, hclust}, Default: kmedoids, Format: character.
 #' @param probthr Parameter; Outlier probability threshold for a minimum of outlg
 #' genes to be an outlier cell. This probability is computed from a negative
-#' binomial background model of expression in a cluster., Domain: e^U(-11.51,
+#' binomial background model of expression in a cluster, Domain: e^U(-11.51,
 #' 0.00), Default: 0.001, Format: numeric.
 #' @param outminc Parameter; Minimal transcript count of a gene in a clusters to
-#' be tested for being an outlier gene., Domain: U(0, 100), Default: 5, Format:
+#' be tested for being an outlier gene, Domain: U(0, 100), Default: 5, Format:
 #' integer.
 #' @param outlg Parameter; Minimum number of outlier genes required for being an
-#' outlier cell., Domain: U(0, 100), Default: 2, Format: integer.
+#' outlier cell, Domain: U(0, 100), Default: 2, Format: integer.
 #' @param outdistquant Parameter; Real number between zero and one. Outlier cells
 #' are merged to outlier clusters if their distance smaller than the
 #' outdistquant-quantile of the distance distribution of pairs of cells in the
-#' orginal clusters after outlier removal., Domain: U(0, 1), Default: 0.95,
-#' Format: numeric.
+#' orginal clusters after outlier removal, Domain: U(0, 1), Default: 0.95, Format:
+#' numeric.
 #' @param initial_cmd Parameter; If TRUE, then the t-SNE map computation is
 #' initialized with a configuration obtained by classical multidimensional
-#' scaling., Default: TRUE, Format: logical.
-#' @param perplexity Parameter; Perplexity of the t-SNE map., Domain: U(5, 100),
+#' scaling, Default: TRUE, Format: logical.
+#' @param perplexity Parameter; Perplexity of the t-SNE map, Domain: U(5, 100),
 #' Default: 30, Format: integer.
 #' @param cthr Parameter; Clusters to be included into the StemID2 analysis must
-#' contain more than cthr cells. D., Domain: U(1, 25), Default: 5, Format:
-#' integer.
+#' contain more than cthr cells. D, Domain: U(1, 25), Default: 5, Format: integer.
 #' @param nmode Parameter; If \code{TRUE}, then a cell of given cluster is
 #' assigned to the link to the cluster with the smallest average distance of the
-#' knn nearest neighbours within this cluster., Default: TRUE, Format: logical.
-#' @param projcells_knn Parameter; See \code{nmode}., Domain: U(3, 20), Default:
-#' 3, Format: integer.
+#' knn nearest neighbours within this cluster, Default: TRUE, Format: logical.
+#' @param projcells_knn Parameter; See \code{nmode}, Domain: U(3, 20), Default: 3,
+#' Format: integer.
 #' @param fr Parameter; Use Fruchterman-Rheingold layout instead of t-SNE for
-#' dimensional-reduction representation of the lineage tree., Default: FALSE,
+#' dimensional-reduction representation of the lineage tree, Default: FALSE,
 #' Format: logical.
 #' @param pdishuf Parameter; Number of randomizations of cell positions for which
-#' to compute projections of cells on inter-cluster links., Domain: e^U(2.30,
+#' to compute projections of cells on inter-cluster links, Domain: e^U(2.30,
 #' 9.21), Default: 500, Format: integer.
 #' @param fast Parameter; If \code{TRUE} and \code{nmode} is \code{FALSE} cells
 #' will still be assigned to links based on maximum projections but a fast
 #' approximate background model will be used to infer significance. The function
-#' will do nothing in this case., Default: FALSE, Format: logical.
+#' will do nothing in this case, Default: FALSE, Format: logical.
 #' @param pthr Parameter; P-value cutoff for link significance. This threshold is
 #' applied for the calculation of link scores reflecting how uniformly a link is
-#' occupied by cells., Domain: e^U(-11.51, 0.00), Default: 0.01, Format: numeric.
-#' @param scthr Parameter; Score threshold for links to be shown in the graph.,
+#' occupied by cells, Domain: e^U(-11.51, 0.00), Default: 0.01, Format: numeric.
+#' @param scthr Parameter; Score threshold for links to be shown in the graph,
 #' Domain: U(0, 1), Default: 0.2, Format: numeric.
 #' 
 #' @return A TI method wrapper to be used together with

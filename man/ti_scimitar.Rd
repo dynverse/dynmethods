@@ -8,21 +8,21 @@ ti_scimitar(covariance_type = "diag", degree = 3L, step_size = 0.07,
   cov_estimator = "identity", cov_reg = 0.05, max_iter = 3L)
 }
 \arguments{
-\item{covariance_type}{Parameter; ., Domain: {diag, spherical, full}, Default:
+\item{covariance_type}{Parameter; , Domain: {diag, spherical, full}, Default:
 diag, Format: character.}
 
-\item{degree}{Parameter; ., Domain: U(1, 20), Default: 3, Format: integer.}
+\item{degree}{Parameter; , Domain: U(1, 20), Default: 3, Format: integer.}
 
-\item{step_size}{Parameter; ., Domain: e^U(-4.61, -2.30), Default: 0.07,
-Format: numeric.}
-
-\item{cov_estimator}{Parameter; ., Domain: {identity, diag, sample, global,
-glasso, average}, Default: identity, Format: character.}
-
-\item{cov_reg}{Parameter; ., Domain: e^U(-4.61, -2.30), Default: 0.05, Format:
+\item{step_size}{Parameter; , Domain: e^U(-4.61, -2.30), Default: 0.07, Format:
 numeric.}
 
-\item{max_iter}{Parameter; ., Domain: U(1, 20), Default: 3, Format: integer.}
+\item{cov_estimator}{Parameter; , Domain: {identity, diag, sample, global,
+glasso, average}, Default: identity, Format: character.}
+
+\item{cov_reg}{Parameter; , Domain: e^U(-4.61, -2.30), Default: 0.05, Format:
+numeric.}
+
+\item{max_iter}{Parameter; , Domain: U(1, 20), Default: 3, Format: integer.}
 }
 \value{
 A TI method wrapper to be used together with

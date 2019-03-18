@@ -17,19 +17,19 @@
 #' on the Ornstein–Uhlenbeck process to analyze single-cell expression data during
 #' differentiation. BMC Bioinformatics 17.
 #' 
-#' @param ndim Parameter; Number of pca dimensions., Domain: U(2, 20), Default: 2,
+#' @param ndim Parameter; Number of pca dimensions, Domain: U(2, 20), Default: 2,
 #' Format: integer.
 #' @param max_ite1 Parameter; Upper bound of EM iteration (without pseudo-time
-#' optimization)., Domain: e^U(0.69, 8.52), Default: 100, Format: integer.
+#' optimization), Domain: e^U(0.69, 8.52), Default: 100, Format: integer.
 #' @param max_ite2 Parameter; Upper bound of EM iteration (including pseudo-time
-#' optimization)., Domain: e^U(0.69, 13.12), Default: 100, Format: integer.
-#' @param alpha Parameter; Bounds of alpha., Domain: ( e^U(-6.91, 2.30),
-#' e^U(-6.91, 2.30) ), Default: (0.1, 100), Format: range.
-#' @param t Parameter; Bounds of pseudo-time., Domain: ( e^U(-11.51, 0.00),
+#' optimization), Domain: e^U(0.69, 13.12), Default: 100, Format: integer.
+#' @param alpha Parameter; Bounds of alpha, Domain: ( e^U(-6.91, 2.30), e^U(-6.91,
+#' 2.30) ), Default: (0.1, 100), Format: range.
+#' @param t Parameter; Bounds of pseudo-time, Domain: ( e^U(-11.51, 0.00),
 #' e^U(-11.51, 0.00) ), Default: (0.001, 2), Format: range.
-#' @param sigma_squared Parameter; Lower bound of sigma squared., Domain:
+#' @param sigma_squared Parameter; Lower bound of sigma squared, Domain:
 #' e^U(-6.91, 2.30), Default: 0.1, Format: numeric.
-#' @param thresh Parameter; Threshold., Domain: e^U(-4.61, 2.30), Default: 0.01,
+#' @param thresh Parameter; Threshold, Domain: e^U(-4.61, 2.30), Default: 0.01,
 #' Format: numeric.
 #' 
 #' @return A TI method wrapper to be used together with

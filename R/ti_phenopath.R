@@ -17,19 +17,18 @@
 #' populations.
 #' 
 #' @param thin Parameter; The number of iterations to wait each time
-#' beforere-calculating the elbo., Domain: U(2, 500), Default: 40, Format:
-#' integer.
+#' beforere-calculating the elbo, Domain: U(2, 500), Default: 40, Format: integer.
 #' @param z_init Parameter; The initialisation of the latent trajectory. Should be
 #' one of\enumerate{\item A positive integer describing which principal component
 #' of the data shouldbe used for initialisation (default 1), \emph{or}\item A
 #' numeric vector of length number of samples to be used directly for
 #' initialisation, \emph{or}\item The text character \code{"random"}, for random
-#' initialisation from a standard normal distribution.}., Domain: {1, 2, 3, 4, 5,
+#' initialisation from a standard normal distribution.}, Domain: {1, 2, 3, 4, 5,
 #' random}, Default: 1, Format: character.
 #' @param model_mu Parameter; Logical - should a gene-specific intercept term be
-#' modelled?., Default: FALSE, Format: logical.
+#' modelled?, Default: FALSE, Format: logical.
 #' @param scale_y Parameter; Logical - should the expression matrix be centre
-#' scaled?., Default: TRUE, Format: logical.
+#' scaled?, Default: TRUE, Format: logical.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

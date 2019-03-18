@@ -17,10 +17,10 @@
 #' entropy. Nucleic Acids Research gkw1278.
 #' 
 #' @param lm.method Parameter; Select "clustering" based or "graph" based method
-#' to infer lineage model., Domain: {clustering, graph}, Default: clustering,
+#' to infer lineage model, Domain: {clustering, graph}, Default: clustering,
 #' Format: character.
 #' @param model.type Parameter; The type of models that will be infered: "tree" -
-#' directed minimum spanning tree based, "graph" - directed graph based., Domain:
+#' directed minimum spanning tree based, "graph" - directed graph based, Domain:
 #' {tree, graph}, Default: tree, Format: character.
 #' @param ss.method Parameter; The method for defining core cell set for stable
 #' state detection: all - all the cells in a cluster constitute the core cell set;
@@ -30,29 +30,29 @@
 #' the prize nodes, linear prize-collecting steiner tree algorithm is used to
 #' approximate an optimal subnetwork, the cells in the subnetwork constitute the
 #' core cell set. Stable states are defined as the centroids of the core cell
-#' sets., Domain: {all, top, pcst}, Default: all, Format: character.
+#' sets, Domain: {all, top, pcst}, Default: all, Format: character.
 #' @param ss.threshold Parameter; The threshold used when ss.method is "top" or
-#' "pcst". Default: 0.25., Domain: U(0, 1), Default: 0.25, Format: numeric.
+#' "pcst". Default: 0.25, Domain: U(0, 1), Default: 0.25, Format: numeric.
 #' @param community.method Parameter; The method for network community detection.
 #' Most of the community detection methods implemented in the igraph package are
 #' supported, including "fast_greedy", "edge_betweenness", "label_prop",
 #' "leading_eigen","louvain","spinglass", "walktrap". If this parameter is set to
 #' "auto", the algorithm will perform all the community detection methods and
 #' select the one that generates the communities with best modularity. Only take
-#' effect when lm.method is "graph"., Domain: {fast_greedy, edge_betweenness,
+#' effect when lm.method is "graph", Domain: {fast_greedy, edge_betweenness,
 #' label_prop, leading_eigen, louvain, spinglass, walktrap, auto}, Default:
 #' louvain, Format: character.
 #' @param cluster.method Parameter; Use "kmeans" or "pam" to divide cells into
-#' clusters. Only take effect when lm.method is "clustering"., Domain: {kmeans,
+#' clusters. Only take effect when lm.method is "clustering", Domain: {kmeans,
 #' pam}, Default: kmeans, Format: character.
 #' @param k Parameter; The number of cell clusters. If NULL, Gap statistic will be
-#' used to determine an optimal k., Domain: U(0, 20), Default: 0, Format: integer.
+#' used to determine an optimal k, Domain: U(0, 20), Default: 0, Format: integer.
 #' @param k.max Parameter; The "k.max" parameter of cluster::clusGap(); used when
-#' k is NULL., Domain: U(3, 20), Default: 10, Format: integer.
+#' k is NULL, Domain: U(3, 20), Default: 10, Format: integer.
 #' @param B Parameter; The "B" parameter of cluster::clusGap(); used when k is
-#' NULL., Domain: U(3, 500), Default: 100, Format: integer.
+#' NULL, Domain: U(3, 500), Default: 100, Format: integer.
 #' @param k.opt.method Parameter; The "method" parameter of cluster::maxSE(); used
-#' when k is NULL., Domain: {firstmax, globalmax, Tibs2001SEmax, firstSEmax,
+#' when k is NULL, Domain: {firstmax, globalmax, Tibs2001SEmax, firstSEmax,
 #' globalSEmax}, Default: firstmax, Format: character.
 #' 
 #' @return A TI method wrapper to be used together with

@@ -17,28 +17,28 @@
 #' Zhang, M.Q., Jiang, R., Chen, T., 2017. Reconstructing cell cycle pseudo
 #' time-series via single-cell transcriptome data. Nature Communications 8.
 #' 
-#' @param TSPFold Parameter; No documentation provided by authors., Domain: U(2,
+#' @param TSPFold Parameter; No documentation provided by authors, Domain: U(2,
 #' 10), Default: 2, Format: integer.
-#' @param beginNum Parameter; No documentation provided by authors., Domain: U(2,
+#' @param beginNum Parameter; No documentation provided by authors, Domain: U(2,
 #' 20), Default: 10, Format: integer.
-#' @param endNum Parameter; No documentation provided by authors., Domain: U(2,
+#' @param endNum Parameter; No documentation provided by authors, Domain: U(2,
 #' 20), Default: 15, Format: integer.
 #' @param step_size Parameter; Determines the number of k to skip in your
 #' consensus path, ie ifstep_size = 2, then reCAT would only calculate and merge
 #' the paths fork = 12, 14, 16, 18, ..., n-2, n. We recommend step_size of up to a
 #' maximum of 5 while preserving the performance of reCAT. Usually a step_size of
 #' 2 (by default) would suffice and bigger steps are recommended for larger
-#' datasets (>1000 cells) in order to reduce computational time., Domain: U(2,
-#' 20), Default: 2, Format: integer.
+#' datasets (>1000 cells) in order to reduce computational time, Domain: U(2, 20),
+#' Default: 2, Format: integer.
 #' @param base_cycle_range_start Parameter; The minimal number of four k's for
 #' computing the reference cycle mentioned in the manuscript. Can be set to 6 or
-#' 7., Domain: U(6, 7), Default: 6, Format: integer.
+#' 7, Domain: U(6, 7), Default: 6, Format: integer.
 #' @param base_cycle_range_end Parameter; The maximal number of four k's for
 #' computing the reference cycle mentioned in the manuscript. Can be set to 6 or
-#' 7., Domain: U(9, 10), Default: 9, Format: integer.
-#' @param max_num Parameter; No documentation provided by authors., Domain: U(100,
+#' 7, Domain: U(9, 10), Default: 9, Format: integer.
+#' @param max_num Parameter; No documentation provided by authors, Domain: U(100,
 #' 500), Default: 300, Format: integer.
-#' @param clustMethod Parameter; No documentation provided by authors., Domain:
+#' @param clustMethod Parameter; No documentation provided by authors, Domain:
 #' {GMM, Pam, Kmeans}, Default: GMM, Format: character.
 #' 
 #' @return A TI method wrapper to be used together with

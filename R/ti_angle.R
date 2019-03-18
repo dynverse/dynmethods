@@ -13,7 +13,7 @@
 #' 
 #' 
 #' 
-#' @param dimred Parameter; Which dimensionality reduction method to use., Domain:
+#' @param dimred Parameter; Which dimensionality reduction method to use, Domain:
 #' {pca, mds, tsne, ica, lle, landmark_mds, mds_sammon, mds_isomds, mds_smacof,
 #' umap, dm_diffusionMap, dm_destiny}, Default: pca, Format: character.
 #' 

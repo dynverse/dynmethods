@@ -10,21 +10,21 @@ ti_monocle_ica(reduction_method = "ICA", max_components = 2L,
 }
 \arguments{
 \item{reduction_method}{Parameter; A character string specifying the algorithm
-to use for dimensionality reduction., Domain: {ICA}, Default: ICA, Format:
+to use for dimensionality reduction, Domain: {ICA}, Default: ICA, Format:
 character.}
 
-\item{max_components}{Parameter; The dimensionality of the reduced space.,
+\item{max_components}{Parameter; The dimensionality of the reduced space,
 Domain: U(2, 20), Default: 2, Format: integer.}
 
 \item{norm_method}{Parameter; Determines how to transform expression values
-prior to reducing dimensionality., Domain: {vstExprs, log, none}, Default: log,
+prior to reducing dimensionality, Domain: {vstExprs, log, none}, Default: log,
 Format: character.}
 
-\item{filter_features}{Parameter; Whether to include monocle feature
-filtering., Default: TRUE, Format: logical.}
+\item{filter_features}{Parameter; Whether to include monocle feature filtering,
+Default: TRUE, Format: logical.}
 
 \item{filter_features_mean_expression}{Parameter; Minimal mean feature
-expression, only used when \code{filter_features} is set to TRUE., Domain: U(0, 10),
+expression, only used when \code{filter_features} is set to TRUE, Domain: U(0, 10),
 Default: 0.1, Format: numeric.}
 }
 \value{

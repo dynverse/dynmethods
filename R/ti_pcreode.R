@@ -19,9 +19,9 @@
 #' Data Reveals Alternative Tuft Cell Origins in the Gut. Cell Systems 6,
 #' 37–51.e9.
 #' 
-#' @param n_pca_components Parameter; ., Domain: U(2, 10), Default: 3, Format:
+#' @param n_pca_components Parameter; , Domain: U(2, 10), Default: 3, Format:
 #' integer.
-#' @param num_runs Parameter; ., Domain: e^U(2.30, 4.61), Default: 10, Format:
+#' @param num_runs Parameter; , Domain: e^U(2.30, 4.61), Default: 10, Format:
 #' integer.
 #' 
 #' @return A TI method wrapper to be used together with

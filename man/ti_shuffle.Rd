@@ -7,7 +7,7 @@
 ti_shuffle(dummy_param = TRUE)
 }
 \arguments{
-\item{dummy_param}{Parameter; Dummy parameter., Default: TRUE, Format: logical.}
+\item{dummy_param}{Parameter; Dummy parameter, Default: TRUE, Format: logical.}
 }
 \value{
 A TI method wrapper to be used together with

@@ -13,8 +13,8 @@
 #' 
 #' 
 #' 
-#' @param ndim Parameter; ., Domain: U(2, 10), Default: 3, Format: integer.
-#' @param maxit Parameter; ., Domain: U(0, 100), Default: 10, Format: integer.
+#' @param ndim Parameter; , Domain: U(2, 10), Default: 3, Format: integer.
+#' @param maxit Parameter; , Domain: U(0, 100), Default: 10, Format: integer.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

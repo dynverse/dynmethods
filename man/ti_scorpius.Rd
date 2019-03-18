@@ -11,32 +11,32 @@ ti_scorpius(distance_method = "spearman", ndim = 3L, k = 4L,
 \arguments{
 \item{distance_method}{Parameter; A character string indicating which
 correlationcoefficient (or covariance) is to be computed. One of "pearson",
-"kendall", or "spearman"., Domain: {spearman, pearson, kendall}, Default:
+"kendall", or "spearman", Domain: {spearman, pearson, kendall}, Default:
 spearman, Format: character.}
 
-\item{ndim}{Parameter; The number of dimensions in the new space., Domain: U(2,
+\item{ndim}{Parameter; The number of dimensions in the new space, Domain: U(2,
 20), Default: 3, Format: integer.}
 
-\item{k}{Parameter; The number of clusters to cluster the data into., Domain:
+\item{k}{Parameter; The number of clusters to cluster the data into, Domain:
 U(1, 20), Default: 4, Format: integer.}
 
 \item{thresh}{Parameter; \code{principal_curve} parameter: convergence
-threshhold on shortest distances to the curve., Domain: e^U(-11.51, 11.51),
+threshhold on shortest distances to the curve, Domain: e^U(-11.51, 11.51),
 Default: 0.001, Format: numeric.}
 
 \item{maxit}{Parameter; \code{principal_curve} parameter: maximum number of
-iterations., Domain: U(0, 50), Default: 10, Format: integer.}
+iterations, Domain: U(0, 50), Default: 10, Format: integer.}
 
 \item{stretch}{Parameter; \code{principal_curve} parameter: a factor by which
-the curve can be extrapolated when points are projected., Domain: U(0, 5),
+the curve can be extrapolated when points are projected, Domain: U(0, 5),
 Default: 0, Format: numeric.}
 
 \item{smoother}{Parameter; \code{principal_curve} parameter: choice of
-smoother., Domain: {smooth_spline, lowess, periodic_lowess}, Default:
+smoother, Domain: {smooth_spline, lowess, periodic_lowess}, Default:
 smooth_spline, Format: character.}
 
 \item{sparse}{Parameter; Whether or not to use sparse MDS dimensionality
-reduction,for datasets with large amounts of cells., Default: TRUE, Format:
+reduction,for datasets with large amounts of cells, Default: TRUE, Format:
 logical.}
 }
 \value{

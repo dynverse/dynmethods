@@ -11,29 +11,29 @@ ti_mpath(distMethod = "euclidean", method = "kmeans",
 \arguments{
 \item{distMethod}{Parameter; The method for calculating dissimilarity between
 cells. distMethod can be one of "pearson", "kendall", "spearman" or
-"euclidean". Default is "euclidean"., Domain: {pearson, kendall, spearman,
+"euclidean". Default is "euclidean", Domain: {pearson, kendall, spearman,
 euclidean}, Default: euclidean, Format: character.}
 
 \item{method}{Parameter; Method for distinguishing landmark clusters from
 non-landmark clusters.method can be "kmeans" or "diversity" or "size" or
 "diversity_size". When method="diversity", numlm needs to be specified. Default
-is "diversity_size"., Domain: {kmeans, diversity, size, diversity_size},
+is "diversity_size", Domain: {kmeans, diversity, size, diversity_size},
 Default: kmeans, Format: character.}
 
-\item{numcluster}{Parameter; Number of initial clusters., Domain: U(3, 30),
+\item{numcluster}{Parameter; Number of initial clusters, Domain: U(3, 30),
 Default: 11, Format: integer.}
 
 \item{numcluster_null}{Parameter; If TRUE, will automatically select the number
-of clusters., Default: TRUE, Format: logical.}
+of clusters, Default: TRUE, Format: logical.}
 
 \item{diversity_cut}{Parameter; The cutoff value of diversity for
 differentiating landmark clusters from non-landmark clusters. The diversity of
-a landmark cluster must be below this cutoff., Domain: U(0.1, 1), Default: 0.6,
+a landmark cluster must be below this cutoff, Domain: U(0.1, 1), Default: 0.6,
 Format: numeric.}
 
 \item{size_cut}{Parameter; The cutoff value of size i.e. number of cells for
 differentiating landmark clusters from non-landmark clusters. The number of
-cells in a landmark cluster must be greater than this cutoff., Domain: U(0.01,
+cells in a landmark cluster must be greater than this cutoff, Domain: U(0.01,
 1), Default: 0.05, Format: numeric.}
 }
 \value{

@@ -17,23 +17,23 @@
 #' 2016. CellTree: an R/bioconductor package to infer the hierarchical structure
 #' of cell populations from single-cell RNA-seq data. BMC Bioinformatics 17.
 #' 
-#' @param method Parameter; LDA inference method to use., Domain: {maptpx},
+#' @param method Parameter; LDA inference method to use, Domain: {maptpx},
 #' Default: maptpx, Format: character.
 #' @param sd_filter Parameter; Standard-deviation threshold below which genes
-#' should be removed from the data., Domain: e^U(-4.61, 1.61), Default: 0.5,
+#' should be removed from the data, Domain: e^U(-4.61, 1.61), Default: 0.5,
 #' Format: numeric.
 #' @param absolute_width Parameter; Distance threshold below which a cell vertex
 #' is considered to be attached to a backbone vertex (see paper for more details).
 #' By default, this threshold is computed dynamically, based on the distance
-#' distribution for each branch., Domain: U(0, 1), Default: 0, Format: numeric.
+#' distribution for each branch, Domain: U(0, 1), Default: 0, Format: numeric.
 #' @param width_scale_factor Parameter; A scaling factor for the
 #' dynamically-computed distance threshold (ignored if absolute_width is
 #' provided). Higher values will result in less branches in the backbone tree,
-#' while lower values might lead to a large number of backbone branches., Domain:
+#' while lower values might lead to a large number of backbone branches, Domain:
 #' e^U(-2.30, 4.61), Default: 1.5, Format: numeric.
 #' @param outlier_tolerance_factor Parameter; Proportion of vertices, out of the
 #' total number of vertices divided by the total number of branches, that can be
-#' left at the end of the backbone tree-building algorithm., Domain: e^U(-9.21,
+#' left at the end of the backbone tree-building algorithm, Domain: e^U(-9.21,
 #' 6.91), Default: 0.1, Format: numeric.
 #' @param rooting_method Parameter; Method used to root the backbone tree. Must be
 #' either NULL or one of ‘longest.path’, ‘center.start.group’ or
@@ -42,17 +42,17 @@
 #' the starting group with lowest mean-square-distance to the others.
 #' ‘average.start.group’ creates a new artificial vertex, as the average of all
 #' cells in the starting group. If no value is provided, the best method is picked
-#' based on the type of grouping and start group information available., Domain:
+#' based on the type of grouping and start group information available, Domain:
 #' {longest.path, center.start.group, average.start.group, null}, Default: null,
 #' Format: character.
-#' @param num_topics Parameter; Number of topics to fit in the model., Domain: (
+#' @param num_topics Parameter; Number of topics to fit in the model, Domain: (
 #' U(2, 10), U(10, 30) ), Default: (2, 15), Format: range.
 #' @param tot_iter Parameter; Numeric parameters (optional) forwarded to the
-#' chosen LDA inference method's contol class., Domain: e^U(9.21, 13.82), Default:
+#' chosen LDA inference method's contol class, Domain: e^U(9.21, 13.82), Default:
 #' 200, Format: numeric.
 #' @param tolerance Parameter; Numeric parameters (optional) forwarded to the
-#' chosen LDA inference method's contol class., Domain: e^U(-6.91, -0.69),
-#' Default: 0.05, Format: numeric.
+#' chosen LDA inference method's contol class, Domain: e^U(-6.91, -0.69), Default:
+#' 0.05, Format: numeric.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

@@ -18,38 +18,37 @@
 #' Reconstruction of complex single-cell trajectories using CellRouter. Nature
 #' Communications 9.
 #' 
-#' @param ndim_pca Parameter; Number of principal components to compute., Domain:
+#' @param ndim_pca Parameter; Number of principal components to compute, Domain:
 #' U(2, 100), Default: 20, Format: integer.
-#' @param ndim_tsne Parameter; Number of tsne dimensions to compute., Domain: U(2,
+#' @param ndim_tsne Parameter; Number of tsne dimensions to compute, Domain: U(2,
 #' 100), Default: 11, Format: integer.
-#' @param max_iter Parameter; Maximal number of tsne iterations., Domain:
-#' e^U(4.61, 11.51), Default: 1000, Format: integer.
-#' @param cluster_method Parameter; Method to use for clustering., Domain:
+#' @param max_iter Parameter; Maximal number of tsne iterations, Domain: e^U(4.61,
+#' 11.51), Default: 1000, Format: integer.
+#' @param cluster_method Parameter; Method to use for clustering, Domain:
 #' {graph.clustering, model.clustering}, Default: graph.clustering, Format:
 #' character.
 #' @param k_clustering Parameter; Number of nearest neighbors to build a k-nearest
-#' neighbors graph for clustering., Domain: U(2, 1000), Default: 20, Format:
+#' neighbors graph for clustering, Domain: U(2, 1000), Default: 20, Format:
 #' integer.
 #' @param ndim_pca_clustering Parameter; Number of PCA dimensions used for
-#' k-nearest neighbors graph for clustering., Domain: U(2, 100), Default: 20,
+#' k-nearest neighbors graph for clustering, Domain: U(2, 100), Default: 20,
 #' Format: integer.
 #' @param k_knn Parameter; Number of nearest neighbors to build a k-nearest
-#' neighbors graph for knn., Domain: e^U(0.69, 6.91), Default: 10, Format:
-#' integer.
-#' @param ndim_pca_knn Parameter; Number of PCA dimensions used for knn., Domain:
+#' neighbors graph for knn, Domain: e^U(0.69, 6.91), Default: 10, Format: integer.
+#' @param ndim_pca_knn Parameter; Number of PCA dimensions used for knn, Domain:
 #' U(2, 100), Default: 20, Format: integer.
-#' @param sim_type Parameter; Similarity type for knn., Domain: {jaccard},
-#' Default: jaccard, Format: character.
-#' @param distance_method_paths Parameter; Distance method for paths., Domain:
+#' @param sim_type Parameter; Similarity type for knn, Domain: {jaccard}, Default:
+#' jaccard, Format: character.
+#' @param distance_method_paths Parameter; Distance method for paths, Domain:
 #' {euclidean, maximum, manhattan, canberra, binary, graph}, Default: graph,
 #' Format: character.
-#' @param ranks Parameter; How to rank the paths., Domain: {path_cost, path_flow,
+#' @param ranks Parameter; How to rank the paths, Domain: {path_cost, path_flow,
 #' rank, length}, Default: rank, Format: character.
-#' @param num_cells Parameter; Trajectories should contain at least num.cells.,
+#' @param num_cells Parameter; Trajectories should contain at least num.cells,
 #' Domain: U(3, 100), Default: 3, Format: integer.
 #' @param neighs Parameter; The size of the neighborhood in kNN graph used to
-#' smoothen kinetic profiles., Domain: U(2, 100), Default: 3, Format: integer.
-#' @param perplexity Parameter; Perplexity parameter for tsne., Domain: U(5, 100),
+#' smoothen kinetic profiles, Domain: U(2, 100), Default: 3, Format: integer.
+#' @param perplexity Parameter; Perplexity parameter for tsne, Domain: U(5, 100),
 #' Default: 30, Format: numeric.
 #' 
 #' @return A TI method wrapper to be used together with

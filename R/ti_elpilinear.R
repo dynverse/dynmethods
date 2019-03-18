@@ -15,22 +15,22 @@
 #' 
 #' 
 #' 
-#' @param NumNodes Parameter; The number of nodes of the principal graph., Domain:
+#' @param NumNodes Parameter; The number of nodes of the principal graph, Domain:
 #' U(2, 1000), Default: 50, Format: integer.
-#' @param NumEdges Parameter; The maximum number of edges., Domain: e^U(0.69,
+#' @param NumEdges Parameter; The maximum number of edges, Domain: e^U(0.69,
 #' 11.51), Default: 100000, Format: integer.
-#' @param InitNodes Parameter; Number of points to include in the initial graph.,
+#' @param InitNodes Parameter; Number of points to include in the initial graph,
 #' Domain: e^U(0.69, 6.91), Default: 2, Format: integer.
-#' @param Mu Parameter; Controls the elastic energy., Domain: e^U(-6.91, 0.00),
+#' @param Mu Parameter; Controls the elastic energy, Domain: e^U(-6.91, 0.00),
 #' Default: 0.1, Format: numeric.
-#' @param Lambda Parameter; Controls the elastic energy., Domain: e^U(-6.91,
-#' 0.00), Default: 0.01, Format: numeric.
+#' @param Lambda Parameter; Controls the elastic energy, Domain: e^U(-6.91, 0.00),
+#' Default: 0.01, Format: numeric.
 #' @param MaxNumberOfIterations Parameter; Maximum number of steps to embed the
-#' nodes., Domain: e^U(0.00, 6.91), Default: 10, Format: integer.
+#' nodes, Domain: e^U(0.00, 6.91), Default: 10, Format: integer.
 #' @param eps Parameter; Minimal relative change in the position of the nodes to
-#' stop embedment., Domain: e^U(-6.91, 0.00), Default: 0.01, Format: numeric.
+#' stop embedment, Domain: e^U(-6.91, 0.00), Default: 0.01, Format: numeric.
 #' @param CenterData Parameter; Should data and initial node positions be
-#' centered?., Default: FALSE, Format: logical.
+#' centered?, Default: FALSE, Format: logical.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

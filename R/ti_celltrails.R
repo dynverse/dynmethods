@@ -18,31 +18,31 @@
 #' Revealed with CellTrails. Cell Reports 23, 2901–2914.e14.
 #' 
 #' @param filter_features Parameter; Whether to include celltrails feature
-#' filtering., Default: FALSE, Format: logical.
+#' filtering, Default: FALSE, Format: logical.
 #' @param threshold_dl Parameter; Minimum number of samples; if value < 1 it is
-#' interpreted as fraction, otherwise as absolute sample count., Domain: U(0,
-#' 100), Default: 2, Format: integer.
+#' interpreted as fraction, otherwise as absolute sample count, Domain: U(0, 100),
+#' Default: 2, Format: integer.
 #' @param threshold_cov Parameter; Minimum coefficient of variation; numeric value
-#' between 0 and 1., Domain: U(0, 1), Default: 0.05, Format: numeric.
-#' @param threshold_ff Parameter; A Z-score cutoff., Domain: U(0, 5), Default:
-#' 1.7, Format: numeric.
-#' @param min_expr Parameter; Minimum average feature expression., Domain: U(0,
-#' 2), Default: 0, Format: numeric.
+#' between 0 and 1, Domain: U(0, 1), Default: 0.05, Format: numeric.
+#' @param threshold_ff Parameter; A Z-score cutoff, Domain: U(0, 5), Default: 1.7,
+#' Format: numeric.
+#' @param min_expr Parameter; Minimum average feature expression, Domain: U(0, 2),
+#' Default: 0, Format: numeric.
 #' @param frac Parameter; Fraction or number (if frac > 1) of eigengaps used to
-#' perform linear fit., Domain: e^U(0.00, 6.91), Default: 100, Format: numeric.
+#' perform linear fit, Domain: e^U(0.00, 6.91), Default: 100, Format: numeric.
 #' @param min_size Parameter; The initial cluster dedrogram is cut at an height
 #' such that the minimum cluster size is at least min_size; if min_size < 1 than
-#' the fraction of total samples is used, otherwise it is used as absoulte count.,
+#' the fraction of total samples is used, otherwise it is used as absoulte count,
 #' Domain: e^U(-6.91, 0.00), Default: 0.01, Format: numeric.
 #' @param min_feat Parameter; Minimum number of differentially expressed features
 #' between siblings. If this number is not reached, two neighboring clusters
-#' (siblings) in the pruned dendrogram get joined., Domain: U(1, 100), Default: 5,
+#' (siblings) in the pruned dendrogram get joined, Domain: U(1, 100), Default: 5,
 #' Format: integer.
 #' @param max_pval Parameter; Maximum P-value for differential expression
-#' computation., Domain: e^U(-16.12, 0.00), Default: 1e-04, Format: numeric.
+#' computation, Domain: e^U(-16.12, 0.00), Default: 1e-04, Format: numeric.
 #' @param min_fc Parameter; Mimimum fold-change for differential expression
-#' computation., Domain: U(0, 5), Default: 2, Format: numeric.
-#' @param l Parameter; Neighborhood size., Domain: U(1, 50), Default: 10, Format:
+#' computation, Domain: U(0, 5), Default: 2, Format: numeric.
+#' @param l Parameter; Neighborhood size, Domain: U(1, 50), Default: 10, Format:
 #' integer.
 #' 
 #' @return A TI method wrapper to be used together with

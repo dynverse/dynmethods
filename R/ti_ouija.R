@@ -15,18 +15,18 @@
 #' @references Campbell, K.R., Yau, C., 2016. A descriptive marker gene approach
 #' to single-cell pseudotime inference.
 #' 
-#' @param iter Parameter; Number of iterations., Domain: e^U(2.30, 6.91), Default:
+#' @param iter Parameter; Number of iterations, Domain: e^U(2.30, 6.91), Default:
 #' 100, Format: numeric.
 #' @param response_type Parameter; A vector declaring whether each gene exhibits
-#' "switch" or "transient"expression. Defaults to "switch" for all genes., Domain:
+#' "switch" or "transient"expression. Defaults to "switch" for all genes, Domain:
 #' {switch, transient}, Default: switch, Format: character.
 #' @param inference_type Parameter; The type of inference to be performed, either
 #' \code{hmc} for HamiltonianMonte Carlo or \code{vb} for ADVI (Variational
 #' Bayes). Note that HMC is typically more accuratebut VB will be orders of
-#' magnitude faster., Domain: {hmc, vb}, Default: hmc, Format: character.
+#' magnitude faster, Domain: {hmc, vb}, Default: hmc, Format: character.
 #' @param normalise_expression Parameter; Logical, default TRUE. If TRUE the data
 #' is pre-normalisedso the average peak expression is approximately 1. This makes
-#' the strength parametersapproximately comparable between genes., Default: TRUE,
+#' the strength parametersapproximately comparable between genes, Default: TRUE,
 #' Format: logical.
 #' 
 #' @return A TI method wrapper to be used together with

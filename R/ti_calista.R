@@ -15,9 +15,9 @@
 #' @references Papili Gao, N., Hartmann, T., Fang, T., Gunawan, R., 2018. CALISTA:
 #' Clustering And Lineage Inference in Single-Cell Transcriptional Analysis.
 #' 
-#' @param runs Parameter; Number of independent runs of greedy algorithm., Domain:
+#' @param runs Parameter; Number of independent runs of greedy algorithm, Domain:
 #' U(20, 100), Default: 50, Format: integer.
-#' @param max_iter Parameter; Number of iterations in greedy algorithm., Domain:
+#' @param max_iter Parameter; Number of iterations in greedy algorithm, Domain:
 #' U(20, 400), Default: 100, Format: integer.
 #' 
 #' @return A TI method wrapper to be used together with

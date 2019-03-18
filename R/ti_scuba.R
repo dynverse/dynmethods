@@ -19,17 +19,17 @@
 #' 111, E5643–E5650.
 #' 
 #' @param rigorous_gap_stats Parameter; Whether to use rigorous gap statistics to
-#' determine number of clusters., Default: TRUE, Format: logical.
-#' @param N_dim Parameter; Number of TSNE dimensions., Domain: U(2, 3), Default:
-#' 2, Format: integer.
+#' determine number of clusters, Default: TRUE, Format: logical.
+#' @param N_dim Parameter; Number of TSNE dimensions, Domain: U(2, 3), Default: 2,
+#' Format: integer.
 #' @param low_gene_threshold Parameter; Threshold value for genes of low
-#' expression levels., Domain: U(0, 5), Default: 1, Format: numeric.
+#' expression levels, Domain: U(0, 5), Default: 1, Format: numeric.
 #' @param low_gene_fraction_max Parameter; Maximum fraction of lowly-expressed
-#' cells allowed for each gene., Domain: U(0, 1), Default: 0.7, Format: numeric.
+#' cells allowed for each gene, Domain: U(0, 1), Default: 0.7, Format: numeric.
 #' @param min_split Parameter; Lower threshold on the number of cells in a cluster
-#' for this cluster to be split., Domain: U(1, 100), Default: 15, Format: integer.
+#' for this cluster to be split, Domain: U(1, 100), Default: 15, Format: integer.
 #' @param min_percentage_split Parameter; Minimum fraction of cells in the smaller
-#' cluster during a bifurcation., Domain: U(0, 1), Default: 0.25, Format: numeric.
+#' cluster during a bifurcation, Domain: U(0, 1), Default: 0.25, Format: numeric.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

@@ -9,22 +9,21 @@ ti_phenopath(thin = 40L, z_init = "1", model_mu = FALSE,
 }
 \arguments{
 \item{thin}{Parameter; The number of iterations to wait each time
-beforere-calculating the elbo., Domain: U(2, 500), Default: 40, Format:
-integer.}
+beforere-calculating the elbo, Domain: U(2, 500), Default: 40, Format: integer.}
 
 \item{z_init}{Parameter; The initialisation of the latent trajectory. Should be
 one of\enumerate{\item A positive integer describing which principal component
 of the data shouldbe used for initialisation (default 1), \emph{or}\item A
 numeric vector of length number of samples to be used directly for
 initialisation, \emph{or}\item The text character \code{"random"}, for random
-initialisation from a standard normal distribution.}., Domain: {1, 2, 3, 4, 5,
+initialisation from a standard normal distribution.}, Domain: {1, 2, 3, 4, 5,
 random}, Default: 1, Format: character.}
 
 \item{model_mu}{Parameter; Logical - should a gene-specific intercept term be
-modelled?., Default: FALSE, Format: logical.}
+modelled?, Default: FALSE, Format: logical.}
 
 \item{scale_y}{Parameter; Logical - should the expression matrix be centre
-scaled?., Default: TRUE, Format: logical.}
+scaled?, Default: TRUE, Format: logical.}
 }
 \value{
 A TI method wrapper to be used together with

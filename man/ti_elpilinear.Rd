@@ -9,29 +9,29 @@ ti_elpilinear(NumNodes = 50L, NumEdges = 100000L, InitNodes = 2L,
   CenterData = FALSE)
 }
 \arguments{
-\item{NumNodes}{Parameter; The number of nodes of the principal graph., Domain:
+\item{NumNodes}{Parameter; The number of nodes of the principal graph, Domain:
 U(2, 1000), Default: 50, Format: integer.}
 
-\item{NumEdges}{Parameter; The maximum number of edges., Domain: e^U(0.69,
+\item{NumEdges}{Parameter; The maximum number of edges, Domain: e^U(0.69,
 11.51), Default: 100000, Format: integer.}
 
-\item{InitNodes}{Parameter; Number of points to include in the initial graph.,
+\item{InitNodes}{Parameter; Number of points to include in the initial graph,
 Domain: e^U(0.69, 6.91), Default: 2, Format: integer.}
 
-\item{Mu}{Parameter; Controls the elastic energy., Domain: e^U(-6.91, 0.00),
+\item{Mu}{Parameter; Controls the elastic energy, Domain: e^U(-6.91, 0.00),
 Default: 0.1, Format: numeric.}
 
-\item{Lambda}{Parameter; Controls the elastic energy., Domain: e^U(-6.91,
-0.00), Default: 0.01, Format: numeric.}
+\item{Lambda}{Parameter; Controls the elastic energy, Domain: e^U(-6.91, 0.00),
+Default: 0.01, Format: numeric.}
 
 \item{MaxNumberOfIterations}{Parameter; Maximum number of steps to embed the
-nodes., Domain: e^U(0.00, 6.91), Default: 10, Format: integer.}
+nodes, Domain: e^U(0.00, 6.91), Default: 10, Format: integer.}
 
 \item{eps}{Parameter; Minimal relative change in the position of the nodes to
-stop embedment., Domain: e^U(-6.91, 0.00), Default: 0.01, Format: numeric.}
+stop embedment, Domain: e^U(-6.91, 0.00), Default: 0.01, Format: numeric.}
 
 \item{CenterData}{Parameter; Should data and initial node positions be
-centered?., Default: FALSE, Format: logical.}
+centered?, Default: FALSE, Format: logical.}
 }
 \value{
 A TI method wrapper to be used together with

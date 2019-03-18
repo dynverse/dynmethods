@@ -16,16 +16,16 @@
 #' @references CORDERO, P., STUART, J.M., 2016. TRACING CO-REGULATORY NETWORK
 #' DYNAMICS IN NOISY, SINGLE-CELL TRANSCRIPTOME TRAJECTORIES. Biocomputing 2017.
 #' 
-#' @param covariance_type Parameter; ., Domain: {diag, spherical, full}, Default:
+#' @param covariance_type Parameter; , Domain: {diag, spherical, full}, Default:
 #' diag, Format: character.
-#' @param degree Parameter; ., Domain: U(1, 20), Default: 3, Format: integer.
-#' @param step_size Parameter; ., Domain: e^U(-4.61, -2.30), Default: 0.07,
-#' Format: numeric.
-#' @param cov_estimator Parameter; ., Domain: {identity, diag, sample, global,
-#' glasso, average}, Default: identity, Format: character.
-#' @param cov_reg Parameter; ., Domain: e^U(-4.61, -2.30), Default: 0.05, Format:
+#' @param degree Parameter; , Domain: U(1, 20), Default: 3, Format: integer.
+#' @param step_size Parameter; , Domain: e^U(-4.61, -2.30), Default: 0.07, Format:
 #' numeric.
-#' @param max_iter Parameter; ., Domain: U(1, 20), Default: 3, Format: integer.
+#' @param cov_estimator Parameter; , Domain: {identity, diag, sample, global,
+#' glasso, average}, Default: identity, Format: character.
+#' @param cov_reg Parameter; , Domain: e^U(-4.61, -2.30), Default: 0.05, Format:
+#' numeric.
+#' @param max_iter Parameter; , Domain: U(1, 20), Default: 3, Format: integer.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

@@ -8,21 +8,21 @@ ti_gng(dimred = "landmark_mds", ndim = 5L, max_iter = 15000L,
   max_nodes = 8L, apply_mst = TRUE)
 }
 \arguments{
-\item{dimred}{Parameter; Which dimensionality reduction method to use., Domain:
+\item{dimred}{Parameter; Which dimensionality reduction method to use, Domain:
 {pca, mds, tsne, ica, lle, landmark_mds, mds_sammon, mds_isomds, mds_smacof,
 umap, dm_diffusionMap}, Default: landmark_mds, Format: character.}
 
-\item{ndim}{Parameter; The number of dimensions., Domain: U(2, 10), Default: 5,
+\item{ndim}{Parameter; The number of dimensions, Domain: U(2, 10), Default: 5,
 Format: integer.}
 
-\item{max_iter}{Parameter; The max number of iterations., Domain: e^U(3.22,
+\item{max_iter}{Parameter; The max number of iterations, Domain: e^U(3.22,
 13.82), Default: 15000, Format: numeric.}
 
-\item{max_nodes}{Parameter; The maximum number of nodes., Domain: U(2, 30),
+\item{max_nodes}{Parameter; The maximum number of nodes, Domain: U(2, 30),
 Default: 8, Format: integer.}
 
 \item{apply_mst}{Parameter; If true, an MST post-processing of the GNG is
-performed., Default: TRUE, Format: logical.}
+performed, Default: TRUE, Format: logical.}
 }
 \value{
 A TI method wrapper to be used together with

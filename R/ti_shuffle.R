@@ -13,7 +13,7 @@
 #' 
 #' 
 #' 
-#' @param dummy_param Parameter; Dummy parameter., Default: TRUE, Format: logical.
+#' @param dummy_param Parameter; Dummy parameter, Default: TRUE, Format: logical.
 #' 
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}

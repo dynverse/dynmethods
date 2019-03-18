@@ -12,7 +12,7 @@ definitions <-
   map(files, function(file) {
     cat(file, "\n", sep = "")
 
-    definition <- create_ti_method_definition(definition = file, return_function = FALSE)
+    definition <- create_ti_method_definition(definition = file, script = file %>% str_replace("definition.yml", "script.R"), return_function = FALSE)
     version <- file %>% str_replace("definition.yml", "version") %>% read_lines() %>% str_replace("VERSION=", "")
 
     # generate file from definition

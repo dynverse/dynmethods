@@ -10,32 +10,32 @@ ti_forks(norm_function = "median", norm_quantile = 75L,
   iterMax = 1000L, eta = 0.01, C = 1L)
 }
 \arguments{
-\item{norm_function}{Parameter; No description provided by the author., Domain:
+\item{norm_function}{Parameter; No description provided by the author, Domain:
 {mean, median, quantile}, Default: median, Format: character.}
 
-\item{norm_quantile}{Parameter; No description provided by the author., Domain:
+\item{norm_quantile}{Parameter; No description provided by the author, Domain:
 U(0, 100), Default: 75, Format: numeric.}
 
-\item{cum_sum_exp_var}{Parameter; No description provided by the author.,
+\item{cum_sum_exp_var}{Parameter; No description provided by the author,
 Domain: U(0, 1), Default: 0.9, Format: numeric.}
 
-\item{cluster}{Parameter; No description provided by the author., Domain: (
-U(3, 20), U(3, 20) ), Default: (4, 10), Format: range.}
+\item{cluster}{Parameter; No description provided by the author, Domain: ( U(3,
+20), U(3, 20) ), Default: (4, 10), Format: range.}
 
-\item{mapping_type}{Parameter; No description provided by the author., Domain:
+\item{mapping_type}{Parameter; No description provided by the author, Domain:
 {Isomap, MDS, PCA, RandomForest, SpectralEmbedding, LLE_standard, tSNE},
 Default: Isomap, Format: character.}
 
-\item{initialization}{Parameter; No description provided by the author.,
-Domain: {kmeans, kmedoids, random}, Default: kmeans, Format: character.}
+\item{initialization}{Parameter; No description provided by the author, Domain:
+{kmeans, kmedoids, random}, Default: kmeans, Format: character.}
 
-\item{iterMax}{Parameter; No description provided by the author., Domain:
+\item{iterMax}{Parameter; No description provided by the author, Domain:
 e^U(4.61, 11.51), Default: 1000, Format: integer.}
 
-\item{eta}{Parameter; No description provided by the author., Domain:
-e^U(-9.21, 4.61), Default: 0.01, Format: numeric.}
+\item{eta}{Parameter; No description provided by the author, Domain: e^U(-9.21,
+4.61), Default: 0.01, Format: numeric.}
 
-\item{C}{Parameter; No description provided by the author., Domain: e^U(-9.21,
+\item{C}{Parameter; No description provided by the author, Domain: e^U(-9.21,
 6.91), Default: 1, Format: numeric.}
 }
 \value{

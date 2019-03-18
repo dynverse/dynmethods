@@ -17,7 +17,7 @@ distances are the Euclidean distance (method="euclidean"), Manhattan distance
 distance based on Pearson (method="pearson") or Spearman (method="spearman")
 correlation coefficients, and distance based on Mutual Information
 (method="MI"). Intervals used to assess Mutual Information are indicated in the
-parameter 'bins'., Domain: {euclidean, cosine, pearson, spearman, L1, MI},
+parameter 'bins', Domain: {euclidean, cosine, pearson, spearman, L1, MI},
 Default: euclidean, Format: character.}
 
 \item{dimred_method}{Parameter; Dimensionality reduction algorithm to be used.
@@ -33,7 +33,7 @@ principal axes is plotted. We note that Sincell makes use of the Rtsne
 implementation of the Barnes-Hut algorithm, which approximates the likelihood.
 The user should be aware that this is a less accurate version of t-SNE than
 e.g. the one used as basis of viSNE (Amir,E.D. et al. 2013, Nat Biotechnol 31,
-545-552)., Domain: {none, PCA, ICA, tSNE, classical-MDS, nonmetric-MDS},
+545-552), Domain: {none, PCA, ICA, tSNE, classical-MDS, nonmetric-MDS},
 Default: none, Format: character.}
 
 \item{clust.method}{Parameter; If clust.method="max.distance", clusters are
@@ -59,46 +59,46 @@ agglomeration method is indicated in parameter "clust.method" as one of
 "ward.D", "ward.D2", "single", "complete", "average" (= UPGMA), "mcquitty" (=
 WPGMA), "median" (= WPGMC) or "centroid" (= UPGMC). Clusters are obtained by
 cutting the tree produced by hclust with function cutree with a desired number
-of groups indicated in parameter "num.clusters"., Domain: {max.distance,
+of groups indicated in parameter "num.clusters", Domain: {max.distance,
 percent, knn, k-medoids, ward.D, ward.D2, single, complete, average, mcquitty,
 median, centroid}, Default: max.distance, Format: character.}
 
 \item{mutual}{Parameter; If clust.method="knn" and "mutual=TRUE", Unsupervised
 K-Mutual Nearest Neighbours (K-MNN) clustering is performed, that is: only
-reciprocal k nearest neighbors are connected., Default: TRUE, Format: logical.}
+reciprocal k nearest neighbors are connected, Default: TRUE, Format: logical.}
 
 \item{max.distance}{Parameter; In max.distance algorithm, select up to which
-distance the points will be linked., Domain: U(0, 5), Default: 0, Format:
+distance the points will be linked, Domain: U(0, 5), Default: 0, Format:
 numeric.}
 
 \item{k}{Parameter; If clust.method="knn", k is an integer specifying the
-number of nearest neighbors to consider in K-NN and K-KNN., Domain: U(1, 99),
+number of nearest neighbors to consider in K-NN and K-KNN, Domain: U(1, 99),
 Default: 3, Format: integer.}
 
 \item{shortest.rank.percent}{Parameter; In percent algorithm, select the
-percent of shortest distances will be represented as links., Domain: U(0, 100),
+percent of shortest distances will be represented as links, Domain: U(0, 100),
 Default: 10, Format: numeric.}
 
 \item{graph.algorithm}{Parameter; Graph building algorithm to be used: the
 Minimum Spanning Tree (graph.algorithm="MST"), the Maximum Similarity Spanning
 Tree (graph.algorithm="SST") and the Iterative Mutual Clustering Graph
-(graph.algorithm="IMC")., Domain: {MST, SST, IMC}, Default: MST, Format:
+(graph.algorithm="IMC"), Domain: {MST, SST, IMC}, Default: MST, Format:
 character.}
 
 \item{graph.using.cells.clustering}{Parameter; If
 graph.using.cells.clustering=TRUE and graph.algorithm="MST" or
 graph.algorithm="MST", a precalculated clustering of cells is used. The
 clustering of cells is taken from SincellObject$cellsClustering as calculated
-by function sc_clusterObj()., Default: FALSE, Format: logical.}
+by function sc_clusterObj(), Default: FALSE, Format: logical.}
 
 \item{k_imc}{Parameter; If IMC algorithm is selected, the number of nearest
 neighbors used in the underlying K-Mutual Nearest Neighbour (K-MNN) algorithm
-is set to k., Domain: U(1, 99), Default: 3, Format: integer.}
+is set to k, Domain: U(1, 99), Default: 3, Format: integer.}
 
 \item{pct_leaf_node_cutoff}{Parameter; Leaf nodes are iteratively removed until
 the percentage of leaf nodes is below the given cutoff. Removed nodes are
 projected to their closest neighbour. This is to constrain the number of
-milestones being created., Domain: U(0.01, 0.8), Default: 0.5, Format: numeric.}
+milestones being created, Domain: U(0.01, 0.8), Default: 0.5, Format: numeric.}
 }
 \value{
 A TI method wrapper to be used together with

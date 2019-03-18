@@ -9,16 +9,16 @@ ti_stemnet(alpha = 0.1, lambda_auto = TRUE, lambda = 0.1,
 }
 \arguments{
 \item{alpha}{Parameter; The elastic net mixing parameter of the ‘glmnet’
-classifier., Domain: e^U(-6.91, 2.30), Default: 0.1, Format: numeric.}
+classifier, Domain: e^U(-6.91, 2.30), Default: 0.1, Format: numeric.}
 
-\item{lambda_auto}{Parameter; Whether to select the lambda by
-cross-validation., Default: TRUE, Format: logical.}
+\item{lambda_auto}{Parameter; Whether to select the lambda by cross-validation,
+Default: TRUE, Format: logical.}
 
-\item{lambda}{Parameter; The lambda penalty of GLM., Domain: e^U(-3.00, 0.00),
+\item{lambda}{Parameter; The lambda penalty of GLM, Domain: e^U(-3.00, 0.00),
 Default: 0.1, Format: numeric.}
 
 \item{force}{Parameter; Do not use! This is a parameter to force STEMNET to run
-on benchmark datasets where not enough end groups are present., Default: FALSE,
+on benchmark datasets where not enough end groups are present, Default: FALSE,
 Format: logical.}
 }
 \value{

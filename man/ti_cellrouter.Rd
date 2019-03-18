@@ -11,51 +11,50 @@ ti_cellrouter(ndim_pca = 20L, ndim_tsne = 11L, max_iter = 1000L,
   ranks = "rank", num_cells = 3L, neighs = 3L, perplexity = 30L)
 }
 \arguments{
-\item{ndim_pca}{Parameter; Number of principal components to compute., Domain:
+\item{ndim_pca}{Parameter; Number of principal components to compute, Domain:
 U(2, 100), Default: 20, Format: integer.}
 
-\item{ndim_tsne}{Parameter; Number of tsne dimensions to compute., Domain: U(2,
+\item{ndim_tsne}{Parameter; Number of tsne dimensions to compute, Domain: U(2,
 100), Default: 11, Format: integer.}
 
-\item{max_iter}{Parameter; Maximal number of tsne iterations., Domain:
-e^U(4.61, 11.51), Default: 1000, Format: integer.}
+\item{max_iter}{Parameter; Maximal number of tsne iterations, Domain: e^U(4.61,
+11.51), Default: 1000, Format: integer.}
 
-\item{cluster_method}{Parameter; Method to use for clustering., Domain:
+\item{cluster_method}{Parameter; Method to use for clustering, Domain:
 {graph.clustering, model.clustering}, Default: graph.clustering, Format:
 character.}
 
 \item{k_clustering}{Parameter; Number of nearest neighbors to build a k-nearest
-neighbors graph for clustering., Domain: U(2, 1000), Default: 20, Format:
+neighbors graph for clustering, Domain: U(2, 1000), Default: 20, Format:
 integer.}
 
 \item{ndim_pca_clustering}{Parameter; Number of PCA dimensions used for
-k-nearest neighbors graph for clustering., Domain: U(2, 100), Default: 20,
+k-nearest neighbors graph for clustering, Domain: U(2, 100), Default: 20,
 Format: integer.}
 
 \item{k_knn}{Parameter; Number of nearest neighbors to build a k-nearest
-neighbors graph for knn., Domain: e^U(0.69, 6.91), Default: 10, Format:
-integer.}
+neighbors graph for knn, Domain: e^U(0.69, 6.91), Default: 10, Format: integer.}
 
-\item{ndim_pca_knn}{Parameter; Number of PCA dimensions used for knn., Domain:
+\item{ndim_pca_knn}{Parameter; Number of PCA dimensions used for knn, Domain:
 U(2, 100), Default: 20, Format: integer.}
 
-\item{sim_type}{Parameter; Similarity type for knn., Domain: {jaccard},
-Default: jaccard, Format: character.}
+\item{sim_type}{Parameter; Similarity type for knn, Domain: {jaccard}, Default:
+jaccard, Format: character.}
 
-\item{distance_method_paths}{Parameter; Distance method for paths., Domain:
+\item{distance_method_paths}{Parameter; Distance method for paths, Domain:
 {euclidean, maximum, manhattan, canberra, binary, graph}, Default: graph,
 Format: character.}
 
-\item{ranks}{Parameter; How to rank the paths., Domain: {path_cost, path_flow,
+\item{ranks}{Parameter; How to rank the paths, Domain: {path_cost, path_flow,
 rank, length}, Default: rank, Format: character.}
 
-\item{num_cells}{Parameter; Trajectories should contain at least num.cells.,
+\item{num_cells}{Parameter; Trajectories should contain at least num.cells,
 Domain: U(3, 100), Default: 3, Format: integer.}
 
 \item{neighs}{Parameter; The size of the neighborhood in kNN graph used to
-smoothen kinetic profiles., Domain: U(2, 100), Default: 3, Format: integer.}
+smoothen kinetic profiles, Domain: U(2, 100), Default: 3, Format: integer.}
 
-\item{perplexity}{Parameter; Perplexity parameter for tsne., Domain: U(5, 100),
+\item{perplexity}{Parameter; Perplexity parameter for tsne, Domain: U(5, 100),
 Default: 30, Format: numeric.}
 }
 \value{

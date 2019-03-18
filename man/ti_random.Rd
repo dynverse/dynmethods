@@ -7,7 +7,7 @@
 ti_random(dummy_param = 0.5)
 }
 \arguments{
-\item{dummy_param}{Parameter; Dummy parameter., Domain: U(0, 1), Default: 0.5,
+\item{dummy_param}{Parameter; Dummy parameter, Domain: U(0, 1), Default: 0.5,
 Format: numeric.}
 }
 \value{

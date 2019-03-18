@@ -7,7 +7,7 @@
 ti_ouijaflow(iter = 1000L)
 }
 \arguments{
-\item{iter}{Parameter; ., Domain: e^U(0.69, 10.82), Default: 1000, Format:
+\item{iter}{Parameter; , Domain: e^U(0.69, 10.82), Default: 1000, Format:
 integer.}
 }
 \value{

@@ -8,24 +8,24 @@ ti_projected_paga(n_neighbors = 15L, n_comps = 50L, n_dcs = 15L,
   resolution = 1L, embedding_type = "fa", connectivity_cutoff = 0.05)
 }
 \arguments{
-\item{n_neighbors}{Parameter; Number of neighbours for knn., Domain: U(1, 100),
+\item{n_neighbors}{Parameter; Number of neighbours for knn, Domain: U(1, 100),
 Default: 15, Format: integer.}
 
-\item{n_comps}{Parameter; Number of principal components., Domain: U(0, 100),
+\item{n_comps}{Parameter; Number of principal components, Domain: U(0, 100),
 Default: 50, Format: integer.}
 
 \item{n_dcs}{Parameter; Number of diffusion components for denoising graph, 0
-means no denoising., Domain: U(0, 40), Default: 15, Format: integer.}
+means no denoising, Domain: U(0, 40), Default: 15, Format: integer.}
 
 \item{resolution}{Parameter; Resolution of louvain clustering, which determines
-the granularity of the clustering. Higher values will result in more clusters.,
+the granularity of the clustering. Higher values will result in more clusters,
 Domain: U(0.1, 10), Default: 1, Format: numeric.}
 
 \item{embedding_type}{Parameter; Either 'umap' (scales very well, recommended
 for very large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for
-small datasets)., Domain: {umap, fa}, Default: fa, Format: character.}
+small datasets), Domain: {umap, fa}, Default: fa, Format: character.}
 
-\item{connectivity_cutoff}{Parameter; Cutoff for the connectivity matrix.,
+\item{connectivity_cutoff}{Parameter; Cutoff for the connectivity matrix,
 Domain: U(0, 1), Default: 0.05, Format: numeric.}
 }
 \value{

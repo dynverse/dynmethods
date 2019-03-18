@@ -10,26 +10,26 @@ ti_projected_monocle(reduction_method = "DDRTree", max_components = 2L,
 }
 \arguments{
 \item{reduction_method}{Parameter; A character string specifying the algorithm
-to use for dimensionality reduction., Domain: {DDRTree}, Default: DDRTree,
+to use for dimensionality reduction, Domain: {DDRTree}, Default: DDRTree,
 Format: character.}
 
-\item{max_components}{Parameter; The dimensionality of the reduced space.,
+\item{max_components}{Parameter; The dimensionality of the reduced space,
 Domain: U(2, 20), Default: 2, Format: integer.}
 
 \item{norm_method}{Parameter; Determines how to transform expression values
-prior to reducing dimensionality., Domain: {vstExprs, log, none}, Default:
+prior to reducing dimensionality, Domain: {vstExprs, log, none}, Default:
 vstExprs, Format: character.}
 
 \item{auto_param_selection}{Parameter; When this argument is set to TRUE
 (default), it will automatically calculate the proper value for the ncenter
-(number of centroids) parameters which will be passed into DDRTree call.,
+(number of centroids) parameters which will be passed into DDRTree call,
 Default: TRUE, Format: logical.}
 
-\item{filter_features}{Parameter; Whether to include monocle feature
-filtering., Default: TRUE, Format: logical.}
+\item{filter_features}{Parameter; Whether to include monocle feature filtering,
+Default: TRUE, Format: logical.}
 
 \item{filter_features_mean_expression}{Parameter; Minimal mean feature
-expression, only used when \code{filter_features} is set to TRUE., Domain: U(0, 10),
+expression, only used when \code{filter_features} is set to TRUE, Domain: U(0, 10),
 Default: 0.1, Format: numeric.}
 }
 \value{
