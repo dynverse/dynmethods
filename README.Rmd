@@ -13,7 +13,7 @@ library(tidyverse)
 library(dynmethods)
 
 data("methods")
-methods <- methods %>% filter(!source %in% c("control")) # controls are not actual TI methods
+methods <- methods %>% filter(!method_source %in% c("control")) # controls are not actual TI methods
 ```
 
 
@@ -30,37 +30,43 @@ To include your own method, feel free to send us a [pull request](https://github
 ## List of included methods
 
 ```{r, echo = FALSE, warning = FALSE, error = FALSE, message = FALSE, results='asis'}
-df <- methods %>% 
-  arrange(name) %>% 
+df <-
+  methods %>% 
+  arrange(method_name) %>% 
   mutate(
-    docker_url = paste0("https://hub.docker.com/r/", docker_repository),
-    travis_url = paste0("https://travis-ci.org/", docker_repository),
-    Method = name,
-    Doi = map_chr(doi, function(do) if (!is.null(do) && !is.na(do)) paste0("<a href='https://doi.org/", do, "'><img src='man/figures/doi_logo.png' height='16'></a>") else "" ),
-    Docker = glue::glue("[![Version](https://img.shields.io/badge/Docker-v{version}-blue.svg?logo=docker)]({docker_url})"),
-    Code = glue::glue("[code]({container_url})"), 
-    Status = glue::glue("[![Build status]({travis_url}.svg?branch=master)]({travis_url})"),
-    Authors = map_chr(authors, function(authors) {
-      first <- authors[[1]]
-      if (length(first) == 1 && is.na(first)) {
-        return("")
+    docker_url = paste0("https://hub.docker.com/r/", container_docker),
+    travis_url = paste0("https://travis-ci.org/", container_docker),
+    Method = method_name,
+    Doi = map_chr(manuscript_doi, function(do) if (!is.null(do) && !is.na(do)) paste0("<a href='https://doi.org/", do, "'><img src='man/figures/doi_logo.png' height='16'></a>") else "" ),
+    Docker = paste0("[![Version](https://img.shields.io/badge/Docker-v{version}-blue.svg?logo=docker)](", docker_url, ")"),
+    Code = paste0("[code](", container_url, ")"), 
+    Status = paste0("[![Build status]({travis_url}.svg?branch=master)](", travis_url, ")"),
+    Authors = map_chr(method_authors, function(authors) {
+      if (length(authors) > 0) {
+          
+        first <- authors[[1]]
+        if (length(first) == 1 && is.na(first)) {
+          return("")
+        }
+        map_chr(authors, function(author) {
+          if (is.null(author$family)) {
+            author$family <- ""
+          }
+          author_text <- paste0(author$given, " ", author$family)
+  
+          if (!is.null(author$ORCID)) {
+            author_text <- paste0(author_text, " <a href='https://orcid.org/", author$ORCID, "'><img src='man/figures/orcid_logo.svg' height='16'></a>")
+          }
+  
+          if (!is.null(author$github)) {
+            author_text <- paste0(author_text, " <a href='https://github.com/", author$github, "'><img src='man/figures/github_logo.png' height='16'></a>")
+          }
+  
+          author_text %>% paste0("<sub>", ., "</sub>")
+        }) %>% paste0(collapse = "<br>")
+      } else {
+        NA
       }
-      map_chr(authors, function(author) {
-        if (is.null(author$family)) {
-          author$family <- ""
-        }
-        author_text <- paste0(author$given, " ", author$family)
-
-        if (!is.null(author$ORCID)) {
-          author_text <- paste0(author_text, " <a href='https://orcid.org/", author$ORCID, "'><img src='man/figures/orcid_logo.svg' height='16'></a>")
-        }
-
-        if (!is.null(author$github)) {
-          author_text <- paste0(author_text, " <a href='https://github.com/", author$github, "'><img src='man/figures/github_logo.png' height='16'></a>")
-        }
-
-        author_text %>% paste0("<sub>", ., "</sub>")
-      }) %>% paste0(collapse = "<br>")
     })
   )
 
@@ -71,34 +77,15 @@ df %>%
 
 
 ## Latest changes
+
 Check out `news(package = "dynmethods")` or [NEWS.md](inst/NEWS.md) for a full list of changes.
 
 <!-- This section gets automatically generated from inst/NEWS.md, and also generates inst/NEWS -->
 
-```{r news, results='asis', echo=FALSE}
-library(tidyverse)
-
-news_md <- readr::read_lines("inst/NEWS.md")
-
-# creating NEWS for package
-news_normal <- news_md %>% 
-  str_replace_all("^# dynmethods", "dynmethods") %>% 
-  str_replace_all("\\[[^\\]]*\\]\\(([^\\)]*)\\)", "\\1")
-readr::write_lines(news_normal, "inst/NEWS")
-
-# creating text for readme
-ix <- which(str_detect(news_md, "^# dynmethods"))
-
-cat(str_replace(news_md[[ix[[1]]]], "^# ", "### Latest changes in "))
-
-cat(news_md[seq(ix[[1]]+1, ix[[2]]-1)], sep = "\n")
-
-cat(str_replace(news_md[[ix[[2]]]], "^# ", "### Latest changes in "))
-
-len2 <- if (length(ix) >= 3) ix[[3]] - 1 else length(news_md)
-cat(news_md[seq(ix[[2]]+1, len2)], sep = "\n")
+```{r news, echo=FALSE, results="asis"}
+dynutils::update_news("dynmethods")
+cat(dynutils::recent_news("dynmethods"))
 ```
-
 
 ## Sources
 

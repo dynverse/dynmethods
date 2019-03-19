@@ -1,3 +1,8 @@
+# dynmethods 0.9.9 (unreleased)
+
+* Major changes due to preparation for dynwrap v1.0 release. All methods have been updated, 
+  and the format of the `dynmethods::methods` object has been changed.
+
 # dynmethods 0.2.0 (19-11-2018)
 
 * SMALL CHANGES: Update for dynwrap 0.3.0 where `create_ti_method_with_container()`
