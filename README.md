@@ -1,8 +1,10 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<img src="man/figures/logo.png" align="right" /> [![Build
-status](https://travis-ci.org/dynverse/dynmethods.svg?branch=master)](https://travis-ci.org/dynverse/dynmethods)
+<a href="https://travis-ci.org/dynverse/dynmethods"><img src="https://travis-ci.org/dynverse/dynmethods.svg" align="left"></a>
+<br>
+
+<img src="man/figures/logo.png" align="right" />
 
 # A collection of 55 trajectory inference methods
 
