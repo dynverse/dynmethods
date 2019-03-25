@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_projected_tscan.R
 \name{ti_projected_tscan}
 \alias{ti_projected_tscan}
-\title{Inferring a trajectory inference using Projected TSCAN}
+\title{Projected TSCAN}
 \usage{
 ti_projected_tscan(minexpr_percent = 0L, minexpr_value = 0L,
   cvcutoff = 0L, clusternum = c(2L, 9L), modelNames = "VVV")
@@ -32,3 +32,4 @@ This method was wrapped inside a
 The original code of this method is available
 \href{https://github.com/zji90/TSCAN}{here}.
 }
+\keyword{method}

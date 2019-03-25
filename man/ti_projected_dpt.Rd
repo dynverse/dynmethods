@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_projected_dpt.R
 \name{ti_projected_dpt}
 \alias{ti_projected_dpt}
-\title{Inferring a trajectory inference using Projected DPT}
+\title{Projected DPT}
 \usage{
 ti_projected_dpt(sigma = "local", distance = "euclidean", ndim = 20L,
   density_norm = TRUE, n_local = c(5L, 7L), w_width = 0.1)
@@ -43,3 +43,4 @@ This method was wrapped inside a
 The original code of this method is available
 \href{https://bioconductor.org/packages/release/bioc/html/destiny.html}{here}.
 }
+\keyword{method}

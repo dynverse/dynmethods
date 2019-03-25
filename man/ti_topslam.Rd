@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_topslam.R
 \name{ti_topslam}
 \alias{ti_topslam}
-\title{Inferring a trajectory inference using topslam}
+\title{topslam}
 \usage{
 ti_topslam(n_components = 2L, n_neighbors = 10L, linear_dims = 0L,
   max_iters = 1000L, dimreds = c("t-SNE", "PCA", "Spectral", "Isomap",
@@ -40,3 +40,4 @@ The original code of this method is available
 Zwiessele, M., Lawrence, N.D., 2016. Topslam: Waddington Landscape
 Recovery for Single Cell Experiments.
 }
+\keyword{method}

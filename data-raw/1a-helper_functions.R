@@ -22,7 +22,7 @@ generate_file_from_container <- function(definition, version) {
 generate_documentation_from_definition <- function(definition, version) {
   # url within name
   c(
-    paste0("@title Inferring a trajectory inference using ", definition$method$name),
+    paste0("@title ", definition$method$name),
     "",
     "@description ", format_description(definition),
     "",
@@ -32,6 +32,8 @@ generate_documentation_from_definition <- function(definition, version) {
     format_citation(definition),
     "",
     format_parameter_documentation(definition),
+    "",
+    "@keywords method",
     "",
     "@return A TI method wrapper to be used together with \\code{\\link[dynwrap:infer_trajectories]{infer_trajectory}}",
     "@export"

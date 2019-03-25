@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_grandprix.R
 \name{ti_grandprix}
 \alias{ti_grandprix}
-\title{Inferring a trajectory inference using GrandPrix}
+\title{GrandPrix}
 \usage{
 ti_grandprix(n_inducing_points = 40L, latent_prior_var = 0.1,
   latent_var = 0.028)
@@ -30,3 +30,4 @@ The original code of this method is available
 Ahmed, S., Rattray, M., Boukouvalas, A., 2017. GrandPrix: Scaling
 up the Bayesian GPLVM for single-cell data.
 }
+\keyword{method}

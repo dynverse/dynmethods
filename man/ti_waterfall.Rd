@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_waterfall.R
 \name{ti_waterfall}
 \alias{ti_waterfall}
-\title{Inferring a trajectory inference using Waterfall}
+\title{Waterfall}
 \usage{
 ti_waterfall(num_clusters = 10L)
 }
@@ -28,3 +28,4 @@ M.A., Enikolopov, G., Nauen, D.W., Christian, K.M., Ming, G., Song, H., 2015.
 Single-Cell RNA-Seq with Waterfall Reveals Molecular Cascades underlying Adult
 Neurogenesis. Cell Stem Cell 17, 360–372.
 }
+\keyword{method}

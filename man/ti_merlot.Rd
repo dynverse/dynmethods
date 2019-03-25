@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_merlot.R
 \name{ti_merlot}
 \alias{ti_merlot}
-\title{Inferring a trajectory inference using MERLoT}
+\title{MERLoT}
 \usage{
 ti_merlot(sigma = "local", distance = "euclidean", ndim = 20L,
   density_norm = TRUE, n_local = c(5L, 7L), w_width = 0.01,
@@ -72,3 +72,4 @@ Parra, R.G., Papadopoulos, N., Ahumada-Arranz, L., El Kholtei, J.,
 Mottelson, N., Horokhovskyi, Y., Treutlein, B., Soeding, J., 2018.
 Reconstructing complex lineage trees from scRNA-seq data using MERLoT.
 }
+\keyword{method}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_elpilinear.R
 \name{ti_elpilinear}
 \alias{ti_elpilinear}
-\title{Inferring a trajectory inference using ElPiGraph - Linear}
+\title{ElPiGraph - Linear}
 \usage{
 ti_elpilinear(NumNodes = 50L, NumEdges = 100000L, InitNodes = 2L,
   Mu = 0.1, Lambda = 0.01, MaxNumberOfIterations = 10L, eps = 0.01,
@@ -45,3 +45,4 @@ This method was wrapped inside a
 The original code of this method is available
 \href{https://github.com/Albluca/ElPiGraph.R}{here}.
 }
+\keyword{method}

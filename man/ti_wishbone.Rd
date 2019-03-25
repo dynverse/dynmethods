@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_wishbone.R
 \name{ti_wishbone}
 \alias{ti_wishbone}
-\title{Inferring a trajectory inference using Wishbone}
+\title{Wishbone}
 \usage{
 ti_wishbone(normalise = TRUE, knn = 25L, n_diffusion_components = 3L,
   n_pca_components = 30L, k = 25L, num_waypoints = 250L,
@@ -45,3 +45,4 @@ T.M., Kathail, P., Choi, K., Bendall, S., Friedman, N., Pe’er, D., 2016.
 Wishbone identifies bifurcating developmental trajectories from single-cell
 data. Nature Biotechnology 34, 637–645.
 }
+\keyword{method}

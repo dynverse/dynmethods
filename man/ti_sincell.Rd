@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_sincell.R
 \name{ti_sincell}
 \alias{ti_sincell}
-\title{Inferring a trajectory inference using Sincell}
+\title{Sincell}
 \usage{
 ti_sincell(distance_method = "euclidean", dimred_method = "none",
   clust.method = "max.distance", mutual = TRUE, max.distance = 0L,
@@ -117,3 +117,4 @@ Juliá, M., Telenti, A., Rausell, A., 2015. Sincell: an
 R/Bioconductor package for statistical assessment of cell-state hierarchies
 from single-cell RNA-seq: Fig. 1. Bioinformatics 31, 3380–3382.
 }
+\keyword{method}

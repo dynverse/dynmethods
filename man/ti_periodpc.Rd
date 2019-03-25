@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_periodpc.R
 \name{ti_periodpc}
 \alias{ti_periodpc}
-\title{Inferring a trajectory inference using Periodic PrinCurve}
+\title{Periodic PrinCurve}
 \usage{
 ti_periodpc(ndim = 3L, maxit = 10L)
 }
@@ -21,3 +21,4 @@ Will generate a trajectory using Periodic PrinCurve.
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_periodpc}{container}.
 }
+\keyword{method}

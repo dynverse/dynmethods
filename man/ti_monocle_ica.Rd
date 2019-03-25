@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_monocle_ica.R
 \name{ti_monocle_ica}
 \alias{ti_monocle_ica}
-\title{Inferring a trajectory inference using Monocle ICA}
+\title{Monocle ICA}
 \usage{
 ti_monocle_ica(reduction_method = "ICA", max_components = 2L,
   norm_method = "log", filter_features = TRUE,
@@ -43,3 +43,4 @@ Qiu, X., Mao, Q., Tang, Y., Wang, L., Chawla, R., Pliner, H.A.,
 Trapnell, C., 2017. Reversed graph embedding resolves complex single-cell
 trajectories. Nature Methods 14, 979–982.
 }
+\keyword{method}

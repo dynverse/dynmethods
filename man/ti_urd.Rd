@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_urd.R
 \name{ti_urd}
 \alias{ti_urd}
-\title{Inferring a trajectory inference using URD}
+\title{URD}
 \usage{
 ti_urd(knn = 0L, sigma.use = 0, distance = "euclidean",
   n_floods = 20L, stability.div = 10L, mp.factor = 1L,
@@ -105,3 +105,4 @@ Farrell, J.A., Wang, Y., Riesenfeld, S.J., Shekhar, K., Regev, A.,
 Schier, A.F., 2018. Single-cell reconstruction of developmental trajectories
 during zebrafish embryogenesis. Science 360, eaar3131.
 }
+\keyword{method}

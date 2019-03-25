@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_celltrails.R
 \name{ti_celltrails}
 \alias{ti_celltrails}
-\title{Inferring a trajectory inference using CellTrails}
+\title{CellTrails}
 \usage{
 ti_celltrails(filter_features = FALSE, threshold_dl = 2L,
   threshold_cov = 0.05, threshold_ff = 1.7, min_expr = 0L,
@@ -65,3 +65,4 @@ Ellwanger, D.C., Scheibinger, M., Dumont, R.A., Barr-Gillespie,
 P.G., Heller, S., 2018. Transcriptional Dynamics of Hair-Bundle Morphogenesis
 Revealed with CellTrails. Cell Reports 23, 2901–2914.e14.
 }
+\keyword{method}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_slice.R
 \name{ti_slice}
 \alias{ti_slice}
-\title{Inferring a trajectory inference using SLICE}
+\title{SLICE}
 \usage{
 ti_slice(lm.method = "clustering", model.type = "tree",
   ss.method = "all", ss.threshold = 0.25,
@@ -75,3 +75,4 @@ Guo, M., Bao, E.L., Wagner, M., Whitsett, J.A., Xu, Y., 2016.
 SLICE: determining cell differentiation and lineage based on single cell
 entropy. Nucleic Acids Research gkw1278.
 }
+\keyword{method}

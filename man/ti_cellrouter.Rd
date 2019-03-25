@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_cellrouter.R
 \name{ti_cellrouter}
 \alias{ti_cellrouter}
-\title{Inferring a trajectory inference using CellRouter}
+\title{CellRouter}
 \usage{
 ti_cellrouter(ndim_pca = 20L, ndim_tsne = 11L, max_iter = 1000L,
   cluster_method = "graph.clustering", k_clustering = 20L,
@@ -74,3 +74,4 @@ Jha, D.K., Rambo, C.R., Li, H., North, T.E., Collins, J.J., Daley, G.Q., 2018.
 Reconstruction of complex single-cell trajectories using CellRouter. Nature
 Communications 9.
 }
+\keyword{method}

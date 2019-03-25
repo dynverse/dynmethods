@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_projected_slingshot.R
 \name{ti_projected_slingshot}
 \alias{ti_projected_slingshot}
-\title{Inferring a trajectory inference using Projected Slingshot}
+\title{Projected Slingshot}
 \usage{
 ti_projected_slingshot(shrink = 1L, reweight = TRUE, reassign = TRUE,
   thresh = 0.001, maxit = 10L, stretch = 2,
@@ -66,3 +66,4 @@ Street, K., Risso, D., Fletcher, R.B., Das, D., Ngai, J., Yosef,
 N., Purdom, E., Dudoit, S., 2018. Slingshot: cell lineage and pseudotime
 inference for single-cell transcriptomics. BMC Genomics 19.
 }
+\keyword{method}

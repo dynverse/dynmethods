@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_ouijaflow.R
 \name{ti_ouijaflow}
 \alias{ti_ouijaflow}
-\title{Inferring a trajectory inference using ouijaflow}
+\title{ouijaflow}
 \usage{
 ti_ouijaflow(iter = 1000L)
 }
@@ -25,3 +25,4 @@ The original code of this method is available
 Campbell, K.R., Yau, C., 2016. A descriptive marker gene approach
 to single-cell pseudotime inference.
 }
+\keyword{method}

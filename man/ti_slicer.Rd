@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_slicer.R
 \name{ti_slicer}
 \alias{ti_slicer}
-\title{Inferring a trajectory inference using SLICER}
+\title{SLICER}
 \usage{
 ti_slicer(kmin = 10L, m = 2L)
 }
@@ -32,3 +32,4 @@ Welch, J.D., Hartemink, A.J., Prins, J.F., 2016. SLICER: inferring
 branched, nonlinear cellular trajectories from single cell RNA-seq data. Genome
 Biology 17.
 }
+\keyword{method}

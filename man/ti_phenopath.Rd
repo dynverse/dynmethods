@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_phenopath.R
 \name{ti_phenopath}
 \alias{ti_phenopath}
-\title{Inferring a trajectory inference using PhenoPath}
+\title{PhenoPath}
 \usage{
 ti_phenopath(thin = 40L, z_init = "1", model_mu = FALSE,
   scale_y = TRUE)
@@ -40,3 +40,4 @@ Campbell, K., Yau, C., 2017. Uncovering genomic trajectories with
 heterogeneous genetic and environmental backgrounds across single-cells and
 populations.
 }
+\keyword{method}

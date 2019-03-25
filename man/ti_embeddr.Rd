@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_embeddr.R
 \name{ti_embeddr}
 \alias{ti_embeddr}
-\title{Inferring a trajectory inference using Embeddr}
+\title{Embeddr}
 \usage{
 ti_embeddr(ndim = 2L, kernel = "nn", metric = "correlation",
   nn_pct = 0L, eps = 0L, t = 0L, symmetrize = "mean",
@@ -82,3 +82,4 @@ Campbell, K., Ponting, C.P., Webber, C., 2015. Laplacian eigenmaps
 and principal curves for high resolution pseudotemporal ordering of single-cell
 RNA-seq profiles.
 }
+\keyword{method}

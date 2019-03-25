@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_calista.R
 \name{ti_calista}
 \alias{ti_calista}
-\title{Inferring a trajectory inference using CALISTA}
+\title{CALISTA}
 \usage{
 ti_calista(runs = 50L, max_iter = 100L)
 }
@@ -29,3 +29,4 @@ The original code of this method is available
 Papili Gao, N., Hartmann, T., Fang, T., Gunawan, R., 2018. CALISTA:
 Clustering And Lineage Inference in Single-Cell Transcriptional Analysis.
 }
+\keyword{method}

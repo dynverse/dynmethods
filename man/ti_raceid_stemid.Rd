@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_raceid_stemid.R
 \name{ti_raceid_stemid}
 \alias{ti_raceid_stemid}
-\title{Inferring a trajectory inference using RaceID / StemID}
+\title{RaceID / StemID}
 \usage{
 ti_raceid_stemid(knn = 10L, ccor = 0.4, metric = "pearson",
   sat = TRUE, samp = 1000L, cln = 30L, clustnr = 30L,
@@ -117,3 +117,4 @@ A., Dharmadhikari, G., van den Born, M., van Es, J., Jansen, E., Clevers, H.,
 de Koning, E.J.P., van Oudenaarden, A., 2016. De Novo Prediction of Stem Cell
 Identity using Single-Cell Transcriptome Data. Cell Stem Cell 19, 266–277.
 }
+\keyword{method}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_elpicycle.R
 \name{ti_elpicycle}
 \alias{ti_elpicycle}
-\title{Inferring a trajectory inference using ElPiGraph - Cycle}
+\title{ElPiGraph - Cycle}
 \usage{
 ti_elpicycle(NumNodes = 50L, NumEdges = 100000L, InitNodes = 2L,
   Mu = 0.1, Lambda = 0.01, MaxNumberOfIterations = 10L, eps = 0.01,
@@ -45,3 +45,4 @@ This method was wrapped inside a
 The original code of this method is available
 \href{https://github.com/Albluca/ElPiGraph.R}{here}.
 }
+\keyword{method}

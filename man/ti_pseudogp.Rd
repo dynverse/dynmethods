@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_pseudogp.R
 \name{ti_pseudogp}
 \alias{ti_pseudogp}
-\title{Inferring a trajectory inference using pseudogp}
+\title{pseudogp}
 \usage{
 ti_pseudogp(smoothing_alpha = 10, smoothing_beta = 3,
   pseudotime_mean = 0.5, pseudotime_var = 1, chains = 3L,
@@ -59,3 +59,4 @@ Campbell, K.R., Yau, C., 2016. Order Under Uncertainty: Robust
 Differential Expression Analysis Using Probabilistic Models for Pseudotime
 Inference. PLOS Computational Biology 12, e1005212.
 }
+\keyword{method}

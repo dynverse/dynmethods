@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_paga_tree.R
 \name{ti_paga_tree}
 \alias{ti_paga_tree}
-\title{Inferring a trajectory inference using PAGA Tree}
+\title{PAGA Tree}
 \usage{
 ti_paga_tree(n_neighbors = 15L, n_comps = 50L, n_dcs = 15L,
   resolution = 1L, embedding_type = "fa")
@@ -43,3 +43,4 @@ Gottgens, B., Rajewsky, N., Simon, L., Theis, F.J., 2017. Graph abstraction
 reconciles clustering with trajectory inference through a topology preserving
 map of single cells.
 }
+\keyword{method}

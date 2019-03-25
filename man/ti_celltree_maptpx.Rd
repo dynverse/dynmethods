@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_celltree_maptpx.R
 \name{ti_celltree_maptpx}
 \alias{ti_celltree_maptpx}
-\title{Inferring a trajectory inference using cellTree maptpx}
+\title{cellTree maptpx}
 \usage{
 ti_celltree_maptpx(method = "maptpx", sd_filter = 0.5,
   absolute_width = 0L, width_scale_factor = 1.5,
@@ -70,3 +70,4 @@ duVerle, D.A., Yotsukura, S., Nomura, S., Aburatani, H., Tsuda, K.,
 2016. CellTree: an R/bioconductor package to infer the hierarchical structure
 of cell populations from single-cell RNA-seq data. BMC Bioinformatics 17.
 }
+\keyword{method}

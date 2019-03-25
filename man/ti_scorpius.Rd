@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_scorpius.R
 \name{ti_scorpius}
 \alias{ti_scorpius}
-\title{Inferring a trajectory inference using SCORPIUS}
+\title{SCORPIUS}
 \usage{
 ti_scorpius(distance_method = "spearman", ndim = 3L, k = 4L,
   thresh = 0.001, maxit = 10L, stretch = 0,
@@ -56,3 +56,4 @@ S., Guilliams, M., Lambrecht, B.N., De Preter, K., Saeys, Y., 2016. SCORPIUS
 improves trajectory inference and identifies novel modules in dendritic cell
 development.
 }
+\keyword{method}

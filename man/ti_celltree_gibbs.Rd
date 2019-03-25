@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_celltree_gibbs.R
 \name{ti_celltree_gibbs}
 \alias{ti_celltree_gibbs}
-\title{Inferring a trajectory inference using cellTree Gibbs}
+\title{cellTree Gibbs}
 \usage{
 ti_celltree_gibbs(method = "Gibbs", sd_filter = 0.5,
   width_scale_factor = 1.5, outlier_tolerance_factor = 0.1,
@@ -65,3 +65,4 @@ duVerle, D.A., Yotsukura, S., Nomura, S., Aburatani, H., Tsuda, K.,
 2016. CellTree: an R/bioconductor package to infer the hierarchical structure
 of cell populations from single-cell RNA-seq data. BMC Bioinformatics 17.
 }
+\keyword{method}

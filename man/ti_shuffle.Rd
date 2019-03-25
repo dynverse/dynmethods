@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_shuffle.R
 \name{ti_shuffle}
 \alias{ti_shuffle}
-\title{Inferring a trajectory inference using shuffle}
+\title{shuffle}
 \usage{
 ti_shuffle(dummy_param = TRUE)
 }
@@ -19,3 +19,4 @@ Will generate a trajectory using shuffle.
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_shuffle}{container}.
 }
+\keyword{method}

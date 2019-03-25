@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_recat.R
 \name{ti_recat}
 \alias{ti_recat}
-\title{Inferring a trajectory inference using reCAT}
+\title{reCAT}
 \usage{
 ti_recat(TSPFold = 2L, beginNum = 10L, endNum = 15L,
   step_size = 2L, base_cycle_range = c(6L, 9L), max_num = 300L,
@@ -53,3 +53,4 @@ Liu, Z., Lou, H., Xie, K., Wang, H., Chen, N., Aparicio, O.M.,
 Zhang, M.Q., Jiang, R., Chen, T., 2017. Reconstructing cell cycle pseudo
 time-series via single-cell transcriptome data. Nature Communications 8.
 }
+\keyword{method}

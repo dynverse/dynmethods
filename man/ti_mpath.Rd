@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_mpath.R
 \name{ti_mpath}
 \alias{ti_mpath}
-\title{Inferring a trajectory inference using Mpath}
+\title{Mpath}
 \usage{
 ti_mpath(distMethod = "euclidean", method = "kmeans",
   numcluster = 11L, numcluster_null = TRUE, diversity_cut = 0.6,
@@ -52,3 +52,4 @@ Chen, J., Schlitzer, A., Chakarov, S., Ginhoux, F., Poidinger, M.,
 2016. Mpath maps multi-branching single-cell trajectories revealing progenitor
 cell progression during development. Nature Communications 7.
 }
+\keyword{method}

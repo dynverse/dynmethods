@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_mfa.R
 \name{ti_mfa}
 \alias{ti_mfa}
-\title{Inferring a trajectory inference using MFA}
+\title{MFA}
 \usage{
 ti_mfa(iter = 2000L, thin = 1L, pc_initialise = 1L,
   prop_collapse = 0L, scale_input = TRUE, zero_inflation = FALSE)
@@ -44,3 +44,4 @@ Campbell, K.R., Yau, C., 2017. Probabilistic modeling of
 bifurcations in single-cell gene expression data using a Bayesian mixture of
 factor analyzers. Wellcome Open Research 2, 19.
 }
+\keyword{method}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_scuba.R
 \name{ti_scuba}
 \alias{ti_scuba}
-\title{Inferring a trajectory inference using SCUBA}
+\title{SCUBA}
 \usage{
 ti_scuba(rigorous_gap_stats = TRUE, N_dim = 2L,
   low_gene_threshold = 1L, low_gene_fraction_max = 0.7,
@@ -46,3 +46,4 @@ Yuan, G.-C., 2014. Bifurcation analysis of single-cell gene expression data
 reveals epigenetic landscape. Proceedings of the National Academy of Sciences
 111, E5643–E5650.
 }
+\keyword{method}

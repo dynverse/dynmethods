@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_fateid.R
 \name{ti_fateid}
 \alias{ti_fateid}
-\title{Inferring a trajectory inference using FateID}
+\title{FateID}
 \usage{
 ti_fateid(reclassify = TRUE, clthr = 0.9, nbfactor = 5L, q = 0.75,
   k = 3L, m = "tsne", minnr = 5L, minnrh = 10L, trthr = 0.4,
@@ -80,3 +80,4 @@ Herman, J.S., Sagar, Grün, D., 2018. FateID infers cell fate bias
 in multipotent progenitors from single-cell RNA-seq data. Nature Methods 15,
 379–386.
 }
+\keyword{method}

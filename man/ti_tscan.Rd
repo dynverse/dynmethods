@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_tscan.R
 \name{ti_tscan}
 \alias{ti_tscan}
-\title{Inferring a trajectory inference using TSCAN}
+\title{TSCAN}
 \usage{
 ti_tscan(minexpr_percent = 0L, minexpr_value = 0L, cvcutoff = 0L,
   clusternum = c(2L, 9L), modelNames = "VVV")
@@ -37,3 +37,4 @@ Ji, Z., Ji, H., 2016. TSCAN: Pseudo-time reconstruction and
 evaluation in single-cell RNA-seq analysis. Nucleic Acids Research 44,
 e117–e117.
 }
+\keyword{method}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_scoup.R
 \name{ti_scoup}
 \alias{ti_scoup}
-\title{Inferring a trajectory inference using SCOUP}
+\title{SCOUP}
 \usage{
 ti_scoup(ndim = 2L, max_ite1 = 100L, max_ite2 = 100L,
   alpha = c(0.1, 100), t = c(0.001, 2), sigma_squared = 0.1,
@@ -48,3 +48,4 @@ Matsumoto, H., Kiryu, H., 2016. SCOUP: a probabilistic model based
 on the Ornstein–Uhlenbeck process to analyze single-cell expression data during
 differentiation. BMC Bioinformatics 17.
 }
+\keyword{method}

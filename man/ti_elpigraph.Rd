@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_elpigraph.R
 \name{ti_elpigraph}
 \alias{ti_elpigraph}
-\title{Inferring a trajectory inference using ElPiGraph}
+\title{ElPiGraph}
 \usage{
 ti_elpigraph(topology = "tree", NumNodes = 50L, NumEdges = 100000L,
   InitNodes = 2L, Mu = 0.1, Lambda = 0.01,
@@ -49,3 +49,4 @@ This method was wrapped inside a
 The original code of this method is available
 \href{https://github.com/Albluca/ElPiGraph.R}{here}.
 }
+\keyword{method}

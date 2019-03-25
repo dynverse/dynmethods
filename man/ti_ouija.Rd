@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_ouija.R
 \name{ti_ouija}
 \alias{ti_ouija}
-\title{Inferring a trajectory inference using ouija}
+\title{ouija}
 \usage{
 ti_ouija(iter = 100L, response_type = "switch",
   inference_type = "hmc", normalise_expression = TRUE)
@@ -41,3 +41,4 @@ The original code of this method is available
 Campbell, K.R., Yau, C., 2016. A descriptive marker gene approach
 to single-cell pseudotime inference.
 }
+\keyword{method}

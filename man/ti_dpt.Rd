@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_dpt.R
 \name{ti_dpt}
 \alias{ti_dpt}
-\title{Inferring a trajectory inference using DPT}
+\title{DPT}
 \usage{
 ti_dpt(sigma = "local", distance = "euclidean", ndim = 20L,
   density_norm = TRUE, n_local = c(5L, 7L), w_width = 0.1)
@@ -48,3 +48,4 @@ Haghverdi, L., Büttner, M., Wolf, F.A., Buettner, F., Theis, F.J.,
 2016. Diffusion pseudotime robustly reconstructs lineage branching. Nature
 Methods 13, 845–848.
 }
+\keyword{method}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_matcher.R
 \name{ti_matcher}
 \alias{ti_matcher}
-\title{Inferring a trajectory inference using MATCHER}
+\title{MATCHER}
 \usage{
 ti_matcher(quantiles = 50L, method = "linear")
 }
@@ -31,3 +31,4 @@ Welch, J.D., Hartemink, A.J., Prins, J.F., 2017. MATCHER: manifold
 alignment reveals correspondence between single cell transcriptome and
 epigenome dynamics. Genome Biology 18.
 }
+\keyword{method}

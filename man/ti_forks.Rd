@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_forks.R
 \name{ti_forks}
 \alias{ti_forks}
-\title{Inferring a trajectory inference using FORKS}
+\title{FORKS}
 \usage{
 ti_forks(norm_function = "median", norm_quantile = 75L,
   cum_sum_exp_var = 0.9, cluster = c(4L, 10L),
@@ -54,3 +54,4 @@ The original code of this method is available
 Sharma, M., Li, H., Sengupta, D., Prabhakar, S., Jayadeva, J.,
 2017. FORKS: Finding Orderings Robustly using K-means and Steiner trees.
 }
+\keyword{method}

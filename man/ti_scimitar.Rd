@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_scimitar.R
 \name{ti_scimitar}
 \alias{ti_scimitar}
-\title{Inferring a trajectory inference using SCIMITAR}
+\title{SCIMITAR}
 \usage{
 ti_scimitar(covariance_type = "diag", degree = 3L, step_size = 0.07,
   cov_estimator = "identity", cov_reg = 0.05, max_iter = 3L)
@@ -39,3 +39,4 @@ The original code of this method is available
 CORDERO, P., STUART, J.M., 2016. TRACING CO-REGULATORY NETWORK
 DYNAMICS IN NOISY, SINGLE-CELL TRANSCRIPTOME TRAJECTORIES. Biocomputing 2017.
 }
+\keyword{method}

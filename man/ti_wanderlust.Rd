@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_wanderlust.R
 \name{ti_wanderlust}
 \alias{ti_wanderlust}
-\title{Inferring a trajectory inference using Wanderlust}
+\title{Wanderlust}
 \usage{
 ti_wanderlust(normalise = TRUE, knn = 25L,
   n_diffusion_components = 3L, n_pca_components = 30L, k = 25L,
@@ -46,3 +46,4 @@ E.F., Chen, T.J., Shenfeld, D.K., Nolan, G.P., Pe’er, D., 2014. Single-Cell
 Trajectory Detection Uncovers Progression and Regulatory Coordination in Human
 B Cell Development. Cell 157, 714–725.
 }
+\keyword{method}

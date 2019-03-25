@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_mst.R
 \name{ti_mst}
 \alias{ti_mst}
-\title{Inferring a trajectory inference using MST}
+\title{MST}
 \usage{
 ti_mst(dimred = "pca", ndim = 2L)
 }
@@ -23,3 +23,4 @@ Will generate a trajectory using MST.
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_mst}{container}.
 }
+\keyword{method}

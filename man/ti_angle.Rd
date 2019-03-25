@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_angle.R
 \name{ti_angle}
 \alias{ti_angle}
-\title{Inferring a trajectory inference using Angle}
+\title{Angle}
 \usage{
 ti_angle(dimred = "pca")
 }
@@ -21,3 +21,4 @@ Will generate a trajectory using Angle.
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_angle}{container}.
 }
+\keyword{method}

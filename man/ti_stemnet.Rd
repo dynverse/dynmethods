@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_stemnet.R
 \name{ti_stemnet}
 \alias{ti_stemnet}
-\title{Inferring a trajectory inference using STEMNET}
+\title{STEMNET}
 \usage{
 ti_stemnet(alpha = 0.1, lambda_auto = TRUE, lambda = 0.1,
   force = FALSE)
@@ -40,3 +40,4 @@ W.-K., Ho, A.D., Huber, W., Trumpp, A., Essers, M.A.G., Steinmetz, L.M., 2017.
 Human haematopoietic stem cell lineage commitment is a continuous process.
 Nature Cell Biology 19, 271–281.
 }
+\keyword{method}

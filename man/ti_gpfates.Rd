@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_gpfates.R
 \name{ti_gpfates}
 \alias{ti_gpfates}
-\title{Inferring a trajectory inference using GPfates}
+\title{GPfates}
 \usage{
 ti_gpfates(log_expression_cutoff = 0.5,
   min_cells_expression_cutoff = 0L, ndim = 2L)
@@ -39,3 +39,4 @@ Billker, O., Stegle, O., Haque, A., Teichmann, S.A., 2017. Single-cell RNA-seq
 and computational analysis using temporal mixture modeling resolves TH1/TFHfate
 bifurcation in malaria. Science Immunology 2, eaal2192.
 }
+\keyword{method}

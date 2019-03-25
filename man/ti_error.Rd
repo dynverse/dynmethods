@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_error.R
 \name{ti_error}
 \alias{ti_error}
-\title{Inferring a trajectory inference using Error}
+\title{Error}
 \usage{
 ti_error(dummy_param = 0.5)
 }
@@ -20,3 +20,4 @@ Will generate a trajectory using Error.
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_error}{container}.
 }
+\keyword{method}

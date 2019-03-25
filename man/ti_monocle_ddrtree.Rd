@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_monocle_ddrtree.R
 \name{ti_monocle_ddrtree}
 \alias{ti_monocle_ddrtree}
-\title{Inferring a trajectory inference using Monocle DDRTree}
+\title{Monocle DDRTree}
 \usage{
 ti_monocle_ddrtree(reduction_method = "ICA", max_components = 2L,
   norm_method = "log", auto_param_selection = TRUE,
@@ -48,3 +48,4 @@ Qiu, X., Mao, Q., Tang, Y., Wang, L., Chawla, R., Pliner, H.A.,
 Trapnell, C., 2017. Reversed graph embedding resolves complex single-cell
 trajectories. Nature Methods 14, 979–982.
 }
+\keyword{method}

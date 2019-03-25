@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_projected_monocle.R
 \name{ti_projected_monocle}
 \alias{ti_projected_monocle}
-\title{Inferring a trajectory inference using Projected Monocle}
+\title{Projected Monocle}
 \usage{
 ti_projected_monocle(reduction_method = "DDRTree", max_components = 2L,
   norm_method = "vstExprs", auto_param_selection = TRUE,
@@ -44,3 +44,4 @@ This method was wrapped inside a
 The original code of this method is available
 \href{https://github.com/cole-trapnell-lab/monocle-release}{here}.
 }
+\keyword{method}

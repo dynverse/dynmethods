@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_comp1.R
 \name{ti_comp1}
 \alias{ti_comp1}
-\title{Inferring a trajectory inference using Component 1}
+\title{Component 1}
 \usage{
 ti_comp1(dimred = "pca", ndim = 2L, component = 1L)
 }
@@ -25,3 +25,4 @@ Will generate a trajectory using Component 1.
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_comp1}{container}.
 }
+\keyword{method}

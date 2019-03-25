@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_pcreode.R
 \name{ti_pcreode}
 \alias{ti_pcreode}
-\title{Inferring a trajectory inference using pCreode}
+\title{pCreode}
 \usage{
 ti_pcreode(n_pca_components = 3L, num_runs = 10L)
 }
@@ -31,3 +31,4 @@ K.S., 2018. Unsupervised Trajectory Analysis of Single-Cell RNA-Seq and Imaging
 Data Reveals Alternative Tuft Cell Origins in the Gut. Cell Systems 6,
 37–51.e9.
 }
+\keyword{method}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ti_gng.R
 \name{ti_gng}
 \alias{ti_gng}
-\title{Inferring a trajectory inference using GNG}
+\title{GNG}
 \usage{
 ti_gng(dimred = "landmark_mds", ndim = 5L, max_iter = 15000L,
   max_nodes = 8L, apply_mst = TRUE)
@@ -36,3 +36,4 @@ This method was wrapped inside a
 The original code of this method is available
 \href{https://github.com/rcannood/gng}{here}.
 }
+\keyword{method}
