@@ -64,7 +64,7 @@ df <-
           author_text %>% paste0("<sub>", ., "</sub>")
         }) %>% paste0(collapse = "<br>")
       } else {
-        NA
+        ""
       }
     })
   )
@@ -85,6 +85,10 @@ We used following resources to get a (hopefully exhaustive) list of all TI metho
 
 [Luke Zappia's scRNA-tools](https://www.scrna-tools.org)
 [![DOI](https://zenodo.org/badge/DOI/10.1101/206573.svg)](https://doi.org/10.1101/206573)
+
+## New methods
+
+Some methods are not wrapped (yet). Check out the [issues](https://github.com/dynverse/dynmethods/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Anew_method) for an overview
 
 ## Latest changes
 
