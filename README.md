@@ -120,9 +120,17 @@ changes.
 
 ### Recent changes in dynmethods 1.0.0 (28-03-2019)
 
-  - Major changes due to preparation for dynwrap v1.0 release. All
-    methods have been updated, and the format of the
-    `dynmethods::methods` object has been changed.
+  - MAJOR CHANGE: Compatibility with dynwrap
+
+  - MAJOR CHANGE: dynmethods package is now coupled to particular tags
+    of dynmethods containers
+
+  - MAJOR CHANGE: The format of the `dynmethods::methods` object has
+    been changed.
+
+  - MAJOR CHANGE: All methods now work with sparse matrices and dyncli
+
+  - DOCUMENTATION: Improved method documentation
 
 ### Recent changes in dynmethods 0.2.0 (19-11-2018)
 
