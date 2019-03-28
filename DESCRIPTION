@@ -17,7 +17,7 @@ Imports:
   dynwrap (>= 1.0.0)
 Suggests:
   dplyr,
-  dynutils,
+  dynutils,   
   knitr,
   purrr,
   testthat,

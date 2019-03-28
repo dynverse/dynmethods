@@ -1,6 +1,6 @@
 # dynmethods 1.0.0 (28-03-2019)
 
-* MAJOR CHANGE: Compatibility with dynwrap 
+* MAJOR CHANGE: Compatibility with dynwrap v1.0.0
 
 * MAJOR CHANGE: dynmethods package is now coupled to particular tags of dynmethods containers
 
