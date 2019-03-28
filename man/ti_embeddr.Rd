@@ -2,70 +2,68 @@
 % Please edit documentation in R/ti_embeddr.R
 \name{ti_embeddr}
 \alias{ti_embeddr}
-\title{Inferring a trajectory inference using Embeddr}
+\title{Embeddr}
 \usage{
 ti_embeddr(ndim = 2L, kernel = "nn", metric = "correlation",
-  nn_pct = 0, eps = 0, t = 0, symmetrize = "mean",
-  measure_type = "unorm", thresh = 0.001, maxit = 10L, stretch = 2,
-  smoother = "smooth.spline")
+  nn_pct = 0L, eps = 0L, t = 0L, symmetrize = "mean",
+  measure_type = "unorm", thresh = 0.001, maxit = 10L,
+  stretch = 2L, smoother = "smooth.spline")
 }
 \arguments{
-\item{ndim}{integer; Dimension of the embedded space, default is 2 (default:
-\code{2L}; range: from \code{2L} to \code{10L})}
+\item{ndim}{Dimension of the embedded space, default is 2. Domain: U(2, 10).
+Default: 2. Format: integer.}
 
-\item{kernel}{discrete; The choice of kernel. 'nn' will give nearest
-neighbours, 'dist' gives minimum distance and'heat' gives a heat kernel.
-Discussed in detail in 'Laplacian Eigenmaps and Spectral Techniques for
-Embedding and Clustering',Belkin & Niyogi (default: \code{"nn"}; values: {\code{"nn"},
-\code{"dist"}, \code{"heat"}})}
+\item{kernel}{The choice of kernel. 'nn' will give nearest neighbours, 'dist'
+gives minimum distance and'heat' gives a heat kernel. Discussed in detail in
+'Laplacian Eigenmaps and Spectral Techniques for Embedding and
+Clustering',Belkin & Niyogi. Domain: {nn, dist, heat}. Default: nn. Format:
+character.}
 
-\item{metric}{discrete; The metric with which to assess 'closeness' for nearest
-neighbour selection, one of'correlation' (pearson) or 'euclidean'. Default is
-'correlation'. (default: \code{"correlation"}; values: {\code{"correlation"},
-\code{"euclidean"}, \code{"cosine"}})}
+\item{metric}{The metric with which to assess 'closeness' for nearest neighbour
+selection, one of'correlation' (pearson) or 'euclidean'. Default is
+'correlation'. Domain: {correlation, euclidean, cosine}. Default: correlation.
+Format: character.}
 
-\item{nn_pct}{numeric; The percentage of cells to use as tge number of nearest
-neighbours if kernel == 'nn'. (default: \code{0}; range: from \code{-2} to \code{1})}
+\item{nn_pct}{The percentage of cells to use as tge number of nearest
+neighbours if kernel == 'nn'. Domain: U(-2, 1). Default: 0. Format: numeric.}
 
-\item{eps}{numeric; Maximum distance parameter if kernel == 'dist' (default:
-\code{0}; range: from \code{-5} to \code{5})}
+\item{eps}{Maximum distance parameter if kernel == 'dist'. Domain: U(-5, 5).
+Default: 0. Format: numeric.}
 
-\item{t}{numeric; 'time' for heat kernel if kernel == 'heat' (default: \code{0};
-range: from \code{-5} to \code{5})}
+\item{t}{"time" for heat kernel if kernel == "heat". Domain: U(-5, 5). Default:
+0. Format: numeric.}
 
-\item{symmetrize}{discrete; How to make the adjacency matrix symmetric. Note
-that slightlycounterintuitively, node i having node j as a nearest neighbour
-doesn't guarantee nodej has node i. There are several ways to get round
-this:\itemize{\item \code{mean} If the above case occurs make the link weight
-0.5 so the adjacency matrix becomes \eqn{0.5(A + A')}\item \code{ceil} If the
-above case occurs set the link weight to 1 (ie take the ceiling of the mean
-case)\item \code{floor} If the above case occurs set the link weight to 0 (ie
-take the floor of the mean case)} (default: \code{"mean"}; values: {\code{"mean"},
-\code{"ceil"}, \code{"floor"}})}
+\item{symmetrize}{How to make the adjacency matrix symmetric. Note that
+slightlycounterintuitively, node i having node j as a nearest neighbour doesn't
+guarantee nodej has node i. There are several ways to get round this;* \code{mean}
+If the above case occurs make the link weight 0.5 so the adjacency matrix
+becomes $0.5(A + A')$* \code{ceil} If the above case occurs set the link weight to 1
+(ie take the ceiling of the mean case)* \code{floor} If the above case occurs set
+the link weight to 0 (ie take the floor of the mean case). Domain: {mean, ceil,
+floor}. Default: mean. Format: character.}
 
-\item{measure_type}{discrete; Type of laplacian eigenmap, which corresponds to
-the constraint on the eigenvalue problem. Iftype is 'unorm' (default), then the
+\item{measure_type}{Type of laplacian eigenmap, which corresponds to the
+constraint on the eigenvalue problem. Iftype is 'unorm' (default), then the
 graph measure used is the identity matrix, while if type is 'norm' then the
-measureused is the degree matrix. (default: \code{"unorm"}; values: {\code{"unorm"},
-\code{"norm"}})}
+measureused is the degree matrix. Domain: {unorm, norm}. Default: unorm.
+Format: character.}
 
-\item{thresh}{numeric; Convergence threshold on shortest distances to the
-curve. (default: \code{0.001}; range: from \code{1e-05} to \code{1e+05})}
+\item{thresh}{Convergence threshold on shortest distances to the curve. Domain:
+e^U(-11.51, 11.51). Default: 0.001. Format: numeric.}
 
-\item{maxit}{integer; Maximum number of iterations. (default: \code{10L}; range:
-from \code{0L} to \code{50L})}
+\item{maxit}{Maximum number of iterations. Domain: U(0, 50). Default: 10.
+Format: integer.}
 
-\item{stretch}{numeric; A factor by which the curve can be extrapolated
-whenpoints are projected.  Default is 2 (times the last segmentlength). The
-default is 0 for \code{smoother} equal to\code{"periodic_lowess"}. (default:
-\code{2}; range: from \code{0} to \code{5})}
+\item{stretch}{A factor by which the curve can be extrapolated when points are
+projected.  Default is 2 (times the last segment length). The default is 0 for
+\code{smoother} equal to \code{"periodic_lowess"}. Domain: U(0, 5). Default: 2. Format:
+numeric.}
 
-\item{smoother}{discrete; Choice of smoother. The default
-is\code{"smooth_spline"}, and other choices are \code{"lowess"}
-and\code{"periodic_lowess"}. The latter allows one to fit closed curves.Beware,
-you may want to use \code{iter = 0} with \code{lowess()}. (default:
-\code{"smooth.spline"}; values: {\code{"smooth.spline"}, \code{"lowess"},
-\code{"periodic.lowess"}})}
+\item{smoother}{Choice of smoother. The default is \code{"smooth_spline"}, and other
+choices are \code{"lowess"} and \code{"periodic_lowess"}. The latter allows one to fit
+closed curves. Beware, you may want to use \code{iter = 0} with \code{lowess()}. Domain:
+{smooth.spline, lowess, periodic.lowess}. Default: smooth.spline. Format:
+character.}
 }
 \value{
 A TI method wrapper to be used together with
@@ -84,3 +82,4 @@ Campbell, K., Ponting, C.P., Webber, C., 2015. Laplacian eigenmaps
 and principal curves for high resolution pseudotemporal ordering of single-cell
 RNA-seq profiles.
 }
+\keyword{method}

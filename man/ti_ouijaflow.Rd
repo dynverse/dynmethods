@@ -2,12 +2,12 @@
 % Please edit documentation in R/ti_ouijaflow.R
 \name{ti_ouijaflow}
 \alias{ti_ouijaflow}
-\title{Inferring a trajectory inference using ouijaflow}
+\title{ouijaflow}
 \usage{
 ti_ouijaflow(iter = 1000L)
 }
 \arguments{
-\item{iter}{integer; (default: \code{1000L}; range: from \code{2L} to \code{50000L})}
+\item{iter}{. Domain: e^U(0.69, 10.82). Default: 1000. Format: integer.}
 }
 \value{
 A TI method wrapper to be used together with
@@ -25,3 +25,4 @@ The original code of this method is available
 Campbell, K.R., Yau, C., 2016. A descriptive marker gene approach
 to single-cell pseudotime inference.
 }
+\keyword{method}

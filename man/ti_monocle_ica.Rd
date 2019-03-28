@@ -2,28 +2,29 @@
 % Please edit documentation in R/ti_monocle_ica.R
 \name{ti_monocle_ica}
 \alias{ti_monocle_ica}
-\title{Inferring a trajectory inference using Monocle ICA}
+\title{Monocle ICA}
 \usage{
 ti_monocle_ica(reduction_method = "ICA", max_components = 2L,
   norm_method = "log", filter_features = TRUE,
   filter_features_mean_expression = 0.1)
 }
 \arguments{
-\item{reduction_method}{discrete; A character string specifying the algorithm
-to use for dimensionality reduction. (default: \code{"ICA"}; values: {\code{"ICA"}})}
+\item{reduction_method}{A character string specifying the algorithm to use for
+dimensionality reduction. Domain: {ICA}. Default: ICA. Format: character.}
 
-\item{max_components}{integer; The dimensionality of the reduced space
-(default: \code{2L}; range: from \code{2L} to \code{20L})}
+\item{max_components}{The dimensionality of the reduced space. Domain: U(2,
+20). Default: 2. Format: integer.}
 
-\item{norm_method}{discrete; Determines how to transform expression values
-prior to reducing dimensionality (default: \code{"log"}; values: {\code{"vstExprs"},
-\code{"log"}, \code{"none"}})}
+\item{norm_method}{Determines how to transform expression values prior to
+reducing dimensionality. Domain: {vstExprs, log, none}. Default: log. Format:
+character.}
 
-\item{filter_features}{logical; Whether to include monocle feature filtering}
+\item{filter_features}{Whether to include monocle feature filtering. Default:
+TRUE. Format: logical.}
 
-\item{filter_features_mean_expression}{numeric; Minimal mean feature
-expression, only used when \code{filter_features} is set to TRUE (default: \code{0.1};
-range: from \code{0L} to \code{10L})}
+\item{filter_features_mean_expression}{Minimal mean feature expression, only
+used when \code{filter_features} is set to TRUE. Domain: U(0, 10). Default: 0.1.
+Format: numeric.}
 }
 \value{
 A TI method wrapper to be used together with
@@ -42,3 +43,4 @@ Qiu, X., Mao, Q., Tang, Y., Wang, L., Chawla, R., Pliner, H.A.,
 Trapnell, C., 2017. Reversed graph embedding resolves complex single-cell
 trajectories. Nature Methods 14, 979–982.
 }
+\keyword{method}

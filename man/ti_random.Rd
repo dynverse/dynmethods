@@ -2,13 +2,13 @@
 % Please edit documentation in R/ti_random.R
 \name{ti_random}
 \alias{ti_random}
-\title{Inferring a trajectory inference using Random}
+\title{Random}
 \usage{
 ti_random(dummy_param = 0.5)
 }
 \arguments{
-\item{dummy_param}{numeric; Dummy parameter (default: \code{0.5}; range: from \code{0} to
-\code{1})}
+\item{dummy_param}{Dummy parameter. Domain: U(0, 1). Default: 0.5. Format:
+numeric.}
 }
 \value{
 A TI method wrapper to be used together with
@@ -20,3 +20,4 @@ Will generate a trajectory using Random.
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_random}{container}.
 }
+\keyword{method}

@@ -2,28 +2,29 @@
 % Please edit documentation in R/ti_mfa.R
 \name{ti_mfa}
 \alias{ti_mfa}
-\title{Inferring a trajectory inference using MFA}
+\title{MFA}
 \usage{
 ti_mfa(iter = 2000L, thin = 1L, pc_initialise = 1L,
-  prop_collapse = 0, scale_input = TRUE, zero_inflation = FALSE)
+  prop_collapse = 0L, scale_input = TRUE, zero_inflation = FALSE)
 }
 \arguments{
-\item{iter}{integer; Number of MCMC iterations (default: \code{2000L}; range: from
-\code{20L} to \code{5000L})}
+\item{iter}{Number of MCMC iterations. Domain: U(20, 5000). Default: 2000.
+Format: integer.}
 
-\item{thin}{integer; MCMC samples to thin (default: \code{1L}; range: from \code{1L} to
-\code{20L})}
+\item{thin}{MCMC samples to thin. Domain: U(1, 20). Default: 1. Format:
+integer.}
 
-\item{pc_initialise}{integer; Which principal component to initialise
-pseudotimes to (default: \code{1L}; range: from \code{1L} to \code{5L})}
+\item{pc_initialise}{Which principal component to initialise pseudotimes to.
+Domain: U(1, 5). Default: 1. Format: integer.}
 
-\item{prop_collapse}{numeric; Proportion of Gibbs samples which should
-marginalise over c (default: \code{0}; range: from \code{0} to \code{1})}
+\item{prop_collapse}{Proportion of Gibbs samples which should marginalise over
+c. Domain: U(0, 1). Default: 0. Format: numeric.}
 
-\item{scale_input}{logical; Logical. If true, input is scaled to have mean 0
-variance 1}
+\item{scale_input}{Logical. If true, input is scaled to have mean 0 variance 1.
+Default: TRUE. Format: logical.}
 
-\item{zero_inflation}{logical; Logical, should zero inflation be enabled?}
+\item{zero_inflation}{Logical, should zero inflation be enabled?. Default:
+FALSE. Format: logical.}
 }
 \value{
 A TI method wrapper to be used together with
@@ -43,3 +44,4 @@ Campbell, K.R., Yau, C., 2017. Probabilistic modeling of
 bifurcations in single-cell gene expression data using a Bayesian mixture of
 factor analyzers. Wellcome Open Research 2, 19.
 }
+\keyword{method}

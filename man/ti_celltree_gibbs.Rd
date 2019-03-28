@@ -2,33 +2,51 @@
 % Please edit documentation in R/ti_celltree_gibbs.R
 \name{ti_celltree_gibbs}
 \alias{ti_celltree_gibbs}
-\title{Inferring a trajectory inference using cellTree Gibbs}
+\title{cellTree Gibbs}
 \usage{
 ti_celltree_gibbs(method = "Gibbs", sd_filter = 0.5,
-  absolute_width = 0, width_scale_factor = 1.5,
-  outlier_tolerance_factor = 0.1, rooting_method = "null",
-  num_topics = 4, tot_iter = 200L, tolerance = 1e-05)
+  width_scale_factor = 1.5, outlier_tolerance_factor = 0.1,
+  rooting_method = "null", num_topics = 4L, tot_iter = 200L,
+  tolerance = 1e-05)
 }
 \arguments{
-\item{method}{discrete; (default: \code{"Gibbs"}; values: {\code{"Gibbs"}})}
+\item{method}{LDA inference method to use. Domain: {Gibbs}. Default: Gibbs.
+Format: character.}
 
-\item{sd_filter}{numeric; (default: \code{0.5}; range: from \code{0.01} to \code{5})}
+\item{sd_filter}{Standard-deviation threshold below which genes should be
+removed from the data. Domain: e^U(-4.61, 1.61). Default: 0.5. Format: numeric.}
 
-\item{absolute_width}{numeric; (default: \code{0}; range: from \code{NULL} to \code{NULL})}
+\item{width_scale_factor}{A scaling factor for the dynamically-computed
+distance threshold (ignored if absolute_width is provided). Higher values will
+result in less branches in the backbone tree, while lower values might lead to
+a large number of backbone branches. Domain: e^U(-2.30, 4.61). Default: 1.5.
+Format: numeric.}
 
-\item{width_scale_factor}{numeric; (default: \code{1.5}; range: from \code{0.1} to \code{100})}
+\item{outlier_tolerance_factor}{Proportion of vertices, out of the total number
+of vertices divided by the total number of branches, that can be left at the
+end of the backbone tree-building algorithm. Domain: e^U(-9.21, 6.91). Default:
+0.1. Format: numeric.}
 
-\item{outlier_tolerance_factor}{numeric; (default: \code{0.1}; range: from \code{1e-04}
-to \code{1000})}
+\item{rooting_method}{Method used to root the backbone tree. Must be either
+NULL or one of ‘longest.path’, ‘center.start.group’ or ‘average.start.group’.
+‘longest.path’ picks one end of the longest shortest-path between two vertices.
+’center.start.group’ picks the vertex in the starting group with lowest
+mean-square-distance to the others. ‘average.start.group’ creates a new
+artificial vertex, as the average of all cells in the starting group. If no
+value is provided, the best method is picked based on the type of grouping and
+start group information available. Domain: {longest.path, center.start.group,
+average.start.group, null}. Default: null. Format: character.}
 
-\item{rooting_method}{discrete; (default: \code{"null"}; values: {\code{"longest.path"},
-\code{"center.start.group"}, \code{"average.start.group"}, \code{"null"}})}
+\item{num_topics}{Number of topics to fit in the model. Domain: U(2, 15).
+Default: 4. Format: integer.}
 
-\item{num_topics}{integer; (default: \code{4}; range: from \code{2} to \code{15})}
+\item{tot_iter}{Numeric parameters (optional) forwarded to the chosen LDA
+inference method's contol class. Domain: e^U(2.30, 6.91). Default: 200. Format:
+numeric.}
 
-\item{tot_iter}{numeric; (default: \code{200L}; range: from \code{10L} to \code{1000L})}
-
-\item{tolerance}{numeric; (default: \code{1e-05}; range: from \code{1e-07} to \code{0.001})}
+\item{tolerance}{Numeric parameters (optional) forwarded to the chosen LDA
+inference method's contol class. Domain: e^U(-16.12, -6.91). Default: 1e-05.
+Format: numeric.}
 }
 \value{
 A TI method wrapper to be used together with
@@ -47,3 +65,4 @@ duVerle, D.A., Yotsukura, S., Nomura, S., Aburatani, H., Tsuda, K.,
 2016. CellTree: an R/bioconductor package to infer the hierarchical structure
 of cell populations from single-cell RNA-seq data. BMC Bioinformatics 17.
 }
+\keyword{method}

@@ -2,43 +2,44 @@
 % Please edit documentation in R/ti_pseudogp.R
 \name{ti_pseudogp}
 \alias{ti_pseudogp}
-\title{Inferring a trajectory inference using pseudogp}
+\title{pseudogp}
 \usage{
 ti_pseudogp(smoothing_alpha = 10, smoothing_beta = 3,
   pseudotime_mean = 0.5, pseudotime_var = 1, chains = 3L,
-  iter = 100L, dimreds = c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE,
-  FALSE, FALSE, FALSE, FALSE, FALSE), initialise_from = "random")
+  iter = 100L, dimreds = c("pca", "mds"), initialise_from = "random")
 }
 \arguments{
-\item{smoothing_alpha}{numeric; The hyperparameter for the Gamma distribution
-that controls arc-length (default: \code{10}; range: from \code{1} to \code{20})}
+\item{smoothing_alpha}{The hyperparameter for the Gamma distribution that
+controls arc-length. Domain: U(1, 20). Default: 10. Format: numeric.}
 
-\item{smoothing_beta}{numeric; The hyperparameter for the Gamma distribution
-that controls arc-length (default: \code{3}; range: from \code{1} to \code{20})}
+\item{smoothing_beta}{The hyperparameter for the Gamma distribution that
+controls arc-length. Domain: U(1, 20). Default: 3. Format: numeric.}
 
-\item{pseudotime_mean}{numeric; The mean of the constrained normal prior on the
-pseudotimes (default: \code{0.5}; range: from \code{0} to \code{1})}
+\item{pseudotime_mean}{The mean of the constrained normal prior on the
+pseudotimes. Domain: U(0, 1). Default: 0.5. Format: numeric.}
 
-\item{pseudotime_var}{numeric; The variance of the constrained normal prior on
-the pseudotimes (default: \code{1}; range: from \code{0.01} to \code{1})}
+\item{pseudotime_var}{The variance of the constrained normal prior on the
+pseudotimes. Domain: U(0.01, 1). Default: 1. Format: numeric.}
 
-\item{chains}{integer; The number of chains for the MCMC trace (default: \code{3L};
-range: from \code{1L} to \code{20L})}
+\item{chains}{The number of chains for the MCMC trace. Domain: U(1, 20).
+Default: 3. Format: integer.}
 
-\item{iter}{integer; The number of iterations for the MCMC trace (default:
-\code{100L}; range: from \code{100L} to \code{1000L})}
+\item{iter}{The number of iterations for the MCMC trace. Domain: e^U(4.61,
+6.91). Default: 100. Format: integer.}
 
-\item{dimreds}{logical_vector; A character vector specifying which
-dimensionality reduction methods to use.See \code{dyndimred::dimred} for the
-list of available dimensionality reduction methods.}
+\item{dimreds}{A character vector specifying which dimensionality reduction
+methods to use. See \code{dyndimred::dimred()} for the list of available
+dimensionality reduction methods. Domain: all subsets of {pca, mds, tsne, ica,
+lle, landmark_mds, mds_sammon, mds_isomds, mds_smacof, umap, dm_diffusionmap,
+dm_destiny}. Default: {pca, mds}. Format: subset.}
 
-\item{initialise_from}{discrete; How to initialise the MCMC chain. One of
-"random" (stan decides),"principal_curve", or "pca" (the first component of PCA
-rescaled is taken to be the pseudotimes).Note: if multiple representations are
-provided, \code{pseudogp} will take the principal curve orpca from the first
-rather than combining them. If a particular representation is required, it isup
-to the user to re-order them. (default: \code{"random"}; values: {\code{"random"},
-\code{"principal_curve"}, \code{"pca"}})}
+\item{initialise_from}{How to initialise the MCMC chain. One of "random" (stan
+decides),"principal_curve", or "pca" (the first component of PCA rescaled is
+taken to be the pseudotimes).Note: if multiple representations are provided,
+\code{pseudogp} will take the principal curve orpca from the first rather than
+combining them. If a particular representation is required, it isup to the user
+to re-order them. Domain: {random, principal_curve, pca}. Default: random.
+Format: character.}
 }
 \value{
 A TI method wrapper to be used together with
@@ -58,3 +59,4 @@ Campbell, K.R., Yau, C., 2016. Order Under Uncertainty: Robust
 Differential Expression Analysis Using Probabilistic Models for Pseudotime
 Inference. PLOS Computational Biology 12, e1005212.
 }
+\keyword{method}

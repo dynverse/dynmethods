@@ -2,13 +2,13 @@
 % Please edit documentation in R/ti_error.R
 \name{ti_error}
 \alias{ti_error}
-\title{Inferring a trajectory inference using Error}
+\title{Error}
 \usage{
 ti_error(dummy_param = 0.5)
 }
 \arguments{
-\item{dummy_param}{numeric; Dummy parameter (default: \code{0.5}; range: from \code{0} to
-\code{1})}
+\item{dummy_param}{Dummy parameter. Domain: U(0, 1). Default: 0.5. Format:
+numeric.}
 }
 \value{
 A TI method wrapper to be used together with
@@ -20,3 +20,4 @@ Will generate a trajectory using Error.
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_error}{container}.
 }
+\keyword{method}

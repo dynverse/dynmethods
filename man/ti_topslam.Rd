@@ -2,25 +2,27 @@
 % Please edit documentation in R/ti_topslam.R
 \name{ti_topslam}
 \alias{ti_topslam}
-\title{Inferring a trajectory inference using topslam}
+\title{topslam}
 \usage{
 ti_topslam(n_components = 2L, n_neighbors = 10L, linear_dims = 0L,
-  max_iters = 1000L, dimreds = c(TRUE, TRUE, TRUE, TRUE, TRUE))
+  max_iters = 1000L, dimreds = c("t-SNE", "PCA", "Spectral", "Isomap",
+  "ICA"))
 }
 \arguments{
-\item{n_components}{integer; The number of components (default: \code{2L}; range:
-from \code{2L} to \code{10L})}
+\item{n_components}{The number of components. Domain: U(2, 10). Default: 2.
+Format: integer.}
 
-\item{n_neighbors}{integer; The number of neighbors (default: \code{10L}; range:
-from \code{2L} to \code{100L})}
+\item{n_neighbors}{The number of neighbors. Domain: U(2, 100). Default: 10.
+Format: integer.}
 
-\item{linear_dims}{integer; (default: \code{0L}; range: from \code{0L} to \code{5L})}
+\item{linear_dims}{. Domain: U(0, 5). Default: 0. Format: integer.}
 
-\item{max_iters}{integer; The number of iterations to optimize over (default:
-\code{1000L}; range: from \code{10L} to \code{10000L})}
+\item{max_iters}{The number of iterations to optimize over. Domain: e^U(2.30,
+9.21). Default: 1000. Format: integer.}
 
-\item{dimreds}{logical_vector; Which dimensionality reductions to use; tSNE,
-PCA, Spectral, Isomap and/or ICA}
+\item{dimreds}{Which dimensionality reductions to use and/or ICA. Domain: all
+subsets of {t-SNE, PCA, Spectral, Isomap, ICA}. Default: {t-SNE, PCA, Spectral,
+Isomap, ICA}. Format: subset.}
 }
 \value{
 A TI method wrapper to be used together with
@@ -38,3 +40,4 @@ The original code of this method is available
 Zwiessele, M., Lawrence, N.D., 2016. Topslam: Waddington Landscape
 Recovery for Single Cell Experiments.
 }
+\keyword{method}

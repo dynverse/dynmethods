@@ -1,56 +1,42 @@
-id: template
-name: Template
-type: algorithm
-container_url: https://github.com/dynverse/ti_template
-docker_repository: dynverse/ti_template
-singularity_collection: 1000
-doi: '101010101/1101010101'
-google_scholar_cluster_id: '1010001010101111211'
-platform: R
-trajectory_types:
-- linear
-- bifurcation
-- convergence
-- multifurcation
-- binary_tree
-- tree
-- graph
-- acyclic_graph
-- disconnected_graph
-topology_inference: fixed
-license: GPL-3
-preprint_date: '1970-01-30'
-publication_date: '1970-01-31'
-code_url: https://github.com/dynverse/template
-parameters:
-  param1:
-    type: integer
-    default: 5
-    lower: 1
-    upper: 10
-    description: Description of param1
-  param2:
-    type: discrete
-    default: one
-    values:
-    - one
-    - two
-    - three
-    description: Description of param2
-  param3:
-    type: numeric
-    default: 0.5
-    lower: 0.0
-    upper: 1.0
-    description: Description of param3
-    distribution: expuniform
-  param4:
-    type: logical
-    default: TRUE
-    description: Description of param4
-input:
-  format: rds
-  required:
+method:
+  id: template
+  name: Template
+  tool_id: template
+  source: tool|adaptation|offtheshelf|control
+  platform: R|Python
+  url: https://github.com/dynverse/template
+  license: GPL-3
+  authors: 
+  - given: Bob
+    family: Dylan
+    email: bob.dylan@example.com
+    github: bobdylan
+    orcid: '0000-0003-1234-5678'
+
+manuscript: 
+  doi: '101010101/1101010101'
+  google_scholar_cluster_id: '1010001010101111211'
+  preprint_date: '1970-01-30'
+  publication_date: '1970-01-31'
+
+container: 
+  url: https://github.com/dynverse/ti_template
+  docker: dynverse/ti_template
+
+wrapper:
+  type: linear|cyclic|cell_graph|branch_trajectory|cluster_graph|dimred_projection|end_state_probabilities|trajectory
+  topology_inference: free|param|fixed
+  trajectory_types:
+  - linear
+  - bifurcation
+  - convergence
+  - multifurcation
+  - binary_tree
+  - tree
+  - graph
+  - acyclic_graph
+  - disconnected_graph
+  input_required: 
   - counts
   - expression
   - start_id
@@ -63,25 +49,69 @@ input:
   - timecourse_continuous
   - timecourse_discrete
   - features_id
-output:
-  format: rds
-  outputs:
-  - branch_trajectory
-  - cell_graph
-  - cluster_graph
-  - cyclic_trajectory
-  - dimred
-  - dimred_projection
-  - end_state_probabilities
-  - grouping
-  - linear_trajectory
-  - pseudotime
-  - root
-  - trajectory
-  - timings
-wrapper_type: template
-authors:
-- given: Bob
-  family: Dylan
-  email: bob.dylan@example.com
-  github: bobdylan
+  input_optional:
+  - start_id
+  - start_n
+  - end_id
+  - end_n
+  - groups_id
+  - groups_n
+  - groups_network
+  - timecourse_continuous
+  - timecourse_discrete
+  - features_id
+parameters:
+  - id: param1
+    type: integer
+    description: Description of param1
+    default: 5
+    distribution:
+      type: uniform|expuniform
+      lower: 1
+      upper: 10
+  - id: param2
+    type: character
+    description: Description of param2
+    default: one
+    values:
+    - one
+    - two
+    - three
+  - id: param3
+    type: numeric
+    description: Description of param3
+    default: 0.5
+    distribution:
+      type: uniform|expuniform
+      lower: 0.0
+      upper: 1.0
+  - id: param4
+    type: logical
+    description: Description of param4
+    default: TRUE
+  - id: param5
+    type: range
+    description: Description of param5
+    default:
+    - 1
+    - 100
+    as_integer: TRUE
+    lower_distribution:
+      type: uniform|expuniform
+      lower: 1
+      upper: 10
+    upper_distribution:
+      type: uniform|expuniform
+      lower: 90
+      upper: 100
+  - id: param6
+    type: subset
+    description: Description of param6
+    default:
+    - one
+    - three
+    values:
+    - one
+    - two
+    - three
+

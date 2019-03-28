@@ -2,14 +2,14 @@
 % Please edit documentation in R/ti_periodpc.R
 \name{ti_periodpc}
 \alias{ti_periodpc}
-\title{Inferring a trajectory inference using Periodic PrinCurve}
+\title{Periodic PrinCurve}
 \usage{
-ti_periodpc(ndim = 3, maxit = 10)
+ti_periodpc(ndim = 3L, maxit = 10L)
 }
 \arguments{
-\item{ndim}{integer; (default: \code{3}; range: from \code{2} to \code{10})}
+\item{ndim}{. Domain: U(2, 10). Default: 3. Format: integer.}
 
-\item{maxit}{integer; (default: \code{10}; range: from \code{0} to \code{100})}
+\item{maxit}{. Domain: U(0, 100). Default: 10. Format: integer.}
 }
 \value{
 A TI method wrapper to be used together with
@@ -21,3 +21,4 @@ Will generate a trajectory using Periodic PrinCurve.
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_periodpc}{container}.
 }
+\keyword{method}

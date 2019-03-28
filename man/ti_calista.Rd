@@ -2,16 +2,16 @@
 % Please edit documentation in R/ti_calista.R
 \name{ti_calista}
 \alias{ti_calista}
-\title{Inferring a trajectory inference using CALISTA}
+\title{CALISTA}
 \usage{
 ti_calista(runs = 50L, max_iter = 100L)
 }
 \arguments{
-\item{runs}{integer; Number of independent runs of greedy algorithm (default:
-\code{50L}; range: from \code{20L} to \code{100L})}
+\item{runs}{Number of independent runs of greedy algorithm. Domain: U(20, 100).
+Default: 50. Format: integer.}
 
-\item{max_iter}{integer; Number of iterations in greedy algorithm (default:
-\code{100L}; range: from \code{20L} to \code{400L})}
+\item{max_iter}{Number of iterations in greedy algorithm. Domain: U(20, 400).
+Default: 100. Format: integer.}
 }
 \value{
 A TI method wrapper to be used together with
@@ -26,6 +26,7 @@ The original code of this method is available
 \href{https://github.com/CABSEL/CALISTA}{here}.
 }
 \references{
-Papili Gao, N., Hartmann, T., Gunawan, R., 2018. CALISTA:
+Papili Gao, N., Hartmann, T., Fang, T., Gunawan, R., 2018. CALISTA:
 Clustering And Lineage Inference in Single-Cell Transcriptional Analysis.
 }
+\keyword{method}

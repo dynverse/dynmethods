@@ -2,14 +2,14 @@
 % Please edit documentation in R/ti_pcreode.R
 \name{ti_pcreode}
 \alias{ti_pcreode}
-\title{Inferring a trajectory inference using pCreode}
+\title{pCreode}
 \usage{
 ti_pcreode(n_pca_components = 3L, num_runs = 10L)
 }
 \arguments{
-\item{n_pca_components}{integer; (default: \code{3L}; range: from \code{2L} to \code{10L})}
+\item{n_pca_components}{. Domain: U(2, 10). Default: 3. Format: integer.}
 
-\item{num_runs}{integer; (default: \code{10L}; range: from \code{10L} to \code{100L})}
+\item{num_runs}{. Domain: e^U(2.30, 4.61). Default: 10. Format: integer.}
 }
 \value{
 A TI method wrapper to be used together with
@@ -31,3 +31,4 @@ K.S., 2018. Unsupervised Trajectory Analysis of Single-Cell RNA-Seq and Imaging
 Data Reveals Alternative Tuft Cell Origins in the Gut. Cell Systems 6,
 37–51.e9.
 }
+\keyword{method}

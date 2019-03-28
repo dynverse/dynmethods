@@ -2,22 +2,24 @@
 % Please edit documentation in R/ti_stemnet.R
 \name{ti_stemnet}
 \alias{ti_stemnet}
-\title{Inferring a trajectory inference using STEMNET}
+\title{STEMNET}
 \usage{
 ti_stemnet(alpha = 0.1, lambda_auto = TRUE, lambda = 0.1,
   force = FALSE)
 }
 \arguments{
-\item{alpha}{numeric; The elastic net mixing parameter of the ‘glmnet’
-classifier. (default: \code{0.1}; range: from \code{0.001} to \code{10L})}
+\item{alpha}{The elastic net mixing parameter of the ‘glmnet’ classifier.
+Domain: e^U(-6.91, 2.30). Default: 0.1. Format: numeric.}
 
-\item{lambda_auto}{logical; Whether to select the lambda by cross-validation}
+\item{lambda_auto}{Whether to select the lambda by cross-validation. Default:
+TRUE. Format: logical.}
 
-\item{lambda}{numeric; The lambda penalty of GLM. (default: \code{0.1}; range: from
-\code{0.05} to \code{1L})}
+\item{lambda}{The lambda penalty of GLM. Domain: e^U(-3.00, 0.00). Default:
+0.1. Format: numeric.}
 
-\item{force}{logical; Do not use! This is a parameter to force FateID to run on
-benchmark datasets where not enough end groups are present.}
+\item{force}{Do not use! This is a parameter to force STEMNET to run on
+benchmark datasets where not enough end groups are present. Default: FALSE.
+Format: logical.}
 }
 \value{
 A TI method wrapper to be used together with
@@ -38,3 +40,4 @@ W.-K., Ho, A.D., Huber, W., Trumpp, A., Essers, M.A.G., Steinmetz, L.M., 2017.
 Human haematopoietic stem cell lineage commitment is a continuous process.
 Nature Cell Biology 19, 271–281.
 }
+\keyword{method}

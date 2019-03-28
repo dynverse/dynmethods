@@ -2,48 +2,47 @@
 % Please edit documentation in R/ti_elpicycle.R
 \name{ti_elpicycle}
 \alias{ti_elpicycle}
-\title{Inferring a trajectory inference using ElPiGraph cycle}
+\title{ElPiGraph - Cycle}
 \usage{
-ti_elpicycle(topology = "cycle", NumNodes = 50L, NumEdges = 100000L,
-  InitNodes = 2L, Mu = 0.1, Lambda = 0.01,
-  MaxNumberOfIterations = 10L, eps = 0.01, CenterData = FALSE)
+ti_elpicycle(NumNodes = 50L, NumEdges = 100000L, InitNodes = 2L,
+  Mu = 0.1, Lambda = 0.01, MaxNumberOfIterations = 10L, eps = 0.01,
+  CenterData = FALSE)
 }
 \arguments{
-\item{topology}{discrete; The kind of topology to detect (default: \code{"cycle"};
-values: {\code{"cycle"}})}
+\item{NumNodes}{The number of nodes of the principal graph. Domain: U(2, 1000).
+Default: 50. Format: integer.}
 
-\item{NumNodes}{integer; The number of nodes of the principal graph (default:
-\code{50L}; range: from \code{2L} to \code{1000L})}
+\item{NumEdges}{The maximum number of edges. Domain: e^U(0.69, 11.51). Default:
+100000. Format: integer.}
 
-\item{NumEdges}{integer; The maximum number of edges (default: \code{100000L};
-range: from \code{2L} to \code{100000L})}
+\item{InitNodes}{Number of points to include in the initial graph. Domain:
+e^U(0.69, 6.91). Default: 2. Format: integer.}
 
-\item{InitNodes}{integer; Number of points to include in the initial graph
-(default: \code{2L}; range: from \code{2L} to \code{1000L})}
+\item{Mu}{Controls the elastic energy. Domain: e^U(-6.91, 0.00). Default: 0.1.
+Format: numeric.}
 
-\item{Mu}{numeric; Controls the elastic energy (default: \code{0.1}; range: from
-\code{0.001} to \code{1L})}
+\item{Lambda}{Controls the elastic energy. Domain: e^U(-6.91, 0.00). Default:
+0.01. Format: numeric.}
 
-\item{Lambda}{numeric; Controls the elastic energy (default: \code{0.01}; range:
-from \code{0.001} to \code{1L})}
+\item{MaxNumberOfIterations}{Maximum number of steps to embed the nodes.
+Domain: e^U(0.00, 6.91). Default: 10. Format: integer.}
 
-\item{MaxNumberOfIterations}{integer; Maximum number of steps to embed the
-nodes (default: \code{10L}; range: from \code{1L} to \code{1000L})}
+\item{eps}{Minimal relative change in the position of the nodes to stop
+embedment. Domain: e^U(-6.91, 0.00). Default: 0.01. Format: numeric.}
 
-\item{eps}{numeric; Minimal relative change in the position of the nodes to
-stop embedment (default: \code{0.01}; range: from \code{0.001} to \code{1L})}
-
-\item{CenterData}{logical; Should data and initial node positions be centered?}
+\item{CenterData}{Should data and initial node positions be centered?. Default:
+FALSE. Format: logical.}
 }
 \value{
 A TI method wrapper to be used together with
 \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 }
 \description{
-Will generate a trajectory using \href{https://github.com/Albluca/ElPiGraph.R}{ElPiGraph cycle}.
+Will generate a trajectory using \href{https://github.com/Albluca/ElPiGraph.R}{ElPiGraph - Cycle}.
 
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_elpicycle}{container}.
 The original code of this method is available
 \href{https://github.com/Albluca/ElPiGraph.R}{here}.
 }
+\keyword{method}

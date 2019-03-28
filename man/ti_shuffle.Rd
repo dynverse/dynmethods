@@ -2,21 +2,21 @@
 % Please edit documentation in R/ti_shuffle.R
 \name{ti_shuffle}
 \alias{ti_shuffle}
-\title{Inferring a trajectory inference using Shuffle}
+\title{shuffle}
 \usage{
-ti_shuffle(dummy_param = 0.5)
+ti_shuffle(dummy_param = TRUE)
 }
 \arguments{
-\item{dummy_param}{numeric; Dummy parameter (default: \code{0.5}; range: from \code{0} to
-\code{1})}
+\item{dummy_param}{Dummy parameter. Default: TRUE. Format: logical.}
 }
 \value{
 A TI method wrapper to be used together with
 \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 }
 \description{
-Will generate a trajectory using Shuffle.
+Will generate a trajectory using shuffle.
 
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_shuffle}{container}.
 }
+\keyword{method}

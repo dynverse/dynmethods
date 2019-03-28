@@ -13,11 +13,10 @@ library(tidyverse)
 library(dynmethods)
 
 data("methods")
-methods <- methods %>% filter(!source %in% c("control")) # controls are not actual TI methods
+methods <- methods %>% filter(!method_source %in% c("control")) # controls are not actual TI methods
 ```
 
-
-<img src="man/figures/logo.png" align="right" /> [![Build status](https://travis-ci.org/dynverse/dynmethods.svg?branch=master)](https://travis-ci.org/dynverse/dynmethods)
+<a href="https://travis-ci.org/dynverse/dynmethods"><img src="https://travis-ci.org/dynverse/dynmethods.svg" align="left"></a>  [**ℹ️ Tutorials**](https://dynverse.org)  &nbsp;  &nbsp; [**ℹ️ Reference documentation**](https://dynverse.org/reference/dynmethods) <br><img src="man/figures/logo.png" align="right" />
 
 # A collection of `r nrow(methods)` trajectory inference methods
 This package contains wrappers for trajectory inference (TI) methods. The output of each method is transformed into a common trajectory model using [dynwrap](https://www.github.com/dynverse/dynwrap), which allows easy [visualisation and comparison](https://www.github.com/dynverse/dyno). All methods are wrapped inside a docker container, which avoids dependency issues, and also makes it easy to add a new method.
@@ -30,37 +29,43 @@ To include your own method, feel free to send us a [pull request](https://github
 ## List of included methods
 
 ```{r, echo = FALSE, warning = FALSE, error = FALSE, message = FALSE, results='asis'}
-df <- methods %>% 
-  arrange(name) %>% 
+df <-
+  methods %>% 
+  arrange(method_name) %>% 
   mutate(
-    docker_url = paste0("https://hub.docker.com/r/", docker_repository),
-    travis_url = paste0("https://travis-ci.org/", docker_repository),
-    Method = name,
-    Doi = map_chr(doi, function(do) if (!is.null(do) && !is.na(do)) paste0("<a href='https://doi.org/", do, "'><img src='man/figures/doi_logo.png' height='16'></a>") else "" ),
-    Docker = glue::glue("[![Version](https://img.shields.io/badge/Docker-v{version}-blue.svg?logo=docker)]({docker_url})"),
-    Code = glue::glue("[code]({container_url})"), 
-    Status = glue::glue("[![Build status]({travis_url}.svg?branch=master)]({travis_url})"),
-    Authors = map_chr(authors, function(authors) {
-      first <- authors[[1]]
-      if (length(first) == 1 && is.na(first)) {
-        return("")
+    docker_url = paste0("https://hub.docker.com/r/", container_docker),
+    travis_url = paste0("https://travis-ci.org/", container_docker),
+    Method = method_name,
+    Doi = map_chr(manuscript_doi, function(do) if (!is.null(do) && !is.na(do)) paste0("<a href='https://doi.org/", do, "'><img src='man/figures/doi_logo.png' height='16'></a>") else "" ),
+    Docker = paste0("[![Version](https://img.shields.io/badge/Docker-v", version, "-blue.svg?logo=docker)](", docker_url, ")"),
+    Code = paste0("[code](", container_url, ")"), 
+    Status = paste0("[![Build status](", travis_url, ".svg?branch=dynwrapv2)](", travis_url, ")"), # switch this back to master for dynmethods@master
+    Authors = map_chr(method_authors, function(authors) {
+      if (length(authors) > 0) {
+          
+        first <- authors[[1]]
+        if (length(first) == 1 && is.na(first)) {
+          return("")
+        }
+        map_chr(authors, function(author) {
+          if (is.null(author$family)) {
+            author$family <- ""
+          }
+          author_text <- paste0(author$given, " ", author$family)
+  
+          if (!is.null(author$ORCID)) {
+            author_text <- paste0(author_text, " <a href='https://orcid.org/", author$ORCID, "'><img src='man/figures/orcid_logo.svg' height='16'></a>")
+          }
+  
+          if (!is.null(author$github)) {
+            author_text <- paste0(author_text, " <a href='https://github.com/", author$github, "'><img src='man/figures/github_logo.png' height='16'></a>")
+          }
+  
+          author_text %>% paste0("<sub>", ., "</sub>")
+        }) %>% paste0(collapse = "<br>")
+      } else {
+        NA
       }
-      map_chr(authors, function(author) {
-        if (is.null(author$family)) {
-          author$family <- ""
-        }
-        author_text <- paste0(author$given, " ", author$family)
-
-        if (!is.null(author$ORCID)) {
-          author_text <- paste0(author_text, " <a href='https://orcid.org/", author$ORCID, "'><img src='man/figures/orcid_logo.svg' height='16'></a>")
-        }
-
-        if (!is.null(author$github)) {
-          author_text <- paste0(author_text, " <a href='https://github.com/", author$github, "'><img src='man/figures/github_logo.png' height='16'></a>")
-        }
-
-        author_text %>% paste0("<sub>", ., "</sub>")
-      }) %>% paste0(collapse = "<br>")
     })
   )
 
@@ -68,37 +73,6 @@ df %>%
   select(Method, Doi, Code, Docker, Status, Authors) %>% 
   knitr::kable()
 ```
-
-
-## Latest changes
-Check out `news(package = "dynmethods")` or [NEWS.md](inst/NEWS.md) for a full list of changes.
-
-<!-- This section gets automatically generated from inst/NEWS.md, and also generates inst/NEWS -->
-
-```{r news, results='asis', echo=FALSE}
-library(tidyverse)
-
-news_md <- readr::read_lines("inst/NEWS.md")
-
-# creating NEWS for package
-news_normal <- news_md %>% 
-  str_replace_all("^# dynmethods", "dynmethods") %>% 
-  str_replace_all("\\[[^\\]]*\\]\\(([^\\)]*)\\)", "\\1")
-readr::write_lines(news_normal, "inst/NEWS")
-
-# creating text for readme
-ix <- which(str_detect(news_md, "^# dynmethods"))
-
-cat(str_replace(news_md[[ix[[1]]]], "^# ", "### Latest changes in "))
-
-cat(news_md[seq(ix[[1]]+1, ix[[2]]-1)], sep = "\n")
-
-cat(str_replace(news_md[[ix[[2]]]], "^# ", "### Latest changes in "))
-
-len2 <- if (length(ix) >= 3) ix[[3]] - 1 else length(news_md)
-cat(news_md[seq(ix[[2]]+1, len2)], sep = "\n")
-```
-
 
 ## Sources
 
@@ -111,3 +85,19 @@ We used following resources to get a (hopefully exhaustive) list of all TI metho
 
 [Luke Zappia's scRNA-tools](https://www.scrna-tools.org)
 [![DOI](https://zenodo.org/badge/DOI/10.1101/206573.svg)](https://doi.org/10.1101/206573)
+
+## Latest changes
+
+Check out `news(package = "dynwrap")` or [NEWS.md](inst/NEWS.md) for a full list of changes.
+
+<!-- This section gets automatically generated from inst/NEWS.md, and also generates inst/NEWS -->
+
+```{r news, echo=FALSE, results="asis"}
+dynutils::update_news()
+cat(dynutils::recent_news())
+```
+
+## Dynverse dependencies
+
+<!-- Generated by "update_dependency_graphs.R" in the main dynverse repo -->
+![](man/figures/dependencies.png)

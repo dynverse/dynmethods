@@ -2,28 +2,27 @@
 % Please edit documentation in R/ti_gng.R
 \name{ti_gng}
 \alias{ti_gng}
-\title{Inferring a trajectory inference using GNG}
+\title{GNG}
 \usage{
-ti_gng(dimred = "pca", ndim = 5L, max_iter = 15000, max_nodes = 8L,
-  apply_mst = TRUE)
+ti_gng(dimred = "landmark_mds", ndim = 5L, max_iter = 15000L,
+  max_nodes = 8L, apply_mst = TRUE)
 }
 \arguments{
-\item{dimred}{discrete; Which dimensionality reduction method to use. (default:
-\code{"pca"}; values: {\code{"pca"}, \code{"mds"}, \code{"tsne"}, \code{"ica"}, \code{"lle"},
-\code{"landmark_mds"}, \code{"mds_sammon"}, \code{"mds_isomds"}, \code{"mds_smacof"}, \code{"umap"},
-\code{"dm_diffusionMap"}})}
+\item{dimred}{Which dimensionality reduction method to use. Domain: {pca, mds,
+tsne, ica, lle, landmark_mds, mds_sammon, mds_isomds, mds_smacof, umap,
+dm_diffusionMap}. Default: landmark_mds. Format: character.}
 
-\item{ndim}{integer; The number of dimensions (default: \code{5L}; range: from \code{2L}
-to \code{10L})}
+\item{ndim}{The number of dimensions. Domain: U(2, 10). Default: 5. Format:
+integer.}
 
-\item{max_iter}{numeric; The max number of iterations (default: \code{15000}; range:
-from \code{25} to \code{1e+06})}
+\item{max_iter}{The max number of iterations. Domain: e^U(3.22, 13.82).
+Default: 15000. Format: numeric.}
 
-\item{max_nodes}{integer; The maximum number of nodes (default: \code{8L}; range:
-from \code{2L} to \code{30L})}
+\item{max_nodes}{The maximum number of nodes. Domain: U(2, 30). Default: 8.
+Format: integer.}
 
-\item{apply_mst}{logical; If true, an MST post-processing of the GNG is
-performed.}
+\item{apply_mst}{If true, an MST post-processing of the GNG is performed.
+Default: TRUE. Format: logical.}
 }
 \value{
 A TI method wrapper to be used together with
@@ -37,3 +36,4 @@ This method was wrapped inside a
 The original code of this method is available
 \href{https://github.com/rcannood/gng}{here}.
 }
+\keyword{method}

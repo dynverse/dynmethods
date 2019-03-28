@@ -1,3 +1,15 @@
+# dynmethods 1.0.0 (28-03-2019)
+
+* MAJOR CHANGE: Compatibility with dynwrap 
+
+* MAJOR CHANGE: dynmethods package is now coupled to particular tags of dynmethods containers
+
+* MAJOR CHANGE: The format of the `dynmethods::methods` object has been changed.
+
+* MAJOR CHANGE: All methods now work with sparse matrices and dyncli
+
+* DOCUMENTATION: Improved method documentation
+
 # dynmethods 0.2.0 (19-11-2018)
 
 * SMALL CHANGES: Update for dynwrap 0.3.0 where `create_ti_method_with_container()`
