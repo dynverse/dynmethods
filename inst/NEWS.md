@@ -1,4 +1,4 @@
-# dynmethods 0.9.9 (unreleased)
+# dynmethods 1.0.0 (28-03-2019)
 
 * Major changes due to preparation for dynwrap v1.0 release. All methods have been updated, 
   and the format of the `dynmethods::methods` object has been changed.
