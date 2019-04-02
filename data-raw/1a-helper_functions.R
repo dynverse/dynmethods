@@ -131,7 +131,7 @@ format_parameter_documentation <- function(definition) {
     function(parameter_id) {
       parameter <- definition$parameters$parameters[[parameter_id]]
 
-      dynparam::as_roxygen(parameter)
+      paste0("@param ", parameter$id, " ", dynparam::get_description(parameter, sep = ". "), ".")
     }
   )
 }
