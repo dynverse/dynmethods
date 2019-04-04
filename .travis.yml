@@ -9,7 +9,7 @@ before_install:
   - source <(curl -sSL https://raw.githubusercontent.com/dynverse/travis_scripts/master/helper.sh)
 install:
  - use_dynverse_devel
- - install_github_withdeps dynwrap
+ - install_cran devtools covr
  - install_withdeps
 after_success:
  - R -e 'covr::codecov()'
