@@ -10,6 +10,7 @@ before_install:
 install:
  - use_dynverse_devel
  - install_cran devtools covr
+ - install_github_withdeps dynwrap
  - install_withdeps
 after_success:
  - R -e 'covr::codecov()'
