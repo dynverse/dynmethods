@@ -27,9 +27,7 @@ ti_mst <- function(
     dimred = "pca",
     ndim = 2L
 ) {
-  create_ti_method_container(
-    container_id = "dynverse/ti_mst:v0.9.9",
-  )(
+  create_ti_method_container(container_id = "dynverse/ti_mst:v0.9.9")(
     dimred = dimred,
     ndim = ndim
   )

@@ -69,9 +69,7 @@ ti_merlot <- function(
     increaseFactor_lambda = 20L,
     FixEndpoints = FALSE
 ) {
-  create_ti_method_container(
-    container_id = "dynverse/ti_merlot:v0.9.9",
-  )(
+  create_ti_method_container(container_id = "dynverse/ti_merlot:v0.9.9")(
     sigma = sigma,
     distance = distance,
     ndim = ndim,

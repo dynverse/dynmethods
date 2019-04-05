@@ -57,9 +57,7 @@ ti_pseudogp <- function(
     dimreds = c("pca", "mds"),
     initialise_from = "random"
 ) {
-  create_ti_method_container(
-    container_id = "dynverse/ti_pseudogp:v0.9.9",
-  )(
+  create_ti_method_container(container_id = "dynverse/ti_pseudogp:v0.9.9")(
     smoothing_alpha = smoothing_alpha,
     smoothing_beta = smoothing_beta,
     pseudotime_mean = pseudotime_mean,

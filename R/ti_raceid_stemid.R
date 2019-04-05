@@ -112,9 +112,7 @@ ti_raceid_stemid <- function(
     pthr = 0.01,
     scthr = 0.2
 ) {
-  create_ti_method_container(
-    container_id = "dynverse/ti_raceid_stemid:v0.9.9",
-  )(
+  create_ti_method_container(container_id = "dynverse/ti_raceid_stemid:v0.9.9")(
     knn = knn,
     ccor = ccor,
     metric = metric,

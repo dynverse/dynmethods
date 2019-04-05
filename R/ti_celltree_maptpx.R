@@ -68,9 +68,7 @@ ti_celltree_maptpx <- function(
     tot_iter = 200L,
     tolerance = 0.05
 ) {
-  create_ti_method_container(
-    container_id = "dynverse/ti_celltree_maptpx:v0.9.9",
-  )(
+  create_ti_method_container(container_id = "dynverse/ti_celltree_maptpx:v0.9.9")(
     method = method,
     sd_filter = sd_filter,
     absolute_width = absolute_width,

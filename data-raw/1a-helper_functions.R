@@ -65,9 +65,7 @@ generate_function_from_definition <- function(definition, version) {
     "ti_", definition$method$id, " <- function(\n",
     parameters, "\n",
     ") {\n",
-    "  create_ti_method_container(\n",
-    "    container_id = \"", definition$container$docker, ":v", version, "\",\n",
-    "  )(\n",
+    "  create_ti_method_container(container_id = \"", definition$container$docker, ":v", version, "\")(\n",
     args, "\n",
     "  )\n",
     "}\n"

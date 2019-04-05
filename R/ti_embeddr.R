@@ -79,9 +79,7 @@ ti_embeddr <- function(
     stretch = 2L,
     smoother = "smooth.spline"
 ) {
-  create_ti_method_container(
-    container_id = "dynverse/ti_embeddr:v0.9.9",
-  )(
+  create_ti_method_container(container_id = "dynverse/ti_embeddr:v0.9.9")(
     ndim = ndim,
     kernel = kernel,
     metric = metric,

@@ -29,9 +29,7 @@ ti_comp1 <- function(
     ndim = 2L,
     component = 1L
 ) {
-  create_ti_method_container(
-    container_id = "dynverse/ti_comp1:v0.9.9",
-  )(
+  create_ti_method_container(container_id = "dynverse/ti_comp1:v0.9.9")(
     dimred = dimred,
     ndim = ndim,
     component = component

@@ -63,9 +63,7 @@ ti_celltree_vem <- function(
     tot_iter = 1000000L,
     tolerance = 1e-05
 ) {
-  create_ti_method_container(
-    container_id = "dynverse/ti_celltree_vem:v0.9.9",
-  )(
+  create_ti_method_container(container_id = "dynverse/ti_celltree_vem:v0.9.9")(
     method = method,
     sd_filter = sd_filter,
     width_scale_factor = width_scale_factor,

@@ -44,9 +44,7 @@ ti_wanderlust <- function(
     num_waypoints = 250L,
     epsilon = 1L
 ) {
-  create_ti_method_container(
-    container_id = "dynverse/ti_wanderlust:v0.9.9",
-  )(
+  create_ti_method_container(container_id = "dynverse/ti_wanderlust:v0.9.9")(
     normalise = normalise,
     knn = knn,
     n_diffusion_components = n_diffusion_components,
