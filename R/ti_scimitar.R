@@ -38,7 +38,7 @@ ti_scimitar <- function(
     cov_reg = 0.05,
     max_iter = 3L
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_scimitar:v0.9.9")(
+  create_ti_method_container(container_id = "dynverse/ti_scimitar:v0.9.9.01")(
     covariance_type = covariance_type,
     degree = degree,
     step_size = step_size,
