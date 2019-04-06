@@ -54,7 +54,7 @@ ti_scorpius <- function(
     smoother = "smooth_spline",
     sparse = TRUE
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_scorpius:v1.0.0")(
+  create_ti_method_container(container_id = "dynverse/ti_scorpius:v1.0.0.01")(
     distance_method = distance_method,
     ndim = ndim,
     k = k,

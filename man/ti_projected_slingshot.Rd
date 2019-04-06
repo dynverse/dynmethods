@@ -57,7 +57,7 @@ A TI method wrapper to be used together with
 Will generate a trajectory using \href{https://doi.org/10.1186/s12864-018-4772-0}{Projected Slingshot}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/ti_slingshot}{container}.
+\href{https://github.com/dynverse/ti_projected_slingshot}{container}.
 The original code of this method is available
 \href{https://github.com/kstreet13/slingshot}{here}.
 }

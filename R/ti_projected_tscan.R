@@ -9,7 +9,7 @@
 #' TSCAN](https://github.com/zji90/TSCAN).
 #' 
 #' This method was wrapped inside a
-#' [container](https://github.com/dynverse/ti_tscan).
+#' [container](https://github.com/dynverse/ti_projected_tscan).
 #' The original code of this method is available
 #' [here](https://github.com/zji90/TSCAN).
 #' 
@@ -35,7 +35,7 @@ ti_projected_tscan <- function(
     clusternum = c(2L, 9L),
     modelNames = "VVV"
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_tscan:v0.9.9.01")(
+  create_ti_method_container(container_id = "dynverse/ti_projected_tscan:v0.9.9.01")(
     minexpr_percent = minexpr_percent,
     minexpr_value = minexpr_value,
     cvcutoff = cvcutoff,
