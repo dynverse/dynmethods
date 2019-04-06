@@ -5,7 +5,6 @@ services:
   - docker
 cache:
   directories:
-    - $HOME/.cache/hdf5
     - $HOME/R/Library
 warnings_are_errors: true
 before_install:
@@ -17,13 +16,3 @@ install:
  - install_withdeps
 after_success:
  - R -e 'covr::codecov()'
-
-
-jobs:
-  include:
-    - stage: prepare cache
-      script:
-        - echo Skip
-      after_success:
-        - echo Skip
-    - stage: test
