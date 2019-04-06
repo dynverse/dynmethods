@@ -45,7 +45,7 @@ ti_paga <- function(
     embedding_type = "fa",
     connectivity_cutoff = 0.05
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_paga:v0.9.9")(
+  create_ti_method_container(container_id = "dynverse/ti_paga:v0.9.9.01")(
     n_neighbors = n_neighbors,
     n_comps = n_comps,
     n_dcs = n_dcs,

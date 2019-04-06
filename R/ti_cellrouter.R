@@ -70,7 +70,7 @@ ti_cellrouter <- function(
     neighs = 3L,
     perplexity = 30L
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_cellrouter:v0.9.9")(
+  create_ti_method_container(container_id = "dynverse/ti_cellrouter:v0.9.9.01")(
     ndim_pca = ndim_pca,
     ndim_tsne = ndim_tsne,
     max_iter = max_iter,

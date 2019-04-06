@@ -98,7 +98,7 @@ ti_urd <- function(
     bins.per.pseudotime.window = 5L,
     p.thresh = 0.01
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_urd:v0.9.9")(
+  create_ti_method_container(container_id = "dynverse/ti_urd:v0.9.9.01")(
     knn = knn,
     sigma.use = sigma.use,
     distance = distance,

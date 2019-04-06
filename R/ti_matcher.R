@@ -31,7 +31,7 @@ ti_matcher <- function(
     quantiles = 50L,
     method = "linear"
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_matcher:v0.9.9")(
+  create_ti_method_container(container_id = "dynverse/ti_matcher:v0.9.9.01")(
     quantiles = quantiles,
     method = method
   )

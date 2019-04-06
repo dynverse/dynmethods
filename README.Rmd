@@ -39,7 +39,7 @@ df <-
     Doi = map_chr(manuscript_doi, function(do) if (!is.null(do) && !is.na(do)) paste0("<a href='https://doi.org/", do, "'><img src='man/figures/doi_logo.png' height='16'></a>") else "" ),
     Docker = paste0("[![Version](https://img.shields.io/badge/Docker-v", version, "-blue.svg?logo=docker)](", docker_url, ")"),
     Code = paste0("[code](", container_url, ")"), 
-    Status = paste0("[![Build status](", travis_url, ".svg?branch=dynwrapv2)](", travis_url, ")"), # switch this back to master for dynmethods@master
+    Status = paste0("[![Build status](", travis_url, ".svg?branch=master)](", travis_url, ")"), # switch this back to master for dynmethods@master
     Authors = map_chr(method_authors, function(authors) {
       if (length(authors) > 0) {
           

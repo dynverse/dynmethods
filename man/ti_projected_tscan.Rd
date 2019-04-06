@@ -28,7 +28,7 @@ A TI method wrapper to be used together with
 Will generate a trajectory using \href{https://github.com/zji90/TSCAN}{Projected TSCAN}.
 
 This method was wrapped inside a
-\href{https://github.com/dynverse/ti_tscan}{container}.
+\href{https://github.com/dynverse/ti_projected_tscan}{container}.
 The original code of this method is available
 \href{https://github.com/zji90/TSCAN}{here}.
 }

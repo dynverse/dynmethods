@@ -1,3 +1,7 @@
+dynmethods 1.0.1 
+
+* FIX: Update version numbers of methods due to workaround for hdf5r on windows.
+
 dynmethods 1.0.0 (28-03-2019)
 
 * MAJOR CHANGE: Compatibility with dynwrap v1.0.0

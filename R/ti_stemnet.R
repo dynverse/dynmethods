@@ -39,7 +39,7 @@ ti_stemnet <- function(
     lambda = 0.1,
     force = FALSE
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_stemnet:v0.9.9")(
+  create_ti_method_container(container_id = "dynverse/ti_stemnet:v0.9.9.01")(
     alpha = alpha,
     lambda_auto = lambda_auto,
     lambda = lambda,

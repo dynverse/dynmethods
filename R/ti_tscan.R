@@ -36,7 +36,7 @@ ti_tscan <- function(
     clusternum = c(2L, 9L),
     modelNames = "VVV"
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_tscan:v0.9.9")(
+  create_ti_method_container(container_id = "dynverse/ti_tscan:v0.9.9.01")(
     minexpr_percent = minexpr_percent,
     minexpr_value = minexpr_value,
     cvcutoff = cvcutoff,

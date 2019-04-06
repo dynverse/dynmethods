@@ -50,7 +50,7 @@ ti_elpigraph <- function(
     eps = 0.01,
     CenterData = FALSE
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_elpigraph:v0.9.9")(
+  create_ti_method_container(container_id = "dynverse/ti_elpigraph:v0.9.9.01")(
     topology = topology,
     NumNodes = NumNodes,
     NumEdges = NumEdges,
