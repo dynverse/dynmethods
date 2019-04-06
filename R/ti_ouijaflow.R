@@ -25,9 +25,7 @@
 ti_ouijaflow <- function(
     iter = 1000L
 ) {
-  create_ti_method_container(
-    container_id = "dynverse/ti_ouijaflow:v0.9.9",
-  )(
+  create_ti_method_container(container_id = "dynverse/ti_ouijaflow:v0.9.9.01")(
     iter = iter
   )
 }

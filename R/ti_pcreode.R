@@ -31,9 +31,7 @@ ti_pcreode <- function(
     n_pca_components = 3L,
     num_runs = 10L
 ) {
-  create_ti_method_container(
-    container_id = "dynverse/ti_pcreode:v0.9.9",
-  )(
+  create_ti_method_container(container_id = "dynverse/ti_pcreode:v0.9.9.01")(
     n_pca_components = n_pca_components,
     num_runs = num_runs
   )

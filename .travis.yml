@@ -3,10 +3,13 @@ dist: trusty
 bioc_required: true
 services:
   - docker
-cache: packages
+cache:
+  directories:
+    - $HOME/R/Library
 warnings_are_errors: true
 before_install:
   - source <(curl -sSL https://raw.githubusercontent.com/dynverse/travis_scripts/master/helper.sh)
+  - install_hdf5
 install:
  - use_dynverse_devel
  - install_cran devtools covr

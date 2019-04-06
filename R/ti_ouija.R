@@ -40,9 +40,7 @@ ti_ouija <- function(
     inference_type = "hmc",
     normalise_expression = TRUE
 ) {
-  create_ti_method_container(
-    container_id = "dynverse/ti_ouija:v0.9.9",
-  )(
+  create_ti_method_container(container_id = "dynverse/ti_ouija:v0.9.9.01")(
     iter = iter,
     response_type = response_type,
     inference_type = inference_type,

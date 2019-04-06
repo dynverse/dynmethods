@@ -46,9 +46,7 @@ ti_scoup <- function(
     sigma_squared = 0.1,
     thresh = 0.01
 ) {
-  create_ti_method_container(
-    container_id = "dynverse/ti_scoup:v0.9.9",
-  )(
+  create_ti_method_container(container_id = "dynverse/ti_scoup:v0.9.9.01")(
     ndim = ndim,
     max_ite1 = max_ite1,
     max_ite2 = max_ite2,

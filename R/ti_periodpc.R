@@ -25,9 +25,7 @@ ti_periodpc <- function(
     ndim = 3L,
     maxit = 10L
 ) {
-  create_ti_method_container(
-    container_id = "dynverse/ti_periodpc:v0.9.9",
-  )(
+  create_ti_method_container(container_id = "dynverse/ti_periodpc:v0.9.9.01")(
     ndim = ndim,
     maxit = maxit
   )
