@@ -73,11 +73,7 @@ generate_function_from_definition <- function(definition, version) {
 }
 
 format_description <- function(definition) {
-  if (!is.null(definition$method$description)) {
-    definition$method$description
-  } else {
-    paste0("Will generate a trajectory using ", format_url_name(definition), ".")
-  }
+  paste0("Will generate a trajectory using ", format_url_name(definition), ". ", definition$method$description)
 }
 
 format_code_url <- function(definition) {

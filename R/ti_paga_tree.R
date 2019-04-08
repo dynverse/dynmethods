@@ -6,6 +6,8 @@
 #' 
 #' @description
 #' Will generate a trajectory using [PAGA Tree](https://doi.org/10.1101/208819).
+#' This method runs exactly the same as normal PAGA, but will construct a
+#' minimal-spanning tree between clusters
 #' 
 #' This method was wrapped inside a
 #' [container](https://github.com/dynverse/ti_paga_tree).
@@ -42,7 +44,7 @@ ti_paga_tree <- function(
     resolution = 1L,
     embedding_type = "fa"
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_paga_tree:v0.9.9.01")(
+  create_ti_method_container(container_id = "dynverse/ti_paga_tree:v0.9.9.02")(
     n_neighbors = n_neighbors,
     n_comps = n_comps,
     n_dcs = n_dcs,

@@ -31,6 +31,8 @@ A TI method wrapper to be used together with
 }
 \description{
 Will generate a trajectory using \href{https://doi.org/10.1101/208819}{PAGA Tree}.
+This method runs exactly the same as normal PAGA, but will construct a
+minimal-spanning tree between clusters
 
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_paga_tree}{container}.
