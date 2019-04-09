@@ -3,20 +3,20 @@
 ################################################################################################
 
 #' @title SCORPIUS
-#' 
+#'
 #' @description
 #' Will generate a trajectory using [SCORPIUS](https://doi.org/10.1101/079509).
-#' 
+#'
 #' This method was wrapped inside a
 #' [container](https://github.com/dynverse/ti_scorpius).
 #' The original code of this method is available
 #' [here](https://github.com/rcannood/SCORPIUS).
-#' 
+#'
 #' @references Cannoodt, R., Saelens, W., Sichien, D., Tavernier, S., Janssens,
 #' S., Guilliams, M., Lambrecht, B.N., De Preter, K., Saeys, Y., 2016. SCORPIUS
 #' improves trajectory inference and identifies novel modules in dendritic cell
 #' development.
-#' 
+#'
 #' @param distance_method A character string indicating which
 #' correlationcoefficient (or covariance) is to be computed. One of "pearson",
 #' "kendall", or "spearman". Domain: {spearman, pearson, kendall}. Default:
@@ -38,9 +38,9 @@
 #' character.
 #' @param sparse Whether or not to use sparse MDS dimensionality reduction, for
 #' datasets with large amounts of cells. Default: TRUE. Format: logical.
-#' 
+#'
 #' @keywords method
-#' 
+#'
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
@@ -54,7 +54,11 @@ ti_scorpius <- function(
     smoother = "smooth_spline",
     sparse = TRUE
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_scorpius:v1.0.0.01")(
+  method_choose_backend(
+    r_remote = "tiscorpius=dynverse/ti_scorpius/package@1.0.0.01",
+    r_function = "ti_scorpius",
+    container_id = "dynverse/ti_scorpius:v1.0.0.01"
+  )(
     distance_method = distance_method,
     ndim = ndim,
     k = k,

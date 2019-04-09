@@ -60,6 +60,8 @@ generate_function_from_definition <- function(definition, version) {
   args <- map_chr(parameter_ids, ~ paste0(., " = ", .)) %>%
     paste0("    ", ., collapse = ",\n")
 
+  # switch between a pure container wrapper or a hybrid R - container wrapper
+
   # return code for function
   paste0(
     "ti_", definition$method$id, " <- function(\n",
