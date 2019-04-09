@@ -17,13 +17,13 @@ Imports:
   dynwrap (>= 1.0.0),
   crayon,
   devtools,
+  purrr,
   glue,
-  remotes
+  remotes,
 Suggests:
   dplyr,
   dynutils,   
   knitr,
-  purrr,
   testthat,
   tibble
 Remotes:  
