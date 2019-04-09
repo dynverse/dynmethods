@@ -1,5 +1,8 @@
 #' Install remotes using git tags and R versions
 #'
+#' @param remotes A list of remotes in the format of `parse_github_repo_spec`
+#' @param is_interactive Whether running in an interactive session
+#'
 #' @importFrom purrr map_chr map2_dbl map_chr map
 #' @importFrom remotes parse_github_repo_spec
 install_github_tagged_version <- function(remotes, is_interactive = interactive()) {

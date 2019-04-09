@@ -6,6 +6,11 @@
 \usage{
 install_github_tagged_version(remotes, is_interactive = interactive())
 }
+\arguments{
+\item{remotes}{A list of remotes in the format of \code{parse_github_repo_spec}}
+
+\item{is_interactive}{Whether running in an interactive session}
+}
 \description{
 Install remotes using git tags and R versions
 }
