@@ -1,4 +1,3 @@
-
 #' @importFrom dynwrap create_ti_method_container
 method_choose_backend <- function(r_remote, r_function, container_id) {
   correct_backends <- c("r_wrapper", "container")

@@ -1,11 +1,14 @@
 #' Install remotes using git tags and R versions
+#'
+#' @importFrom purrr map_chr map2_dbl map_chr map
+#' @importFrom remotes parse_github_repo_spec
 install_github_tagged_version <- function(remotes, is_interactive = interactive()) {
-  parsed <- map(remotes, parse_github_repo_spec)
+  parsed <- purrr::map(remotes, parse_github_repo_spec)
 
-  current_versions <- parsed %>% map_chr("ref")
-  requested_versions <- map_chr(parsed, function(x) devtools::package_info(x$package, dependencies = NULL)$ondiskversion)
+  current_versions <- parsed %>% purrr::map_chr("ref")
+  requested_versions <- purrr::map_chr(parsed, function(x) devtools::package_info(x$package, dependencies = NULL)$ondiskversion)
 
-  version_comparisons <- map2_dbl(current_versions, requested_versions, compareVersion)
+  version_comparisons <- purrr::map2_dbl(current_versions, requested_versions, compareVersion)
 
   to_install <- remotes[version_comparisons != 0]
 
