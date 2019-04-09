@@ -14,7 +14,11 @@ RoxygenNote: 6.1.1
 Depends:
   R (>= 3.4.0)
 Imports: 
-  dynwrap (>= 1.0.0)
+  dynwrap (>= 1.0.0),
+  crayon,
+  devtools,
+  glue,
+  remotes
 Suggests:
   dplyr,
   dynutils,   
