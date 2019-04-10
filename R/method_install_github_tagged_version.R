@@ -3,10 +3,10 @@
 #' @param remotes A list of remotes in the format of `parse_github_repo_spec`
 #' @param is_interactive Whether running in an interactive session
 #'
-#' @importFrom purrr map_chr map2_dbl map_chr map
+#' @importFrom purrr map_chr map2_dbl map_chr map remotes
 #' @importFrom remotes parse_github_repo_spec
 install_github_tagged_version <- function(remotes, is_interactive = interactive()) {
-  parsed <- purrr::map(remotes, parse_github_repo_spec)
+  parsed <- purrr::map(remotes, parse_github_repo_spec) %>% purrr::set_names(remotes)
 
   current_versions <- parsed %>% purrr::map_chr("ref")
   requested_versions <- purrr::map_chr(parsed, function(x) devtools::package_info(x$package, dependencies = NULL)$ondiskversion)
@@ -22,7 +22,7 @@ install_github_tagged_version <- function(remotes, is_interactive = interactive(
     if (is_interactive) {
       message(paste0(
         "Following packages have to be installed: ",
-        glue::glue_collapse(crayon::bold(to_install), ", ", last = " and "),
+        glue::glue_collapse(crayon::bold(parsed[[to_install]]$package), ", ", last = " and "),
         "\n",
         "Do you want to install these packages? \n",
         "1: Yes [default]\n",
