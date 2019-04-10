@@ -1,4 +1,8 @@
-# dynmethods 1.0.1 
+# dynmethods 1.1.0 (unreleased)
+
+* MAJOR CHANGE: Add functionality to switch between R wrappers and container wrappers
+
+* MAJOR CHANGE: Add R wrappers for **SCORPIUS**
 
 * FIX: Update version numbers of methods due to workaround for hdf5r on windows.
 
