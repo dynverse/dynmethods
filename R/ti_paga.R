@@ -5,17 +5,18 @@
 #' @title PAGA
 #' 
 #' @description
-#' Will generate a trajectory using [PAGA](https://doi.org/10.1101/208819).
+#' Will generate a trajectory using
+#' [PAGA](https://doi.org/10.1186/s13059-019-1663-x).
 #' 
 #' This method was wrapped inside a
 #' [container](https://github.com/dynverse/ti_paga).
 #' The original code of this method is available
 #' [here](https://github.com/theislab/graph_abstraction).
 #' 
-#' @references Wolf, F.A., Hamey, F., Plass, M., Solana, J., Dahlin, J.S.,
-#' Gottgens, B., Rajewsky, N., Simon, L., Theis, F.J., 2017. Graph abstraction
-#' reconciles clustering with trajectory inference through a topology preserving
-#' map of single cells.
+#' @references Wolf, F.A., Hamey, F.K., Plass, M., Solana, J., Dahlin, J.S.,
+#' Göttgens, B., Rajewsky, N., Simon, L., Theis, F.J., 2019. PAGA: graph
+#' abstraction reconciles clustering with trajectory inference through a topology
+#' preserving map of single cells. Genome Biology 20.
 #' 
 #' @param n_neighbors Number of neighbours for knn. Domain: U(1, 100). Default:
 #' 15. Format: integer.
@@ -45,7 +46,7 @@ ti_paga <- function(
     embedding_type = "fa",
     connectivity_cutoff = 0.05
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_paga:v0.9.9.01")(
+  create_ti_method_container(container_id = "dynverse/ti_paga:v0.9.9.03")(
     n_neighbors = n_neighbors,
     n_comps = n_comps,
     n_dcs = n_dcs,
