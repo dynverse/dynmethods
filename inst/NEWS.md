@@ -1,8 +1,14 @@
-# dynmethods 1.0.1 (12-06-2019)
+# dynmethods 1.0.3 (unreleased)
 
-* FIX: Update version numbers of methods due to workaround for hdf5r on windows.
+Nothing here yet...
+
+# dynmethods 1.0.2 (12-06-2019)
 
 * FIX: Update PAGA and Monocle which includes fixes in the definition.yml.
+
+# dynmethods 1.0.1 (06-04-2019)
+
+* FIX: Update version numbers of methods due to workaround for hdf5r on windows.
 
 # dynmethods 1.0.0 (28-03-2019)
 
