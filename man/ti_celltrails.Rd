@@ -63,6 +63,6 @@ The original code of this method is available
 \references{
 Ellwanger, D.C., Scheibinger, M., Dumont, R.A., Barr-Gillespie,
 P.G., Heller, S., 2018. Transcriptional Dynamics of Hair-Bundle Morphogenesis
-Revealed with CellTrails. Cell Reports 23, 2901–2914.e14.
+Revealed with CellTrails. Cell Reports 23, 2901–2914.e13.
 }
 \keyword{method}
