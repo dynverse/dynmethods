@@ -18,6 +18,8 @@
 #' abstraction reconciles clustering with trajectory inference through a topology
 #' preserving map of single cells. Genome Biology 20.
 #' 
+#' @param filter_features Whether to do feature filtering. Default: TRUE. Format:
+#' logical.
 #' @param n_neighbors Number of neighbours for knn. Domain: U(1, 100). Default:
 #' 15. Format: integer.
 #' @param n_comps Number of principal components. Domain: U(0, 100). Default: 50.
@@ -39,6 +41,7 @@
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_paga <- function(
+    filter_features = TRUE,
     n_neighbors = 15L,
     n_comps = 50L,
     n_dcs = 15L,
@@ -46,7 +49,8 @@ ti_paga <- function(
     embedding_type = "fa",
     connectivity_cutoff = 0.05
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_paga:v0.9.9.04")(
+  create_ti_method_container(container_id = "dynverse/ti_paga:v0.9.9.05")(
+    filter_features = filter_features,
     n_neighbors = n_neighbors,
     n_comps = n_comps,
     n_dcs = n_dcs,

@@ -4,10 +4,14 @@
 \alias{ti_paga}
 \title{PAGA}
 \usage{
-ti_paga(n_neighbors = 15L, n_comps = 50L, n_dcs = 15L,
-  resolution = 1L, embedding_type = "fa", connectivity_cutoff = 0.05)
+ti_paga(filter_features = TRUE, n_neighbors = 15L, n_comps = 50L,
+  n_dcs = 15L, resolution = 1L, embedding_type = "fa",
+  connectivity_cutoff = 0.05)
 }
 \arguments{
+\item{filter_features}{Whether to do feature filtering. Default: TRUE. Format:
+logical.}
+
 \item{n_neighbors}{Number of neighbours for knn. Domain: U(1, 100). Default:
 15. Format: integer.}
 
