@@ -4,10 +4,14 @@
 \alias{ti_projected_paga}
 \title{Projected PAGA}
 \usage{
-ti_projected_paga(n_neighbors = 15L, n_comps = 50L, n_dcs = 15L,
-  resolution = 1L, embedding_type = "fa", connectivity_cutoff = 0.05)
+ti_projected_paga(filter_features = TRUE, n_neighbors = 15L,
+  n_comps = 50L, n_dcs = 15L, resolution = 1L,
+  embedding_type = "fa", tree = TRUE, connectivity_cutoff = 0.05)
 }
 \arguments{
+\item{filter_features}{Whether to do feature filtering. Default: TRUE. Format:
+logical.}
+
 \item{n_neighbors}{Number of neighbours for knn. Domain: U(1, 100). Default:
 15. Format: integer.}
 
@@ -25,8 +29,11 @@ Domain: U(0.1, 10). Default: 1. Format: numeric.}
 large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for small
 datasets). Domain: {umap, fa}. Default: fa. Format: character.}
 
-\item{connectivity_cutoff}{Cutoff for the connectivity matrix. Domain: U(0, 1).
-Default: 0.05. Format: numeric.}
+\item{tree}{Whether a minimum spanning tree should be inferred. Default: TRUE.
+Format: logical.}
+
+\item{connectivity_cutoff}{Cutoff for the connectivity matrix, only useful of
+tree is FALSE. Domain: U(0, 1). Default: 0.05. Format: numeric.}
 }
 \value{
 A TI method wrapper to be used together with

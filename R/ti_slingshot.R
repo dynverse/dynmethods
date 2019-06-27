@@ -17,6 +17,8 @@
 #' N., Purdom, E., Dudoit, S., 2018. Slingshot: cell lineage and pseudotime
 #' inference for single-cell transcriptomics. BMC Genomics 19.
 #' 
+#' @param ndim The number of dimensions in the new space. Domain: U(2, 100).
+#' Default: 20. Format: integer.
 #' @param shrink Logical or numeric between 0 and 1, determines whether and how
 #' much to shrink branching lineages toward their average prior to the split.
 #' Domain: e^U(-Inf, 0.00). Default: 1. Format: numeric.
@@ -56,6 +58,7 @@
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_slingshot <- function(
+    ndim = 20L,
     shrink = 1L,
     reweight = TRUE,
     reassign = TRUE,
@@ -65,7 +68,8 @@ ti_slingshot <- function(
     smoother = "smooth.spline",
     shrink.method = "cosine"
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_slingshot:v1.0.0.01")(
+  create_ti_method_container(container_id = "dynverse/ti_slingshot:v1.0.2")(
+    ndim = ndim,
     shrink = shrink,
     reweight = reweight,
     reassign = reassign,

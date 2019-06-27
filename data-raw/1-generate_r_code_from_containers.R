@@ -11,15 +11,20 @@ files <- list.files("../methods/", pattern = "Dockerfile", recursive = TRUE, ful
 # this loads in the current version from the version files
 definitions <-
   map(files, function(file) {
+    folder <- paste0(dirname(file), "/")
+
+    has_package <- file.exists(paste0(folder, "package/"))
+
     cat(file, "\n", sep = "")
 
     definition <- create_ti_method_definition(definition = str_replace(file, "Dockerfile", "definition.yml"), script = NULL, return_function = FALSE)
-    version <-
-      system(paste0(
-        "cd ", str_replace(file, "Dockerfile", ""), "; ",
-        read_lines(str_replace(file, "Dockerfile", "version")), "; ",
-        "echo $VERSION"
-      ), intern = TRUE)
+
+    # use package version if specified
+    if (has_package) {
+      version <- desc::desc(paste0(folder, "package"))$get_version()
+    } else {
+      version <- str_replace(file, "Dockerfile", "version") %>% read_lines() %>% str_replace("VERSION=", "")
+    }
 
     # generate file from definition
     generate_file_from_container(definition, version)

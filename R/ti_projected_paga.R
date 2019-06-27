@@ -18,6 +18,8 @@
 #' reconciles clustering with trajectory inference through a topology preserving
 #' map of single cells.
 #' 
+#' @param filter_features Whether to do feature filtering. Default: TRUE. Format:
+#' logical.
 #' @param n_neighbors Number of neighbours for knn. Domain: U(1, 100). Default:
 #' 15. Format: integer.
 #' @param n_comps Number of principal components. Domain: U(0, 100). Default: 50.
@@ -30,8 +32,10 @@
 #' @param embedding_type Either 'umap' (scales very well, recommended for very
 #' large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for small
 #' datasets). Domain: {umap, fa}. Default: fa. Format: character.
-#' @param connectivity_cutoff Cutoff for the connectivity matrix. Domain: U(0, 1).
-#' Default: 0.05. Format: numeric.
+#' @param tree Whether a minimum spanning tree should be inferred. Default: TRUE.
+#' Format: logical.
+#' @param connectivity_cutoff Cutoff for the connectivity matrix, only useful of
+#' tree is FALSE. Domain: U(0, 1). Default: 0.05. Format: numeric.
 #' 
 #' @keywords method
 #' 
@@ -39,19 +43,23 @@
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_projected_paga <- function(
+    filter_features = TRUE,
     n_neighbors = 15L,
     n_comps = 50L,
     n_dcs = 15L,
     resolution = 1L,
     embedding_type = "fa",
+    tree = TRUE,
     connectivity_cutoff = 0.05
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_projected_paga:v0.9.9.02")(
+  create_ti_method_container(container_id = "dynverse/ti_projected_paga:v0.9.9.05")(
+    filter_features = filter_features,
     n_neighbors = n_neighbors,
     n_comps = n_comps,
     n_dcs = n_dcs,
     resolution = resolution,
     embedding_type = embedding_type,
+    tree = tree,
     connectivity_cutoff = connectivity_cutoff
   )
 }

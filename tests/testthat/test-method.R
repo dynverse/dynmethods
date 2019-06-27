@@ -25,3 +25,14 @@ test_that("A method can be used with docker", {
 #
 #   trajectory <- infer_trajectory(dataset, method)
 # })
+
+# test_that("A method can be used with R", {
+#   dataset <- dynwrap::example_dataset
+#
+#   config <- babelwhale::create_docker_config()
+#   babelwhale::set_default_config(config)
+#
+#   method <- ti_scorpius(maxit = 0)
+#
+#   trajectory <- infer_trajectory(dataset, method)
+# })
