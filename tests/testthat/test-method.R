@@ -29,8 +29,6 @@ test_that("A method can be used with docker", {
 # test_that("A method can be used with R", {
 #   dataset <- dynwrap::example_dataset
 #
-#   babelwhale::test_docker_installation(detailed = TRUE)
-#
 #   config <- babelwhale::create_docker_config()
 #   babelwhale::set_default_config(config)
 #
