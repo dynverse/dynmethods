@@ -6,7 +6,6 @@ library(furrr)
 source("data-raw/1a-helper_functions.R")
 
 files <- list.files("../methods/", pattern = "Dockerfile", recursive = TRUE, full.names = TRUE)
-file <- "../methods/ti_scorpius/Dockerfile"
 
 # iterate over the containers and generate R scripts for each of them
 # this loads in the current version from the version files

@@ -131,7 +131,7 @@ changes.
 
   - MAJOR CHANGE: Add R wrappers for **SCORPIUS**
 
-### Recent changes in dynmethods 1.0.2 (27-06-2019)
+### Recent changes in dynmethods 1.0.3 (27-06-2019)
 
   - SMALL CHANGES: Updates for scorpius, slingshot, paga, paga\_tree and
     paga\_projected
