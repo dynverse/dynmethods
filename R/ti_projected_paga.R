@@ -30,8 +30,10 @@
 #' @param embedding_type Either 'umap' (scales very well, recommended for very
 #' large datasets) or 'fa' (ForceAtlas2, often a bit more intuitive for small
 #' datasets). Domain: {umap, fa}. Default: fa. Format: character.
-#' @param connectivity_cutoff Cutoff for the connectivity matrix. Domain: U(0, 1).
-#' Default: 0.05. Format: numeric.
+#' @param tree Whether a minimum spanning tree should be inferred. Default: TRUE.
+#' Format: logical.
+#' @param connectivity_cutoff Cutoff for the connectivity matrix, only useful of
+#' tree is FALSE. Domain: U(0, 1). Default: 0.05. Format: numeric.
 #' 
 #' @keywords method
 #' 
@@ -44,14 +46,16 @@ ti_projected_paga <- function(
     n_dcs = 15L,
     resolution = 1L,
     embedding_type = "fa",
+    tree = TRUE,
     connectivity_cutoff = 0.05
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_projected_paga:v0.9.9.01")(
+  create_ti_method_container(container_id = "dynverse/ti_projected_paga:v0.9.9.04")(
     n_neighbors = n_neighbors,
     n_comps = n_comps,
     n_dcs = n_dcs,
     resolution = resolution,
     embedding_type = embedding_type,
+    tree = tree,
     connectivity_cutoff = connectivity_cutoff
   )
 }

@@ -4,11 +4,14 @@
 \alias{ti_slingshot}
 \title{Slingshot}
 \usage{
-ti_slingshot(shrink = 1L, reweight = TRUE, reassign = TRUE,
-  thresh = 0.001, maxit = 10L, stretch = 2L,
+ti_slingshot(ndim = 20L, shrink = 1L, reweight = TRUE,
+  reassign = TRUE, thresh = 0.001, maxit = 10L, stretch = 2L,
   smoother = "smooth.spline", shrink.method = "cosine")
 }
 \arguments{
+\item{ndim}{The number of dimensions in the new space. Domain: U(2, 100).
+Default: 20. Format: integer.}
+
 \item{shrink}{Logical or numeric between 0 and 1, determines whether and how
 much to shrink branching lineages toward their average prior to the split.
 Domain: e^U(-Inf, 0.00). Default: 1. Format: numeric.}

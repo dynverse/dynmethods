@@ -33,7 +33,8 @@ A TI method wrapper to be used together with
 \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 }
 \description{
-Will generate a trajectory using \href{https://doi.org/10.1101/208819}{PAGA}.
+Will generate a trajectory using
+\href{https://doi.org/10.1186/s13059-019-1663-x}{PAGA}.
 
 This method was wrapped inside a
 \href{https://github.com/dynverse/ti_paga}{container}.
@@ -41,9 +42,9 @@ The original code of this method is available
 \href{https://github.com/theislab/graph_abstraction}{here}.
 }
 \references{
-Wolf, F.A., Hamey, F., Plass, M., Solana, J., Dahlin, J.S.,
-Gottgens, B., Rajewsky, N., Simon, L., Theis, F.J., 2017. Graph abstraction
-reconciles clustering with trajectory inference through a topology preserving
-map of single cells.
+Wolf, F.A., Hamey, F.K., Plass, M., Solana, J., Dahlin, J.S.,
+Göttgens, B., Rajewsky, N., Simon, L., Theis, F.J., 2019. PAGA: graph
+abstraction reconciles clustering with trajectory inference through a topology
+preserving map of single cells. Genome Biology 20.
 }
 \keyword{method}
