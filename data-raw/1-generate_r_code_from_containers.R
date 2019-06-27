@@ -6,15 +6,26 @@ library(furrr)
 source("data-raw/1a-helper_functions.R")
 
 files <- list.files("../methods/", pattern = "Dockerfile", recursive = TRUE, full.names = TRUE)
+file <- "../methods/ti_scorpius/Dockerfile"
 
 # iterate over the containers and generate R scripts for each of them
 # this loads in the current version from the version files
 definitions <-
   map(files, function(file) {
+    folder <- paste0(dirname(file), "/")
+
+    has_package <- file.exists(paste0(folder, "package/"))
+
     cat(file, "\n", sep = "")
 
     definition <- create_ti_method_definition(definition = str_replace(file, "Dockerfile", "definition.yml"), script = NULL, return_function = FALSE)
-    version <- str_replace(file, "Dockerfile", "version") %>% read_lines() %>% str_replace("VERSION=", "")
+
+    # use package version if specified
+    if (has_package) {
+      version <- desc::desc(paste0(folder, "package"))$get_version()
+    } else {
+      version <- str_replace(file, "Dockerfile", "version") %>% read_lines() %>% str_replace("VERSION=", "")
+    }
 
     # generate file from definition
     generate_file_from_container(definition, version)
