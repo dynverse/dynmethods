@@ -19,7 +19,7 @@
 #' 
 #' @param distance_method A character string indicating which
 #' correlationcoefficient (or covariance) is to be computed. One of "pearson",
-#' "kendall", or "spearman". Domain: {spearman, pearson, kendall}. Default:
+#' "kendall", or "spearman". Domain: {spearman, pearson, cosine}. Default:
 #' spearman. Format: character.
 #' @param ndim The number of dimensions in the new space. Domain: U(2, 20).
 #' Default: 3. Format: integer.
@@ -36,8 +36,6 @@
 #' @param smoother `principal_curve` parameter; choice of smoother. Domain:
 #' {smooth_spline, lowess, periodic_lowess}. Default: smooth_spline. Format:
 #' character.
-#' @param sparse Whether or not to use sparse MDS dimensionality reduction, for
-#' datasets with large amounts of cells. Default: TRUE. Format: logical.
 #' 
 #' @keywords method
 #' 
@@ -51,8 +49,7 @@ ti_scorpius <- function(
     thresh = 0.001,
     maxit = 10L,
     stretch = 0,
-    smoother = "smooth_spline",
-    sparse = TRUE
+    smoother = "smooth_spline"
 ) {
   create_ti_method_container(container_id = "dynverse/ti_scorpius:v1.0.0.01")(
     distance_method = distance_method,
@@ -61,8 +58,7 @@ ti_scorpius <- function(
     thresh = thresh,
     maxit = maxit,
     stretch = stretch,
-    smoother = smoother,
-    sparse = sparse
+    smoother = smoother
   )
 }
 
