@@ -17,6 +17,7 @@
 #' N., Purdom, E., Dudoit, S., 2018. Slingshot: cell lineage and pseudotime
 #' inference for single-cell transcriptomics. BMC Genomics 19.
 #' 
+#' @param cluster_method . Domain: {pam, clara}. Default: pam. Format: character.
 #' @param ndim The number of dimensions in the new space. Domain: U(2, 100).
 #' Default: 20. Format: integer.
 #' @param shrink Logical or numeric between 0 and 1, determines whether and how
@@ -58,6 +59,7 @@
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_slingshot <- function(
+    cluster_method = "pam",
     ndim = 20L,
     shrink = 1L,
     reweight = TRUE,
@@ -68,7 +70,8 @@ ti_slingshot <- function(
     smoother = "smooth.spline",
     shrink.method = "cosine"
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_slingshot:v1.0.2")(
+  create_ti_method_container(container_id = "dynverse/ti_slingshot:v1.0.3")(
+    cluster_method = cluster_method,
     ndim = ndim,
     shrink = shrink,
     reweight = reweight,

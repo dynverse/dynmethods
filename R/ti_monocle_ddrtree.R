@@ -18,7 +18,8 @@
 #' trajectories. Nature Methods 14, 979–982.
 #' 
 #' @param reduction_method A character string specifying the algorithm to use for
-#' dimensionality reduction. Domain: {ICA}. Default: ICA. Format: character.
+#' dimensionality reduction. Domain: {DDRTree}. Default: DDRTree. Format:
+#' character.
 #' @param max_components The dimensionality of the reduced space. Domain: U(2,
 #' 20). Default: 2. Format: integer.
 #' @param norm_method Determines how to transform expression values prior to
@@ -40,14 +41,14 @@
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
 ti_monocle_ddrtree <- function(
-    reduction_method = "ICA",
+    reduction_method = "DDRTree",
     max_components = 2L,
     norm_method = "log",
     auto_param_selection = TRUE,
     filter_features = TRUE,
     filter_features_mean_expression = 0.1
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_monocle_ddrtree:v0.9.9.01")(
+  create_ti_method_container(container_id = "dynverse/ti_monocle_ddrtree:v0.9.9.02")(
     reduction_method = reduction_method,
     max_components = max_components,
     norm_method = norm_method,
