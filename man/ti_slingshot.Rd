@@ -4,11 +4,13 @@
 \alias{ti_slingshot}
 \title{Slingshot}
 \usage{
-ti_slingshot(ndim = 20L, shrink = 1L, reweight = TRUE,
-  reassign = TRUE, thresh = 0.001, maxit = 10L, stretch = 2L,
-  smoother = "smooth.spline", shrink.method = "cosine")
+ti_slingshot(cluster_method = "pam", ndim = 20L, shrink = 1L,
+  reweight = TRUE, reassign = TRUE, thresh = 0.001, maxit = 10L,
+  stretch = 2L, smoother = "smooth.spline", shrink.method = "cosine")
 }
 \arguments{
+\item{cluster_method}{. Domain: {pam, clara}. Default: pam. Format: character.}
+
 \item{ndim}{The number of dimensions in the new space. Domain: U(2, 100).
 Default: 20. Format: integer.}
 
