@@ -18,9 +18,9 @@
 #' development.
 #' 
 #' @param distance_method A character string indicating which
-#' correlationcoefficient (or covariance) is to be computed. One of "pearson",
-#' "spearman" (default), or "angular". Domain: {spearman, pearson, angular}.
-#' Default: spearman. Format: character.
+#' correlationcoefficient (or covariance) is to be computed. One of "pearson" or
+#' "spearman" (default). Domain: {spearman, pearson}. Default: spearman. Format:
+#' character.
 #' @param ndim The number of dimensions in the new space. Domain: U(2, 20).
 #' Default: 3. Format: integer.
 #' @param k The number of clusters to cluster the data into. Domain: U(1, 20).
