@@ -68,8 +68,8 @@ The original code of this method is available
 \href{https://github.com/soedinglab/merlot}{here}.
 }
 \references{
-Parra, R.G., Papadopoulos, N., Ahumada-Arranz, L., El Kholtei, J.,
-Mottelson, N., Horokhovskyi, Y., Treutlein, B., Soeding, J., 2018.
+Parra, R.G., Papadopoulos, N., Ahumada-Arranz, L., Kholtei, J.E.,
+Mottelson, N., Horokhovsky, Y., Treutlein, B., Soeding, J., 2018.
 Reconstructing complex lineage trees from scRNA-seq data using MERLoT.
 }
 \keyword{method}

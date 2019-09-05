@@ -12,8 +12,8 @@
 #' The original code of this method is available
 #' [here](https://github.com/soedinglab/merlot).
 #' 
-#' @references Parra, R.G., Papadopoulos, N., Ahumada-Arranz, L., El Kholtei, J.,
-#' Mottelson, N., Horokhovskyi, Y., Treutlein, B., Soeding, J., 2018.
+#' @references Parra, R.G., Papadopoulos, N., Ahumada-Arranz, L., Kholtei, J.E.,
+#' Mottelson, N., Horokhovsky, Y., Treutlein, B., Soeding, J., 2018.
 #' Reconstructing complex lineage trees from scRNA-seq data using MERLoT.
 #' 
 #' @param sigma Diffusion scale parameter of the Gaussian kernel. A larger sigma

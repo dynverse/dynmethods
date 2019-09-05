@@ -11,8 +11,8 @@ ti_scorpius(distance_method = "spearman", ndim = 3L, k = 4L,
 \arguments{
 \item{distance_method}{A character string indicating which
 correlationcoefficient (or covariance) is to be computed. One of "pearson",
-"kendall", or "spearman". Domain: {spearman, pearson, cosine}. Default:
-spearman. Format: character.}
+"spearman" (default), or "angular". Domain: {spearman, pearson, angular}.
+Default: spearman. Format: character.}
 
 \item{ndim}{The number of dimensions in the new space. Domain: U(2, 20).
 Default: 3. Format: integer.}
@@ -49,7 +49,7 @@ The original code of this method is available
 }
 \references{
 Cannoodt, R., Saelens, W., Sichien, D., Tavernier, S., Janssens,
-S., Guilliams, M., Lambrecht, B.N., De Preter, K., Saeys, Y., 2016. SCORPIUS
+S., Guilliams, M., Lambrecht, B., Preter, K.D., Saeys, Y., 2016. SCORPIUS
 improves trajectory inference and identifies novel modules in dendritic cell
 development.
 }

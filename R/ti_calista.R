@@ -12,8 +12,8 @@
 #' The original code of this method is available
 #' [here](https://github.com/CABSEL/CALISTA).
 #' 
-#' @references Gao, N.P., Hartmann, T., Fang, T., Gunawan, R., 2018. CALISTA:
-#' Clustering and Lineage Inference in Single-Cell Transcriptional Analysis.
+#' @references Papili Gao, N., Hartmann, T., Fang, T., Gunawan, R., 2018. CALISTA:
+#' Clustering And Lineage Inference in Single-Cell Transcriptional Analysis.
 #' 
 #' @param runs Number of independent runs of greedy algorithm. Domain: U(20, 100).
 #' Default: 50. Format: integer.

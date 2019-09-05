@@ -51,7 +51,7 @@ The original code of this method is available
 \href{https://github.com/macsharma/FORKS}{here}.
 }
 \references{
-Sharma, M., Li, H., Sengupta, D., Prabhakar, S., Jayadeva, J.,
-2017. FORKS: Finding Orderings Robustly using K-means and Steiner trees.
+Sharma, M., Li, H., Sengupta, D., Prabhakar, S., Jayadeva, 2017.
+FORKS: Finding Orderings Robustly using k-means and Steiner trees.
 }
 \keyword{method}

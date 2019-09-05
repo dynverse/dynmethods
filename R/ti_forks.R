@@ -12,8 +12,8 @@
 #' The original code of this method is available
 #' [here](https://github.com/macsharma/FORKS).
 #' 
-#' @references Sharma, M., Li, H., Sengupta, D., Prabhakar, S., Jayadeva, J.,
-#' 2017. FORKS: Finding Orderings Robustly using K-means and Steiner trees.
+#' @references Sharma, M., Li, H., Sengupta, D., Prabhakar, S., Jayadeva, 2017.
+#' FORKS: Finding Orderings Robustly using k-means and Steiner trees.
 #' 
 #' @param norm_function No description provided by the author. Domain: {mean,
 #' median, quantile}. Default: median. Format: character.

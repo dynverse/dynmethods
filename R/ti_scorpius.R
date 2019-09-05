@@ -13,14 +13,14 @@
 #' [here](https://github.com/rcannood/SCORPIUS).
 #' 
 #' @references Cannoodt, R., Saelens, W., Sichien, D., Tavernier, S., Janssens,
-#' S., Guilliams, M., Lambrecht, B.N., De Preter, K., Saeys, Y., 2016. SCORPIUS
+#' S., Guilliams, M., Lambrecht, B., Preter, K.D., Saeys, Y., 2016. SCORPIUS
 #' improves trajectory inference and identifies novel modules in dendritic cell
 #' development.
 #' 
 #' @param distance_method A character string indicating which
 #' correlationcoefficient (or covariance) is to be computed. One of "pearson",
-#' "kendall", or "spearman". Domain: {spearman, pearson, cosine}. Default:
-#' spearman. Format: character.
+#' "spearman" (default), or "angular". Domain: {spearman, pearson, angular}.
+#' Default: spearman. Format: character.
 #' @param ndim The number of dimensions in the new space. Domain: U(2, 20).
 #' Default: 3. Format: integer.
 #' @param k The number of clusters to cluster the data into. Domain: U(1, 20).
@@ -51,7 +51,7 @@ ti_scorpius <- function(
     stretch = 0,
     smoother = "smooth_spline"
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_scorpius:v1.0.0.01")(
+  create_ti_method_container(container_id = "dynverse/ti_scorpius:v1.0.0.02")(
     distance_method = distance_method,
     ndim = ndim,
     k = k,
