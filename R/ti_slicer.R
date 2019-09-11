@@ -32,7 +32,12 @@ ti_slicer <- function(
     kmin = 10L,
     m = 2L
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_slicer:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    container_id = "dynverse/ti_slicer:v0.9.9.01"
+  )(
     kmin = kmin,
     m = m
   )

@@ -23,7 +23,12 @@
 ti_shuffle <- function(
     dummy_param = TRUE
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_shuffle:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    container_id = "dynverse/ti_shuffle:v0.9.9.01"
+  )(
     dummy_param = dummy_param
   )
 }

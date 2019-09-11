@@ -63,7 +63,12 @@ ti_oscope <- function(
     niter = 20000L,
     ncthre = 1000L
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_oscope:v0.1.0")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    container_id = "dynverse/ti_oscope:v0.1.0"
+  )(
     alternative_median = alternative_median,
     filter_genes = filter_genes,
     mean_cut = mean_cut,

@@ -8,12 +8,18 @@
 install_github_tagged_version <- function(remotes, is_interactive = interactive()) {
   parsed <- purrr::map(remotes, parse_github_repo_spec) %>% purrr::set_names(remotes)
 
-  current_versions <- parsed %>% purrr::map_chr("ref")
-  requested_versions <- purrr::map_chr(parsed, function(x) devtools::package_info(x$package, dependencies = NULL)$ondiskversion)
+  requested_versions <- parsed %>% purrr::map_chr("ref")
+  current_versions <- purrr::map_chr(parsed, function(x) devtools::package_info(x$package, dependencies = NULL)$ondiskversion)
 
-  version_comparisons <- purrr::map2_dbl(current_versions, requested_versions, compareVersion)
+  do_install <- purrr::map2_lgl(current_versions, requested_versions, function(cur, req) {
+    if (grepl("^[0-9\\.\\-]*$", req)) {
+      compareVersion(cur, req) != 0
+    } else {
+      TRUE
+    }
+  })
 
-  to_install <- remotes[version_comparisons != 0]
+  to_install <- remotes[do_install]
 
   # only install when we need to install
   if (length(to_install) > 0) {

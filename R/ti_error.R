@@ -24,7 +24,12 @@
 ti_error <- function(
     dummy_param = 0.5
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_error:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    container_id = "dynverse/ti_error:v0.9.9.01"
+  )(
     dummy_param = dummy_param
   )
 }

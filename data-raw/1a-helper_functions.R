@@ -61,13 +61,22 @@ generate_function_from_definition <- function(definition, version) {
     paste0("    ", ., collapse = ",\n")
 
   # switch between a pure container wrapper or a hybrid R - container wrapper
+  package_repository <- if (is.null(definition$package) || !is.character(definition$package$remote)) "NULL" else paste0("\"", definition$package$remote, "\"")
+  package_name <- if (is.null(definition$package) || !is.character(definition$package$name)) "NULL" else paste0("\"", definition$package$name, "\"")
+  function_name <- if (is.null(definition$package) || !is.character(definition$package$function_name)) "NULL" else paste0("\"", definition$package$function_name, "\"")
+  container_id <- if (is.null(definition$container) || !is.character(definition$container$docker)) "NULL" else paste0("\"", definition$container$docker, ":v", version, "\"")
 
   # return code for function
   paste0(
     "ti_", definition$method$id, " <- function(\n",
     parameters, "\n",
     ") {\n",
-    "  create_ti_method_container(container_id = \"", definition$container$docker, ":v", version, "\")(\n",
+    "  method_choose_backend(\n",
+    "    package_repository = ", package_repository, ",\n",
+    "    package_name = ", package_name, ",\n",
+    "    function_name = ", function_name, ",\n",
+    "    container_id = ", container_id, "\n",
+    "  )(\n",
     args, "\n",
     "  )\n",
     "}\n"

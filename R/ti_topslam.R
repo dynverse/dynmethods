@@ -38,7 +38,12 @@ ti_topslam <- function(
     max_iters = 1000L,
     dimreds = c("t-SNE", "PCA", "Spectral", "Isomap", "ICA")
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_topslam:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    container_id = "dynverse/ti_topslam:v0.9.9.01"
+  )(
     n_components = n_components,
     n_neighbors = n_neighbors,
     linear_dims = linear_dims,

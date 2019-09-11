@@ -29,7 +29,12 @@ ti_calista <- function(
     runs = 50L,
     max_iter = 100L
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_calista:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    container_id = "dynverse/ti_calista:v0.9.9.01"
+  )(
     runs = runs,
     max_iter = max_iter
   )

@@ -18,13 +18,13 @@
 #' development.
 #' 
 #' @param distance_method A character string indicating which
-#' correlationcoefficient (or covariance) is to be computed. One of "pearson" or
-#' "spearman" (default). Domain: {spearman, pearson}. Default: spearman. Format:
-#' character.
+#' correlationcoefficient (or covariance) is to be computed. One of "pearson",
+#' "spearman" (default), or "cosine". Domain: {spearman, pearson, cosine}.
+#' Default: spearman. Format: character.
 #' @param ndim The number of dimensions in the new space. Domain: U(2, 20).
 #' Default: 3. Format: integer.
-#' @param k The number of clusters to cluster the data into. Domain: U(1, 20).
-#' Default: 4. Format: integer.
+#' @param k The number of clusters to cluster the data into to construct the
+#' initial trajectory. Domain: U(1, 20). Default: 4. Format: integer.
 #' @param thresh `principal_curve` parameter; convergence threshhold on shortest
 #' distances to the curve. Domain: e^U(-11.51, 11.51). Default: 0.001. Format:
 #' numeric.
@@ -51,7 +51,12 @@ ti_scorpius <- function(
     stretch = 0,
     smoother = "smooth_spline"
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_scorpius:v1.0.0.02")(
+  method_choose_backend(
+    package_repository = "rcannood/SCORPIUS",
+    package_name = "SCORPIUS",
+    function_name = "ti_scorpius",
+    container_id = "dynverse/ti_scorpius:v1.1.0"
+  )(
     distance_method = distance_method,
     ndim = ndim,
     k = k,

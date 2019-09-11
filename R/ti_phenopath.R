@@ -39,7 +39,12 @@ ti_phenopath <- function(
     model_mu = FALSE,
     scale_y = TRUE
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_phenopath:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    container_id = "dynverse/ti_phenopath:v0.9.9.01"
+  )(
     thin = thin,
     z_init = z_init,
     model_mu = model_mu,

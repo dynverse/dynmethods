@@ -42,7 +42,12 @@ ti_monocle_ica <- function(
     filter_features = TRUE,
     filter_features_mean_expression = 0.1
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_monocle_ica:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    container_id = "dynverse/ti_monocle_ica:v0.9.9.01"
+  )(
     reduction_method = reduction_method,
     max_components = max_components,
     norm_method = norm_method,

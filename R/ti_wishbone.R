@@ -43,7 +43,12 @@ ti_wishbone <- function(
     num_waypoints = 250L,
     epsilon = 1L
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_wishbone:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    container_id = "dynverse/ti_wishbone:v0.9.9.01"
+  )(
     normalise = normalise,
     knn = knn,
     n_diffusion_components = n_diffusion_components,

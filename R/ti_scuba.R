@@ -44,7 +44,12 @@ ti_scuba <- function(
     min_split = 15L,
     min_percentage_split = 0.25
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_scuba:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    container_id = "dynverse/ti_scuba:v0.9.9.01"
+  )(
     rigorous_gap_stats = rigorous_gap_stats,
     N_dim = N_dim,
     low_gene_threshold = low_gene_threshold,
