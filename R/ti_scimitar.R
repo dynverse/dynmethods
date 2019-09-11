@@ -42,6 +42,7 @@ ti_scimitar <- function(
     package_repository = NULL,
     package_name = NULL,
     function_name = NULL,
+    package_version = NULL,
     container_id = "dynverse/ti_scimitar:v0.9.9.01"
   )(
     covariance_type = covariance_type,

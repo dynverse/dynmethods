@@ -3,20 +3,20 @@
 ################################################################################################
 
 #' @title Slingshot
-#' 
+#'
 #' @description
 #' Will generate a trajectory using
 #' [Slingshot](https://doi.org/10.1186/s12864-018-4772-0).
-#' 
+#'
 #' This method was wrapped inside a
 #' [container](https://github.com/dynverse/ti_slingshot).
 #' The original code of this method is available
 #' [here](https://github.com/kstreet13/slingshot).
-#' 
+#'
 #' @references Street, K., Risso, D., Fletcher, R.B., Das, D., Ngai, J., Yosef,
 #' N., Purdom, E., Dudoit, S., 2018. Slingshot: cell lineage and pseudotime
 #' inference for single-cell transcriptomics. BMC Genomics 19.
-#' 
+#'
 #' @param cluster_method . Domain: {pam, clara}. Default: pam. Format: character.
 #' @param ndim The number of dimensions in the new space. Domain: U(2, 100).
 #' Default: 20. Format: integer.
@@ -52,9 +52,9 @@
 #' `kernel` in `density()` (default is `"cosine"`), as well as `"tricube"` and
 #' `"density"`. See 'Details' for more. Domain: {cosine, tricube, density}.
 #' Default: cosine. Format: character.
-#' 
+#'
 #' @keywords method
-#' 
+#'
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
@@ -74,6 +74,7 @@ ti_slingshot <- function(
     package_repository = "dynverse/ti_slingshot/package",
     package_name = "tislingshot",
     function_name = "ti_slingshot",
+    package_version = "1.0.3",
     container_id = "dynverse/ti_slingshot:v1.0.3"
   )(
     cluster_method = cluster_method,

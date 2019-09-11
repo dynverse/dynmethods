@@ -33,6 +33,7 @@ ti_grandprix <- function(
     package_repository = NULL,
     package_name = NULL,
     function_name = NULL,
+    package_version = NULL,
     container_id = "dynverse/ti_grandprix:v0.9.9.01"
   )(
     n_inducing_points = n_inducing_points,

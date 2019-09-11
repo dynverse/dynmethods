@@ -56,6 +56,7 @@ ti_projected_paga <- function(
     package_repository = NULL,
     package_name = NULL,
     function_name = NULL,
+    package_version = NULL,
     container_id = "dynverse/ti_projected_paga:v0.9.9.05"
   )(
     filter_features = filter_features,

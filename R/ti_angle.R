@@ -29,6 +29,7 @@ ti_angle <- function(
     package_repository = NULL,
     package_name = NULL,
     function_name = NULL,
+    package_version = NULL,
     container_id = "dynverse/ti_angle:v0.9.9.02"
   )(
     dimred = dimred

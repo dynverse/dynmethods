@@ -67,6 +67,7 @@ ti_oscope <- function(
     package_repository = NULL,
     package_name = NULL,
     function_name = NULL,
+    package_version = NULL,
     container_id = "dynverse/ti_oscope:v0.1.0"
   )(
     alternative_median = alternative_median,

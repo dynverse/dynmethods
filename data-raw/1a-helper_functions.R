@@ -61,10 +61,35 @@ generate_function_from_definition <- function(definition, version) {
     paste0("    ", ., collapse = ",\n")
 
   # switch between a pure container wrapper or a hybrid R - container wrapper
-  package_repository <- if (is.null(definition$package) || !is.character(definition$package$remote)) "NULL" else paste0("\"", definition$package$remote, "\"")
-  package_name <- if (is.null(definition$package) || !is.character(definition$package$name)) "NULL" else paste0("\"", definition$package$name, "\"")
-  function_name <- if (is.null(definition$package) || !is.character(definition$package$function_name)) "NULL" else paste0("\"", definition$package$function_name, "\"")
-  container_id <- if (is.null(definition$container) || !is.character(definition$container$docker)) "NULL" else paste0("\"", definition$container$docker, ":v", version, "\"")
+  if (is.null(definition$package) || !is.character(definition$package$remote)) {
+    package_repository <- "NULL"
+    package_name <- "NULL"
+    function_name <- "NULL"
+    package_version <- "NULL"
+  } else {
+    package_repository <- paste0("\"", definition$package$remote, "\"")
+    package_name <- paste0("\"", definition$package$name, "\"")
+    function_name <- paste0("\"", definition$package$function_name, "\"")
+    repo_spec <- parse_github_repo_spec(definition$package$remote)
+    desc_url <- paste0(
+      "https://raw.githubusercontent.com/",
+      repo_spec$username, "/",
+      repo_spec$repo, "/",
+      ifelse(repo_spec$ref == "", "master", repo_spec$ref), "/",
+      repo_spec$subdir, "/",
+      "DESCRIPTION"
+    )
+    fil <- tempfile()
+    on.exit(file.remove(fil))
+    download.file(desc_url, fil)
+    package_version <- paste0("\"", desc::desc_get_version(file = fil), "\"")
+  }
+
+  if (is.null(definition$container) || !is.character(definition$container$docker)) {
+    container_id <- "NULL"
+  } else {
+    container_id <- paste0("\"", definition$container$docker, ":v", version, "\"")
+  }
 
   # return code for function
   paste0(
@@ -75,6 +100,7 @@ generate_function_from_definition <- function(definition, version) {
     "    package_repository = ", package_repository, ",\n",
     "    package_name = ", package_name, ",\n",
     "    function_name = ", function_name, ",\n",
+    "    package_version = ", package_version, ",\n",
     "    container_id = ", container_id, "\n",
     "  )(\n",
     args, "\n",

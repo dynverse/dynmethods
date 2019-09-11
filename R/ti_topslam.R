@@ -42,6 +42,7 @@ ti_topslam <- function(
     package_repository = NULL,
     package_name = NULL,
     function_name = NULL,
+    package_version = NULL,
     container_id = "dynverse/ti_topslam:v0.9.9.01"
   )(
     n_components = n_components,

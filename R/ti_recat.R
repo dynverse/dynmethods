@@ -55,6 +55,7 @@ ti_recat <- function(
     package_repository = NULL,
     package_name = NULL,
     function_name = NULL,
+    package_version = NULL,
     container_id = "dynverse/ti_recat:v0.9.9.01"
   )(
     TSPFold = TSPFold,

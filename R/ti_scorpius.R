@@ -3,20 +3,20 @@
 ################################################################################################
 
 #' @title SCORPIUS
-#' 
+#'
 #' @description
 #' Will generate a trajectory using [SCORPIUS](https://doi.org/10.1101/079509).
-#' 
+#'
 #' This method was wrapped inside a
 #' [container](https://github.com/dynverse/ti_scorpius).
 #' The original code of this method is available
 #' [here](https://github.com/rcannood/SCORPIUS).
-#' 
+#'
 #' @references Cannoodt, R., Saelens, W., Sichien, D., Tavernier, S., Janssens,
 #' S., Guilliams, M., Lambrecht, B., Preter, K.D., Saeys, Y., 2016. SCORPIUS
 #' improves trajectory inference and identifies novel modules in dendritic cell
 #' development.
-#' 
+#'
 #' @param distance_method A character string indicating which
 #' correlationcoefficient (or covariance) is to be computed. One of "pearson",
 #' "spearman" (default), or "cosine". Domain: {spearman, pearson, cosine}.
@@ -36,9 +36,9 @@
 #' @param smoother `principal_curve` parameter; choice of smoother. Domain:
 #' {smooth_spline, lowess, periodic_lowess}. Default: smooth_spline. Format:
 #' character.
-#' 
+#'
 #' @keywords method
-#' 
+#'
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
@@ -55,6 +55,7 @@ ti_scorpius <- function(
     package_repository = "rcannood/SCORPIUS@dynwrap",
     package_name = "SCORPIUS",
     function_name = "ti_scorpius",
+    package_version = "1.0.4.9000",
     container_id = "dynverse/ti_scorpius:v1.1.0"
   )(
     distance_method = distance_method,

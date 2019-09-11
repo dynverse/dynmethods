@@ -42,6 +42,7 @@ ti_gng <- function(
     package_repository = NULL,
     package_name = NULL,
     function_name = NULL,
+    package_version = NULL,
     container_id = "dynverse/ti_gng:v0.9.9.01"
   )(
     dimred = dimred,

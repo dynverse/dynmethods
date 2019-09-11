@@ -47,6 +47,7 @@ ti_mfa <- function(
     package_repository = NULL,
     package_name = NULL,
     function_name = NULL,
+    package_version = NULL,
     container_id = "dynverse/ti_mfa:v0.9.9.01"
   )(
     iter = iter,

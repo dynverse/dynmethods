@@ -67,6 +67,7 @@ ti_celltree_vem <- function(
     package_repository = NULL,
     package_name = NULL,
     function_name = NULL,
+    package_version = NULL,
     container_id = "dynverse/ti_celltree_vem:v0.9.9.01"
   )(
     method = method,

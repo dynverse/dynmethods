@@ -43,6 +43,7 @@ ti_phenopath <- function(
     package_repository = NULL,
     package_name = NULL,
     function_name = NULL,
+    package_version = NULL,
     container_id = "dynverse/ti_phenopath:v0.9.9.01"
   )(
     thin = thin,

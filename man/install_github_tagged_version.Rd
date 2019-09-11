@@ -4,10 +4,13 @@
 \alias{install_github_tagged_version}
 \title{Install remotes using git tags and R versions}
 \usage{
-install_github_tagged_version(remotes, is_interactive = interactive())
+install_github_tagged_version(remotes, versions = rep(NA,
+  length(remotes)), is_interactive = interactive())
 }
 \arguments{
 \item{remotes}{A list of remotes in the format of \code{parse_github_repo_spec}}
+
+\item{versions}{The desired versions of the package, \code{NA} if unknown.}
 
 \item{is_interactive}{Whether running in an interactive session}
 }

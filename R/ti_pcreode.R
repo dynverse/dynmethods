@@ -35,6 +35,7 @@ ti_pcreode <- function(
     package_repository = NULL,
     package_name = NULL,
     function_name = NULL,
+    package_version = NULL,
     container_id = "dynverse/ti_pcreode:v0.9.9.01"
   )(
     n_pca_components = n_pca_components,

@@ -1,14 +1,15 @@
 #' Install remotes using git tags and R versions
 #'
 #' @param remotes A list of remotes in the format of `parse_github_repo_spec`
+#' @param versions The desired versions of the package, `NA` if unknown.
 #' @param is_interactive Whether running in an interactive session
 #'
 #' @importFrom purrr map_chr map2_dbl map_chr map
 #' @importFrom remotes parse_github_repo_spec
-install_github_tagged_version <- function(remotes, is_interactive = interactive()) {
+install_github_tagged_version <- function(remotes, versions = rep(NA, length(remotes)), is_interactive = interactive()) {
   parsed <- purrr::map(remotes, parse_github_repo_spec) %>% purrr::set_names(remotes)
 
-  requested_versions <- parsed %>% purrr::map_chr("ref")
+  requested_versions <- ifelse(is.na(versions), parsed %>% purrr::map_chr("ref"), versions)
   current_versions <- purrr::map_chr(parsed, function(x) devtools::package_info(x$package, dependencies = NULL)$ondiskversion)
 
   do_install <- purrr::map2_lgl(current_versions, requested_versions, function(cur, req) {

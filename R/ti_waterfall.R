@@ -32,6 +32,7 @@ ti_waterfall <- function(
     package_repository = NULL,
     package_name = NULL,
     function_name = NULL,
+    package_version = NULL,
     container_id = "dynverse/ti_waterfall:v0.9.9.01"
   )(
     num_clusters = num_clusters

@@ -3,6 +3,7 @@ method_choose_backend <- function(
   package_repository,
   package_name,
   function_name,
+  package_version,
   container_id,
   backend = getOption("dynwrap_backend")
 ) {
@@ -49,7 +50,7 @@ method_choose_backend <- function(
 
   # now return method
   if (backend == "r_wrapper") {
-    install_github_tagged_version(paste0(package_name, "=", package_repository))
+    install_github_tagged_version(paste0(package_name, "=", package_repository), package_version)
     getFromNamespace(function_name, package_name)
 
   } else if (backend == "container") {

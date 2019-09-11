@@ -27,6 +27,7 @@ ti_shuffle <- function(
     package_repository = NULL,
     package_name = NULL,
     function_name = NULL,
+    package_version = NULL,
     container_id = "dynverse/ti_shuffle:v0.9.9.01"
   )(
     dummy_param = dummy_param

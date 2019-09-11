@@ -116,6 +116,7 @@ ti_raceid_stemid <- function(
     package_repository = NULL,
     package_name = NULL,
     function_name = NULL,
+    package_version = NULL,
     container_id = "dynverse/ti_raceid_stemid:v0.9.9.01"
   )(
     knn = knn,
