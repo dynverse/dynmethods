@@ -21,6 +21,7 @@ Imports:
   glue,
   remotes,
 Suggests:
+  babelwhale,
   dplyr,
   dynutils,   
   knitr,
