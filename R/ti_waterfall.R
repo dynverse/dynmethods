@@ -28,7 +28,13 @@
 ti_waterfall <- function(
     num_clusters = 10L
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_waterfall:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    package_version = NULL,
+    container_id = "dynverse/ti_waterfall:v0.9.9.01"
+  )(
     num_clusters = num_clusters
   )
 }

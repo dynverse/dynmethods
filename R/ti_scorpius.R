@@ -3,28 +3,28 @@
 ################################################################################################
 
 #' @title SCORPIUS
-#' 
+#'
 #' @description
 #' Will generate a trajectory using [SCORPIUS](https://doi.org/10.1101/079509).
-#' 
+#'
 #' This method was wrapped inside a
 #' [container](https://github.com/dynverse/ti_scorpius).
 #' The original code of this method is available
 #' [here](https://github.com/rcannood/SCORPIUS).
-#' 
+#'
 #' @references Cannoodt, R., Saelens, W., Sichien, D., Tavernier, S., Janssens,
-#' S., Guilliams, M., Lambrecht, B.N., De Preter, K., Saeys, Y., 2016. SCORPIUS
+#' S., Guilliams, M., Lambrecht, B., Preter, K.D., Saeys, Y., 2016. SCORPIUS
 #' improves trajectory inference and identifies novel modules in dendritic cell
 #' development.
-#' 
+#'
 #' @param distance_method A character string indicating which
 #' correlationcoefficient (or covariance) is to be computed. One of "pearson",
-#' "kendall", or "spearman". Domain: {spearman, pearson, cosine}. Default:
-#' spearman. Format: character.
+#' "spearman" (default), or "cosine". Domain: {spearman, pearson, cosine}.
+#' Default: spearman. Format: character.
 #' @param ndim The number of dimensions in the new space. Domain: U(2, 20).
 #' Default: 3. Format: integer.
-#' @param k The number of clusters to cluster the data into. Domain: U(1, 20).
-#' Default: 4. Format: integer.
+#' @param k The number of clusters to cluster the data into to construct the
+#' initial trajectory. Domain: U(1, 20). Default: 4. Format: integer.
 #' @param thresh `principal_curve` parameter; convergence threshhold on shortest
 #' distances to the curve. Domain: e^U(-11.51, 11.51). Default: 0.001. Format:
 #' numeric.
@@ -36,9 +36,9 @@
 #' @param smoother `principal_curve` parameter; choice of smoother. Domain:
 #' {smooth_spline, lowess, periodic_lowess}. Default: smooth_spline. Format:
 #' character.
-#' 
+#'
 #' @keywords method
-#' 
+#'
 #' @return A TI method wrapper to be used together with
 #' \code{\link[dynwrap:infer_trajectories]{infer_trajectory}}
 #' @export
@@ -51,7 +51,13 @@ ti_scorpius <- function(
     stretch = 0,
     smoother = "smooth_spline"
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_scorpius:v1.0.0.01")(
+  method_choose_backend(
+    package_repository = "rcannood/SCORPIUS@dynwrap",
+    package_name = "SCORPIUS",
+    function_name = "ti_scorpius",
+    package_version = "1.0.4.9000",
+    container_id = "dynverse/ti_scorpius:v1.1.0"
+  )(
     distance_method = distance_method,
     ndim = ndim,
     k = k,

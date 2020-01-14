@@ -38,7 +38,13 @@ ti_gng <- function(
     max_nodes = 8L,
     apply_mst = TRUE
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_gng:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    package_version = NULL,
+    container_id = "dynverse/ti_gng:v0.9.9.01"
+  )(
     dimred = dimred,
     ndim = ndim,
     max_iter = max_iter,

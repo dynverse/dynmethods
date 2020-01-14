@@ -12,8 +12,8 @@
 #' The original code of this method is available
 #' [here](https://github.com/soedinglab/merlot).
 #' 
-#' @references Parra, R.G., Papadopoulos, N., Ahumada-Arranz, L., El Kholtei, J.,
-#' Mottelson, N., Horokhovskyi, Y., Treutlein, B., Soeding, J., 2018.
+#' @references Parra, R.G., Papadopoulos, N., Ahumada-Arranz, L., Kholtei, J.E.,
+#' Mottelson, N., Horokhovsky, Y., Treutlein, B., Soeding, J., 2018.
 #' Reconstructing complex lineage trees from scRNA-seq data using MERLoT.
 #' 
 #' @param sigma Diffusion scale parameter of the Gaussian kernel. A larger sigma
@@ -69,7 +69,13 @@ ti_merlot <- function(
     increaseFactor_lambda = 20L,
     FixEndpoints = FALSE
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_merlot:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    package_version = NULL,
+    container_id = "dynverse/ti_merlot:v0.9.9.01"
+  )(
     sigma = sigma,
     distance = distance,
     ndim = ndim,

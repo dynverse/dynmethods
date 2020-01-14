@@ -12,8 +12,8 @@
 #' The original code of this method is available
 #' [here](https://github.com/macsharma/FORKS).
 #' 
-#' @references Sharma, M., Li, H., Sengupta, D., Prabhakar, S., Jayadeva, J.,
-#' 2017. FORKS: Finding Orderings Robustly using K-means and Steiner trees.
+#' @references Sharma, M., Li, H., Sengupta, D., Prabhakar, S., Jayadeva, 2017.
+#' FORKS: Finding Orderings Robustly using k-means and Steiner trees.
 #' 
 #' @param norm_function No description provided by the author. Domain: {mean,
 #' median, quantile}. Default: median. Format: character.
@@ -51,7 +51,13 @@ ti_forks <- function(
     eta = 0.01,
     C = 1L
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_forks:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    package_version = NULL,
+    container_id = "dynverse/ti_forks:v0.9.9.01"
+  )(
     norm_function = norm_function,
     norm_quantile = norm_quantile,
     cum_sum_exp_var = cum_sum_exp_var,

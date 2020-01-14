@@ -62,7 +62,13 @@ ti_celltrails <- function(
     min_fc = 2L,
     l = 10L
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_celltrails:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    package_version = NULL,
+    container_id = "dynverse/ti_celltrails:v0.9.9.01"
+  )(
     filter_features = filter_features,
     threshold_dl = threshold_dl,
     threshold_cov = threshold_cov,

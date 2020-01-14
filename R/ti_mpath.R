@@ -50,7 +50,13 @@ ti_mpath <- function(
     diversity_cut = 0.6,
     size_cut = 0.05
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_mpath:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    package_version = NULL,
+    container_id = "dynverse/ti_mpath:v0.9.9.01"
+  )(
     distMethod = distMethod,
     method = method,
     numcluster = numcluster,

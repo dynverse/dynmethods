@@ -14,7 +14,7 @@
 #' [here](https://github.com/theislab/graph_abstraction).
 #' 
 #' @references Wolf, F.A., Hamey, F., Plass, M., Solana, J., Dahlin, J.S.,
-#' Gottgens, B., Rajewsky, N., Simon, L., Theis, F.J., 2017. Graph abstraction
+#' Göttgens, B., Rajewsky, N., Simon, L., Theis, F.J., 2017. Graph abstraction
 #' reconciles clustering with trajectory inference through a topology preserving
 #' map of single cells.
 #' 
@@ -52,7 +52,13 @@ ti_projected_paga <- function(
     tree = TRUE,
     connectivity_cutoff = 0.05
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_projected_paga:v0.9.9.05")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    package_version = NULL,
+    container_id = "dynverse/ti_projected_paga:v0.9.9.05"
+  )(
     filter_features = filter_features,
     n_neighbors = n_neighbors,
     n_comps = n_comps,

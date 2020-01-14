@@ -78,7 +78,13 @@ ti_fateid <- function(
     trthr = 0.4,
     force = FALSE
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_fateid:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    package_version = NULL,
+    container_id = "dynverse/ti_fateid:v0.9.9.01"
+  )(
     reclassify = reclassify,
     clthr = clthr,
     nbfactor = nbfactor,

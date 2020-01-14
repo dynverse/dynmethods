@@ -10,20 +10,30 @@ files <- list.files("../methods/", pattern = "Dockerfile", recursive = TRUE, ful
 # iterate over the containers and generate R scripts for each of them
 # this loads in the current version from the version files
 definitions <-
-  map(files, function(file) {
-    folder <- paste0(dirname(file), "/")
+  map(files, function(docker_file) {
+    root_folder <- paste0(dirname(docker_file), "/")
+    package_dir <- paste0(root_folder, "package/")
+    definition_file <- paste0(root_folder, "definition.yml")
+    remotes_file <- paste0(root_folder, "remotes.yml")
+    version_file <- paste0(root_folder, "version")
 
-    has_package <- file.exists(paste0(folder, "package/"))
+    cat("Processing ", root_folder, "\n", sep = "")
 
-    cat(file, "\n", sep = "")
+    definition <-
+      if (file.exists(definition_file)) {
+        create_ti_method_definition(definition = definition_file, script = NULL, return_function = FALSE)
 
-    definition <- create_ti_method_definition(definition = str_replace(file, "Dockerfile", "definition.yml"), script = NULL, return_function = FALSE)
+      } else if (file.exists(remotes_file)) {
+        remotes <- yaml::read_yaml(remotes_file)
+
+        getFromNamespace(remotes$function_name, remotes$name)()
+      }
 
     # use package version if specified
-    if (has_package) {
-      version <- desc::desc(paste0(folder, "package"))$get_version()
+    if (file.exists(package_dir)) {
+      version <- desc::desc(package_dir)$get_version()
     } else {
-      version <- str_replace(file, "Dockerfile", "version") %>% read_lines() %>% str_replace("VERSION=", "")
+      version <- version_file %>% read_lines() %>% str_replace("VERSION=", "")
     }
 
     # generate file from definition
@@ -36,7 +46,7 @@ definitions <-
   })
 methods <- dynutils::list_as_tibble(definitions)
 
-for (n in rev(c("method", "wrapper", "container", "manuscript"))) {
+for (n in rev(c("method", "wrapper", "container", "manuscript", "package"))) {
   cat("Processing ", n, "\n", sep = "")
   newtib <-
     methods[[n]] %>%

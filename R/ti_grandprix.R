@@ -29,7 +29,13 @@ ti_grandprix <- function(
     latent_prior_var = 0.1,
     latent_var = 0.028
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_grandprix:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    package_version = NULL,
+    container_id = "dynverse/ti_grandprix:v0.9.9.01"
+  )(
     n_inducing_points = n_inducing_points,
     latent_prior_var = latent_prior_var,
     latent_var = latent_var

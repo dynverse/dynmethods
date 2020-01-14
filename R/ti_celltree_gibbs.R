@@ -63,7 +63,13 @@ ti_celltree_gibbs <- function(
     tot_iter = 200L,
     tolerance = 1e-05
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_celltree_gibbs:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    package_version = NULL,
+    container_id = "dynverse/ti_celltree_gibbs:v0.9.9.01"
+  )(
     method = method,
     sd_filter = sd_filter,
     width_scale_factor = width_scale_factor,

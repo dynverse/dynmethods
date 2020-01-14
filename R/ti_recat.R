@@ -51,7 +51,13 @@ ti_recat <- function(
     max_num = 300L,
     clustMethod = "GMM"
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_recat:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    package_version = NULL,
+    container_id = "dynverse/ti_recat:v0.9.9.01"
+  )(
     TSPFold = TSPFold,
     beginNum = beginNum,
     endNum = endNum,

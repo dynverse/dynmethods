@@ -49,7 +49,7 @@ The original code of this method is available
 }
 \references{
 Wolf, F.A., Hamey, F., Plass, M., Solana, J., Dahlin, J.S.,
-Gottgens, B., Rajewsky, N., Simon, L., Theis, F.J., 2017. Graph abstraction
+Göttgens, B., Rajewsky, N., Simon, L., Theis, F.J., 2017. Graph abstraction
 reconciles clustering with trajectory inference through a topology preserving
 map of single cells.
 }

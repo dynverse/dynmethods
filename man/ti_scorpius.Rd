@@ -11,14 +11,14 @@ ti_scorpius(distance_method = "spearman", ndim = 3L, k = 4L,
 \arguments{
 \item{distance_method}{A character string indicating which
 correlationcoefficient (or covariance) is to be computed. One of "pearson",
-"kendall", or "spearman". Domain: {spearman, pearson, cosine}. Default:
-spearman. Format: character.}
+"spearman" (default), or "cosine". Domain: {spearman, pearson, cosine}.
+Default: spearman. Format: character.}
 
 \item{ndim}{The number of dimensions in the new space. Domain: U(2, 20).
 Default: 3. Format: integer.}
 
-\item{k}{The number of clusters to cluster the data into. Domain: U(1, 20).
-Default: 4. Format: integer.}
+\item{k}{The number of clusters to cluster the data into to construct the
+initial trajectory. Domain: U(1, 20). Default: 4. Format: integer.}
 
 \item{thresh}{\code{principal_curve} parameter; convergence threshhold on shortest
 distances to the curve. Domain: e^U(-11.51, 11.51). Default: 0.001. Format:
@@ -49,7 +49,7 @@ The original code of this method is available
 }
 \references{
 Cannoodt, R., Saelens, W., Sichien, D., Tavernier, S., Janssens,
-S., Guilliams, M., Lambrecht, B.N., De Preter, K., Saeys, Y., 2016. SCORPIUS
+S., Guilliams, M., Lambrecht, B., Preter, K.D., Saeys, Y., 2016. SCORPIUS
 improves trajectory inference and identifies novel modules in dendritic cell
 development.
 }

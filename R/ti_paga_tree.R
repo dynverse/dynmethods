@@ -48,7 +48,13 @@ ti_paga_tree <- function(
     resolution = 1L,
     embedding_type = "fa"
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_paga_tree:v0.9.9.06")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    package_version = NULL,
+    container_id = "dynverse/ti_paga_tree:v0.9.9.06"
+  )(
     filter_features = filter_features,
     n_neighbors = n_neighbors,
     n_comps = n_comps,

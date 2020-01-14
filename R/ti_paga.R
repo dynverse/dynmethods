@@ -49,7 +49,13 @@ ti_paga <- function(
     embedding_type = "fa",
     connectivity_cutoff = 0.05
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_paga:v0.9.9.05")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    package_version = NULL,
+    container_id = "dynverse/ti_paga:v0.9.9.05"
+  )(
     filter_features = filter_features,
     n_neighbors = n_neighbors,
     n_comps = n_comps,

@@ -118,7 +118,7 @@ for an overview
 
 ## Latest changes
 
-Check out `news(package = "dynwrap")` or [NEWS.md](inst/NEWS.md) for a
+Check out `news(package = "dynwrap")` or [NEWS.md](NEWS.md) for a
 full list of
 changes.
 

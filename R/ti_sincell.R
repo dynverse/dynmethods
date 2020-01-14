@@ -113,7 +113,13 @@ ti_sincell <- function(
     k_imc = 3L,
     pct_leaf_node_cutoff = 0.5
 ) {
-  create_ti_method_container(container_id = "dynverse/ti_sincell:v0.9.9.01")(
+  method_choose_backend(
+    package_repository = NULL,
+    package_name = NULL,
+    function_name = NULL,
+    package_version = NULL,
+    container_id = "dynverse/ti_sincell:v0.9.9.01"
+  )(
     distance_method = distance_method,
     dimred_method = dimred_method,
     clust.method = clust.method,
