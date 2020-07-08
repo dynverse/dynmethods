@@ -1,0 +1,54 @@
+on:
+  push:
+    branches:
+      - master
+      - devel
+  pull_request:
+    branches:
+      - master
+
+name: test-coverage
+
+jobs:
+  test-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@master
+
+      - uses: r-lib/actions/setup-pandoc@master
+
+      - name: Query dependencies
+        run: |
+          install.packages('remotes')
+          saveRDS(remotes::dev_package_deps(dependencies = TRUE), "depends.Rds", version = 2)
+        shell: Rscript {0}
+
+      - name: Cache R packages
+        uses: actions/cache@v1
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ubuntu-r-release-${{ hashFiles('depends.Rds') }}
+          restore-keys: ubuntu-r-release-
+
+      - name: Install system dependencies
+        if: runner.os == 'Linux'
+        env:
+          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
+        run: |
+          Rscript -e "remotes::install_github('rcannood/sysreqs')"
+          sysreqs=$(Rscript -e "pkgs <- unique(c(sysreqs:::get_cran_sysreqs(sysreqs:::get_cran_deps('covr')), sysreqs::sysreqs('DESCRIPTION'))); cat(sysreqs:::sysreq_commands_pkgs(pkgs))")
+          sudo -s eval "$sysreqs"
+
+      - name: Install dependencies
+        run: |
+          install.packages(c("remotes"))
+          remotes::install_deps(dependencies = TRUE)
+          remotes::install_cran("covr")
+        shell: Rscript {0}
+
+      - name: Test coverage
+        run: covr::codecov()
+        shell: Rscript {0}
+
