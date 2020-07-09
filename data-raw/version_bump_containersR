@@ -1,0 +1,68 @@
+library(tidyverse)
+library(furrr)
+library(dynmethods)
+library(dynwrap)
+
+bump_position <- 1 # major release
+bump_position <- 2 # minor release
+bump_position <- 3 # patch
+
+files <- list.files("../methods", pattern = "Dockerfile", recursive = TRUE, full.names = TRUE)
+
+file <- "../methods/ti_slingshot/Dockerfile"
+
+vers <- map_df(files, function(file) {
+  dirn <- dirname(file)
+
+  read_lines(file) %>%
+    str_replace_all("FROM .*", "FROM dynverse/dynwrap_latest:v0.1.0") %>%
+    write_lines(file)
+
+  desc_file <- paste0(dirn, "/package/DESCRIPTION")
+  vers_file <- paste0(dirn, "/version")
+  ver <-
+    if (file.exists(desc_file)) {
+      read_lines(desc_file) %>%
+        .[grepl("Version", .)] %>%
+        str_replace(".*: ", "") %>%
+        numeric_version
+    } else {
+      read_lines(vers_file) %>%
+        str_replace(".*=", "") %>%
+        numeric_version
+    }
+
+  # override version manually
+  ver <- numeric_version("2.0.0")
+
+  # # bump version number
+  # pos <- increment_pos
+  # while (is.na(ver[[1, pos]])) {
+  #   ver[[1, pos]] <- 0
+  #   pos <- pos - 1
+  # }
+  #
+  # ver[[1, increment_pos]] <- ver[[1, increment_pos]] + 1
+  # ver <- ver[1, seq_len(increment_pos)]
+
+  if (file.exists(desc_file)) {
+    read_lines(desc_file) %>%
+      str_replace("Version: .*", paste0("Version: ", as.character(ver))) %>%
+      write_lines(desc_file)
+  } else {
+    paste0("VERSION=", as.character(ver)) %>%
+      write_lines(vers_file)
+  }
+
+  tibble(method_id = basename(dirn), version = ver)
+})
+
+return_path <- getwd()
+walk(list.files("../methods", full.names = TRUE), function(folder) {
+  cat("Processing ", folder, "\n", sep = "")
+  setwd(folder)
+  on.exit(setwd(return_path))
+  system("git add .")
+  system("git commit -m 'update FROM and bump version'")
+  system("git push")
+})
