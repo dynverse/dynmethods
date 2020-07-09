@@ -34,15 +34,14 @@ df <-
   arrange(method_name) %>% 
   mutate(
     docker_url = paste0("https://hub.docker.com/r/", container_docker),
-    #travis_url = paste0("https://travis-ci.org/", container_docker),
+    docker_svg = paste0("https://img.shields.io/docker/v/", container_docker, "/latest?logo=docker"),
     github_actions_svg = paste0("https://github.com/", container_docker, "/workflows/make/badge.svg"),
     github_actions_link = paste0("https://github.com/", container_docker, "/actions?query=workflow%3Amake"),
     Method = method_name,
     Doi = map_chr(manuscript_doi, function(do) if (!is.null(do) && !is.na(do)) paste0("<a href='https://doi.org/", do, "'><img src='man/figures/doi_logo.png' height='16'></a>") else "" ),
-    Docker = paste0("[![Version](https://img.shields.io/badge/Docker-v", version, "-blue.svg?logo=docker)](", docker_url, ")"),
+    Docker = paste0("[![Version](", docker_svg, ")](", docker_url, ")"),
     Code = paste0("[code](", container_url, ")"), 
-    #Status = paste0("[![Build status](", travis_url, ".svg?branch=master)](", travis_url, ")"), # switch this back to master for dynmethods@master
-    Status = paste0("[![Build status](", github_actions_svg, ")](", github_actions_link, ")"), # switch this back to master for dynmethods@master
+    Status = paste0("[![Build status](", github_actions_svg, ")](", github_actions_link, ")"), 
     Authors = map_chr(method_authors, function(authors) {
       if (length(authors) > 0) {
           
