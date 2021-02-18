@@ -1,8 +1,10 @@
 # dynmethods 1.1.0 (unreleased)
 
-* MAJOR CHANGE: Add functionality to switch between R wrappers and container wrappers
+* MAJOR CHANGE: Add functionality to switch between R wrappers and container wrappers.
 
-* MAJOR CHANGE: Add R wrappers for **SCORPIUS**
+* MAJOR CHANGE: Add R wrappers for **SCORPIUS**.
+
+* BUG FIX: Do not install R packages if version is not specified and package is installed.
 
 # dynmethods 1.0.5 (03-07-2019)
 
