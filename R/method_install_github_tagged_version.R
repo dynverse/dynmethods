@@ -13,10 +13,10 @@ install_github_tagged_version <- function(remotes, versions = rep(NA, length(rem
   current_versions <- purrr::map_chr(parsed, function(x) devtools::package_info(x$package, dependencies = NULL)$ondiskversion)
 
   do_install <- purrr::map2_lgl(current_versions, requested_versions, function(cur, req) {
-    if (grepl("^[0-9\\.\\-]*$", req)) {
+    if (grepl("^[0-9\\.\\-]+$", req)) {
       compareVersion(cur, req) != 0
     } else {
-      TRUE
+      is.na(cur)
     }
   })
 
