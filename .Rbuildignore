@@ -17,3 +17,4 @@
 ^logs$
 ^LICENSE\.md$
 ^\.github$
+^codecov\.yml$

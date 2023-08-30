@@ -16,8 +16,15 @@ data("methods")
 methods <- methods %>% filter(!method_source %in% c("control")) # controls are not actual TI methods
 ```
 
-<a href="https://travis-ci.org/dynverse/dynmethods"><img src="https://travis-ci.org/dynverse/dynmethods.svg" align="left"></a>  [**ℹ️ Tutorials**](https://dynverse.org)  &nbsp;  &nbsp; [**ℹ️ Reference documentation**](https://dynverse.org/reference/dynmethods) <br><img src="man/figures/logo.png" align="right" />
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/dynverse/dynmethods/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dynverse/dynmethods/actions/workflows/R-CMD-check.yaml)  
+[**ℹ️ Tutorials**](https://dynverse.org)  &nbsp;  &nbsp; 
+[**ℹ️ Reference documentation**](https://dynverse.org/reference/dynmethods) 
 
+[![Codecov test coverage](https://codecov.io/gh/dynverse/dynmethods/branch/master/graph/badge.svg)](https://app.codecov.io/gh/dynverse/dynmethods?branch=master)
+<!-- badges: end -->
+
+<br><img src="man/figures/logo.png" align="right" />
 # A collection of `r nrow(methods)` trajectory inference methods
 This package contains wrappers for trajectory inference (TI) methods. The output of each method is transformed into a common trajectory model using [dynwrap](https://www.github.com/dynverse/dynwrap), which allows easy [visualisation and comparison](https://www.github.com/dynverse/dyno). All methods are wrapped inside a docker container, which avoids dependency issues, and also makes it easy to add a new method.
 
