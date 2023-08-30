@@ -4,9 +4,17 @@
 \alias{ti_oscope}
 \title{Oscope}
 \usage{
-ti_oscope(alternative_median = FALSE, filter_genes = TRUE,
-  mean_cut = c(100L, 100000000L), qt = c(0.05, 0.95), quan = 0.95,
-  ndg = 3L, nchun = 4L, niter = 20000L, ncthre = 1000L)
+ti_oscope(
+  alternative_median = FALSE,
+  filter_genes = TRUE,
+  mean_cut = c(100L, 100000000L),
+  qt = c(0.05, 0.95),
+  quan = 0.95,
+  ndg = 3L,
+  nchun = 4L,
+  niter = 20000L,
+  ncthre = 1000L
+)
 }
 \arguments{
 \item{alternative_median}{If alternative = TRUE, the alternative version of

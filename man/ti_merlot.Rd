@@ -4,11 +4,21 @@
 \alias{ti_merlot}
 \title{MERLoT}
 \usage{
-ti_merlot(sigma = "local", distance = "euclidean", ndim = 20L,
-  density_norm = TRUE, n_local = c(5L, 7L), w_width = 0.01,
-  n_components_to_use = 3L, N_yk = 100L, lambda_0 = 8e-10,
-  mu_0 = 0.0025, increaseFactor_mu = 20L,
-  increaseFactor_lambda = 20L, FixEndpoints = FALSE)
+ti_merlot(
+  sigma = "local",
+  distance = "euclidean",
+  ndim = 20L,
+  density_norm = TRUE,
+  n_local = c(5L, 7L),
+  w_width = 0.01,
+  n_components_to_use = 3L,
+  N_yk = 100L,
+  lambda_0 = 8e-10,
+  mu_0 = 0.0025,
+  increaseFactor_mu = 20L,
+  increaseFactor_lambda = 20L,
+  FixEndpoints = FALSE
+)
 }
 \arguments{
 \item{sigma}{Diffusion scale parameter of the Gaussian kernel. A larger sigma

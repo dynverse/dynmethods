@@ -4,9 +4,13 @@
 \alias{ti_topslam}
 \title{topslam}
 \usage{
-ti_topslam(n_components = 2L, n_neighbors = 10L, linear_dims = 0L,
-  max_iters = 1000L, dimreds = c("t-SNE", "PCA", "Spectral", "Isomap",
-  "ICA"))
+ti_topslam(
+  n_components = 2L,
+  n_neighbors = 10L,
+  linear_dims = 0L,
+  max_iters = 1000L,
+  dimreds = c("t-SNE", "PCA", "Spectral", "Isomap", "ICA")
+)
 }
 \arguments{
 \item{n_components}{The number of components. Domain: U(2, 10). Default: 2.

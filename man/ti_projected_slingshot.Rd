@@ -4,9 +4,16 @@
 \alias{ti_projected_slingshot}
 \title{Projected Slingshot}
 \usage{
-ti_projected_slingshot(shrink = 1L, reweight = TRUE, reassign = TRUE,
-  thresh = 0.001, maxit = 10L, stretch = 2,
-  smoother = "smooth.spline", shrink.method = "cosine")
+ti_projected_slingshot(
+  shrink = 1L,
+  reweight = TRUE,
+  reassign = TRUE,
+  thresh = 0.001,
+  maxit = 10L,
+  stretch = 2,
+  smoother = "smooth.spline",
+  shrink.method = "cosine"
+)
 }
 \arguments{
 \item{shrink}{Logical or numeric between 0 and 1, determines whether and how

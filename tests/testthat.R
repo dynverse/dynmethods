@@ -1,9 +1,4 @@
-Sys.setenv("R_TESTS" = "")
-
 library(testthat)
-library(dynutils)
-library(dplyr)
-library(purrr)
-library(tibble)
+library(dynmethods)
 
 test_check("dynmethods")

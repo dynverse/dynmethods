@@ -4,8 +4,14 @@
 \alias{ti_scimitar}
 \title{SCIMITAR}
 \usage{
-ti_scimitar(covariance_type = "diag", degree = 3L, step_size = 0.07,
-  cov_estimator = "identity", cov_reg = 0.05, max_iter = 3L)
+ti_scimitar(
+  covariance_type = "diag",
+  degree = 3L,
+  step_size = 0.07,
+  cov_estimator = "identity",
+  cov_reg = 0.05,
+  max_iter = 3L
+)
 }
 \arguments{
 \item{covariance_type}{. Domain: {diag, spherical, full}. Default: diag.

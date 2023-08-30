@@ -4,10 +4,19 @@
 \alias{ti_celltrails}
 \title{CellTrails}
 \usage{
-ti_celltrails(filter_features = FALSE, threshold_dl = 2L,
-  threshold_cov = 0.05, threshold_ff = 1.7, min_expr = 0L,
-  frac = 100L, min_size = 0.01, min_feat = 5L, max_pval = 1e-04,
-  min_fc = 2L, l = 10L)
+ti_celltrails(
+  filter_features = FALSE,
+  threshold_dl = 2L,
+  threshold_cov = 0.05,
+  threshold_ff = 1.7,
+  min_expr = 0L,
+  frac = 100L,
+  min_size = 0.01,
+  min_feat = 5L,
+  max_pval = 1e-04,
+  min_fc = 2L,
+  l = 10L
+)
 }
 \arguments{
 \item{filter_features}{Whether to include celltrails feature filtering.

@@ -10,7 +10,7 @@ Description: dynmethods provides helper functions for containerised trajectory i
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.2.3
 Depends:
   R (>= 3.4.0)
 Imports: 
@@ -23,9 +23,10 @@ Imports:
 Suggests:
   babelwhale,
   dplyr,
-  dynutils,   
+  dynutils,
   knitr,
-  testthat,
+  testthat (>= 3.0.0),
   tibble
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
+Config/testthat/edition: 3

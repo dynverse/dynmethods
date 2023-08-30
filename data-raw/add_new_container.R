@@ -19,29 +19,28 @@ traj <- dynwrap::infer_trajectory(data, docker_repo, parameters = params, verbos
 dynplot::plot_graph(traj)
 
 
-#' @examples
-#' # you can test whether this method can be evaluated
-#' eval <- dyneval::evaluate_ti_method(data, dynwrap::create_ti_methods_container(paste0("dynverse/ti_", method))(), parameters = params, metrics = c("correlation", "edge_flip", "rf_mse", "featureimp_cor"), verbose = TRUE)
-#' eval$summary
-#' dynplot::plot_graph(eval$models[[1]])
-#' eval$summary$error
-#'
-#' # if it works, you can push the container to docker hub
-#' processx::run("docker", args = c("push", docker_repo), echo = TRUE)
-#'
-#' # rebuild the singularity image
-#' dynbenchmark::setup_singularity_methods()
-#' dynwrap::pull_singularity_ti_method(docker_repo)
-#'
-#' # test the singularity image
-#' traj <- dynwrap::infer_trajectory(data, method, parameters = params, verbose = TRUE)
-#' dynplot::plot_graph(traj)
-#'
-#' # transfer it to prism
-#' qsub::rsync_remote(
-#'   remote_src = FALSE,
-#'   path_src = dynbenchmark::derived_file(c("dynverse/", method, ".simg"), "03-method_characterisation/singularity_images", remote = FALSE),
-#'   remote_dest = TRUE,
-#'   path_dest = dynbenchmark::derived_file(c("dynverse/", method, ".simg"), "03-method_characterisation/singularity_images", remote = TRUE),
-#'   verbose = TRUE
-#' )
+# # you can test whether this method can be evaluated
+# eval <- dyneval::evaluate_ti_method(data, dynwrap::create_ti_methods_container(paste0("dynverse/ti_", method))(), parameters = params, metrics = c("correlation", "edge_flip", "rf_mse", "featureimp_cor"), verbose = TRUE)
+# eval$summary
+# dynplot::plot_graph(eval$models[[1]])
+# eval$summary$error
+#
+# # if it works, you can push the container to docker hub
+# processx::run("docker", args = c("push", docker_repo), echo = TRUE)
+#
+# # rebuild the singularity image
+# dynbenchmark::setup_singularity_methods()
+# dynwrap::pull_singularity_ti_method(docker_repo)
+#
+# # test the singularity image
+# traj <- dynwrap::infer_trajectory(data, method, parameters = params, verbose = TRUE)
+# dynplot::plot_graph(traj)
+#
+# # transfer it to prism
+# qsub::rsync_remote(
+#   remote_src = FALSE,
+#   path_src = dynbenchmark::derived_file(c("dynverse/", method, ".simg"), "03-method_characterisation/singularity_images", remote = FALSE),
+#   remote_dest = TRUE,
+#   path_dest = dynbenchmark::derived_file(c("dynverse/", method, ".simg"), "03-method_characterisation/singularity_images", remote = TRUE),
+#   verbose = TRUE
+# )

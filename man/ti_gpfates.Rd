@@ -4,8 +4,11 @@
 \alias{ti_gpfates}
 \title{GPfates}
 \usage{
-ti_gpfates(log_expression_cutoff = 0.5,
-  min_cells_expression_cutoff = 0L, ndim = 2L)
+ti_gpfates(
+  log_expression_cutoff = 0.5,
+  min_cells_expression_cutoff = 0L,
+  ndim = 2L
+)
 }
 \arguments{
 \item{log_expression_cutoff}{The log expression cutoff. Domain: U(0.5, 5).

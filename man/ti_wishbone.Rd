@@ -4,9 +4,15 @@
 \alias{ti_wishbone}
 \title{Wishbone}
 \usage{
-ti_wishbone(normalise = TRUE, knn = 25L, n_diffusion_components = 3L,
-  n_pca_components = 30L, k = 25L, num_waypoints = 250L,
-  epsilon = 1L)
+ti_wishbone(
+  normalise = TRUE,
+  knn = 25L,
+  n_diffusion_components = 3L,
+  n_pca_components = 30L,
+  k = 25L,
+  num_waypoints = 250L,
+  epsilon = 1L
+)
 }
 \arguments{
 \item{normalise}{. Default: TRUE. Format: logical.}

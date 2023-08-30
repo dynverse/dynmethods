@@ -4,9 +4,14 @@
 \alias{ti_monocle_ddrtree}
 \title{Monocle DDRTree}
 \usage{
-ti_monocle_ddrtree(reduction_method = "DDRTree", max_components = 2L,
-  norm_method = "log", auto_param_selection = TRUE,
-  filter_features = TRUE, filter_features_mean_expression = 0.1)
+ti_monocle_ddrtree(
+  reduction_method = "DDRTree",
+  max_components = 2L,
+  norm_method = "log",
+  auto_param_selection = TRUE,
+  filter_features = TRUE,
+  filter_features_mean_expression = 0.1
+)
 }
 \arguments{
 \item{reduction_method}{A character string specifying the algorithm to use for

@@ -4,10 +4,17 @@
 \alias{ti_celltree_maptpx}
 \title{cellTree maptpx}
 \usage{
-ti_celltree_maptpx(method = "maptpx", sd_filter = 0.5,
-  absolute_width = 0L, width_scale_factor = 1.5,
-  outlier_tolerance_factor = 0.1, rooting_method = "null",
-  num_topics = c(2L, 15L), tot_iter = 200L, tolerance = 0.05)
+ti_celltree_maptpx(
+  method = "maptpx",
+  sd_filter = 0.5,
+  absolute_width = 0L,
+  width_scale_factor = 1.5,
+  outlier_tolerance_factor = 0.1,
+  rooting_method = "null",
+  num_topics = c(2L, 15L),
+  tot_iter = 200L,
+  tolerance = 0.05
+)
 }
 \arguments{
 \item{method}{LDA inference method to use. Domain: {maptpx}. Default: maptpx.

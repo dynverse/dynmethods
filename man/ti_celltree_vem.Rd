@@ -4,10 +4,16 @@
 \alias{ti_celltree_vem}
 \title{cellTree vem}
 \usage{
-ti_celltree_vem(method = "VEM", sd_filter = 0.5,
-  width_scale_factor = 1.5, outlier_tolerance_factor = 0.1,
-  rooting_method = "null", num_topics = 4L, tot_iter = 1000000L,
-  tolerance = 1e-05)
+ti_celltree_vem(
+  method = "VEM",
+  sd_filter = 0.5,
+  width_scale_factor = 1.5,
+  outlier_tolerance_factor = 0.1,
+  rooting_method = "null",
+  num_topics = 4L,
+  tot_iter = 1000000L,
+  tolerance = 1e-05
+)
 }
 \arguments{
 \item{method}{LDA inference method to use. Domain: {VEM}. Default: VEM. Format:

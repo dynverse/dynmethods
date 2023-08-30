@@ -4,9 +4,16 @@
 \alias{ti_elpicycle}
 \title{ElPiGraph - Cycle}
 \usage{
-ti_elpicycle(NumNodes = 50L, NumEdges = 100000L, InitNodes = 2L,
-  Mu = 0.1, Lambda = 0.01, MaxNumberOfIterations = 10L, eps = 0.01,
-  CenterData = FALSE)
+ti_elpicycle(
+  NumNodes = 50L,
+  NumEdges = 100000L,
+  InitNodes = 2L,
+  Mu = 0.1,
+  Lambda = 0.01,
+  MaxNumberOfIterations = 10L,
+  eps = 0.01,
+  CenterData = FALSE
+)
 }
 \arguments{
 \item{NumNodes}{The number of nodes of the principal graph. Domain: U(2, 1000).

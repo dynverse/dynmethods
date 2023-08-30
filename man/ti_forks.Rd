@@ -4,10 +4,17 @@
 \alias{ti_forks}
 \title{FORKS}
 \usage{
-ti_forks(norm_function = "median", norm_quantile = 75L,
-  cum_sum_exp_var = 0.9, cluster = c(4L, 10L),
-  mapping_type = "Isomap", initialization = "kmeans",
-  iterMax = 1000L, eta = 0.01, C = 1L)
+ti_forks(
+  norm_function = "median",
+  norm_quantile = 75L,
+  cum_sum_exp_var = 0.9,
+  cluster = c(4L, 10L),
+  mapping_type = "Isomap",
+  initialization = "kmeans",
+  iterMax = 1000L,
+  eta = 0.01,
+  C = 1L
+)
 }
 \arguments{
 \item{norm_function}{No description provided by the author. Domain: {mean,

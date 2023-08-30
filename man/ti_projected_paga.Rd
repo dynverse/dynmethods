@@ -4,9 +4,16 @@
 \alias{ti_projected_paga}
 \title{Projected PAGA}
 \usage{
-ti_projected_paga(filter_features = TRUE, n_neighbors = 15L,
-  n_comps = 50L, n_dcs = 15L, resolution = 1L,
-  embedding_type = "fa", tree = TRUE, connectivity_cutoff = 0.05)
+ti_projected_paga(
+  filter_features = TRUE,
+  n_neighbors = 15L,
+  n_comps = 50L,
+  n_dcs = 15L,
+  resolution = 1L,
+  embedding_type = "fa",
+  tree = TRUE,
+  connectivity_cutoff = 0.05
+)
 }
 \arguments{
 \item{filter_features}{Whether to do feature filtering. Default: TRUE. Format:

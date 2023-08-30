@@ -4,8 +4,7 @@
 \alias{ti_stemnet}
 \title{STEMNET}
 \usage{
-ti_stemnet(alpha = 0.1, lambda_auto = TRUE, lambda = 0.1,
-  force = FALSE)
+ti_stemnet(alpha = 0.1, lambda_auto = TRUE, lambda = 0.1, force = FALSE)
 }
 \arguments{
 \item{alpha}{The elastic net mixing parameter of the ‘glmnet’ classifier.

@@ -4,9 +4,13 @@
 \alias{ti_monocle_ica}
 \title{Monocle ICA}
 \usage{
-ti_monocle_ica(reduction_method = "ICA", max_components = 2L,
-  norm_method = "log", filter_features = TRUE,
-  filter_features_mean_expression = 0.1)
+ti_monocle_ica(
+  reduction_method = "ICA",
+  max_components = 2L,
+  norm_method = "log",
+  filter_features = TRUE,
+  filter_features_mean_expression = 0.1
+)
 }
 \arguments{
 \item{reduction_method}{A character string specifying the algorithm to use for

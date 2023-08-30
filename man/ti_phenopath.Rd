@@ -4,8 +4,7 @@
 \alias{ti_phenopath}
 \title{PhenoPath}
 \usage{
-ti_phenopath(thin = 40L, z_init = "1", model_mu = FALSE,
-  scale_y = TRUE)
+ti_phenopath(thin = 40L, z_init = "1", model_mu = FALSE, scale_y = TRUE)
 }
 \arguments{
 \item{thin}{The number of iterations to wait each time before re-calculating

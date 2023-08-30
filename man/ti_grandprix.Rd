@@ -4,8 +4,11 @@
 \alias{ti_grandprix}
 \title{GrandPrix}
 \usage{
-ti_grandprix(n_inducing_points = 40L, latent_prior_var = 0.1,
-  latent_var = 0.028)
+ti_grandprix(
+  n_inducing_points = 40L,
+  latent_prior_var = 0.1,
+  latent_var = 0.028
+)
 }
 \arguments{
 \item{n_inducing_points}{. Domain: U(0, 1). Default: 40. Format: integer.}

@@ -4,11 +4,19 @@
 \alias{ti_sincell}
 \title{Sincell}
 \usage{
-ti_sincell(distance_method = "euclidean", dimred_method = "none",
-  clust.method = "max.distance", mutual = TRUE, max.distance = 0L,
-  k = 3L, shortest.rank.percent = 10L, graph.algorithm = "MST",
-  graph.using.cells.clustering = FALSE, k_imc = 3L,
-  pct_leaf_node_cutoff = 0.5)
+ti_sincell(
+  distance_method = "euclidean",
+  dimred_method = "none",
+  clust.method = "max.distance",
+  mutual = TRUE,
+  max.distance = 0L,
+  k = 3L,
+  shortest.rank.percent = 10L,
+  graph.algorithm = "MST",
+  graph.using.cells.clustering = FALSE,
+  k_imc = 3L,
+  pct_leaf_node_cutoff = 0.5
+)
 }
 \arguments{
 \item{distance_method}{Distance method to be used. The available distances are

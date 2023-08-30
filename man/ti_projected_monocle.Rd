@@ -4,9 +4,14 @@
 \alias{ti_projected_monocle}
 \title{Projected Monocle}
 \usage{
-ti_projected_monocle(reduction_method = "DDRTree", max_components = 2L,
-  norm_method = "vstExprs", auto_param_selection = TRUE,
-  filter_features = TRUE, filter_features_mean_expression = 0.1)
+ti_projected_monocle(
+  reduction_method = "DDRTree",
+  max_components = 2L,
+  norm_method = "vstExprs",
+  auto_param_selection = TRUE,
+  filter_features = TRUE,
+  filter_features_mean_expression = 0.1
+)
 }
 \arguments{
 \item{reduction_method}{A character string specifying the algorithm to use for

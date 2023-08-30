@@ -4,9 +4,14 @@
 \alias{ti_paga_tree}
 \title{PAGA Tree}
 \usage{
-ti_paga_tree(filter_features = TRUE, n_neighbors = 15L,
-  n_comps = 50L, n_dcs = 15L, resolution = 1L,
-  embedding_type = "fa")
+ti_paga_tree(
+  filter_features = TRUE,
+  n_neighbors = 15L,
+  n_comps = 50L,
+  n_dcs = 15L,
+  resolution = 1L,
+  embedding_type = "fa"
+)
 }
 \arguments{
 \item{filter_features}{Whether to do feature filtering. Default: TRUE. Format:

@@ -4,7 +4,7 @@
 #' @param versions The desired versions of the package, `NA` if unknown.
 #' @param is_interactive Whether running in an interactive session
 #'
-#' @importFrom purrr map_chr map2_dbl map_chr map
+#' @importFrom purrr map_chr map2_dbl map_chr map walk
 #' @importFrom remotes parse_github_repo_spec
 install_github_tagged_version <- function(remotes, versions = rep(NA, length(remotes)), is_interactive = interactive()) {
   parsed <- purrr::map(remotes, parse_github_repo_spec) %>% purrr::set_names(remotes)

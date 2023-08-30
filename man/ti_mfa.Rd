@@ -4,8 +4,14 @@
 \alias{ti_mfa}
 \title{MFA}
 \usage{
-ti_mfa(iter = 2000L, thin = 1L, pc_initialise = 1L,
-  prop_collapse = 0L, scale_input = TRUE, zero_inflation = FALSE)
+ti_mfa(
+  iter = 2000L,
+  thin = 1L,
+  pc_initialise = 1L,
+  prop_collapse = 0L,
+  scale_input = TRUE,
+  zero_inflation = FALSE
+)
 }
 \arguments{
 \item{iter}{Number of MCMC iterations. Domain: U(20, 5000). Default: 2000.

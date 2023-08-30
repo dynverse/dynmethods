@@ -4,8 +4,13 @@
 \alias{ti_gng}
 \title{GNG}
 \usage{
-ti_gng(dimred = "landmark_mds", ndim = 5L, max_iter = 15000L,
-  max_nodes = 8L, apply_mst = TRUE)
+ti_gng(
+  dimred = "landmark_mds",
+  ndim = 5L,
+  max_iter = 15000L,
+  max_nodes = 8L,
+  apply_mst = TRUE
+)
 }
 \arguments{
 \item{dimred}{Which dimensionality reduction method to use. Domain: {pca, mds,

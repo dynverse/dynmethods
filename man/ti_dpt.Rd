@@ -4,8 +4,14 @@
 \alias{ti_dpt}
 \title{DPT}
 \usage{
-ti_dpt(sigma = "local", distance = "euclidean", ndim = 20L,
-  density_norm = TRUE, n_local = c(5L, 7L), w_width = 0.1)
+ti_dpt(
+  sigma = "local",
+  distance = "euclidean",
+  ndim = 20L,
+  density_norm = TRUE,
+  n_local = c(5L, 7L),
+  w_width = 0.1
+)
 }
 \arguments{
 \item{sigma}{Diffusion scale parameter of the Gaussian kernel. A larger sigma

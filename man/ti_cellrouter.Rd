@@ -4,11 +4,22 @@
 \alias{ti_cellrouter}
 \title{CellRouter}
 \usage{
-ti_cellrouter(ndim_pca = 20L, ndim_tsne = 11L, max_iter = 1000L,
-  cluster_method = "graph.clustering", k_clustering = 20L,
-  ndim_pca_clustering = 20L, k_knn = 10L, ndim_pca_knn = 20L,
-  sim_type = "jaccard", distance_method_paths = "graph",
-  ranks = "rank", num_cells = 3L, neighs = 3L, perplexity = 30L)
+ti_cellrouter(
+  ndim_pca = 20L,
+  ndim_tsne = 11L,
+  max_iter = 1000L,
+  cluster_method = "graph.clustering",
+  k_clustering = 20L,
+  ndim_pca_clustering = 20L,
+  k_knn = 10L,
+  ndim_pca_knn = 20L,
+  sim_type = "jaccard",
+  distance_method_paths = "graph",
+  ranks = "rank",
+  num_cells = 3L,
+  neighs = 3L,
+  perplexity = 30L
+)
 }
 \arguments{
 \item{ndim_pca}{Number of principal components to compute. Domain: U(2, 100).

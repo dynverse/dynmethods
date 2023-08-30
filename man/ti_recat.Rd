@@ -4,9 +4,15 @@
 \alias{ti_recat}
 \title{reCAT}
 \usage{
-ti_recat(TSPFold = 2L, beginNum = 10L, endNum = 15L,
-  step_size = 2L, base_cycle_range = c(6L, 9L), max_num = 300L,
-  clustMethod = "GMM")
+ti_recat(
+  TSPFold = 2L,
+  beginNum = 10L,
+  endNum = 15L,
+  step_size = 2L,
+  base_cycle_range = c(6L, 9L),
+  max_num = 300L,
+  clustMethod = "GMM"
+)
 }
 \arguments{
 \item{TSPFold}{No documentation provided by authors. Domain: U(2, 10). Default:

@@ -4,9 +4,18 @@
 \alias{ti_fateid}
 \title{FateID}
 \usage{
-ti_fateid(reclassify = TRUE, clthr = 0.9, nbfactor = 5L, q = 0.75,
-  k = 3L, m = "tsne", minnr = 5L, minnrh = 10L, trthr = 0.4,
-  force = FALSE)
+ti_fateid(
+  reclassify = TRUE,
+  clthr = 0.9,
+  nbfactor = 5L,
+  q = 0.75,
+  k = 3L,
+  m = "tsne",
+  minnr = 5L,
+  minnrh = 10L,
+  trthr = 0.4,
+  force = FALSE
+)
 }
 \arguments{
 \item{reclassify}{Whether to reclassify the cell grouping. Default: TRUE.

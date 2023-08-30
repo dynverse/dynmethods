@@ -4,9 +4,17 @@
 \alias{ti_elpigraph}
 \title{ElPiGraph}
 \usage{
-ti_elpigraph(topology = "tree", NumNodes = 50L, NumEdges = 100000L,
-  InitNodes = 2L, Mu = 0.1, Lambda = 0.01,
-  MaxNumberOfIterations = 10L, eps = 0.01, CenterData = FALSE)
+ti_elpigraph(
+  topology = "tree",
+  NumNodes = 50L,
+  NumEdges = 100000L,
+  InitNodes = 2L,
+  Mu = 0.1,
+  Lambda = 0.01,
+  MaxNumberOfIterations = 10L,
+  eps = 0.01,
+  CenterData = FALSE
+)
 }
 \arguments{
 \item{topology}{The kind of topology to detect. Domain: {cycle, tree, linear}.

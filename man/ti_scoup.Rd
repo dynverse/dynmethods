@@ -4,9 +4,15 @@
 \alias{ti_scoup}
 \title{SCOUP}
 \usage{
-ti_scoup(ndim = 2L, max_ite1 = 100L, max_ite2 = 100L,
-  alpha = c(0.1, 100), t = c(0.001, 2), sigma_squared = 0.1,
-  thresh = 0.01)
+ti_scoup(
+  ndim = 2L,
+  max_ite1 = 100L,
+  max_ite2 = 100L,
+  alpha = c(0.1, 100),
+  t = c(0.001, 2),
+  sigma_squared = 0.1,
+  thresh = 0.01
+)
 }
 \arguments{
 \item{ndim}{Number of pca dimensions. Domain: U(2, 20). Default: 2. Format:

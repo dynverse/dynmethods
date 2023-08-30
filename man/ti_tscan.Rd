@@ -4,8 +4,13 @@
 \alias{ti_tscan}
 \title{TSCAN}
 \usage{
-ti_tscan(minexpr_percent = 0L, minexpr_value = 0L, cvcutoff = 0L,
-  clusternum = c(2L, 9L), modelNames = "VVV")
+ti_tscan(
+  minexpr_percent = 0L,
+  minexpr_value = 0L,
+  cvcutoff = 0L,
+  clusternum = c(2L, 9L),
+  modelNames = "VVV"
+)
 }
 \arguments{
 \item{minexpr_percent}{. Domain: U(0, 1). Default: 0. Format: numeric.}

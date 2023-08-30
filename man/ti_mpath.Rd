@@ -4,9 +4,14 @@
 \alias{ti_mpath}
 \title{Mpath}
 \usage{
-ti_mpath(distMethod = "euclidean", method = "kmeans",
-  numcluster = 11L, numcluster_null = TRUE, diversity_cut = 0.6,
-  size_cut = 0.05)
+ti_mpath(
+  distMethod = "euclidean",
+  method = "kmeans",
+  numcluster = 11L,
+  numcluster_null = TRUE,
+  diversity_cut = 0.6,
+  size_cut = 0.05
+)
 }
 \arguments{
 \item{distMethod}{The method for calculating dissimilarity between cells.

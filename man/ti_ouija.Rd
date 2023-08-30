@@ -4,8 +4,12 @@
 \alias{ti_ouija}
 \title{ouija}
 \usage{
-ti_ouija(iter = 100L, response_type = "switch",
-  inference_type = "hmc", normalise_expression = TRUE)
+ti_ouija(
+  iter = 100L,
+  response_type = "switch",
+  inference_type = "hmc",
+  normalise_expression = TRUE
+)
 }
 \arguments{
 \item{iter}{Number of iterations. Domain: e^U(2.30, 6.91). Default: 100.

@@ -4,13 +4,31 @@
 \alias{ti_raceid_stemid}
 \title{RaceID / StemID}
 \usage{
-ti_raceid_stemid(knn = 10L, ccor = 0.4, metric = "pearson",
-  sat = TRUE, samp = 1000L, cln = 30L, clustnr = 30L,
-  bootnr = 50L, FUNcluster = "kmedoids", probthr = 0.001,
-  outminc = 5L, outlg = 2L, outdistquant = 0.95,
-  initial_cmd = TRUE, perplexity = 30L, cthr = 5L, nmode = TRUE,
-  projcells_knn = 3L, fr = FALSE, pdishuf = 500L, fast = FALSE,
-  pthr = 0.01, scthr = 0.2)
+ti_raceid_stemid(
+  knn = 10L,
+  ccor = 0.4,
+  metric = "pearson",
+  sat = TRUE,
+  samp = 1000L,
+  cln = 30L,
+  clustnr = 30L,
+  bootnr = 50L,
+  FUNcluster = "kmedoids",
+  probthr = 0.001,
+  outminc = 5L,
+  outlg = 2L,
+  outdistquant = 0.95,
+  initial_cmd = TRUE,
+  perplexity = 30L,
+  cthr = 5L,
+  nmode = TRUE,
+  projcells_knn = 3L,
+  fr = FALSE,
+  pdishuf = 500L,
+  fast = FALSE,
+  pthr = 0.01,
+  scthr = 0.2
+)
 }
 \arguments{
 \item{knn}{Number of nearest neighbors used to infer corresponding cell types
