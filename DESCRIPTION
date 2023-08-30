@@ -27,8 +27,5 @@ Suggests:
   knitr,
   testthat,
   tibble
-Remotes: 
-    dynverse/dynutils@devel,
-    dynverse/dynwrap@devel
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
