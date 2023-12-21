@@ -52,7 +52,7 @@ ti_scorpius <- function(
     smoother = "smooth_spline"
 ) {
   method_choose_backend(
-    package_repository = "rcannood/SCORPIUS@dynwrap",
+    package_repository = "rcannood/SCORPIUS",
     package_name = "SCORPIUS",
     function_name = "ti_scorpius",
     package_version = "1.0.4.9000",
